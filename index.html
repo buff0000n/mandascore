@@ -1,0 +1,932 @@
+<html>
+<!-- Full disclosure: JavaScript is not my forte and neither is CSS. -B -->
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta name="viewport" content="width=640, initial-scale=1">
+<head>
+    <title>Warframe Mandascore</title>
+</head>
+<!-- embedded favicon because why not -->
+<link href="data:image/png;base64,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" rel="icon" type="image/png" />
+<style type="text/css">
+    /* general formatting */
+    * {
+        font-family: sans-serif;
+        color: #B0B0B0;
+    }
+    body {
+        background-color: #202020;
+    }
+    input, textarea {
+        color: #000000;
+    }
+    input:invalid {
+        background: #FF8888;
+    }
+    .title {
+	    font-weight: bold;
+	    font-size: 100%;
+	    color: #80A0D0;
+	    display: inline;
+    }
+    .titleBar {
+        background-color: #404040;
+        margin: 1ex;
+        padding: 1ex;
+        border-radius: 1ex;
+        text-align: middle;
+    }
+    .titleBar .businessDiv {
+        margin: 2ex 1ex 1ex 1ex;
+    }
+    .mainTitle {
+	    font-weight: bold;
+	    text-align: center;
+	    font-size: 200%;
+	    color: #FFFFFF;
+    }
+    .subTitle {
+	    font-weight: bold;
+	    text-align: center;
+	    font-size: 150%;
+	    color: #FFFFFF;
+    }
+    .label {
+        color: #FFFFFF;
+    }
+    a {
+        color: #8080FF
+    }
+    a:visited {
+        color: #D080FF
+    }
+    ul {
+        list-style-type: disc;
+    }
+    li {
+        margin: 0ex 0ex 1ex 0ex;
+    }
+
+    /* help section formatting */
+    #lotsOfWordsContainer, .footerContainer {
+        background-color: #202020;
+        margin: 1ex;
+        padding: 1ex;
+        border-radius: 1ex;
+   	    text-align: center;
+    }
+    .lotsOfWords, .footer {
+        max-width: 100ex;
+        display: inline-block;
+   	    text-align: left;
+    }
+    .footer {
+	    font-weight: bold;
+	    font-size: 100%;
+    }
+    .about {
+        text-align: center;
+    }
+    h1, h2, h3, h4 {
+        color: A0C0F0;
+    }
+    strong {
+        color: 6080B0;
+    }
+    .warn, .warn * {
+        color: D06040;
+    }
+    #TOC li {
+        margin: 0;
+    }
+
+    /*
+        For some unknown reason, the font size on moble devices is much smaller, but only on the first column on the
+        notes tables. Work around using a media query for a coarse pointer (usually denotes a phone or tablet).
+    */
+    @media only screen and (pointer: coarse) {
+        .notes tr td:first-child {
+            font-size: 150%;
+        }
+    }
+
+    /* error bar formatting */
+    #errorBar {
+	    text-align: center;
+    }
+    #error {
+        background-color: #B00000;
+	    font-weight: bold;
+	    text-align: left;
+	    color: #FFFFFF;
+        margin: 1ex;
+        padding: 1ex;
+        border-radius: 1ex;
+        display: inline-block;
+    }
+    .errorLine {
+	    font-weight: bold;
+	    color: #FFFFFF;
+    }
+
+
+    /* Buttons */
+    .button {
+        margin: 1ex 1ex 1ex 1ex;
+        cursor: pointer;
+	}
+	.utilGroup {
+	    text-align: center;
+	}
+    .util, .utilHidden {
+        margin: 1ex 0ex 1ex 0ex;
+    }
+    .util {
+        display: inline;
+    }
+    .utilHidden {
+        display: none;
+    }
+    .button, #meteredDiv, #darkModeDiv, #meterDiv, #tempoDiv, #measuresPerLineDiv, #leadInBeatsDiv, #secondsPerLineDiv, .start, .urlButton {
+        background-color: #808080;
+        border: none;
+        color: #FFFFFF;
+        padding: 1ex;
+        text-align: center;
+        text-decoration: none;
+        font-size: 100%;
+        border-radius: 1ex;
+        display: block-inline;
+    }
+    .songContainer {
+        text-align: center;
+    }
+    .songDiv {
+        display: inline-block;
+        text-align: left;
+    }
+    #songTitleDiv, #authorDiv, #songCodeDiv {
+        background-color: #404080;
+        border: none;
+        color: #FFFFFF;
+        padding: 1ex;
+        text-align: left;
+        text-decoration: none;
+        font-size: 100%;
+        border-radius: 1ex;
+        display: block;
+    }
+    .start {
+        background-color: #60A060;
+    }
+    .stop {
+        background-color: #A06060;
+    }
+    .urlButton, {
+        background-color: #406080;
+    }
+
+    .density, .cumulative, .query {
+        background-color: #404040;
+        color: #D0D0D0;
+    }
+    .densitySelected, .cumulativeSelected, .querySelected {
+        background-color: #80A0D0;
+        color: #FFFFFF;
+    }
+
+    /* Fields */
+    .inputName, .inputTime, .inputRequired, .inputCount, .inputRate, .inputRange, .inputStopAfter, .inputResult, .inputPercentile {
+        background-color: #101010;
+        border: none;
+        color: #B0B0B0;
+        font-size: 75%;
+        padding: 1ex;
+        border-radius: 1ex;
+    }
+    .inputBailEarly, #copyUrlAutoStart {
+        background-color: #101010;
+        border: none;
+        color: #B0B0B0;
+    }
+    #samplesSelect, .rivenTypeSelect {
+        background-color: #101010;
+        border: none;
+        color: #B0B0B0;
+        font-size: 100%;
+        padding: 1ex;
+        border-radius: 1ex;
+    }
+
+    /* graying everthing out when disabled */
+    .rivenTypeSelect:disabled {
+        background-color: #202020;
+    }
+    .button:disabled {
+        background-color: #404040;
+        color: #B0B0B0;
+        cursor: not-allowed;
+    }
+    .inputName:disabled, .inputTime:disabled, .inputRequired:disabled, .inputCount:disabled, .inputRate:disabled, .inputRange:disabled, .inputStopAfter:disabled, .inputResult:disabled, .inputPercentile:disabled {
+        background-color: #202020;
+        color: #B0B0B0;
+        cursor: not-allowed;
+    }
+    .inputStopAfter:disabled {
+        background-color: #404040;
+    }
+    .inputBailEarly:disabled, #copyUrlAutoStart:disabled {
+        background-color: #202020;
+        color: #B0B0B0;
+        cursor: not-allowed;
+    }
+    #samplesSelect:disabled {
+        background-color: #202020;
+        color: #B0B0B0;
+        cursor: not-allowed;
+    }
+
+
+    #scoreArea {
+        background-color: #000000;
+        border: none;
+        color: #000000;
+        font-size: 75%;
+        padding: 1ex;
+        border-radius: 1ex;
+        text-align: center;
+    }
+
+
+
+    /* tooltips, adapted from https://www.w3schools.com/css/css_tooltip.asp */
+
+    .tooltip {
+        position: relative;
+        display: inline-block;
+    }
+    .tooltip:hover .tooltiptext, .tooltip:hover .tooltiptextbottom  {
+        visibility: visible;
+        opacity: 1;
+    }
+    /* fix the link colors inside tooltips */
+    .tooltip a {
+        color: #0000FF
+    }
+    .tooltip a:visited {
+        color: #B000FF
+    }
+
+    /* right side tooltip */
+    .tooltip .tooltiptext {
+        visibility: hidden;
+        width: 50ex;
+        background-color: #C0C0C0;
+        color: #4040A0;
+        text-align: center;
+        border-radius: 0.5ex;
+        padding: 1ex;
+        position: absolute;
+        z-index: 1;
+        top: 1ex;
+        left: calc(100% + 2ex);
+
+        opacity: 0;
+        transition: opacity 500ms;
+        transition-delay: 1s;
+    }
+    .tooltip .tooltiptext::after {
+        content: "";
+        position: absolute;
+        top: 2.25ex;
+        right: 100%;
+        margin-top: -1ex;
+        border-width: 1ex;
+        border-style: solid;
+        border-color: transparent #C0C0C0 transparent transparent;
+    }
+
+    /* bottom side tooltip */
+    .tooltip .tooltiptextbottom {
+        visibility: hidden;
+        width: 30ex;
+        background-color: #C0C0C0;
+        color: #4040A0;
+        text-align: center;
+        border-radius: 0.5ex;
+        padding: 1ex;
+        position: absolute;
+        z-index: 1;
+        top: 120%;
+        left: calc(50% - 15ex);
+        margin-left: -2ex;
+        pointer-events: none;
+
+        opacity: 0;
+        transition: opacity 500ms;
+        transition-delay: 1s;
+    }
+    .tooltip .tooltiptextbottom::after {
+        content: "";
+        position: absolute;
+        bottom: 100%;  /* At the top of the tooltip */
+        left: 50%;
+        margin-left: -1ex;
+        border-width: 1ex;
+        border-style: solid;
+        border-color: transparent transparent #C0C0C0 transparent;
+    }
+
+    /* popup, adapted from https://www.w3schools.com/howto/howto_js_popup.asp */
+    .popup {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+    }
+    .popup .popuptext {
+        visibility: hidden;
+        width: 50ex;
+        background-color: #C0C0C0;
+        color: #000080;
+        text-align: center;
+        border-radius: 0.5ex;
+        padding: 1ex;
+        position: absolute;
+        z-index: 1;
+        top: 120%;
+        left: -40ex;
+        margin-left: -2ex;
+    }
+    .popup .popuptext::after {
+        content: "";
+        position: absolute;
+        bottom: 100%;  /* At the top of the tooltip */
+        right: 2ex;
+        margin-left: -1ex;
+        border-width: 1ex;
+        border-style: solid;
+        border-color: transparent transparent #C0C0C0 transparent;
+    }
+    .popup .show {
+        visibility: visible;
+        animation: fadeIn 1s
+    }
+    #urlHolder {
+        color: #000000;
+    }
+</style>
+<body onload="initModel()">
+<script type="text/javascript" language="javascript" src="js/song.js" ></script>
+<script type="text/javascript" language="javascript" src="js/ui.js" ></script>
+<script type="text/javascript" language="javascript">
+
+
+    //==============================================================
+    // UI Builders
+    //==============================================================
+
+    function buildUI() {
+        buildMeasures(document.getElementById("scoreArea"));
+    }
+
+
+    //==============================================================
+    // Utility DOM functions
+    // probably doing some of these the hard way but nothing else
+    // was reliable enough
+    // Most UI elements are identified by class instead of ID
+    // because they're added dynamically and there can be more than
+    // one of them in the DOM
+    //==============================================================
+
+    function getParent(node, parentClass) {
+        // walk up the DOM until we find a parent with the given class name or run out of parents
+        while (node != null && parentClass != (node.className)) {
+            node = node.parentNode;
+        }
+        return node;
+    }
+
+    function getFirstChild(node, childClass) {
+        // perform a depth first search from the first child to the last,
+        // until we find an element with the given class name
+        var children = node.children;
+        for (var i = 0; i < children.length; i++) {
+            var child = node.children[i];
+            if (child.className == childClass) {
+                return child;
+            }
+            // recursive call
+            var child2 = getFirstChild(child, childClass);
+            if (child2 !== null) {
+                return child2;
+            }
+        }
+        return null;
+    }
+
+    function getLastChild(node, childClass) {
+        // perform a depth first search going from the last child to the first,
+        // until we find an element with the given class name
+        var children = node.children;
+        // go over the children in reverse order
+        for (var i = children.length - 1; i >= 0; i--) {
+            var child = node.children[i];
+            if (child.className == childClass) {
+                return child;
+            }
+            // recursive call
+            var child2 = getLastChild(child, childClass);
+            if (child2 !== null) {
+                return child2;
+            }
+        }
+        return null;
+    }
+
+    function getAllChildren(node, childClass) {
+        // find all the children with the given class name
+        return getAllChildren0(node, childClass, Array());
+    }
+
+    function getAllChildren0(node, childClass, list) {
+        var children = node.children;
+        for (var i = 0; i < children.length; i++) {
+            var child = node.children[i];
+            if (child.className == childClass) {
+                list.push(child);
+            }
+            getAllChildren0(child, childClass, list);
+        }
+        return list;
+    }
+
+    function deleteNode(node) {
+        // delete an element from its parent
+        node.parentNode.removeChild(node);
+    }
+
+    //==============================================================
+    // misc UI
+    //==============================================================
+
+    function showErrors(errors) {
+        // find the error bar
+        var errorBarElement = document.getElementById("errorBar");
+        // build and error div with a line for each error in the list
+        var html = `<div id="error">`;
+        for (var error in errors) {
+            html += `<div class="errorLine">${errors[error]}</div>`;
+        }
+        html += `</div>`;
+        // show
+        errorBarElement.innerHTML = html;
+    }
+
+    function clearErrors() {
+        // find the error bar and clear it out
+        var errorBarElement = document.getElementById("errorBar");
+        errorBarElement.innerHTML = "";
+    }
+
+    function windowOnError(msg, url, lineNo, columnNo, error) {
+        showErrors([msg.replace("Uncaught ", "")]);
+        return false;
+    }
+
+    //==============================================================
+    // Model-View control
+    //==============================================================
+
+    var showHelpUrlString = "&h=yes";
+
+    function initModel() {
+        // javascript is working
+        clearErrors();
+
+        var url = window.location.href;
+
+        window.onerror = windowOnError;
+
+        if (getQueryParam(url, "h")) {
+            about();
+        }
+
+        buildUI();
+
+        // reinitModel(url);
+    }
+
+    function reinitModel(url) {
+        // on page load, see if there's a "song=..." query string
+        var songString = getQueryParam(url, "song", false);
+        if (songString) {
+            // if there is, then initialize our song
+            setSong(urlDecodeString(songString, false));
+        }
+
+        var title = getQueryParam(url, "title");
+        if (title) {
+            document.getElementById("songTitle").value = urlDecodeString(title);
+        }
+
+        var author = getQueryParam(url, "author");
+        if (author) {
+            document.getElementById("author").value = urlDecodeString(author);
+        }
+
+        var metered = getQueryParam(url, "metered");
+        if (metered) {
+            if (metered == "y") {
+                document.getElementById("metered").checked = true;
+                document.getElementById("meter").value = getQueryParam(url, "meter");
+                document.getElementById("tempo").value = getQueryParam(url, "tempo");
+                document.getElementById("measuresPerLine").value = getQueryParam(url, "measuresPerLine");
+                document.getElementById("leadInBeats").value = getQueryParam(url, "leadInBeats");
+
+            } else {
+                document.getElementById("metered").checked = false;
+                document.getElementById("secondsPerLine").value = getQueryParam(url, "secondsPerLine");
+            }
+        } else {
+            document.getElementById("metered").checked = false;
+            document.getElementById("secondsPerLine").value = "4";
+        }
+        meteredChanged(document.getElementById("metered"))
+
+        if (songString) {
+            // start the display automatically
+            startRun();
+        }
+    }
+
+    function setSongString(songString) {
+        if (songString !== null && songString.length > 0) {
+            // parse a model from the string
+            var song = new Song().fromString(song);
+            // build the UI
+            setSong(song);
+            // clear any error
+            clearErrors();
+        }
+    }
+
+    function copyModelUrl() {
+        // build a model from the UI
+        var songString = getSong()
+
+        var title = document.getElementById("songTitle").value;
+
+        var author = document.getElementById("author").value;
+
+        var query = "?title=" + urlEncodeString(title) + "&author=" + urlEncodeString(author);
+
+        if (document.getElementById("metered").checked) {
+            query += "&metered=y"
+                + ("&meter=" + document.getElementById("meter").value || "4/4")
+                + ("&tempo=" + document.getElementById("tempo").value || "120")
+                + ("&measuresPerLine=" + document.getElementById("measuresPerLine").value || "4")
+                + ("&leadInBeats=" + document.getElementById("leadInBeats").value || "0");
+        } else {
+            query += "&metered=n"
+                + ("&secondsPerLine=" + document.getElementById("secondsPerLine").value || "4");
+        }
+
+        query += "&song=" + urlEncodeString(songString, false)
+
+        // build a full URL using the current URL
+        var url = buildQueryUrl(query);
+
+        // find the pop-up URL text field and set its contents
+        var textField = document.getElementById("urlHolder");
+        textField.value = url;
+        // show the popup
+        var popup = document.getElementById("popupBox");
+        popup.classList.toggle("show");
+        // focus and select the contents of the text field
+        textField.focus();
+        textField.select();
+    }
+
+	function urlEncodeString(string, plusIsSpace=true) {
+	    // urlencode some things
+	    string = encodeURIComponent(string);
+
+	    if (plusIsSpace) {
+            // replace whitespace with '+'
+            string = string.replace(/\s/g, "+");
+        }
+        return string;
+	}
+
+	function urlDecodeString(string, plusIsSpace=true) {
+	    if (plusIsSpace) {
+            // un-replace '+' with a space
+            string = string.replace(/\+/g, " ");
+        }
+
+	    // urldecode some things
+	    string = decodeURIComponent(string);
+
+	    // no funny business
+	    string = string.replace(/[<>\"]/g, "");
+	    return string;
+	}
+
+    function hideUrlPopup() {
+        // hide the popup when the text field loses focus
+        var popup = document.getElementById("popupBox");
+        popup.classList.toggle("show");
+        // todo: the onBlur() event fails to get called sometimes in Chrome
+    }
+
+    function buildQueryUrl(query) {
+        // get the current URL and strip out any query string
+        var url = window.location.href;
+        url = url.replace(/\?.*/, "");
+        // append our parameters
+        url += query;
+
+        return url;
+    }
+
+    function meteredChanged(checkbox) {
+        var metered = checkbox.checked;
+        if (metered) {
+            document.getElementById("meterDiv").style.display = "inline-block";
+            document.getElementById("tempoDiv").style.display = "inline-block";
+            document.getElementById("measuresPerLineDiv").style.display = "inline-block";
+            document.getElementById("leadInBeatsDiv").style.display = "inline-block";
+            document.getElementById("secondsPerLineDiv").style.display = "none";
+
+        } else {
+            document.getElementById("meterDiv").style.display = "none";
+            document.getElementById("tempoDiv").style.display = "none";
+            document.getElementById("measuresPerLineDiv").style.display = "none";
+            document.getElementById("leadInBeatsDiv").style.display = "none";
+            document.getElementById("secondsPerLineDiv").style.display = "inline-block";
+        }
+
+        valueChanged(checkbox);
+    }
+
+    function darkModeChanged(checkbox) {
+        darkMode = checkbox.checked;
+        valueChanged(checkbox);
+        document.getElementById("tabArea").style.backgroundColor = darkMode ? "#000000" : "#FFFFFF";
+    }
+
+    function valueChanged(input) {
+        startRun();
+    }
+
+    function setSong(songString) {
+        document.getElementById('songCode').value = songString;
+    }
+
+    function getSong() {
+        // build a model from the current state of the UI
+
+        return document.getElementById('songCode').value.replace(/\s/g, "");
+    }
+
+    function getQueryParam(url, name, plusIsSpace=true) {
+        // from https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
+        // weird that there's no built in function for this
+        name = name.replace(/[\[\]]/g, '\\$&');
+        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+        var results = regex.exec(url);
+        if (!results) {
+            return null;
+        }
+        if (!results[2]) {
+            return '';
+        }
+
+        var res = results[2];
+
+        if (plusIsSpace) {
+            res = res.replace(/\+/g, ' ')
+        }
+
+        return decodeURIComponent(res);
+    }
+
+    //==============================================================
+    // Runner
+    //==============================================================
+
+    // run state
+    var running = false;
+    var stopped = true;
+
+    // this is the number of runs after which we will stop
+    // this is set on start, and can be incremented if start is used again after auto-stop occurs
+    var stopNum = 0;
+
+    // This is how long we will run the simulation before updating the UI
+    var chunkMs = 100;
+
+    function startRun() {
+        // disable/enable everything accordingly
+        document.getElementById('generateButton').disabled = true;
+
+        // update state
+        stopped = false;
+
+        try {
+            // parse the UI into a model
+            var songString = getSong();
+
+            if (songString) {
+                var song = new Song().fromString(songString);
+
+                if (document.getElementById("metered").checked) {
+                    buildTabWithMeasures(song,
+                        document.getElementById("songTitle").value,
+                        document.getElementById("author").value,
+                        document.getElementById("meter").value || "4/4",
+                        document.getElementById("tempo").value,
+                        document.getElementById("measuresPerLine").value || "4",
+                        document.getElementById("leadInBeats").value || "0");
+                } else {
+                    buildTabWithoutMeasures(song,
+                        document.getElementById("songTitle").value,
+                        document.getElementById("author").value,
+                        document.getElementById("secondsPerLine").value || "4");
+                }
+            }
+
+            clearErrors();
+
+        } finally {
+            stopRun()
+        }
+    }
+
+    function stopRun() {
+        // disable/enable everything accordingly
+        document.getElementById('generateButton').disabled = false;
+        // document.getElementById('stopButton').disabled = true;
+
+        // update state
+        stopped = true;
+        // the running simulation will check the stopped flag eventually and stop itself
+    }
+
+
+    function about() {
+        var container = document.getElementById("lotsOfWordsContainer")
+
+        if (container.style.display === "none") {
+            container.style.display = "block";
+
+            // perform some history shenanigans to make sure that if you display Help, click a link, and then go back,
+            // then Help is still displayed and you don't lose your place.
+            var href = window.location.href;
+
+            if (href.indexOf(showHelpUrlString) < 0) {
+                if (href.indexOf("?") < 0) {
+                    href += "?";
+                }
+                href += showHelpUrlString;
+                history.replaceState( {} , document.title, href );
+            }
+
+        } else {
+            container.style.display = "none";
+            var href = window.location.href;
+            var index = href.indexOf(showHelpUrlString)
+            if (index >= 0) {
+                href = href.substring(0, index) + href.substring(index + showHelpUrlString.length);
+                history.replaceState( {} , document.title, href );
+            }
+        }
+    }
+
+
+
+
+</script>
+
+<div class="titleBar">
+    <div class="mainTitle">Mandascore: Mandachord Scoring App</div>
+</div>
+
+<div id="errorBar">
+    <div id="error">
+        <div class="errorLine">Javascript not enabled.</div>
+    </div>
+</div>
+
+<div class="songContainer">
+    <div class="songDiv">
+        <div class="util" id="songTitleDiv">
+            <div class="tooltip">
+                <span class="label">Song Title:</span>
+                <input id="songTitle" class="songTitle" type="text" size="50" onchange="valueChanged(this);"/>
+                <span class="tooltiptextbottom">Give your song a name</span>
+            </div>
+        </div>
+        <div class="util" id="songCodeDiv">
+            <div class="tooltip">
+                <div class="label">Song Code:</div>
+                <textarea id="songCode" rows="5" cols="64" onchange="valueChanged(this);"></textarea>
+                <span class="tooltiptextbottom">Paste the song code in here</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="scoreArea">
+
+</div>
+
+<div class="titleBar">
+    <div class="utilGroup">
+        <div class="util">
+            <span class="tooltip">
+                <input id="about" class="button about" type="submit" value="Help" onClick="about()"/>
+                <span class="tooltiptext">Click here for lots of words</span>
+            </span>
+        </div>
+    </div>
+    <div id="lotsOfWordsContainer" style="display: none;">
+        <div class="lotsOfWords">
+            <h1>What is this?</h1>
+            <p>
+                This is a utility for taking an existing Shawzin song code and creating a "Guitar Tablature"-like
+                image of it.
+            </p>
+
+            <h1>Table of Contents</h1>
+            <ul id="TOC">
+                <li><a href="#tocGettingStarted">Getting Started</a></li>
+                <li><a href="#tocOutputTweaking">Output Tweaking</a>
+                    <ul>
+                        <li><a href="#tocNonMetered">Non-metered</a></li>
+                        <li><a href="#tocMeteredOutput">Metered</a></li>
+                    </ul>
+                </li>
+                <li><a href="#tocToDo">To Do</a></li>
+                <li><a href="#tocKnownIssues">Known Issues</a></li>
+            </ul>
+
+            <h1 id="tocGettingStarted">Getting Started</h1>
+            <h2>Enter your song's information:</h2>
+            <ul>
+                <li><strong>Title</strong>: Enter a title for your song here.  This will appear at the top of the generated image.</li>
+            </ul>
+            <ul>
+                <li><strong>Author</strong>: Enter the creator of your song here.  This will appear at the top right of the generated image.</li>
+            </ul>
+            <p>
+                Paste the actual song code in the large text area.
+                It's okay if there are line breaks or other spaces, these will be removed before processing
+            </p>
+
+            <h2>Generate Shawzin Tablature</h2>
+            <p>
+                The tablature should be generated automatically as you make changes, but you can still click
+                <strong class="generateDiv">Generate Tab</strong> to generate the tablature image manually.
+            </p>
+
+            <h1 id="tocToDo">To Do</h1>
+            <ul>
+                <li>
+                    Compress consequtive blank lines/measures
+                </li>
+                <li>
+                    Enforce the 1000-note, 256-second limit
+                </li>
+                <li>
+                    Examples
+                </li>
+            </ul>
+
+
+            <h1 id="tocKnownIssues">Known Issues</h1>
+            <ul>
+                <li>None, this app is 100% perfect forever for all time :)</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footerContainer">
+        <div>
+            <img src="https://i.imgur.com/b5pNXKU.png" srcset="https://i.imgur.com/z6U8Oxs.png 2x"/>
+        </div>
+        <div>
+            Buff00n
+        </div>
+        <div>
+            <a href="https://github.com/buff0000n/mandascore">Source</a>
+            <a href="https://github.com/buff0000n/mandascore/issues/1">Feedback</a>
+        </div>
+        <div>
+            v0.0.1: 2020-09-21
+        </div>
+    </div>
+</div>
+</body>
+</html>
