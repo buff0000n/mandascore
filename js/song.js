@@ -1,5 +1,23 @@
+class InstrumentPack {
+    constructor(name, displayName) {
+        this.name = name;
+        this.displayName = displayName;
+    }
+}
 
-class song {
+var packs = Array(
+    new InstrumentPack("adau", "Adau"),
+    new InstrumentPack("alpha", "Alpha"),
+    new InstrumentPack("beta", "Beta"),
+    new InstrumentPack("delta", "Delta"),
+    new InstrumentPack("druk", "Druk"),
+    new InstrumentPack("epsilon", "Epsilon"),
+    new InstrumentPack("gamma", "Gamma"),
+    new InstrumentPack("horos", "Horos"),
+    new InstrumentPack("plogg", "Plogg"),
+);
+
+class Song {
     constructor() {
         this.sets = Array(3);
         this.volumes = Array(3);

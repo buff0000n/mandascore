@@ -128,8 +128,76 @@
 	    color: #FFFFFF;
     }
 
+    /* measure formatting */
+
+    .measureBlock {
+        padding: 0;
+        margin: 0;
+        border: 0;
+        position: relative;
+        display: inline-block;
+    }
+
+    .measureContainer {
+        padding: 0;
+        margin: 0;
+        border: 0;
+	    color: #FFFFFF;
+        display: inline-block;
+    }
+
+    .measureImgContainer {
+        padding: 0;
+        margin: 0;
+        border: 0;
+        position: relative;
+        display: inline-block;
+    }
+
+    .measureImg {
+        position: absolute;
+    }
+
+    .measureSelectBox-all, .measureSelectBox-perc, .measureSelectBox-bass, .measureSelectBox-mel {
+        position: absolute;
+        border-style: solid;
+        border-width: 4px;
+        margin: 0;
+        padding: 0;
+        pointer-events: none;
+    }
+
+    .measureSelectBox-all {
+        border-color: #FFFFFF;
+    }
+
+    .measureSelectBox-perc {
+        border-color: #FFFFFF;
+    }
+
+    .measureSelectBox-bass {
+        border-color: #1fb5ff;
+    }
+
+    .measureSelectBox-mel {
+        border-color: #e601ff;
+    }
+
+    .scoreButtonRow .button {
+        background-color: #404040;
+        border: none;
+        color: #FFFFFF;
+        padding: 1ex 1ex 0.5ex 1ex;
+        margin: 1ex 0ex 0ex 0ex;
+        text-align: center;
+        text-decoration: none;
+        font-size: 100%;
+        border-radius: 1ex 1ex 0ex 0ex;
+        display: block-inline;
+    }
 
     /* Buttons */
+
     .button {
         margin: 1ex 1ex 1ex 1ex;
         cursor: pointer;
@@ -250,7 +318,7 @@
         background-color: #000000;
         border: none;
         color: #000000;
-        font-size: 75%;
+        //font-size: 75%;
         padding: 1ex;
         border-radius: 1ex;
         text-align: center;
@@ -375,8 +443,9 @@
     }
 </style>
 <body onload="initModel()">
-<script type="text/javascript" language="javascript" src="js/song.js" ></script>
-<script type="text/javascript" language="javascript" src="js/ui.js" ></script>
+<script type="text/javascript" language="javascript" src="js/song.js"></script>
+<script type="text/javascript" language="javascript" src="js/audio.js"></script>
+<script type="text/javascript" language="javascript" src="js/ui.js"></script>
 <script type="text/javascript" language="javascript">
 
 
@@ -385,7 +454,7 @@
     //==============================================================
 
     function buildUI() {
-        buildMeasures(document.getElementById("scoreArea"));
+        buildScore(document.getElementById("scoreArea"));
     }
 
 
@@ -830,7 +899,8 @@
         <div class="util" id="songCodeDiv">
             <div class="tooltip">
                 <div class="label">Song Code:</div>
-                <textarea id="songCode" rows="5" cols="64" onchange="valueChanged(this);"></textarea>
+                <textarea id="songCode" rows="5" cols="64"></textarea>
+                <!--<textarea id="songCode" rows="5" cols="64" onchange="valueChanged(this);"></textarea>-->
                 <span class="tooltiptextbottom">Paste the song code in here</span>
             </div>
         </div>

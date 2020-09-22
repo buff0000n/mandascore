@@ -55,6 +55,23 @@ imgNoteColHover = Array(
     "note-mel-col-hover"
 );
 
+
+class MeasureSectionMetaData {
+    constructor(rowStart, rowStop, maxNotes, selectColor) {
+        this.rowStart = rowStart;
+        this.rowStop = rowStop;
+        this.maxNotes = maxNotes;
+        this.selectColor = selectColor;
+    }
+}
+
+var measureSections = {
+    "all": new MeasureSectionMetaData(0, 12, 0, "#ffffff"),
+    "perc": new MeasureSectionMetaData(0, 2, 24, "#ffffff"),
+    "bass": new MeasureSectionMetaData(3, 7, 16, "#1fb5ff"),
+    "mel": new MeasureSectionMetaData(8, 12, 16, "#e601ff")
+}
+
 function measureMouseover() {
     var e = window.event;
     var measure = e.currentTarget.measure;
@@ -145,7 +162,12 @@ class Note {
     }
     
     toggleEnabled() {
-        this.enabled = !this.enabled;
+        this.setEnabled(!this.enabled);
+        return this.enabled;
+    }
+
+    setEnabled(enabled) {
+        this.enabled = enabled;
         this.updateState();
     }
 
@@ -160,8 +182,37 @@ class Note {
     }
 }
 
+function runWhichMenu(title, button) {
+//                    <select class="button copySelect">
+//                        <option value="all" selected>All</option>
+//                        <option value="perc">Percussion</option>
+//                        <option value="bass">Bass</option>
+//                        <option value="mel">Melody</option>
+//                    </select>
+    return "all";
+}
+
+function playButton(button) {
+    getParent(button, "scoreButtonContainer").score.play();
+}
+
+function copyButton(button) {
+    var which = runWhichMenu("Copy", button);
+    getParent(button, "scoreButtonContainer").score.copy(which);
+}
+
+function pasteButton(button) {
+    getParent(button, "scoreButtonContainer").score.paste();
+}
+
+function clearButton(button) {
+    var which = runWhichMenu("Copy", button);
+    getParent(button, "scoreButtonContainer").score.clear(which);
+}
+
 class Measure {
-    constructor(number) {
+    constructor(score, number) {
+        this.score = score;
         this.number = number;
 
         this.noteSpacingX = 4;
@@ -174,17 +225,21 @@ class Measure {
         this.gridSizeX = this.noteSpacingX + this.noteSizeX;
         this.gridSizeY = this.noteSpacingY + this.noteSizeY;
 
-        this.element = document.createElement("div");
-        this.element.measure = this;
-        this.element.style = "padding:0; margin:0; border0;";
-        this.element.style.position = "relative";
-        this.element.style.display = "inline-block";
-        this.element.style.width = (this.gridSizeX * 16) + "px";
-        this.element.style.height = (this.gridSizeY * 13) + "px";
+        this.container = document.createElement("div");
+        this.container.measure = this;
+        this.container.className = "measureContainer";
+        this.container.appendChild(this.buildButtons());
+
+        this.imgContainer = document.createElement("div");
+        this.imgContainer.measure = this;
+        this.imgContainer.className = "measureImgContainer";
+        this.imgContainer.style.width = (this.gridSizeX * 16) + "px";
+        this.imgContainer.style.height = (this.gridSizeY * 13) + "px";
+        this.container.appendChild(this.imgContainer);
 
         this.gridImg = createNoteImage(imgGrid[this.number]);
         this.gridImg.measure = this;
-        this.gridImg.style.position = "absolute";
+        this.gridImg.className = "measureImg";
         this.gridImg.style.left = 0;
         this.gridImg.style.top = 0;
         this.gridImg.onmouseover = measureMouseover;
@@ -193,7 +248,10 @@ class Measure {
 //        this.gridImg.onmousedrag = measureMousedrag;
         this.gridImg.onmouseout = measureMouseout;
 
-        this.element.appendChild(this.gridImg);
+        this.selectSection = null;
+        this.selectBox = null;
+
+        this.imgContainer.appendChild(this.gridImg);
 
         this.hovering = false;
         this.hoveredTime = -1;
@@ -208,18 +266,34 @@ class Measure {
         }
     }
 
+    buildButtons() {
+        var div = document.createElement("div");
+        div.className = "scoreButtonContainer";
+        div.score = this;
+
+        div.innerHTML = `
+            <div class="scoreButtonRow">
+                <input class="button clearButton" type="submit" value="Clear" onClick="clearButton(this)"/>
+                <input class="button copyButton" type="submit" value="Copy" onClick="copyButton(this)"/>
+                <input class="button pasteButton" type="submit" value="Paste" onClick="pasteButton(this)"/>
+                <input class="button playButton" type="submit" value="Play" onClick="playButton(this)"/>
+            </div>
+        `;
+
+        return div;
+    }
+
     removeImage(img) {
-//        this.element.removeChild(img);
         img.remove();
     }
 
     addImage(img, time, row) {
-        img.style.position = "absolute";
+        img.className = "measureImg";
         img.style.left = this.noteOffsetX + (this.gridSizeX * time);
         img.style.top = this.noteOffsetY + (this.gridSizeY * row);
 //        img.style.zIndex = "10";
         img.style.pointerEvents = "none";
-        this.element.appendChild(img);
+        this.imgContainer.appendChild(img);
     }
 
     getRow(y) {
@@ -269,7 +343,16 @@ class Measure {
             }
 
             if (click || (down && (this.hoveredRow != row || this.hoveredTime != time))) {
-                this.notes[time][row].toggleEnabled();
+
+                if (this.selectSection != null
+                    && row >= measureSections[this.selectSection].rowStart
+                    && row <= measureSections[this.selectSection].rowStop) {
+                        this.clearSelection();
+                }
+
+                if (this.notes[time][row].toggleEnabled()) {
+                    this.score.soundPlayer.playSound(row);
+                }
             }
 
             this.hoveredTime = time;
@@ -280,15 +363,125 @@ class Measure {
             this.hoveredRow = -1;
         }
     }
+
+    clear(section="all") {
+        for (var t = 0; t < this.notes.length; t++) {
+            for (var r = measureSections[section].rowStart; r <= measureSections[section].rowStop; r++) {
+                this.notes[t][r].setEnabled(false);
+            }
+        }
+    }
+
+    clearSelection() {
+        if (this.selectSection != null) {
+            this.selectSection = null;
+            this.selectBox.remove();
+            this.selectBox = null;
+            this.score.setSelectedMeasure(null);
+        }
+    }
+
+    copy(section) {
+        this.score.setSelectedMeasure(this);
+        this.selectSection = section;
+        if (section != null) {
+            this.selectBox = document.createElement("div");
+            this.selectBox.measure = this;
+            this.selectBox.className = "measureSelectBox-" + section;
+            this.selectBox.style.width = ((this.gridSizeX * 16) - 8) + "px";
+            this.selectBox.style.height = ((this.gridSizeY * (measureSections[section].rowStop - measureSections[section].rowStart + 1)) - 8) + "px";
+            this.selectBox.style.left = 0;
+            this.selectBox.style.top = this.gridSizeY * measureSections[section].rowStart;
+
+            this.imgContainer.appendChild(this.selectBox);
+        }
+    }
+
+    paste() {
+    }
+
+    play() {
+    }
 }
 
 
-var measures = Array();
 
-function buildMeasures(container) {
-    for (var m = 0; m < 4; m++) {
-        var measure = new Measure(m);
-        measures.push(measure);
-        container.appendChild(measure.element);
+
+class Score {
+    constructor() {
+        this.buttons = this.buildButtons();
+
+        this.measures = Array();
+        // build the four measures
+        for (var m = 0; m < 4; m++) {
+            var measure = new Measure(this, m);
+            this.measures.push(measure);
+        }
+
+        this.container = document.createElement("div");
+
+        // split into two blocks so that making the window smaller doesn't put three on one line and one on the next
+        var block1 = document.createElement("div");
+        block1.className = "measureBlock";
+        block1.appendChild(this.measures[0].container);
+        block1.appendChild(this.measures[1].container);
+        this.container.appendChild(block1)
+
+        var block2 = document.createElement("div");
+        block2.className = "measureBlock";
+        block2.appendChild(this.measures[2].container);
+        block2.appendChild(this.measures[3].container);
+        this.container.appendChild(block2)
+
+        this.soundPlayer = new SoundPlayer();
+        this.soundPlayer.setPercSource("alpha");
+        this.soundPlayer.setBassSource("alpha");
+        this.soundPlayer.setMelSource("alpha");
+
+        this.selectedMeasure = null;
     }
+
+    buildButtons() {
+        var div = document.createElement("div");
+        div.className = "scoreButtonContainer";
+        div.score = this;
+
+        div.innerHTML = `
+            <div class="scoreButtonRow">
+                <input class="button clearButton" type="submit" value="Clear" onClick="clearButton(this)"/>
+                <input class="button playButton" type="submit" value="Play" onClick="playButton(this)"/>
+            </div>
+        `;
+
+        return div;
+    }
+
+    setSelectedMeasure(measure) {
+        if (this.selectedMeasure != null && this.selectedMeasure != measure) {
+            var t = this.selectedMeasure;
+            this.selectedMeasure = null;
+            t.clearSelection();
+        }
+
+        if (measure != null) {
+            this.selectedMeasure = measure;
+        }
+    }
+
+    clear(section) {
+        for (var m = 0; m < 4; m++) {
+            this.measures[m].clear(section);
+        }
+    }
+
+    play() {
+    }
+}
+
+var score;
+
+function buildScore(container) {
+    score = new Score();
+    container.appendChild(score.buttons);
+    container.appendChild(score.container);
 }
