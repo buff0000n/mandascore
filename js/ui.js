@@ -1,61 +1,3 @@
-
-
-imgGrid = Array(
-    "measure-1",
-    "measure-2",
-    "measure-3",
-    "measure-4"
-);
-
-imgNote = Array(
-    "note-perc-1",
-    "note-perc-2",
-    "note-perc-3",
-    "note-bass",
-    "note-bass",
-    "note-bass",
-    "note-bass",
-    "note-bass",
-    "note-mel",
-    "note-mel",
-    "note-mel",
-    "note-mel",
-    "note-mel"
-);
-
-imgNoteHover = Array(
-    "note-perc-1-hover",
-    "note-perc-2-hover",
-    "note-perc-3-hover",
-    "note-bass-hover",
-    "note-bass-hover",
-    "note-bass-hover",
-    "note-bass-hover",
-    "note-bass-hover",
-    "note-mel-hover",
-    "note-mel-hover",
-    "note-mel-hover",
-    "note-mel-hover",
-    "note-mel-hover"
-);
-
-imgNoteColHover = Array(
-    "note-perc-1-col-hover",
-    "note-perc-2-col-hover",
-    "note-perc-3-col-hover",
-    "note-bass-col-hover",
-    "note-bass-col-hover",
-    "note-bass-col-hover",
-    "note-bass-col-hover",
-    "note-bass-col-hover",
-    "note-mel-col-hover",
-    "note-mel-col-hover",
-    "note-mel-col-hover",
-    "note-mel-col-hover",
-    "note-mel-col-hover"
-);
-
-
 function measureMouseover() {
     var e = window.event;
     var measure = e.currentTarget.measure;
@@ -347,6 +289,13 @@ class Measure {
                 this.notes[t][r] = new Note(this, t, r);
             }
         }
+
+        this.sectionCount = {};
+        for (var section in sectionMetaData) {
+            if (!sectionMetaData[section].all) {
+                this.sectionCount[section] = 0;
+            }
+        }
     }
 
     buildButtons() {
@@ -389,6 +338,13 @@ class Measure {
         return time < 0 || time > 15 ? -1 : time;
     }
 
+    getSection(row) {
+        for (var section in sectionMetaData) {
+            var m = sectionMetaData[section];
+            if (!m.all && row >= m.rowStart && row <= m.rowStop) return section;
+        }
+    }
+
     doMouseover() {
         this.hovering = true;
     }
@@ -426,7 +382,16 @@ class Measure {
             }
 
             if (click || (down && (this.hoveredRow != row || this.hoveredTime != time))) {
-                if (this.notes[time][row].toggleEnabled()) {
+                var note = this.notes[time][row];
+                var section = this.getSection(row);
+                if (note.enabled) {
+                    note.setEnabled(false);
+
+                } else if (this.sectionCount[section] >= sectionMetaData[section].maxNotes) {
+                    this.score.soundPlayer.playBzzt();
+
+                } else {
+                    note.setEnabled(true);
                     this.score.soundPlayer.playSound(row);
                 }
             }
@@ -459,6 +424,13 @@ class Measure {
             && note.row <= sectionMetaData[this.selectSection].rowStop) {
                 this.clearSelection();
         }
+
+        var section = this.getSection(note.row);
+        if (note.enabled) {
+            this.sectionCount[section]++;
+        } else {
+            this.sectionCount[section]--;
+        }
     }
 
     clearSelection() {
@@ -477,7 +449,8 @@ class Measure {
         if (section != null) {
             this.selectBox = document.createElement("div");
             this.selectBox.measure = this;
-            this.selectBox.className = "measureSelectBox-" + section;
+            this.selectBox.className = "measureSelectBox";
+            this.selectBox.style.borderColor = sectionMetaData[section].color;
             this.selectBox.style.width = ((this.gridSizeX * 16) - 8) + "px";
             this.selectBox.style.height = ((this.gridSizeY * (sectionMetaData[section].rowStop - sectionMetaData[section].rowStart + 1)) - 8) + "px";
             this.selectBox.style.left = 0;
@@ -635,12 +608,23 @@ class setPackAction extends Action {
 	}
 }
 
+function titleChanged() {
+    var e = window.event;
+    var target = e.currentTarget;
+    var score = getParent(target, "songTitleDiv").score;
+    score.setTitle(target.value);
+}
+
 class Score {
     constructor() {
         this.container = document.createElement("div");
         
         this.buttons = this.buildButtons();
         this.container.appendChild(this.buttons);
+
+        this.titleContainer = this.buildTitleEditor();
+        this.container.appendChild(this.titleContainer);
+        this.title = "";
 
         this.sections = {};
 
@@ -665,7 +649,6 @@ class Score {
             this.measures.push(measure);
         }
 
-
         // split into two blocks so that making the window smaller doesn't put three on one line and one on the next
         var block1 = document.createElement("div");
         block1.className = "measureBlock";
@@ -680,9 +663,6 @@ class Score {
         this.container.appendChild(block2)
 
         this.soundPlayer = new SoundPlayer();
-        this.sections["perc"].setPack("alpha", false);
-        this.sections["bass"].setPack("alpha", false);
-        this.sections["mel"].setPack("alpha", false);
 //        this.soundPlayer.setSource("perc", "alpha");
 //        this.soundPlayer.setSource("bass", "alpha");
 //        this.soundPlayer.setSource("mel", "alpha");
@@ -690,6 +670,13 @@ class Score {
         this.selectedMeasure = null;
         this.actionCount = 0;
         this.actions = null;
+    }
+
+    initBlank() {
+        for (var section in this.sections) {
+            this.sections[section].setPack("adau", false);
+            this.sections[section].setVolume(1.0, false);
+        }
     }
 
     buildButtons() {
@@ -707,6 +694,20 @@ class Score {
         `;
 
         return div;
+    }
+
+    buildTitleEditor() {
+        var titleContainer = document.createElement("div")
+        titleContainer.className = "songTitleDiv"
+        titleContainer.score = this;
+        titleContainer.innerHTML = `
+            <div class="tooltip">
+                <span class="label">Song Title:</span>
+                <input class="songTitle" type="text" size="50" onchange="titleChanged()"/>
+                <span class="tooltiptextbottom">Give your song a name</span>
+            </div>
+        `;
+        return titleContainer;
     }
 
     setSelectedMeasure(measure) {
@@ -737,6 +738,17 @@ class Score {
         this.endActions();
     }
 
+    setTitle(title, action=true) {
+        if (action) {
+            this.startActions();
+            this.addAction(new setTitleAction(this, this.title, title));
+            this.endActions();
+        } else {
+            getFirstChild(this.titleContainer, "songTitle").value = title;
+        }
+        this.title = title;
+    }
+
     startActions() {
         this.actionCount++;
         if (this.actionCount == 1) {
@@ -764,9 +776,31 @@ class Score {
     }
 }
 
+class setTitleAction extends Action {
+    constructor(score, oldTitle, newTitle) {
+        super();
+        this.score = score;
+        this.oldTitle = oldTitle;
+        this.newTitle = newTitle;
+    }
+    
+	undoAction() {
+	    this.score.setTitle(this.oldTitle, false);
+	}
+
+	redoAction() {
+	    this.score.setTitle(this.newTitle, false);
+	}
+
+	toString() {
+	    return "Set title to " + this.newTitle;
+	}
+}
+
 var score;
 
 function buildScore(container) {
     score = new Score();
     container.appendChild(score.container);
+    score.initBlank();
 }

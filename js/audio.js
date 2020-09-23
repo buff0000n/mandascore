@@ -1,41 +1,29 @@
-
-var soundFileSuffixes = Array(
-    "-1.ogg",
-    "-2.ogg",
-    "-3.ogg",
-    "-4.ogg",
-    "-5.ogg",
-    "-6.ogg",
-    "-7.ogg",
-    "-8.ogg",
-    "-9.ogg",
-    "-10.ogg",
-    "-11.ogg",
-    "-12.ogg",
-    "-13.ogg"
-)
+var maxSounds = 4;
 
 class SoundEntry {
     constructor(source = null) {
         this.setSource(source);
         this.volume = 1.0;
-        this.once = false;
     }
 
     setSource(source) {
         this.source = source;
         if (this.source != null) {
-            this.audio = new Audio(source);
+            this.audio = Array();
+            this.index = -1;
         } else {
             this.audio = null;
+            this.index = -1;
         }
     }
 
     setVolume(volume) {
         if (volume != this.volume) {
             this.volume = volume;
-            if (this.source != null) {
-                this.audio.volume = volume;
+            if (this.audio != null) {
+                for (var i = 0; i < this.audio.length; i++) {
+                    this.audio[i].volume = volume;
+                }
             }
         }
     }
@@ -43,14 +31,16 @@ class SoundEntry {
     trigger() {
         if (this.source == null) return;
 
-        // todo: mult-trigger with multiple audio objects?
-        if (!this.once) {
-            this.audio.play();
-            this.once = true;
+        this.index = (this.index + 1) % maxSounds;
+        if (this.audio.length < this.index + 1) {
+            var a = new Audio(this.source);
+            this.audio.push(a);
+            a.play();
 
         } else {
-            this.audio.currentTime = 0.0;
-            this.audio.play();
+            var a = this.audio[this.index];
+            a.currentTime = 0.0;
+            a.play();
         }
     }
 }
@@ -72,7 +62,7 @@ class SoundBank {
 
         this.source = source;
         for (var i = 0; i < this.sounds.length; i++) {
-            this.sounds[i].setSource("sound/" + this.source + this.suffixes[i]);
+            this.sounds[i].setSource(soundPath + this.source + this.suffixes[i]);
         }
     }
 
@@ -114,6 +104,8 @@ class SoundPlayer {
                 }
             }
         }
+
+        this.bzzt = new SoundEntry(soundPath + bzztSoundFile);
     }
 
     setSource(section, source) {
@@ -131,5 +123,9 @@ class SoundPlayer {
     playSound(index) {
         var bank = this.indexToBank[index];
         bank.play(index - bank.rowStart);
+    }
+
+    playBzzt(index) {
+        this.bzzt.trigger();
     }
 }

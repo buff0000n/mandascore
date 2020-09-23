@@ -159,29 +159,13 @@
         position: absolute;
     }
 
-    .measureSelectBox-all, .measureSelectBox-perc, .measureSelectBox-bass, .measureSelectBox-mel {
+    .measureSelectBox {
         position: absolute;
         border-style: solid;
         border-width: 4px;
         margin: 0;
         padding: 0;
         pointer-events: none;
-    }
-
-    .measureSelectBox-all {
-        border-color: #FFFFFF;
-    }
-
-    .measureSelectBox-perc {
-        border-color: #FFFFFF;
-    }
-
-    .measureSelectBox-bass {
-        border-color: #1fb5ff;
-    }
-
-    .measureSelectBox-mel {
-        border-color: #e601ff;
     }
 
     /* Buttons */
@@ -227,23 +211,14 @@
         display: block;
     }
 
-    .button {
-        margin: 1ex 1ex 1ex 1ex;
-        cursor: pointer;
-	}
 	.utilGroup {
 	    text-align: center;
 	}
-    .util, .utilHidden {
-        margin: 1ex 0ex 1ex 0ex;
-    }
     .util {
+        margin: 1ex 0ex 1ex 0ex;
         display: inline;
     }
-    .utilHidden {
-        display: none;
-    }
-    .button, #meteredDiv, #darkModeDiv, #meterDiv, #tempoDiv, #measuresPerLineDiv, #leadInBeatsDiv, #secondsPerLineDiv, .start, .urlButton {
+    .button, .urlButton {
         background-color: #808080;
         border: none;
         color: #FFFFFF;
@@ -252,6 +227,8 @@
         text-decoration: none;
         font-size: 100%;
         border-radius: 1ex;
+        margin: 1ex 1ex 1ex 1ex;
+        cursor: pointer;
         display: block-inline;
     }
     .songContainer {
@@ -261,7 +238,7 @@
         display: inline-block;
         text-align: left;
     }
-    #songTitleDiv, #authorDiv, #songCodeDiv {
+    .songTitleDiv, #songCodeDiv {
         background-color: #404080;
         border: none;
         color: #FFFFFF;
@@ -270,48 +247,10 @@
         text-decoration: none;
         font-size: 100%;
         border-radius: 1ex;
-        display: block;
-    }
-    .start {
-        background-color: #60A060;
-    }
-    .stop {
-        background-color: #A06060;
+        display: inline-block;
     }
     .urlButton, {
         background-color: #406080;
-    }
-
-    .density, .cumulative, .query {
-        background-color: #404040;
-        color: #D0D0D0;
-    }
-    .densitySelected, .cumulativeSelected, .querySelected {
-        background-color: #80A0D0;
-        color: #FFFFFF;
-    }
-
-    /* Fields */
-    .inputName, .inputTime, .inputRequired, .inputCount, .inputRate, .inputRange, .inputStopAfter, .inputResult, .inputPercentile {
-        background-color: #101010;
-        border: none;
-        color: #B0B0B0;
-        font-size: 75%;
-        padding: 1ex;
-        border-radius: 1ex;
-    }
-    .inputBailEarly, #copyUrlAutoStart {
-        background-color: #101010;
-        border: none;
-        color: #B0B0B0;
-    }
-    #samplesSelect, .rivenTypeSelect {
-        background-color: #101010;
-        border: none;
-        color: #B0B0B0;
-        font-size: 100%;
-        padding: 1ex;
-        border-radius: 1ex;
     }
 
     /* graying everthing out when disabled */
@@ -320,25 +259,6 @@
         color: #808080;
         cursor: not-allowed;
     }
-    .inputName:disabled, .inputTime:disabled, .inputRequired:disabled, .inputCount:disabled, .inputRate:disabled, .inputRange:disabled, .inputStopAfter:disabled, .inputResult:disabled, .inputPercentile:disabled {
-        background-color: #202020;
-        color: #B0B0B0;
-        cursor: not-allowed;
-    }
-    .inputStopAfter:disabled {
-        background-color: #404040;
-    }
-    .inputBailEarly:disabled, #copyUrlAutoStart:disabled {
-        background-color: #202020;
-        color: #B0B0B0;
-        cursor: not-allowed;
-    }
-    #samplesSelect:disabled {
-        background-color: #202020;
-        color: #B0B0B0;
-        cursor: not-allowed;
-    }
-
 
     #scoreArea {
         background-color: #000000;
@@ -349,8 +269,6 @@
         border-radius: 1ex;
         text-align: center;
     }
-
-
 
     /* tooltips, adapted from https://www.w3schools.com/css/css_tooltip.asp */
 
@@ -469,6 +387,7 @@
     }
 </style>
 <body onload="initModel()" onkeydown="keyDown()" onresize="onresize()">
+<script type="text/javascript" language="javascript" src="js/refs.js"></script>
 <script type="text/javascript" language="javascript" src="js/util.js"></script>
 <script type="text/javascript" language="javascript" src="js/undo.js"></script>
 <script type="text/javascript" language="javascript" src="js/menus.js"></script>
@@ -814,19 +733,20 @@
 
 <div class="songContainer">
     <div class="songDiv">
-        <div class="util" id="songTitleDiv">
-            <div class="tooltip">
-                <span class="label">Song Title:</span>
-                <input id="songTitle" class="songTitle" type="text" size="50" onchange="valueChanged(this);"/>
-                <span class="tooltiptextbottom">Give your song a name</span>
-            </div>
-        </div>
         <div class="util" id="songCodeDiv">
             <div class="tooltip">
-                <div class="label">Song Code:</div>
-                <textarea id="songCode" rows="5" cols="64"></textarea>
-                <!--<textarea id="songCode" rows="5" cols="64" onchange="valueChanged(this);"></textarea>-->
-                <span class="tooltiptextbottom">Paste the song code in here</span>
+                <span class="label">Song Code:</span>
+                <input id="songCode" class="songTitle" type="text" size="50" onchange="valueChanged(this);"/>
+                <span class="tooltiptextbottom">Paste or copy the song code in here</span>
+            </div>
+        </div>
+        <div class="util">
+            <div class="popup">
+                <input id="copyUrlButton" class="button urlButton popup" type="submit" value="Generate Link"
+                       onClick="copyModelUrl()"/>
+                <div class="popuptext" id="popupBox">
+                    <input id="urlHolder" type="text" size="60" onblur="hideUrlPopup()"/>
+                </div>
             </div>
         </div>
     </div>
