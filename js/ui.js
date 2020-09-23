@@ -244,9 +244,17 @@ class Note {
         return this.enabled;
     }
 
-    setEnabled(enabled) {
-        this.enabled = enabled;
-        this.updateState();
+    setEnabled(enabled, action=true) {
+        if (this.enabled != enabled) {
+            this.enabled = enabled;
+            this.updateState();
+            this.measure.noteChanged(this);
+            if (action) {
+                this.measure.score.startActions();
+                this.measure.score.addAction(new NoteAction(this, this.enabled));
+                this.measure.score.endActions();
+            }
+        }
     }
 
     setHover(hover) {
@@ -258,6 +266,30 @@ class Note {
         this.timeHover = timeHover;
         this.updateState();
     }
+
+    toString() {
+        return this.time + ", " + this.row + " in " + this.measure.toString();
+    }
+}
+
+class NoteAction extends Action {
+    constructor(note, enabled) {
+        super();
+        this.note = note;
+        this.enabled = enabled;
+    }
+
+	undoAction() {
+	    this.note.setEnabled(!this.enabled, false);
+	}
+
+	redoAction() {
+	    this.note.setEnabled(this.enabled, false);
+	}
+
+	toString() {
+	    return (this.enabled? "Enable " : "Disable ") + " note " + this.note.toString();
+	}
 }
 
 class Measure {
@@ -395,13 +427,6 @@ class Measure {
             }
 
             if (click || (down && (this.hoveredRow != row || this.hoveredTime != time))) {
-
-                if (this.selectSection != null
-                    && row >= measureSections[this.selectSection].rowStart
-                    && row <= measureSections[this.selectSection].rowStop) {
-                        this.clearSelection();
-                }
-
                 if (this.notes[time][row].toggleEnabled()) {
                     this.score.soundPlayer.playSound(row);
                 }
@@ -417,6 +442,7 @@ class Measure {
     }
 
     clear(section="all") {
+        this.score.startActions();
         if (this.selectSection == section || section == "all") {
             this.clearSelection();
         }
@@ -424,6 +450,15 @@ class Measure {
             for (var r = measureSections[section].rowStart; r <= measureSections[section].rowStop; r++) {
                 this.notes[t][r].setEnabled(false);
             }
+        }
+        this.score.endActions();
+    }
+
+    noteChanged(note) {
+        if (this.selectSection != null
+            && note.row >= measureSections[this.selectSection].rowStart
+            && note.row <= measureSections[this.selectSection].rowStop) {
+                this.clearSelection();
         }
     }
 
@@ -470,6 +505,10 @@ class Measure {
 
     play() {
     }
+
+    toString() {
+        return "measure " + (this.number + 1);
+    }
 }
 
 
@@ -507,6 +546,8 @@ class Score {
         this.soundPlayer.setMelSource("alpha");
 
         this.selectedMeasure = null;
+        this.actionCount = 0;
+        this.actions = null;
     }
 
     buildButtons() {
@@ -516,6 +557,8 @@ class Score {
 
         div.innerHTML = `
             <div class="scoreButtonRow">
+                <input id="undoButton" class="button undoButton" type="submit" disabled value="Undo" onClick="doUndo()"/>
+                <input id="redoButton" class="button redoButton" type="submit" disabled value="Redo" onClick="doRedo()"/>
                 <input class="button clearButton" type="submit" value="Clear" onClick="clearButton(this)"/>
                 <input class="button playButton" type="submit" value="Play" onClick="playButton(this)"/>
             </div>
@@ -545,8 +588,33 @@ class Score {
     }
 
     clear(section) {
+        this.startActions();
         for (var m = 0; m < 4; m++) {
             this.measures[m].clear(section);
+        }
+        this.endActions();
+    }
+
+    startActions() {
+        this.actionCount++;
+        if (this.actionCount == 1) {
+            this.actions = Array();
+        }
+    }
+
+    addAction(action) {
+        this.actions.push(action);
+    }
+
+    endActions() {
+        this.actionCount--;
+        if (this.actionCount == 0) {
+            if (this.actions.length == 1) {
+                addUndoAction(this.actions[0]);
+
+            } else if (this.actions.length > 1) {
+                addUndoAction(new CompositeAction(this.actions));
+            }
         }
     }
 
