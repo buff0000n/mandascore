@@ -105,12 +105,90 @@ function measureMouseout() {
     measure.doMouseout();
 }
 
+function keyDown(e) {
+    e = e || window.event;
+    switch (e.code) {
+		case "Escape" :
+		    clearMenu();
+		    break;
+		case "Space" :
+		    score.togglePlaying();
+		    break;
+		case "KeyZ" :
+            // ctrlKey on Windows, metaKey on Mac
+            if (e.ctrlKey || e.metaKey) {
+                if (e.shiftKey) {
+                    // ctrl/meta + shift + Z: redo
+                    doRedo();
+                } else {
+                    // ctrl/meta + Z: undo
+                    doUndo();
+                }
+            }
+			break;
+		case "KeyY" :
+            // ctrlKey on Windows, metaKey on Mac
+            if (e.ctrlKey || e.metaKey) {
+                // ctrl/meta + Y: redo
+                doRedo();
+            }
+		    break;
+	}
+}
+
 function createNoteImage(baseName) {
         img = document.createElement("img");
         img.src = "img/" + baseName + ".png";
         img.srcset = "img2x/" + baseName + ".png 2x";
         img.baseName = baseName;
         return img;
+}
+
+function selectSection(sectionButton, section) {
+    var div = getParent(sectionButton, "menu");
+    div.callback(div.button, section);
+    clearMenus();
+}
+
+function runSectionMenu(title, button, callback) {
+    clearMenus();
+    var div = document.createElement("div");
+    div.className = "menu";
+    div.button = button;
+    div.callback = callback
+
+    div.innerHTML = `
+        <input class="button allButton" type="submit" value="All" onClick="selectSection(this, 'all')"/>
+        <input class="button melButton" type="submit" value="Melody" onClick="selectSection(this, 'mel')"/>
+        <input class="button bassButton" type="submit" value="Bass" onClick="selectSection(this, 'bass')"/>
+        <input class="button percButton" type="submit" value="Percussion" onClick="selectSection(this, 'perc')"/>
+    `;
+
+    showMenu(div, getParent(button, "scoreButtonRow"), button);
+}
+
+function playButton(button) {
+    getParent(button, "scoreButtonContainer").score.play();
+}
+
+function copyButton(button) {
+    runSectionMenu("Copy", button, doCopy);
+}
+
+function doCopy(button, section) {
+    getParent(button, "scoreButtonContainer").score.copy(section);
+}
+
+function pasteButton(button) {
+    getParent(button, "scoreButtonContainer").score.paste();
+}
+
+function clearButton(button) {
+    runSectionMenu("Clear", button, doClear);
+}
+
+function doClear(button, section) {
+    getParent(button, "scoreButtonContainer").score.clear(section);
 }
 
 class Note {
@@ -145,7 +223,7 @@ class Note {
         this.img = createNoteImage(baseName);
         this.measure.addImage(this.img, this.time, this.row);
     }
-    
+
     updateState() {
         if (this.enabled) {
             this.setImg(imgNote[this.row]);
@@ -160,7 +238,7 @@ class Note {
             this.setImg(null);
         }
     }
-    
+
     toggleEnabled() {
         this.setEnabled(!this.enabled);
         return this.enabled;
@@ -182,34 +260,6 @@ class Note {
     }
 }
 
-function runWhichMenu(title, button) {
-//                    <select class="button copySelect">
-//                        <option value="all" selected>All</option>
-//                        <option value="perc">Percussion</option>
-//                        <option value="bass">Bass</option>
-//                        <option value="mel">Melody</option>
-//                    </select>
-    return "all";
-}
-
-function playButton(button) {
-    getParent(button, "scoreButtonContainer").score.play();
-}
-
-function copyButton(button) {
-    var which = runWhichMenu("Copy", button);
-    getParent(button, "scoreButtonContainer").score.copy(which);
-}
-
-function pasteButton(button) {
-    getParent(button, "scoreButtonContainer").score.paste();
-}
-
-function clearButton(button) {
-    var which = runWhichMenu("Copy", button);
-    getParent(button, "scoreButtonContainer").score.clear(which);
-}
-
 class Measure {
     constructor(score, number) {
         this.score = score;
@@ -228,7 +278,9 @@ class Measure {
         this.container = document.createElement("div");
         this.container.measure = this;
         this.container.className = "measureContainer";
-        this.container.appendChild(this.buildButtons());
+
+        this.buttons = this.buildButtons();
+        this.container.appendChild(this.buttons);
 
         this.imgContainer = document.createElement("div");
         this.imgContainer.measure = this;
@@ -275,7 +327,7 @@ class Measure {
             <div class="scoreButtonRow">
                 <input class="button clearButton" type="submit" value="Clear" onClick="clearButton(this)"/>
                 <input class="button copyButton" type="submit" value="Copy" onClick="copyButton(this)"/>
-                <input class="button pasteButton" type="submit" value="Paste" onClick="pasteButton(this)"/>
+                <input class="button pasteButton" type="submit" value="Paste" disabled onClick="pasteButton(this)"/>
                 <input class="button playButton" type="submit" value="Play" onClick="playButton(this)"/>
             </div>
         `;
@@ -365,6 +417,9 @@ class Measure {
     }
 
     clear(section="all") {
+        if (this.selectSection == section || section == "all") {
+            this.clearSelection();
+        }
         for (var t = 0; t < this.notes.length; t++) {
             for (var r = measureSections[section].rowStart; r <= measureSections[section].rowStop; r++) {
                 this.notes[t][r].setEnabled(false);
@@ -382,6 +437,7 @@ class Measure {
     }
 
     copy(section) {
+        this.clearSelection();
         this.score.setSelectedMeasure(this);
         this.selectSection = section;
         if (section != null) {
@@ -397,7 +453,19 @@ class Measure {
         }
     }
 
+    setPasteEnabled(enabled) {
+        getFirstChild(this.buttons, "pasteButton").disabled = !enabled;
+    }
+
     paste() {
+        var fromMeasure = this.score.selectedMeasure;
+        if (fromMeasure == null || fromMeasure == this) return;
+
+        for (var t = 0; t < this.notes.length; t++) {
+            for (var r = measureSections[fromMeasure.selectSection].rowStart; r <= measureSections[fromMeasure.selectSection].rowStop; r++) {
+                this.notes[t][r].setEnabled(fromMeasure.notes[t][r].enabled);
+            }
+        }
     }
 
     play() {
@@ -461,10 +529,18 @@ class Score {
             var t = this.selectedMeasure;
             this.selectedMeasure = null;
             t.clearSelection();
+            for (var m = 0; m < 4; m++) {
+                this.measures[m].setPasteEnabled(false);
+            }
         }
 
         if (measure != null) {
             this.selectedMeasure = measure;
+            for (var m = 0; m < 4; m++) {
+                if (this.measures[m] != measure) {
+                    this.measures[m].setPasteEnabled(true);
+                }
+            }
         }
     }
 

@@ -183,7 +183,11 @@
         border-color: #e601ff;
     }
 
-    .scoreButtonRow .button {
+    .scoreButtonRow {
+        position: relative;
+    }
+
+    .scoreButtonRow > .button {
         background-color: #404040;
         border: none;
         color: #FFFFFF;
@@ -194,6 +198,19 @@
         font-size: 100%;
         border-radius: 1ex 1ex 0ex 0ex;
         display: block-inline;
+    }
+
+    .menu > .button {
+        background-color: #404040;
+        border: none;
+        color: #FFFFFF;
+        padding: 1ex;
+        margin: 1ex;
+        text-align: center;
+        text-decoration: none;
+        font-size: 100%;
+        border-radius: 1ex;
+        display: block;
     }
 
     /* Buttons */
@@ -286,12 +303,9 @@
     }
 
     /* graying everthing out when disabled */
-    .rivenTypeSelect:disabled {
-        background-color: #202020;
-    }
     .button:disabled {
-        background-color: #404040;
-        color: #B0B0B0;
+        background-color: #202020;
+        color: #808080;
         cursor: not-allowed;
     }
     .inputName:disabled, .inputTime:disabled, .inputRequired:disabled, .inputCount:disabled, .inputRate:disabled, .inputRange:disabled, .inputStopAfter:disabled, .inputResult:disabled, .inputPercentile:disabled {
@@ -442,7 +456,10 @@
         color: #000000;
     }
 </style>
-<body onload="initModel()">
+<body onload="initModel()" onkeydown="keyDown()" onresize="onresize()">
+<script type="text/javascript" language="javascript" src="js/util.js"></script>
+<script type="text/javascript" language="javascript" src="js/undo.js"></script>
+<script type="text/javascript" language="javascript" src="js/menus.js"></script>
 <script type="text/javascript" language="javascript" src="js/song.js"></script>
 <script type="text/javascript" language="javascript" src="js/audio.js"></script>
 <script type="text/javascript" language="javascript" src="js/ui.js"></script>
@@ -455,111 +472,6 @@
 
     function buildUI() {
         buildScore(document.getElementById("scoreArea"));
-    }
-
-
-    //==============================================================
-    // Utility DOM functions
-    // probably doing some of these the hard way but nothing else
-    // was reliable enough
-    // Most UI elements are identified by class instead of ID
-    // because they're added dynamically and there can be more than
-    // one of them in the DOM
-    //==============================================================
-
-    function getParent(node, parentClass) {
-        // walk up the DOM until we find a parent with the given class name or run out of parents
-        while (node != null && parentClass != (node.className)) {
-            node = node.parentNode;
-        }
-        return node;
-    }
-
-    function getFirstChild(node, childClass) {
-        // perform a depth first search from the first child to the last,
-        // until we find an element with the given class name
-        var children = node.children;
-        for (var i = 0; i < children.length; i++) {
-            var child = node.children[i];
-            if (child.className == childClass) {
-                return child;
-            }
-            // recursive call
-            var child2 = getFirstChild(child, childClass);
-            if (child2 !== null) {
-                return child2;
-            }
-        }
-        return null;
-    }
-
-    function getLastChild(node, childClass) {
-        // perform a depth first search going from the last child to the first,
-        // until we find an element with the given class name
-        var children = node.children;
-        // go over the children in reverse order
-        for (var i = children.length - 1; i >= 0; i--) {
-            var child = node.children[i];
-            if (child.className == childClass) {
-                return child;
-            }
-            // recursive call
-            var child2 = getLastChild(child, childClass);
-            if (child2 !== null) {
-                return child2;
-            }
-        }
-        return null;
-    }
-
-    function getAllChildren(node, childClass) {
-        // find all the children with the given class name
-        return getAllChildren0(node, childClass, Array());
-    }
-
-    function getAllChildren0(node, childClass, list) {
-        var children = node.children;
-        for (var i = 0; i < children.length; i++) {
-            var child = node.children[i];
-            if (child.className == childClass) {
-                list.push(child);
-            }
-            getAllChildren0(child, childClass, list);
-        }
-        return list;
-    }
-
-    function deleteNode(node) {
-        // delete an element from its parent
-        node.parentNode.removeChild(node);
-    }
-
-    //==============================================================
-    // misc UI
-    //==============================================================
-
-    function showErrors(errors) {
-        // find the error bar
-        var errorBarElement = document.getElementById("errorBar");
-        // build and error div with a line for each error in the list
-        var html = `<div id="error">`;
-        for (var error in errors) {
-            html += `<div class="errorLine">${errors[error]}</div>`;
-        }
-        html += `</div>`;
-        // show
-        errorBarElement.innerHTML = html;
-    }
-
-    function clearErrors() {
-        // find the error bar and clear it out
-        var errorBarElement = document.getElementById("errorBar");
-        errorBarElement.innerHTML = "";
-    }
-
-    function windowOnError(msg, url, lineNo, columnNo, error) {
-        showErrors([msg.replace("Uncaught ", "")]);
-        return false;
     }
 
     //==============================================================
@@ -575,6 +487,7 @@
         var url = window.location.href;
 
         window.onerror = windowOnError;
+        onresize();
 
         if (getQueryParam(url, "h")) {
             about();
