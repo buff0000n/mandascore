@@ -62,6 +62,7 @@ class SoundBank {
         for (var i = 0; i < suffixes.length; i++) {
             this.sounds.push(new SoundEntry());
         }
+        this.enabled = true;
     }
 
     setSource(source) {
@@ -70,38 +71,65 @@ class SoundBank {
         }
 
         this.source = source;
-        for (var i = 0; i < this.suffixes.length; i++) {
+        for (var i = 0; i < this.sounds.length; i++) {
             this.sounds[i].setSource("sound/" + this.source + this.suffixes[i]);
         }
     }
 
+    setVolume(volume) {
+        if (this.volume == volume) {
+            return;
+        }
+
+        this.volume = volume;
+        for (var i = 0; i < this.sounds.length; i++) {
+            this.sounds[i].setVolume(this.volume);
+        }
+    }
+
+    setEnabled(enabled) {
+        this.enabled = enabled;
+    }
+
     play(index) {
-        this.sounds[index].trigger();
+        if (this.enabled) {
+            this.sounds[index].trigger();
+        }
     }
 }
 
 class SoundPlayer {
     constructor() {
-        this.perc = new SoundBank(soundFileSuffixes.slice(0, 3));
-        this.bass = new SoundBank(soundFileSuffixes.slice(3, 8));
-        this.mel = new SoundBank(soundFileSuffixes.slice(8, 13));
+        this.banks = {};
+        this.indexToBank = {};
+
+        for (var name in sectionMetaData) {
+            var m = sectionMetaData[name];
+            if (!m.all) {
+                var bank = new SoundBank(soundFileSuffixes.slice(m.rowStart, m.rowStop + 1));
+                bank.rowStart = m.rowStart;
+                this.banks[name] = bank;
+                for (var i = m.rowStart; i <= m.rowStop; i++) {
+                    this.indexToBank[i] = bank;
+                }
+            }
+        }
     }
 
-    setPercSource(source) {
-        this.perc.setSource(source);
+    setSource(section, source) {
+        this.banks[section].setSource(source);
     }
 
-    setBassSource(source) {
-        this.bass.setSource(source);
+    setVolume(section, volume) {
+        this.banks[section].setVolume(volume);
     }
 
-    setMelSource(source) {
-        this.mel.setSource(source);
+    setEnabled(section, enabled) {
+        this.banks[section].setEnabled(enabled);
     }
 
     playSound(index) {
-        if (index < 3) this.perc.play(index)
-        else if (index < 8) this.bass.play(index - 3)
-        else this.mel.play(index - 8);
+        var bank = this.indexToBank[index];
+        bank.play(index - bank.rowStart);
     }
 }

@@ -14,6 +14,11 @@ function showMenu(menuDiv, container, element, fullWidth = false, autohide=true)
 
 	showMenuAt(container, menuDiv, left, top);
 
+	kickCleanupEventListener();
+	menuDiv.addEventListener("click", kickCleanupEventListener);
+}
+
+function kickCleanupEventListener() {
     document.body.removeEventListener("click", autoHideMenus)
     // hack: schedule the cleanup listener to be added after this event is finished processing
     setTimeout(function() {document.body.addEventListener("click", autoHideMenus);}, 1);
@@ -33,6 +38,7 @@ function getCurrentMenuLevel() {
 }
 
 function clearMenus(leave = 0) {
+    leave = Math.max(leave, 0);
     while (getCurrentMenuLevel() > leave) {
         var menu = menus.pop();
         menu.remove();
@@ -44,6 +50,9 @@ function clearMenu() {
 }
 
 function showMenuAt(container, menuDiv, left, top) {
+    // need to do this first before calculating any bounding rectangles
+    menuDiv.style.position = "absolute";
+
     container.appendChild(menuDiv);
 
     var bcr = menuDiv.getBoundingClientRect();
@@ -61,7 +70,6 @@ function showMenuAt(container, menuDiv, left, top) {
         top = Math.max(0, h - bcr.height);
     }
 
-    menuDiv.style.position = "absolute";
     menuDiv.style.left = left;
     menuDiv.style.top = top;
     menuDiv.style.zIndex = 10;

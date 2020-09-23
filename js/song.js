@@ -17,6 +17,25 @@ var packs = Array(
     new InstrumentPack("plogg", "Plogg"),
 );
 
+class SectionMetaData {
+    constructor(name, displayName, rowStart, rowStop, maxNotes, color, all=false) {
+        this.name = name;
+        this.displayName = displayName;
+        this.rowStart = rowStart;
+        this.rowStop = rowStop;
+        this.maxNotes = maxNotes;
+        this.color = color;
+        this.all = all;
+    }
+}
+
+var sectionMetaData = {
+    "all": new SectionMetaData("all", "All", 0, 12, 0, "#ffffff", true),
+    "perc": new SectionMetaData("perc", "Percussion", 0, 2, 24, "#ffffff"),
+    "bass": new SectionMetaData("bass", "Bass", 3, 7, 16, "#1fb5ff"),
+    "mel": new SectionMetaData("mel", "Melody", 8, 12, 16, "#e601ff")
+}
+
 class Song {
     constructor() {
         this.sets = Array(3);

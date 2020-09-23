@@ -26,7 +26,7 @@ class Action {
 
 var undoStack = Array();
 var redoStack = Array();
-var maxUndoStackSize = 100;
+var maxUndoStackSize = 250;
 
 function updateUndoRedoButton(button, stack, prefix) {
 	if (stack.length > 0) {
@@ -116,7 +116,7 @@ class CompositeAction extends Action {
 	}
 
 	undoAction() {
-	    for (var a = this.actions.length - 1; a > 0; a--) {
+	    for (var a = this.actions.length - 1; a >= 0; a--) {
 	        this.actions[a].prepareUndoAction();
 	        this.actions[a].undoAction();
 	    }
@@ -137,134 +137,3 @@ class CompositeAction extends Action {
 		return this.actions.length + " action(s)";
 	}
 }
-
-//class MoveRoomAction extends Action {
-//	constructor(room) {
-//		super();
-//		this.room = room;
-//		this.recordFrom(this.room);
-//	}
-//
-//	recordFrom() {
-//		this.fromMX = this.room.mv.x;
-//		this.fromMY = this.room.mv.y;
-//		this.fromFloor = this.room.floor;
-//		this.fromR = this.room.rotation;
-//	}
-//
-//	recordTo() {
-//		this.toMX = this.room.mv.x;
-//		this.toMY = this.room.mv.y;
-//		this.toFloor = this.room.floor;
-//		this.toR = this.room.rotation;
-//	}
-//
-//	isAMove() {
-//		this.recordTo(this.room);
-//		return this.fromMX != this.toMX
-//				|| this.fromMY != this.toMY
-//				|| this.fromFloor != this.toFloor
-//				|| this.fromR != this.toR;
-//	}
-//
-//	prepareUndoAction() {
-//		centerViewOnIfNotVisible(this.fromMX, this.fromMY, this.fromFloor);
-//		// having a prepare step to show what's about to change feels more confusing than not having it
-//		return true;
-//	}
-//
-//	undoAction() {
-//		if (this.fromFloor != this.toFloor) {
-//		    removeFloorRoom(this.room);
-//		}
-//		this.room.disconnectAllDoors();
-//		this.room.setPositionAndConnectDoors(this.fromMX, this.fromMY, this.fromFloor, this.fromR);
-//		if (this.fromFloor != this.toFloor) {
-//		    addFloorRoom(this.room);
-//		}
-//		selectRoom(this.room)
-//		saveModelToUrl();
-//	}
-//
-//	prepareRedoAction() {
-//		centerViewOnIfNotVisible(this.toMX, this.toMY, this.toFloor);
-//		// having a prepare step to show what's about to change feels more confusing than not having it
-//		return true;
-//	}
-//
-//	redoAction() {
-//		if (this.fromFloor != this.toFloor) {
-//		    removeFloorRoom(this.room);
-//		}
-//		this.room.disconnectAllDoors();
-//		this.room.setPositionAndConnectDoors(this.toMX, this.toMY, this.toFloor, this.toR);
-//		if (this.fromFloor != this.toFloor) {
-//		    addFloorRoom(this.room);
-//		}
-//		selectRoom(this.room)
-//		saveModelToUrl();
-//	}
-//
-//	toString() {
-//		return "Move " + this.room.metadata.name;
-//	}
-//}
-//
-//class AddDeleteRoomAction extends Action {
-//	constructor(room, add) {
-//		super();
-//		this.room = room;
-//		this.record(this.room);
-//		this.add = add;
-//	}
-//
-//	record() {
-//		this.MX = this.room.mv.x;
-//		this.MY = this.room.mv.y;
-//		this.Floor = this.room.floor;
-//		this.R = this.room.rotation;
-//	}
-//
-//	prepareUndoAction() {
-//		centerViewOnIfNotVisible(this.MX, this.MY, this.Floor);
-//		// having a prepare step to show what's about to change feels more confusing than not having it
-//		return true;
-//	}
-//
-//	prepareRedoAction() {
-//		return this.prepareUndoAction();
-//	}
-//
-//	undoAction() {
-//		this.doAction(false);
-//	}
-//
-//	redoAction() {
-//		this.doAction(true);
-//	}
-//
-//	doAction(redo) {
-//		// there's no logical XOR in Javascript?!
-//		if (!this.add && redo) this.removeAction();
-//		else if (!this.add && !redo) this.addAction();
-//		else if (this.add && redo) this.addAction();
-//		else if (this.add && !redo) this.removeAction();
-//	}
-//
-//	addAction() {
-//	    addRoom(this.room);
-//		// hax to force it to think the floor has changed and setup its display
-//		this.room.floor = 100;
-//	    this.room.setPositionAndConnectDoors(this.MX, this.MY, this.Floor, this.R);
-//		selectRoom(this.room)
-//		saveModelToUrl();
-//	}
-//
-//	removeAction() {
-//	    removeRoom(this.room);
-//	}
-//
-//	toString() {
-//		return (this.add ? "Add " : "Delete ") + this.room.metadata.name;
-//	}
-//}

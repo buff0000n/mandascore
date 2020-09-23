@@ -56,22 +56,6 @@ imgNoteColHover = Array(
 );
 
 
-class MeasureSectionMetaData {
-    constructor(rowStart, rowStop, maxNotes, selectColor) {
-        this.rowStart = rowStart;
-        this.rowStop = rowStop;
-        this.maxNotes = maxNotes;
-        this.selectColor = selectColor;
-    }
-}
-
-var measureSections = {
-    "all": new MeasureSectionMetaData(0, 12, 0, "#ffffff"),
-    "perc": new MeasureSectionMetaData(0, 2, 24, "#ffffff"),
-    "bass": new MeasureSectionMetaData(3, 7, 16, "#1fb5ff"),
-    "mel": new MeasureSectionMetaData(8, 12, 16, "#e601ff")
-}
-
 function measureMouseover() {
     var e = window.event;
     var measure = e.currentTarget.measure;
@@ -107,11 +91,18 @@ function measureMouseout() {
 
 function keyDown(e) {
     e = e || window.event;
+    nodeName = e.target.nodeName;
+
+    if (nodeName == "TEXTAREA" || nodeName == "INPUT") {
+        return;
+    }
+
     switch (e.code) {
 		case "Escape" :
 		    clearMenu();
 		    break;
 		case "Space" :
+            e.preventDefault();
 		    score.togglePlaying();
 		    break;
 		case "KeyZ" :
@@ -119,9 +110,11 @@ function keyDown(e) {
             if (e.ctrlKey || e.metaKey) {
                 if (e.shiftKey) {
                     // ctrl/meta + shift + Z: redo
+                    e.preventDefault();
                     doRedo();
                 } else {
                     // ctrl/meta + Z: undo
+                    e.preventDefault();
                     doUndo();
                 }
             }
@@ -130,6 +123,7 @@ function keyDown(e) {
             // ctrlKey on Windows, metaKey on Mac
             if (e.ctrlKey || e.metaKey) {
                 // ctrl/meta + Y: redo
+                e.preventDefault();
                 doRedo();
             }
 		    break;
@@ -145,6 +139,7 @@ function createNoteImage(baseName) {
 }
 
 function selectSection(sectionButton, section) {
+    sectionButton.blur();
     var div = getParent(sectionButton, "menu");
     div.callback(div.button, section);
     clearMenus();
@@ -157,21 +152,23 @@ function runSectionMenu(title, button, callback) {
     div.button = button;
     div.callback = callback
 
-    div.innerHTML = `
-        <input class="button allButton" type="submit" value="All" onClick="selectSection(this, 'all')"/>
-        <input class="button melButton" type="submit" value="Melody" onClick="selectSection(this, 'mel')"/>
-        <input class="button bassButton" type="submit" value="Bass" onClick="selectSection(this, 'bass')"/>
-        <input class="button percButton" type="submit" value="Percussion" onClick="selectSection(this, 'perc')"/>
-    `;
+    var html = "";
+    for (var name in sectionMetaData) {
+        var m = sectionMetaData[name];
+        html += `<input class="button ${m.name}Button" type="submit" value="${m.displayName}" onClick="selectSection(this, '${m.name}')" style="color: ${m.color}"/>`;
+    }
+    div.innerHTML = html;
 
     showMenu(div, getParent(button, "scoreButtonRow"), button);
 }
 
 function playButton(button) {
+    button.blur();
     getParent(button, "scoreButtonContainer").score.play();
 }
 
 function copyButton(button) {
+    button.blur();
     runSectionMenu("Copy", button, doCopy);
 }
 
@@ -180,10 +177,12 @@ function doCopy(button, section) {
 }
 
 function pasteButton(button) {
+    button.blur();
     getParent(button, "scoreButtonContainer").score.paste();
 }
 
 function clearButton(button) {
+    button.blur();
     runSectionMenu("Clear", button, doClear);
 }
 
@@ -447,7 +446,7 @@ class Measure {
             this.clearSelection();
         }
         for (var t = 0; t < this.notes.length; t++) {
-            for (var r = measureSections[section].rowStart; r <= measureSections[section].rowStop; r++) {
+            for (var r = sectionMetaData[section].rowStart; r <= sectionMetaData[section].rowStop; r++) {
                 this.notes[t][r].setEnabled(false);
             }
         }
@@ -456,8 +455,8 @@ class Measure {
 
     noteChanged(note) {
         if (this.selectSection != null
-            && note.row >= measureSections[this.selectSection].rowStart
-            && note.row <= measureSections[this.selectSection].rowStop) {
+            && note.row >= sectionMetaData[this.selectSection].rowStart
+            && note.row <= sectionMetaData[this.selectSection].rowStop) {
                 this.clearSelection();
         }
     }
@@ -480,9 +479,9 @@ class Measure {
             this.selectBox.measure = this;
             this.selectBox.className = "measureSelectBox-" + section;
             this.selectBox.style.width = ((this.gridSizeX * 16) - 8) + "px";
-            this.selectBox.style.height = ((this.gridSizeY * (measureSections[section].rowStop - measureSections[section].rowStart + 1)) - 8) + "px";
+            this.selectBox.style.height = ((this.gridSizeY * (sectionMetaData[section].rowStop - sectionMetaData[section].rowStart + 1)) - 8) + "px";
             this.selectBox.style.left = 0;
-            this.selectBox.style.top = this.gridSizeY * measureSections[section].rowStart;
+            this.selectBox.style.top = this.gridSizeY * sectionMetaData[section].rowStart;
 
             this.imgContainer.appendChild(this.selectBox);
         }
@@ -496,11 +495,13 @@ class Measure {
         var fromMeasure = this.score.selectedMeasure;
         if (fromMeasure == null || fromMeasure == this) return;
 
+        this.score.startActions();
         for (var t = 0; t < this.notes.length; t++) {
-            for (var r = measureSections[fromMeasure.selectSection].rowStart; r <= measureSections[fromMeasure.selectSection].rowStop; r++) {
+            for (var r = sectionMetaData[fromMeasure.selectSection].rowStart; r <= sectionMetaData[fromMeasure.selectSection].rowStop; r++) {
                 this.notes[t][r].setEnabled(fromMeasure.notes[t][r].enabled);
             }
         }
+        this.score.endActions();
     }
 
     play() {
@@ -511,12 +512,151 @@ class Measure {
     }
 }
 
+function sectionToggle() {
+    var e = window.event;
+    var target = e.currentTarget;
+    var editor = getParent(target, "sectionRow").editor;
+    editor.setEnabled(target.checked);
+    target.blur();
+}
 
+function sectionPack() {
+    var e = window.event;
+    var target = e.currentTarget;
+    var editor = getParent(target, "sectionRow").editor;
+    editor.setPack(target.value);
+    target.blur();
+}
 
+function sectionVolume() {
+    var e = window.event;
+    var target = e.currentTarget;
+    var editor = getParent(target, "sectionRow").editor;
+    editor.setVolume(target.value / 100);
+    target.blur();
+}
+
+class SectionEditor {
+    constructor(score, section) {
+        this.score = score;
+        this.section = section;
+        this.volume = 1.0;
+        this.pack = "";
+
+        this.container = document.createElement("tr");
+        this.container.className = "sectionRow";
+        this.container.editor = this;
+
+        var html = `
+            <td><input class="button sectionEnable" type="checkbox" checked onchange="sectionToggle()"/></td>
+            <td><span>${sectionMetaData[section].displayName}</span></td>
+            <td><select class="button sectionPack" onchange="sectionPack()">`;
+
+        for (var i = 0; i < packs.length; i++) {
+            html += `<option value="${packs[i].name}">${packs[i].displayName}</option>`;
+        }
+
+        html += `
+            </select></td>
+            <td><input class="sectionVolume" type="range" min="0" max="100" value="100" onchange="sectionVolume()"/></td>
+        `;
+
+        this.container.innerHTML = html;
+    }
+
+    setEnabled(enabled) {
+        this.score.soundPlayer.setEnabled(this.section, enabled);
+    }
+
+    setVolume(volume, action=true) {
+        if (action) {
+            this.score.startActions();
+            this.score.addAction(new setVolumeAction(this, this.volume, volume));
+            this.score.endActions();
+        } else {
+            getFirstChild(this.container, "sectionVolume").value = volume * 100;
+        }
+        this.volume = volume;
+        this.score.soundPlayer.setVolume(this.section, this.volume);
+    }
+
+    setPack(pack, action=true) {
+        if (action) {
+            this.score.startActions();
+            this.score.addAction(new setPackAction(this, this.pack, pack));
+            this.score.endActions();
+        } else {
+            getFirstChild(this.container, "sectionPack").value = pack;
+        }
+        this.pack = pack;
+        this.score.soundPlayer.setSource(this.section, this.pack);
+    }
+}
+
+class setVolumeAction extends Action {
+    constructor(editor, oldVolume, newVolume) {
+        super();
+        this.editor = editor;
+        this.oldVolume = oldVolume;
+        this.newVolume = newVolume;
+    }
+    
+	undoAction() {
+	    this.editor.setVolume(this.oldVolume, false);
+	}
+
+	redoAction() {
+	    this.editor.setVolume(this.newVolume, false);
+	}
+
+	toString() {
+	    return "Set " + this.editor.section + " volume to " + this.newVolume;
+	}
+}
+
+class setPackAction extends Action {
+    constructor(editor, oldPack, newPack) {
+        super();
+        this.editor = editor;
+        this.oldPack = oldPack;
+        this.newPack = newPack;
+    }
+    
+	undoAction() {
+	    this.editor.setPack(this.oldPack, false);
+	}
+
+	redoAction() {
+	    this.editor.setPack(this.newPack, false);
+	}
+
+	toString() {
+	    return "Set " + this.editor.section + " pack to " + this.newPack;
+	}
+}
 
 class Score {
     constructor() {
+        this.container = document.createElement("div");
+        
         this.buttons = this.buildButtons();
+        this.container.appendChild(this.buttons);
+
+        this.sections = {};
+
+        var sectionContainer = document.createElement("div");
+        var sectionTable = document.createElement("table");
+        sectionTable.style.display = "inline-block";
+
+        for (var name in sectionMetaData) {
+            if (sectionMetaData[name].all) continue;
+            var section = new SectionEditor (this, name);
+            this.sections[name] = section;
+            sectionTable.appendChild(section.container);
+        }
+
+        sectionContainer.appendChild(sectionTable);
+        this.container.appendChild(sectionContainer);
 
         this.measures = Array();
         // build the four measures
@@ -525,7 +665,6 @@ class Score {
             this.measures.push(measure);
         }
 
-        this.container = document.createElement("div");
 
         // split into two blocks so that making the window smaller doesn't put three on one line and one on the next
         var block1 = document.createElement("div");
@@ -541,9 +680,12 @@ class Score {
         this.container.appendChild(block2)
 
         this.soundPlayer = new SoundPlayer();
-        this.soundPlayer.setPercSource("alpha");
-        this.soundPlayer.setBassSource("alpha");
-        this.soundPlayer.setMelSource("alpha");
+        this.sections["perc"].setPack("alpha", false);
+        this.sections["bass"].setPack("alpha", false);
+        this.sections["mel"].setPack("alpha", false);
+//        this.soundPlayer.setSource("perc", "alpha");
+//        this.soundPlayer.setSource("bass", "alpha");
+//        this.soundPlayer.setSource("mel", "alpha");
 
         this.selectedMeasure = null;
         this.actionCount = 0;
@@ -626,6 +768,5 @@ var score;
 
 function buildScore(container) {
     score = new Score();
-    container.appendChild(score.buttons);
     container.appendChild(score.container);
 }
