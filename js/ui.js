@@ -1,3 +1,14 @@
+var stopKills = true;
+
+var score;
+
+function buildScore(container) {
+    score = new Score();
+    container.appendChild(score.container);
+    score.initBlank();
+}
+
+
 function measureMouseover() {
     var e = window.event;
     var measure = e.currentTarget.measure;
@@ -106,7 +117,7 @@ function runSectionMenu(title, button, callback) {
 
 function playButton(button) {
     button.blur();
-    getParent(button, "scoreButtonContainer").score.play();
+    getParent(button, "scoreButtonContainer").score.play(button);
 }
 
 function copyButton(button) {
@@ -146,7 +157,7 @@ class Note {
     setImg(baseName) {
         if (baseName == null) {
             if (this.img != null) {
-                this.measure.removeImage(this.img);
+                this.img.remove();
                 this.img = null;
             }
             return;
@@ -157,7 +168,7 @@ class Note {
                 return;
             }
             // todo: modify in place?
-            this.measure.removeImage(this.img);
+            this.img.remove();
             this.img = null;
         }
 
@@ -208,6 +219,15 @@ class Note {
         this.updateState();
     }
 
+    bounce() {
+        // well this sucks, the only way to retrigger a CSS animation is to recreate the element.
+        var img2 = this.img.cloneNode();
+        img2.classList.add("playNote");
+        this.img.remove();
+        this.img = img2;
+        this.measure.addImage(this.img, this.time, this.row);
+    }
+
     toString() {
         return this.time + ", " + this.row + " in " + this.measure.toString();
     }
@@ -238,49 +258,7 @@ class Measure {
         this.score = score;
         this.number = number;
 
-        this.noteSpacingX = 4;
-        this.noteSpacingY = 1;
-        this.noteOffsetX = 2;
-        this.noteOffsetY = 0;
-        this.noteSizeX = 18;
-        this.noteSizeY = 24;
-
-        this.gridSizeX = this.noteSpacingX + this.noteSizeX;
-        this.gridSizeY = this.noteSpacingY + this.noteSizeY;
-
-        this.container = document.createElement("div");
-        this.container.measure = this;
-        this.container.className = "measureContainer";
-
-        this.buttons = this.buildButtons();
-        this.container.appendChild(this.buttons);
-
-        this.imgContainer = document.createElement("div");
-        this.imgContainer.measure = this;
-        this.imgContainer.className = "measureImgContainer";
-        this.imgContainer.style.width = (this.gridSizeX * 16) + "px";
-        this.imgContainer.style.height = (this.gridSizeY * 13) + "px";
-        this.container.appendChild(this.imgContainer);
-
-        this.gridImg = createNoteImage(imgGrid[this.number]);
-        this.gridImg.measure = this;
-        this.gridImg.className = "measureImg";
-        this.gridImg.style.left = 0;
-        this.gridImg.style.top = 0;
-        this.gridImg.onmouseover = measureMouseover;
-        this.gridImg.onmousemove = measureMousemove;
-        this.gridImg.onmousedown = measureMousedown;
-//        this.gridImg.onmousedrag = measureMousedrag;
-        this.gridImg.onmouseout = measureMouseout;
-
-        this.selectSection = null;
-        this.selectBox = null;
-
-        this.imgContainer.appendChild(this.gridImg);
-
-        this.hovering = false;
-        this.hoveredTime = -1;
-        this.hoveredRow = -1;
+        this.buildUI();
 
         this.notes = Array(16);
         for (var t = 0; t < this.notes.length; t++) {
@@ -296,14 +274,30 @@ class Measure {
                 this.sectionCount[section] = 0;
             }
         }
+
+        // selection state
+        this.selectSection = null;
+        this.selectBox = null;
+
+        // mouse state
+        this.hovering = false;
+        this.hoveredTime = -1;
+        this.hoveredRow = -1;
+        
+        // playback state
+        this.playbackTime = -1;
+        this.playbackBox = null;
     }
 
-    buildButtons() {
-        var div = document.createElement("div");
-        div.className = "scoreButtonContainer";
-        div.score = this;
+    buildUI() {
+        this.container = document.createElement("div");
+        this.container.measure = this;
+        this.container.className = "measureContainer";
 
-        div.innerHTML = `
+        this.buttons = document.createElement("div");
+        this.buttons.className = "scoreButtonContainer";
+        this.buttons.score = this;
+        this.buttons.innerHTML = `
             <div class="scoreButtonRow">
                 <input class="button clearButton" type="submit" value="Clear" onClick="clearButton(this)"/>
                 <input class="button copyButton" type="submit" value="Copy" onClick="copyButton(this)"/>
@@ -311,30 +305,44 @@ class Measure {
                 <input class="button playButton" type="submit" value="Play" onClick="playButton(this)"/>
             </div>
         `;
+        this.container.appendChild(this.buttons);
 
-        return div;
-    }
+        this.imgContainer = document.createElement("div");
+        this.imgContainer.measure = this;
+        this.imgContainer.className = "measureImgContainer";
+        this.imgContainer.style.width = (gridSizeX * 16) + "px";
+        this.imgContainer.style.height = (gridSizeY * 13) + "px";
+        this.container.appendChild(this.imgContainer);
 
-    removeImage(img) {
-        img.remove();
+        this.gridImg = createNoteImage(imgGrid[this.number]);
+        this.gridImg.measure = this;
+        this.gridImg.className = "measureImg";
+        this.gridImg.style.left = 0;
+        this.gridImg.style.top = 0;
+        this.gridImg.onmouseover = measureMouseover;
+        this.gridImg.onmousemove = measureMousemove;
+        this.gridImg.onmousedown = measureMousedown;
+        this.gridImg.onmouseout = measureMouseout;
+
+        this.imgContainer.appendChild(this.gridImg);
     }
 
     addImage(img, time, row) {
-        img.className = "measureImg";
-        img.style.left = this.noteOffsetX + (this.gridSizeX * time);
-        img.style.top = this.noteOffsetY + (this.gridSizeY * row);
+        img.classList.add("measureImg");
+        img.style.left = noteOffsetX + (gridSizeX * time);
+        img.style.top = noteOffsetY + (gridSizeY * row);
 //        img.style.zIndex = "10";
         img.style.pointerEvents = "none";
         this.imgContainer.appendChild(img);
     }
 
     getRow(y) {
-        var row = Math.floor(y / this.gridSizeY);
+        var row = Math.floor(y / gridSizeY);
         return row < 0 || row > 13 ? -1 : row;
     }
 
     getTime(x) {
-        var time = Math.floor(x / this.gridSizeX);
+        var time = Math.floor(x / gridSizeX);
         return time < 0 || time > 15 ? -1 : time;
     }
 
@@ -451,10 +459,10 @@ class Measure {
             this.selectBox.measure = this;
             this.selectBox.className = "measureSelectBox";
             this.selectBox.style.borderColor = sectionMetaData[section].color;
-            this.selectBox.style.width = ((this.gridSizeX * 16) - 8) + "px";
-            this.selectBox.style.height = ((this.gridSizeY * (sectionMetaData[section].rowStop - sectionMetaData[section].rowStart + 1)) - 8) + "px";
+            this.selectBox.style.width = ((gridSizeX * 16) - 8) + "px";
+            this.selectBox.style.height = ((gridSizeY * (sectionMetaData[section].rowStop - sectionMetaData[section].rowStart + 1)) - 8) + "px";
             this.selectBox.style.left = 0;
-            this.selectBox.style.top = this.gridSizeY * sectionMetaData[section].rowStart;
+            this.selectBox.style.top = gridSizeY * sectionMetaData[section].rowStart;
 
             this.imgContainer.appendChild(this.selectBox);
         }
@@ -477,7 +485,52 @@ class Measure {
         this.score.endActions();
     }
 
-    play() {
+    play(button) {
+        this.score.doPlayback(button, [this]);
+    }
+
+    startPlayback() {
+        this.playbackTime = -0.1;
+
+        if (this.playbackBox == null) {
+            this.playbackBox = document.createElement("div");
+            this.playbackBox.measure = this;
+            this.playbackBox.className = "playbackBox";
+            this.playbackBox.style.width = "4px";
+            this.playbackBox.style.height = (gridSizeY * 13) + "px";
+            this.playbackBox.style.left = 0;
+            this.playbackBox.style.top = 0;
+
+            this.imgContainer.appendChild(this.playbackBox);
+        }
+    }
+
+    setPlaybackTime(time) {
+        this.playbackBox.style.left = (gridSizeX * 8) * time;
+
+        if (time < this.playbackTime) {
+            this.playbackTime = -0.1;
+        }
+
+        var oldT = Math.floor(this.playbackTime * 8.0);
+        var newT = Math.floor(time * 8.0);
+
+        for (var t = oldT + 1; t <= newT; t++) {
+            for (var r = 0; r < 13; r++) {
+                if (this.notes[t][r].enabled) {
+                    this.score.soundPlayer.playSound(r);
+                    this.notes[t][r].bounce();
+                }
+            }
+        }
+
+        this.playbackTime = time;
+    }
+
+    stopPlayback() {
+        this.playbackTime = -1;
+        this.playbackBox.remove();
+        this.playbackBox = null;
     }
 
     toString() {
@@ -617,8 +670,25 @@ function titleChanged() {
 
 class Score {
     constructor() {
+        this.measures = Array();
+        // build the four measures
+        for (var m = 0; m < 4; m++) {
+            var measure = new Measure(this, m);
+            this.measures.push(measure);
+        }
+
+        this.buildUI();
+
+        this.selectedMeasure = null;
+        this.actionCount = 0;
+        this.actions = null;
+
+        this.playback = null;
+    }
+
+    buildUI() {
         this.container = document.createElement("div");
-        
+
         this.buttons = this.buildButtons();
         this.container.appendChild(this.buttons);
 
@@ -642,13 +712,6 @@ class Score {
         sectionContainer.appendChild(sectionTable);
         this.container.appendChild(sectionContainer);
 
-        this.measures = Array();
-        // build the four measures
-        for (var m = 0; m < 4; m++) {
-            var measure = new Measure(this, m);
-            this.measures.push(measure);
-        }
-
         // split into two blocks so that making the window smaller doesn't put three on one line and one on the next
         var block1 = document.createElement("div");
         block1.className = "measureBlock";
@@ -663,13 +726,6 @@ class Score {
         this.container.appendChild(block2)
 
         this.soundPlayer = new SoundPlayer();
-//        this.soundPlayer.setSource("perc", "alpha");
-//        this.soundPlayer.setSource("bass", "alpha");
-//        this.soundPlayer.setSource("mel", "alpha");
-
-        this.selectedMeasure = null;
-        this.actionCount = 0;
-        this.actions = null;
     }
 
     initBlank() {
@@ -772,7 +828,34 @@ class Score {
         }
     }
 
-    play() {
+    togglePlaying() {
+        if (this.playback != null) {
+            this.playback.toggle();
+        } else {
+            this.play(getFirstChild(this.buttons, "playButton"));
+        }
+    }
+
+    play(button) {
+        this.doPlayback(button, this.measures);
+    }
+
+    doPlayback(button, m) {
+        if (button.playback != null) {
+            if (button.playback.playing() && stopKills) {
+                button.playback.kill();
+                this.playback = null;
+            } else {
+                button.playback.toggle();
+            }
+
+        } else {
+            if (this.playback != null) {
+                this.playback.kill();
+            }
+            this.playback = new Playback(this, button, m);
+            this.playback.start();
+        }
     }
 }
 
@@ -797,10 +880,78 @@ class setTitleAction extends Action {
 	}
 }
 
-var score;
+var tickms = 15;
 
-function buildScore(container) {
-    score = new Score();
-    container.appendChild(score.container);
-    score.initBlank();
+class Playback {
+    constructor(score, button, measures) {
+        this.score = score;
+        this.button = button;
+        this.button.playback = this;
+
+        this.measures = measures;
+        this.time = 0;
+        this.timeout = null;
+
+        this.runTime = 2.0 * measures.length;
+        this.currentTime = 0.0;
+        this.startTime = 0.0;
+        this.lastMeasure = null;
+    }
+
+    playing() {
+        return this.timeout != null;
+    }
+
+    start() {
+        this.button.value = "Stop";
+        this.tick(true);
+    }
+
+    stop() {
+        if (this.timeout != null) clearTimeout(this.timeout);
+        this.timeout = null;
+        this.button.value = "Play";
+    }
+
+    toggle() {
+        if (this.timeout) {
+            this.stop();
+
+        } else {
+            this.start();
+        }
+    }
+
+    kill() {
+        this.stop();
+        if (this.lastMeasure != null) this.lastMeasure.stopPlayback();
+        this.button.playback = null;
+    }
+
+    tick(start=false) {
+        var time = getTime() / 1000;
+        if (start) {
+            this.startTime = time - this.currentTime;
+
+        } else {
+            this.currentTime = time - this.startTime;
+            while (this.currentTime >= this.runTime) {
+                this.currentTime -= this.runTime;
+                this.startTime += this.runTime;
+            }
+        }
+
+        var measureIndex = Math.floor(this.currentTime / 2.0);
+        var measure = this.measures[measureIndex];
+        if (measure != this.lastMeasure) {
+            if (this.lastMeasure != null) this.lastMeasure.stopPlayback();
+            this.lastMeasure = measure;
+            measure.startPlayback();
+        }
+
+        measure.setPlaybackTime(this.currentTime % 2);
+
+        this.timeout = setTimeout(() => { this.tick() }, tickms);
+    }
+
 }

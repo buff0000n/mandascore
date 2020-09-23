@@ -1,3 +1,13 @@
+var noteSpacingX = 4;
+var noteSpacingY = 1;
+var noteOffsetX = 2;
+var noteOffsetY = 0;
+var noteSizeX = 18;
+var noteSizeY = 24;
+
+var gridSizeX = noteSpacingX + noteSizeX;
+var gridSizeY = noteSpacingY + noteSizeY;
+
 var imgGrid = Array(
     "measure-1",
     "measure-2",

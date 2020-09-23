@@ -115,3 +115,23 @@ function windowOnError(msg, url, lineNo, columnNo, error) {
     showErrors([msg.replace("Uncaught ", "")]);
     return false;
 }
+
+//==============================================================
+// timing
+// yoinked from:
+// https://stackoverflow.com/questions/4874408/better-way-of-getting-time-in-milliseconds-in-javascript
+//==============================================================
+
+window.performance = window.performance || {};
+performance.now = (function() {
+    return performance.now       ||
+        performance.mozNow    ||
+        performance.msNow     ||
+        performance.oNow      ||
+        performance.webkitNow ||
+        Date.now  /*none found - fallback to browser default */
+})();
+
+function getTime() {
+    return window.performance.now();
+}
