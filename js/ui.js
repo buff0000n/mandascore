@@ -555,12 +555,20 @@ function sectionPack() {
     target.blur();
 }
 
-function sectionVolume() {
+function sectionVolume(peek=false) {
     var e = window.event;
     var target = e.currentTarget;
     var editor = getParent(target, "sectionRow").editor;
-    editor.setVolume(target.value / 100);
-    target.blur();
+    if (peek) {
+        editor.setVolume(target.value / 100, false, true);
+    } else {
+        editor.setVolume(target.value / 100);
+        target.blur();
+    }
+}
+
+function sectionVolumePeek() {
+    sectionVolume(true);
 }
 
 class SectionEditor {
@@ -589,7 +597,7 @@ class SectionEditor {
 
         html += `
             </select></td>
-            <td><input class="sectionVolume" type="range" min="0" max="100" value="100" onchange="sectionVolume()"/></td>
+            <td><input class="sectionVolume" type="range" min="0" max="100" value="100" onchange="sectionVolume()" oninput="sectionVolumePeek()"/></td>
             <td>
                 <input id="section-${this.section}-enable" class="button sectionEnable" type="checkbox" checked onchange="sectionToggle()"/>
                 <label for="section-${this.section}-enable"></label>
@@ -604,16 +612,18 @@ class SectionEditor {
         this.score.soundPlayer.setEnabled(this.section, enabled);
     }
 
-    setVolume(volume, action=true) {
-        if (action) {
+    setVolume(volume, action=true, peek=false) {
+        if (action && !peek) {
             this.score.startActions();
             this.score.addAction(new setVolumeAction(this, this.volume, volume));
             this.score.endActions();
-        } else {
+        } else if (!peek) {
             getFirstChild(this.container, "sectionVolume").value = volume * 100;
         }
-        this.volume = volume;
-        this.score.soundPlayer.setVolume(this.section, this.volume);
+        if (!peek) {
+            this.volume = volume;
+        }
+        this.score.soundPlayer.setVolume(this.section, volume);
     }
 
     setPack(pack, action=true) {
