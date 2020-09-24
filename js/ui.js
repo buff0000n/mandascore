@@ -518,13 +518,21 @@ class Measure {
         for (var t = oldT + 1; t <= newT; t++) {
             for (var r = 0; r < 13; r++) {
                 if (this.notes[t][r].enabled) {
-                    this.score.soundPlayer.playSound(r);
+//                    this.score.soundPlayer.playSound(r);
                     this.notes[t][r].bounce();
                 }
             }
         }
 
         this.playbackTime = time;
+    }
+
+    playAudioForTime(t) {
+        for (var r = 0; r < 13; r++) {
+            if (this.notes[t][r].enabled) {
+                this.score.soundPlayer.playSound(r);
+            }
+        }
     }
 
     stopPlayback() {
@@ -886,7 +894,7 @@ class setTitleAction extends Action {
 	}
 }
 
-var tickms = 15;
+var tickms = 100;
 
 class Playback {
     constructor(score, button, measures) {
@@ -896,16 +904,20 @@ class Playback {
 
         this.measures = measures;
         this.time = 0;
-        this.timeout = null;
+        this.animTimeout = null;
+        this.audioTimeout = null;
 
         this.runTime = 2.0 * measures.length;
-        this.currentTime = 0.0;
+        this.runT = 16 * measures.length;
         this.startTime = 0.0;
+        this.currentTime = 0.0;
+        this.currentT = -2;
+        this.playT = -1;
         this.lastMeasure = null;
     }
 
     playing() {
-        return this.timeout != null;
+        return this.animTimeout != null;
     }
 
     start() {
@@ -914,13 +926,17 @@ class Playback {
     }
 
     stop() {
-        if (this.timeout != null) clearTimeout(this.timeout);
-        this.timeout = null;
+        if (this.animTimeout != null) clearTimeout(this.animTimeout);
+        this.animTimeout = null;
+
+        if (this.audioTimeout != null) clearTimeout(this.audioTimeout);
+        this.audioTimeout = null;
+
         this.button.value = "Play";
     }
 
     toggle() {
-        if (this.timeout) {
+        if (this.animTimeout) {
             this.stop();
 
         } else {
@@ -934,17 +950,45 @@ class Playback {
         this.button.playback = null;
     }
 
+    playAudio() {
+        var measure = Math.floor(this.playT / 16);
+        this.measures[measure].playAudioForTime(this.playT - (measure * 16));
+        this.audioTimeout = null;
+    }
+
+    schedulePlayAudio(t) {
+    }
+
     tick(start=false) {
+        this.animTimeout = setTimeout(() => { this.tick() }, tickms);
+
         var time = getTime() / 1000;
+        var oldTime;
+        var oldT;
+
         if (start) {
             this.startTime = time - this.currentTime;
+            if (this.currentTime == 0) {
+                this.currentT = 0;
+                this.playT = 0;
+                this.playAudio();
+            }
 
         } else {
+            oldTime = this.currentTime;
+            oldT = this.currentT;
             this.currentTime = time - this.startTime;
             while (this.currentTime >= this.runTime) {
                 this.currentTime -= this.runTime;
                 this.startTime += this.runTime;
             }
+            this.currentT = Math.floor(this.currentTime * 8);
+        }
+
+        if (this.audioTimeout == null && this.currentT >= this.playT) {
+            this.playT = (this.currentT + 1) % this.runT;
+            var delay = ((this.currentT + 1) * 125) - (this.currentTime * 1000);
+            this.audioTimeout = setTimeout(() => { this.playAudio() }, delay);
         }
 
         var measureIndex = Math.floor(this.currentTime / 2.0);
@@ -954,10 +998,7 @@ class Playback {
             this.lastMeasure = measure;
             measure.startPlayback();
         }
-
         measure.setPlaybackTime(this.currentTime % 2);
-
-        this.timeout = setTimeout(() => { this.tick() }, tickms);
     }
 
 }
