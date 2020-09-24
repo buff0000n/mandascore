@@ -8,6 +8,13 @@ var noteSizeY = 24;
 var gridSizeX = noteSpacingX + noteSizeX;
 var gridSizeY = noteSpacingY + noteSizeY;
 
+sectionImages = {
+    "all": "note-perc-1",
+    "perc": "note-perc-3",
+    "bass": "note-bass",
+    "mel": "note-mel",
+};
+
 var imgGrid = Array(
     "measure-1",
     "measure-2",

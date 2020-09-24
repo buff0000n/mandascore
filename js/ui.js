@@ -568,15 +568,20 @@ class SectionEditor {
         this.section = section;
         this.volume = 1.0;
         this.pack = "";
-
-        this.container = document.createElement("tr");
-        this.container.className = "sectionRow";
-        this.container.editor = this;
+        
+        this.container = this.buildUI();
+    }
+    
+    buildUI() {
+        var container = document.createElement("tr");
+        container.className = "sectionRow";
+        container.editor = this;
 
         var html = `
             <td><input class="button sectionEnable" type="checkbox" checked onchange="sectionToggle()"/></td>
-            <td><span>${sectionMetaData[section].displayName}</span></td>
-            <td><select class="button sectionPack" onchange="sectionPack()">`;
+            <td><img src="img/${sectionImages[this.section]}.png" srcset="img2x/${sectionImages[this.section]}.png 2x"</td>
+            <td><span>${sectionMetaData[this.section].displayName}</span></td>
+            <td><select class="dropDown sectionPack" onchange="sectionPack()">`;
 
         for (var i = 0; i < packs.length; i++) {
             html += `<option value="${packs[i].name}">${packs[i].displayName}</option>`;
@@ -587,7 +592,8 @@ class SectionEditor {
             <td><input class="sectionVolume" type="range" min="0" max="100" value="100" onchange="sectionVolume()"/></td>
         `;
 
-        this.container.innerHTML = html;
+        container.innerHTML = html;
+        return container;
     }
 
     setEnabled(enabled) {

@@ -1,0 +1,410 @@
+    /* general formatting */
+    * {
+        font-family: sans-serif;
+        color: #B0B0B0;
+    }
+    body {
+        background-color: #202020;
+    }
+    input, textarea {
+        color: #FFFFFF;
+        background-color: #000000;
+    }
+    input:invalid {
+        background: #FF8888;
+    }
+    .title {
+	    font-weight: bold;
+	    font-size: 100%;
+	    color: #80A0D0;
+	    display: inline;
+    }
+    .titleBar {
+        background-color: #404040;
+        margin: 1ex;
+        padding: 1ex;
+        border-radius: 1ex;
+        text-align: middle;
+    }
+    .titleBar .businessDiv {
+        margin: 2ex 1ex 1ex 1ex;
+    }
+    .mainTitle {
+	    font-weight: bold;
+	    text-align: center;
+	    font-size: 200%;
+	    color: #FFFFFF;
+    }
+    .subTitle {
+	    font-weight: bold;
+	    text-align: center;
+	    font-size: 150%;
+	    color: #FFFFFF;
+    }
+    .label {
+        color: #FFFFFF;
+    }
+    a {
+        color: #8080FF
+    }
+    a:visited {
+        color: #D080FF
+    }
+    ul {
+        list-style-type: disc;
+    }
+    li {
+        margin: 0ex 0ex 1ex 0ex;
+    }
+
+    /* help section formatting */
+    #lotsOfWordsContainer, .footerContainer {
+        background-color: #202020;
+        margin: 1ex;
+        padding: 1ex;
+        border-radius: 1ex;
+   	    text-align: center;
+    }
+    .lotsOfWords, .footer {
+        max-width: 100ex;
+        display: inline-block;
+   	    text-align: left;
+    }
+    .footer {
+	    font-weight: bold;
+	    font-size: 100%;
+    }
+    .about {
+        text-align: center;
+    }
+    h1, h2, h3, h4 {
+        color: A0C0F0;
+    }
+    strong {
+        color: 6080B0;
+    }
+    .warn, .warn * {
+        color: D06040;
+    }
+    #TOC li {
+        margin: 0;
+    }
+
+    /*
+        For some unknown reason, the font size on moble devices is much smaller, but only on the first column on the
+        notes tables. Work around using a media query for a coarse pointer (usually denotes a phone or tablet).
+    */
+    @media only screen and (pointer: coarse) {
+        .notes tr td:first-child {
+            font-size: 150%;
+        }
+    }
+
+    /* error bar formatting */
+    #errorBar {
+	    text-align: center;
+    }
+    #error {
+        background-color: #B00000;
+	    font-weight: bold;
+	    text-align: left;
+	    color: #FFFFFF;
+        margin: 1ex;
+        padding: 1ex;
+        border-radius: 1ex;
+        display: inline-block;
+    }
+    .errorLine {
+	    font-weight: bold;
+	    color: #FFFFFF;
+    }
+
+    /* measure formatting */
+
+    .measureBlock {
+        padding: 0;
+        margin: 0;
+        border: 0;
+        position: relative;
+        display: inline-block;
+    }
+
+    .measureContainer {
+        padding: 0;
+        margin: 0;
+        border: 0;
+	    color: #FFFFFF;
+        display: inline-block;
+    }
+
+    .measureImgContainer {
+        padding: 0;
+        margin: 0;
+        border: 0;
+        position: relative;
+        display: inline-block;
+    }
+
+    .measureImg {
+        position: absolute;
+    }
+
+    .measureSelectBox {
+        position: absolute;
+        border-style: solid;
+        border-width: 4px;
+        margin: 0;
+        padding: 0;
+        pointer-events: none;
+    }
+
+    .playbackBox {
+        position: absolute;
+        margin: 0;
+        padding: 0;
+        pointer-events: none;
+        background-color: #ffffff;
+        z-index: 5;
+    }
+
+    @keyframes noteBounce {
+        0%   { transform: scale(1.0); }
+        33%  { transform: scale(1.8); }
+        100% { transform: scale(1.0); }
+    }
+
+    .playNote {
+        animation-name: noteBounce;
+        animation-duration: 0.3s;
+    }
+
+    /* Buttons */
+
+    .scoreButtonRow {
+        position: relative;
+    }
+
+    .scoreButtonRow > .button {
+        background-color: #404040;
+        border: none;
+        color: #FFFFFF;
+        padding: 1ex 1ex 0.5ex 1ex;
+        margin: 1ex 0ex 0ex 0ex;
+        text-align: center;
+        text-decoration: none;
+        font-size: 100%;
+        border-radius: 1ex 1ex 0ex 0ex;
+        display: block-inline;
+    }
+
+    .menu {
+        background-color: #202020;
+        border: none;
+        padding: 0ex;
+        margin: 0ex;
+        text-align: center;
+        text-decoration: none;
+        font-size: 100%;
+        border-radius: 0ex 0ex 1ex 1ex;
+    }
+
+    .menu > .button {
+        background-color: #404040;
+        border: none;
+        color: #FFFFFF;
+        padding: 1ex;
+        margin: 1ex;
+        text-align: center;
+        text-decoration: none;
+        font-size: 100%;
+        border-radius: 1ex;
+        display: block;
+    }
+
+	.utilGroup {
+	    text-align: center;
+	}
+    .util {
+        margin: 1ex 0ex 1ex 0ex;
+        display: inline;
+    }
+    .button, .urlButton {
+        background-color: #808080;
+        border: none;
+        color: #FFFFFF;
+        padding: 1ex;
+        text-align: center;
+        text-decoration: none;
+        font-size: 100%;
+        border-radius: 1ex;
+        margin: 1ex 1ex 1ex 1ex;
+        cursor: pointer;
+        display: block-inline;
+    }
+    .songContainer {
+        text-align: center;
+    }
+    .songDiv {
+        display: inline-block;
+        text-align: left;
+    }
+    .songTitleDiv, #songCodeDiv {
+        background-color: #404080;
+        border: none;
+        color: #FFFFFF;
+        padding: 1ex;
+        text-align: left;
+        text-decoration: none;
+        font-size: 100%;
+        border-radius: 1ex;
+        display: inline-block;
+    }
+    .urlButton, {
+        background-color: #406080;
+    }
+
+    /* graying everthing out when disabled */
+    .button:disabled {
+        background-color: #202020;
+        color: #808080;
+        cursor: not-allowed;
+    }
+
+    .dropDown {
+        background-color: #404040;
+        border: none;
+        color: #FFFFFF;
+        padding: 1ex;
+        text-align: center;
+        text-decoration: none;
+        font-size: 100%;
+        border-radius: 1ex;
+        margin: 0ex 1ex 0ex 1ex;
+        cursor: pointer;
+    }
+
+    #scoreArea {
+        background-color: #000000;
+        border: none;
+        color: #000000;
+        //font-size: 75%;
+        padding: 1ex;
+        border-radius: 1ex;
+        text-align: center;
+    }
+
+    /* tooltips, adapted from https://www.w3schools.com/css/css_tooltip.asp */
+
+    .tooltip {
+        position: relative;
+        display: inline-block;
+    }
+    .tooltip:hover .tooltiptext, .tooltip:hover .tooltiptextbottom  {
+        visibility: visible;
+        opacity: 1;
+    }
+    /* fix the link colors inside tooltips */
+    .tooltip a {
+        color: #0000FF
+    }
+    .tooltip a:visited {
+        color: #B000FF
+    }
+
+    /* right side tooltip */
+    .tooltip .tooltiptext {
+        visibility: hidden;
+        width: 50ex;
+        background-color: #C0C0C0;
+        color: #4040A0;
+        text-align: center;
+        border-radius: 0.5ex;
+        padding: 1ex;
+        position: absolute;
+        z-index: 1;
+        top: 1ex;
+        left: calc(100% + 2ex);
+
+        opacity: 0;
+        transition: opacity 500ms;
+        transition-delay: 1s;
+    }
+    .tooltip .tooltiptext::after {
+        content: "";
+        position: absolute;
+        top: 2.25ex;
+        right: 100%;
+        margin-top: -1ex;
+        border-width: 1ex;
+        border-style: solid;
+        border-color: transparent #C0C0C0 transparent transparent;
+    }
+
+    /* bottom side tooltip */
+    .tooltip .tooltiptextbottom {
+        visibility: hidden;
+        width: 30ex;
+        background-color: #C0C0C0;
+        color: #4040A0;
+        text-align: center;
+        border-radius: 0.5ex;
+        padding: 1ex;
+        position: absolute;
+        z-index: 1;
+        top: 120%;
+        left: calc(50% - 15ex);
+        margin-left: -2ex;
+        pointer-events: none;
+
+        opacity: 0;
+        transition: opacity 500ms;
+        transition-delay: 1s;
+    }
+    .tooltip .tooltiptextbottom::after {
+        content: "";
+        position: absolute;
+        bottom: 100%;  /* At the top of the tooltip */
+        left: 50%;
+        margin-left: -1ex;
+        border-width: 1ex;
+        border-style: solid;
+        border-color: transparent transparent #C0C0C0 transparent;
+    }
+
+    /* popup, adapted from https://www.w3schools.com/howto/howto_js_popup.asp */
+    .popup {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+    }
+    .popup .popuptext {
+        visibility: hidden;
+        width: 50ex;
+        background-color: #C0C0C0;
+        color: #000080;
+        text-align: center;
+        border-radius: 0.5ex;
+        padding: 1ex;
+        position: absolute;
+        z-index: 1;
+        top: 120%;
+        left: -40ex;
+        margin-left: -2ex;
+    }
+    .popup .popuptext::after {
+        content: "";
+        position: absolute;
+        bottom: 100%;  /* At the top of the tooltip */
+        right: 2ex;
+        margin-left: -1ex;
+        border-width: 1ex;
+        border-style: solid;
+        border-color: transparent transparent #C0C0C0 transparent;
+    }
+    .popup .show {
+        visibility: visible;
+        animation: fadeIn 1s
+    }
+    #urlHolder {
+        color: #000000;
+    }
