@@ -34,6 +34,9 @@ class SoundEntry {
         this.index = (this.index + 1) % maxSounds;
         if (this.audio.length < this.index + 1) {
             var a = new Audio(this.source);
+            if (this.volume != 1.0) {
+                a.volume = this.volume;
+            }
             this.audio.push(a);
             a.play();
 
