@@ -578,7 +578,6 @@ class SectionEditor {
         container.editor = this;
 
         var html = `
-            <td><input class="button sectionEnable" type="checkbox" checked onchange="sectionToggle()"/></td>
             <td><img src="img/${sectionImages[this.section]}.png" srcset="img2x/${sectionImages[this.section]}.png 2x"</td>
             <td><span>${sectionMetaData[this.section].displayName}</span></td>
             <td><select class="dropDown sectionPack" onchange="sectionPack()">`;
@@ -590,6 +589,10 @@ class SectionEditor {
         html += `
             </select></td>
             <td><input class="sectionVolume" type="range" min="0" max="100" value="100" onchange="sectionVolume()"/></td>
+            <td>
+                <input id="section-${this.section}-enable" class="button sectionEnable" type="checkbox" checked onchange="sectionToggle()"/>
+                <label for="section-${this.section}-enable"></label>
+            </td>
         `;
 
         container.innerHTML = html;
@@ -935,6 +938,8 @@ class Playback {
     }
 
     tick(start=false) {
+        this.timeout = setTimeout(() => { this.tick() }, tickms);
+
         var time = getTime() / 1000;
         if (start) {
             this.startTime = time - this.currentTime;
@@ -956,8 +961,6 @@ class Playback {
         }
 
         measure.setPlaybackTime(this.currentTime % 2);
-
-        this.timeout = setTimeout(() => { this.tick() }, tickms);
     }
 
 }

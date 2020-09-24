@@ -156,6 +156,7 @@
         margin: 0;
         padding: 0;
         pointer-events: none;
+        z-index: 4;
     }
 
     .playbackBox {
@@ -292,6 +293,46 @@
         border-radius: 1ex;
         text-align: center;
     }
+
+
+    /* omg it's so hard to get images for checkboxes */
+    .sectionEnable {
+        display: none;
+    }
+
+    .sectionEnable + label {
+        content:"";
+        width: 51px;
+        height: 12px;
+        background-image: url(../img/disabled.png);
+        display:inline-block;
+    }
+
+    .sectionEnable:checked + label {
+        background-image: url(../img/enabled.png);
+        display:inline-block;
+    }
+
+    @media
+    only screen and (-webkit-min-device-pixel-ratio: 2),
+    only screen and (   min--moz-device-pixel-ratio: 2),
+    only screen and (     -o-min-device-pixel-ratio: 2/1),
+    only screen and (        min-device-pixel-ratio: 2),
+    only screen and (                min-resolution: 192dpi),
+    only screen and (                min-resolution: 2dppx)
+    {
+        .sectionEnable + label {
+            background-image: url(../img2x/disabled.png);
+            background-size: 51px 12px;
+        }
+        .sectionEnable:checked + label {
+            background-image: url(../img2x/enabled.png);
+            background-size: 51px 12px;
+        }​
+    }
+
+    /*
+    */
 
     /* tooltips, adapted from https://www.w3schools.com/css/css_tooltip.asp */
 
