@@ -9,10 +9,10 @@ var gridSizeX = noteSpacingX + noteSizeX;
 var gridSizeY = noteSpacingY + noteSizeY;
 
 sectionImages = {
-    "all": "note-perc-1",
-    "perc": "note-perc-3",
-    "bass": "note-bass",
-    "mel": "note-mel",
+    "all": "perc",
+    "perc": "perc",
+    "bass": "bass",
+    "mel": "mel",
 };
 
 var imgGrid = Array(

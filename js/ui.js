@@ -518,8 +518,9 @@ class Measure {
         for (var t = oldT + 1; t <= newT; t++) {
             for (var r = 0; r < 13; r++) {
                 if (this.notes[t][r].enabled) {
-                    this.score.soundPlayer.playSound(r);
-                    this.notes[t][r].bounce();
+                    if (this.score.soundPlayer.playSound(r)) {
+                        this.notes[t][r].bounce();
+                    }
                 }
             }
         }

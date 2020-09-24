@@ -84,6 +84,9 @@ class SoundBank {
     play(index) {
         if (this.enabled) {
             this.sounds[index].trigger();
+            return true;
+        } else {
+            return false;
         }
     }
 }
@@ -120,9 +123,13 @@ class SoundPlayer {
         this.banks[section].setEnabled(enabled);
     }
 
+    isEnabled(section, enabled) {
+        return this.banks[section].enabled;
+    }
+
     playSound(index) {
         var bank = this.indexToBank[index];
-        bank.play(index - bank.rowStart);
+        return bank.play(index - bank.rowStart);
     }
 
     playBzzt(index) {

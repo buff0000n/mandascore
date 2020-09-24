@@ -1,4 +1,6 @@
-/* generated/adapted from http://danielstern.ca/range.css/ */
+/* generated from http://danielstern.ca/range.css/
+   because sliders are too new to not be a pain in the neck
+*/
 
 input[type=range] {
   width: 100%;
