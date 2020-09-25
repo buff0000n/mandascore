@@ -34,6 +34,9 @@ class SoundEntry {
         this.index = (this.index + 1) % maxSounds;
         if (this.audio.length < this.index + 1) {
             var a = new Audio(this.source);
+            if (this.volume != 1.0) {
+                a.volume = this.volume;
+            }
             this.audio.push(a);
             a.play();
 
@@ -84,6 +87,9 @@ class SoundBank {
     play(index) {
         if (this.enabled) {
             this.sounds[index].trigger();
+            return true;
+        } else {
+            return false;
         }
     }
 }
@@ -120,9 +126,14 @@ class SoundPlayer {
         this.banks[section].setEnabled(enabled);
     }
 
+    isEnabled(index) {
+        var bank = this.indexToBank[index];
+        return bank.enabled;
+    }
+
     playSound(index) {
         var bank = this.indexToBank[index];
-        bank.play(index - bank.rowStart);
+        return bank.play(index - bank.rowStart);
     }
 
     playBzzt(index) {

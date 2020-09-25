@@ -518,8 +518,9 @@ class Measure {
         for (var t = oldT + 1; t <= newT; t++) {
             for (var r = 0; r < 13; r++) {
                 if (this.notes[t][r].enabled) {
-//                    this.score.soundPlayer.playSound(r);
-                    this.notes[t][r].bounce();
+                    if (this.score.soundPlayer.isEnabled(r)) {
+                        this.notes[t][r].bounce();
+                    }
                 }
             }
         }
@@ -562,12 +563,20 @@ function sectionPack() {
     target.blur();
 }
 
-function sectionVolume() {
+function sectionVolume(peek=false) {
     var e = window.event;
     var target = e.currentTarget;
     var editor = getParent(target, "sectionRow").editor;
-    editor.setVolume(target.value / 100);
-    target.blur();
+    if (peek) {
+        editor.setVolume(target.value / 100, false, true);
+    } else {
+        editor.setVolume(target.value / 100);
+        target.blur();
+    }
+}
+
+function sectionVolumePeek() {
+    sectionVolume(true);
 }
 
 class SectionEditor {
@@ -586,7 +595,6 @@ class SectionEditor {
         container.editor = this;
 
         var html = `
-            <td><input class="button sectionEnable" type="checkbox" checked onchange="sectionToggle()"/></td>
             <td><img src="img/${sectionImages[this.section]}.png" srcset="img2x/${sectionImages[this.section]}.png 2x"</td>
             <td><span>${sectionMetaData[this.section].displayName}</span></td>
             <td><select class="dropDown sectionPack" onchange="sectionPack()">`;
@@ -597,7 +605,11 @@ class SectionEditor {
 
         html += `
             </select></td>
-            <td><input class="sectionVolume" type="range" min="0" max="100" value="100" onchange="sectionVolume()"/></td>
+            <td><input class="sectionVolume" type="range" min="0" max="100" value="100" onchange="sectionVolume()" oninput="sectionVolumePeek()"/></td>
+            <td>
+                <input id="section-${this.section}-enable" class="button sectionEnable" type="checkbox" checked onchange="sectionToggle()"/>
+                <label for="section-${this.section}-enable"></label>
+            </td>
         `;
 
         container.innerHTML = html;
@@ -608,16 +620,18 @@ class SectionEditor {
         this.score.soundPlayer.setEnabled(this.section, enabled);
     }
 
-    setVolume(volume, action=true) {
-        if (action) {
+    setVolume(volume, action=true, peek=false) {
+        if (action && !peek) {
             this.score.startActions();
             this.score.addAction(new setVolumeAction(this, this.volume, volume));
             this.score.endActions();
-        } else {
+        } else if (!peek) {
             getFirstChild(this.container, "sectionVolume").value = volume * 100;
         }
-        this.volume = volume;
-        this.score.soundPlayer.setVolume(this.section, this.volume);
+        if (!peek) {
+            this.volume = volume;
+        }
+        this.score.soundPlayer.setVolume(this.section, volume);
     }
 
     setPack(pack, action=true) {
