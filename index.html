@@ -29,6 +29,49 @@
     }
 
     //==============================================================
+    // Song Code updating
+    //==============================================================
+
+    var songCodeUpdateDelay = 1000;
+    var songCodeUpdateTimeout = null;
+    var updatedSongCode = null;
+
+    function updateSongCode() {
+        if (songCodeUpdateTimeout) {
+            clearTimeout(songCodeUpdateTimeout);
+        }
+
+        songCodeUpdateTimeout = setTimeout(() => { actuallyUpdateSongCode() }, songCodeUpdateDelay);
+    }
+
+    function actuallyUpdateSongCode() {
+        updatedSongCode = score.getSong();
+        document.getElementById("songCode").value = updatedSongCode;
+        songCodeUpdateTimeout = null;
+        songCodeUpdateFunc = null;
+    }
+
+    function songCodeUpdated() {
+        try {
+            var input = document.getElementById("songCode");
+            songCode = input.value;
+            if (songCode != null && songCode != updatedSongCode) {
+                score.setSong(songCode);
+                input.blur();
+            }
+            clearErrors();
+
+        } catch (error) {
+            showErrors([error]);
+        }
+    }
+
+    function songCodeClicked() {
+        var input = document.getElementById("songCode");
+        input.select();
+    }
+
+    //==============================================================
     // Model-View control
     //==============================================================
 
@@ -359,7 +402,7 @@
         <div class="util" id="songCodeDiv">
             <div class="tooltip">
                 <span class="label">Song Code:</span>
-                <input id="songCode" class="songTitle" type="text" size="50" onchange="valueChanged(this);"/>
+                <input id="songCode" class="songTitle" type="text" size="50" onchange="songCodeUpdated();" onclick="songCodeClicked()"/>
                 <span class="tooltiptextbottom">Paste or copy the song code in here</span>
             </div>
         </div>
