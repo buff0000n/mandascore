@@ -29,6 +29,67 @@
     }
 
     //==============================================================
+    // Song Code updating
+    //==============================================================
+
+    var songCodeUpdateDelay = 1000;
+    var songCodeUpdateTimeout = null;
+    var updatedSongCode = null;
+
+    function updateSongCode() {
+        if (songCodeUpdateTimeout) {
+            clearTimeout(songCodeUpdateTimeout);
+        }
+
+        songCodeUpdateTimeout = setTimeout(() => { actuallyUpdateSongCode() }, songCodeUpdateDelay);
+    }
+
+    function actuallyUpdateSongCode() {
+        updatedSongCode = getSongCode();
+        document.getElementById("songCode").value = updatedSongCode;
+        songCodeUpdateTimeout = null;
+        songCodeUpdateFunc = null;
+    }
+
+    function getSongCode() {
+        return score.getSong();
+    }
+
+    function songCodeUpdated() {
+        var input = document.getElementById("songCode");
+        songCode = input.value.trim();
+        if (songCode != null && songCode != "" && songCode != updatedSongCode) {
+            input.blur();
+            updateSong(songCode);
+        }
+    }
+
+    function songCodeClicked() {
+        var input = document.getElementById("songCode");
+        input.select();
+    }
+
+    function setSongCode(songCode) {
+        if (songCode !== null && songCode.length > 0) {
+            var input = document.getElementById("songCode");
+            input.value = updatedSongCode;
+            input.blur();
+            // parse a model from the string
+            updateSong(songCode);
+        }
+    }
+
+    function updateSong(songCode) {
+        try {
+            score.setSong(songCode);
+            clearErrors();
+        } catch (error) {
+            showErrors([error]);
+            throw error;
+        }
+    }
+
+    //==============================================================
     // Model-View control
     //==============================================================
 
@@ -49,85 +110,24 @@
 
         buildUI();
 
-        // reinitModel(url);
+        reinitModel(url);
     }
 
     function reinitModel(url) {
         // on page load, see if there's a "song=..." query string
-        var songString = getQueryParam(url, "song", false);
-        if (songString) {
+        var songCode = getQueryParam(url, "song", false);
+        if (songCode) {
             // if there is, then initialize our song
-            setSong(urlDecodeString(songString, false));
+            setSongCode(urlDecodeString(songCode, false));
         }
 
-        var title = getQueryParam(url, "title");
-        if (title) {
-            document.getElementById("songTitle").value = urlDecodeString(title);
-        }
-
-        var author = getQueryParam(url, "author");
-        if (author) {
-            document.getElementById("author").value = urlDecodeString(author);
-        }
-
-        var metered = getQueryParam(url, "metered");
-        if (metered) {
-            if (metered == "y") {
-                document.getElementById("metered").checked = true;
-                document.getElementById("meter").value = getQueryParam(url, "meter");
-                document.getElementById("tempo").value = getQueryParam(url, "tempo");
-                document.getElementById("measuresPerLine").value = getQueryParam(url, "measuresPerLine");
-                document.getElementById("leadInBeats").value = getQueryParam(url, "leadInBeats");
-
-            } else {
-                document.getElementById("metered").checked = false;
-                document.getElementById("secondsPerLine").value = getQueryParam(url, "secondsPerLine");
-            }
-        } else {
-            document.getElementById("metered").checked = false;
-            document.getElementById("secondsPerLine").value = "4";
-        }
-        meteredChanged(document.getElementById("metered"))
-
-        if (songString) {
-            // start the display automatically
-            startRun();
-        }
-    }
-
-    function setSongString(songString) {
-        if (songString !== null && songString.length > 0) {
-            // parse a model from the string
-            var song = new Song().fromString(song);
-            // build the UI
-            setSong(song);
-            // clear any error
-            clearErrors();
-        }
     }
 
     function copyModelUrl() {
         // build a model from the UI
-        var songString = getSong()
+        var songCode = getSongCode();
 
-        var title = document.getElementById("songTitle").value;
-
-        var author = document.getElementById("author").value;
-
-        var query = "?title=" + urlEncodeString(title) + "&author=" + urlEncodeString(author);
-
-        if (document.getElementById("metered").checked) {
-            query += "&metered=y"
-                + ("&meter=" + document.getElementById("meter").value || "4/4")
-                + ("&tempo=" + document.getElementById("tempo").value || "120")
-                + ("&measuresPerLine=" + document.getElementById("measuresPerLine").value || "4")
-                + ("&leadInBeats=" + document.getElementById("leadInBeats").value || "0");
-        } else {
-            query += "&metered=n"
-                + ("&secondsPerLine=" + document.getElementById("secondsPerLine").value || "4");
-        }
-
-        query += "&song=" + urlEncodeString(songString, false)
+        var query = "?song=" + urlEncodeString(songCode, false)
 
         // build a full URL using the current URL
         var url = buildQueryUrl(query);
@@ -143,172 +143,12 @@
         textField.select();
     }
 
-	function urlEncodeString(string, plusIsSpace=true) {
-	    // urlencode some things
-	    string = encodeURIComponent(string);
-
-	    if (plusIsSpace) {
-            // replace whitespace with '+'
-            string = string.replace(/\s/g, "+");
-        }
-        return string;
-	}
-
-	function urlDecodeString(string, plusIsSpace=true) {
-	    if (plusIsSpace) {
-            // un-replace '+' with a space
-            string = string.replace(/\+/g, " ");
-        }
-
-	    // urldecode some things
-	    string = decodeURIComponent(string);
-
-	    // no funny business
-	    string = string.replace(/[<>\"]/g, "");
-	    return string;
-	}
-
     function hideUrlPopup() {
         // hide the popup when the text field loses focus
         var popup = document.getElementById("popupBox");
         popup.classList.toggle("show");
         // todo: the onBlur() event fails to get called sometimes in Chrome
     }
-
-    function buildQueryUrl(query) {
-        // get the current URL and strip out any query string
-        var url = window.location.href;
-        url = url.replace(/\?.*/, "");
-        // append our parameters
-        url += query;
-
-        return url;
-    }
-
-    function meteredChanged(checkbox) {
-        var metered = checkbox.checked;
-        if (metered) {
-            document.getElementById("meterDiv").style.display = "inline-block";
-            document.getElementById("tempoDiv").style.display = "inline-block";
-            document.getElementById("measuresPerLineDiv").style.display = "inline-block";
-            document.getElementById("leadInBeatsDiv").style.display = "inline-block";
-            document.getElementById("secondsPerLineDiv").style.display = "none";
-
-        } else {
-            document.getElementById("meterDiv").style.display = "none";
-            document.getElementById("tempoDiv").style.display = "none";
-            document.getElementById("measuresPerLineDiv").style.display = "none";
-            document.getElementById("leadInBeatsDiv").style.display = "none";
-            document.getElementById("secondsPerLineDiv").style.display = "inline-block";
-        }
-
-        valueChanged(checkbox);
-    }
-
-    function darkModeChanged(checkbox) {
-        darkMode = checkbox.checked;
-        valueChanged(checkbox);
-        document.getElementById("tabArea").style.backgroundColor = darkMode ? "#000000" : "#FFFFFF";
-    }
-
-    function valueChanged(input) {
-        startRun();
-    }
-
-    function setSong(songString) {
-        document.getElementById('songCode').value = songString;
-    }
-
-    function getSong() {
-        // build a model from the current state of the UI
-
-        return document.getElementById('songCode').value.replace(/\s/g, "");
-    }
-
-    function getQueryParam(url, name, plusIsSpace=true) {
-        // from https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
-        // weird that there's no built in function for this
-        name = name.replace(/[\[\]]/g, '\\$&');
-        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
-        var results = regex.exec(url);
-        if (!results) {
-            return null;
-        }
-        if (!results[2]) {
-            return '';
-        }
-
-        var res = results[2];
-
-        if (plusIsSpace) {
-            res = res.replace(/\+/g, ' ')
-        }
-
-        return decodeURIComponent(res);
-    }
-
-    //==============================================================
-    // Runner
-    //==============================================================
-
-    // run state
-    var running = false;
-    var stopped = true;
-
-    // this is the number of runs after which we will stop
-    // this is set on start, and can be incremented if start is used again after auto-stop occurs
-    var stopNum = 0;
-
-    // This is how long we will run the simulation before updating the UI
-    var chunkMs = 100;
-
-    function startRun() {
-        // disable/enable everything accordingly
-        document.getElementById('generateButton').disabled = true;
-
-        // update state
-        stopped = false;
-
-        try {
-            // parse the UI into a model
-            var songString = getSong();
-
-            if (songString) {
-                var song = new Song().fromString(songString);
-
-                if (document.getElementById("metered").checked) {
-                    buildTabWithMeasures(song,
-                        document.getElementById("songTitle").value,
-                        document.getElementById("author").value,
-                        document.getElementById("meter").value || "4/4",
-                        document.getElementById("tempo").value,
-                        document.getElementById("measuresPerLine").value || "4",
-                        document.getElementById("leadInBeats").value || "0");
-                } else {
-                    buildTabWithoutMeasures(song,
-                        document.getElementById("songTitle").value,
-                        document.getElementById("author").value,
-                        document.getElementById("secondsPerLine").value || "4");
-                }
-            }
-
-            clearErrors();
-
-        } finally {
-            stopRun()
-        }
-    }
-
-    function stopRun() {
-        // disable/enable everything accordingly
-        document.getElementById('generateButton').disabled = false;
-        // document.getElementById('stopButton').disabled = true;
-
-        // update state
-        stopped = true;
-        // the running simulation will check the stopped flag eventually and stop itself
-    }
-
 
     function about() {
         var container = document.getElementById("lotsOfWordsContainer")
@@ -338,10 +178,6 @@
             }
         }
     }
-
-
-
-
 </script>
 
 <div class="titleBar">
@@ -359,7 +195,7 @@
         <div class="util" id="songCodeDiv">
             <div class="tooltip">
                 <span class="label">Song Code:</span>
-                <input id="songCode" class="songTitle" type="text" size="50" onchange="valueChanged(this);"/>
+                <input id="songCode" class="songTitle" type="text" size="50" onchange="songCodeUpdated();" onclick="songCodeClicked()"/>
                 <span class="tooltiptextbottom">Paste or copy the song code in here</span>
             </div>
         </div>

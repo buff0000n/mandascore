@@ -122,7 +122,12 @@ function playButton(button) {
 
 function copyButton(button) {
     button.blur();
-    runSectionMenu("Copy", button, doCopy);
+    var measure = getParent(button, "scoreButtonContainer").score;
+    if (measure.hasSelection()) {
+        measure.clearSelection();
+    } else {
+        runSectionMenu("Copy", button, doCopy);
+    }
 }
 
 function doCopy(button, section) {
@@ -326,6 +331,27 @@ class Measure {
 
         this.imgContainer.appendChild(this.gridImg);
     }
+    
+    setMeasureNotes(mnotes) {
+        for (var t = 0; t < 16; t++) {
+            for (var r = 0; r < 13; r++) {
+                // rows from the song parser are in reverse order
+                this.notes[t][r].setEnabled(mnotes[t][12-r] == 1);
+            }
+        }
+    }
+
+    getMeasureNotes() {
+        var mnotes = Array(16);
+        for (var t = 0; t < 16; t++) {
+            mnotes[t] = Array(13);
+            for (var r = 0; r < 13; r++) {
+                // rows from the song parser are in reverse order
+                mnotes[t][12-r] = this.notes[t][r].enabled ? 1 : 0;
+            }
+        }
+        return mnotes;
+    }
 
     addImage(img, time, row) {
         img.classList.add("measureImg");
@@ -448,6 +474,10 @@ class Measure {
             this.selectBox = null;
             this.score.setSelectedMeasure(null);
         }
+    }
+
+    hasSelection() {
+        return this.selectSection != null;
     }
 
     copy(section) {
@@ -620,12 +650,13 @@ class SectionEditor {
         this.score.soundPlayer.setEnabled(this.section, enabled);
     }
 
-    setVolume(volume, action=true, peek=false) {
+    setVolume(volume, action=true, peek=false, load=false) {
         if (action && !peek) {
             this.score.startActions();
             this.score.addAction(new setVolumeAction(this, this.volume, volume));
             this.score.endActions();
-        } else if (!peek) {
+        }
+        if (load || (!action && !peek)) {
             getFirstChild(this.container, "sectionVolume").value = volume * 100;
         }
         if (!peek) {
@@ -634,12 +665,13 @@ class SectionEditor {
         this.score.soundPlayer.setVolume(this.section, volume);
     }
 
-    setPack(pack, action=true) {
+    setPack(pack, action=true, load=false) {
         if (action) {
             this.score.startActions();
             this.score.addAction(new setPackAction(this, this.pack, pack));
             this.score.endActions();
-        } else {
+        }
+        if (!action || load) {
             getFirstChild(this.container, "sectionPack").value = pack;
         }
         this.pack = pack;
@@ -794,6 +826,46 @@ class Score {
         return titleContainer;
     }
 
+    setSong(songCode) {
+        var song = new Song();
+        song.parseChatLink(songCode);
+
+        this.startActions();
+        this.setTitle(song.getName(), true, true);
+
+        for (var section in sectionMetaData) {
+            if (!sectionMetaData[section].all) {
+                this.sections[section].setPack(song.getPack(section), true, true);
+                this.sections[section].setVolume(song.getVolume(section) / 100.0, true, false, true);
+            }
+        }
+
+        for (var m = 0; m < 4; m++) {
+            this.measures[m].setMeasureNotes(song.getMeasureNotes(m));
+        }
+
+        this.endActions();
+    }
+
+    getSong() {
+        var song = new Song();
+
+        song.setName(this.title);
+
+        for (var section in sectionMetaData) {
+            if (!sectionMetaData[section].all) {
+                song.setPack(section, this.sections[section].pack);
+                song.setVolume(section, this.sections[section].volume * 100.0);
+            }
+        }
+
+        for (var m = 0; m < 4; m++) {
+            song.setMeasureNotes(m, this.measures[m].getMeasureNotes());
+        }
+
+        return song.formatAsChatLink();
+    }
+
     setSelectedMeasure(measure) {
         if (this.selectedMeasure != null && this.selectedMeasure != measure) {
             var t = this.selectedMeasure;
@@ -822,12 +894,13 @@ class Score {
         this.endActions();
     }
 
-    setTitle(title, action=true) {
+    setTitle(title, action=true, load=false) {
         if (action) {
             this.startActions();
             this.addAction(new setTitleAction(this, this.title, title));
             this.endActions();
-        } else {
+        }
+        if (!action || load) {
             getFirstChild(this.titleContainer, "songTitle").value = title;
         }
         this.title = title;
@@ -847,11 +920,17 @@ class Score {
     endActions() {
         this.actionCount--;
         if (this.actionCount == 0) {
+            var action = null;
             if (this.actions.length == 1) {
-                addUndoAction(this.actions[0]);
+                action = this.actions[0];
 
             } else if (this.actions.length > 1) {
-                addUndoAction(new CompositeAction(this.actions));
+                action = new CompositeAction(this.actions);
+            }
+
+            if (action != null) {
+                addUndoAction(new WrapAction(action));
+                updateSongCode();
             }
         }
     }
@@ -908,7 +987,28 @@ class setTitleAction extends Action {
 	}
 }
 
-var tickms = 100;
+class WrapAction extends Action {
+    constructor(action) {
+        super();
+        this.action = action;
+    }
+
+	undoAction() {
+	    this.action.undoAction();
+        updateSongCode();
+	}
+
+	redoAction() {
+	    this.action.redoAction();
+        updateSongCode();
+	}
+
+	toString() {
+	    return this.action.toString();
+	}
+}
+
+var tickms = 15;
 
 class Playback {
     constructor(score, button, measures) {
