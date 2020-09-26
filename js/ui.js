@@ -122,7 +122,12 @@ function playButton(button) {
 
 function copyButton(button) {
     button.blur();
-    runSectionMenu("Copy", button, doCopy);
+    var measure = getParent(button, "scoreButtonContainer").score;
+    if (measure.hasSelection()) {
+        measure.clearSelection();
+    } else {
+        runSectionMenu("Copy", button, doCopy);
+    }
 }
 
 function doCopy(button, section) {
@@ -469,6 +474,10 @@ class Measure {
             this.selectBox = null;
             this.score.setSelectedMeasure(null);
         }
+    }
+
+    hasSelection() {
+        return this.selectSection != null;
     }
 
     copy(section) {

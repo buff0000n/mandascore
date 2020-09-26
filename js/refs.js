@@ -70,7 +70,7 @@ var imgNoteColHover = Array(
     "note-mel-col-hover"
 );
 
-var soundPath = "sound/";
+var soundPath = "audio-hifi/";
 
 var soundFileSuffixes = Array(
     "-1.ogg",

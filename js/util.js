@@ -74,6 +74,10 @@ function deleteNode(node) {
     node.parentNode.removeChild(node);
 }
 
+//==============================================================
+// window size tracking
+//==============================================================
+
 var windowWidth;
 var windowHeight;
 
@@ -89,7 +93,7 @@ function windowSizeChanged(h, w) {
 }
 
 //==============================================================
-// misc UI
+// error display
 //==============================================================
 
 function showErrors(errors) {
@@ -117,9 +121,85 @@ function windowOnError(msg, url, lineNo, columnNo, error) {
 }
 
 //==============================================================
+// PNG
+//==============================================================
+
+function convertToPngLink(canvas, name) {
+    // builds a huuuuge URL with the base-64 encoded PNG data embedded inside it
+    var src = canvas.toDataURL();
+    // generate a file name
+    var fileName = name + ".png";
+
+    var a = document.createElement("a");
+    a.download = fileName;
+    a.href = src;
+    a.innerHTML = fileName;
+    return a;
+}
+
+//==============================================================
+// URL stuff
+//==============================================================
+
+	function urlEncodeString(string, plusIsSpace=true) {
+	    // urlencode some things
+	    string = encodeURIComponent(string);
+
+	    if (plusIsSpace) {
+            // replace whitespace with '+'
+            string = string.replace(/\s/g, "+");
+        }
+        return string;
+	}
+
+	function urlDecodeString(string, plusIsSpace=true) {
+	    if (plusIsSpace) {
+            // un-replace '+' with a space
+            string = string.replace(/\+/g, " ");
+        }
+
+	    // urldecode some things
+	    string = decodeURIComponent(string);
+
+	    // no funny business
+	    string = string.replace(/[<>\"]/g, "");
+	    return string;
+	}
+
+    function buildQueryUrl(query) {
+        // get the current URL and strip out any query string
+        var url = window.location.href;
+        url = url.replace(/\?.*/, "");
+        // append our parameters
+        url += query;
+
+        return url;
+    }
+    function getQueryParam(url, name, plusIsSpace=true) {
+        // from https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
+        // weird that there's no built in function for this
+        name = name.replace(/[\[\]]/g, '\\$&');
+        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+        var results = regex.exec(url);
+        if (!results) {
+            return null;
+        }
+        if (!results[2]) {
+            return '';
+        }
+
+        var res = results[2];
+
+        if (plusIsSpace) {
+            res = res.replace(/\+/g, ' ')
+        }
+
+        return decodeURIComponent(res);
+    }
+
+//==============================================================
 // timing
-// yoinked from:
-// https://stackoverflow.com/questions/4874408/better-way-of-getting-time-in-milliseconds-in-javascript
+// yoinked from: https://stackoverflow.com/questions/4874408/better-way-of-getting-time-in-milliseconds-in-javascript
 //==============================================================
 
 window.performance = window.performance || {};
