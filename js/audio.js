@@ -1,50 +1,83 @@
-var maxSounds = 4;
+//var maxSounds = 4;
+
+var audioContext;
+
+function initAudioContext() {
+    if (audioContext == null) {
+        window.AudioContext = window.AudioContext || window.webkitAudioContext;
+        audioContext = new AudioContext();
+    }
+}
+
+function bankLoaded(loader, bufferList) {
+    loader.bank.loaded(bufferList);
+}
 
 class SoundEntry {
-    constructor(source = null) {
-        this.setSource(source);
+    constructor() {
+        this.setBuffer(null, null);
         this.volume = 1.0;
+        this.queued = false;
     }
 
-    setSource(source) {
-        this.source = source;
-        if (this.source != null) {
-            this.audio = Array();
-            this.index = -1;
-        } else {
-            this.audio = null;
-            this.index = -1;
+    setBuffer(buffer, sourceName) {
+        this.buffer = buffer;
+        this.sourceName = sourceName;
+        if (this.queued) {
+            this.trigger();
+            this.queued = false;
         }
     }
 
     setVolume(volume) {
         if (volume != this.volume) {
             this.volume = volume;
-            if (this.audio != null) {
-                for (var i = 0; i < this.audio.length; i++) {
-                    this.audio[i].volume = volume;
-                }
-            }
         }
     }
 
     trigger() {
-        if (this.source == null) return;
+        this.triggerLater(0);
+    }
 
-        this.index = (this.index + 1) % maxSounds;
-        if (this.audio.length < this.index + 1) {
-            var a = new Audio(this.source);
-            if (this.volume != 1.0) {
-                a.volume = this.volume;
-            }
-            this.audio.push(a);
-            a.play();
-
-        } else {
-            var a = this.audio[this.index];
-            a.currentTime = 0.0;
-            a.play();
+    triggerLater(time) {
+        if (this.buffer == null) {
+            this.queued = true;
+            return;
         }
+
+        var source = audioContext.createBufferSource();
+        source.buffer = this.buffer;
+
+        var gain = audioContext.createGain();
+        gain.gain.value = this.volume;
+
+        source.connect(gain);
+        gain.connect(audioContext.destination);
+
+        if (time > 0) {
+            var t = audioContext.currentTime + (time/1000);
+            source.start(t);
+            this.lastSource = source;
+            // console.log("playing " + this.sourceName + " in " + time + "ms")
+        } else {
+            source.start(0);
+            // console.log("playing " + this.sourceName)
+        }
+    }
+
+    stop() {
+        if (this.lastSource != null) {
+            this.lastSource.stop();
+            this.lastSource = null;
+        }
+    }
+
+    clearStop() {
+        // I can't believe I have to do this.
+        // there is no way to get notified when a scheduled sound starts playing.
+        // there is no way to cancel a scheduled sound without stopping it in the middle if it's already playing
+        // AudioContext is better than new Audio().play(), but damn is it Very Annoying in some ways.
+        this.lastSource = null;
     }
 }
 
@@ -56,6 +89,8 @@ class SoundBank {
             this.sounds.push(new SoundEntry());
         }
         this.enabled = true;
+        this.loader = null;
+        this.initialized = false;
     }
 
     setSource(source) {
@@ -64,9 +99,31 @@ class SoundBank {
         }
 
         this.source = source;
-        for (var i = 0; i < this.sounds.length; i++) {
-            this.sounds[i].setSource(soundPath + this.source + this.suffixes[i]);
+        this.initialized = false;
+    }
+
+    initialize() {
+        if (this.initialized || this.loader != null) return;
+
+        initAudioContext();
+        if (this.source != null) {
+            var sources = Array();
+            for (var i = 0; i < this.sounds.length; i++) {
+                this.sounds[i].setBuffer(null);
+                sources.push(soundPath + this.source + this.suffixes[i]);
+            }
+            this.loader = new BufferLoader(audioContext, sources, bankLoaded);
+            this.loader.bank = this;
+            this.loader.load();
         }
+    }
+
+    loaded(bufferList) {
+        for (var i = 0; i < this.sounds.length; i++) {
+            this.sounds[i].setBuffer(bufferList[i], soundPath + this.source + this.suffixes[i]);
+        }
+        this.loader = null;
+        this.initialized = true;
     }
 
     setVolume(volume) {
@@ -85,11 +142,28 @@ class SoundBank {
     }
 
     play(index) {
+        this.playLater(index, 0);
+    }
+
+    playLater(index, time) {
         if (this.enabled) {
-            this.sounds[index].trigger();
+            this.initialize();
+            this.sounds[index].triggerLater(time);
             return true;
         } else {
             return false;
+        }
+    }
+
+    stop() {
+        for (var i = 0; i < this.sounds.length; i++) {
+            this.sounds[i].stop();
+        }
+    }
+
+    clearStops() {
+        for (var i = 0; i < this.sounds.length; i++) {
+            this.sounds[i].clearStop();
         }
     }
 }
@@ -126,13 +200,30 @@ class SoundPlayer {
         this.banks[section].setEnabled(enabled);
     }
 
-    isEnabled(section, enabled) {
-        return this.banks[section].enabled;
+    isEnabled(index) {
+        var bank = this.indexToBank[index];
+        return bank.enabled;
     }
 
     playSound(index) {
+        this.playSoundLater(index, 0);
+    }
+
+    playSoundLater(index, time) {
         var bank = this.indexToBank[index];
-        return bank.play(index - bank.rowStart);
+        return bank.playLater(index - bank.rowStart, time);
+    }
+
+    clearStops() {
+        for (var section in this.banks) {
+            this.banks[section].clearStops();
+        }
+    }
+
+    stop() {
+        for (var section in this.banks) {
+            this.banks[section].stop();
+        }
     }
 
     playBzzt(index) {
