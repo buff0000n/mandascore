@@ -558,10 +558,10 @@ class Measure {
         this.playbackTime = time;
     }
 
-    playAudioForTime(t) {
+    playAudioForTime(t, delay) {
         for (var r = 0; r < 13; r++) {
             if (this.notes[t][r].enabled) {
-                this.score.soundPlayer.playSound(r);
+                this.score.soundPlayer.playSoundLater(r, delay);
             }
         }
     }
@@ -1019,7 +1019,7 @@ class Playback {
         this.measures = measures;
         this.time = 0;
         this.animTimeout = null;
-        this.audioTimeout = null;
+//        this.audioTimeout = null;
 
         this.runTime = 2.0 * measures.length;
         this.runT = 16 * measures.length;
@@ -1043,8 +1043,8 @@ class Playback {
         if (this.animTimeout != null) clearTimeout(this.animTimeout);
         this.animTimeout = null;
 
-        if (this.audioTimeout != null) clearTimeout(this.audioTimeout);
-        this.audioTimeout = null;
+        // cancel any pending sounds
+        this.score.soundPlayer.stop();
 
         this.button.value = "Play";
     }
@@ -1064,10 +1064,9 @@ class Playback {
         this.button.playback = null;
     }
 
-    playAudio() {
+    playAudio(delay) {
         var measure = Math.floor(this.playT / 16);
-        this.measures[measure].playAudioForTime(this.playT - (measure * 16));
-        this.audioTimeout = null;
+        this.measures[measure].playAudioForTime(this.playT - (measure * 16), delay);
     }
 
     schedulePlayAudio(t) {
@@ -1080,12 +1079,17 @@ class Playback {
         var oldTime;
         var oldT;
 
+        // console.log("tick at " + time + ", currentT=" + this.currentT + ", playT=" + this.playT);
+
         if (start) {
             this.startTime = time - this.currentTime;
             if (this.currentTime == 0) {
                 this.currentT = 0;
                 this.playT = 0;
-                this.playAudio();
+                this.playAudio(0);
+            } else {
+                var delay = ((this.currentT + 1) * 125) - (this.currentTime * 1000);
+                this.playAudio(delay);
             }
 
         } else {
@@ -1099,10 +1103,13 @@ class Playback {
             this.currentT = Math.floor(this.currentTime * 8);
         }
 
-        if (this.audioTimeout == null && this.currentT >= this.playT) {
+        if (this.currentT == this.playT) {
             this.playT = (this.currentT + 1) % this.runT;
             var delay = ((this.currentT + 1) * 125) - (this.currentTime * 1000);
-            this.audioTimeout = setTimeout(() => { this.playAudio() }, delay);
+            // only way to support stopping scheduled sounds
+            // without stopping sounds that have already been played in the middle
+            this.score.soundPlayer.clearStops();
+            this.playAudio(delay);
         }
 
         var measureIndex = Math.floor(this.currentTime / 2.0);

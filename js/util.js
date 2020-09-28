@@ -96,6 +96,10 @@ function windowSizeChanged(h, w) {
 // error display
 //==============================================================
 
+function showError(error) {
+    showErrors([error]);
+}
+
 function showErrors(errors) {
     // find the error bar
     var errorBarElement = document.getElementById("errorBar");
