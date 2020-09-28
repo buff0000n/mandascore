@@ -826,7 +826,7 @@ class Score {
         return titleContainer;
     }
 
-    setSong(songCode) {
+    setSong(songCode, disableUndo) {
         var song = new Song();
         song.parseChatLink(songCode);
 
@@ -844,7 +844,7 @@ class Score {
             this.measures[m].setMeasureNotes(song.getMeasureNotes(m));
         }
 
-        this.endActions();
+        this.endActions(disableUndo);
     }
 
     getSong() {
@@ -917,7 +917,7 @@ class Score {
         this.actions.push(action);
     }
 
-    endActions() {
+    endActions(disableUndo=false) {
         this.actionCount--;
         if (this.actionCount == 0) {
             var action = null;
@@ -929,7 +929,9 @@ class Score {
             }
 
             if (action != null) {
-                addUndoAction(new WrapAction(action));
+                if (!disableUndo) {
+                    addUndoAction(new WrapAction(action));
+                }
                 updateSongCode();
             }
         }

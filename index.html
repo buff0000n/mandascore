@@ -70,19 +70,19 @@
         input.select();
     }
 
-    function setSongCode(songCode) {
+    function setSongCode(songCode, disableUndo=false) {
         if (songCode !== null && songCode.length > 0) {
             var input = document.getElementById("songCode");
             input.value = updatedSongCode;
             input.blur();
             // parse a model from the string
-            updateSong(songCode);
+            updateSong(songCode, disableUndo);
         }
     }
 
-    function updateSong(songCode) {
+    function updateSong(songCode, disableUndo=false) {
         try {
-            score.setSong(songCode);
+            score.setSong(songCode, disableUndo);
             clearErrors();
         } catch (error) {
             showErrors([error]);
@@ -119,7 +119,7 @@
         var songCode = getQueryParam(url, "song", false);
         if (songCode) {
             // if there is, then initialize our song
-            setSongCode(urlDecodeString(songCode, false));
+            setSongCode(urlDecodeString(songCode, false), true);
         }
 
     }
