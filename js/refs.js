@@ -70,22 +70,23 @@ var imgNoteColHover = Array(
     "note-mel-col-hover"
 );
 
-var soundPath = "audio-hifi/";
+var soundPath = "mp3-hifi/";
+var soundType = "mp3";
 
 var soundFileSuffixes = Array(
-    "-1.ogg",
-    "-2.ogg",
-    "-3.ogg",
-    "-4.ogg",
-    "-5.ogg",
-    "-6.ogg",
-    "-7.ogg",
-    "-8.ogg",
-    "-9.ogg",
-    "-10.ogg",
-    "-11.ogg",
-    "-12.ogg",
-    "-13.ogg"
+    "-1." + soundType,
+    "-2." + soundType,
+    "-3." + soundType,
+    "-4." + soundType,
+    "-5." + soundType,
+    "-6." + soundType,
+    "-7." + soundType,
+    "-8." + soundType,
+    "-9." + soundType,
+    "-10." + soundType,
+    "-11." + soundType,
+    "-12." + soundType,
+    "-13." + soundType
 );
 
-var bzztSoundFile = "bzzt2.ogg";
+var bzztSoundFile = "bzzt2." + soundType;
