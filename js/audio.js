@@ -185,7 +185,8 @@ class SoundPlayer {
             }
         }
 
-        this.bzzt = new SoundEntry(soundPath + bzztSoundFile);
+        this.bzzt = new SoundBank([bzztSoundFile]);
+        this.bzzt.setSource("");
     }
 
     setSource(section, source) {
@@ -227,6 +228,6 @@ class SoundPlayer {
     }
 
     playBzzt(index) {
-        this.bzzt.trigger();
+        this.bzzt.play(0);
     }
 }

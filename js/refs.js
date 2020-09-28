@@ -89,4 +89,4 @@ var soundFileSuffixes = Array(
     "-13." + soundType
 );
 
-var bzztSoundFile = "bzzt2." + soundType;
+var bzztSoundFile = "bzzt." + soundType;
