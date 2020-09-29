@@ -90,6 +90,14 @@
         }
     }
 
+    function demoSelected() {
+        var input = document.getElementById("demoSelect");
+        songCode = input.value.trim();
+        if (songCode != null && songCode != "") {
+            setSongCode(songCode);
+        }
+    }
+
     //==============================================================
     // Model-View control
     //==============================================================
@@ -193,6 +201,24 @@
 
 <div class="songContainer">
     <div class="songDiv">
+        <div class="util" id="demoSelectDiv">
+            <div class="tooltip">
+                <span class="label">Demo:</span>
+                <select id="demoSelect" onchange="demoSelected(this);">
+                    <option value="" selected></option>
+                    <option value="[SONG-Adau Demo:AAAAAAAARAoAEQCAJEggCRAIAUSiABEAACDIBAgpIQAKQECCgBAgpAAISIIAEkCARIQgASWIAEWAACFJAAgQQCIUEAiBBAEhYQAISAAoBEBKBBBChAoAhQCAKEogCJAIAYUSACEEgEhgQAoQgAI=:BardTennoPackA:BardTennoPackA:BardTennoPackA]">Adau</option>
+                    <option value="[SONG-Alpha Demo:AAAAAAAAAIgACAgAAQmAAICABAiIAQAIAIIBgEBAgAABCAAICAAEEYACAIAEIQgBAAgIAQGAgICgAAIgABAKAAGhgAAAiAQCCAEGCACAAaEAAKAAACAAEIoABQGAABCUBAEIARQMAgIDgIBAwA==:BardCorpusPackA:BardCorpusPackA:BardCorpusPackA]">Alpha</option>
+                    <option value="[SONG-Beta Demo:AAAAAAAAGAgAQQgABQEAABCABKAIATEIBBABABKQigAACABgiAAAAQAACIAEYAgBEQgEEAEAEYiCAAAIAGBIAAABAAAEgAQgCACQKAIQAQAQUIRAAAgAUQgAAAEAAhCgAIAKAIEIBBoBKBACQAw=:BardCorpusPackB:BardCorpusPackB:BardCorpusPackB]">Beta</option>
+                    <option value="[SONG-Delta Demo:AAAAAAAAgCgAAAgAAAMBAQCgAAAgAQAIAAABAgAAoAAAIAAACgAAAwAAgKAAACAJAAoAASMACACggAAoAAAIAAgDAQAAoAAAIAEQCAAAAwBAAKAAACAABAoAAIMAAACgAAAoApACAECJAAQAoIA=:BardCorpusPackD:BardCorpusPackD:BardCorpusPackD]">Delta</option>
+                    <option value="[SONG-Druk Demo:AAAAAAAAhCoQAAkIRCGAEhCoQAAhCQQqAAITAAUIgAGEKhAACQhEIYASEKhCACEJBCoAAIcABEKAAaEoAABLQAADAAMEoAAAIgBISgAEAwACBKAAGKAAAEowAAOAAUigAgAhCAQqAAITAAUIgAE=:BardGrineerPackA:BardGrineerPackA:BardGrineerPackA]">Druk</option>
+                    <option value="[SONG-Epsilon Demo:AAAAAAAAGAgEAAgwAAGAUGAAAAAoRAAIAEEBgCCAgABQCBAACKAAAYERQAAAACgQSAgAQAGIJACABKAICAAJQAABgJKAAAAALAgACABEAYBAgIAAwAggAAkAAAECBgCABAAIEFAIAEABEIQAgA==:BardCorpusPackE:BardCorpusPackE:BardCorpusPackE]">Epsilon</option>
+                    <option value="[SONG-Gamma Demo:AAAAAAAAFCgACAAABQIwEBCgAAAQACAJAAQigAIAAAAgIAAQCAAKEuAQAIAEADAAIAEABAIAAgigABIoAAIAAAECEBAIoAQAFAEgCQAEAgACEKAAHAgAIAkABAaAAUCgAYAUAJAqAEUCAQSAgA==:BardCorpusPackC:BardCorpusPackC:BardCorpusPackC]">Gamma</option>
+                    <option value="[SONG-Horos Demo:AAAAAAAAFCgAAAhAAEOAEgCAgQAgAEEIAAAjgIIBgAREKAAACEAAQ4ASAICBACAAQQgAAKOAhAGgBBEpAAAIAAATgBEAgCEAIQBASAAAE4ECEIAEESkAAAgAABOAEoCAIQAigEBMAAKTgQQQoA==:BardEDMPackA:BardEDMPackA:BardEDMPackA]">Horos</option>
+                    <option value="[SONG-Plogg Demo:AAAAAAAAhCgAEAgAAIMAAhCgAEAgAQMKAAQLAAIAoABCKAAECgAAgwABCKAAECABAooAARMABQCgACCoAAQIAACDAACCoAAQIAECSgABCwAAgKAAQGAACAoAAIMAAQGgACAoAQIsAAITAAUIoA==:BardGrineerPackB:BardGrineerPackB:BardGrineerPackB]">Plogg</option>
+                </select>
+                <span class="tooltiptextbottom">Select an instrument set demo.</span>
+            </div>
+        </div>
         <div class="util" id="songCodeDiv">
             <div class="tooltip">
                 <span class="label">Song Code:</span>
