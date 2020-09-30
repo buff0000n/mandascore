@@ -18,12 +18,12 @@ var packs = Array(
     new InstrumentPack("plogg", "Plogg", "BardGrineerPackB"),
 );
 
-var instrumentPackIdToName = {};
-var instrumentNameToPackId = {};
+var instrumentIdToPack = {};
+var instrumentNameToPack = {};
 for (var i = 0; i < packs.length; i++) {
     var pack = packs[i];
-    instrumentPackIdToName[pack.formatName] = pack.name;
-    instrumentNameToPackId[pack.name] = pack.formatName;
+    instrumentIdToPack[pack.formatName] = pack;
+    instrumentNameToPack[pack.name] = pack;
 }
 
 class SectionMetaData {
@@ -50,9 +50,9 @@ var sectionMetaData = {
 // get the mapped in-game name from an instrument set identifier, or just the identifier if we
 // don't have a mapping
 function getPackName(packId) {
-    if (packId in instrumentPackIdToName) {
+    if (packId in instrumentIdToPack) {
         // got a mapping
-        return instrumentPackIdToName[packId];
+        return instrumentIdToPack[packId].name;
     } else {
         // unknown instrument set pls update kthxbye
         return packId;
@@ -62,9 +62,9 @@ function getPackName(packId) {
 // get the mapped in-game name from an instrument set identifier, or just the identifier if we
 // don't have a mapping
 function getPackId(packName) {
-    if (packName in instrumentNameToPackId) {
+    if (packName in instrumentNameToPack) {
         // got a mapping
-        return instrumentNameToPackId[packName];
+        return instrumentNameToPack[packName].formatName;
     } else {
         // unknown instrument name this shouldn't happen
         return packName;

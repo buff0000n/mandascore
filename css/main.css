@@ -221,6 +221,18 @@
         border-radius: 1ex;
         display: block;
     }
+    .pngLinkDiv {
+        background-color: #000000;
+        border: none;
+        color: #FFFFFF;
+        padding: 1ex;
+        text-align: center;
+        text-decoration: none;
+        font-size: 100%;
+        border-radius: 1ex;
+        margin: 1ex 1ex 1ex 1ex;
+        display: block-inline;
+    }
 
 	.utilGroup {
 	    text-align: center;

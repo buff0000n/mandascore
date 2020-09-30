@@ -83,10 +83,14 @@ function keyDown(e) {
 	}
 }
 
+function createNoteImagePath(baseName, hidpi=false) {
+    return (hidpi ? "img2x/" : "img/") + baseName + ".png";
+}
+
 function createNoteImage(baseName) {
         img = document.createElement("img");
-        img.src = "img/" + baseName + ".png";
-        img.srcset = "img2x/" + baseName + ".png 2x";
+        img.src = createNoteImagePath(baseName, false);
+        img.srcset = createNoteImagePath(baseName, true) + " 2x";
         img.baseName = baseName;
         return img;
 }
@@ -113,6 +117,24 @@ function runSectionMenu(title, button, callback) {
     div.innerHTML = html;
 
     showMenu(div, getParent(button, "scoreButtonRow"), button);
+}
+
+function runPngMenu(button) {
+    clearMenus();
+    var div = document.createElement("div");
+    div.className = "menu";
+    div.button = button;
+
+    var html = `<div class="pngLinkDiv">...</div>`;
+    div.innerHTML = html;
+
+    showMenu(div, button.parentElement, button);
+
+    var linkDiv = getFirstChild(div, "pngLinkDiv");
+
+    var display = window.event.altKey;
+
+    score.generatePng(linkDiv, display);
 }
 
 function playButton(button) {
@@ -575,6 +597,24 @@ class Measure {
     toString() {
         return "measure " + (this.number + 1);
     }
+
+    draw(context, imageMap, startX, startY, scale) {
+        startX = startX + (gridSizeX * 16) * this.number;
+        context.drawImage(imageMap["m" + this.number], startX * scale, startY * scale);
+
+        for (var t = 0; t < 16; t++) {
+            for (var r = 0; r < 13; r++) {
+                if (this.notes[t][r].enabled) {
+                    var img = imageMap[r < 3 ? "np" + (r + 1) : r < 8 ? "nb" : "nm"];
+                    context.drawImage(
+                        img,
+                        (startX + noteOffsetX + (gridSizeX * t)) * scale,
+                        (startY + noteOffsetY + (gridSizeY * r)) * scale
+                    );
+                }
+            }
+        }
+    }
 }
 
 function sectionToggle() {
@@ -676,6 +716,63 @@ class SectionEditor {
         }
         this.pack = pack;
         this.score.soundPlayer.setSource(this.section, this.pack);
+    }
+
+    draw(context, imageMap, fontSize, centerX, centerY, scale) {
+        var w = gridSizeX;
+        var h = gridSizeY;
+
+        var w_icon = w*1.5;
+        var w_packName = w*9;
+        var w_volume = w*8;
+        var w_volumeKnob = w*0.3;
+        var w_volumeKnob_border = 1;
+        var h_volumeSlider = h/5;
+
+        var startX = centerX - ((w_icon + w_packName + w_volume) / 2);
+
+        context.drawImage(
+            imageMap[this.section],
+            startX * scale,
+            (centerY - (h/2)) * scale
+        );
+
+        startX += w_icon;
+
+        context.font = (fontSize* scale) + "px Arial";
+        context.textAlign = "left";
+        context.fillStyle = "#FFFFFF";
+        context.fillText(
+            sectionMetaData[this.section].displayName + ": " + instrumentNameToPack[this.pack].displayName,
+            scale * (startX),
+            scale * (centerY + (fontSize / 2))
+        );
+
+        startX += w_packName;
+
+        context.fillStyle = "#FFFFFF";
+        context.fillRect(
+            scale * (startX),
+            scale * (centerY - (h_volumeSlider/2)),
+            scale * (w_volume),
+            scale * (h_volumeSlider)
+        );
+
+        context.fillStyle = "#000000";
+        context.fillRect(
+            scale * (startX + ((w_volume - w_volumeKnob) * this.volume) - w_volumeKnob_border),
+            scale * (centerY - (h/2) - w_volumeKnob_border),
+            scale * (w_volumeKnob + (w_volumeKnob_border * 2)),
+            scale * (h + (w_volumeKnob_border * 2))
+        );
+
+        context.fillStyle = "#FFFFFF";
+        context.fillRect(
+            scale * (startX + ((w_volume - w_volumeKnob) * this.volume)),
+            scale * (centerY - (h/2)),
+            scale * (w_volumeKnob),
+            scale * (h)
+        );
     }
 }
 
@@ -965,6 +1062,84 @@ class Score {
             this.playback = new Playback(this, button, m);
             this.playback.start();
         }
+    }
+
+    generatePng(linkDiv, display) {
+        var hidpi = true;
+        // we have to pre-load the images
+        loadImages({
+            "m0": createNoteImagePath(imgGrid[0], hidpi),
+            "m1": createNoteImagePath(imgGrid[1], hidpi),
+            "m2": createNoteImagePath(imgGrid[2], hidpi),
+            "m3": createNoteImagePath(imgGrid[3], hidpi),
+            "np1": createNoteImagePath(imgNote[0], hidpi),
+            "np2": createNoteImagePath(imgNote[1], hidpi),
+            "np3": createNoteImagePath(imgNote[2], hidpi),
+            "nb": createNoteImagePath(imgNote[3], hidpi),
+            "nm": createNoteImagePath(imgNote[8], hidpi),
+            "perc": createNoteImagePath(sectionImages["perc"], hidpi),
+            "bass": createNoteImagePath(sectionImages["bass"], hidpi),
+            "mel": createNoteImagePath(sectionImages["mel"], hidpi)
+        },
+        // provide a call-back to draw the PNG once the images are loaded
+        (imageMap) => this.doGeneratePng(imageMap, hidpi, linkDiv, display)
+        );
+    }
+
+    doGeneratePng(imageMap, hidpi, linkDiv, display) {
+        var scale = hidpi ? 2 : 1;
+
+        var margin = 10;
+        var fontSize = 16;
+        var sectionHeight = gridSizeY * 2;
+
+        var canvas = document.createElement("canvas");
+        canvas.width = ((gridSizeX * 64) + (margin * 2)) * scale;
+        canvas.height = (margin
+            + (fontSize * 2)
+            + margin
+            + (sectionHeight * 3)
+            + (gridSizeY * 13)
+            + fontSize
+            + margin
+        ) * scale;
+
+        // get the graphics context, this is what we'll do all our work in
+        var context = canvas.getContext("2d");
+
+        // fill the whole canvas with a background color, otherwise it will be transparent
+        context.fillStyle = "#000000";
+        context.fillRect(0, 0, canvas.width, canvas.height);
+
+        var startY = margin;
+
+        // header
+        context.font = (fontSize * 2 * scale) + "px Arial";
+        context.textAlign = "center";
+        context.fillStyle = "#FFFFFF";
+        context.fillText(this.title, (margin + (gridSizeX * 32)) * scale, (startY + (fontSize * 2)) * scale);
+
+        startY += margin + (fontSize * 2);
+
+        for (var section in {"perc":"", "bass":"", "mel":""}) {
+            this.sections[section].draw(context, imageMap, fontSize, margin + (gridSizeX * 32), startY + (sectionHeight/2), scale);
+            startY += sectionHeight;
+        }
+
+        // note grid
+        for (var m = 0; m < 4; m++) {
+            this.measures[m].draw(context, imageMap, margin, startY, scale);
+        }
+
+        // footer
+        context.font = (fontSize * scale) + "px Arial";
+        context.textAlign = "right";
+        context.fillStyle = "#808080";
+        context.fillText("buff0000n.github.io/mandascore", (margin + (gridSizeX * 64)) * scale, (startY + (gridSizeY * 13) + fontSize + (margin / 2)) * scale);
+
+        var link = convertToPngLink(canvas, this.title);
+        linkDiv.innerHTML = "";
+        linkDiv.appendChild(link);
     }
 }
 

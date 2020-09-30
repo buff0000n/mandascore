@@ -138,7 +138,61 @@ function convertToPngLink(canvas, name) {
     a.download = fileName;
     a.href = src;
     a.innerHTML = fileName;
+    a.onclick = doPngClick;
     return a;
+}
+
+function doPngClick(e) {
+    var e = e || window.event;
+    if (e.altKey) {
+        // super-secret debug mode: alt-click on an image link to just show it instead of downloading it
+        e.preventDefault();
+
+	    var link = e.currentTarget;
+	    var src = link.href;
+
+	    var img = document.createElement("img");
+	    img.src = link.href;
+	    img.srcset = link.href + " 2x";;
+
+	    var parent = link.parentNode;
+	    parent.innerHTML = "";
+	    parent.appendChild(img);
+    }
+}
+
+function loadImages(paths, callback) {
+    new imageLoader(paths, callback).load();
+}
+
+class imageLoader {
+    constructor(pathMap, callback) {
+        this.pathMap = pathMap;
+        this.callback = callback;
+        this.count = 0;
+        this.imageMap = {};
+    }
+
+    load() {
+        for (var key in this.pathMap) {
+            this.count++;
+            var img = new Image();
+            img.loader = this;
+            img.key = key;
+            img.onload = function() {
+                this.loader.onload(this);
+            }
+            img.src = this.pathMap[key];
+        }
+    }
+
+    onload(img) {
+        this.imageMap[img.key] = img;
+        this.count--;
+        if (this.count <= 0) {
+            this.callback(this.imageMap);
+        }
+    }
 }
 
 //==============================================================

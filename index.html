@@ -159,6 +159,11 @@
         // todo: the onBlur() event fails to get called sometimes in Chrome
     }
 
+    function generatePng(button) {
+        button.blur();
+        runPngMenu(button);
+    }
+
     function about() {
         var container = document.getElementById("lotsOfWordsContainer")
 
@@ -233,6 +238,12 @@
                 <div class="popuptext" id="popupBox">
                     <input id="urlHolder" type="text" size="60" onblur="hideUrlPopup()"/>
                 </div>
+            </div>
+        </div>
+        <div class="util">
+            <div class="tooltip">
+                <input id="pngButton" class="button popup" type="submit" value="Generate PNG" onClick="generatePng(this)"/>
+                <span class="tooltiptextbottom">Generate an image of the song</span>
             </div>
         </div>
     </div>
