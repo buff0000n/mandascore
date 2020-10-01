@@ -256,7 +256,7 @@ class imageLoader {
     }
 
 //==============================================================
-// timing
+// high precision timing, or as high a precision as the browser allows
 // yoinked from: https://stackoverflow.com/questions/4874408/better-way-of-getting-time-in-milliseconds-in-javascript
 //==============================================================
 

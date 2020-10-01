@@ -1,3 +1,4 @@
+// instrument pack metadata
 class InstrumentPack {
     constructor(name, displayName, formatName) {
         this.name = name;
@@ -18,6 +19,7 @@ var packs = Array(
     new InstrumentPack("plogg", "Plogg", "BardGrineerPackB"),
 );
 
+// build a few lookup tables for instrument pack metadata
 var instrumentIdToPack = {};
 var instrumentNameToPack = {};
 for (var i = 0; i < packs.length; i++) {
@@ -26,6 +28,7 @@ for (var i = 0; i < packs.length; i++) {
     instrumentNameToPack[pack.name] = pack;
 }
 
+// section metadata
 class SectionMetaData {
     constructor(name, displayName, rowStart, rowStop, maxNotes, color, all=false) {
         this.name = name;
@@ -45,7 +48,7 @@ var sectionMetaData = {
     "mel": new SectionMetaData("mel", "Melody", 8, 12, 16, "#e601ff")
 }
 
-// This is all converted from Python because I'm not writing it twice
+// The rest of this is all converted from Python because I'm not writing it twice
 
 // get the mapped in-game name from an instrument set identifier, or just the identifier if we
 // don't have a mapping
@@ -237,7 +240,8 @@ function encodeVolume(vol) {
     // print("encoded volume value: {0} to 0x{1}".format(vol, bytearray(valtoBytes(val)).hex()))
     return valtoBytes(val);
 }
-
+// compile a regular expression that matches the [SONG-...] format.  It looks like this:
+// [SONG-<song name>:<base 64 data>:<melody instrument>:<bass instrument>:<percussion instrument>]
 chatLinkPattern = /\[SONG-([^:]+):([^:]+):([^:]+):([^:]+):([^:\]]+)\]/;
 
 var maxNameLength = 24;
@@ -256,10 +260,12 @@ function sanitizeName(name) {
     return name.substring(0, maxNameLength);
 }
 
+// obtuse base64 conversion routine cribbed from somewhere on the internet
 function base64ToUint8(encoded) {
     return Uint8Array.from(atob(encoded), c => c.charCodeAt(0));
 }
 
+// obtuse base64 conversion routine cribbed from somewhere on the internet
 function uint8ToBase64(buffer) {
      var binary = '';
      var len = buffer.byteLength;
@@ -269,8 +275,10 @@ function uint8ToBase64(buffer) {
      return btoa(binary);
 }
 
+// This object can translate back and forth between the song code format and a data model for the song
 class Song {
     constructor() {
+        // start off with default title, instrument packs, and volumes
         this.name = "";
         this.packs = {
             "perc": "adau",
@@ -285,6 +293,7 @@ class Song {
 
         // first array index is the time of the note, from 0-63
         // second array index is the note: 0 = lowest melody note, 12 = top percussion note
+        // todo: do I have to have the rows in reverse order?
         this.notes = Array(64);
         for (var t = 0; t < this.notes.length; t++) {
             this.notes[t] = new Array(13);
@@ -295,6 +304,7 @@ class Song {
     }
 
     getMeasureNotes(m) {
+        // extract the notes for the given measure into a 16x13 array of 1s and 0s
         var mnotes = Array(16);
         for (var t = 0; t < 16; t++) {
             mnotes[t] = new Array(13);
@@ -307,6 +317,7 @@ class Song {
     }
 
     setMeasureNotes(m, mnotes) {
+        // set the notes for the given measure from a 16x13 array of 1s and 0s
         for (var t = 0; t < 16; t++) {
             for (var r = 0; r < 13; r++) {
                 this.notes[(m*16) + t][r] = mnotes[t][r];
@@ -314,6 +325,7 @@ class Song {
         }
     }
 
+    // accessors
     getName() {
         return this.name;
     }
@@ -339,6 +351,10 @@ class Song {
     }
 
     toString() {
+        // produce a basic text-formatted view of the song data
+        // this isn't used for this project, but maybe it's useful for someone else.  It makes this file a
+        // self-contained library for reading song codes
+        // todo: I have not actually tested this
         var string = "";
 
         // Get these out of the way
@@ -387,8 +403,6 @@ class Song {
     }
 
     parseChatLink(chatLink) {
-        // compile a regular expression that matches the [SONG-...] format.  It looks like this:
-        // [SONG-<song name>:<base 64 data>:<melody instrument>:<bass instrument>:<percussion instrument>]
         // search for a song.  I'm assuming there is only one per line
         var reMatch = chatLink.match(chatLinkPattern);
         if (reMatch == null) {

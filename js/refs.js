@@ -1,3 +1,5 @@
+// constants
+
 var noteSpacingX = 4;
 var noteSpacingY = 1;
 var noteOffsetX = 2;

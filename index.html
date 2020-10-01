@@ -26,6 +26,7 @@
     //==============================================================
 
     function buildUI() {
+        // the song UI goes inside the scoreArea div
         buildScore(document.getElementById("scoreArea"));
     }
 
@@ -33,23 +34,28 @@
     // Song Code updating
     //==============================================================
 
+    // song code update state
     var songCodeUpdateDelay = 1000;
     var songCodeUpdateTimeout = null;
     var updatedSongCode = null;
 
     function updateSongCode() {
+        // clear the old timeout if there is one
         if (songCodeUpdateTimeout) {
             clearTimeout(songCodeUpdateTimeout);
         }
 
+        // set a timeout to update the code.  We don't want to do it with every single click.
         songCodeUpdateTimeout = setTimeout(() => { actuallyUpdateSongCode() }, songCodeUpdateDelay);
     }
 
     function actuallyUpdateSongCode() {
+        // extract a song code from the UI
         updatedSongCode = getSongCode();
+        // fill in the song code input box
         document.getElementById("songCode").value = updatedSongCode;
+        // clear state
         songCodeUpdateTimeout = null;
-        songCodeUpdateFunc = null;
     }
 
     function getSongCode() {
@@ -57,43 +63,57 @@
     }
 
     function songCodeUpdated() {
+        // pull the song code from the input box
         var input = document.getElementById("songCode");
         songCode = input.value.trim();
+        // check if it's non-empty and changed
         if (songCode != null && songCode != "" && songCode != updatedSongCode) {
+            // chrome is doing strange things with clicked buttons so just unfocus it
             input.blur();
+            // load the song into the UI
             updateSong(songCode);
         }
     }
 
     function songCodeClicked() {
+        // automatically select the whole song code if the input box is clicked
         var input = document.getElementById("songCode");
         input.select();
     }
 
     function setSongCode(songCode, disableUndo=false) {
+        // set the song code explicitly, from the URL or the demo dropdown
         if (songCode !== null && songCode.length > 0) {
+            // set the song code box
             var input = document.getElementById("songCode");
             input.value = updatedSongCode;
+            // chrome is doing strange things with clicked buttons so just unfocus it
             input.blur();
-            // parse a model from the string
+            // load the song into the UI
             updateSong(songCode, disableUndo);
         }
     }
 
     function updateSong(songCode, disableUndo=false) {
         try {
+            // load the song into the UI
             score.setSong(songCode, disableUndo);
+            // success
             clearErrors();
+
         } catch (error) {
+            // fail
             showErrors([error]);
             throw error;
         }
     }
 
     function demoSelected() {
+        // pull the selected demo song code
         var input = document.getElementById("demoSelect");
         songCode = input.value.trim();
         if (songCode != null && songCode != "") {
+            // update the UI
             setSongCode(songCode);
         }
     }
@@ -108,17 +128,23 @@
         // javascript is working
         clearErrors();
 
-        var url = window.location.href;
-
+        // set up the error listener
         window.onerror = windowOnError;
+        // get the window size for menu placement
         onresize();
 
+        // load the URL
+        var url = window.location.href;
+
+        // show the help section if the query prop is set
         if (getQueryParam(url, "h")) {
             about();
         }
 
+        // init the UI
         buildUI();
 
+        // load the model from the URL, if present
         reinitModel(url);
     }
 
@@ -160,7 +186,9 @@
     }
 
     function generatePng(button) {
+        // chrome is doing strange things with clicked buttons so just unfocus it
         button.blur();
+        // show the PNG menu and generate an image
         runPngMenu(button);
     }
 

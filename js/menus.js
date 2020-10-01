@@ -1,3 +1,5 @@
+// no comment
+
 var menus = Array();
 
 function showMenu(menuDiv, container, element, fullWidth = false, autohide=true) {
