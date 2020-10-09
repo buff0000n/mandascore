@@ -89,6 +89,17 @@
     #TOC li {
         margin: 0;
     }
+    code {
+        background-color: #000000;
+        margin: 1ex;
+        padding: 1ex;
+        border-radius: 1ex;
+   	    text-align: left;
+   	    word-wrap: anywhere;
+        overflow-wrap: anywhere;
+   	    display: block;
+   	    font-family: monospace;
+    }
 
     /*
         For some unknown reason, the font size on moble devices is much smaller, but only on the first column on the

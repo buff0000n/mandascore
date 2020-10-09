@@ -193,6 +193,9 @@
     }
 
     function about() {
+        // chrome is weird with button focus now, make sure the about button is not in focus
+        document.getElementById("about").blur();
+
         var container = document.getElementById("lotsOfWordsContainer")
 
         if (container.style.display === "none") {
@@ -223,7 +226,7 @@
 </script>
 
 <div class="titleBar">
-    <div class="mainTitle">Mandascore: Mandachord Scoring App</div>
+    <div class="mainTitle">Mandachord Loop Editor</div>
 </div>
 
 <div id="errorBar">
@@ -239,11 +242,11 @@
                 <span class="label">Demo:</span>
                 <select id="demoSelect" onchange="demoSelected(this);">
                     <option value="" selected></option>
-                    <option value="[SONG-Adau Demo:AAAAAAAARAoAEQCAJEggCRAIAUSiABEAACDIBAgpIQAKQECCgBAgpAAISIIAEkCARIQgASWIAEWAACFJAAgQQCIUEAiBBAEhYQAISAAoBEBKBBBChAoAhQCAKEogCJAIAYUSACEEgEhgQAoQgAI=:BardTennoPackA:BardTennoPackA:BardTennoPackA]">Adau</option>
+                    <option value="[SONG-Adau Demo:AAAAAAAARAoAEQCAJEggCRAIAUSiABEAACDABAgpIQAKAECCkBAgoAAISYIAEgCARJQgASGIAEGAACFJAAgQQCIUEAiBBAEhYQAISAAoBEBKBBBChAoAhQCAKEogCJAIAYUSACEEgEhgQAoQgAI=:BardTennoPackA:BardTennoPackA:BardTennoPackA]">Adau</option>
                     <option value="[SONG-Alpha Demo:AAAAAAAAAIgACAgAAQmAAICABAiIAQAIAIIBgEBAgAABCAAICAAEEYACAIAEIQgBAAgIAQGAgICgAAIgABAKAAGhgAAAiAQCCAEGCACAAaEAAKAAACAAEIoABQGAABCUBAEIARQMAgIDgIBAwA==:BardCorpusPackA:BardCorpusPackA:BardCorpusPackA]">Alpha</option>
                     <option value="[SONG-Beta Demo:AAAAAAAAGAgAQQgABQEAABCABKAIATEIBBABABKQigAACABgiAAAAQAACIAEYAgBEQgEEAEAEYiCAAAIAGBIAAABAAAEgAQgCACQKAIQAQAQUIRAAAgAUQgAAAEAAhCgAIAKAIEIBBoBKBACQAw=:BardCorpusPackB:BardCorpusPackB:BardCorpusPackB]">Beta</option>
                     <option value="[SONG-Delta Demo:AAAAAAAAgCgAAAgAAAMBAQCgAAAgAQAIAAABAgAAoAAAIAAACgAAAwAAgKAAACAJAAoAASMACACggAAoAAAIAAgDAQAAoAAAIAEQCAAAAwBAAKAAACAABAoAAIMAAACgAAAoApACAECJAAQAoIA=:BardCorpusPackD:BardCorpusPackD:BardCorpusPackD]">Delta</option>
-                    <option value="[SONG-Druk Demo:AAAAAAAAhCoQAAkIRCGAEhCoQAAhCQQqAAITAAUIgAGEKhAACQhEIYASEKhCACEJBCoAAIcABEKAAaEoAABLQAADAAMEoAAAIgBISgAEAwACBKAAGKAAAEowAAOAAUigAgAhCAQqAAITAAUIgAE=:BardGrineerPackA:BardGrineerPackA:BardGrineerPackA]">Druk</option>
+                    <option value="[SONG-Druk Demo:AAAAAAAAhCoQAAsIVCEAFhCoQQAhCUQqAAITAAUIgAGEKhAACwhUIQAWEKhCACkJRCoAAIcABEKAAaEoAABLQAADAAMEoAAAIgBISgAEAwACBKAAGKAAAEowAAOAAUigAgAhCAQqAAITAAUIgAE=:BardGrineerPackA:BardGrineerPackA:BardGrineerPackA]">Druk</option>
                     <option value="[SONG-Epsilon Demo:AAAAAAAAGAgEAAgwAAGAUGAAAAAoRAAIAEEBgCCAgABQCBAACKAAAYERQAAAACgQSAgAQAGIJACABKAICAAJQAABgJKAAAAALAgACABEAYBAgIAAwAggAAkAAAECBgCABAAIEFAIAEABEIQAgA==:BardCorpusPackE:BardCorpusPackE:BardCorpusPackE]">Epsilon</option>
                     <option value="[SONG-Gamma Demo:AAAAAAAAFCgACAAABQIwEBCgAAAQACAJAAQigAIAAAAgIAAQCAAKEuAQAIAEADAAIAEABAIAAgigABIoAAIAAAECEBAIoAQAFAEgCQAEAgACEKAAHAgAIAkABAaAAUCgAYAUAJAqAEUCAQSAgA==:BardCorpusPackC:BardCorpusPackC:BardCorpusPackC]">Gamma</option>
                     <option value="[SONG-Horos Demo:AAAAAAAAFCgAAAhAAEOAEgCAgQAgAEEIAAAjgIIBgAREKAAACEAAQ4ASAICBACAAQQgAAKOAhAGgBBEpAAAIAAATgBEAgCEAIQBASAAAE4ECEIAEESkAAAgAABOAEoCAIQAigEBMAAKTgQQQoA==:BardEDMPackA:BardEDMPackA:BardEDMPackA]">Horos</option>
@@ -295,17 +298,72 @@
         <div class="lotsOfWords">
             <h1>What is this?</h1>
             <p>
-                This is a utility for taking an existing Shawzin song code and creating a "Guitar Tablature"-like
-                image of it.
+                This is an app for viewing and editing Mandachord songs.
+            </p>
+            <p>
+                The main motivation was to provide a way to be able to copy my songs into the game without having to
+                pause a video.  But while I was at it I went ahead and made it a full blown editor.
+            </p>
+            <h2>Mandachord song codes?</h2>
+            <p>
+                There actually is a Mandachord song code format.  If you link a song in chat, and then look at your
+                EE.log file after quitting Warframe, then you will see something like this:
+            </p>
+            <code>
+                [SONG-Best Song Ever:AADDnwAAEggAAIggAEGBAJCAAABIAAAYAAgFwAECkCAgiAAAKEEACYAhAoAAAAgAAQgICCHAgQCQAEEIAABIQgAJgCEEgAAASAAIGAAABYAAIYAIIQgAAEgCBEGAABCAAAAIAAEIAAhBwgEAkA==:BardCorpusPackA:BardGrineerPackA:BardCorpusPackB]
+            </code>
+            <p>
+                You used to be able to paste this back into the in-game chat window and get a song link back, but
+                unfortunately that hasn't worked in a couple of years.  Still, it's as good a format as any, so that's
+                what this editor is using.
+            </p>
+            <p>
+                I have a program for extracting song codes from your EE.log file, if you're comfortable with
+                running python: <a href="https://github.com/buff0000n/songparse">songparse</a>.
             </p>
 
             <h1>Table of Contents</h1>
             <ul id="TOC">
                 <li><a href="#tocGettingStarted">Getting Started</a></li>
-                <li><a href="#tocOutputTweaking">Output Tweaking</a>
+                <li><a href="#tocEditing">Basic Editing</a>
                     <ul>
-                        <li><a href="#tocNonMetered">Non-metered</a></li>
-                        <li><a href="#tocMeteredOutput">Metered</a></li>
+                        <li><a href="#tocTitle">Title</a></li>
+                        <li>
+                            <a href="#tocInstruments">Instruments</a>
+                            <ul>
+                                <li><a href="#tocInstrumentSet">Instrument Set</a></li>
+                                <li><a href="#tocVolume">Volume</a></li>
+                                <li><a href="#tocIsolation">Isolation</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#tocNotes">Notes</a></li>
+                    </ul>
+                </li>
+                <li><a href="#tocAdvancedEditing">Advanced Editing</a>
+                    <ul>
+                        <li>
+                            <a href="#tocClear">Clear</a>
+                            <ul>
+                                <li><a href="#tocClearMeasure">Clear Measure</a></li>
+                                <li><a href="#tocClearSong">Clear Song</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#tocCopy">Copy</a></li>
+                        <li><a href="#tocPaste">Paste</a></li>
+                    </ul>
+                </li>
+                <li><a href="#tocUndoRedo">Undo/Redo</a></li>
+                <li><a href="#tocPlayback">Playback</a>
+                    <ul>
+                        <li><a href="#tocPlaySong">Play Song</a></li>
+                        <li><a href="#tocPlayMeasure">Play Measure</a></li>
+                    </ul>
+                </li>
+                <li><a href="#tocSaving">Saving</a>
+                    <ul>
+                        <li><a href="#tocSongCode">SongCode</a></li>
+                        <li><a href="#tocShareURL">Share URL</a></li>
+                        <li><a href="#tocExportToPng">Export to PNG</a></li>
                     </ul>
                 </li>
                 <li><a href="#tocToDo">To Do</a></li>
@@ -313,41 +371,218 @@
             </ul>
 
             <h1 id="tocGettingStarted">Getting Started</h1>
-            <h2>Enter your song's information:</h2>
-            <ul>
-                <li><strong>Title</strong>: Enter a title for your song here.  This will appear at the top of the generated image.</li>
-            </ul>
-            <ul>
-                <li><strong>Author</strong>: Enter the creator of your song here.  This will appear at the top right of the generated image.</li>
-            </ul>
             <p>
-                Paste the actual song code in the large text area.
-                It's okay if there are line breaks or other spaces, these will be removed before processing
+                If you came here from a song link then it should already be displayed.
+            </p>
+            <p>
+                If you have a song code then paste it in the <strong>Song Code</strong> text box and hit enter.
             </p>
 
-            <h2>Generate Shawzin Tablature</h2>
+            <h1 id="tocEditing">Basic Editing</h1>
             <p>
-                The tablature should be generated automatically as you make changes, but you can still click
-                <strong class="generateDiv">Generate Tab</strong> to generate the tablature image manually.
+                If you're familiar with the in-game Mandachord editor then you already know how most of this works.
+            </p>
+            <h2 id="tocTitle">Title</h2>
+            <p>
+                Enter the title of the song here.  The in-game restrictions on Mandachord song titles are pretty
+                severe, but the only thing being restricted here is a 25 character limit
+            </p>
+            <h2 id="tocInstruments">Instruments</h2>
+            <p>
+                You can adjust the settings here for each section individually: Percussion, Bass, and Melody.
+            </p>
+            <h3 id="tocInstrumentSet">Instrument Set</h3>
+            <p>
+               Use the dropdown to choose one of the nine instrument sets.
+            </p>
+            <h3 id="tocVolume">Volume</h3>
+            <p>
+                Use the slider to adjust the volume.  Full volume is all the way to thr right, zero volume is all the
+                way to the left.
+            </p>
+            <h3 id="tocIsolation">Isolation</h3>
+            <p>
+                Use the checkboxes on the right to turn particular sections on and off.
+            </p>
+            <p>
+                Note that the isolation settings are not part of the song code and don't get saved.
+            </p>
+            <h2 id="tocNotes">Notes</h2>
+            <p>
+                The rest of the screen is dedicated to the note grid.  This is laid out just like the Mandachord
+                screen, except as a rectangle instead of a disc.
+            <p>
+                The top three rows are percussion, the next five are bass, and the bottom five are melody.  Time
+                ordering goes from left to right.
+            </p>
+            <p>
+                Click a location in the grid to turn a note on, or click a location with an existing note to turn that
+                note off.  You can also click and drag across an area to create multiple notes next to each other.
+            </p>
+            <p>
+                The score is broken out into four measures.  Each measure has a maximum number of notes that can be
+                present in each section:
+            </p>
+            <ul>
+                <li><strong>Percussion</strong>: 24 notes per measure</li>
+                <li><strong>Bass</strong>: 16 notes per measure</li>
+                <li><strong>Melody</strong>: 16 notes per measure</li>
+            </ul>
+            <p>
+                <strong class="warn">Exceeding the note limit on a section of a measure will play a small warning sound.</strong>
+            </p>
+            <p>
+                If your screen is wide enough then all four measures will be displayed in a single row.
+                If your screen is not wide enough for that, then there will be two rows of two.
+                If your screen is not wide enough for that the four measures will be arranged vertically.
+            </p>
+            <h1 id="tocAdvancedEditing">Advanced Editing</h1>
+            <h2 id="tocClear">Clear</h2>
+            <h3 id="tocClearMeasure">Clear Measure</h3>
+            <p>
+                Above each measure is a <strong>Clear</strong> button.  This can be used to clear part or all of the
+                measure.  Clicking <strong>Clear</strong> will bring up a menu:
+            </p>
+            <ul>
+                <li><strong>All</strong>: Use this to completely clear the measure</li>
+                <li><strong>Percussion</strong>: Use this to clear just the Percussion section of the measure</li>
+                <li><strong>Bass</strong>: Use this to clear just the Bass section of the measure</li>
+                <li><strong>Melody</strong>: Use this to clear just the Melody section of the measure</li>
+            </ul>
+            <h3 id="tocClearSong">Clear Song</h3>
+            <p>
+                Above the <strong>Song Title</strong> bar is another <strong>Clear</strong> button.  This allows you to
+                clear notes from all four measures.  It has the same options as the per-measure <strong>Clear</strong>
+                button: <strong>All</strong>, <strong>Percussion</strong>, <strong>Bass</strong>, or
+                <strong>Melody</strong>.
+            </p>
+            <h2 id="tocCopy">Copy</h2>
+            <p>
+                Above each measure is a <strong>Copy</strong> button.  This can be used to copy part or all of the
+                measure, allowing it to be pasted to a different measure.  Clicking the <strong>Copy</strong> button
+                will bring up the usual section options: <strong>All</strong>, <strong>Percussion</strong>,
+                <strong>Bass</strong>, or <strong>Melody</strong>.
+            </p>
+            <p>
+                Once a section is selected, it will be outlined in that measure.  If any changes are made to that
+                section, or if the <strong>Copy</strong> button is clicked again, then the selection will be cleared.
+            </p>
+            <h2 id="tocPaste">Paste</h2>
+            <p>
+                Once a copy selection is made in one measure, the <strong>Paste</strong> buttons are enabled on the
+                other three measures.  Clicking the <strong>Paste</strong> button will copy the selected section from
+                the copied measure into that measure, overwriting any existing notes in that section.
+            </p>
+            <h1 id="tocUndoRedo">Undo/Redo</h1>
+            <p>
+                Undo and Redo is available using either the <strong>Undo</strong> and <strong>Redo</strong> buttons
+                above the <strong>Song Title</strong> bar, or by using <strong>Ctrl-Z</strong> for undo and
+                <strong>Ctrl-Shift-Z</strong> or <strong>Ctrl-Y</strong> for redo.
+            </p>
+            <p>
+                All actions can be undone, including note changes, section setting changes, title changes, paste,
+                clear, and loading a demo song.
+            </p>
+            <h1 id="tocPlayback">Playback</h1>
+            <p>
+                Use the <strong>Play buttons</strong> to start and stop playback on either all or part of the song.
+                Playback will loop back to the beginning until stopped.
+            </p>
+            <p>
+                Just like in game, the current playback location is marked with a vertical line, and individual notes
+                will have a small visual bounce as they are played.
+            </p>
+            <p>
+                Pressing <strong>Space</strong> during playback will pause at its current location.  Pressing
+                <strong>Space</strong> again will resume playback where it left off.
+            </p>
+            <p>
+                Pressing the same <strong>Play</strong> button while playing will stop playback and clear the current
+                playback location.
+            </p>
+            <p>
+                <strong class="warn">Note: The sounds themselves were recorded in-game.  I hope this is okay.</strong>
+            </p>
+            <h2 id="tocPlaySong">Play Song</h2>
+            <p>
+                Click the <strong>Play</strong> button above the <strong>Song Title</strong> bar to play the entire
+                song.  Playback will go through all four measures before looping back to the beginning.
+            </p>
+            <h2 id="tocPlayMeasure">Play Measure</h2>
+            <p>
+                Click the <strong>Play</strong> button above a measure to play just that measure in a loop.
+            </p>
+            <p>
+                Clicking the <strong>Play</strong> button above a different measure, or clicking the whole song
+                <strong>Play</strong> button, will immediately stop the current playback and start a fresh playback
+                on the clicked measure or song.
+            </p>
+            <h1 id="tocSaving">Saving</h1>
+            <p>
+                There are three ways to save your song for later: by code, by URL, or by generating and image.
+            </p>
+            <h2 id="tocSongCode">Song Code</h2>
+            <p>
+                To save your song by code, simply copy the code out of the <strong>Song Code</strong> bar at the top
+                of the page.  This Song Code is automatically updated as changes are made to the song.
+            </p>
+            <p>
+                To restore a song from a code, open this page again and paste the song code into the
+                <strong>Song Code</strong> bar.
+            </p>
+            <p>
+                <strong class="warn">Unfortunately, that's all you can currently do with a song code.</strong>  You used
+                to be able to paste the song code into the in-game chat window and get a song link back, but that
+                hasn't worked in years.
+            </p>
+            <h2 id="tocShareURL">Share URL</h2>
+            <p>
+                If you want a shareable URL that goes directly to your song, click the <strong>Generate Link</strong>
+                button at the top of the page.  Copy this, and paste it into a browser to bring up this page
+                auto-populated with your song.
+            </p>
+            <h2 id="tocExportToPng">Export to PNG</h2>
+            <p>
+                If you want an image, then click the <strong>Generate PNG</strong> button at the top of the page.
+                This will bring up a link to download your song as a PNG, including section settings and all four
+                measures.
+            </p>
+            <p>
+                <strong>Note that you cannot re-import a PNG to edit it again.</strong>  You should also save your
+                song as either a Song Code or URL so you can come back to it later.
             </p>
 
             <h1 id="tocToDo">To Do</h1>
             <ul>
                 <li>
-                    Compress consequtive blank lines/measures
+                   Maybe some icons instead of word buttons for play, stop, copy, paste, undo, redo.
                 </li>
                 <li>
-                    Enforce the 1000-note, 256-second limit
-                </li>
-                <li>
-                    Examples
+                    Searchable database with my existing song library.  No idea how I'm going to do this.
                 </li>
             </ul>
 
 
             <h1 id="tocKnownIssues">Known Issues</h1>
             <ul>
-                <li>None, this app is 100% perfect forever for all time :)</li>
+                <li>
+                    There may be some delay when playing an instrument pack for the first time.  This is because of
+                    the safeguards a lot of browsers have in place to prevent auto-play video and audio.  There isn't
+                    much I can do about it.  You have to click something before it can even load the sounds.
+                </li>
+                <li>
+                    The playback note animations sometimes cause Firefox to continually reload the note images
+                    over and over again.
+                </li>
+                <li>
+                    With Safari and possibly iOS, minimizing or otherwise hiding the window while it's playing will
+                    stop the audio.  When you come back it takes a few tries playing and stopping before it fully
+                    returns.  I'm not quite sure what's going on there yet.
+                </li>
+                <li>
+                    I haven't fully figured out how the volume encoding works on the chat format, but I can
+                    fake it enough to get reasonably close.
+                </li>
             </ul>
         </div>
     </div>
@@ -361,10 +596,13 @@
         </div>
         <div>
             <a href="https://github.com/buff0000n/mandascore">Source</a>
-            <a href="https://github.com/buff0000n/mandascore/issues/1">Feedback</a>
+            <a href="https://github.com/buff0000n/mandascore/issues/2 ">Feedback</a>
         </div>
         <div>
-            v0.0.1: 2020-09-21
+            v1.0.0: 2020-10-1
+        </div>
+        <div>
+            <a href="https://warframe.com">Ninjas Jam Free</a>
         </div>
     </div>
 </div>
