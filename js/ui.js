@@ -1134,7 +1134,7 @@ class Score {
         titleContainer.innerHTML = `
             <div class="tooltip">
                 <span class="label">Song Title:</span>
-                <input class="songTitle" type="text" size="50" onchange="titleChanged()"/>
+                <input class="songTitle" type="text" size="24" maxlength="24" onchange="titleChanged()"/>
                 <span class="tooltiptextbottom">Give your song a name</span>
             </div>
         `;
