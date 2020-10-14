@@ -10,10 +10,6 @@ function initAudioContext() {
     }
 }
 
-function bankLoaded(loader, bufferList) {
-    loader.bank.loaded(loader, bufferList);
-}
-
 // object wrapping a single sound and keeping track of its source, volume, and play state.
 class SoundEntry {
     constructor() {
@@ -130,7 +126,7 @@ class SoundBank {
         this.loader = null;
     }
 
-    initialize() {
+    initialize(callback=null) {
         // check if we're already initialized or in the process of initialization
         if (this.initialized || this.loader != null) return;
 
@@ -144,13 +140,13 @@ class SoundBank {
                 sources.push(soundPath + this.source + this.suffixes[i]);
             }
             // start a background loader because that's how things work
-            this.loader = new BufferLoader(audioContext, sources, bankLoaded);
+            this.loader = new BufferLoader(audioContext, sources, (loader, bufferList) => this.loaded(loader, bufferList, callback));
             this.loader.bank = this;
             this.loader.load();
         }
     }
 
-    loaded(loader, bufferList) {
+    loaded(loader, bufferList, callback) {
         if (loader != this.loader) {
             // ignore, things have changed since this loader was started
             return;
@@ -162,6 +158,9 @@ class SoundBank {
         // set the initialized state
         this.loader = null;
         this.initialized = true;
+
+        // hit the callback if provided
+        if (callback != null) callback();
     }
 
     setVolume(volume) {
@@ -226,6 +225,7 @@ class SoundPlayer {
         // data structures
         this.banks = {};
         this.indexToBank = {};
+        this.numBanks = 0;
 
         for (var name in sectionMetaData) {
             var m = sectionMetaData[name];
@@ -240,6 +240,8 @@ class SoundPlayer {
                 for (var i = m.rowStart; i <= m.rowStop; i++) {
                     this.indexToBank[i] = bank;
                 }
+                // it's hard to get the size of a dict, so just keep it handy
+                this.numBanks
             }
         }
 
@@ -247,11 +249,15 @@ class SoundPlayer {
         this.bzzt = new SoundBank([bzztSoundFile]);
         // the suffix is the whole path
         this.bzzt.setSource("");
+
+        // initialization count
+        this.banksInitialized = 0;
     }
 
     setSource(section, source) {
         // set the source on the given section
         this.banks[section].setSource(source);
+        this.banksInitialized = 0;
     }
 
     setVolume(section, volume) {
@@ -268,6 +274,24 @@ class SoundPlayer {
         // determine if the section is enabled
         var bank = this.indexToBank[index];
         return bank.enabled;
+    }
+
+    initialize(callback) {
+        // short-circuit if we're already initialized
+        if (this.banksInitialized >= this.numBanks) {
+            callback();
+            return;
+        }
+        // loop over the sections
+        for (var section in this.banks) {
+            // initialize each section with a callback
+            this.banks[section].initialize(() => {
+                // increment the initialization counter
+                this.banksInitialized++;
+                // if we've hit all banks then run the callback
+                if (this.banksInitialized == this.numBanks) callback();
+            });
+        }
     }
 
     playSound(index) {

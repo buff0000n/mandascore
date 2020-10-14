@@ -1321,7 +1321,7 @@ class Score {
     doPlayback(button, m) {
         // if there already is a playback in progress
         if (button.playback != null) {
-            // currently, kill the playback when the stop button is clicked.  get the playack marker off the screen.
+            // currently, kill the playback when the stop button is clicked.  get the playback marker off the screen.
             if (button.playback.playing() && stopKills) {
                 button.playback.kill();
                 this.playback = null;
@@ -1512,8 +1512,19 @@ class Playback {
     }
 
     start() {
+        // change the Play button to a Loading button while the sounds are loaded
+        this.button.value = "Loading";
+        this.button.enabled = false;
+
+        // don't start playing until the player has been initialized
+        // After the sound player is loaded this should go straight through to loaded()
+        this.score.soundPlayer.initialize(() => this.loaded());
+    }
+
+    loaded() {
         // change the Play button to a Stop button
         this.button.value = "Stop";
+        this.button.enabled = true;
         // start the first/next animation tick
         this.tick(true);
     }
