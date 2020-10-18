@@ -128,7 +128,12 @@ class SoundBank {
 
     initialize(callback=null) {
         // check if we're already initialized or in the process of initialization
-        if (this.initialized || this.loader != null) return;
+        if (this.initialized || this.loader != null) {
+            // call the callback directly
+            if (callback != null) callback();
+            // short circuit
+            return;
+        }
 
         // finally we can init the audio context now that we're theoretically inside a user event handler
         initAudioContext();
@@ -139,7 +144,7 @@ class SoundBank {
                 this.sounds[i].setBuffer(null);
                 sources.push(soundPath + this.source + this.suffixes[i]);
             }
-            // start a background loader because that's how things work
+            // start a background loader with a callback because that's how things work
             this.loader = new BufferLoader(audioContext, sources, (loader, bufferList) => this.loaded(loader, bufferList, callback));
             this.loader.bank = this;
             this.loader.load();
@@ -241,7 +246,7 @@ class SoundPlayer {
                     this.indexToBank[i] = bank;
                 }
                 // it's hard to get the size of a dict, so just keep it handy
-                this.numBanks
+                this.numBanks++;
             }
         }
 
@@ -257,6 +262,8 @@ class SoundPlayer {
     setSource(section, source) {
         // set the source on the given section
         this.banks[section].setSource(source);
+        // go ahead and reset the initialized count to zero
+        // The initialize calls on any banks that haven't changed will simply short-circuit
         this.banksInitialized = 0;
     }
 
