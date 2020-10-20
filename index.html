@@ -62,10 +62,13 @@
         return score.getSong();
     }
 
+    songcodePrefixStrip = /^song[0-9]+=/;
+
     function songCodeUpdated() {
         // pull the song code from the input box
         var input = document.getElementById("songCode");
         songCode = input.value.trim();
+        songCode = songCode.replace(songcodePrefixStrip, "");
         // check if it's non-empty and changed
         if (songCode != null && songCode != "" && songCode != updatedSongCode) {
             // chrome is doing strange things with clicked buttons so just unfocus it
