@@ -915,7 +915,7 @@ class SectionEditor {
         // width allocated to the icon
         var w_icon = w*1.5;
         // width allocated to section label and pack name
-        var w_packName = w*9;
+        var w_packName = w*10;
         // width allocated to the volume indicator
         var w_volume = w*8;
         // width of the volume knob

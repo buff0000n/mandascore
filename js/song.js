@@ -17,6 +17,8 @@ var packs = Array(
     new InstrumentPack("gamma", "Gamma", "BardCorpusPackC"),
     new InstrumentPack("horos", "Horos", "BardEDMPackA"),
     new InstrumentPack("plogg", "Plogg", "BardGrineerPackB"),
+    new InstrumentPack("clazz", "Clazz (Concept)", "ConceptClazz"),
+    new InstrumentPack("zeta", "Zeta (Concept)", "ConceptZeta"),
 );
 
 // build a few lookup tables for instrument pack metadata
