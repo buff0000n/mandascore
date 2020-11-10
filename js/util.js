@@ -81,7 +81,7 @@ function deleteNode(node) {
 var windowWidth;
 var windowHeight;
 
-function onresize() {
+function doonresize() {
     var h = Math.max(document.documentElement.clientHeight, window.innerHeight);
     var w = Math.max(document.documentElement.clientWidth, window.innerWidth);
     windowSizeChanged(h, w);
