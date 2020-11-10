@@ -156,13 +156,13 @@
         var songCode = getQueryParam(url, "song", false);
         if (songCode) {
             // if there is, then initialize our song
-            setSongCode(decodeSongCode(songCode), true);
+            setSongCode(decodeSongCodeFromUrl(songCode), true);
         }
 
     }
 
     function decodeSongCodeFromUrl(urlString) {
-        var code = urlDecodeString(songCode, false);
+        var code = urlDecodeString(urlString, false);
         // Dammit, I'm doing everything right but YouTube's link system is still replacing '%20's with '+'s.
         // We can't consider '+' to always be a space because it can appear in the base64 sction.
         // Just convert '+'s in the title section to spaces.
