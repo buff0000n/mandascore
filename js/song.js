@@ -122,126 +122,174 @@ function getBit(byteArray, numColumns, row, column, littleendian, offset) {
 function setBit(byteArray, numColumns, row, column, littleendian, offset, bitValue) {
     getSetBit(byteArray, numColumns, row, column, littleendian, offset, bitValue);
 }
+//
+//var newVolume = true;
+//
+//function decodeVolume(b1, b2) {
+//    if (this.newVolume) {
+//        return decodeVolume_new(b1, b2)
+//    } else {
+//        return decodeVolume_old(b1, b2);
+//    }
+//}
+//
+//function encodeVolume(vol) {
+//    if (this.newVolume) {
+//        return encodeVolume_new(vol)
+//    } else {
+//        return encodeVolume_old(vol);
+//    }
+//}
 
-// all I have are a volume value samples at 0%, 25%, 50%, 75%, and 100% that I can try to interpolate between
-
-// This value is definitely 0%
-var vol_p00 = 0xD1D2;
-// eyeballed averages for 25%, 50%, and 75%
-var vol_p25 = 0xCA00;
-var vol_p50 = 0xC5FD;
-var vol_p75 = 0xC09C;
-// This is somewhere around what the values approach as they near 100%
-var vol_p99 = 0xAD00;
-// This value is definitely 100%
-var vol_p100 = 0x0000;
-
+// for some reason this is the dBFS value used for a level of 0
+var zeroDBFS = -46.5625;
 
 // turn volume data into a percentage
 function decodeVolume(b1, b2) {
-    // todo: I haven't figured out the actual encoding on this, it's non-linear and really weird.
-
-    // put the two bytes together
-    var val = (b1*0x100)+b2;
-
-    // check known value for 100%
-    if (val == vol_p100) {
-        return 100;
-    }
-
-    // check known value for 0%
-    if (val == vol_p00) {
+    // combine bytes and decode as a 16-bit float
+    var dBFS = float16_to_float((b1 << 8) | b2);
+    // check for the "zero" value
+    if (dBFS <= zeroDBFS) {
         return 0;
-    }
-
-    // find which 25% block it falls in
-    // ">" because the encoded value is in reverse ordering
-    if (vol_p00 >= val && val > vol_p25) {
-        block = 0;
-        blockMin = vol_p00;
-        blockMax = vol_p25;
-
-    } else if (vol_p25 >= val && val > vol_p50) {
-        block = 25;
-        blockMin = vol_p25;
-        blockMax = vol_p50;
-
-    } else if (vol_p50 >= val && val > vol_p75) {
-        block = 50;
-        blockMin = vol_p50;
-        blockMax = vol_p75;
-
-    } else if (vol_p75 >= val && val >= vol_p99) {
-        block = 75;
-        blockMin = vol_p75;
-        blockMax = vol_p99;
-
     } else {
-        // Invalid value, as far as I can tell
-        // print("unrecognized volume value: 0x{0}".format(bytearray([b1, b2]).hex()))
-        return val
+        // standard conversion from dBFS to 0-100 level
+        return Math.pow(10, (dBFS / 20)) * 100;
     }
-
-    // assume it's linear between the two points
-    var percent = block + ((1 - ((val - blockMin) / (blockMax - blockMin))) * 25);
-
-    // print("decoded volume value: 0x{0} to {1}".format(bytearray([b1, b2]).hex(), percent))
-    return percent;
 }
+
+// turn a percentage into volume data
+function encodeVolume(vol) {
+    var dBFS;
+    if (vol <= 0) {
+        // use the "zero" value
+        dBFS = zeroDBFS;
+    } else {
+        // standard conversion from 0-100 level to dBFS
+        // There's no log base 10 built into javascript, so implement with natural log
+        dBFS = (Math.log(vol / 100) / Math.LN10) * 20;
+    }
+    // convert to 16-bit float
+    var level = float_to_float16(dBFS);
+    // separate bytes
+    return valtoBytes(level);
+}
+
+//// all I have are a volume value samples at 0%, 25%, 50%, 75%, and 100% that I can try to interpolate between
+//
+//// This value is definitely 0%
+//var vol_p00 = 0xD1D2;
+//// eyeballed averages for 25%, 50%, and 75%
+//var vol_p25 = 0xCA00;
+//var vol_p50 = 0xC5FD;
+//var vol_p75 = 0xC09C;
+//// This is somewhere around what the values approach as they near 100%
+//var vol_p99 = 0xAD00;
+//// This value is definitely 100%
+//var vol_p100 = 0x0000;
+//
+//
+//// turn volume data into a percentage
+//function decodeVolume_old(b1, b2) {
+//    // put the two bytes together
+//    var val = (b1*0x100)+b2;
+//
+//    // check known value for 100%
+//    if (val == vol_p100) {
+//        return 100;
+//    }
+//
+//    // check known value for 0%
+//    if (val == vol_p00) {
+//        return 0;
+//    }
+//
+//    // find which 25% block it falls in
+//    // ">" because the encoded value is in reverse ordering
+//    if (vol_p00 >= val && val > vol_p25) {
+//        block = 0;
+//        blockMin = vol_p00;
+//        blockMax = vol_p25;
+//
+//    } else if (vol_p25 >= val && val > vol_p50) {
+//        block = 25;
+//        blockMin = vol_p25;
+//        blockMax = vol_p50;
+//
+//    } else if (vol_p50 >= val && val > vol_p75) {
+//        block = 50;
+//        blockMin = vol_p50;
+//        blockMax = vol_p75;
+//
+//    } else if (vol_p75 >= val && val >= vol_p99) {
+//        block = 75;
+//        blockMin = vol_p75;
+//        blockMax = vol_p99;
+//
+//    } else {
+//        // Invalid value, as far as I can tell
+//        // print("unrecognized volume value: 0x{0}".format(bytearray([b1, b2]).hex()))
+//        return val
+//    }
+//
+//    // assume it's linear between the two points
+//    var percent = block + ((1 - ((val - blockMin) / (blockMax - blockMin))) * 25);
+//
+//    // print("decoded volume value: 0x{0} to {1}".format(bytearray([b1, b2]).hex(), percent))
+//    return percent;
+//}
 
 function valtoBytes(v) {
     return Array((v >> 8) & 0xFF, v & 0xFF);
 }
 
-// turn volume data into a percentage
-function encodeVolume(vol) {
-    // todo: I haven't figured out the actual encoding on this, it's non-linear and really weird.
+//// turn volume data into a percentage
+//function encodeVolume_old(vol) {
+//    // convenience function to convert back to byte array
+//
+//    // check known value for 100%
+//    if (vol == 100) {
+//        return valtoBytes(vol_p100);
+//    }
+//
+//    // check known value for 0%
+//    if (vol == 0) {
+//        return valtoBytes(vol_p00);
+//    }
+//
+//    // find which 25% block it falls in
+//    if (0 <= vol && vol < 25) {
+//        block = 0;
+//        blockMin = vol_p00;
+//        blockMax = vol_p25;
+//
+//    } else if (25 <= vol && vol < 50) {
+//        block = 25;
+//        blockMin = vol_p25;
+//        blockMax = vol_p50;
+//
+//    } else if (50 <= vol && vol < 75) {
+//        block = 50;
+//        blockMin = vol_p50;
+//        blockMax = vol_p75;
+//
+//    } else if (75 <= vol && vol <= 100) {
+//        block = 75;
+//        blockMin = vol_p75;
+//        blockMax = vol_p99;
+//
+//    } else {
+//        // Invalid value, as far as I can tell
+//        // print("unrecognized volume value: {0}".format(vol))
+//        // symmetry with decodeVolume
+//        return valtoBytes(vol);
+//    }
+//
+//    // assume it's linear between the two points
+//    var val = Math.round((blockMax - blockMin) * (1 - ((vol - block) / 25)) + blockMin);
+//    // print("encoded volume value: {0} to 0x{1}".format(vol, bytearray(valtoBytes(val)).hex()))
+//    return valtoBytes(val);
+//}
 
-    // convenience function to convert back to byte array
-
-    // check known value for 100%
-    if (vol == 100) {
-        return valtoBytes(vol_p100);
-    }
-
-    // check known value for 0%
-    if (vol == 0) {
-        return valtoBytes(vol_p00);
-    }
-
-    // find which 25% block it falls in
-    if (0 <= vol && vol < 25) {
-        block = 0;
-        blockMin = vol_p00;
-        blockMax = vol_p25;
-
-    } else if (25 <= vol && vol < 50) {
-        block = 25;
-        blockMin = vol_p25;
-        blockMax = vol_p50;
-
-    } else if (50 <= vol && vol < 75) {
-        block = 50;
-        blockMin = vol_p50;
-        blockMax = vol_p75;
-
-    } else if (75 <= vol && vol <= 100) {
-        block = 75;
-        blockMin = vol_p75;
-        blockMax = vol_p99;
-
-    } else {
-        // Invalid value, as far as I can tell
-        // print("unrecognized volume value: {0}".format(vol))
-        // symmetry with decodeVolume
-        return valtoBytes(vol);
-    }
-
-    // assume it's linear between the two points
-    var val = Math.round((blockMax - blockMin) * (1 - ((vol - block) / 25)) + blockMin);
-    // print("encoded volume value: {0} to 0x{1}".format(vol, bytearray(valtoBytes(val)).hex()))
-    return valtoBytes(val);
-}
 // compile a regular expression that matches the [SONG-...] format.  It looks like this:
 // [SONG-<song name>:<base 64 data>:<melody instrument>:<bass instrument>:<percussion instrument>]
 chatLinkPattern = /\[SONG-([^:]+):([^:]+):([^:]+):([^:]+):([^:\]]+)\]/;
