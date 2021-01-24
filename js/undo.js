@@ -28,6 +28,12 @@ var undoStack = Array();
 var redoStack = Array();
 var maxUndoStackSize = 250;
 
+function clearUndoStack() {
+    undoStack = Array();
+    redoStack = Array();
+    updateButtons();
+}
+
 function updateUndoRedoButton(button, stack, prefix) {
 	if (stack.length > 0) {
 		button.disabled = false;

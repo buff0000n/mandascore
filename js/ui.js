@@ -1591,6 +1591,16 @@ class Playlist {
         }
     }
 
+    moveToTop(entry) {
+        var index = this.entries.indexOf(entry);
+        if (index > 0) {
+            this.entries.splice(index, 1);
+            this.entries.splice(0, 0, entry);
+            deleteNode(entry.playlistEntryContainer);
+            insertBefore(entry.playlistEntryContainer, this.entries[1].playlistEntryContainer);
+        }
+    }
+
     moveDown(entry) {
         var index = this.entries.indexOf(entry);
         if (index >= 0 && index < this.entries.length - 1) {
@@ -1598,6 +1608,16 @@ class Playlist {
             this.entries.splice(index+1, 0, entry);
             deleteNode(entry.playlistEntryContainer);
             insertAfter(entry.playlistEntryContainer, this.entries[index].playlistEntryContainer);
+        }
+    }
+
+    moveToBottom(entry) {
+        var index = this.entries.indexOf(entry);
+        if (index >= 0 && index < this.entries.length - 1) {
+            this.entries.splice(index, 1);
+            this.entries.splice(this.entries.length, 0, entry);
+            deleteNode(entry.playlistEntryContainer);
+            insertAfter(entry.playlistEntryContainer, this.entries[this.entries.length - 2].playlistEntryContainer);
         }
     }
 
@@ -1618,6 +1638,8 @@ class Playlist {
         this.selected = entry;
         if (setScore) {
             this.score.setSongObject(this.selected.song, true);
+            // let's make this simple for now: switching songs in the playlist clears the undo history.
+            clearUndoStack();
         }
     }
 
@@ -1707,6 +1729,14 @@ class PlaylistEntry {
         {
             var span = document.createElement("span");
             span.className = "smallButton";
+            span.onclick = this.movePlaylistEntryToTop
+            span.entry = this;
+            span.innerHTML = `⇈`;
+            this.playlistEntryContainer.appendChild(span);
+        }
+        {
+            var span = document.createElement("span");
+            span.className = "smallButton";
             span.onclick = this.movePlaylistEntryUp
             span.entry = this;
             span.innerHTML = `↑`;
@@ -1719,6 +1749,14 @@ class PlaylistEntry {
             span.onclick = this.movePlaylistEntryDown
             span.entry = this;
             span.innerHTML = `↓`;
+            this.playlistEntryContainer.appendChild(span);
+        }
+        {
+            var span = document.createElement("span");
+            span.className = "smallButton";
+            span.onclick = this.movePlaylistEntryToBottom
+            span.entry = this;
+            span.innerHTML = `⇊`;
             this.playlistEntryContainer.appendChild(span);
         }
 
@@ -1747,8 +1785,16 @@ class PlaylistEntry {
         this.entry.playlist.moveUp(this.entry);
     }
 
+    movePlaylistEntryToTop() {
+        this.entry.playlist.moveToTop(this.entry);
+    }
+
     movePlaylistEntryDown() {
         this.entry.playlist.moveDown(this.entry);
+    }
+
+    movePlaylistEntryToBottom() {
+        this.entry.playlist.moveToBottom(this.entry);
     }
 
     selectPlaylistEntry() {

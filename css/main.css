@@ -163,6 +163,7 @@
         border: 0;
 	    color: #FFFFFF;
         display: table-cell;
+        vertical-align: bottom;
     }
     /*
     .playlistContainerContainer{
