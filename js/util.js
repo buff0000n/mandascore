@@ -74,6 +74,37 @@ function deleteNode(node) {
     node.parentNode.removeChild(node);
 }
 
+// returns true if the list was changed
+function removeFromList(list, item) {
+	var index = list.indexOf(item);
+	if (index >= 0) {
+		list.splice(index, 1);
+		return true;
+
+	} else {
+		return false;
+	}
+}
+
+// returns true if the list was changed
+function addToListIfNotPresent(list, item) {
+	var index = list.indexOf(item);
+	if (index == -1) {
+		list.push(item);
+		return true;
+
+	} else {
+		return false;
+	}
+}
+
+function insertAfter(el, referenceNode) {
+    referenceNode.parentNode.insertBefore(el, referenceNode.nextSibling);
+}
+function insertBefore(el, referenceNode) {
+    referenceNode.parentNode.insertBefore(el, referenceNode);
+}
+
 //==============================================================
 // window size tracking
 //==============================================================

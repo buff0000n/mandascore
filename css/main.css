@@ -148,6 +148,60 @@
         display: inline-block;
     }
 
+    .controlBar {
+        padding: 0;
+        margin: 0;
+        border: 0;
+	    color: #FFFFFF;
+        display: table;
+        margin: 0 auto;
+    }
+
+    .songControlContainer {
+        padding: 0;
+        margin: 0;
+        border: 0;
+	    color: #FFFFFF;
+        display: table-cell;
+    }
+    /*
+    .playlistContainerContainer{
+        padding: 0;
+        margin: 0;
+        border: 0;
+	    color: #FFFFFF;
+        display: table-cell;
+        height: 1px;
+    }
+    */
+    .playlistContainer {
+        padding: 1ex;
+        margin: 0 2ex;
+        border: 0;
+        border-radius: 1ex;
+	    color: #FFFFFF;
+	    background: #202020;
+        display: table-cell;
+        /* display: none; */
+        /* no idea why this works */
+        /*
+        height: 1px;
+        overflow-anchor: none;
+        */
+    }
+
+    .playlistBox {
+        text-align: left;
+        height: 100%;
+        border-radius: 1ex;
+        padding: 1ex;
+        background: #000000;
+        /*
+        overflow: auto;
+        overflow-anchor: none;
+        */
+    }
+
     .measureImgContainer {
         padding: 0;
         margin: 0;
@@ -264,6 +318,36 @@
         margin: 1ex 1ex 1ex 1ex;
         cursor: pointer;
         display: block-inline;
+    }
+    .smallButton {
+        background-color: #404080;
+        border: none;
+        color: #FFFFFF;
+        padding: 0ex 1ex;
+        text-align: center;
+        text-decoration: none;
+        font-size: 100%;
+        border-radius: 1ex;
+        margin: 0ex 0ex ;
+        cursor: pointer;
+        display: block-inline;
+    }
+    .playlistEntry, .playlistEntrySelected {
+        background-color: #202020;
+        border: none;
+        color: #A0A0A0;
+        padding: 0ex 1ex;
+        text-align: center;
+        text-decoration: none;
+        font-size: 100%;
+        border-radius: 1ex;
+        margin: 0ex 0ex ;
+        cursor: pointer;
+        display: block-inline;
+    }
+    .playlistEntrySelected {
+        background-color: #404040;
+        color: #FFFFFF;
     }
     .songContainer {
         text-align: center;

@@ -1041,6 +1041,9 @@ class Score {
             this.measures.push(measure);
         }
 
+        // playlist object
+        this.playlist = new Playlist(this);
+
         // build the UI
         this.buildUI();
 
@@ -1059,13 +1062,21 @@ class Score {
         // top level container
         this.container = document.createElement("div");
 
+        this.controlBar = document.createElement("div");
+        this.controlBar.className = "controlBar";
+        this.controlBar.measure = this;
+
+        this.songControls = document.createElement("div");
+        this.songControls.className = "songControlContainer";
+        this.songControls.measure = this;
+
         // top level undo, clear, and playback buttons
         this.buttons = this.buildButtons();
-        this.container.appendChild(this.buttons);
+        this.songControls.appendChild(this.buttons);
 
         // title editor
         this.titleContainer = this.buildTitleEditor();
-        this.container.appendChild(this.titleContainer);
+        this.songControls.appendChild(this.titleContainer);
         this.title = "";
 
         // container for section editors is a div with a table
@@ -1085,7 +1096,13 @@ class Score {
         }
 
         sectionContainer.appendChild(sectionTable);
-        this.container.appendChild(sectionContainer);
+        this.songControls.appendChild(sectionContainer);
+
+        this.controlBar.appendChild(this.songControls);
+
+        this.controlBar.appendChild(this.playlist.playlistContainer);
+
+        this.container.appendChild(this.controlBar);
 
         // split four measures into two blocks of two so that making the window smaller
         // doesn't put three on one line and one on the next
@@ -1153,7 +1170,10 @@ class Score {
         // parse the song code
         var song = new Song();
         song.parseChatLink(songCode);
+        this.setSongObject(song, disableUndo);
+    }
 
+    setSongObject(song, disableUndo) {
         // put the entire process of loading the song into a single undo action
         this.startActions();
         // set the title, make sure to update the UI
@@ -1179,7 +1199,7 @@ class Score {
         this.endActions(disableUndo);
     }
 
-    getSong() {
+    getSongObject() {
         // create a song object
         var song = new Song();
 
@@ -1202,8 +1222,12 @@ class Score {
             song.setMeasureNotes(m, this.measures[m].getMeasureNotes());
         }
 
+        return song;
+    }
+
+    getSong() {
         // finally, have the song object produce a song code format
-        return song.formatAsChatLink();
+        return this.getSongObject().formatAsChatLink();
     }
 
     setSelectedMeasure(measure) {
@@ -1427,6 +1451,320 @@ class Score {
     }
 }
 
+function clearPlaylist(button) {
+    // chrome is doing strange things with clicked buttons so just unfocus it
+    button.blur();
+    var playlist = getParent(button, "playlistBox").playlist;
+    playlist.clear();
+}
+
+function loopPlaylist(button) {
+    // chrome is doing strange things with clicked buttons so just unfocus it
+    button.blur();
+    var playlist = getParent(button, "playlistBox").playlist;
+
+    playlist.toggleLoop(button);
+}
+
+function addToPlaylist(button) {
+    // chrome is doing strange things with clicked buttons so just unfocus it
+    button.blur();
+    var playlist = getParent(button, "playlistBox").playlist;
+    playlist.add();
+}
+
+function editPlaylistSave() {
+    var textarea = this.textarea;
+    if (textarea.exp != textarea.value) {
+        textarea.playlist.import(textarea.value);
+    }
+    clearMenus();
+}
+
+function editPlaylist(button) {
+    // chrome is doing strange things with clicked buttons so just unfocus it
+    button.blur();
+    var playlist = getParent(button, "playlistBox").playlist;
+
+    // clear all menus
+    clearMenus();
+    // create a div and set some properties
+    var div = document.createElement("div");
+    div.className = "menu";
+    div.button = button;
+//    div.callback = callback
+
+    // build the section menu out of buttons
+    var textArea = document.createElement("textarea");
+    textArea.rows = "5";
+    textArea.cols = "64";
+    var exp = playlist.export();
+    textArea.value = exp;
+    textArea.exp = exp;
+    textArea.playlist = playlist;
+
+    div.appendChild(textArea);
+
+    var save = document.createElement("input");
+    save.className = "button";
+    save.value = "Save";
+    save.textarea = textArea;
+    save.playlist = playlist;
+    save.onclick = editPlaylistSave;
+
+    div.appendChild(save);
+
+
+//    div.innerHTML = `<textarea id="songCode" rows="5" cols="64" onchange="editPlaylistChanged(this);"></textarea>`;
+
+    // put the menu in the clicked button's parent and anchor it to button
+    showMenu(div, getParent(button, "scoreButtonRow"), button);
+}
+
+class Playlist {
+    constructor(score) {
+        this.score = score;
+        this.entries = Array();
+        this.looping = false;
+        this.buildUI();
+    }
+
+    buildUI() {
+
+        // this.playlistContainer = document.createElement("div");
+        // this.playlistContainer.className = "playlistContainer";
+        // this.playlistContainer.measure = this;
+
+        this.playlistBox = document.createElement("div");
+        this.playlistBox.className = "playlistBox";
+        this.playlistBox.playlist = this;
+
+        // this.playlistContainer.appendChild(this.playlistBox);
+        this.playlistContainer = this.playlistBox;
+
+        this.playlistBox.innerHTML = `
+            <div class="scoreButtonRow">
+                <input class="button addButton" type="submit" value="Add" onClick="addToPlaylist(this)"/>
+                <input class="button loopButton" type="submit" value="Loop" onClick="loopPlaylist(this)"/>
+                <input class="button clearButton" type="submit" value="Clear" onClick="clearPlaylist(this)"/>
+                <input class="button editButton" type="submit" value="Edit" onClick="editPlaylist(this)"/>
+            </div>
+        `;
+//        for (var i = 0; i < 5; i++) {
+//            var song = new Song();
+//            song.setName("SONG SONG " + i);
+//            this.addSong(song);
+//        }
+    }
+
+    addSong(song, select) {
+        var entry = new PlaylistEntry(song, this);
+        if (this.selected) {
+            var index = this.entries.indexOf(this.selected);
+            this.entries.splice(index+1, 0, entry);
+            insertAfter(entry.playlistEntryContainer, this.selected.playlistEntryContainer);
+        } else {
+            this.entries.push(entry);
+            this.playlistBox.appendChild(entry.playlistEntryContainer);
+        }
+        if (select) {
+            this.select(entry, false);
+        }
+    }
+
+    removeEntry(entry) {
+        if (removeFromList(this.entries, entry)) {
+            deleteNode(entry.playlistEntryContainer);
+            if (this.selected == entry) {
+                this.selected = null;
+            }
+        }
+    }
+
+    moveUp(entry) {
+        var index = this.entries.indexOf(entry);
+        if (index > 0) {
+            this.entries.splice(index, 1);
+            this.entries.splice(index-1, 0, entry);
+            deleteNode(entry.playlistEntryContainer);
+            insertBefore(entry.playlistEntryContainer, this.entries[index].playlistEntryContainer);
+        }
+    }
+
+    moveDown(entry) {
+        var index = this.entries.indexOf(entry);
+        if (index >= 0 && index < this.entries.length - 1) {
+            this.entries.splice(index, 1);
+            this.entries.splice(index+1, 0, entry);
+            deleteNode(entry.playlistEntryContainer);
+            insertAfter(entry.playlistEntryContainer, this.entries[index].playlistEntryContainer);
+        }
+    }
+
+    select(entry, setScore) {
+        if (this.selected == entry) {
+            return;
+        }
+        if (entry == null) {
+            return;
+        }
+        if (this.selected) {
+            if (setScore) {
+                this.selected.updateSong();
+            }
+            this.selected.setSelected(false);
+        }
+        entry.setSelected(true);
+        this.selected = entry;
+        if (setScore) {
+            this.score.setSongObject(this.selected.song, true);
+        }
+    }
+
+    selectNext() {
+        if (!this.selected) {
+            this.select(this.entries[0], true);
+            return;
+        }
+
+        var index = this.entries.indexOf(this.selected);
+        index += 1;
+        if (index >= this.entries.length) {
+            index = 0;
+        }
+        this.select(this.entries[index], true);
+    }
+
+    clear() {
+        for (var i = 0; i < this.entries.length; i++) {
+            deleteNode(this.entries[i].playlistEntryContainer);
+        }
+        this.entries = Array();
+        this.selected = null;
+    }
+
+    add() {
+        this.addSong(this.score.getSongObject());
+    }
+
+    toggleLoop(button) {
+        if (this.looping) {
+            button.value = "Loop";
+            this.looping = false;
+        } else {
+            button.value = "Stop";
+            this.looping = true;
+        }
+    }
+
+    export() {
+        var str = "";
+        for (var i = 0; i < this.entries.length; i++) {
+            str = str + this.entries[i].song.formatAsChatLink() + "\n";
+        }
+        return str;
+    }
+
+    import(str) {
+        this.clear();
+        var songCodes = str.split("\n")
+        for (var i = 0; i < songCodes.length; i++) {
+            var code = songCodes[i].trim();
+            if (code != "") {
+                var song = new Song();
+                song.parseChatLink(code);
+                this.addSong(song, false);
+            }
+        }
+        if (this.entries.length > 0) {
+            this.select(this.entries[0], true);
+        }
+    }
+}
+
+class PlaylistEntry {
+    constructor(song, playlist) {
+        this.song = song;
+        this.playlist = playlist;
+        this.selectedEntry = null;
+        this.buildUI();
+    }
+
+    buildUI() {
+        this.playlistEntryContainer = document.createElement("div");
+        this.playlistEntryContainer.className = "playlistEntryContainer";
+        this.playlistEntryContainer.playlist = this;
+
+        {
+            var span = document.createElement("span");
+            span.className = "smallButton";
+            span.onclick = this.deletePlaylistEntry
+            span.entry = this;
+            span.innerHTML = `X`;
+            this.playlistEntryContainer.appendChild(span);
+        }
+
+        {
+            var span = document.createElement("span");
+            span.className = "smallButton";
+            span.onclick = this.movePlaylistEntryUp
+            span.entry = this;
+            span.innerHTML = `↑`;
+            this.playlistEntryContainer.appendChild(span);
+        }
+
+        {
+            var span = document.createElement("span");
+            span.className = "smallButton";
+            span.onclick = this.movePlaylistEntryDown
+            span.entry = this;
+            span.innerHTML = `↓`;
+            this.playlistEntryContainer.appendChild(span);
+        }
+
+        {
+            this.titleBar = document.createElement("span");
+            this.titleBar.className = "playlistEntry";
+            this.titleBar.onclick = this.selectPlaylistEntry
+            this.titleBar.entry = this;
+            this.titleBar.innerHTML = this.song.getName();
+            this.playlistEntryContainer.appendChild(this.titleBar);
+        }
+//
+//        this.playlistEntryContainer.innerHTML = `
+//                <span class="smallButton" onclick="deletePlaylistEntry()">X</span>
+//                <span class="smallButton" onclick="movePlaylistEntryUp()">↑</span>
+//                <span class="smallButton" onclick="movePlaylistEntryDown()">↓</span>
+//                <span class="playlistEntry" onclick="selectPlaylistEntry()">` + this.song.getName() + `</span>
+//        `;
+    }
+
+    deletePlaylistEntry() {
+        this.entry.playlist.removeEntry(this.entry);
+    }
+
+    movePlaylistEntryUp() {
+        this.entry.playlist.moveUp(this.entry);
+    }
+
+    movePlaylistEntryDown() {
+        this.entry.playlist.moveDown(this.entry);
+    }
+
+    selectPlaylistEntry() {
+        this.entry.playlist.select(this.entry, true);
+    }
+
+    setSelected(selected) {
+        this.titleBar.className = selected ? "playlistEntrySelected" : "playlistEntry";
+    }
+
+    updateSong() {
+        this.song = this.playlist.score.getSongObject();
+        this.titleBar.innerHTML = this.song.getName();
+    }
+}
+
 // basic title undo action
 class setTitleAction extends Action {
     constructor(score, oldTitle, newTitle) {
@@ -1504,6 +1842,9 @@ class Playback {
         this.playT = -1;
         // the last measure we set playback state on
         this.lastMeasure = null;
+
+        // hack flag to prevent moving to the next playlist entry immediately when starting
+        this.hasPlayed = false;
     }
 
     playing() {
@@ -1562,6 +1903,12 @@ class Playback {
     }
 
     playAudio(delay) {
+        // hack to switch to the next song in the playlist
+        if (this.hasPlayed && this.playT == 0 && this.score.playlist != null && this.score.playlist.looping) {
+            this.score.playlist.selectNext();
+        }
+        this.hasPlayed = true;
+
         // play the audio for the current playT time column
         // get the correct measure
         var measure = Math.floor(this.playT / 16);
