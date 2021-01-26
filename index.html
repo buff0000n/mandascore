@@ -18,6 +18,7 @@
 <script type="text/javascript" language="javascript" src="js/song.js"></script>
 <script type="text/javascript" language="javascript" src="js/lib/buffer-loader.js"></script>
 <script type="text/javascript" language="javascript" src="js/audio.js"></script>
+<script type="text/javascript" language="javascript" src="js/lib/lz-string.js"></script>
 <script type="text/javascript" language="javascript" src="js/ui.js"></script>
 <script type="text/javascript" language="javascript">
 
@@ -61,6 +62,10 @@
 
     function getSongCode() {
         return score.getSong();
+    }
+
+    function getPlaylistCode() {
+        return score.playlist.export();
     }
 
     songcodePrefixStrip = /^song[0-9]+=/;
@@ -158,8 +163,13 @@
         if (songCode) {
             // if there is, then initialize our song
             setSongCode(decodeSongCodeFromUrl(songCode), true);
+        } else {
+            // check for a playlist
+            var playlist = getQueryParam(url, "playlist", false);
+            if (playlist) {
+                setPlaylistCode(decodePlaylistFromUrl(playlist));
+            }
         }
-
     }
 
     function decodeSongCodeFromUrl(urlString) {
@@ -175,6 +185,21 @@
             code = code2;
         }
         return code;
+    }
+
+    function decodePlaylistFromUrl(playlist) {
+        return LZString.decompressFromEncodedURIComponent(playlist);
+    }
+
+    function encodePlaylistToUrl(playlistCode) {
+		return LZString.compressToEncodedURIComponent(playlistCode);
+    }
+
+    function setPlaylistCode(playlistCode) {
+        var playlistBox = document.getElementById("playlistBox");
+        playlistBox.style.display = "block";
+        score.playlist.setLooping(true);
+        score.playlist.import(playlistCode);
     }
 
     function copyModelUrl() {
@@ -197,11 +222,36 @@
         textField.select();
     }
 
+    function copyPlaylistUrl() {
+        // build a playlist from the UI
+        var playlistCode = getPlaylistCode();
+
+        var query = "?playlist=" + encodePlaylistToUrl(playlistCode)
+
+        // build a full URL using the current URL
+        var url = buildQueryUrl(query);
+
+        // find the pop-up URL text field and set its contents
+        var textField = document.getElementById("playlistUrlHolder");
+        textField.value = url;
+        // show the popup
+        var popup = document.getElementById("playlistPopupBox");
+        popup.classList.toggle("show");
+        // focus and select the contents of the text field
+        textField.focus();
+        textField.select();
+    }
+
     function hideUrlPopup() {
         // hide the popup when the text field loses focus
         var popup = document.getElementById("popupBox");
-        popup.classList.toggle("show");
+        popup.classList.remove("show");
         // todo: the onBlur() event fails to get called sometimes in Chrome
+
+        var popup2 = document.getElementById("playlistPopupBox");
+        if (popup2) {
+            popup2.classList.remove("show");
+        }
     }
 
     function generatePng(button) {
@@ -209,6 +259,19 @@
         button.blur();
         // show the PNG menu and generate an image
         runPngMenu(button);
+    }
+
+    function togglePlaylist(button) {
+        // chrome is doing strange things with clicked buttons so just unfocus it
+        button.blur();
+        var playlistBox = document.getElementById("playlistBox");
+        if (playlistBox.style.display == "") {
+            playlistBox.style.display = "block";
+            score.playlist.setLooping(true);
+        } else {
+            playlistBox.style.display = "";
+            score.playlist.setLooping(false);
+        }
     }
 
     function about() {
@@ -296,6 +359,12 @@
             <div class="tooltip">
                 <input id="pngButton" class="button popup" type="submit" value="Generate PNG" onClick="generatePng(this)"/>
                 <span class="tooltiptextbottom">Generate an image of the song</span>
+            </div>
+        </div>
+        <div class="util">
+            <div class="tooltip">
+                <input id="playlistButton" class="button popup disabled" type="submit" value="Playlist" onClick="togglePlaylist(this)"/>
+                <span class="tooltiptextbottom">Enable or disable the playlist</span>
             </div>
         </div>
     </div>

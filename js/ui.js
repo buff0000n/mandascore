@@ -1355,12 +1355,16 @@ class Score {
 
         } else {
             // something else is playing, kill it
-            if (this.playback != null) {
-                this.playback.kill();
-            }
+            this.stopPlayback();
             // start a new playback with the given measure list.
             this.playback = new Playback(this, button, m);
             this.playback.start();
+        }
+    }
+
+    stopPlayback() {
+        if (this.playback != null) {
+            this.playback.kill();
         }
     }
 
@@ -1473,8 +1477,12 @@ function addToPlaylist(button) {
     playlist.add();
 }
 
-function editPlaylistSave() {
-    var textarea = this.textarea;
+function editPlaylistSaveButton(e) {
+    editPlaylistSave(e.target);
+}
+
+function editPlaylistSave(button) {
+    var textarea = getFirstChild(getParent(button, "playlistBox"), "playlistEditArea");
     if (textarea.exp != textarea.value) {
         textarea.playlist.import(textarea.value);
     }
@@ -1496,12 +1504,15 @@ function editPlaylist(button) {
 
     // build the section menu out of buttons
     var textArea = document.createElement("textarea");
+    textArea.className = "playlistEditArea";
     textArea.rows = "5";
     textArea.cols = "64";
     var exp = playlist.export();
     textArea.value = exp;
     textArea.exp = exp;
     textArea.playlist = playlist;
+    // escape is usually ignored in text areas
+    textArea.onkeydown = textAreaKeyDown;
 
     div.appendChild(textArea);
 
@@ -1510,7 +1521,7 @@ function editPlaylist(button) {
     save.value = "Save";
     save.textarea = textArea;
     save.playlist = playlist;
-    save.onclick = editPlaylistSave;
+    save.onclick = editPlaylistSaveButton
 
     div.appendChild(save);
 
@@ -1519,6 +1530,25 @@ function editPlaylist(button) {
 
     // put the menu in the clicked button's parent and anchor it to button
     showMenu(div, getParent(button, "scoreButtonRow"), button);
+
+    textArea.focus();
+    textArea.select();
+}
+
+function textAreaKeyDown(e) {
+    e = e || window.event;
+    nodeName = e.target.nodeName;
+
+    switch (e.code) {
+		case "Escape" :
+		    // clear any open menus on escape
+		    clearMenu();
+		    break;
+		case "Enter" :
+		    // commit when enter is pressed
+		    editPlaylistSave(e.target);
+		    break;
+    }
 }
 
 class Playlist {
@@ -1537,6 +1567,7 @@ class Playlist {
 
         this.playlistBox = document.createElement("div");
         this.playlistBox.className = "playlistBox";
+        this.playlistBox.id = "playlistBox";
         this.playlistBox.playlist = this;
 
         // this.playlistContainer.appendChild(this.playlistBox);
@@ -1547,14 +1578,18 @@ class Playlist {
                 <input class="button addButton" type="submit" value="Add" onClick="addToPlaylist(this)"/>
                 <input class="button loopButton" type="submit" value="Loop" onClick="loopPlaylist(this)"/>
                 <input class="button clearButton" type="submit" value="Clear" onClick="clearPlaylist(this)"/>
-                <input class="button editButton" type="submit" value="Edit" onClick="editPlaylist(this)"/>
+                <input class="button editButton" type="submit" value="Copy/Paste" onClick="editPlaylist(this)"/>
+                <div class="popup">
+                    <input id="playlistCopyUrlButton" class="button urlButton popup" type="submit" value="Generate Link"
+                           onClick="copyPlaylistUrl()"/>
+                    <div class="popuptext" id="playlistPopupBox">
+                        <input id="playlistUrlHolder" type="text" size="60" onblur="hideUrlPopup()"/>
+                    </div>
+                </div>
             </div>
         `;
-//        for (var i = 0; i < 5; i++) {
-//            var song = new Song();
-//            song.setName("SONG SONG " + i);
-//            this.addSong(song);
-//        }
+
+        this.loopingButton = getFirstChild(this.playlistBox, "loopButton");
     }
 
     addSong(song, select) {
@@ -1563,8 +1598,10 @@ class Playlist {
             var index = this.entries.indexOf(this.selected);
             this.entries.splice(index+1, 0, entry);
             insertAfter(entry.playlistEntryContainer, this.selected.playlistEntryContainer);
+            this.reIndex();
         } else {
             this.entries.push(entry);
+            entry.setIndex(this.entries.length);
             this.playlistBox.appendChild(entry.playlistEntryContainer);
         }
         if (select) {
@@ -1578,6 +1615,7 @@ class Playlist {
             if (this.selected == entry) {
                 this.selected = null;
             }
+            this.reIndex();
         }
     }
 
@@ -1588,6 +1626,7 @@ class Playlist {
             this.entries.splice(index-1, 0, entry);
             deleteNode(entry.playlistEntryContainer);
             insertBefore(entry.playlistEntryContainer, this.entries[index].playlistEntryContainer);
+            this.reIndex();
         }
     }
 
@@ -1598,6 +1637,7 @@ class Playlist {
             this.entries.splice(0, 0, entry);
             deleteNode(entry.playlistEntryContainer);
             insertBefore(entry.playlistEntryContainer, this.entries[1].playlistEntryContainer);
+            this.reIndex();
         }
     }
 
@@ -1608,6 +1648,7 @@ class Playlist {
             this.entries.splice(index+1, 0, entry);
             deleteNode(entry.playlistEntryContainer);
             insertAfter(entry.playlistEntryContainer, this.entries[index].playlistEntryContainer);
+            this.reIndex();
         }
     }
 
@@ -1618,6 +1659,13 @@ class Playlist {
             this.entries.splice(this.entries.length, 0, entry);
             deleteNode(entry.playlistEntryContainer);
             insertAfter(entry.playlistEntryContainer, this.entries[this.entries.length - 2].playlistEntryContainer);
+            this.reIndex();
+        }
+    }
+
+    reIndex() {
+        for (var i = 0; i < this.entries.length; i++) {
+            this.entries[i].setIndex(i + 1);
         }
     }
 
@@ -1669,12 +1717,16 @@ class Playlist {
         this.addSong(this.score.getSongObject());
     }
 
-    toggleLoop(button) {
-        if (this.looping) {
-            button.value = "Loop";
+    toggleLoop() {
+        this.setLooping(!this.looping)
+    }
+
+    setLooping(looping) {
+        if (!looping) {
+            this.loopingButton.value = "Loop";
             this.looping = false;
         } else {
-            button.value = "Stop";
+            this.loopingButton.value = "Stop";
             this.looping = true;
         }
     }
@@ -1700,6 +1752,7 @@ class Playlist {
         }
         if (this.entries.length > 0) {
             this.select(this.entries[0], true);
+//            this.score.stopPlayback();
         }
     }
 }
@@ -1761,6 +1814,13 @@ class PlaylistEntry {
         }
 
         {
+            this.indexBar = document.createElement("span");
+            this.indexBar.className = "playlistEntry";
+            this.indexBar.onclick = this.selectPlaylistEntry
+            this.indexBar.entry = this;
+            this.playlistEntryContainer.appendChild(this.indexBar);
+        }
+        {
             this.titleBar = document.createElement("span");
             this.titleBar.className = "playlistEntry";
             this.titleBar.onclick = this.selectPlaylistEntry
@@ -1775,6 +1835,10 @@ class PlaylistEntry {
 //                <span class="smallButton" onclick="movePlaylistEntryDown()">↓</span>
 //                <span class="playlistEntry" onclick="selectPlaylistEntry()">` + this.song.getName() + `</span>
 //        `;
+    }
+
+    setIndex(index) {
+        this.indexBar.innerHTML = index;
     }
 
     deletePlaylistEntry() {
@@ -1802,6 +1866,7 @@ class PlaylistEntry {
     }
 
     setSelected(selected) {
+        this.indexBar.className = selected ? "playlistEntrySelected" : "playlistEntry";
         this.titleBar.className = selected ? "playlistEntrySelected" : "playlistEntry";
     }
 

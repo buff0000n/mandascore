@@ -10,6 +10,9 @@
         color: #FFFFFF;
         background-color: #000000;
     }
+    .playlistEditArea {
+        white-space: pre;
+    }
     input:invalid {
         background: #FF8888;
     }
@@ -197,6 +200,7 @@
         border-radius: 1ex;
         padding: 1ex;
         background: #000000;
+        display: none;
         /*
         overflow: auto;
         overflow-anchor: none;
