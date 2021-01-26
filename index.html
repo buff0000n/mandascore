@@ -18,6 +18,7 @@
 <script type="text/javascript" language="javascript" src="js/song.js"></script>
 <script type="text/javascript" language="javascript" src="js/lib/buffer-loader.js"></script>
 <script type="text/javascript" language="javascript" src="js/audio.js"></script>
+<script type="text/javascript" language="javascript" src="js/lib/lz-string.js"></script>
 <script type="text/javascript" language="javascript" src="js/ui.js"></script>
 <script type="text/javascript" language="javascript">
 
@@ -61,6 +62,10 @@
 
     function getSongCode() {
         return score.getSong();
+    }
+
+    function getPlaylistCode() {
+        return score.playlist.export();
     }
 
     songcodePrefixStrip = /^song[0-9]+=/;
@@ -158,8 +163,13 @@
         if (songCode) {
             // if there is, then initialize our song
             setSongCode(decodeSongCodeFromUrl(songCode), true);
+        } else {
+            // check for a playlist
+            var playlist = getQueryParam(url, "playlist", false);
+            if (playlist) {
+                setPlaylistCode(decodePlaylistFromUrl(playlist));
+            }
         }
-
     }
 
     function decodeSongCodeFromUrl(urlString) {
@@ -175,6 +185,23 @@
             code = code2;
         }
         return code;
+    }
+
+    function decodePlaylistFromUrl(playlist) {
+        // gunzip the playlist string
+        return LZString.decompressFromEncodedURIComponent(playlist);
+    }
+
+    function encodePlaylistToUrl(playlistCode) {
+        // gzip the playlist string
+		return LZString.compressToEncodedURIComponent(playlistCode);
+    }
+
+    function setPlaylistCode(playlistCode) {
+        var playlistBox = document.getElementById("playlistBox");
+        playlistBox.style.display = "block";
+        score.playlist.setLooping(true);
+        score.playlist.import(playlistCode);
     }
 
     function copyModelUrl() {
@@ -197,11 +224,36 @@
         textField.select();
     }
 
+    function copyPlaylistUrl() {
+        // build a playlist from the UI
+        var playlistCode = getPlaylistCode();
+
+        var query = "?playlist=" + encodePlaylistToUrl(playlistCode)
+
+        // build a full URL using the current URL
+        var url = buildQueryUrl(query);
+
+        // find the pop-up URL text field and set its contents
+        var textField = document.getElementById("playlistUrlHolder");
+        textField.value = url;
+        // show the popup
+        var popup = document.getElementById("playlistPopupBox");
+        popup.classList.toggle("show");
+        // focus and select the contents of the text field
+        textField.focus();
+        textField.select();
+    }
+
     function hideUrlPopup() {
         // hide the popup when the text field loses focus
         var popup = document.getElementById("popupBox");
-        popup.classList.toggle("show");
+        popup.classList.remove("show");
         // todo: the onBlur() event fails to get called sometimes in Chrome
+
+        var popup2 = document.getElementById("playlistPopupBox");
+        if (popup2) {
+            popup2.classList.remove("show");
+        }
     }
 
     function generatePng(button) {
@@ -209,6 +261,21 @@
         button.blur();
         // show the PNG menu and generate an image
         runPngMenu(button);
+    }
+
+    function togglePlaylist(button) {
+        // chrome is doing strange things with clicked buttons so just unfocus it
+        button.blur();
+        var playlistBox = document.getElementById("playlistBox");
+        if (playlistBox.style.display == "") {
+            playlistBox.style.display = "block";
+            score.playlist.setLooping(true);
+            document.getElementById("playlistButton").classList.remove("gray");
+        } else {
+            playlistBox.style.display = "";
+            score.playlist.setLooping(false);
+            document.getElementById("playlistButton").classList.add("gray");
+        }
     }
 
     function about() {
@@ -298,6 +365,12 @@
                 <span class="tooltiptextbottom">Generate an image of the song</span>
             </div>
         </div>
+        <div class="util">
+            <div class="tooltip">
+                <input id="playlistButton" class="button popup gray" type="submit" value="Playlist" onClick="togglePlaylist(this)"/>
+                <span class="tooltiptextbottom">Enable or disable the playlist</span>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -385,6 +458,21 @@
                         <li><a href="#tocSongCode">SongCode</a></li>
                         <li><a href="#tocShareURL">Share URL</a></li>
                         <li><a href="#tocExportToPng">Export to PNG</a></li>
+                    </ul>
+                </li>
+                <li><a href="#tocPlaylist">Playlist</a>
+                    <ul>
+                        <li><a href="#tocAddingASong">Adding a song</a></li>
+                        <li><a href="#tocEditingASong">Editing a song</a></li>
+                        <li><a href="#tocEditingPlaylist">Editing the playlist</a></li>
+                        <li><a href="#tocPlayingPlaylist">Playing the playlist</a></li>
+                        <li>
+                            <a href="#tocSavingPlaylist">Saving the playlist</a>
+                            <ul>
+                                <li><a href="#tocCopyPaste">Copy/Paste</a></li>
+                                <li><a href="#tocPlaylistURL">Playlist URL</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </li>
                 <li><a href="#tocInstrumentSetNotes">Instrument Set Notes</a>
@@ -587,6 +675,81 @@
             <p>
                 <strong>Note that you cannot re-import a PNG to edit it again.</strong>  You should also save your
                 song as either a Song Code or URL so you can come back to it later.
+            </p>
+
+            <h1 id="tocPlaylist">Playlist</h1>
+            <p>
+                The playlist feature allows you to queue up a sequence of song loops to play one after the other.
+            </p>
+            <p>
+                Enable the playlist by clicking the <strong>Playlist</strong> button in the top bar.
+            </p>
+            <p>
+                This is purely for my own amusement, use it if you want.
+            </p>
+
+            <h2 id="tocAddingASong">Adding a song</h2>
+            <p>
+                Clicking the <strong>Add</strong> button will add the current contents of the song editor as a new
+                song in the playlist.
+            </p>
+            <p>
+                If a song is currently selected in the playlist then the new song will inserted after that one.
+            </p>
+            <h2 id="tocEditingASong">Editing a song</h2>
+            <p>
+                Click on a song in the playlist to bring that song up in the song editor.
+            </p>
+            <p>
+                The current contents of the song editor will be automatically saved to the currently selected playlist
+                entry before switching to the new selection.
+            </p>
+            <p>
+                <strong class="warn">Selecting a different song in the playlist will clear the undo history.</strong>
+            </p>
+            <h2 id="tocEditingPlaylist">Editing the playlist</h2>
+            <p>
+                Use the buttons to the left of the song titles to edit the playlist itself.
+            </p>
+            <ul>
+                <li><strong>X</strong>: Remove the playlist entry</li>
+                <li><strong>⇈</strong>: Move the playlist entry to the top</li>
+                <li><strong>↑</strong>: Move the playlist entry up one spot</li>
+                <li><strong>↓</strong>: Move the playlist entry down one spot</li>
+                <li><strong>⇊</strong>: Move the playlist entry to the bottom</li>
+            </ul>
+            <h2 id="tocPlayingPlaylist">Playing the playlist</h2>
+            <p>
+                By default playlist looping is enabled.  This means that if you play the full song then it will
+                automatically advance to the next entry in the playlist at the end of measure four.
+            </p>
+            <p>
+                The playlist will not advance when playing a single measure.
+            </p>
+            <p>
+                Click <strong>Disable</strong> above the playlist to disable it.  While disabled the song will not
+                advance to the next playlist entry after measure four; it will stay on the same song.  Click
+                <strong>Enable</strong> to re-enable it.
+            </p>
+            <h2 id="tocSavingPlaylist">Saving the playlist</h2>
+            <p>
+                There are two options for saving/loading a playlist.
+            </p>
+            <h3 id="tocCopyPaste">Copy/Paste</h3>
+            <p>
+                Click <strong>Copy/Paste</strong> to bring up a text area containing the song codes for every song in
+                the playlist.  You can copy this and save it wherever you want.
+            </p>
+            <p>
+                You can also paste a new song list into this text area.  This will replace the current playlist, if any.
+            </p>
+            <h3 id="tocPlaylistURL">Playlist URL</h3>
+            <p>
+                Click the <strong>Generate Link</strong> button above the paylist to generate a shareable URL with the
+                entire playlist embedded in it.  Opening the URL will open Mandascore and restore the playlist.
+            </p>
+            <p>
+                <strong class="warn">I'm compressing it, but this URL can still be very large.</strong>
             </p>
 
             <h1 id="tocInstrumentSetNotes">Instrument Set Notes</h1>
@@ -858,6 +1021,10 @@
                 <li>Added my concept instrument sets because I can.</li>
                 <li>Fixed the volume encoding (thanks <strong>HZDeluxe</strong>)</li>
             </ul>
+            <h2>v2.0: 2020-01-26</h2>
+            <ul>
+                <li>Added a Playlist function, for the lulz.</li>
+            </ul>
 
             <h1 id="tocToDo">To Do</h1>
             <ul>
@@ -872,6 +1039,9 @@
 
             <h1 id="tocKnownIssues">Known Issues</h1>
             <ul>
+                <li>
+                    The playlist song switch isn't that smooth when the instrument set changes between songs.
+                </li>
                 <li>
                     In-game, a lot of the individual instrument notes have at least two different sounds that they
                     alternate between to avoid being 100% repetitive, especially the percussion notes.  That's more
@@ -910,7 +1080,7 @@
             <a href="https://github.com/buff0000n/mandascore/issues/2 ">Feedback</a>
         </div>
         <div>
-            v1.0.3: 2020-12-27
+            v2.0.0: 2021-01-26
         </div>
         <div>
             <a href="https://warframe.com">Ninjas Jam Free</a>
