@@ -1553,9 +1553,13 @@ function textAreaKeyDown(e) {
 
 class Playlist {
     constructor(score) {
+        // back reference to the score
         this.score = score;
+        // list of playlist entries
         this.entries = Array();
+        // looping state
         this.looping = false;
+        // build the UI
         this.buildUI();
     }
 
@@ -1565,18 +1569,23 @@ class Playlist {
         // this.playlistContainer.className = "playlistContainer";
         // this.playlistContainer.measure = this;
 
+        // main container
+        // this will expand vertically with the playlist
+        // todo: figure out a good cross-browser way to add a scrollbar
         this.playlistBox = document.createElement("div");
         this.playlistBox.className = "playlistBox";
         this.playlistBox.id = "playlistBox";
+        // back reference because why not
         this.playlistBox.playlist = this;
 
         // this.playlistContainer.appendChild(this.playlistBox);
         this.playlistContainer = this.playlistBox;
 
+        // menu bar, just HTML it
         this.playlistBox.innerHTML = `
             <div class="scoreButtonRow">
                 <input class="button addButton" type="submit" value="Add" onClick="addToPlaylist(this)"/>
-                <input class="button loopButton" type="submit" value="Loop" onClick="loopPlaylist(this)"/>
+                <input class="button loopButton" type="submit" value="Enable" onClick="loopPlaylist(this)"/>
                 <input class="button clearButton" type="submit" value="Clear" onClick="clearPlaylist(this)"/>
                 <input class="button editButton" type="submit" value="Copy/Paste" onClick="editPlaylist(this)"/>
                 <div class="popup">
@@ -1589,101 +1598,142 @@ class Playlist {
             </div>
         `;
 
+        // get a reference to the looping toggle button
         this.loopingButton = getFirstChild(this.playlistBox, "loopButton");
     }
 
     addSong(song, select) {
+        // create a new entry
         var entry = new PlaylistEntry(song, this);
         if (this.selected) {
+            // if there's a selection, the insert the new entry immediately after the selection
             var index = this.entries.indexOf(this.selected);
             this.entries.splice(index+1, 0, entry);
+            // do the same insertion in the dom
             insertAfter(entry.playlistEntryContainer, this.selected.playlistEntryContainer);
+            // renumber entries
             this.reIndex();
+
         } else {
+            // no current selection, this should only happen if the playlist is empty or the selection was deleted
             this.entries.push(entry);
+            // no need to reindex the whole list
             entry.setIndex(this.entries.length);
+            // insert into the dom
             this.playlistBox.appendChild(entry.playlistEntryContainer);
         }
         if (select) {
+            // optionally select
             this.select(entry, false);
         }
     }
 
     removeEntry(entry) {
+        // remove from the entry list
         if (removeFromList(this.entries, entry)) {
+            // remove from the dom
             deleteNode(entry.playlistEntryContainer);
+            // if the node was selected then we have no selection now
             if (this.selected == entry) {
                 this.selected = null;
             }
+            // renumber entries
             this.reIndex();
         }
     }
 
     moveUp(entry) {
+        // get the index of the entry
         var index = this.entries.indexOf(entry);
+        // make sure it's not already at the top
         if (index > 0) {
+            // remove and insert one spot up
             this.entries.splice(index, 1);
             this.entries.splice(index-1, 0, entry);
+            // same move in the dom
             deleteNode(entry.playlistEntryContainer);
             insertBefore(entry.playlistEntryContainer, this.entries[index].playlistEntryContainer);
+            // renumber entries
             this.reIndex();
         }
     }
 
     moveToTop(entry) {
+        // get the index of the entry
         var index = this.entries.indexOf(entry);
+        // make sure it's not already at the top
         if (index > 0) {
+            // remove and insert at the beginning
             this.entries.splice(index, 1);
             this.entries.splice(0, 0, entry);
+            // same move in the dom
             deleteNode(entry.playlistEntryContainer);
             insertBefore(entry.playlistEntryContainer, this.entries[1].playlistEntryContainer);
+            // renumber entries
             this.reIndex();
         }
     }
 
     moveDown(entry) {
+        // get the index of the entry
         var index = this.entries.indexOf(entry);
+        // make sure it's not already at the bottom
         if (index >= 0 && index < this.entries.length - 1) {
+            // remove and insert one spot down
             this.entries.splice(index, 1);
             this.entries.splice(index+1, 0, entry);
+            // same move in the dom
             deleteNode(entry.playlistEntryContainer);
             insertAfter(entry.playlistEntryContainer, this.entries[index].playlistEntryContainer);
+            // renumber entries
             this.reIndex();
         }
     }
 
     moveToBottom(entry) {
+        // get the index of the entry
         var index = this.entries.indexOf(entry);
         if (index >= 0 && index < this.entries.length - 1) {
+            // remove and insert at the end
             this.entries.splice(index, 1);
             this.entries.splice(this.entries.length, 0, entry);
+            // same move in the dom
             deleteNode(entry.playlistEntryContainer);
             insertAfter(entry.playlistEntryContainer, this.entries[this.entries.length - 2].playlistEntryContainer);
+            // renumber entries
             this.reIndex();
         }
     }
 
     reIndex() {
+        // lazy, just loop through and re-index eveything.
         for (var i = 0; i < this.entries.length; i++) {
             this.entries[i].setIndex(i + 1);
         }
     }
 
     select(entry, setScore) {
+        // already selected
         if (this.selected == entry) {
             return;
         }
+        // not sure if I need a null check but whatever
         if (entry == null) {
             return;
         }
+        // check if there is already a selection
         if (this.selected) {
+            // update the playlist entry's song, if this isn't an add action
             if (setScore) {
                 this.selected.updateSong();
             }
+            // clear selection
             this.selected.setSelected(false);
         }
+        // select the new entry
         entry.setSelected(true);
         this.selected = entry;
+        // update the score, if this isn't an add action
         if (setScore) {
             this.score.setSongObject(this.selected.song, true);
             // let's make this simple for now: switching songs in the playlist clears the undo history.
@@ -1692,29 +1742,36 @@ class Playlist {
     }
 
     selectNext() {
+        // if there is no selection then select the first entry
         if (!this.selected) {
             this.select(this.entries[0], true);
             return;
         }
-
+        // get the currently selected index
         var index = this.entries.indexOf(this.selected);
+        // increment and wrap around if necessary
         index += 1;
         if (index >= this.entries.length) {
             index = 0;
         }
+        // change the selection, updating the score
         this.select(this.entries[index], true);
     }
 
     clear() {
+        // delete from the dom
         for (var i = 0; i < this.entries.length; i++) {
             deleteNode(this.entries[i].playlistEntryContainer);
         }
+        // clear state
         this.entries = Array();
         this.selected = null;
     }
 
     add() {
-        this.addSong(this.score.getSongObject());
+        // add the song currently in the score and automatically select it
+        // This bypasses the auto-update when the selection changes, so the previously selected entry remains unchanged
+        this.addSong(this.score.getSongObject(), true);
     }
 
     toggleLoop() {
@@ -1723,15 +1780,16 @@ class Playlist {
 
     setLooping(looping) {
         if (!looping) {
-            this.loopingButton.value = "Loop";
+            this.loopingButton.value = "Enable";
             this.looping = false;
         } else {
-            this.loopingButton.value = "Stop";
+            this.loopingButton.value = "Disable";
             this.looping = true;
         }
     }
 
     export() {
+        // build a string with each playlist song's code on a new line
         var str = "";
         for (var i = 0; i < this.entries.length; i++) {
             str = str + this.entries[i].song.formatAsChatLink() + "\n";
@@ -1740,36 +1798,54 @@ class Playlist {
     }
 
     import(str) {
-        this.clear();
+        // split into lines
         var songCodes = str.split("\n")
+        var readEntries = Array();
+
         for (var i = 0; i < songCodes.length; i++) {
+            // trim and check for blank lines
             var code = songCodes[i].trim();
             if (code != "") {
+                // parse the song
                 var song = new Song();
                 song.parseChatLink(code);
-                this.addSong(song, false);
+                readEntries.push(song);
             }
         }
-        if (this.entries.length > 0) {
+
+        // don't make any changes if we didn't read any valid songs
+        // we also avoid making any changes if there was an error parsing the song list
+        if (readEntries.length > 0) {
+            // clear the current playlist
+            this.clear();
+            // add each song
+            for (var i = 0; i < readEntries.length; i++) {
+                // add it to the playlist, without affecting the selection
+                this.addSong(readEntries[i], false);
+            }
+            // finally, select the first entry
             this.select(this.entries[0], true);
-//            this.score.stopPlayback();
         }
     }
 }
 
 class PlaylistEntry {
     constructor(song, playlist) {
+        // song object
         this.song = song;
+        // back reference
         this.playlist = playlist;
-        this.selectedEntry = null;
+        // build the UI
         this.buildUI();
     }
 
     buildUI() {
+        // main container
         this.playlistEntryContainer = document.createElement("div");
         this.playlistEntryContainer.className = "playlistEntryContainer";
         this.playlistEntryContainer.playlist = this;
 
+        // I kind of regret this, but build the dom manually
         {
             var span = document.createElement("span");
             span.className = "smallButton";
@@ -1814,6 +1890,7 @@ class PlaylistEntry {
         }
 
         {
+            // we need to keep a reference to the index span to change its color when selected
             this.indexBar = document.createElement("span");
             this.indexBar.className = "playlistEntry";
             this.indexBar.onclick = this.selectPlaylistEntry
@@ -1821,6 +1898,7 @@ class PlaylistEntry {
             this.playlistEntryContainer.appendChild(this.indexBar);
         }
         {
+            // we need to keep a reference to the title span to change its color when selected
             this.titleBar = document.createElement("span");
             this.titleBar.className = "playlistEntry";
             this.titleBar.onclick = this.selectPlaylistEntry
@@ -1828,13 +1906,6 @@ class PlaylistEntry {
             this.titleBar.innerHTML = this.song.getName();
             this.playlistEntryContainer.appendChild(this.titleBar);
         }
-//
-//        this.playlistEntryContainer.innerHTML = `
-//                <span class="smallButton" onclick="deletePlaylistEntry()">X</span>
-//                <span class="smallButton" onclick="movePlaylistEntryUp()">↑</span>
-//                <span class="smallButton" onclick="movePlaylistEntryDown()">↓</span>
-//                <span class="playlistEntry" onclick="selectPlaylistEntry()">` + this.song.getName() + `</span>
-//        `;
     }
 
     setIndex(index) {
@@ -1866,12 +1937,15 @@ class PlaylistEntry {
     }
 
     setSelected(selected) {
+        // change the css depending on whether it's selected
         this.indexBar.className = selected ? "playlistEntrySelected" : "playlistEntry";
         this.titleBar.className = selected ? "playlistEntrySelected" : "playlistEntry";
     }
 
     updateSong() {
+        // load the current song from the score
         this.song = this.playlist.score.getSongObject();
+        // update the title
         this.titleBar.innerHTML = this.song.getName();
     }
 }

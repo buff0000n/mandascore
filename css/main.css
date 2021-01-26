@@ -382,6 +382,10 @@
         color: #808080;
         cursor: not-allowed;
     }
+    .gray {
+        background-color: #202020;
+        color: #808080;
+    }
 
     .dropDown {
         background-color: #404040;
