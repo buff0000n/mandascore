@@ -2089,7 +2089,10 @@ class Playback {
 
     playAudio(delay) {
         // hack to switch to the next song in the playlist
-        if (this.hasPlayed && this.playT == 0 && this.score.playlist != null && this.score.playlist.looping) {
+        // only switch if we've played through once, have wrapped back to 0, have four measures,
+        // have a playlist, and the playlist is enabled.
+        if (this.hasPlayed && this.playT == 0 && this.measures.length == 4 &&
+            this.score.playlist != null && this.score.playlist.looping) {
             this.score.playlist.selectNext();
         }
         this.hasPlayed = true;
