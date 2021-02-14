@@ -20,6 +20,7 @@
 <script type="text/javascript" language="javascript" src="js/audio.js"></script>
 <script type="text/javascript" language="javascript" src="js/lib/lz-string.js"></script>
 <script type="text/javascript" language="javascript" src="js/ui.js"></script>
+<script type="text/javascript" language="javascript" src="js/library.js"></script>
 <script type="text/javascript" language="javascript">
 
 
@@ -198,8 +199,7 @@
     }
 
     function setPlaylistCode(playlistCode) {
-        var playlistBox = document.getElementById("playlistBox");
-        playlistBox.style.display = "block";
+        showPlaylist();
         score.playlist.setLooping(true);
         score.playlist.import(playlistCode);
     }
@@ -263,18 +263,54 @@
         runPngMenu(button);
     }
 
+    function playlistEnabled() {
+        return !document.getElementById("playlistButton").classList.contains("gray");
+    }
+
+    function playlistVisible() {
+        var display = document.getElementById("playlistBox").style.display
+        return display && display != "";
+    }
+
     function togglePlaylist(button) {
         // chrome is doing strange things with clicked buttons so just unfocus it
         button.blur();
-        var playlistBox = document.getElementById("playlistBox");
-        if (playlistBox.style.display == "") {
-            playlistBox.style.display = "block";
-            score.playlist.setLooping(true);
-            document.getElementById("playlistButton").classList.remove("gray");
+
+        if (!playlistVisible() || !playlistEnabled()) {
+            showPlaylist(true);
+
         } else {
-            playlistBox.style.display = "";
-            score.playlist.setLooping(false);
-            document.getElementById("playlistButton").classList.add("gray");
+            hidePlaylist();
+        }
+    }
+
+    function showPlaylist(enabled=true) {
+        var playlistBox = document.getElementById("playlistBox");
+        playlistBox.style.display = "block";
+        score.playlist.setLooping(true);
+        if (enabled) {
+            document.getElementById("playlistButton").classList.remove("gray");
+        }
+    }
+
+    function hidePlaylist() {
+        document.getElementById("playlistBox").style.display = "";
+        score.playlist.setLooping(false);
+        document.getElementById("playlistButton").classList.add("gray");
+    }
+
+    function toggleLibrary(button) {
+        // chrome is doing strange things with clicked buttons so just unfocus it
+        button.blur();
+        var libraryBox = document.getElementById("libraryBox");
+        if (!libraryBox || libraryBox.style.display == "") {
+            libraryBox = document.getElementById("libraryBox");
+            libraryBox.style.display = "block";
+            document.getElementById("libraryButton").classList.remove("gray");
+            score.library.init();
+        } else {
+            libraryBox.style.display = "";
+            document.getElementById("libraryButton").classList.add("gray");
         }
     }
 
@@ -323,6 +359,12 @@
 
 <div class="songContainer">
     <div class="songDiv">
+        <div class="util">
+            <div class="tooltip">
+                <input id="libraryButton" class="button popup gray" type="submit" value="Library" onClick="toggleLibrary(this)"/>
+                <span class="tooltiptextbottom">Enable or disable the library</span>
+            </div>
+        </div>
         <div class="util" id="demoSelectDiv">
             <div class="tooltip">
                 <span class="label">Demo:</span>
@@ -375,8 +417,9 @@
 </div>
 
 
-<div id="scoreArea">
-
+<div id="mainArea">
+    <div id="scoreArea">
+    </div>
 </div>
 
 <div class="titleBar">
@@ -1071,7 +1114,7 @@
 
     <div class="footerContainer">
         <div>
-            <img src="https://i.imgur.com/b5pNXKU.png" srcset="https://i.imgur.com/z6U8Oxs.png 2x"/>
+            <!--<img src="https://i.imgur.com/b5pNXKU.png" srcset="https://i.imgur.com/z6U8Oxs.png 2x"/>-->
         </div>
         <div>
             Buff00n

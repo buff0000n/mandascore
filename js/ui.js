@@ -1044,6 +1044,9 @@ class Score {
         // playlist object
         this.playlist = new Playlist(this);
 
+        // library object
+        this.library = new Library(this);
+
         // build the UI
         this.buildUI();
 
@@ -1097,6 +1100,8 @@ class Score {
 
         sectionContainer.appendChild(sectionTable);
         this.songControls.appendChild(sectionContainer);
+
+        this.controlBar.appendChild(this.library.libraryBox);
 
         this.controlBar.appendChild(this.songControls);
 
@@ -1365,7 +1370,12 @@ class Score {
     stopPlayback() {
         if (this.playback != null) {
             this.playback.kill();
+            this.playback = null;
         }
+    }
+
+    isPlaying() {
+        return this.playback != null && this.playback.playing();
     }
 
     generatePng(linkDiv, display) {
@@ -1600,6 +1610,16 @@ class Playlist {
 
         // get a reference to the looping toggle button
         this.loopingButton = getFirstChild(this.playlistBox, "loopButton");
+
+        this.playlistScollArea = document.createElement("div");
+        this.playlistScollArea.className = "playlistScollArea";
+        this.playlistBox.appendChild(this.playlistScollArea);
+    }
+
+    addSongCode(code, select) {
+        var song = new Song();
+        song.parseChatLink(code);
+        this.addSong(song, select);
     }
 
     addSong(song, select) {
@@ -1620,7 +1640,7 @@ class Playlist {
             // no need to reindex the whole list
             entry.setIndex(this.entries.length);
             // insert into the dom
-            this.playlistBox.appendChild(entry.playlistEntryContainer);
+            this.playlistScollArea.appendChild(entry.playlistEntryContainer);
         }
         if (select) {
             // optionally select
@@ -1940,6 +1960,10 @@ class PlaylistEntry {
         // change the css depending on whether it's selected
         this.indexBar.className = selected ? "playlistEntrySelected" : "playlistEntry";
         this.titleBar.className = selected ? "playlistEntrySelected" : "playlistEntry";
+        if (selected) {
+            // scroll the playlist viewer to the selected entry, either at the top or the botton, whichever is nearest
+            this.playlistEntryContainer.scrollIntoView({"behavior": "auto", "block": "nearest", "inline": "nearest"});
+        }
     }
 
     updateSong() {
