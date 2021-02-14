@@ -193,7 +193,7 @@ class Library {
     indexSong(song, cats) {
         // todo: better
         // Just concatenate all relevent keywords into a big string and lowercase it.
-        song.keywords = (cats.join(" ") + " " +
+        song.keywords = (cats.join(" ") + " "
             + song.name + " "
             + (song.attr ? (" " + song.attr.join(" ")) : "")
             + (song.tags ? (" " + song.tags.join(" ")) : "")

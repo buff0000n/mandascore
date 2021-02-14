@@ -165,13 +165,14 @@
         margin: 0;
         border: 0;
 	    color: #FFFFFF;
-        display: table-cell;
+        display: inline-block;
         vertical-align: bottom;
     }
 
     .playlistScollArea {
         overflow: auto;
         max-height: 32ex;
+        min-height: 32ex;
         overflow-anchor: none;
     }
 
@@ -205,6 +206,7 @@
         overflow: auto;
         overflow-anchor: none;
         max-height: 32ex;
+        min-height: 32ex;
     }
 
     .libIndent {
