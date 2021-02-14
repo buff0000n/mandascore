@@ -168,30 +168,11 @@
         display: table-cell;
         vertical-align: bottom;
     }
-    /*
-    .playlistContainerContainer{
-        padding: 0;
-        margin: 0;
-        border: 0;
-	    color: #FFFFFF;
-        display: table-cell;
-        height: 1px;
-    }
-    */
-    .playlistContainer {
-        padding: 1ex;
-        margin: 0 2ex;
-        border: 0;
-        border-radius: 1ex;
-	    color: #FFFFFF;
-	    background: #202020;
-        display: table-cell;
-        /* display: none; */
-        /* no idea why this works */
-        /*
-        height: 1px;
+
+    .playlistScollArea {
+        overflow: auto;
+        max-height: 32ex;
         overflow-anchor: none;
-        */
     }
 
     .playlistBox {
@@ -205,6 +186,29 @@
         overflow: auto;
         overflow-anchor: none;
         */
+    }
+
+    .libraryBox {
+        text-align: left;
+        max-width: 48ex;
+        min-width: 48ex;
+        border-radius: 1ex;
+        padding: 1ex;
+        margin: 0 1ex 0 0;
+        background: #000000;
+        display: none;
+        overflow-anchor: none;
+    }
+
+    .indexContainer {
+        margin: 1ex 0;
+        overflow: auto;
+        overflow-anchor: none;
+        max-height: 32ex;
+    }
+
+    .libIndent {
+        padding: 0 0 0 2ex;
     }
 
     .measureImgContainer {
@@ -304,6 +308,17 @@
         display: block-inline;
     }
 
+    #scoreArea {
+        display: table-cell;
+        vertical-align: top;
+    }
+
+    #libraryArea {
+        display: table-cell;
+        vertical-align: top;
+        height: 100%;
+    }
+
 	.utilGroup {
 	    text-align: center;
 	}
@@ -337,12 +352,11 @@
         cursor: pointer;
         display: block-inline;
     }
-    .playlistEntry, .playlistEntrySelected {
+    .playlistEntry, .playlistEntrySelected, .libCatLabel {
         background-color: #202020;
         border: none;
         color: #A0A0A0;
         padding: 0ex 1ex;
-        text-align: center;
         text-decoration: none;
         font-size: 100%;
         border-radius: 1ex;
@@ -353,6 +367,13 @@
     .playlistEntrySelected {
         background-color: #404040;
         color: #FFFFFF;
+    }
+    .libCatLabel {
+        background-color: #405080;
+        color: #FFFFFF;
+    }
+    .libSongLabel {
+        cursor: pointer;
     }
     .songContainer {
         text-align: center;
@@ -374,6 +395,25 @@
     }
     .urlButton, {
         background-color: #406080;
+    }
+
+    .loadingBox {
+        text-align: center;
+    }
+    .loadingLabel {
+        display: inline-block;
+        width: 50%;
+    }
+    .loadingProgress {
+        display: inline-block;
+        width: 50%;
+    }
+    .loadingProgressPos {
+        display: inline-block;
+        background: #405080;
+    }
+    .loadingProgressNeg {
+        display: inline-block;
     }
 
     /* graying everthing out when disabled */
