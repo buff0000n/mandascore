@@ -518,6 +518,17 @@
                         </li>
                     </ul>
                 </li>
+                <li><a href="#tocLibrary">Library</a>
+                    <ul>
+                        <li><a href="#tocSearchingTheLibrary">Searching the library</a></li>
+                        <li>
+                            <a href="#tocLoadingASong">Loading a song</a>
+                            <ul>
+                                <li><a href="#tocBuildingAPlaylist">Building a playlist</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
                 <li><a href="#tocInstrumentSetNotes">Instrument Set Notes</a>
                     <ul>
                         <li><a href="#tocAdau">Adau</a></li>
@@ -795,6 +806,59 @@
                 <strong class="warn">I'm compressing it, but this URL can still be very large.</strong>
             </p>
 
+            <h1 id="tocLibrary">Library</h1>
+            <p>
+                Click the <strong>Library</strong> button to enable the library.  This contains every Mandachord
+                request I've done.
+            </p>
+            <p>
+                <strong class="warn">There are thousands of songs and it's all loaded into your browser.  I'm
+                not sure how well this works on devices with limited memory.</strong>
+            </p>
+            <h2 id="tocSearchingTheLibrary">Searching the library</h2>
+            <p>
+                By default the entire library is listed.  Songs are categorized by my completely arbitrary
+                classification system.
+            </p>
+            <p>
+                The bar at the top is a search bar.  Enter one or more keywords to narrow down the listing.  The keyword
+                can be a category, a title, an artist, or one of a couple of tags:
+            </p>
+            <ul>
+                <li><strong>perfect</strong>: Matches melodies that translate perfectly onto the Mandachord</li>
+                <li><strong>filled</strong>: Matches melodies that have no space between notes</li>
+                <li><strong>sparse</strong>: Matches melodies that have a lot of space between notes</li>
+                <li><strong>double</strong>, <strong>triple</strong>, etc: Matches songs that I did more than one
+                    Mandachord loop for</li>
+                <li><strong>adau</strong>, <strong>alpha</strong>, <strong>druk</strong>, etc: Matches songs that
+                    only use one instrument set</li>
+            </ul>
+            <p>
+                Multiple keywords can be entered.  Only songs that match all the keywords will be shown.
+            </p>
+            <p>
+                <strong class="warn">Keywords must be three characters or longer before they will be searched</strong>
+            </p>
+            <h2 id="tocLoadingASong">Loading a song</h2>
+            <p>
+                Click on a song entry to load it into the Mandascore editor.  If the editor is currently playing
+                then playback will be reset to the beginning.
+            </p>
+            <p>
+                If the selected song has more than one Mandachord loop then the <strong>Playlist</strong> will be
+                temporarily enabled, and playback will go through all the loops.
+            </p>
+            <h3 id="tocBuildingAPlaylist">Building a playist</h3>
+            <p>
+                By default, clicking a song in the library will replace the song currently in the Mandacore.  If the
+                previously selected library song had multiple Mandachord loops then the playlist will be cleared for
+                the new song.
+            </p>
+            <p>
+                Enable the playlist by clicking the <strong>Playlist</strong> button, making sure it's lit up.
+                This will keep the playlist up and append songs as they are selected.
+            </p>
+
             <h1 id="tocInstrumentSetNotes">Instrument Set Notes</h1>
             <h2 id="tocAdau">Adau</h2>
             <p>
@@ -1069,14 +1133,15 @@
                 <li>Added a Playlist function, for the lulz.</li>
                 <li>Fixed a little problem with the playlist incrementing when you're only playing a single measure.</li>
             </ul>
+            <h2>v2.1: 2020-02-14</h2>
+            <ul>
+                <li>Added a searchable library of songs.</li>
+            </ul>
 
             <h1 id="tocToDo">To Do</h1>
             <ul>
                 <li>
                    Maybe some icons instead of word buttons for play, stop, copy, paste, undo, redo.
-                </li>
-                <li>
-                    Searchable database with my existing song library.  No idea how I'm going to do this.
                 </li>
             </ul>
 
@@ -1085,6 +1150,14 @@
             <ul>
                 <li>
                     The playlist song switch isn't that smooth when the instrument set changes between songs.
+                </li>
+                <li>
+                    Clicking songs on the library while playback is running can sometimes stop the sound.  I don't
+                    know why.
+                </li>
+                <li>
+                    The library data store and search function is pretty dumb right now.  It possibly doesn't work so
+                    great on devices with limited horsepower.
                 </li>
                 <li>
                     In-game, a lot of the individual instrument notes have at least two different sounds that they
@@ -1124,7 +1197,7 @@
             <a href="https://github.com/buff0000n/mandascore/issues/2 ">Feedback</a>
         </div>
         <div>
-            v2.0.1: 2021-02-06
+            v2.1.0: 2021-02-14
         </div>
         <div>
             <a href="https://warframe.com">Ninjas Jam Free</a>
