@@ -1102,10 +1102,8 @@ class Score {
         this.songControls.appendChild(sectionContainer);
 
         this.controlBar.appendChild(this.library.libraryBox);
-
-        this.controlBar.appendChild(this.songControls);
-
         this.controlBar.appendChild(this.playlist.playlistContainer);
+        this.controlBar.appendChild(this.songControls);
 
         this.container.appendChild(this.controlBar);
 

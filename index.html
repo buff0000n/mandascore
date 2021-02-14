@@ -286,7 +286,7 @@
 
     function showPlaylist(enabled=true) {
         var playlistBox = document.getElementById("playlistBox");
-        playlistBox.style.display = "block";
+        playlistBox.style.display = "inline-block";
         score.playlist.setLooping(true);
         if (enabled) {
             document.getElementById("playlistButton").classList.remove("gray");
@@ -305,7 +305,7 @@
         var libraryBox = document.getElementById("libraryBox");
         if (!libraryBox || libraryBox.style.display == "") {
             libraryBox = document.getElementById("libraryBox");
-            libraryBox.style.display = "block";
+            libraryBox.style.display = "inline-block";
             document.getElementById("libraryButton").classList.remove("gray");
             score.library.init();
         } else {
@@ -365,6 +365,12 @@
                 <span class="tooltiptextbottom">Enable or disable the library</span>
             </div>
         </div>
+        <div class="util">
+            <div class="tooltip">
+                <input id="playlistButton" class="button popup gray" type="submit" value="Playlist" onClick="togglePlaylist(this)"/>
+                <span class="tooltiptextbottom">Enable or disable the playlist</span>
+            </div>
+        </div>
         <div class="util" id="demoSelectDiv">
             <div class="tooltip">
                 <span class="label">Demo:</span>
@@ -405,12 +411,6 @@
             <div class="tooltip">
                 <input id="pngButton" class="button popup" type="submit" value="Generate PNG" onClick="generatePng(this)"/>
                 <span class="tooltiptextbottom">Generate an image of the song</span>
-            </div>
-        </div>
-        <div class="util">
-            <div class="tooltip">
-                <input id="playlistButton" class="button popup gray" type="submit" value="Playlist" onClick="togglePlaylist(this)"/>
-                <span class="tooltiptextbottom">Enable or disable the playlist</span>
             </div>
         </div>
     </div>
