@@ -314,9 +314,9 @@ class Library {
                 // Add the first song, already in the score, to the playlist and select it
                 this.score.playlist.add();
 
-                // append the rest of the songs without selecting them
+                // append the rest of the songs, without selecting them and appended to the end of the playlist
                 for (var i = 1; i < songs.length; i++) {
-                    this.score.playlist.addSongCode(songs[i], false);
+                    this.score.playlist.addSongCode(songs[i], false, false);
                 }
 
                 // enable looping

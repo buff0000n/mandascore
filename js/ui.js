@@ -1614,16 +1614,16 @@ class Playlist {
         this.playlistBox.appendChild(this.playlistScollArea);
     }
 
-    addSongCode(code, select) {
+    addSongCode(code, select, insert=true) {
         var song = new Song();
         song.parseChatLink(code);
-        this.addSong(song, select);
+        this.addSong(song, select, insert);
     }
 
-    addSong(song, select) {
+    addSong(song, select, insert=true) {
         // create a new entry
         var entry = new PlaylistEntry(song, this);
-        if (this.selected) {
+        if (this.selected && insert) {
             // if there's a selection, the insert the new entry immediately after the selection
             var index = this.entries.indexOf(this.selected);
             this.entries.splice(index+1, 0, entry);
@@ -1633,7 +1633,7 @@ class Playlist {
             this.reIndex();
 
         } else {
-            // no current selection, this should only happen if the playlist is empty or the selection was deleted
+            // no current selection or we're support to append instead of insert
             this.entries.push(entry);
             // no need to reindex the whole list
             entry.setIndex(this.entries.length);
