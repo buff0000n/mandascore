@@ -666,7 +666,8 @@
 				{"id": "2X4r5wBFpBw", "name": "Pull Me Under", "attr": ["Dream Theater"]},
 				{"id": "CWHCXUnzstg", "name": "Immortal Corruptor", "attr": ["GWAR"], "tags": ["Druk"]},
 				{"id": "EP6q8meU5Fk", "name": "Quitters Don't Smoke", "attr": ["Blood Command"]},
-				{"id": "bz6pBJ8xTfY", "name": "Incorporate Use of Cloak & Dagger", "attr": ["Blood Command"]}
+				{"id": "bz6pBJ8xTfY", "name": "Incorporate Use of Cloak & Dagger", "attr": ["Blood Command"]},
+				{"id": "LjEoWS4-FZE", "name": "Sword In Mouth, Fire Eyes", "attr": ["Norma Jean"], "tags": ["Druk"]}
 			]
 		}
 	},
@@ -1189,6 +1190,7 @@
 				{"id": "sCoc9SEIPtA", "name": "Soft and Wet", "attr": ["Prince"]},
 				{"id": "61hnXO2yJag", "name": "Somebody That I Used To Know", "attr": ["Gotye"], "tags": ["Triple", "Perfect"]},
 				{"id": "bBGX0_4VA1A", "name": "Love I Need", "attr": ["The Living Tombstone"]},
+				{"id": "Z18TvPji3fk", "name": "It's Been So Long", "attr": ["The Living Tombstone"]},
 				{"id": "uZZ6K1u0wWo", "name": "Monsters", "attr": ["All Time Low"], "tags": ["Perfect"]},
 				{"id": "M9te9WKRh9M", "name": "Still Feel", "attr": ["Half Alive"]},
 				{"id": "YOo31lY4MJE", "name": "aawake at night", "attr": ["half\u2022alive"], "tags": ["Double"]},
@@ -1206,7 +1208,8 @@
 				{"id": "JN5uJWVOka0", "name": "Alien", "attr": ["Dennis Lloyd"]},
 				{"id": "41iRxGpxzcg", "name": "Teeth", "attr": ["5 Seconds of Summer"]},
 				{"id": "DqyYPMBXKOA", "name": "The Shade", "attr": ["METRIC"], "tags": ["Perfect"]},
-				{"id": "E4Sec-4iRYg", "name": "Bubblegum B*tch", "attr": ["Marina and the Diamonds"]}
+				{"id": "E4Sec-4iRYg", "name": "Bubblegum B*tch", "attr": ["Marina and the Diamonds"]},
+				{"id": "jkhcYrz9pAc", "name": "Blue Song", "attr": ["Mint Royale"]}
 			]
 		}
 	},
@@ -2303,7 +2306,8 @@
 				{"id": "5BcCPcb7ccQ", "name": "Russian Roulette", "attr": ["Tungevaag", "Raaban", "Charlie Who?"], "tags": ["Perfect"]},
 				{"id": "uRQcVm33WeY", "name": "In My Mind", "attr": ["Dynoro & Gigi D'Agnostino"]},
 				{"id": "ydbPBXJfgec", "name": "Wherever You Go", "attr": ["Avalanche"], "tags": ["Perfect"]},
-				{"id": "_tm_HnQCMpc", "name": "Wannabe", "attr": ["G9"]}
+				{"id": "_tm_HnQCMpc", "name": "Wannabe", "attr": ["G9"]},
+				{"id": "1nf4w1WzNHc", "name": "The Way You Are", "attr": ["Aftermath"]}
 			]
 		}
 	},
@@ -3121,7 +3125,8 @@
 					{"id": "xtobxz36N68", "name": "Ori and the Will of the Wisps main theme", "tags": ["Adau", "Perfect"]},
 					{"id": "fZ_kcusbO-A", "name": "Jax Sax", "attr": ["Mortal Kombat 11"]},
 					{"id": "vj_A__SjhPA", "name": "PHD Flopper Jingle", "attr": ["Call of Duty: Zombies"], "tags": ["Sparse"]},
-					{"id": "RLpz-MocCr4", "name": "Glide", "attr": ["Stephen Walking", "Rocket League"]}
+					{"id": "RLpz-MocCr4", "name": "Glide", "attr": ["Stephen Walking", "Rocket League"]},
+					{"id": "0NBDQ47_934", "name": "Lyin' 2 Me", "attr": ["CG5", "Among Us"]}
 				]
 			},
 			"Games I've never heard of":{
@@ -3268,7 +3273,8 @@
 					{"id": "eAXiM-sNJNo", "name": "DK West theme", "attr": ["No Straight Roads"]},
 					{"id": "8Y0y55zNqZI", "name": "\u5c4a\u304b\u306a\u3044\u604b", "attr": ["\u51ac\u99ac\u304b\u305a\u3055", "White Album 2"]},
 					{"id": "8YFpe5fkBz0", "name": "Pan Master Slash", "attr": ["Dead Cells", "Yoann Laulan"]},
-					{"id": "_PCgUbV_7ng", "name": "High", "attr": ["Friday Night Funkin"]}
+					{"id": "_PCgUbV_7ng", "name": "High", "attr": ["Friday Night Funkin"]},
+					{"id": "OTr41vapuW0", "name": "Overhead", "attr": ["Friday Night Funkin'", "Whitmore"], "tags": ["Perfect"]}
 				]
 			}
 		}
@@ -3910,6 +3916,14 @@
 				{"id": "nUkdOf8L8lc", "name": "See You Tomorrow", "attr": ["How To Train Your Dragon"]}
 			]
 		},
+		"Scott Pilgrim vs The World":{
+			"dbName":"TVMovie",
+			"songs":[
+				{"id": "jU0XH4BDSw0", "name": "Bass Battle", "attr": ["Scott Pilgrim vs The World"], "tags": ["Filled", "Druk"]},
+				{"id": "64vbOOYyblY", "name": "Black Sheep", "attr": ["Metric", "Scott Pilgrim vs The World"]},
+				{"id": "wbXt1-6OTF4", "name": "Threshold", "attr": ["Sex Bob-Omb", "Scott Pilgrim vs The World"], "tags": ["Druk"]}
+			]
+		},
 		"Misc Cartoons":{
 			"dbName":"TVMovie.MiscCartoons",
 			"songs":[
@@ -4000,8 +4014,6 @@
 				{"id": "FogOiDPcKwk", "name": "Up Is Down", "attr": ["Pirates of the Carribean 3"], "tags": ["Sparse"]},
 				{"id": "UQqRZTAZK7o", "name": "Push It To The Limit", "attr": ["Scarface"], "tags": ["Sparse"]},
 				{"id": "pO142YrClPE", "name": "Casey Junior", "attr": ["Dumbo"]},
-				{"id": "jU0XH4BDSw0", "name": "Bass Battle", "attr": ["Scott Pilgrim vs The World"], "tags": ["Filled", "Druk"]},
-				{"id": "64vbOOYyblY", "name": "Black Sheep", "attr": ["Metric", "Scott Pilgrim vs The World"]},
 				{"id": "KMQMBAc3z44", "name": "Vampire Dance Club Theme", "attr": ["Blade"]},
 				{"id": "VpwFlb3tK_A", "name": "Good Life", "attr": ["G-Eazy & Kehlani", "The Fate of the Furious"]},
 				{"id": "qpHGTK6Mt6I", "name": "Diamond", "attr": ["Klint", "Snatch"]},
@@ -4536,7 +4548,8 @@
 				{"id": "DxBSsoKPEEU", "name": "Pekora BGM"},
 				{"id": "QhL90yMLluM", "name": "Henry Stickman Distraction Dance"},
 				{"id": "QccwZ6ejKAI", "name": "Corrupted Violin Fencer Boss Theme"},
-				{"id": "VrjeF0B4xMM", "name": "\u30ea\u30b3\u30fc\u30c0\u30fc\u30d3\u30fc\u30c82", "attr": ["Minato Aqua", "Y8MD"]}
+				{"id": "VrjeF0B4xMM", "name": "\u30ea\u30b3\u30fc\u30c0\u30fc\u30d3\u30fc\u30c82", "attr": ["Minato Aqua", "Y8MD"]},
+				{"id": "t_FYp5R3QCQ", "name": "Forestcall", "attr": ["Eltorro64Rus"]}
 			]
 		}
 	},
@@ -4583,7 +4596,8 @@
 				{"id": "-TjeKi8hI6w", "name": "Dance Of The Knights", "attr": ["Prokofiev"]},
 				{"id": "ODeuyVGDqTE", "name": "Clair de Lune", "attr": ["Claude Debussy"]},
 				{"id": "mSINkbYulF8", "name": "Mars, the Bringer of War", "attr": ["Gustav Holst"]},
-				{"id": "j52DL28Rvuk", "name": "Music of the Spanish Court", "attr": ["Rodrigo Martinez"]}
+				{"id": "j52DL28Rvuk", "name": "Music of the Spanish Court", "attr": ["Rodrigo Martinez"]},
+				{"id": "tXUbQzEC5tw", "name": "Largo from Symphony No. 9 \"From the New World\"", "attr": ["Dvo\u0159\u00e1k"], "tags": ["Adau"]}
 			]
 		},
 		"Christmas":{
@@ -4770,7 +4784,8 @@
 				{"id": "3w788fKrDvw", "name": "PipeDrumz", "attr": ["Neon Pipe Drummer"], "tags": ["Double"]},
 				{"id": "dKoQn2NiIKM", "name": "Well, This Is Sh*t", "attr": ["Thomas Benjamin Wild Esq"], "tags": ["Perfect"]},
 				{"id": "_ylTSyfQfVY", "name": "21st Century Schizoid Man", "attr": ["King Crimson"]},
-				{"id": "X39HDmf81p4", "name": "Telefono", "attr": ["Hector \"El Feather\" ft. Winsin & Yandel"]}
+				{"id": "X39HDmf81p4", "name": "Telefono", "attr": ["Hector \"El Feather\" ft. Winsin & Yandel"]},
+				{"id": "JU_bLnAii8U", "name": "Sexual Revolution", "attr": ["Army Of Lovers"]}
 			]
 		}
 	}
