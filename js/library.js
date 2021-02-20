@@ -15,6 +15,24 @@ class Library {
         // data loader with progress bar
         this.loader = new Loader();
 
+        // search job state
+        // we can't just do the whole search in one event handler because it interrupts audio playback for some
+        // unknown reason when it transitions from some filter back to no filter.  So split the search into batches.
+
+        // delay between search batches
+        this.searchDelay = 10;
+        // rough size of each search batch
+        this.searchBatchLimit = 250;
+        // timeout reference, if we need to cancel it
+        this.searchTimeout = null;
+        // search terms
+        this.searchWords = null;
+        // current search queue
+        this.searchQueue = null;
+
+        // search queue prototype, we only need to build this once
+        this.searchQueuePrototype = null;
+
         // build the UI
         this.buildUI();
     }
@@ -71,6 +89,10 @@ class Library {
 
         // build the index tree UI and get the entries ready for searching
         this.buildTree(this.indexContainer, this.index, null, []);
+
+        // build the search queue prototype, no point in building this every time
+        this.searchQueuePrototype = [];
+        this.queueSongLists(this.index, this.searchQueuePrototype);
     }
 
     buildCatDiv(categoryName) {
@@ -210,10 +232,10 @@ class Library {
         var words = string.toLowerCase().split(" ").filter((s) => s.length >= 3);
         if (words.length == 0) {
             // no long enough keywords, show everything
-            this.searchSongs(this.index, null, true);
+            this.startSearch(null);
         } else {
             // run the search with one or more keywords
-            this.searchSongs(this.index, words, false);
+            this.startSearch(words);
         }
     }
 
@@ -229,24 +251,70 @@ class Library {
         return true;
     }
 
-    searchSongs(map, words) {
+    startSearch(words) {
+        // only do this crap if the search has actually changed
+        if (listEquals(words, this.searchWords)) {
+            return;
+        }
+        // cancel any search in progress
+        if (this.searchTimeout) {
+            clearTimeout(this.searchTimeout);
+        }
+        // set the search parameters
+        // the search terms
+        this.searchWords = words;
+        // get a copy of the search queue
+        this.searchQueue = this.searchQueuePrototype.slice();
+        // start the search
+        this.searchTimeout = setTimeout(() => this.runSearch(), this.searchDelay);
+    }
+
+    queueSongLists(map, queue) {
         // recursive search
         if (map.songs) {
             // leaf category: search individual songs for keywords
-            for (var songKey in map.songs) {
-                var song = map.songs[songKey];
-                // the song is displayed if there is no search string or if all of the words are found in its keywords
-                if (!words || this.searchKeywords(song.keywords, words)) {
-                    this.showSong(song);
-                } else {
-                    // otherwise, hide the song
-                    this.hideSong(song);
-                }
-            }
+            queue.push(map.songs);
         } else {
             // branch category: recursively search each subcategory
             for (var key in map) {
-                this.searchSongs(map[key], words);
+                 this.queueSongLists(map[key], queue);
+            }
+        }
+    }
+
+    runSearch() {
+        // count songs searched
+        var count = 0;
+        // search song lists until we exceed the batch size
+        while (count < this.searchBatchLimit) {
+            // dequeue
+            var songs = this.searchQueue.shift();
+            // nothing left in the queue
+            if (!songs) {
+                // clear the timeout
+                this.searchTimeout = null;
+                // end the search
+                return;
+            }
+            // search the song list, showing and hiding as necessary
+            this.searchSongList(songs, this.searchWords);
+            // increment the count
+            count += songs.length;
+        }
+
+        // schedule the next batch
+        this.searchTimeout = setTimeout(() => this.runSearch(), this.searchDelay);
+    }
+
+    searchSongList(songs, words) {
+        for (var songKey in songs) {
+            var song = songs[songKey];
+            // the song is displayed if there is no search string or if all of the words are found in its keywords
+            if (!words || this.searchKeywords(song.keywords, words)) {
+                this.showSong(song);
+            } else {
+                // otherwise, hide the song
+                this.hideSong(song);
             }
         }
     }

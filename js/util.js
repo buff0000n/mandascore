@@ -105,6 +105,12 @@ function insertBefore(el, referenceNode) {
     referenceNode.parentNode.insertBefore(el, referenceNode);
 }
 
+function listEquals(a, b) {
+    return a == null ? b == null :
+        b == null ? false :
+        a.length == b.length && a.every((val, index) => val == b[index]);
+}
+
 //==============================================================
 // window size tracking
 //==============================================================
