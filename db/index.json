@@ -2988,6 +2988,14 @@
 				{"id": "9J4zomj9lkA", "name": "Flying Heads", "attr": ["Cyberpunk 2077"], "tags": ["Perfect"]}
 			]
 		},
+		"Grand Theft Auto series":{
+			"dbName":"Videogames",
+			"songs":[
+				{"id": "9bwqc9aDLzo", "name": "GTA Vice City theme", "tags": ["Sparse"]},
+				{"id": "vvWFsAMDbeM", "name": "Arena War Theme", "attr": ["GTA Online"], "tags": ["Perfect"]},
+				{"id": "fdFtmEI8K3o", "name": "GTA San Andreas theme", "tags": ["Bombast"]}
+			]
+		},
 		"Misc video games":{
 			"Old as dirt":{
 				"dbName":"Videogames.Miscvideogames",
@@ -3117,8 +3125,6 @@
 					{"id": "41lIT6lRKG4", "name": "Gloria Filio", "attr": ["The Binding Of Isaac: Afterbirth"]},
 					{"id": "ajZd8_0bLsM", "name": "Final Boss Soundtrack", "attr": ["Uncharted 4: A Thief's End"], "tags": ["Perfect"]},
 					{"id": "l4nVDXAwl8A", "name": "Room 312", "attr": ["Silent Hill"]},
-					{"id": "9bwqc9aDLzo", "name": "GTA Vice City theme", "tags": ["Sparse"]},
-					{"id": "vvWFsAMDbeM", "name": "Arena War Theme", "attr": ["GTA Online"], "tags": ["Perfect"]},
 					{"id": "2blCAW25Asg", "name": "The Setup", "attr": ["Bully"]},
 					{"id": "NL31Y7xsL_o", "name": "Lonely Rolling Star", "attr": ["Katamari Damarcy"]},
 					{"id": "ObW_5MROiXM", "name": "Sea Theme", "attr": ["Heroes of Might And Magic IV"]},
