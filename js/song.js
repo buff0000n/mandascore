@@ -1,9 +1,13 @@
 // instrument pack metadata
 class InstrumentPack {
-    constructor(name, displayName, formatName) {
+    constructor(name, displayName, formatName, monoPerc=false, monoBass=false, monoMel=false) {
         this.name = name;
         this.displayName = displayName;
         this.formatName = formatName;
+        this.mono = {};
+        this.mono["perc"] = monoPerc;
+        this.mono["bass"] = monoBass;
+        this.mono["mel"] = monoMel;
     }
 }
 
@@ -11,6 +15,7 @@ var packs = Array(
     new InstrumentPack("adau", "Adau", "BardTennoPackA"),
     new InstrumentPack("alpha", "Alpha", "BardCorpusPackA"),
     new InstrumentPack("beta", "Beta", "BardCorpusPackB"),
+    new InstrumentPack("bombast", "Bombast", "BardHipHopPackA", false, true, true),
     new InstrumentPack("delta", "Delta", "BardCorpusPackD"),
     new InstrumentPack("druk", "Druk", "BardGrineerPackA"),
     new InstrumentPack("epsilon", "Epsilon", "BardCorpusPackE"),
@@ -42,6 +47,8 @@ class SectionMetaData {
         this.all = all;
     }
 }
+
+var sectionNames = ["perc", "bass", "mel"];
 
 var sectionMetaData = {
     "all": new SectionMetaData("all", "All", 0, 12, 0, "#ffffff", true),

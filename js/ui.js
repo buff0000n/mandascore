@@ -732,12 +732,34 @@ class Measure {
     }
 
     playAudioForTime(t, delay) {
-        // find any notes that are enabled in the given column and schedule them to play woth the given delay
-        for (var r = 0; r < 13; r++) {
-            if (this.notes[t][r].enabled) {
-                this.score.soundPlayer.playSoundLater(r, delay);
+        // loop over each section
+        for (var i in sectionNames) {
+            var section = sectionNames[i];
+            // get the name of the pack for the sectoin
+            var pack = this.score.sectionPacks[section];
+            // determine whether the section is mono
+            var mono = this.score.isSectionMono(section);
+            // get the general section metadata
+            var metadata = sectionMetaData[section]
+            // loop over the rows in the section
+            for (var r = metadata.rowStart; r <= metadata.rowStop; r++) {
+                // check for an enabled note
+                if (this.notes[t][r].enabled) {
+                    // play an enabled note
+                    this.score.soundPlayer.playSoundLater(r, delay);
+                    // if the section is mono then only play the highest enabled note.  This is how it works in game.
+                    if (mono) {
+                        break;
+                    }
+                }
             }
         }
+//        // find any notes that are enabled in the given column and schedule them to play woth the given delay
+//        for (var r = 0; r < 13; r++) {
+//            if (this.notes[t][r].enabled) {
+//                this.score.soundPlayer.playSoundLater(r, delay);
+//            }
+//        }
     }
 
     stopPlayback() {
@@ -904,7 +926,7 @@ class SectionEditor {
         // save state
         this.pack = pack;
         // update the sound player
-        this.score.soundPlayer.setSource(this.section, this.pack);
+        this.score.setSectionSource(this.section, this.pack);
     }
 
     draw(context, imageMap, fontSize, centerX, centerY, scale) {
@@ -1040,6 +1062,9 @@ class Score {
             var measure = new Measure(this, m);
             this.measures.push(measure);
         }
+
+        // map of section instrument pack selections
+        this.sectionPacks = {};
 
         // playlist object
         this.playlist = new Playlist(this);
@@ -1284,6 +1309,17 @@ class Score {
         }
         // save state
         this.title = title;
+    }
+
+    setSectionSource(section, pack) {
+        // save the section pack info
+        this.sectionPacks[section] = pack;
+        // set the audio source
+        this.soundPlayer.setSource(section, pack, this.isSectionMono(section));
+    }
+
+    isSectionMono(section) {
+        return instrumentNameToPack[this.sectionPacks[section]].mono[section];
     }
 
     startActions() {
@@ -2078,6 +2114,8 @@ class Playback {
     }
 
     stop() {
+        this.score.soundPlayer.clearStops();
+
         // unschedule the next animation tick, if any
         if (this.animTimeout != null) clearTimeout(this.animTimeout);
         this.animTimeout = null;
@@ -2178,7 +2216,7 @@ class Playback {
             var delay = ((this.currentT + 1) * 125) - (this.currentTime * 1000);
             // only way to support stopping scheduled sounds
             // without stopping sounds that have already been started in the middle of playing
-            this.score.soundPlayer.clearStops();
+//            this.score.soundPlayer.clearStops();
             // schedule the time column for play
             this.playAudio(delay);
         }

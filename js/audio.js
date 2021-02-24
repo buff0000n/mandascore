@@ -10,6 +10,8 @@ function initAudioContext() {
     }
 }
 
+var monoFadeTime = 0.05;
+
 // object wrapping a single sound and keeping track of its source, volume, and play state.
 class SoundEntry {
     constructor() {
@@ -41,7 +43,7 @@ class SoundEntry {
         this.triggerLater(0);
     }
 
-    triggerLater(time) {
+    triggerLater(time=0) {
         // if we don't have the sound yet then queue playback for when we do
         if (this.buffer == null) {
             this.queued = true;
@@ -60,27 +62,53 @@ class SoundEntry {
         source.connect(gain);
         gain.connect(audioContext.destination);
 
+        console.log("scheduling start for " + this.sourceName + " at " + time);
         // if we need to schedule the sound in the future
         if (time > 0) {
             // calculate the sound start time in the audio context's terms
             var t = audioContext.currentTime + (time/1000);
             // schedule the sound
             source.start(t);
-            // hold on to the source in case we have to cancel it
-            this.lastSource = source;
             // console.log("playing " + this.sourceName + " in " + time + "ms")
         } else {
             // just start the source immediately and forget it
             source.start(0);
             // console.log("playing " + this.sourceName)
         }
+
+        console.log("set lastsource on " + this.sourceName);
+        // hold on to the source in case we have to cancel it or stop it
+        this.lastSource = source;
+        this.lastGain = gain;
     }
 
     stop() {
+        this.stopLater(0);
+    }
+
+    stopLater(time=0) {
         // if we have a scheduled source then cancel it
         if (this.lastSource != null) {
-            this.lastSource.stop();
+            console.log("scheduling stop for " + this.sourceName + " at " + time);
+            if (time > 0) {
+                // calculate the sound start time in the audio context's terms
+                var t = audioContext.currentTime + (time/1000);
+                // schedule the stop
+//                this.lastSource.stop(t);
+                this.lastGain.gain.setValueAtTime(this.volume, t);
+                this.lastGain.gain.exponentialRampToValueAtTime(0.01, t + monoFadeTime);
+                this.lastSource.stop(t + monoFadeTime);
+
+            } else {
+                // stop immediately
+//                 this.lastSource.stop();
+                this.lastGain.gain.exponentialRampToValueAtTime(0.01, monoFadeTime);
+                this.lastSource.stop(monoFadeTime);
+            }
+            // clear the source
+            console.log("cleared lastsource on " + this.sourceName);
             this.lastSource = null;
+            this.gain = null;
         }
     }
 
@@ -89,6 +117,7 @@ class SoundEntry {
         // there is no way to get notified when a scheduled sound starts playing.
         // there is no way to cancel a scheduled sound without stopping it in the middle if it's already playing
         // AudioContext is better than new Audio().play(), but damn is it Very Annoying in some ways.
+        console.log("clearStopped lastsource on " + this.sourceName);
         this.lastSource = null;
     }
 }
@@ -110,7 +139,7 @@ class SoundBank {
         this.initialized = false;
     }
 
-    setSource(source) {
+    setSource(source, mono=false) {
         // don't do anything if it's the source we already have
         if (this.source == source) {
             return;
@@ -120,6 +149,7 @@ class SoundBank {
         // we can't actually do anything until there's an explicit user action.
         // abuse of auto-play video and audio is why we can't have nice things.
         this.source = source;
+        this.mono = mono;
         this.initialized = false;
         // clear out any pending loaders
         // this can happen if sound packs are changed really fast by holding down undo/redo
@@ -199,6 +229,11 @@ class SoundBank {
             // the first sound should be played directly inside a user event handler so we're allowed to init the
             // audio context
             this.initialize();
+            if (this.mono) {
+                for (var i = 0; i < this.sounds.length; i++) {
+                    this.sounds[i].stopLater(time);
+                }
+            }
             // play the sound
             this.sounds[index].triggerLater(time);
             // todo: I don't think anything uses this return value?
@@ -259,9 +294,9 @@ class SoundPlayer {
         this.banksInitialized = 0;
     }
 
-    setSource(section, source) {
+    setSource(section, source, mono=false) {
         // set the source on the given section
-        this.banks[section].setSource(source);
+        this.banks[section].setSource(source, mono);
         // go ahead and reset the initialized count to zero
         // The initialize calls on any banks that haven't changed will simply short-circuit
         this.banksInitialized = 0;
