@@ -10,6 +10,8 @@ function initAudioContext() {
     }
 }
 
+// fade time for stopping a sound
+// we can't just stop a sound instantly because there will be an audible pop.
 var monoFadeTime = 0.05;
 
 // object wrapping a single sound and keeping track of its source, volume, and play state.
@@ -62,7 +64,6 @@ class SoundEntry {
         source.connect(gain);
         gain.connect(audioContext.destination);
 
-        console.log("scheduling start for " + this.sourceName + " at " + time);
         // if we need to schedule the sound in the future
         if (time > 0) {
             // calculate the sound start time in the audio context's terms
@@ -76,8 +77,7 @@ class SoundEntry {
             // console.log("playing " + this.sourceName)
         }
 
-        console.log("set lastsource on " + this.sourceName);
-        // hold on to the source in case we have to cancel it or stop it
+        // hold on to the source and gain nodes in case we have to cancel it or stop it
         this.lastSource = source;
         this.lastGain = gain;
     }
@@ -89,24 +89,29 @@ class SoundEntry {
     stopLater(time=0) {
         // if we have a scheduled source then cancel it
         if (this.lastSource != null) {
-            console.log("scheduling stop for " + this.sourceName + " at " + time);
             if (time > 0) {
                 // calculate the sound start time in the audio context's terms
                 var t = audioContext.currentTime + (time/1000);
                 // schedule the stop
-//                this.lastSource.stop(t);
+                // We can't just stop the sound instantly because there will be an audio pop
+                // this.lastSource.stop(t);
+                // schedule the start of a fade
                 this.lastGain.gain.setValueAtTime(this.volume, t);
+                // schedule a very quick fade, down to 0.01 volume because it doesn't like 0.
                 this.lastGain.gain.exponentialRampToValueAtTime(0.01, t + monoFadeTime);
+                // stop the source at the end of the fade
                 this.lastSource.stop(t + monoFadeTime);
 
             } else {
                 // stop immediately
-//                 this.lastSource.stop();
+                // We can't just stop the sound instantly because there will be an audio pop
+                // this.lastSource.stop();
+                // start a very quick fade, down to 0.01 volume because it doesn't like 0.
                 this.lastGain.gain.exponentialRampToValueAtTime(0.01, monoFadeTime);
+                // stop the source at the end of the fade
                 this.lastSource.stop(monoFadeTime);
             }
-            // clear the source
-            console.log("cleared lastsource on " + this.sourceName);
+            // clear the source state
             this.lastSource = null;
             this.gain = null;
         }
@@ -117,7 +122,6 @@ class SoundEntry {
         // there is no way to get notified when a scheduled sound starts playing.
         // there is no way to cancel a scheduled sound without stopping it in the middle if it's already playing
         // AudioContext is better than new Audio().play(), but damn is it Very Annoying in some ways.
-        console.log("clearStopped lastsource on " + this.sourceName);
         this.lastSource = null;
     }
 }
