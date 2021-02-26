@@ -1502,7 +1502,35 @@ class Score {
 function clearPlaylist(button) {
     // chrome is doing strange things with clicked buttons so just unfocus it
     button.blur();
+
+    // clear all menus
+    clearMenus();
+    // create a div and set some properties
+    var div = document.createElement("div");
+    div.className = "menu";
+    div.button = button;
+
+    // build the section menu out of buttons
+    var html = "";
+    html += `<input class="button" type="submit" value="Clear Playlist" onClick="reallyClearPlaylist(this)"/>`;
+    html += `<input class="button" type="submit" value="Cancel" onClick="clearMenus()"/>`;
+    div.innerHTML = html;
+
+    // put the menu in the clicked button's parent and anchor it to button
+    showMenu(div, getParent(button, "scoreButtonRow"), button);
+}
+
+function reallyClearPlaylist(button) {
+   // chrome is doing strange things with clicked buttons so just unfocus it
+    button.blur();
+
+    // need to get this before clearing menus
     var playlist = getParent(button, "playlistBox").playlist;
+
+    // clear all menus
+    clearMenus();
+
+    // clear the playlist
     playlist.clear();
 }
 
