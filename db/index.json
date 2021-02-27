@@ -864,7 +864,8 @@
 				{"id": "_QSw5FTTN0E", "name": "Morph", "attr": ["twenty one pilots"]},
 				{"id": "Q-kvn6lFdd0", "name": "Chlorine", "attr": ["twenty one pilots"]},
 				{"id": "6cWdSc1lgyk", "name": "Trees", "attr": ["Twenty One Pilots"], "tags": ["Perfect"]},
-				{"id": "muCWIndkjFc", "name": "Heavy Dirty Soul", "attr": ["twenty one pilots"]}
+				{"id": "muCWIndkjFc", "name": "Heavy Dirty Soul", "attr": ["twenty one pilots"]},
+				{"id": "I9UiNlSs9TQ", "name": "My Blood", "attr": ["twenty one pilots"]}
 			]
 		},
 		"Panic! At the Disco":{
@@ -917,7 +918,8 @@
 				{"id": "h8zoCJdJBOU", "name": "American Idiot", "attr": ["Green Day"], "tags": ["Druk"]},
 				{"id": "NxQxAx7aXQM", "name": "Wake Me When September Ends", "attr": ["Green Day"]},
 				{"id": "k9selKmyKLI", "name": "Nice Guys Finish Last", "attr": ["Green Day"], "tags": ["Perfect"]},
-				{"id": "OVHC8N5xa6I", "name": "Paper Lanterns", "attr": ["Green Day"], "tags": ["Perfect"]}
+				{"id": "OVHC8N5xa6I", "name": "Paper Lanterns", "attr": ["Green Day"], "tags": ["Perfect"]},
+				{"id": "ElCiDQSiOno", "name": "Boulevard Of Broken Dreams", "attr": ["Green Day"]}
 			]
 		},
 		"Billie Eilish":{
@@ -1908,7 +1910,8 @@
 				{"id": "dyURBOIK95I", "name": "Get Lucky", "attr": ["Daft Punk"], "tags": ["Perfect"]},
 				{"id": "DzM5roukYK4", "name": "Technologic", "attr": ["Daft Punk"]},
 				{"id": "buN0sI2p-b0", "name": "End of Line", "attr": ["Daft Punk", "Tron Legacy"], "tags": ["Perfect Bass"]},
-				{"id": "5wPdb6XMPtY", "name": "Face To Face", "attr": ["Daft Punk"]}
+				{"id": "5wPdb6XMPtY", "name": "Face To Face", "attr": ["Daft Punk"]},
+				{"id": "xZmmZhIglSc", "name": "One More Time", "attr": ["Daft Punk"]}
 			]
 		},
 		"Skrillex":{
@@ -2307,7 +2310,9 @@
 				{"id": "uRQcVm33WeY", "name": "In My Mind", "attr": ["Dynoro & Gigi D'Agnostino"]},
 				{"id": "ydbPBXJfgec", "name": "Wherever You Go", "attr": ["Avalanche"], "tags": ["Perfect"]},
 				{"id": "_tm_HnQCMpc", "name": "Wannabe", "attr": ["G9"]},
-				{"id": "1nf4w1WzNHc", "name": "The Way You Are", "attr": ["Aftermath"]}
+				{"id": "1nf4w1WzNHc", "name": "The Way You Are", "attr": ["Aftermath"]},
+				{"id": "2Wm7fnGPkw4", "name": "Decomposed (Trampled)", "attr": ["Mentallo & The Fixer"], "tags": ["Perfect"]},
+				{"id": "zCE-SVWQV-4", "name": "Walking On Gravestones", "attr": ["I See Stars"]}
 			]
 		}
 	},
@@ -2996,6 +3001,14 @@
 				{"id": "fdFtmEI8K3o", "name": "GTA San Andreas theme", "tags": ["Bombast"]}
 			]
 		},
+		"Friday Night Funkin'":{
+			"dbName":"Videogames",
+			"songs":[
+				{"id": "_PCgUbV_7ng", "name": "High", "attr": ["Friday Night Funkin"]},
+				{"id": "OTr41vapuW0", "name": "Overhead", "attr": ["Friday Night Funkin'", "Whitmore"], "tags": ["Perfect"]},
+				{"id": "6f1xv4V4vRM", "name": "Breakfast", "attr": ["Friday Night Funkin'"]}
+			]
+		},
 		"Misc video games":{
 			"Old as dirt":{
 				"dbName":"Videogames.Miscvideogames",
@@ -3276,11 +3289,12 @@
 					{"id": "43G4tU7NTHk", "name": "Clouds", "attr": ["From The Depths", "Paper Sun & Milosz S"]},
 					{"id": "Ysk2zolV-kc", "name": "Madness Combat 4 main theme", "attr": ["Cheshyre"], "tags": ["Perfect"]},
 					{"id": "fDDjUBOmFFw", "name": "Pepper Steak", "attr": ["OFF"]},
-					{"id": "eAXiM-sNJNo", "name": "DK West theme", "attr": ["No Straight Roads"]},
+					{"id": "eAXiM-sNJNo", "name": "DK West theme", "attr": ["No Straight Roads"], "tags": ["Perfect"]},
+					{"id": "qXjR5IcgmHw", "name": "vs 1010", "attr": ["No Straight Roads"]},
 					{"id": "8Y0y55zNqZI", "name": "\u5c4a\u304b\u306a\u3044\u604b", "attr": ["\u51ac\u99ac\u304b\u305a\u3055", "White Album 2"]},
 					{"id": "8YFpe5fkBz0", "name": "Pan Master Slash", "attr": ["Dead Cells", "Yoann Laulan"]},
-					{"id": "_PCgUbV_7ng", "name": "High", "attr": ["Friday Night Funkin"]},
-					{"id": "OTr41vapuW0", "name": "Overhead", "attr": ["Friday Night Funkin'", "Whitmore"], "tags": ["Perfect"]}
+					{"id": "hYy15WGPbGE", "name": "Connected (Yours Forever)", "attr": ["Hydelic", "Tetris Effect"], "tags": ["Perfect"]},
+					{"id": "2mC6nk9Jf_Y", "name": "Stratosphere (So They Say)", "attr": ["Hydelic", "Tetris Effect"], "tags": ["Triple", "Perfect"]}
 				]
 			}
 		}
@@ -3418,16 +3432,16 @@
 				{"id": "yRpGO8ltc1I", "name": "Layers", "attr": ["Re:CREATORS", "Hiroyuki Sawano"]}
 			]
 		},
-		"Boko no Hero Academia":{
+		"Boku no Hero Academia":{
 			"dbName":"Anime",
 			"songs":[
-				{"id": "ygACW4MAR_w", "name": "My Hero Academia", "attr": ["Boku No Hero Academia"]},
-				{"id": "Tl-_Oz4e_Iw", "name": "You Say Run", "attr": ["Boko no Hero Academia"]},
-				{"id": "e8ipQNQldaQ", "name": "Boko no Hero Academia season 2 opening 2"},
+				{"id": "ygACW4MAR_w", "name": "My Hero Academia", "attr": ["My Hero Academia"]},
+				{"id": "Tl-_Oz4e_Iw", "name": "You Say Run", "attr": ["My Hero Academia"]},
+				{"id": "e8ipQNQldaQ", "name": "My Hero Academia season 2 opening 2"},
 				{"id": "O6t_3CZw9Hs", "name": "My Hero Academia opening 3", "tags": ["Perfect"]},
 				{"id": "RwIE0cqGwIY", "name": "Trinity/Sanmittai", "attr": ["My Hero Academia"]},
 				{"id": "E9uKhS62LFE", "name": "My Hero Academia Season 3 opening"},
-				{"id": "MewavaliTyU", "name": "Polaris", "attr": ["Boku No Hero Academia season 4 opening 1"]},
+				{"id": "MewavaliTyU", "name": "Polaris", "attr": ["My Hero Academia season 4 opening 1"]},
 				{"id": "SaD81UptP54", "name": "Hero Too", "attr": ["My Hero Academia"]}
 			]
 		},
@@ -3796,7 +3810,8 @@
 				{"id": "6pTsPofNRfk", "name": "Sign", "attr": ["The Quintessential Quintuplets ending"]},
 				{"id": "B3g9GJyofyk", "name": "Hello Shooting Star", "attr": ["Assassination Classroom ending 1"]},
 				{"id": "k3o68ckVnoc", "name": "Fuyu no Hanashi", "attr": ["given"]},
-				{"id": "lvlmKyIlBV4", "name": "Dance of the moon rabbits", "attr": ["Umineko no Naku Koro ni"], "tags": ["Perfect"]}
+				{"id": "lvlmKyIlBV4", "name": "Dance of the moon rabbits", "attr": ["Umineko no Naku Koro ni"], "tags": ["Perfect"]},
+				{"id": "HrADt1zPw4s", "name": "Tonikawa: Over The Moon opening", "tags": ["Double", "Perfect"]}
 			]
 		}
 	},
@@ -4205,7 +4220,8 @@
 				{"id": "Kcdf2e200G4", "name": "Kill This Love", "attr": ["Black Pink"], "tags": ["Perfect"]},
 				{"id": "lH3dZrH9q1A", "name": "Jennie - Solo", "attr": ["Blackpink/\ube14\ub799\ud551\ud06c"]},
 				{"id": "t8To_p3W5zw", "name": "Ice Cream", "attr": ["Blackpink"]},
-				{"id": "UqnHnX-YvaI", "name": "Lovesick Girls", "attr": ["Blackpink"], "tags": ["Perfect"]}
+				{"id": "UqnHnX-YvaI", "name": "Lovesick Girls", "attr": ["Blackpink"], "tags": ["Perfect"]},
+				{"id": "L2ktIC-B3Zc", "name": "Kick It", "attr": ["Blackpink"], "tags": ["Double", "Perfect"]}
 			]
 		},
 		"Man With A Mission":{
@@ -4344,7 +4360,8 @@
 				{"id": "BwOh4cBDNKU", "name": "Sorry Sorry/\uc3d8\ub9ac \uc3d8\ub9ac", "attr": ["Super Junior/\uc288\ud37c\uc8fc\ub2c8\uc5b4"]},
 				{"id": "V_BSIurDCeM", "name": "Get Cool", "attr": ["Stray Kids"], "tags": ["Perfect"]},
 				{"id": "ZjLkH5upeGY", "name": "Catallena/\uae4c\ud0c8\ub808\ub098", "attr": ["Orange Caramel"]},
-				{"id": "gCCcq3ZGF14", "name": "The Tomato Song", "attr": ["Korean Children's Song"]}
+				{"id": "gCCcq3ZGF14", "name": "The Tomato Song", "attr": ["Korean Children's Song"]},
+				{"id": "a-crznHgmf8", "name": "All Night/\uc804\ud654\ud574", "attr": ["Astro/\uc544\uc2a4\ud2b8\ub85c"]}
 			]
 		},
 		"Misc J-Pop":{
