@@ -1898,6 +1898,10 @@ class Playlist {
         // don't make any changes if we didn't read any valid songs
         // we also avoid making any changes if there was an error parsing the song list
         if (readEntries.length > 0) {
+            // stop any running or paused playack
+            var playing = this.score.isPlaying();
+            this.score.stopPlayback();
+
             // clear the current playlist
             this.clear();
             // add each song
@@ -1907,6 +1911,11 @@ class Playlist {
             }
             // finally, select the first entry
             this.select(this.entries[0], true);
+
+            // resume playing if it was playing before
+            if (playing) {
+                this.score.togglePlaying();
+            }
         }
     }
 }
