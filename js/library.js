@@ -4,6 +4,8 @@ function setLibrarySearch() {
     score.library.setSearchString(string);
 }
 
+var shotTags = {"Double":true, "Triple":true, "Quadruple":true, "QUINTUPLE":true}
+
 class Library {
     constructor(score) {
         // back reference to the score
@@ -119,6 +121,22 @@ class Library {
         var label = "<strong>" + songEntry.name + "</strong>";
         if (songEntry.attr) {
             label = label + " (" + songEntry.attr.join(", ") + ")";
+        }
+        if (songEntry.tags) {
+            for (i = 0; i < songEntry.tags.length; i++) {
+                var tag = songEntry.tags[i];
+                if (tag == "Filled") {
+                    label = label + '<span class="tagFilled">(' + tag + ')</span>';
+                } else if (tag == "Sparse") {
+                    label = label + '<span class="tagSparse">(' + tag + ')</span>';
+                } else if (tag == "Perfect") {
+                    label = label + '<span class="tagPerfect">(' + tag + ')</span>';
+                } else if (tag in instrumentDisplayNameToPack) {
+                    label = label + '<span class="tagInstrument">(' + tag + ')</span>';
+                } else if (tag in shotTags) {
+                    label = label + '<span class="tagShot">(' + tag + ')</span>';
+                }
+            }
         }
         var songLabelSpan = document.createElement("span");
         songLabelSpan.className = "libSongLabel";

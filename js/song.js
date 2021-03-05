@@ -29,10 +29,12 @@ var packs = Array(
 // build a few lookup tables for instrument pack metadata
 var instrumentIdToPack = {};
 var instrumentNameToPack = {};
+var instrumentDisplayNameToPack = {};
 for (var i = 0; i < packs.length; i++) {
     var pack = packs[i];
     instrumentIdToPack[pack.formatName] = pack;
     instrumentNameToPack[pack.name] = pack;
+    instrumentDisplayNameToPack[pack.displayName] = pack;
 }
 
 // section metadata

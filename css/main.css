@@ -452,6 +452,11 @@
         text-align: center;
     }
 
+    .tagFilled { color: #779900; }
+    .tagPerfect { color: #f39c12; }
+    .tagSparse { color: #8e44ad; }
+    .tagInstrument { color: #16a085; }
+    .tagShot { color: #f02020; }
 
     /* omg it's so hard to get images for checkboxes */
     .sectionEnable {
