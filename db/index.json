@@ -728,7 +728,8 @@
 				{"id": "YsLj5_W4OPo", "name": "Burn It Down", "attr": ["Linkin Park"]},
 				{"id": "vO0p3WRYsXc", "name": "A Place For My Head", "attr": ["Linkin Park"], "tags": ["Perfect"]},
 				{"id": "6r8G_Z9YMsM", "name": "Bleed It Out", "attr": ["Linkin Park"], "tags": ["Double", "Perfect"]},
-				{"id": "gopmJ9osCwQ", "name": "Numb", "attr": ["Linkin Park"], "tags": ["Perfect"]}
+				{"id": "gopmJ9osCwQ", "name": "Numb", "attr": ["Linkin Park"], "tags": ["Perfect"]},
+				{"id": "R_NHA0RFbXU", "name": "Rebellion", "attr": ["Linkin Park"]}
 			]
 		},
 		"Blue Stahli":{
@@ -793,7 +794,8 @@
 				{"id": "LPY8D09Y8X0", "name": "House Of Balloons", "attr": ["The Weeknd"]},
 				{"id": "VYcrMy1mHPw", "name": "Blinding Lights", "attr": ["The Weeknd"], "tags": ["Perfect"]},
 				{"id": "vHaQ1EMQTNg", "name": "Wicked Games", "attr": ["The Weeknd"], "tags": ["Double", "Perfect"]},
-				{"id": "rF-uDpYIVsw", "name": "After Hours", "attr": ["The Weeknd"], "tags": ["Perfect"]}
+				{"id": "rF-uDpYIVsw", "name": "After Hours", "attr": ["The Weeknd"], "tags": ["Perfect"]},
+				{"id": "5nX00ZHvyro", "name": "Save Your Tears", "attr": ["The Weeknd"], "tags": ["Perfect", "Sparse"]}
 			]
 		},
 		"Rise Against":{
@@ -947,6 +949,14 @@
 				{"id": "AFFVNyjGS9c", "name": "Shape of You", "attr": ["Ed Sheeran"], "tags": ["Perfect"]},
 				{"id": "inze-irPc9s", "name": "Take Me Back To London", "attr": ["Ed Sheeran"], "tags": ["Perfect"]},
 				{"id": "FhbId0XA0ZI", "name": "I Don't Care", "attr": ["Ed Sheeran & Justin Bieber"]}
+			]
+		},
+		"Glass Animals":{
+			"dbName":"PopRock",
+			"songs":[
+				{"id": "uUzyyJniF34", "name": "The Other Side of Paradise", "attr": ["Glass Animals"]},
+				{"id": "zzmuJSO90aE", "name": "Heat Waves", "attr": ["Glass Animals"], "tags": ["Perfect"]},
+				{"id": "LZSwhmyyifU", "name": "Walla Walla", "attr": ["Glass Animals"]}
 			]
 		},
 		"Misc Pop/Rock":{
@@ -1183,8 +1193,6 @@
 				{"id": "19J7x0Qulyg", "name": "Heart Shaped Box", "attr": ["Nirvana"]},
 				{"id": "CW6jtlhOcO8", "name": "Love This", "attr": ["Cosmo Jarvis"]},
 				{"id": "YYbZ8WZwaOo", "name": "I Against Me", "attr": ["Anna Blue"]},
-				{"id": "uUzyyJniF34", "name": "The Other Side of Paradise", "attr": ["Glass Animals"]},
-				{"id": "zzmuJSO90aE", "name": "Heat Waves", "attr": ["Glass Animals"], "tags": ["Perfect"]},
 				{"id": "OeRAqa_i3u8", "name": "I Will Possess Your Heart", "attr": ["Death Cab For Cutie"], "tags": ["Perfect"]},
 				{"id": "3rF5jBA8n6c", "name": "Fight Back", "attr": ["Neffex"]},
 				{"id": "DiaU1yzOJuk", "name": "Here To Stay", "attr": ["Neffex"]},
@@ -2314,11 +2322,13 @@
 				{"id": "WV_w0xKEVfg", "name": "Red Eye", "attr": ["Zombie Hyperdrive"]},
 				{"id": "5BcCPcb7ccQ", "name": "Russian Roulette", "attr": ["Tungevaag", "Raaban", "Charlie Who?"], "tags": ["Perfect"]},
 				{"id": "uRQcVm33WeY", "name": "In My Mind", "attr": ["Dynoro & Gigi D'Agnostino"]},
-				{"id": "ydbPBXJfgec", "name": "Wherever You Go", "attr": ["Avalanche"], "tags": ["Perfect"]},
+				{"id": "ydbPBXJfgec", "name": "Wherever You Go", "attr": ["The Avalanches"], "tags": ["Perfect"]},
+				{"id": "xMmOdJujVyM", "name": "Close To You", "attr": ["The Avalanches"], "tags": ["Perfect"]},
 				{"id": "_tm_HnQCMpc", "name": "Wannabe", "attr": ["G9"]},
 				{"id": "1nf4w1WzNHc", "name": "The Way You Are", "attr": ["Aftermath"]},
 				{"id": "2Wm7fnGPkw4", "name": "Decomposed (Trampled)", "attr": ["Mentallo & The Fixer"], "tags": ["Perfect"]},
-				{"id": "zCE-SVWQV-4", "name": "Walking On Gravestones", "attr": ["I See Stars"]}
+				{"id": "zCE-SVWQV-4", "name": "Walking On Gravestones", "attr": ["I See Stars"]},
+				{"id": "xO6ptlEbDtU", "name": "If I Could Fly", "attr": ["Ocean Lab"]}
 			]
 		}
 	},
@@ -3302,7 +3312,8 @@
 					{"id": "8YFpe5fkBz0", "name": "Pan Master Slash", "attr": ["Dead Cells", "Yoann Laulan"]},
 					{"id": "hYy15WGPbGE", "name": "Connected (Yours Forever)", "attr": ["Hydelic", "Tetris Effect"], "tags": ["Perfect"]},
 					{"id": "2mC6nk9Jf_Y", "name": "Stratosphere (So They Say)", "attr": ["Hydelic", "Tetris Effect"], "tags": ["Triple", "Perfect"]},
-					{"id": "HKk8fCgPKfM", "name": "Gleam Stone", "attr": ["Muse Dash", "Adapter"]}
+					{"id": "HKk8fCgPKfM", "name": "Gleam Stone", "attr": ["Muse Dash", "Adapter"]},
+					{"id": "obaYi5ZoJuw", "name": "Art of Blade", "attr": ["Arknights", "Contingency Contract: Blade Main Theme", "Jason Walst"], "tags": ["Perfect"]}
 				]
 			}
 		}
@@ -3820,7 +3831,9 @@
 				{"id": "B3g9GJyofyk", "name": "Hello Shooting Star", "attr": ["Assassination Classroom ending 1"]},
 				{"id": "k3o68ckVnoc", "name": "Fuyu no Hanashi", "attr": ["given"]},
 				{"id": "lvlmKyIlBV4", "name": "Dance of the moon rabbits", "attr": ["Umineko no Naku Koro ni"], "tags": ["Perfect"]},
-				{"id": "HrADt1zPw4s", "name": "Tonikawa: Over The Moon opening", "tags": ["Double", "Perfect"]}
+				{"id": "HrADt1zPw4s", "name": "Tonikawa: Over The Moon opening", "tags": ["Double", "Perfect"]},
+				{"id": "giXze1V7NlE", "name": "Fukashima no Carte", "attr": ["Seishun Buta Yarou wa Bunny Girl Senpai no Yume wo Mina"]},
+				{"id": "Kb1N4FZr1c0", "name": "Last Theater", "attr": ["Noisycell", "Death Parade ending"]}
 			]
 		}
 	},
@@ -4191,7 +4204,8 @@
 				{"id": "BwBeoFuLZWA", "name": "Monster", "attr": ["REOL"]},
 				{"id": "op8g-CYEasM", "name": "LUVORATORRRRRY!", "attr": ["REOL/\u308c\u3092\u308b feat.nqrse"]},
 				{"id": "6CQO97SZ85w", "name": "No Title", "attr": ["REOL"]},
-				{"id": "RrlGUyvZm8s", "name": "1LDK", "attr": ["Reol"]}
+				{"id": "RrlGUyvZm8s", "name": "1LDK", "attr": ["Reol"]},
+				{"id": "jYvgjXFpdvs", "name": "[A]ddiction", "attr": ["GigaReol x EVO+"]}
 			]
 		},
 		"miwa":{
@@ -4579,11 +4593,13 @@
 				{"id": "sBA_hK4aVi8", "name": "Weeaboo Metal", "attr": ["Riffshop"]},
 				{"id": "229zsNO98cw", "name": "Song for Denise (Maxi Version)", "attr": ["Piano Fantasia"], "tags": ["Perfect"]},
 				{"id": "SNJtH8E7AZw", "name": "Addict", "attr": ["Silva Hound", "Hazbin Hotel"]},
+				{"id": "kWdYPcxhd6g", "name": "Alastor's Game", "attr": ["The Living Tombstone", "Hazbin Hotel"]},
 				{"id": "DxBSsoKPEEU", "name": "Pekora BGM"},
 				{"id": "QhL90yMLluM", "name": "Henry Stickman Distraction Dance"},
 				{"id": "QccwZ6ejKAI", "name": "Corrupted Violin Fencer Boss Theme"},
 				{"id": "VrjeF0B4xMM", "name": "\u30ea\u30b3\u30fc\u30c0\u30fc\u30d3\u30fc\u30c82", "attr": ["Minato Aqua", "Y8MD"]},
-				{"id": "t_FYp5R3QCQ", "name": "Forestcall", "attr": ["Eltorro64Rus"]}
+				{"id": "t_FYp5R3QCQ", "name": "Forestcall", "attr": ["Eltorro64Rus"]},
+				{"id": "B5YM_nVo6DI", "name": "stupid horse", "attr": ["100 gecs"]}
 			]
 		}
 	},
