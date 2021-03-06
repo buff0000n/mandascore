@@ -21,7 +21,7 @@ class SoundEntry {
         this.setBuffer(null, null);
         // default volume
         this.volume = 1.0;
-        this.queued = false;
+        this.queuedTime = null;
     }
 
     setBuffer(buffer, sourceName) {
@@ -29,9 +29,9 @@ class SoundEntry {
         this.buffer = buffer;
         this.sourceName = sourceName;
         // if we need to play a sound then play it
-        if (this.queued) {
-            this.trigger();
-            this.queued = false;
+        if (this.queuedTime != null) {
+            this.triggerAtTime(this.queuedTime);
+            this.queuedTime = null;
         }
     }
 
@@ -46,12 +46,25 @@ class SoundEntry {
     }
 
     triggerLater(time=0) {
-        // if we don't have the sound yet then queue playback for when we do
-        if (this.buffer == null) {
-            this.queued = true;
-            return;
+        if (time > 0) {
+            // calculate the sound start time in the audio context's terms
+            var triggerTime = audioContext.currentTime + (time/1000);
+        } else {
+            // just start the source immediately and forget it
+            var triggerTime = 0
         }
 
+        if (this.buffer == null) {
+            // if we don't have the sound yet then queue playback for when we do
+            this.queuedTime = triggerTime;
+
+        } else {
+            // create the sound and schedule it
+            this.triggerAtTime(triggerTime);
+        }
+    }
+
+    triggerAtTime(triggerTime) {
         // create a source node
         var source = audioContext.createBufferSource();
         source.buffer = this.buffer;
@@ -64,18 +77,8 @@ class SoundEntry {
         source.connect(gain);
         gain.connect(audioContext.destination);
 
-        // if we need to schedule the sound in the future
-        if (time > 0) {
-            // calculate the sound start time in the audio context's terms
-            var t = audioContext.currentTime + (time/1000);
-            // schedule the sound
-            source.start(t);
-            // console.log("playing " + this.sourceName + " in " + time + "ms")
-        } else {
-            // just start the source immediately and forget it
-            source.start(0);
-            // console.log("playing " + this.sourceName)
-        }
+        // schedule the sound
+        source.start(triggerTime);
 
         // hold on to the source and gain nodes in case we have to cancel it or stop it
         this.lastSource = source;
