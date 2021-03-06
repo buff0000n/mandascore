@@ -1194,14 +1194,19 @@ class Score {
         }
     }
 
-    setSong(songCode, disableUndo) {
+    setSong(songCode, disableUndo, resetPlayback=false) {
         // parse the song code
         var song = new Song();
         song.parseChatLink(songCode);
-        this.setSongObject(song, disableUndo);
+        this.setSongObject(song, disableUndo, resetPlayback);
     }
 
-    setSongObject(song, disableUndo) {
+    setSongObject(song, disableUndo, resetPlayback=false) {
+        if (resetPlayback) {
+            // remember whether we were playing before stopping playback
+            var playing = this.isPlaying();
+            this.stopPlayback();
+        }
         // put the entire process of loading the song into a single undo action
         this.startActions();
         // set the title, make sure to update the UI
@@ -1225,6 +1230,11 @@ class Score {
 
         // commit as a single undo action
         this.endActions(disableUndo);
+
+        // resume playing if it was playing before
+        if (resetPlayback && playing) {
+            this.togglePlaying();
+        }
     }
 
     getSongObject() {
@@ -1794,7 +1804,7 @@ class Playlist {
         }
     }
 
-    select(entry, setScore) {
+    select(entry, setScore, resetPlayback=false) {
         // already selected
         if (this.selected == entry) {
             return;
@@ -1817,7 +1827,7 @@ class Playlist {
         this.selected = entry;
         // update the score, if this isn't an add action
         if (setScore) {
-            this.score.setSongObject(this.selected.song, true);
+            this.score.setSongObject(this.selected.song, true, resetPlayback);
             // let's make this simple for now: switching songs in the playlist clears the undo history.
             clearUndoStack();
         }
@@ -1898,10 +1908,6 @@ class Playlist {
         // don't make any changes if we didn't read any valid songs
         // we also avoid making any changes if there was an error parsing the song list
         if (readEntries.length > 0) {
-            // stop any running or paused playack
-            var playing = this.score.isPlaying();
-            this.score.stopPlayback();
-
             // clear the current playlist
             this.clear();
             // add each song
@@ -1909,13 +1915,8 @@ class Playlist {
                 // add it to the playlist, without affecting the selection
                 this.addSong(readEntries[i], false);
             }
-            // finally, select the first entry
-            this.select(this.entries[0], true);
-
-            // resume playing if it was playing before
-            if (playing) {
-                this.score.togglePlaying();
-            }
+            // finally, select the first entry and reset playback
+            this.select(this.entries[0], true, true);
         }
     }
 }

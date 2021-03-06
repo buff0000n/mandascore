@@ -106,8 +106,8 @@
 
     function updateSong(songCode, disableUndo=false) {
         try {
-            // load the song into the UI
-            score.setSong(songCode, disableUndo);
+            // load the song into the UI and reset the playback
+            score.setSong(songCode, disableUndo, true);
             // success
             clearErrors();
 

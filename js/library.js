@@ -367,12 +367,8 @@ class Library {
             // load the song data from the db
             var songs = db[id];
 
-            // remember whether we were playing before stopping playback
-            var playing = this.score.isPlaying();
-            this.score.stopPlayback();
-
-            // fill in the current song
-            this.score.setSong(songs[0], false);
+            // fill in the current song and reset playback
+            this.score.setSong(songs[0], false, true);
 
             if (songs.length == 1) {
                 // just one song
@@ -407,11 +403,6 @@ class Library {
 
                 // enable looping
                 this.score.playlist.setLooping(true);
-            }
-
-            // resume playing if it was playing before
-            if (playing) {
-                this.score.togglePlaying();
             }
         });
     }
