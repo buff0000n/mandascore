@@ -795,7 +795,8 @@
 				{"id": "VYcrMy1mHPw", "name": "Blinding Lights", "attr": ["The Weeknd"], "tags": ["Perfect"]},
 				{"id": "vHaQ1EMQTNg", "name": "Wicked Games", "attr": ["The Weeknd"], "tags": ["Double", "Perfect"]},
 				{"id": "rF-uDpYIVsw", "name": "After Hours", "attr": ["The Weeknd"], "tags": ["Perfect"]},
-				{"id": "5nX00ZHvyro", "name": "Save Your Tears", "attr": ["The Weeknd"], "tags": ["Perfect", "Sparse"]}
+				{"id": "5nX00ZHvyro", "name": "Save Your Tears", "attr": ["The Weeknd"], "tags": ["Perfect", "Sparse"]},
+				{"id": "973eKKbqW_8", "name": "Nothing Compares", "attr": ["The Weeknd"]}
 			]
 		},
 		"Rise Against":{
@@ -1223,7 +1224,9 @@
 				{"id": "DqyYPMBXKOA", "name": "The Shade", "attr": ["METRIC"], "tags": ["Perfect"]},
 				{"id": "E4Sec-4iRYg", "name": "Bubblegum B*tch", "attr": ["Marina and the Diamonds"]},
 				{"id": "jkhcYrz9pAc", "name": "Blue Song", "attr": ["Mint Royale"]},
-				{"id": "FY62bDG_Djg", "name": "Silk", "attr": ["Giselle", "Favored Nations Remix"], "tags": ["Double", "Perfect"]}
+				{"id": "FY62bDG_Djg", "name": "Silk", "attr": ["Giselle", "Favored Nations Remix"], "tags": ["Double", "Perfect"]},
+				{"id": "6jbIq9xLnkc", "name": "Sad Dance", "attr": ["Cat Company"]},
+				{"id": "jr_jQR5T2Ns", "name": "Sweater Weather", "attr": ["The Neighbourhood"]}
 			]
 		}
 	},
@@ -1463,6 +1466,14 @@
 				{"id": "4DQBb9iOtzI", "name": "Crimewave", "attr": ["Crystal Castles"]}
 			]
 		},
+		"Charlie Puth":{
+			"dbName":"Easylistening",
+			"songs":[
+				{"id": "_XDoWthDYCc", "name": "We Don't Talk Anymore", "attr": ["Charlie Puth"]},
+				{"id": "aSOYTzADU5M", "name": "Attention", "attr": ["Charlie Puth"]},
+				{"id": "S_ksYnpPAyU", "name": "The Way I Am", "attr": ["Charlie Puth"]}
+			]
+		},
 		"Misc Easy Listening":{
 			"dbName":"Easylistening.MiscEasyListening",
 			"songs":[
@@ -1475,7 +1486,6 @@
 				{"id": "yAifwincUQM", "name": "Summertime Sadness", "attr": ["Lana Del Rey"], "tags": ["Perfect"]},
 				{"id": "rI7Pn7kq274", "name": "Hallelujah", "attr": ["The Helio Sequence"]},
 				{"id": "MKvap1NsnXI", "name": "Sail", "attr": ["AWOLNATION"]},
-				{"id": "_XDoWthDYCc", "name": "We Don't Talk Anymore", "attr": ["Charlie Puth"]},
 				{"id": "2NRFdfChHzw", "name": "Treat You Better", "attr": ["Shawn Mendes"]},
 				{"id": "Tgqa0wgWvVI", "name": "Body Moves", "attr": ["DNCE"]},
 				{"id": "wy9eEgz-8VU", "name": "Neopolitan Dreams", "attr": ["Lisa Mitchell"]},
@@ -1500,7 +1510,6 @@
 				{"id": "lGBZOkVmq08", "name": "This Charming Man", "attr": ["The Smiths"]},
 				{"id": "dCa1Voa4uDQ", "name": "Too Good At Goodbyes", "attr": ["Sam Smith"], "tags": ["Perfect"]},
 				{"id": "VN2-ooMeJiY", "name": "Stay With Me", "attr": ["Sam Smith"], "tags": ["Perfect"]},
-				{"id": "aSOYTzADU5M", "name": "Attention", "attr": ["Charlie Puth"]},
 				{"id": "KdTWTScx7LY", "name": "Dreamer", "attr": ["Axwell \u039b Ingrosso"]},
 				{"id": "qzgijYRl9OA", "name": "Bedroom Trip", "attr": ["Luke Christopher"], "tags": ["Perfect"]},
 				{"id": "1RNuSxtxIg4", "name": "Asido", "attr": ["Purity Ring"], "tags": ["Perfect"]},
@@ -1514,7 +1523,6 @@
 				{"id": "PctymQki5Xk", "name": "Running Up That Hill", "attr": ["Chromatics"], "tags": ["Double", "Perfect", "Filled"]},
 				{"id": "vE7qbSqUOG4", "name": "The Day You Went Away", "attr": ["M2M"]},
 				{"id": "vYNODEkfuKY", "name": "Let Me Down", "attr": ["Alec Benjamin"], "tags": ["Perfect"]},
-				{"id": "S_ksYnpPAyU", "name": "The Way I Am", "attr": ["Charlie Puth"]},
 				{"id": "eLjkfcGhMOo", "name": "Say You Won't Let Go", "attr": ["James Arthur"]},
 				{"id": "sEUXCBVEZFs", "name": "All Of Me", "attr": ["John Legend"]},
 				{"id": "58eqw5B_edk", "name": "Wake Up", "attr": ["Eden"]},
@@ -2125,6 +2133,7 @@
 				{"id": "8yYdpmLePAs", "name": "My Window", "attr": ["Don Diablo"], "tags": ["Perfect"]},
 				{"id": "0bdsYKpF5dc", "name": "Cutting Shapes", "attr": ["Don Diablo"]},
 				{"id": "pi8r5gtLwMI", "name": "Of The Night", "attr": ["Bastille"]},
+				{"id": "S1uonWR6kek", "name": "Pompeii", "attr": ["Bastille"]},
 				{"id": "UhMcWfh7YWY", "name": "Soulmother, I Love You", "attr": ["Getter"]},
 				{"id": "VUcHSZZL4ms", "name": "Caramelldansen", "attr": ["Caramell"]},
 				{"id": "Hdo9lQ-5pA4", "name": "You", "attr": ["Galantis"], "tags": ["Perfect"]},
@@ -2328,7 +2337,8 @@
 				{"id": "1nf4w1WzNHc", "name": "The Way You Are", "attr": ["Aftermath"]},
 				{"id": "2Wm7fnGPkw4", "name": "Decomposed (Trampled)", "attr": ["Mentallo & The Fixer"], "tags": ["Perfect"]},
 				{"id": "zCE-SVWQV-4", "name": "Walking On Gravestones", "attr": ["I See Stars"]},
-				{"id": "xO6ptlEbDtU", "name": "If I Could Fly", "attr": ["Ocean Lab"]}
+				{"id": "xO6ptlEbDtU", "name": "If I Could Fly", "attr": ["Ocean Lab"]},
+				{"id": "j7Rq9QHUIXQ", "name": "Neck And Neck", "attr": ["Zeds Dead"]}
 			]
 		}
 	},
@@ -3022,7 +3032,16 @@
 			"songs":[
 				{"id": "_PCgUbV_7ng", "name": "High", "attr": ["Friday Night Funkin"]},
 				{"id": "OTr41vapuW0", "name": "Overhead", "attr": ["Friday Night Funkin'", "Whitmore"], "tags": ["Perfect"]},
-				{"id": "6f1xv4V4vRM", "name": "Breakfast", "attr": ["Friday Night Funkin'"]}
+				{"id": "6f1xv4V4vRM", "name": "Breakfast", "attr": ["Friday Night Funkin'"]},
+				{"id": "_t2gkYz6hoo", "name": "Pico", "attr": ["Friday Night Funkin'"], "tags": ["Perfect"]}
+			]
+		},
+		"Hollow Knight":{
+			"dbName":"Videogames",
+			"songs":[
+				{"id": "pxHMetE4wYg", "name": "Crystal Peak", "attr": ["Hollow Knight"], "tags": ["Perfect"]},
+				{"id": "iBdCPYDBIk0", "name": "Dung Defender", "attr": ["Hollow Knight"]},
+				{"id": "tgbYYTDPM3w", "name": "Resting Grounds", "attr": ["Hollow Knight"], "tags": ["Beta"]}
 			]
 		},
 		"Misc video games":{
@@ -3065,7 +3084,8 @@
 					{"id": "XL7U8GCIFqc", "name": "Deionarra's Theme", "attr": ["Planescape Torment"], "tags": ["Adau"]},
 					{"id": "BxaXP81BiGo", "name": "Amiga Lotus 3 Track 3"},
 					{"id": "0mQc3izTrOA", "name": "Sega CD boot up music"},
-					{"id": "hZ-ni0mV07E", "name": "Area 4 theme", "attr": ["Blazing Lazers"]}
+					{"id": "hZ-ni0mV07E", "name": "Area 4 theme", "attr": ["Blazing Lazers"]},
+					{"id": "NFXD5m8S9jU", "name": "Boss", "attr": ["Plok! SNES"], "tags": ["Filled"]}
 				]
 			},
 			"Not as old":{
@@ -3140,8 +3160,6 @@
 					{"id": "cqgRGUnliOE", "name": "Funiculi Funicula", "attr": ["Spider-Man 2: The Game pizza theme"]},
 					{"id": "XxE9xDXzOBc", "name": "Slig Barracks", "attr": ["Oddworld: Abe's Exoddus"], "tags": ["Perfect"]},
 					{"id": "eqddtVDemmU", "name": "Unfinished Business (Under The Bridge)", "attr": ["Skullgirls Encore"]},
-					{"id": "pxHMetE4wYg", "name": "Crystal Peak", "attr": ["Hollow Knight"], "tags": ["Perfect"]},
-					{"id": "iBdCPYDBIk0", "name": "Dung Defender", "attr": ["Hollow Knight"]},
 					{"id": "1cMedcpWVzI", "name": "Checker Dance", "attr": ["Deltarune"]},
 					{"id": "O5Sp-LIsRkU", "name": "Field of Hopes And Dreams", "attr": ["Deltarune"]},
 					{"id": "n0ohFrK_UMg", "name": "Dreamer's Dream", "attr": ["Ragnarok Online"]},
@@ -3313,7 +3331,8 @@
 					{"id": "hYy15WGPbGE", "name": "Connected (Yours Forever)", "attr": ["Hydelic", "Tetris Effect"], "tags": ["Perfect"]},
 					{"id": "2mC6nk9Jf_Y", "name": "Stratosphere (So They Say)", "attr": ["Hydelic", "Tetris Effect"], "tags": ["Triple", "Perfect", "Alpha"]},
 					{"id": "HKk8fCgPKfM", "name": "Gleam Stone", "attr": ["Muse Dash", "Adapter"]},
-					{"id": "obaYi5ZoJuw", "name": "Art of Blade", "attr": ["Arknights", "Contingency Contract: Blade Main Theme"], "tags": ["Perfect"]}
+					{"id": "obaYi5ZoJuw", "name": "Art of Blade", "attr": ["Arknights", "Contingency Contract: Blade Main Theme"], "tags": ["Perfect"]},
+					{"id": "d_N5pITvz5o", "name": "Philistine", "attr": ["No More Heroes 2: Desperate Struggle"]}
 				]
 			}
 		}
@@ -4006,7 +4025,8 @@
 				{"id": "DMi2QATenxw", "name": "World of Jetix"},
 				{"id": "C1RrYQ7ysgA", "name": "Shaun The Sheep theme song"},
 				{"id": "HTGWPuHexBY", "name": "Kim Possible Theme"},
-				{"id": "bgiRHNo_IPs", "name": "Let it Go", "attr": ["Frozen"]}
+				{"id": "bgiRHNo_IPs", "name": "Let it Go", "attr": ["Frozen"]},
+				{"id": "onVl8ilqdNE", "name": "He Mele No Lilo", "attr": ["Lilo & Stitch"]}
 			]
 		},
 		"Misc TV":{
@@ -4599,7 +4619,8 @@
 				{"id": "QccwZ6ejKAI", "name": "Corrupted Violin Fencer Boss Theme"},
 				{"id": "VrjeF0B4xMM", "name": "\u30ea\u30b3\u30fc\u30c0\u30fc\u30d3\u30fc\u30c82", "attr": ["Minato Aqua", "Y8MD"]},
 				{"id": "t_FYp5R3QCQ", "name": "Forestcall", "attr": ["Eltorro64Rus"]},
-				{"id": "B5YM_nVo6DI", "name": "stupid horse", "attr": ["100 gecs"]}
+				{"id": "B5YM_nVo6DI", "name": "stupid horse", "attr": ["100 gecs"]},
+				{"id": "qPHc07i8anA", "name": "SugarCrash!", "attr": ["ElyOtto"]}
 			]
 		}
 	},
