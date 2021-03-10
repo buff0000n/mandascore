@@ -1226,7 +1226,8 @@
 				{"id": "jkhcYrz9pAc", "name": "Blue Song", "attr": ["Mint Royale"]},
 				{"id": "FY62bDG_Djg", "name": "Silk", "attr": ["Giselle", "Favored Nations Remix"], "tags": ["Double", "Perfect"]},
 				{"id": "6jbIq9xLnkc", "name": "Sad Dance", "attr": ["Cat Company"]},
-				{"id": "jr_jQR5T2Ns", "name": "Sweater Weather", "attr": ["The Neighbourhood"]}
+				{"id": "jr_jQR5T2Ns", "name": "Sweater Weather", "attr": ["The Neighbourhood"]},
+				{"id": "j0j6XJ0fXIM", "name": "Source", "attr": ["Fever The Ghost"], "tags": ["Perfect", "Sparse"]}
 			]
 		}
 	},
@@ -1373,6 +1374,14 @@
 				{"id": "ydK6iK_3_J8", "name": "Moshi Moshi", "attr": ["Poppy"], "tags": ["Perfect"]},
 				{"id": "_LFLpE7Z9uA", "name": "Lowlife", "attr": ["That Poppy"]},
 				{"id": "v-C4lHk9PDk", "name": "Girls In Bikinis", "attr": ["Poppy"]}
+			]
+		},
+		"Grimes":{
+			"dbName":"Pop",
+			"songs":[
+				{"id": "02gj_m_qta8", "name": "Rosa", "attr": ["Grimes"], "tags": ["Perfect"]},
+				{"id": "HFgxqfTYQZs", "name": "4\u00c6M", "attr": ["Grimes"]},
+				{"id": "KBicT0bqHYk", "name": "We Appreciate Power", "attr": ["Grimes"], "tags": ["Epsilon"]}
 			]
 		},
 		"Misc Pop":{
@@ -1567,7 +1576,8 @@
 				{"id": "yQWmFERFeGE", "name": "Save That Sh*t", "attr": ["Lil Peep"]},
 				{"id": "zdbibwEGRZc", "name": "Falling Down", "attr": ["Lil Peep & XXTENTACION"]},
 				{"id": "Qdqrd3IAyQs", "name": "walk away as the door slams", "attr": ["lil peep"], "tags": ["Perfect"]},
-				{"id": "obgwAKfvV7M", "name": "The Way I See Things", "attr": ["Lil Peep"], "tags": ["Perfect"]}
+				{"id": "obgwAKfvV7M", "name": "The Way I See Things", "attr": ["Lil Peep"], "tags": ["Perfect"]},
+				{"id": "yE-o-yezdZA", "name": "witchblades", "attr": ["lil peep x lil tracy"], "tags": ["Double", "Perfect"]}
 			]
 		},
 		"Lil Uzi Vert":{
@@ -1771,7 +1781,9 @@
 				{"id": "FxSz1B74ZnU", "name": "Big And Chunky", "attr": ["will.i.am"]},
 				{"id": "lM1KAnTKxRw", "name": "Replay", "attr": ["lyaz"]},
 				{"id": "bBc6GoErZY4", "name": "So Done", "attr": ["Kid Laroi"], "tags": ["Perfect"]},
-				{"id": "wHWc0caQkxM", "name": "Chill Bill", "attr": ["Rob $tone ft. J. Davis & Spooks"], "tags": ["Perfect"]}
+				{"id": "wHWc0caQkxM", "name": "Chill Bill", "attr": ["Rob $tone ft. J. Davis & Spooks"], "tags": ["Perfect"]},
+				{"id": "qrxMHrmicvM", "name": "Raid", "attr": ["Madvillian"]},
+				{"id": "DW7dLiOYu7s", "name": "Calling My Phone", "attr": ["Lil Tjay ft. 6LACK"], "tags": ["Perfect"]}
 			]
 		}
 	},
@@ -2198,6 +2210,7 @@
 				{"id": "ugGnlAy5zpE", "name": "Dream a Dream", "attr": ["Captain Jack"]},
 				{"id": "99hhco1t_FU", "name": "Cigarettes n Boats", "attr": ["Approaching Nirvana"]},
 				{"id": "ls0XHP84Caw", "name": "ILYSM", "attr": ["Steve Aoki"]},
+				{"id": "2XXRjgunsaA", "name": "Rage The Night Away", "attr": ["Steve Aoki"]},
 				{"id": "3ZlZBs8sxvU", "name": "Miraj", "attr": ["Sandro Silva & Junkie Kid"], "tags": ["Gamma"]},
 				{"id": "4p-XqQP6SIE", "name": "Sunset Lover", "attr": ["Petit Biscuit"]},
 				{"id": "OkaFKPtP2yE", "name": "The end of the earth", "attr": ["Hard trance Techno 2016", "Vociferous"]},
@@ -2338,7 +2351,9 @@
 				{"id": "2Wm7fnGPkw4", "name": "Decomposed (Trampled)", "attr": ["Mentallo & The Fixer"], "tags": ["Perfect"]},
 				{"id": "zCE-SVWQV-4", "name": "Walking On Gravestones", "attr": ["I See Stars"]},
 				{"id": "xO6ptlEbDtU", "name": "If I Could Fly", "attr": ["Ocean Lab"]},
-				{"id": "j7Rq9QHUIXQ", "name": "Neck And Neck", "attr": ["Zeds Dead"]}
+				{"id": "j7Rq9QHUIXQ", "name": "Neck And Neck", "attr": ["Zeds Dead"]},
+				{"id": "pGHdV2wPkL8", "name": "Alive", "attr": ["Mind Vortex"]},
+				{"id": "nZpZNFYDBnk", "name": "Dusk To Dawn", "attr": ["Emancipator"], "tags": ["Plogg"]}
 			]
 		}
 	},
@@ -3157,6 +3172,7 @@
 					{"id": "Gk-C2YAoZao", "name": "UNATCO", "attr": ["Deus Ex"]},
 					{"id": "xM_hrzKS2rw", "name": "Battery Park - Combat", "attr": ["Deus Ex"]},
 					{"id": "ErLajyJN0l8", "name": "Maktar Resort", "attr": ["Ratchet and Clank 2"]},
+					{"id": "o-iwTcq1z9I", "name": "Ratchet & Clank Theme / Let's Celebrate", "attr": ["Playstation Home Classic"], "tags": ["Perfect"]},
 					{"id": "cqgRGUnliOE", "name": "Funiculi Funicula", "attr": ["Spider-Man 2: The Game pizza theme"]},
 					{"id": "XxE9xDXzOBc", "name": "Slig Barracks", "attr": ["Oddworld: Abe's Exoddus"], "tags": ["Perfect"]},
 					{"id": "eqddtVDemmU", "name": "Unfinished Business (Under The Bridge)", "attr": ["Skullgirls Encore"]},
@@ -3852,7 +3868,8 @@
 				{"id": "lvlmKyIlBV4", "name": "Dance of the moon rabbits", "attr": ["Umineko no Naku Koro ni"], "tags": ["Perfect", "Adau"]},
 				{"id": "HrADt1zPw4s", "name": "Tonikawa: Over The Moon opening", "tags": ["Double", "Perfect"]},
 				{"id": "giXze1V7NlE", "name": "Fukashima no Carte", "attr": ["Seishun Buta Yarou wa Bunny Girl Senpai no Yume wo Mina"]},
-				{"id": "Kb1N4FZr1c0", "name": "Last Theater", "attr": ["Noisycell", "Death Parade ending"]}
+				{"id": "Kb1N4FZr1c0", "name": "Last Theater", "attr": ["Noisycell", "Death Parade ending"]},
+				{"id": "E10bWU3Zpxo", "name": "Irokousui", "attr": ["Horimiya opening", "Yoh Kamiyama"], "tags": ["Perfect"]}
 			]
 		}
 	},
@@ -4317,7 +4334,8 @@
 				{"id": "uA7ZeZYFYWU", "name": "Dramarama", "attr": ["Monsta X/\ubaac\uc2a4\ud0c0\uc5d1\uc2a4"]},
 				{"id": "U1hzWl4wfYQ", "name": "Shootout", "attr": ["Monsta X"]},
 				{"id": "MHFJxV-EGno", "name": "All In/\uac78\uc5b4", "attr": ["Monsta X"], "tags": ["Perfect"]},
-				{"id": "JQKWpTrXFNM", "name": "Alligator", "attr": ["Monsta X"], "tags": ["Perfect"]}
+				{"id": "JQKWpTrXFNM", "name": "Alligator", "attr": ["Monsta X"], "tags": ["Perfect"]},
+				{"id": "wWTADxI6ub0", "name": "Dia", "attr": ["Joohoney"], "tags": ["Perfect"]}
 			]
 		},
 		"EXO/엑소":{
@@ -4446,7 +4464,8 @@
 				{"id": "bkmxC5Eookk", "name": "Summertime", "attr": ["Cinnamons x Evening Cinema"]},
 				{"id": "CPmTlcShRs4", "name": "(\u604b\u306f) \u767e\u5e74\u6226\u4e89", "attr": ["\u76f8\u5bfe\u6027\u7406\u8ad6"]},
 				{"id": "7wKp_6BDE8g", "name": "Rising", "attr": ["Yoshida Brothers"]},
-				{"id": "wSPGReTrumw", "name": "Emotional Prism/\u611f\u60c5\u7684\u306a\u30d7\u30ea\u30ba\u30e0", "attr": ["Bigwave"]}
+				{"id": "wSPGReTrumw", "name": "Emotional Prism/\u611f\u60c5\u7684\u306a\u30d7\u30ea\u30ba\u30e0", "attr": ["Bigwave"]},
+				{"id": "eGQ7XB9nIeE", "name": "Fighter", "attr": ["Kana-Boon"]}
 			]
 		},
 		"Misc I Don't Know Which Letter Pop":{
@@ -4795,8 +4814,6 @@
 				{"id": "udqrMybmMQ4", "name": "We No Speak Americano", "attr": ["Yolanda Be Cool & DCUP"], "tags": ["Perfect"]},
 				{"id": "eIRmS10YjHk", "name": "On My Own", "attr": ["Les Miserables"]},
 				{"id": "ztQJzO7PB1E", "name": "Agora Vai Sentar/KondZilla", "attr": ["MCs Jhowzinho & Kadinho"]},
-				{"id": "02gj_m_qta8", "name": "Rosa", "attr": ["Grimes"], "tags": ["Perfect"]},
-				{"id": "HFgxqfTYQZs", "name": "4\u00c6M", "attr": ["Grimes"]},
 				{"id": "UjAAcQyRRe8", "name": "Tunak Tunak Tun", "attr": ["Daler Mehndi"]},
 				{"id": "BWGOzXRrJgM", "name": "How do you like it", "attr": ["Junjo"]},
 				{"id": "dn6KFGyTxLk", "name": "Quick Musical Doodles & Sex", "attr": ["Two Feet"]},
