@@ -179,8 +179,7 @@
     .playlistBox {
         text-align: left;
         height: 100%;
-        border-radius: 1ex;
-        padding: 1ex;
+        margin: 0 1ex 0 0;
         background: #000000;
         display: none;
         /*
@@ -193,11 +192,26 @@
         text-align: left;
         max-width: 48ex;
         min-width: 48ex;
-        border-radius: 1ex;
-        padding: 1ex;
         margin: 0 1ex 0 0;
         background: #000000;
         display: none;
+        overflow-anchor: none;
+    }
+
+    .mixerBox {
+        text-align: left;
+        max-width: 48ex;
+        min-width: 48ex;
+        margin: 0 1ex 0 0;
+        background: #000000;
+        display: none;
+        overflow-anchor: none;
+    }
+
+    .mixerlistScollArea {
+        overflow: auto;
+        max-height: 32ex;
+        min-height: 32ex;
         overflow-anchor: none;
     }
 
@@ -313,12 +327,6 @@
     #scoreArea {
         display: table-cell;
         vertical-align: top;
-    }
-
-    #libraryArea {
-        display: table-cell;
-        vertical-align: top;
-        height: 100%;
     }
 
 	.utilGroup {

@@ -314,6 +314,21 @@
         }
     }
 
+    function toggleMixer(button) {
+        // chrome is doing strange things with clicked buttons so just unfocus it
+        button.blur();
+        var mixerBox = document.getElementById("mixerBox");
+        if (!mixerBox || mixerBox.style.display == "") {
+            mixerBox = document.getElementById("mixerBox");
+            mixerBox.style.display = "inline-block";
+            document.getElementById("mixerButton").classList.remove("gray");
+            score.mixer.init();
+        } else {
+            mixerBox.style.display = "";
+            document.getElementById("mixerButton").classList.add("gray");
+        }
+    }
+
     function about() {
         // chrome is weird with button focus now, make sure the about button is not in focus
         document.getElementById("about").blur();
@@ -348,7 +363,7 @@
 </script>
 
 <div class="titleBar">
-    <div class="mainTitle">Mandachord Loop Editor</div>
+    <div class="mainTitle">Mandascore</div>
 </div>
 
 <div id="errorBar">
@@ -370,6 +385,10 @@
                 <input id="playlistButton" class="button popup gray" type="submit" value="Playlist" onClick="togglePlaylist(this)"/>
                 <span class="tooltiptextbottom">Enable or disable the playlist</span>
             </div>
+        </div>
+        <div class="tooltip">
+            <input id="mixerButton" class="button popup gray" type="submit" value="Mixer" onClick="toggleMixer(this)"/>
+            <span class="tooltiptextbottom">Enable or disable the mixer</span>
         </div>
         <div class="util" id="demoSelectDiv">
             <div class="tooltip">

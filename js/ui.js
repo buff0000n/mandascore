@@ -1072,6 +1072,9 @@ class Score {
         // library object
         this.library = new Library(this);
 
+        // mixer object
+        this.mixer = new Mixer(this);
+
         // build the UI
         this.buildUI();
 
@@ -1128,6 +1131,7 @@ class Score {
 
         this.controlBar.appendChild(this.library.libraryBox);
         this.controlBar.appendChild(this.playlist.playlistContainer);
+        this.controlBar.appendChild(this.mixer.mixerBox);
         this.controlBar.appendChild(this.songControls);
 
         this.container.appendChild(this.controlBar);
@@ -1506,6 +1510,169 @@ class Score {
         var link = convertToPngLink(canvas, this.title);
         linkDiv.innerHTML = "";
         linkDiv.appendChild(link);
+    }
+}
+
+class MixerSlider {
+    constructor(mixer, group, row=null) {
+        this.mixer = mixer;
+        this.group = group;
+        this.section = group.section;
+        this.row = row;
+
+        this.buildUI();
+
+        if (this.row == null) {
+            this.group.mainSlider = this;
+        } else {
+            this.group.rowSliders[this.row] = this;
+        }
+    }
+
+    buildUI() {
+        // assume the container is a table, top level element is table row
+        this.container = document.createElement("tr");
+        // css
+        this.container.className = "sectionRow";
+        // back-reference
+        this.container.editor = this;
+
+        var html = "";
+
+        var id = "mixer-" + this.section;
+        if (this.row != null) id = id + "-" + this.row;
+
+        if (this.row == null) {
+            // build the icon and section section label if it's not an individual row slider
+            html = html + `
+                <td><img src="img/${sectionImages[this.section]}.png" srcset="img2x/${sectionImages[this.section]}.png 2x"</td>
+                <td><span>${sectionMetaData[this.section].displayName}</span></td>
+                <td colspan=2>`;
+        } else {
+            // skip first column, second column is just the row number
+            html = html + `
+                <td colspan="2"/>
+                <td style="text-align: right">${this.row + 1}</td>
+                <td>`;
+        }
+
+        // build the volume slider and enable checkbox
+        html += `
+            <input class="sectionVolume" type="range" min="0" max="100" value="100"/></td>
+            <td>
+                <input id="${id}-enable" class="button sectionEnable" type="checkbox" checked/>
+                <label for="${id}-enable"></label>
+            </td>
+        `;
+
+        this.container.innerHTML = html;
+
+        this.slider = getFirstChild(this.container, "sectionVolume");
+//        this.slider.addEventListener("change", () => { this.volumeChange() });
+        this.slider.addEventListener("input", () => { this.volumeChange() });
+
+        this.toggler = getFirstChild(this.container, "sectionEnable");
+        this.toggler.addEventListener("change", () => { this.toggleChange() });
+    }
+
+    setVolumeValue(value) {
+
+    }
+
+    volumeChange() {
+        this.group.volumeChange(this.row, this.slider.value / 100);
+    }
+
+    toggleChange() {
+        this.group.toggleChange(this.row, this.toggler.checked);
+    }
+}
+
+class MixerSliderGroup {
+    constructor(mixer, section) {
+        this.mixer = mixer;
+        this.section = section;
+        this.mainSlider = null;
+        this.rowSliders = [];
+    }
+
+    volumeChange(row, value) {
+        console.log("VOLUME CHANGE: " + this.section + " (" + row + "): " + value);
+    }
+
+    toggleChange(row, enabled) {
+        console.log("TOGGLE CHANGE: " + this.section + " (" + row + "): " + enabled);
+    }
+
+
+}
+
+class Mixer {
+    constructor(score) {
+        // back reference to the score
+        this.score = score;
+
+        // build the UI
+        this.buildUI();
+    }
+
+    buildUI() {
+        // main container
+        this.mixerBox = document.createElement("div");
+        this.mixerBox.className = "mixerBox";
+        this.mixerBox.id = "mixerBox";
+        // back reference because why not
+        this.mixerBox.mixer = this;
+
+        this.container = this.mixerBox;
+
+        // button container
+        this.buttons = document.createElement("div");
+        this.buttons.className = "scoreButtonContainer";
+        // back-reference
+        this.buttons.score = this;
+        // build the buttons in a single row
+        this.buttons.innerHTML = `
+            <div class="scoreButtonRow">
+                <input class="button resetButton" type="submit" value="Reset"/>
+            </div>
+        `;
+        this.container.appendChild(this.buttons);
+
+        getFirstChild(this.container, "resetButton").addEventListener("click", () => { this.resetMixerButton() });
+
+        var table = document.createElement("table");
+
+        for (var name in sectionMetaData) {
+            var metadata = sectionMetaData[name];
+            // skip the "all" section
+            if (metadata.all) continue;
+
+            var group = new MixerSliderGroup(this, name);
+            // build section mixer
+            var slider = new MixerSlider(this, group);
+            table.appendChild(slider.container);
+
+            // individual row mixers
+            for (var i = metadata.rowStart; i <= metadata.rowStop; i++) {
+                slider = new MixerSlider(this, group, i - metadata.rowStart);
+                table.appendChild(slider.container);
+            }
+        }
+
+        var tableDiv = document.createElement("div");
+        tableDiv.className = "mixerlistScollArea";
+
+        tableDiv.appendChild(table);
+        this.container.appendChild(tableDiv);
+
+    }
+
+    init() {
+    }
+
+    resetMixerButton(e) {
+        console.log("RESET");
     }
 }
 
