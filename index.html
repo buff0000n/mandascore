@@ -92,7 +92,7 @@
     }
 
     function setSongCode(songCode, disableUndo=false) {
-        // set the song code explicitly, from the URL or the demo dropdown
+        // set the song code explicitly, from the URL or the library
         if (songCode !== null && songCode.length > 0) {
             // set the song code box
             var input = document.getElementById("songCode");
@@ -115,16 +115,6 @@
             // fail
             showErrors([error]);
             throw error;
-        }
-    }
-
-    function demoSelected() {
-        // pull the selected demo song code
-        var input = document.getElementById("demoSelect");
-        songCode = input.value.trim();
-        if (songCode != null && songCode != "") {
-            // update the UI
-            setSongCode(songCode);
         }
     }
 
@@ -670,7 +660,7 @@
             </p>
             <p>
                 All actions can be undone, including note changes, section setting changes, title changes, paste,
-                clear, and loading a demo song.
+                clear, and loading a song from the library.
             </p>
             <h1 id="tocPlayback">Playback</h1>
             <p>
@@ -743,8 +733,8 @@
 
             <h1 id="tocLibrary">Library</h1>
             <p>
-                Click the <strong>Library</strong> button to enable the library.  This contains every Mandachord
-                request I've done.
+                Click the <strong>Library</strong> button to enable the library.  This contains a demo for each
+                instrument set, along with every Mandachord request I've done.
             </p>
             <p>
                 <strong class="warn">There are thousands of songs and it's all loaded into your browser.  I'm
