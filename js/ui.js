@@ -754,12 +754,6 @@ class Measure {
                 }
             }
         }
-//        // find any notes that are enabled in the given column and schedule them to play woth the given delay
-//        for (var r = 0; r < 13; r++) {
-//            if (this.notes[t][r].enabled) {
-//                this.score.soundPlayer.playSoundLater(r, delay);
-//            }
-//        }
     }
 
     stopPlayback() {
@@ -846,25 +840,38 @@ class SectionEditor {
         // identify the section
         this.score = score;
         this.section = section;
-        // current state
+        this.metadata = sectionMetaData[this.section];
+
+        // current song data state
         this.volume = 1.0;
         this.pack = "";
 
+        // main UI
+        this.mainSlider = null;
+
         // build the UI
-        this.container = this.buildUI();
+        this.buildUI();
+
+        // mixer UI
+        this.mixerSlider = null;
+        this.mixerRowSliders = [];
+
+        // mixer UI is built from the main mixer
     }
     
     buildUI() {
         // assume the container is a table, top level element is table row
-        var container = document.createElement("tr");
+        var tr = document.createElement("tr");
         // css
-        container.className = "sectionRow";
+        tr.className = "sectionRow";
         // back-reference
-        container.editor = this;
+        tr.editor = this;
+        
+        this.mainSlider = new MixerSlider(this, false);
 
         // build the icon, section label, and start the instrument pack drop-down
         var html = `
-            <td><img src="img/${sectionImages[this.section]}.png" srcset="img2x/${sectionImages[this.section]}.png 2x"</td>
+            <td><img src="img/${sectionImages[this.section]}.png" srcset="img2x/${sectionImages[this.section]}.png 2x"></td>
             <td><span>${sectionMetaData[this.section].displayName}</span></td>
             <td><select class="dropDown sectionPack" onchange="sectionPack()">`;
 
@@ -874,22 +881,21 @@ class SectionEditor {
         }
 
         // finish the drop-down, build the volume slider and enable checkbox
-        html += `
-            </select></td>
-            <td><input class="sectionVolume" type="range" min="0" max="100" value="100" onchange="sectionVolume()" oninput="sectionVolumePeek()"/></td>
-            <td>
-                <input id="section-${this.section}-enable" class="button sectionEnable" type="checkbox" checked onchange="sectionToggle()"/>
-                <label for="section-${this.section}-enable"></label>
-            </td>
-        `;
+        html += `</select></td>`;
 
-        container.innerHTML = html;
-        return container;
+        // save the row contents so far
+        tr.innerHTML = html;
+
+        // add the slider and toggle
+        this.mainSlider.buildUI(tr);
+
+        // the TR is our main container
+        this.container = tr;
     }
 
-    setEnabled(enabled) {
-        // pass through to the score's audio player to enable or disable audio
-        this.score.soundPlayer.setEnabled(this.section, enabled);
+    setEnabled(row, enabled) {
+        // pass through to the score's audio player to enable or disable a row
+        this.score.soundPlayer.setEnabled(this.metadata.rowStart + row, enabled);
     }
 
     setVolume(volume, action=true, peek=false, load=false) {
@@ -999,6 +1005,294 @@ class SectionEditor {
         );
         // that was a lot of work
     }
+
+    buildMixerUI(table) {
+        // build section mixer
+        this.mixerMainSlider = new MixerSlider(this, true);
+
+        // build the beginning of the section mixer row
+        var tr = document.createElement("tr");
+        tr.className = "sectionRow";
+        tr.innerHTML = `
+                <td><img src="img/${sectionImages[this.section]}.png" srcset="img2x/${sectionImages[this.section]}.png 2x"/></td>
+                <td colspan="2"><span>${sectionMetaData[this.section].displayName}</span></td>`;
+
+        // add the section slider and toggle
+        this.mixerMainSlider.buildUI(tr);
+
+        // add the section mixer row to the table
+        table.appendChild(tr);
+
+        // set up mirror for the two main sliders, their state needs to be synchronized.
+        this.mainSlider.toggleMirror = this.mixerMainSlider;
+        this.mixerMainSlider.toggleMirror = this.mainSlider;
+
+        // individual row mixers
+        for (var row = this.metadata.rowStart; row <= this.metadata.rowStop; row++) {
+            // build a row slider
+            var slider = new MixerSlider(this, true, row - this.metadata.rowStart);
+            this.mixerRowSliders[row - this.metadata.rowStart] = slider;
+
+            // build the beginning of the mixer row
+            tr = document.createElement("tr");
+            tr.className = "sectionRow";
+            tr.innerHTML = `
+                <td/>
+                <td style="text-align: right">
+                    <img src="img/${imgRow[row]}.png" srcset="img2x/${imgRow[row]}.png 2x"/>
+                </td>
+                <td style="text-align: right; max-width: 1px;">
+                    <span>${row - this.metadata.rowStart + 1}</span>
+                </td>`;
+
+            // add the slider and toggle
+            slider.buildUI(tr);
+            // add the mixer row to the table
+            table.appendChild(tr);
+        }
+    }
+
+    resetMixer() {
+        // reset the section mixer volume to 1
+        this.mixerMainSlider.setVolumeValue(1);
+        // propagate the change to the row mixers
+        this.mixerVolumeChange(true, null, 1, false);
+
+        // reset the section mixer toggle to 1
+        this.mixerMainSlider.setToggleValue(true);
+        // propagate the change to the row mixers
+        this.mixerToggleChange(null, true, false);
+    }
+
+    mixerVolumeChange(isMixer, row, value, commit, secondary=false) {
+        if (!isMixer) {
+            // the volume change is coming from the main song section editor, change the song volume
+            this.setVolume(value, true, !commit);
+
+        } else if (row == null) {
+            // the volume change is coming from the main section mixer
+            // propagate the change to the row mixers
+            for (var i = 0; i < this.mixerRowSliders.length; i++) {
+                this.mixerVolumeChange(isMixer, i, value, commit, true);
+            }
+
+        } else if (isMixer) {
+            if (secondary) {
+                // this is a change being propagated from the main mixer, just change the UI
+                this.mixerRowSliders[row].setVolumeValue(value);
+
+            } else {
+                // the row mixer is being changed directly
+                // calculate the average volume among all the row mixers
+                var totalValue = 0;
+                var totalCount = 0;
+                for (var i in this.mixerRowSliders) {
+                    totalValue += this.mixerRowSliders[i].getVolumeValue();
+                    totalCount += 1;
+                }
+                // update the section mixer value
+                this.mixerMainSlider.setVolumeValue(totalValue / totalCount);
+            }
+
+            // propogate as a mix volume for that row's sound in the audio player
+            this.score.soundPlayer.setMixVolume(this.metadata.rowStart + row, value);
+        }
+    }
+
+    mixerToggleChange(row, enabled, secondary=false) {
+        if (row == null) {
+            // the toggle change is happening in the section mixer of the song editor, they do the same thing
+            // propagate the chage to each row mixer, making them match the section toggle
+            for (var i = 0; i < this.mixerRowSliders.length; i++) {
+                this.mixerToggleChange(i, enabled, true);
+            }
+
+        } else {
+            if (secondary) {
+                // this is a change being propagated from the main mixer, just change the UI
+                this.mixerRowSliders[row].setToggleValue(enabled);
+
+            } else if (enabled && !this.mixerMainSlider.getToggleValue()) {
+                // a row mixer was directly enabled, set the section mixer to enabled as well
+                this.mixerMainSlider.setToggleValue(true);
+
+            } else if (!enabled) {
+                // a row mixer was directly disabled, see if there are any row mixers in this section that are still enabled
+                var oneEnabled = false;
+                for (var i = 0; i < this.mixerRowSliders.length; i++) {
+                    if (this.mixerRowSliders[i].getToggleValue()) {
+                        oneEnabled = true;
+                        break;
+                    }
+                }
+                // if there are no row editors enabled, then switch the section mixer toggle to disabled
+                if (!oneEnabled) {
+                    this.mixerMainSlider.setToggleValue(false);
+                }
+            }
+            // propagate the enable change to the audio player
+            this.setEnabled(row, enabled);
+        }
+    }
+
+    exportMixer() {
+        var sectionString = "";
+        var first = true;
+        var hasAdjustments = false;
+        // just export the individual note track settings
+        for (var i = 0; i < this.mixerRowSliders.length; i++) {
+            // comma delimiter between note tracks
+            if (!first) {
+                sectionString += ",";
+            }
+            first = false;
+            // get the note track mixer settings
+            var volume = this.mixerRowSliders[i].getVolumeValue();
+            var toggle = this.mixerRowSliders[i].getToggleValue();
+            // only add something for the volume if it's not 100%
+            if (volume != 1) {
+                sectionString += (Math.round(volume * 100));
+                hasAdjustments = true;
+            }
+            // only add something for the toggle if it's toggled off
+            if (!toggle) {
+                // separator if both the volume and toggle need to be exported
+                if (volume != 1) {
+                    sectionString += "|";
+                }
+                sectionString += "off";
+                hasAdjustments = true;
+            }
+        }
+        // If nothing was changed fro the defaults then we don't need a config
+        if (!hasAdjustments) {
+            return "";
+        } else {
+            return sectionString;
+        }
+    }
+
+    importMixer(string) {
+        // if it's a blank string then just reset to defaults
+        if (string.length == 0) {
+            this.resetMixer();
+            return;
+        }
+        // split by note tracks
+        var trackStrings = string.split(",");
+        // format check
+        if (trackStrings.length != this.mixerRowSliders.length) {
+            throw "Invalid mixer format: section " + this.section;
+        }
+        // start with defaults
+        this.resetMixer();
+        for (var i = 0; i < this.mixerRowSliders.length; i++) {
+            var slider = this.mixerRowSliders[i];
+            // check for delimiter
+            var s = trackStrings[i].split("|");
+            // format check
+            if (s.length > 2) {
+                throw "Invalid mixer format: section " + this.section + ", track " + (i + 1);
+            }
+            // go over each delimited note track setting
+            for (var j = 0; j < s.length; j++) {
+                // if it's the string "off" then turn the note track off
+                if (s[j] == "off") {
+                    // set the track mixer toggle to disabled
+                    slider.setToggleValue(false);
+                    // propagate the change
+                    this.mixerToggleChange(i, false, false);
+                // otherwise, if it's a non-empty string then assume it's a volume
+                } else if (s != "") {
+                    // parse the volume and check for invalid values
+                    var volume = parseInt(s[j]);
+                    if (Number.isNaN(volume) || volume < 0 || volume > 100) {
+                        throw "Invalid mixer format: section " + this.section + ", track " + (i + 1) + ", volume: " + s[j];
+                    }
+                    // set the track mixer volue
+                    slider.setVolumeValue(volume / 100);
+                    // propagate the change
+                    this.mixerVolumeChange(true, i, volume / 100, false);
+                }
+            }
+        }
+    }
+}
+
+function appendChildWithWrapper(parent, wrapperTag, ...children) {
+    var wrapper = document.createElement(wrapperTag);
+    for (var i = 0; i < children.length; i++) {
+        wrapper.appendChild(children[i]);
+    }
+    parent.appendChild(wrapper);
+}
+
+class MixerSlider {
+    constructor(sectionEditor, isMixer=false, row=null, toggleMirror=null) {
+        this.sectionEditor = sectionEditor;
+        this.isMixer = isMixer;
+        this.row = row;
+        this.toggleMirror = toggleMirror;
+    }
+
+    buildUI(tr) {
+        this.slider = document.createElement("input");
+        this.slider.className = "sectionVolume";
+        this.slider.type = "range";
+        this.slider.min = "0";
+        this.slider.max = "100";
+        this.slider.value = "100";
+        this.slider.addEventListener("change", () => { this.volumeChange(true) });
+        this.slider.addEventListener("input", () => { this.volumeChange(false) });
+        appendChildWithWrapper(tr, "td", this.slider);
+
+        var id = (this.isMixer ? "mixer-" : "section-") + this.sectionEditor.section;
+        if (this.row != null) id = id + "-" + this.row;
+
+        this.toggler = document.createElement("input");
+        this.toggler.id = id + "-enable";
+        this.toggler.classList.add("button");
+        this.toggler.classList.add("sectionEnable");
+        this.toggler.type = "checkbox";
+        this.toggler.checked = true;
+        this.toggler.addEventListener("change", () => { this.toggleChange() });
+
+        var label = document.createElement("label")
+        label.htmlFor = id + "-enable";
+
+        appendChildWithWrapper(tr, "td", this.toggler, label);
+    }
+
+    getVolumeValue() {
+        return this.slider.value / 100;
+    }
+
+    setVolumeValue(value) {
+        this.slider.value = value * 100;
+    }
+
+    volumeChange(commit) {
+        this.sectionEditor.mixerVolumeChange(this.isMixer, this.row, this.slider.value / 100, commit);
+    }
+
+    getToggleValue() {
+        return this.toggler.checked
+    }
+
+    setToggleValue(enabled) {
+        this.toggler.checked = enabled;
+        if (this.toggleMirror) {
+            this.toggleMirror.toggler.checked = enabled;
+        }
+    }
+
+    toggleChange() {
+        var enabled = this.toggler.checked;
+        this.sectionEditor.mixerToggleChange(this.row, enabled);
+        if (this.toggleMirror) {
+            this.toggleMirror.toggler.checked = enabled;
+        }
+    }
 }
 
 // basic volume setting undo action
@@ -1063,6 +1357,16 @@ class Score {
             this.measures.push(measure);
         }
 
+        // section editors
+        this.sections = {};
+        for (var name in sectionMetaData) {
+            // skip the "all" section
+            if (sectionMetaData[name].all) continue;
+            // build section editor
+            var section = new SectionEditor (this, name);
+            this.sections[name] = section;
+        }
+
         // map of section instrument pack selections
         this.sectionPacks = {};
 
@@ -1071,6 +1375,9 @@ class Score {
 
         // library object
         this.library = new Library(this);
+
+        // mixer object
+        this.mixer = new Mixer(this);
 
         // build the UI
         this.buildUI();
@@ -1113,14 +1420,8 @@ class Score {
         sectionTable.style.display = "inline-block";
 
         // section editors
-        this.sections = {};
-        for (var name in sectionMetaData) {
-            // skip the "all" section
-            if (sectionMetaData[name].all) continue;
-            // build section editor
-            var section = new SectionEditor (this, name);
-            this.sections[name] = section;
-            sectionTable.appendChild(section.container);
+        for (var name in this.sections) {
+            sectionTable.appendChild(this.sections[name].container);
         }
 
         sectionContainer.appendChild(sectionTable);
@@ -1128,6 +1429,7 @@ class Score {
 
         this.controlBar.appendChild(this.library.libraryBox);
         this.controlBar.appendChild(this.playlist.playlistContainer);
+        this.controlBar.appendChild(this.mixer.mixerBox);
         this.controlBar.appendChild(this.songControls);
 
         this.container.appendChild(this.controlBar);
@@ -1509,6 +1811,139 @@ class Score {
     }
 }
 
+class Mixer {
+    constructor(score) {
+        // back reference to the score
+        this.score = score;
+
+        // build the UI
+        this.buildUI();
+    }
+
+    buildUI() {
+        // main container
+        this.mixerBox = document.createElement("div");
+        this.mixerBox.className = "mixerBox";
+        this.mixerBox.id = "mixerBox";
+        // back reference because why not
+        this.mixerBox.mixer = this;
+
+        this.container = this.mixerBox;
+
+        // button container
+        this.buttons = document.createElement("div");
+        this.buttons.className = "scoreButtonContainer";
+        // back-reference
+        this.buttons.score = this;
+        // build the buttons in a single row
+        this.buttons.innerHTML = `
+            <div class="scoreButtonRow">
+                <input class="titleButton" type="submit" value="Mixer"/>
+                <input class="button resetButton" type="submit" value="Reset"/>
+            </div>
+        `;
+        this.container.appendChild(this.buttons);
+
+        // hook up events
+        getFirstChild(this.container, "resetButton").addEventListener("click", () => { this.resetMixerButton() });
+        getFirstChild(this.container, "titleButton").addEventListener("click", () => { this.hide() });
+
+        // table fon containing the mixer list
+        var table = document.createElement("table");
+
+        // build the mixer UI for each section
+        for (var name in this.score.sections) {
+            this.score.sections[name].buildMixerUI(table);
+        }
+
+        // add the table to a scrollable container div
+        var tableDiv = document.createElement("div");
+        tableDiv.className = "mixerlistScollArea";
+        tableDiv.appendChild(table);
+
+        // add mixer list to container
+        this.container.appendChild(tableDiv);
+    }
+
+    init() {
+        // nothing to init
+    }
+
+    hide() {
+        toggleMixer(getFirstChild(this.container, "titleButton"));
+    }
+
+    resetMixerButton(e) {
+        // chrome thing
+        getFirstChild(this.container, "resetButton").blur();
+        this.resetMixer();
+    }
+
+    resetMixer() {
+        // reset each section
+        for (name in this.score.sections) {
+            this.score.sections[name].resetMixer();
+        }
+    }
+
+    export() {
+        // moxer config code header
+        var string = "[Mixer";
+        var first = true;
+        var hasAdjustments = false;
+        // go over the sections
+        for (name in this.score.sections) {
+            // section delimiter
+            string += ":";
+            // get the section's config string
+            var sectionString = this.score.sections[name].exportMixer();
+            // add to the mixer config
+            string += sectionString;
+            // check if there actually was any section mixer config
+            if (sectionString.length > 0) {
+                hasAdjustments = true;
+            }
+        }
+
+        // if all sections are at default values then we don't need a mixer config at all
+        if (!hasAdjustments) {
+            return "";
+
+        } else {
+            // add the footer and return the config string
+            string += "]";
+            return string;
+        }
+    }
+
+    isMixerExportString(string) {
+        // check an import line for the mixer config format
+        return string.startsWith("[Mixer:") && string.endsWith("]");
+    }
+
+    import(string) {
+        // format check
+        if (!this.isMixerExportString(string)) {
+            throw "Invalid mixer format";
+        }
+        // extract the inside of the config and split by the section delimiter
+        var importSections = string.slice(7, -1).split(":");
+        // format check
+        // It's surprisingly hard to get the size of an associative array.
+        if (importSections.length != Object.getOwnPropertyNames(this.score.sections).length) {
+            throw "Invalid mixer format";
+        }
+
+        // iterate over the sections and config strings
+        var i = 0;
+        for (name in this.score.sections) {
+            // import mixer config into the section
+            this.score.sections[name].importMixer(importSections[i]);
+            i++;
+        }
+    }
+}
+
 function clearPlaylist(button) {
     // chrome is doing strange things with clicked buttons so just unfocus it
     button.blur();
@@ -1666,12 +2101,13 @@ class Playlist {
         // menu bar, just HTML it
         this.playlistBox.innerHTML = `
             <div class="scoreButtonRow">
+                <input class="titleButton" type="submit" value="Playlist"/>
                 <input class="button addButton" type="submit" value="Add" onClick="addToPlaylist(this)"/>
                 <input class="button loopButton" type="submit" value="Enable" onClick="loopPlaylist(this)"/>
                 <input class="button clearButton" type="submit" value="Clear" onClick="clearPlaylist(this)"/>
                 <input class="button editButton" type="submit" value="Copy/Paste" onClick="editPlaylist(this)"/>
                 <div class="popup">
-                    <input id="playlistCopyUrlButton" class="button urlButton popup" type="submit" value="Generate Link"
+                    <input id="playlistCopyUrlButton" class="button urlButton popup" type="submit" value="Link"
                            onClick="copyPlaylistUrl()"/>
                     <div class="popuptext" id="playlistPopupBox">
                         <input id="playlistUrlHolder" type="text" size="60" onblur="hideUrlPopup()"/>
@@ -1683,9 +2119,15 @@ class Playlist {
         // get a reference to the looping toggle button
         this.loopingButton = getFirstChild(this.playlistBox, "loopButton");
 
+        getFirstChild(this.playlistBox, "titleButton").addEventListener("click", () => { this.hide() });
+
         this.playlistScollArea = document.createElement("div");
         this.playlistScollArea.className = "playlistScollArea";
         this.playlistBox.appendChild(this.playlistScollArea);
+    }
+
+    hide() {
+        hidePlaylist();
     }
 
     addSongCode(code, select, insert=true) {
@@ -1886,6 +2328,12 @@ class Playlist {
         for (var i = 0; i < this.entries.length; i++) {
             str = str + this.entries[i].song.formatAsChatLink() + "\n";
         }
+        // see if there's a mixer config to export
+        var mixerString = this.score.mixer.export();
+        if (mixerString != "") {
+            // put the mixer config at the end
+            str = str + mixerString + "\n";
+        }
         return str;
     }
 
@@ -1897,7 +2345,15 @@ class Playlist {
         for (var i = 0; i < songCodes.length; i++) {
             // trim and check for blank lines
             var code = songCodes[i].trim();
-            if (code != "") {
+
+            // check for a mixer config
+            if (this.score.mixer.isMixerExportString(code)) {
+                // make sure the mixer is visible
+                showMixer();
+                // import the mixer config
+                this.score.mixer.import(code);
+
+            } else if (code != "") {
                 // parse the song
                 var song = new Song();
                 song.parseChatLink(code);

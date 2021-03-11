@@ -11,8 +11,8 @@ var gridSizeX = noteSpacingX + noteSizeX;
 var gridSizeY = noteSpacingY + noteSizeY;
 
 sectionImages = {
-    "all": "perc",
-    "perc": "perc",
+    "all": "perc-3",
+    "perc": "perc-3",
     "bass": "bass",
     "mel": "mel",
 };
@@ -22,6 +22,22 @@ var imgGrid = Array(
     "measure-2",
     "measure-3",
     "measure-4"
+);
+
+var imgRow = Array(
+    "perc-1",
+    "perc-2",
+    "perc-3",
+    "bass",
+    "bass",
+    "bass",
+    "bass",
+    "bass",
+    "mel",
+    "mel",
+    "mel",
+    "mel",
+    "mel"
 );
 
 var imgNote = Array(

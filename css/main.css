@@ -179,8 +179,7 @@
     .playlistBox {
         text-align: left;
         height: 100%;
-        border-radius: 1ex;
-        padding: 1ex;
+        margin: 0 1ex 0 0;
         background: #000000;
         display: none;
         /*
@@ -193,11 +192,26 @@
         text-align: left;
         max-width: 48ex;
         min-width: 48ex;
-        border-radius: 1ex;
-        padding: 1ex;
         margin: 0 1ex 0 0;
         background: #000000;
         display: none;
+        overflow-anchor: none;
+    }
+
+    .mixerBox {
+        text-align: left;
+        max-width: 48ex;
+        min-width: 48ex;
+        margin: 0 1ex 0 0;
+        background: #000000;
+        display: none;
+        overflow-anchor: none;
+    }
+
+    .mixerlistScollArea {
+        overflow: auto;
+        max-height: 32ex;
+        min-height: 32ex;
         overflow-anchor: none;
     }
 
@@ -274,6 +288,19 @@
         display: block-inline;
     }
 
+    .scoreButtonRow > .titleButton {
+        background-color: #202040;
+        border: none;
+	    font-weight: bold;
+        padding: 1ex 1ex 0.5ex 1ex;
+        margin: 1ex 0ex 0ex 0ex;
+        text-align: center;
+        text-decoration: none;
+        font-size: 100%;
+        border-radius: 1ex 1ex 0ex 0ex;
+        display: block-inline;
+    }
+
     .menu {
         background-color: #202020;
         border: none;
@@ -297,6 +324,10 @@
         border-radius: 1ex;
         display: block;
     }
+    .menuContainer > .titleButton {
+        background-color: #202040;
+	    font-weight: bold;
+    }
     .pngLinkDiv {
         background-color: #000000;
         border: none;
@@ -313,12 +344,6 @@
     #scoreArea {
         display: table-cell;
         vertical-align: top;
-    }
-
-    #libraryArea {
-        display: table-cell;
-        vertical-align: top;
-        height: 100%;
     }
 
 	.utilGroup {

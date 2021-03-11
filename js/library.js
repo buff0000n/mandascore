@@ -60,6 +60,7 @@ class Library {
         this.menuContainer.className = "menuContainer";
         // menu bar, just HTML it
         this.menuContainer.innerHTML = `
+            <input class="button titleButton" type="submit" value="Library"/>
             <div class="songTitleDiv">
                 <div class="tooltip">
                     <input class="searchBar" type="text" size="36" onkeyup="setLibrarySearch()"/>
@@ -68,6 +69,8 @@ class Library {
             </div>
         `;
         this.libraryContainer.appendChild(this.menuContainer);
+
+        getFirstChild(this.menuContainer, "titleButton").addEventListener("click", () => { this.hide() });
 
         // index container, this is where the songs are listed
         this.indexContainer = document.createElement("div");
@@ -80,6 +83,10 @@ class Library {
         if (this.index == null) {
             this.loader.load("Loading Index", "db/index.json", (indexJson) => this.indexLoaded(indexJson));
         }
+    }
+
+    hide() {
+        toggleLibrary(getFirstChild(this.menuContainer, "titleButton"));
     }
 
     indexLoaded(indexJson) {
