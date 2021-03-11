@@ -374,22 +374,6 @@
 
 <div class="songContainer">
     <div class="songDiv">
-        <div class="util">
-            <div class="tooltip">
-                <input id="libraryButton" class="button popup gray" type="submit" value="Library" onClick="toggleLibrary(this)"/>
-                <span class="tooltiptextbottom">Enable or disable the library</span>
-            </div>
-        </div>
-        <div class="util">
-            <div class="tooltip">
-                <input id="playlistButton" class="button popup gray" type="submit" value="Playlist" onClick="togglePlaylist(this)"/>
-                <span class="tooltiptextbottom">Enable or disable the playlist</span>
-            </div>
-        </div>
-        <div class="tooltip">
-            <input id="mixerButton" class="button popup gray" type="submit" value="Mixer" onClick="toggleMixer(this)"/>
-            <span class="tooltiptextbottom">Enable or disable the mixer</span>
-        </div>
         <div class="util" id="demoSelectDiv">
             <div class="tooltip">
                 <span class="label">Demo:</span>
@@ -432,6 +416,22 @@
                 <input id="pngButton" class="button popup" type="submit" value="Generate PNG" onClick="generatePng(this)"/>
                 <span class="tooltiptextbottom">Generate an image of the song</span>
             </div>
+        </div>
+        <div class="util">
+            <div class="tooltip">
+                <input id="libraryButton" class="button popup gray" type="submit" value="Library" onClick="toggleLibrary(this)"/>
+                <span class="tooltiptextbottom">Enable or disable the library</span>
+            </div>
+        </div>
+        <div class="util">
+            <div class="tooltip">
+                <input id="playlistButton" class="button popup gray" type="submit" value="Playlist" onClick="togglePlaylist(this)"/>
+                <span class="tooltiptextbottom">Enable or disable the playlist</span>
+            </div>
+        </div>
+        <div class="tooltip">
+            <input id="mixerButton" class="button popup gray" type="submit" value="Mixer" onClick="toggleMixer(this)"/>
+            <span class="tooltiptextbottom">Enable or disable the mixer</span>
         </div>
     </div>
 </div>
@@ -523,6 +523,17 @@
                         <li><a href="#tocExportToPng">Export to PNG</a></li>
                     </ul>
                 </li>
+                <li><a href="#tocLibrary">Library</a>
+                    <ul>
+                        <li><a href="#tocSearchingTheLibrary">Searching the library</a></li>
+                        <li>
+                            <a href="#tocLoadingASong">Loading a song</a>
+                            <ul>
+                                <li><a href="#tocBuildingAPlaylist">Building a playlist</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
                 <li><a href="#tocPlaylist">Playlist</a>
                     <ul>
                         <li><a href="#tocAddingASong">Adding a song</a></li>
@@ -538,15 +549,10 @@
                         </li>
                     </ul>
                 </li>
-                <li><a href="#tocLibrary">Library</a>
+                <li><a href="#tocMixer">Mixer</a>
                     <ul>
-                        <li><a href="#tocSearchingTheLibrary">Searching the library</a></li>
-                        <li>
-                            <a href="#tocLoadingASong">Loading a song</a>
-                            <ul>
-                                <li><a href="#tocBuildingAPlaylist">Building a playlist</a></li>
-                            </ul>
-                        </li>
+                        <li><a href="#tocMixerVolume">Mixer Volumes</a></li>
+                        <li><a href="#tocMixerToggle">Mixer Toggles</a></li>
                     </ul>
                 </li>
                 <li><a href="#tocInstrumentSetNotes">Instrument Set Notes</a>
@@ -752,6 +758,60 @@
                 song as either a Song Code or URL so you can come back to it later.
             </p>
 
+            <h1 id="tocLibrary">Library</h1>
+            <p>
+                Click the <strong>Library</strong> button to enable the library.  This contains every Mandachord
+                request I've done.
+            </p>
+            <p>
+                <strong class="warn">There are thousands of songs and it's all loaded into your browser.  I'm
+                not sure how well this works on devices with limited memory.</strong>
+            </p>
+            <h2 id="tocSearchingTheLibrary">Searching the library</h2>
+            <p>
+                By default the entire library is listed.  Songs are categorized by my completely arbitrary
+                classification system.
+            </p>
+            <p>
+                The bar at the top is a search bar.  Enter one or more keywords to narrow down the listing.  The keyword
+                can be a category, a title, an artist, or one of a couple of tags:
+            </p>
+            <ul>
+                <li><strong class="tagPerfect">perfect</strong>: Matches melodies that translate perfectly onto the Mandachord</li>
+                <li><strong class="tagFilled">filled</strong>: Matches melodies that have no space between notes</li>
+                <li><strong class="tagSparse">sparse</strong>: Matches melodies that have a lot of space between notes</li>
+                <li><strong class="tagShot">double</strong>, <strong class="tagShot">triple</strong>, etc: Matches
+                    songs that I did more than one Mandachord loop for</li>
+                <li><strong class="tagInstrument">adau</strong>, <strong class="tagInstrument">alpha</strong>,
+                    <strong class="tagInstrument">druk</strong>, etc: Matches songs that only use one instrument
+                    set</li>
+            </ul>
+            <p>
+                Multiple keywords can be entered.  Only songs that match all the keywords will be shown.
+            </p>
+            <p>
+                <strong class="warn">Keywords must be three characters or longer before they will be searched</strong>
+            </p>
+            <h2 id="tocLoadingASong">Loading a song</h2>
+            <p>
+                Click on a song entry to load it into the Mandascore editor.  If the editor is currently playing
+                then playback will be reset to the beginning.
+            </p>
+            <p>
+                If the selected song has more than one Mandachord loop then the <strong>Playlist</strong> will be
+                temporarily enabled, and playback will go through all the loops.
+            </p>
+            <h3 id="tocBuildingAPlaylist">Building a playist</h3>
+            <p>
+                By default, clicking a song in the library will replace the song currently in the Mandacore.  If the
+                previously selected library song had multiple Mandachord loops then the playlist will be cleared for
+                the new song.
+            </p>
+            <p>
+                Enable the playlist by clicking the <strong>Playlist</strong> button, making sure it's lit up.
+                This will keep the playlist up and append songs as they are selected.
+            </p>
+
             <h1 id="tocPlaylist">Playlist</h1>
             <p>
                 The playlist feature allows you to queue up a sequence of song loops to play one after the other.
@@ -827,58 +887,54 @@
                 <strong class="warn">I'm compressing it, but this URL can still be very large.</strong>
             </p>
 
-            <h1 id="tocLibrary">Library</h1>
+            <h1 id="tocMixer">Mixer</h1>
             <p>
-                Click the <strong>Library</strong> button to enable the library.  This contains every Mandachord
-                request I've done.
+                The mixer feature allows you to control the volume of and toggle individual note tracks.
             </p>
             <p>
-                <strong class="warn">There are thousands of songs and it's all loaded into your browser.  I'm
-                not sure how well this works on devices with limited memory.</strong>
+                Changes made in the mixer apply to every song in a playlist.
             </p>
-            <h2 id="tocSearchingTheLibrary">Searching the library</h2>
+
+            <h2 id="tocMixerVolume">Mixer Volumes</h2>
             <p>
-                By default the entire library is listed.  Songs are categorized by my completely arbitrary
-                classification system.
-            </p>
-            <p>
-                The bar at the top is a search bar.  Enter one or more keywords to narrow down the listing.  The keyword
-                can be a category, a title, an artist, or one of a couple of tags:
-            </p>
-            <ul>
-                <li><strong class="tagPerfect">perfect</strong>: Matches melodies that translate perfectly onto the Mandachord</li>
-                <li><strong class="tagFilled">filled</strong>: Matches melodies that have no space between notes</li>
-                <li><strong class="tagSparse">sparse</strong>: Matches melodies that have a lot of space between notes</li>
-                <li><strong class="tagShot">double</strong>, <strong class="tagShot">triple</strong>, etc: Matches
-                    songs that I did more than one Mandachord loop for</li>
-                <li><strong class="tagInstrument">adau</strong>, <strong class="tagInstrument">alpha</strong>,
-                    <strong class="tagInstrument">druk</strong>, etc: Matches songs that only use one instrument
-                    set</li>
-            </ul>
-            <p>
-                Multiple keywords can be entered.  Only songs that match all the keywords will be shown.
+                The volume sliders in the mixer section allow control over a section's volume or an individual note
+                track within that section.
             </p>
             <p>
-                <strong class="warn">Keywords must be three characters or longer before they will be searched</strong>
-            </p>
-            <h2 id="tocLoadingASong">Loading a song</h2>
-            <p>
-                Click on a song entry to load it into the Mandascore editor.  If the editor is currently playing
-                then playback will be reset to the beginning.
+                Adjusting the section volume will lock all the note track volumes to the same value.
             </p>
             <p>
-                If the selected song has more than one Mandachord loop then the <strong>Playlist</strong> will be
-                temporarily enabled, and playback will go through all the loops.
-            </p>
-            <h3 id="tocBuildingAPlaylist">Building a playist</h3>
-            <p>
-                By default, clicking a song in the library will replace the song currently in the Mandacore.  If the
-                previously selected library song had multiple Mandachord loops then the playlist will be cleared for
-                the new song.
+                Adjusting a note track volume will only affect that note track.  The section volume will show the
+                average of the note track volumes, but it's just for show.
             </p>
             <p>
-                Enable the playlist by clicking the <strong>Playlist</strong> button, making sure it's lit up.
-                This will keep the playlist up and append songs as they are selected.
+                <strong class="warn">Note: The section mixer volume is separate from the volume in the song info.</strong>
+                The song info volume applies only to that song loop, and is saved along with it.  But the section mixer
+                volume applies to every song loop and is not saved as part of any song.
+            </p>
+
+            <h2 id="tocMixerToggle">Mixer Toggles</h2>
+            <p>
+                The toggle buttons in the mixer sections allow control over whether a section or an individual note
+                track is enabled
+            </p>
+            <p>
+                Toggling a section on or off will apply the same setting to all of that section's note tracks.
+            </p>
+            <p>
+                Toggling a note track will only affect that note track.
+            </p>
+            <p>
+                If all of a section's note tracks are disabled then the section itself is automatiacally disabled, and
+                if one of a section's note tracks is enabled then that section is automatically enabled.
+            </p>
+            <p>
+                Note that the setion toggle under the mixer is exactly the same as the section toggle in the song info,
+                and changes made to one will be reflected in the other.
+            </p>
+            <h2 id="tocResetMixer">Reset Mixer</h2>
+            <p>
+                Clicking <strong>Reset</strong> Will revert the mixer to having all note tracks enabled at full volume.
             </p>
 
             <h1 id="tocInstrumentSetNotes">Instrument Set Notes</h1>
@@ -1194,6 +1250,11 @@
                 <li>Smoothing out playlist playback when the instrument set changes.</li>
             </ul>
 
+            <h2>v2.3: 2020-03-11</h2>
+            <ul>
+                <li>Added a Mixer function.</li>
+            </ul>
+
             <h1 id="tocToDo">To Do</h1>
             <ul>
                 <li>
@@ -1246,7 +1307,7 @@
             <a href="https://github.com/buff0000n/mandascore/issues/2 ">Feedback</a>
         </div>
         <div>
-            v2.2.3: 2021-03-06
+            v2.3.0: 2021-03-11
         </div>
         <div>
             <a href="https://warframe.com">Ninjas Jam Free</a>
