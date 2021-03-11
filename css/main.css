@@ -288,6 +288,19 @@
         display: block-inline;
     }
 
+    .scoreButtonRow > .titleButton {
+        background-color: #202040;
+        border: none;
+	    font-weight: bold;
+        padding: 1ex 1ex 0.5ex 1ex;
+        margin: 1ex 0ex 0ex 0ex;
+        text-align: center;
+        text-decoration: none;
+        font-size: 100%;
+        border-radius: 1ex 1ex 0ex 0ex;
+        display: block-inline;
+    }
+
     .menu {
         background-color: #202020;
         border: none;
@@ -310,6 +323,10 @@
         font-size: 100%;
         border-radius: 1ex;
         display: block;
+    }
+    .menuContainer > .titleButton {
+        background-color: #202040;
+	    font-weight: bold;
     }
     .pngLinkDiv {
         background-color: #000000;

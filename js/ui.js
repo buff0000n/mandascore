@@ -1009,7 +1009,7 @@ class SectionEditor {
         // that was a lot of work
     }
 
-    buildMixerUi(table) {
+    buildMixerUI(table) {
         // build section mixer
         this.mixerMainSlider = new MixerSlider(this, true);
 
@@ -1731,19 +1731,21 @@ class Mixer {
         // build the buttons in a single row
         this.buttons.innerHTML = `
             <div class="scoreButtonRow">
+                <input class="titleButton" type="submit" value="Mixer"/>
                 <input class="button resetButton" type="submit" value="Reset"/>
             </div>
         `;
         this.container.appendChild(this.buttons);
 
         getFirstChild(this.container, "resetButton").addEventListener("click", () => { this.resetMixerButton() });
+        getFirstChild(this.container, "titleButton").addEventListener("click", () => { this.hide() });
 
         var table = document.createElement("table");
 
         for (var name in sectionMetaData) {
             if (name in this.score.sections) {
                 var sectionEditor = this.score.sections[name];
-                sectionEditor.buildMixerUi(table);
+                sectionEditor.buildMixerUI(table);
             }
         }
 
@@ -1756,6 +1758,10 @@ class Mixer {
     }
 
     init() {
+    }
+
+    hide() {
+        toggleMixer(getFirstChild(this.container, "titleButton"));
     }
 
     resetMixerButton(e) {
@@ -1924,12 +1930,13 @@ class Playlist {
         // menu bar, just HTML it
         this.playlistBox.innerHTML = `
             <div class="scoreButtonRow">
+                <input class="titleButton" type="submit" value="Playlist"/>
                 <input class="button addButton" type="submit" value="Add" onClick="addToPlaylist(this)"/>
                 <input class="button loopButton" type="submit" value="Enable" onClick="loopPlaylist(this)"/>
                 <input class="button clearButton" type="submit" value="Clear" onClick="clearPlaylist(this)"/>
                 <input class="button editButton" type="submit" value="Copy/Paste" onClick="editPlaylist(this)"/>
                 <div class="popup">
-                    <input id="playlistCopyUrlButton" class="button urlButton popup" type="submit" value="Generate Link"
+                    <input id="playlistCopyUrlButton" class="button urlButton popup" type="submit" value="Link"
                            onClick="copyPlaylistUrl()"/>
                     <div class="popuptext" id="playlistPopupBox">
                         <input id="playlistUrlHolder" type="text" size="60" onblur="hideUrlPopup()"/>
@@ -1941,9 +1948,15 @@ class Playlist {
         // get a reference to the looping toggle button
         this.loopingButton = getFirstChild(this.playlistBox, "loopButton");
 
+        getFirstChild(this.playlistBox, "titleButton").addEventListener("click", () => { this.hide() });
+
         this.playlistScollArea = document.createElement("div");
         this.playlistScollArea.className = "playlistScollArea";
         this.playlistBox.appendChild(this.playlistScollArea);
+    }
+
+    hide() {
+        hidePlaylist();
     }
 
     addSongCode(code, select, insert=true) {
