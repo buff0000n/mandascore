@@ -319,14 +319,18 @@
         button.blur();
         var mixerBox = document.getElementById("mixerBox");
         if (!mixerBox || mixerBox.style.display == "") {
-            mixerBox = document.getElementById("mixerBox");
-            mixerBox.style.display = "inline-block";
-            document.getElementById("mixerButton").classList.remove("gray");
-            score.mixer.init();
+            showMixer();
         } else {
             mixerBox.style.display = "";
             document.getElementById("mixerButton").classList.add("gray");
         }
+    }
+
+    function showMixer() {
+        mixerBox = document.getElementById("mixerBox");
+        mixerBox.style.display = "inline-block";
+        document.getElementById("mixerButton").classList.remove("gray");
+        score.mixer.init();
     }
 
     function about() {
@@ -892,7 +896,8 @@
                 The mixer feature allows you to control the volume of and toggle individual note tracks.
             </p>
             <p>
-                Changes made in the mixer apply to every song in a playlist.
+                Changes made in the mixer apply to every song in a playlist.  <strong>Copy/pasting a playlist or
+                generating a playlist link will include the mixer settings, if any.</strong>
             </p>
 
             <h2 id="tocMixerVolume">Mixer Volumes</h2>

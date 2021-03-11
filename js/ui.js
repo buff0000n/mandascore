@@ -1134,6 +1134,89 @@ class SectionEditor {
             this.setEnabled(row, enabled);
         }
     }
+
+    exportMixer() {
+        var sectionString = "";
+        var first = true;
+        var hasAdjustments = false;
+        // just export the individual note track settings
+        for (var i = 0; i < this.mixerRowSliders.length; i++) {
+            // comma delimiter between note tracks
+            if (!first) {
+                sectionString += ",";
+            }
+            first = false;
+            // get the note track mixer settings
+            var volume = this.mixerRowSliders[i].getVolumeValue();
+            var toggle = this.mixerRowSliders[i].getToggleValue();
+            // only add something for the volume if it's not 100%
+            if (volume != 1) {
+                sectionString += (Math.round(volume * 100));
+                hasAdjustments = true;
+            }
+            // only add something for the toggle if it's toggled off
+            if (!toggle) {
+                // separator if both the volume and toggle need to be exported
+                if (volume != 1) {
+                    sectionString += "|";
+                }
+                sectionString += "off";
+                hasAdjustments = true;
+            }
+        }
+        // If nothing was changed fro the defaults then we don't need a config
+        if (!hasAdjustments) {
+            return "";
+        } else {
+            return sectionString;
+        }
+    }
+
+    importMixer(string) {
+        // if it's a blank string then just reset to defaults
+        if (string.length == 0) {
+            this.resetMixer();
+            return;
+        }
+        // split by note tracks
+        var trackStrings = string.split(",");
+        // format check
+        if (trackStrings.length != this.mixerRowSliders.length) {
+            throw "Invalid mixer format: section " + this.section;
+        }
+        // start with defaults
+        this.resetMixer();
+        for (var i = 0; i < this.mixerRowSliders.length; i++) {
+            var slider = this.mixerRowSliders[i];
+            // check for delimiter
+            var s = trackStrings[i].split("|");
+            // format check
+            if (s.length > 2) {
+                throw "Invalid mixer format: section " + this.section + ", track " + (i + 1);
+            }
+            // go over each delimited note track setting
+            for (var j = 0; j < s.length; j++) {
+                // if it's the string "off" then turn the note track off
+                if (s[j] == "off") {
+                    // set the track mixer toggle to disabled
+                    slider.setToggleValue(false);
+                    // propagate the change
+                    this.mixerToggleChange(i, false, false);
+                // otherwise, if it's a non-empty string then assume it's a volume
+                } else if (s != "") {
+                    // parse the volume and check for invalid values
+                    var volume = parseInt(s[j]);
+                    if (Number.isNaN(volume) || volume < 0 || volume > 100) {
+                        throw "Invalid mixer format: section " + this.section + ", track " + (i + 1) + ", volume: " + s[j];
+                    }
+                    // set the track mixer volue
+                    slider.setVolumeValue(volume / 100);
+                    // propagate the change
+                    this.mixerVolumeChange(true, i, volume / 100, false);
+                }
+            }
+        }
+    }
 }
 
 function appendChildWithWrapper(parent, wrapperTag, ...children) {
@@ -1793,9 +1876,70 @@ class Mixer {
     resetMixerButton(e) {
         // chrome thing
         getFirstChild(this.container, "resetButton").blur();
+        this.resetMixer();
+    }
+
+    resetMixer() {
         // reset each section
         for (name in this.score.sections) {
             this.score.sections[name].resetMixer();
+        }
+    }
+
+    export() {
+        // moxer config code header
+        var string = "[Mixer";
+        var first = true;
+        var hasAdjustments = false;
+        // go over the sections
+        for (name in this.score.sections) {
+            // section delimiter
+            string += ":";
+            // get the section's config string
+            var sectionString = this.score.sections[name].exportMixer();
+            // add to the mixer config
+            string += sectionString;
+            // check if there actually was any section mixer config
+            if (sectionString.length > 0) {
+                hasAdjustments = true;
+            }
+        }
+
+        // if all sections are at default values then we don't need a mixer config at all
+        if (!hasAdjustments) {
+            return "";
+
+        } else {
+            // add the footer and return the config string
+            string += "]";
+            return string;
+        }
+    }
+
+    isMixerExportString(string) {
+        // check an import line for the mixer config format
+        return string.startsWith("[Mixer:") && string.endsWith("]");
+    }
+
+    import(string) {
+        // format check
+        if (!this.isMixerExportString(string)) {
+            throw "Invalid mixer format";
+        }
+        // extract the inside of the config and split by the section delimiter
+        var importSections = string.slice(7, -1).split(":");
+        // format check
+        // It's surprisingly hard to get the size of an associative array.
+        if (importSections.length != Object.getOwnPropertyNames(this.score.sections).length) {
+            throw "Invalid mixer format";
+        }
+
+        // iterate over the sections and config strings
+        var i = 0;
+        for (name in this.score.sections) {
+            // import mixer config into the section
+            this.score.sections[name].importMixer(importSections[i]);
+            i++;
         }
     }
 }
@@ -2184,6 +2328,12 @@ class Playlist {
         for (var i = 0; i < this.entries.length; i++) {
             str = str + this.entries[i].song.formatAsChatLink() + "\n";
         }
+        // see if there's a mixer config to export
+        var mixerString = this.score.mixer.export();
+        if (mixerString != "") {
+            // put the mixer config at the end
+            str = str + mixerString + "\n";
+        }
         return str;
     }
 
@@ -2195,7 +2345,15 @@ class Playlist {
         for (var i = 0; i < songCodes.length; i++) {
             // trim and check for blank lines
             var code = songCodes[i].trim();
-            if (code != "") {
+
+            // check for a mixer config
+            if (this.score.mixer.isMixerExportString(code)) {
+                // make sure the mixer is visible
+                showMixer();
+                // import the mixer config
+                this.score.mixer.import(code);
+
+            } else if (code != "") {
                 // parse the song
                 var song = new Song();
                 song.parseChatLink(code);
