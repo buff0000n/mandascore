@@ -79,9 +79,9 @@ class Library {
     }
 
     init() {
-        // load the index if it isn't already loaded
+        // start the loading process if it isn't already loaded
         if (this.index == null) {
-            this.loader.load("Loading Index", "db/index.json", (indexJson) => this.indexLoaded(indexJson));
+            this.loader.load("Loading Demo Index", "db/index-demo.json", (indexJson) => this.demoIndexLoaded(indexJson));
         }
     }
 
@@ -89,10 +89,27 @@ class Library {
         toggleLibrary(getFirstChild(this.menuContainer, "titleButton"));
     }
 
+    demoIndexLoaded(indexJson) {
+        // callback for when the demo index is loaded
+        // parse it as JSON
+        var demoIndex = JSON.parse(indexJson);
+        // just set it as our index
+        this.index = demoIndex;
+
+        // load the main index
+        this.loader.load("Loading Index", "db/index.json", (indexJson) => this.indexLoaded(indexJson));
+    }
+
     indexLoaded(indexJson) {
         // callback for when the index is loaded
         // parse it as JSON
-        this.index = JSON.parse(indexJson);
+        var mainIndex = JSON.parse(indexJson);
+        // concat with the existing demo index
+        for (var name in mainIndex) {
+            this.index[name] = mainIndex[name];
+        }
+        mainIndex = null;
+
         // clear the index DOM, this shouldn't be necessary
         this.indexContainer.innerHTML = "";
 
