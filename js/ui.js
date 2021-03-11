@@ -754,12 +754,6 @@ class Measure {
                 }
             }
         }
-//        // find any notes that are enabled in the given column and schedule them to play woth the given delay
-//        for (var r = 0; r < 13; r++) {
-//            if (this.notes[t][r].enabled) {
-//                this.score.soundPlayer.playSoundLater(r, delay);
-//            }
-//        }
     }
 
     stopPlayback() {
@@ -846,25 +840,38 @@ class SectionEditor {
         // identify the section
         this.score = score;
         this.section = section;
-        // current state
+        this.metadata = sectionMetaData[this.section];
+
+        // current song data state
         this.volume = 1.0;
         this.pack = "";
 
+        // main UI
+        this.mainSlider = null;
+
         // build the UI
-        this.container = this.buildUI();
+        this.buildUI();
+
+        // mixer UI
+        this.mixerSlider = null;
+        this.mixerRowSliders = [];
+
+        // mixer UI is built from the main mixer
     }
     
     buildUI() {
         // assume the container is a table, top level element is table row
-        var container = document.createElement("tr");
+        var tr = document.createElement("tr");
         // css
-        container.className = "sectionRow";
+        tr.className = "sectionRow";
         // back-reference
-        container.editor = this;
+        tr.editor = this;
+        
+        this.mainSlider = new MixerSlider(this, false);
 
         // build the icon, section label, and start the instrument pack drop-down
         var html = `
-            <td><img src="img/${sectionImages[this.section]}.png" srcset="img2x/${sectionImages[this.section]}.png 2x"</td>
+            <td><img src="img/${sectionImages[this.section]}.png" srcset="img2x/${sectionImages[this.section]}.png 2x"></td>
             <td><span>${sectionMetaData[this.section].displayName}</span></td>
             <td><select class="dropDown sectionPack" onchange="sectionPack()">`;
 
@@ -874,22 +881,24 @@ class SectionEditor {
         }
 
         // finish the drop-down, build the volume slider and enable checkbox
-        html += `
-            </select></td>
-            <td><input class="sectionVolume" type="range" min="0" max="100" value="100" onchange="sectionVolume()" oninput="sectionVolumePeek()"/></td>
-            <td>
-                <input id="section-${this.section}-enable" class="button sectionEnable" type="checkbox" checked onchange="sectionToggle()"/>
-                <label for="section-${this.section}-enable"></label>
-            </td>
-        `;
+        html += `</select></td>`;
+ 
+        tr.innerHTML = html;
 
-        container.innerHTML = html;
-        return container;
+        this.mainSlider.buildUI(tr);
+//           <td><input class="sectionVolume" type="range" min="0" max="100" value="100" onchange="sectionVolume()" oninput="sectionVolumePeek()"/></td>
+//            <td>
+//                <input id="section-${this.section}-enable" class="button sectionEnable" type="checkbox" checked onchange="sectionToggle()"/>
+//                <label for="section-${this.section}-enable"></label>
+//            </td>
+//        `;
+
+        this.container = tr;
     }
 
-    setEnabled(enabled) {
+    setEnabled(row, enabled) {
         // pass through to the score's audio player to enable or disable audio
-        this.score.soundPlayer.setEnabled(this.section, enabled);
+        this.score.soundPlayer.setEnabled(this.metadata.rowStart + row, enabled);
     }
 
     setVolume(volume, action=true, peek=false, load=false) {
@@ -999,6 +1008,184 @@ class SectionEditor {
         );
         // that was a lot of work
     }
+
+    buildMixerUi(table) {
+        // build section mixer
+        this.mixerMainSlider = new MixerSlider(this, true);
+
+        var tr = document.createElement("tr");
+        tr.className = "sectionRow";
+        tr.innerHTML = `
+                <td><img src="img/${sectionImages[this.section]}.png" srcset="img2x/${sectionImages[this.section]}.png 2x"/></td>
+                <td colspan="2"><span>${sectionMetaData[this.section].displayName}</span></td>`;
+
+        this.mixerMainSlider.buildUI(tr);
+        table.appendChild(tr);
+
+        // set up mirror for the two main sliders, they do the same thing.
+        this.mainSlider.toggleMirror = this.mixerMainSlider;
+        this.mixerMainSlider.toggleMirror = this.mainSlider;
+
+        // individual row mixers
+        for (var row = this.metadata.rowStart; row <= this.metadata.rowStop; row++) {
+            var slider = new MixerSlider(this, true, row - this.metadata.rowStart);
+            this.mixerRowSliders[row - this.metadata.rowStart] = slider;
+
+            tr = document.createElement("tr");
+            tr.className = "sectionRow";
+            tr.innerHTML = `
+                <td/>
+                <td style="text-align: right">
+                    <img src="img/${imgNote[row]}.png" srcset="img2x/${imgNote[row]}.png 2x"/>
+                </td>
+                <td style="text-align: right; max-width: 1px;">
+                    <span>${row - this.metadata.rowStart + 1}</span>
+                </td>`;
+
+            slider.buildUI(tr);
+            table.appendChild(tr);
+        }
+    }
+
+    resetMixer() {
+        this.mixerMainSlider.setVolumeValue(1);
+        this.mixerVolumeChange(true, null, 1, false);
+
+        this.mixerMainSlider.setToggleValue(true);
+        this.mixerToggleChange(null, true, false);
+    }
+
+    mixerVolumeChange(isMixer, row, value, commit, secondary=false) {
+        if (!isMixer) {
+            this.setVolume(value, true, !commit);
+
+        } else if (row == null) {
+            for (var i = 0; i < this.mixerRowSliders.length; i++) {
+                this.mixerVolumeChange(isMixer, i, value, commit, true);
+            }
+
+        } else if (isMixer) {
+            if (secondary) {
+                this.mixerRowSliders[row].setVolumeValue(value);
+            } else {
+                var totalValue = 0;
+                var totalCount = 0;
+                for (var i in this.mixerRowSliders) {
+                    totalValue += this.mixerRowSliders[i].getVolumeValue();
+                    totalCount += 1;
+                }
+                this.mixerMainSlider.setVolumeValue(totalValue / totalCount);
+            }
+
+            // propogate as a mix volume for that row's sound
+            this.score.soundPlayer.setMixVolume(this.metadata.rowStart + row, value);
+        }
+    }
+
+    mixerToggleChange(row, enabled, secondary=false) {
+        if (row == null) {
+            for (var i = 0; i < this.mixerRowSliders.length; i++) {
+                this.mixerToggleChange(i, enabled, true);
+            }
+
+        } else {
+            if (secondary) {
+                this.mixerRowSliders[row].setToggleValue(enabled);
+
+            } else if (enabled && !this.mixerMainSlider.getToggleValue()) {
+                this.mixerMainSlider.setToggleValue(true);
+
+            } else if (!enabled) {
+                var oneEnabled = false;
+                for (var i = 0; i < this.mixerRowSliders.length; i++) {
+                    if (this.mixerRowSliders[i].getToggleValue()) {
+                        oneEnabled = true;
+                        break;
+                    }
+                }
+                if (!oneEnabled) {
+                    this.mixerMainSlider.setToggleValue(false);
+                }
+            }
+            this.setEnabled(row, enabled);
+        }
+    }
+}
+
+function appendChildWithWrapper(parent, wrapperTag, ...children) {
+    var wrapper = document.createElement(wrapperTag);
+    for (var i = 0; i < children.length; i++) {
+        wrapper.appendChild(children[i]);
+    }
+    parent.appendChild(wrapper);
+}
+
+class MixerSlider {
+    constructor(sectionEditor, isMixer=false, row=null, toggleMirror=null) {
+        this.sectionEditor = sectionEditor;
+        this.isMixer = isMixer;
+        this.row = row;
+        this.toggleMirror = toggleMirror;
+    }
+
+    buildUI(tr) {
+        this.slider = document.createElement("input");
+        this.slider.className = "sectionVolume";
+        this.slider.type = "range";
+        this.slider.min = "0";
+        this.slider.max = "100";
+        this.slider.value = "100";
+        this.slider.addEventListener("change", () => { this.volumeChange(true) });
+        this.slider.addEventListener("input", () => { this.volumeChange(false) });
+        appendChildWithWrapper(tr, "td", this.slider);
+
+        var id = (this.isMixer ? "mixer-" : "section-") + this.sectionEditor.section;
+        if (this.row != null) id = id + "-" + this.row;
+
+        this.toggler = document.createElement("input");
+        this.toggler.id = id + "-enable";
+        this.toggler.classList.add("button");
+        this.toggler.classList.add("sectionEnable");
+        this.toggler.type = "checkbox";
+        this.toggler.checked = true;
+        this.toggler.addEventListener("change", () => { this.toggleChange() });
+
+        var label = document.createElement("label")
+        label.htmlFor = id + "-enable";
+
+        appendChildWithWrapper(tr, "td", this.toggler, label);
+    }
+
+    getVolumeValue() {
+        return this.slider.value / 100;
+    }
+
+    setVolumeValue(value) {
+        this.slider.value = value * 100;
+    }
+
+    volumeChange(commit) {
+        this.sectionEditor.mixerVolumeChange(this.isMixer, this.row, this.slider.value / 100, commit);
+    }
+
+    getToggleValue() {
+        return this.toggler.checked
+    }
+
+    setToggleValue(enabled) {
+        this.toggler.checked = enabled;
+        if (this.toggleMirror) {
+            this.toggleMirror.toggler.checked = enabled;
+        }
+    }
+
+    toggleChange() {
+        var enabled = this.toggler.checked;
+        this.sectionEditor.mixerToggleChange(this.row, enabled);
+        if (this.toggleMirror) {
+            this.toggleMirror.toggler.checked = enabled;
+        }
+    }
 }
 
 // basic volume setting undo action
@@ -1063,6 +1250,16 @@ class Score {
             this.measures.push(measure);
         }
 
+        // section editors
+        this.sections = {};
+        for (var name in sectionMetaData) {
+            // skip the "all" section
+            if (sectionMetaData[name].all) continue;
+            // build section editor
+            var section = new SectionEditor (this, name);
+            this.sections[name] = section;
+        }
+
         // map of section instrument pack selections
         this.sectionPacks = {};
 
@@ -1116,14 +1313,8 @@ class Score {
         sectionTable.style.display = "inline-block";
 
         // section editors
-        this.sections = {};
-        for (var name in sectionMetaData) {
-            // skip the "all" section
-            if (sectionMetaData[name].all) continue;
-            // build section editor
-            var section = new SectionEditor (this, name);
-            this.sections[name] = section;
-            sectionTable.appendChild(section.container);
+        for (var name in this.sections) {
+            sectionTable.appendChild(this.sections[name].container);
         }
 
         sectionContainer.appendChild(sectionTable);
@@ -1513,100 +1704,6 @@ class Score {
     }
 }
 
-class MixerSlider {
-    constructor(mixer, group, row=null) {
-        this.mixer = mixer;
-        this.group = group;
-        this.section = group.section;
-        this.row = row;
-
-        this.buildUI();
-
-        if (this.row == null) {
-            this.group.mainSlider = this;
-        } else {
-            this.group.rowSliders[this.row] = this;
-        }
-    }
-
-    buildUI() {
-        // assume the container is a table, top level element is table row
-        this.container = document.createElement("tr");
-        // css
-        this.container.className = "sectionRow";
-        // back-reference
-        this.container.editor = this;
-
-        var html = "";
-
-        var id = "mixer-" + this.section;
-        if (this.row != null) id = id + "-" + this.row;
-
-        if (this.row == null) {
-            // build the icon and section section label if it's not an individual row slider
-            html = html + `
-                <td><img src="img/${sectionImages[this.section]}.png" srcset="img2x/${sectionImages[this.section]}.png 2x"</td>
-                <td><span>${sectionMetaData[this.section].displayName}</span></td>
-                <td colspan=2>`;
-        } else {
-            // skip first column, second column is just the row number
-            html = html + `
-                <td colspan="2"/>
-                <td style="text-align: right">${this.row + 1}</td>
-                <td>`;
-        }
-
-        // build the volume slider and enable checkbox
-        html += `
-            <input class="sectionVolume" type="range" min="0" max="100" value="100"/></td>
-            <td>
-                <input id="${id}-enable" class="button sectionEnable" type="checkbox" checked/>
-                <label for="${id}-enable"></label>
-            </td>
-        `;
-
-        this.container.innerHTML = html;
-
-        this.slider = getFirstChild(this.container, "sectionVolume");
-//        this.slider.addEventListener("change", () => { this.volumeChange() });
-        this.slider.addEventListener("input", () => { this.volumeChange() });
-
-        this.toggler = getFirstChild(this.container, "sectionEnable");
-        this.toggler.addEventListener("change", () => { this.toggleChange() });
-    }
-
-    setVolumeValue(value) {
-
-    }
-
-    volumeChange() {
-        this.group.volumeChange(this.row, this.slider.value / 100);
-    }
-
-    toggleChange() {
-        this.group.toggleChange(this.row, this.toggler.checked);
-    }
-}
-
-class MixerSliderGroup {
-    constructor(mixer, section) {
-        this.mixer = mixer;
-        this.section = section;
-        this.mainSlider = null;
-        this.rowSliders = [];
-    }
-
-    volumeChange(row, value) {
-        console.log("VOLUME CHANGE: " + this.section + " (" + row + "): " + value);
-    }
-
-    toggleChange(row, enabled) {
-        console.log("TOGGLE CHANGE: " + this.section + " (" + row + "): " + enabled);
-    }
-
-
-}
-
 class Mixer {
     constructor(score) {
         // back reference to the score
@@ -1644,19 +1741,9 @@ class Mixer {
         var table = document.createElement("table");
 
         for (var name in sectionMetaData) {
-            var metadata = sectionMetaData[name];
-            // skip the "all" section
-            if (metadata.all) continue;
-
-            var group = new MixerSliderGroup(this, name);
-            // build section mixer
-            var slider = new MixerSlider(this, group);
-            table.appendChild(slider.container);
-
-            // individual row mixers
-            for (var i = metadata.rowStart; i <= metadata.rowStop; i++) {
-                slider = new MixerSlider(this, group, i - metadata.rowStart);
-                table.appendChild(slider.container);
+            if (name in this.score.sections) {
+                var sectionEditor = this.score.sections[name];
+                sectionEditor.buildMixerUi(table);
             }
         }
 
@@ -1672,7 +1759,11 @@ class Mixer {
     }
 
     resetMixerButton(e) {
-        console.log("RESET");
+        getFirstChild(this.container, "resetButton").blur();
+        for (name in this.score.sections) {
+            var sectionEditor = this.score.sections[name];
+            sectionEditor.resetMixer();
+        }
     }
 }
 

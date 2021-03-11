@@ -21,6 +21,7 @@ class SoundEntry {
         this.setBuffer(null, null);
         // default volume
         this.volume = 1.0;
+        this.mixVolume = 1.0;
         this.queuedTime = null;
     }
 
@@ -38,6 +39,12 @@ class SoundEntry {
     setVolume(volume) {
         if (volume != this.volume) {
             this.volume = volume;
+        }
+    }
+
+    setMixVolume(mixVolume) {
+        if (mixVolume != this.mixVolume) {
+            this.mixVolume = mixVolume;
         }
     }
 
@@ -65,13 +72,22 @@ class SoundEntry {
     }
 
     triggerAtTime(triggerTime) {
+        // combine section volume and individual sound mix volume
+        var gainValue = this.volume * this.mixVolume;
+
+        // short circuit
+        if (gainValue == 0) {
+            return;
+        }
+
         // create a source node
         var source = audioContext.createBufferSource();
         source.buffer = this.buffer;
 
         // create a volume node
         var gain = audioContext.createGain();
-        gain.gain.value = this.volume;
+        // set the volume on the gain node
+        gain.gain.value = gainValue;
 
         // connect the nodes to the audio context output
         source.connect(gain);
@@ -136,11 +152,12 @@ class SoundBank {
         this.suffixes = suffixes;
         // create the sound entries
         this.sounds = Array();
+        // enabled status is also an array
+        this.enabled = Array();
         for (var i = 0; i < suffixes.length; i++) {
             this.sounds.push(new SoundEntry());
+            this.enabled.push(true);
         }
-        // enabled status
-        this.enabled = true;
         // sound loader and state for when the source changes
         this.loader = null;
         this.initialized = false;
@@ -219,9 +236,17 @@ class SoundBank {
         }
     }
 
-    setEnabled(enabled) {
+    setMixVolume(index, mixVolume) {
+        this.sounds[index].setMixVolume(mixVolume);
+    }
+
+    setEnabled(index, enabled) {
         // enable/disable sound
-        this.enabled = enabled;
+        this.enabled[index] = enabled;
+    }
+
+    isEnabled(index) {
+        return this.enabled[index];
     }
 
     play(index) {
@@ -231,7 +256,7 @@ class SoundBank {
 
     playLater(index, time) {
         // check if we're enabled
-        if (this.enabled) {
+        if (this.enabled[index]) {
             // make sure we're initialized.  Regardless of whether it's from clicking a note or starting playback,
             // the first sound should be played directly inside a user event handler so we're allowed to init the
             // audio context
@@ -314,15 +339,23 @@ class SoundPlayer {
         this.banks[section].setVolume(volume);
     }
 
-    setEnabled(section, enabled) {
-        // enable or disable playback for the given section
-        this.banks[section].setEnabled(enabled);
+    setMixVolume(index, mixVolume) {
+        // find the correct section
+        var bank = this.indexToBank[index];
+        // set the specified sound's volume
+        return bank.setMixVolume(index - bank.rowStart, mixVolume);
+    }
+
+    setEnabled(index, enabled) {
+        var bank = this.indexToBank[index];
+        // enable or disable playback for the given row
+        bank.setEnabled(index - bank.rowStart, enabled);
     }
 
     isEnabled(index) {
-        // determine if the section is enabled
+        // determine if the row is enabled
         var bank = this.indexToBank[index];
-        return bank.enabled;
+        return bank.isEnabled(index - bank.rowStart);
     }
 
     initialize(callback) {
