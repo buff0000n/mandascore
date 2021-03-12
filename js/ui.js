@@ -2062,6 +2062,7 @@ function textAreaKeyDown(e) {
 		    clearMenu();
 		    break;
 		case "Enter" :
+		case "NumpadEnter" :
 		    // commit when enter is pressed
 		    editPlaylistSave(e.target);
 		    break;
