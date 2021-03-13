@@ -311,8 +311,7 @@
         if (!mixerBox || mixerBox.style.display == "") {
             showMixer();
         } else {
-            mixerBox.style.display = "";
-            document.getElementById("mixerButton").classList.add("gray");
+            hideMixer();
         }
     }
 
@@ -321,6 +320,11 @@
         mixerBox.style.display = "inline-block";
         document.getElementById("mixerButton").classList.remove("gray");
         score.mixer.init();
+    }
+
+    function hideMixer() {
+        mixerBox.style.display = "";
+        document.getElementById("mixerButton").classList.add("gray");
     }
 
     function about() {

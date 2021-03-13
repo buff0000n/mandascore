@@ -2343,6 +2343,7 @@ class Playlist {
         var songCodes = str.split("\n")
         var readEntries = Array();
 
+        var hasMixerConfig = false;
         for (var i = 0; i < songCodes.length; i++) {
             // trim and check for blank lines
             var code = songCodes[i].trim();
@@ -2353,12 +2354,18 @@ class Playlist {
                 showMixer();
                 // import the mixer config
                 this.score.mixer.import(code);
+                hasMixerConfig = true;
 
             } else if (code != "") {
                 // parse the song
                 var song = new Song();
                 song.parseChatLink(code);
                 readEntries.push(song);
+            }
+
+            if (!hasMixerConfig) {
+                this.score.mixer.resetMixer();
+                hideMixer();
             }
         }
 
