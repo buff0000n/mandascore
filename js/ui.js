@@ -1228,10 +1228,11 @@ function appendChildWithWrapper(parent, wrapperTag, ...children) {
 }
 
 class MixerSlider {
-    constructor(sectionEditor, isMixer=false, row=null, toggleMirror=null) {
+    constructor(sectionEditor, isMixer=false, row=null, toggleMirror=null, noToggle=false) {
         this.sectionEditor = sectionEditor;
         this.isMixer = isMixer;
         this.row = row;
+        this.noToggle  = noToggle;
         this.toggleMirror = toggleMirror;
     }
 
@@ -1246,21 +1247,23 @@ class MixerSlider {
         this.slider.addEventListener("input", () => { this.volumeChange(false) });
         appendChildWithWrapper(tr, "td", this.slider);
 
-        var id = (this.isMixer ? "mixer-" : "section-") + this.sectionEditor.section;
-        if (this.row != null) id = id + "-" + this.row;
+        if (!this.noToggle) {
+            var id = (this.isMixer ? "mixer-" : "section-") + this.sectionEditor.section;
+            if (this.row != null) id = id + "-" + this.row;
 
-        this.toggler = document.createElement("input");
-        this.toggler.id = id + "-enable";
-        this.toggler.classList.add("button");
-        this.toggler.classList.add("sectionEnable");
-        this.toggler.type = "checkbox";
-        this.toggler.checked = true;
-        this.toggler.addEventListener("change", () => { this.toggleChange() });
+            this.toggler = document.createElement("input");
+            this.toggler.id = id + "-enable";
+            this.toggler.classList.add("button");
+            this.toggler.classList.add("sectionEnable");
+            this.toggler.type = "checkbox";
+            this.toggler.checked = true;
+            this.toggler.addEventListener("change", () => { this.toggleChange() });
 
-        var label = document.createElement("label")
-        label.htmlFor = id + "-enable";
+            var label = document.createElement("label")
+            label.htmlFor = id + "-enable";
 
-        appendChildWithWrapper(tr, "td", this.toggler, label);
+            appendChildWithWrapper(tr, "td", this.toggler, label);
+        }
     }
 
     getVolumeValue() {
@@ -1851,6 +1854,19 @@ class Mixer {
         // table fon containing the mixer list
         var table = document.createElement("table");
 
+        // build a row slider
+        this.masterSlider = new MixerSlider(this, true, null, null, true);
+
+        // build the beginning of the mixer row
+        var tr = document.createElement("tr");
+        tr.className = "sectionRow";
+        tr.innerHTML = `<td/><td colspan="2">Master</td>`;
+
+        // add the slider and toggle
+        this.masterSlider.buildUI(tr);
+        // add the mixer row to the table
+        table.appendChild(tr);
+
         // build the mixer UI for each section
         for (var name in this.score.sections) {
             this.score.sections[name].buildMixerUI(table);
@@ -1885,6 +1901,12 @@ class Mixer {
             this.score.sections[name].resetMixer();
         }
     }
+
+    mixerVolumeChange(isMixer, row, value, commit, secondary=false) {
+        // only called by the master slider
+        this.score.soundPlayer.setMasterVolume(value);
+    }
+
 
     export() {
         // moxer config code header

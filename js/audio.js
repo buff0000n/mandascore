@@ -22,6 +22,7 @@ class SoundEntry {
         // default volume
         this.volume = 1.0;
         this.mixVolume = 1.0;
+        this.masterVolume = 1.0;
         this.queuedTime = null;
     }
 
@@ -45,6 +46,12 @@ class SoundEntry {
     setMixVolume(mixVolume) {
         if (mixVolume != this.mixVolume) {
             this.mixVolume = mixVolume;
+        }
+    }
+
+    setMasterVolume(masterVolume) {
+        if (masterVolume != this.masterVolume) {
+            this.masterVolume = masterVolume;
         }
     }
 
@@ -72,8 +79,8 @@ class SoundEntry {
     }
 
     triggerAtTime(triggerTime) {
-        // combine section volume and individual sound mix volume
-        var gainValue = this.volume * this.mixVolume;
+        // combine section volume, master volume, and individual sound mix volume
+        var gainValue = this.volume * this.mixVolume * this.masterVolume;
 
         // short circuit
         if (gainValue == 0) {
@@ -240,6 +247,13 @@ class SoundBank {
         this.sounds[index].setMixVolume(mixVolume);
     }
 
+    setMasterVolume(masterVolume) {
+        for (var index = 0; index < this.sounds.length; index++) {
+            this.sounds[index].setMasterVolume(masterVolume);
+        }
+    }
+
+
     setEnabled(index, enabled) {
         // enable/disable sound
         this.enabled[index] = enabled;
@@ -344,6 +358,12 @@ class SoundPlayer {
         var bank = this.indexToBank[index];
         // set the specified sound's volume
         return bank.setMixVolume(index - bank.rowStart, mixVolume);
+    }
+
+    setMasterVolume(masterVolume) {
+        for (var section in this.banks) {
+            this.banks[section].setMasterVolume(masterVolume);
+        }
     }
 
     setEnabled(index, enabled) {
