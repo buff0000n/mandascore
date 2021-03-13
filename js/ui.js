@@ -1014,8 +1014,10 @@ class SectionEditor {
         var tr = document.createElement("tr");
         tr.className = "sectionRow";
         tr.innerHTML = `
-                <td><img src="img/${sectionImages[this.section]}.png" srcset="img2x/${sectionImages[this.section]}.png 2x"/></td>
-                <td colspan="2"><span>${sectionMetaData[this.section].displayName}</span></td>`;
+                <td style="text-align:right">
+                    <span style="color:${sectionMetaData[this.section].color}">${sectionMetaData[this.section].displayName}</span>
+                </td>
+                <td/>`;
 
         // add the section slider and toggle
         this.mixerMainSlider.buildUI(tr);
@@ -1037,13 +1039,10 @@ class SectionEditor {
             tr = document.createElement("tr");
             tr.className = "sectionRow";
             tr.innerHTML = `
-                <td/>
-                <td style="text-align: right">
-                    <img src="img/${imgRow[row]}.png" srcset="img2x/${imgRow[row]}.png 2x"/>
+                <td style="text-align:right">
+                    <span style="color:${sectionMetaData[this.section].color}">${row - this.metadata.rowStart + 1}</span>
                 </td>
-                <td style="text-align: right; max-width: 1px;">
-                    <span>${row - this.metadata.rowStart + 1}</span>
-                </td>`;
+                <td><img src="img/${imgRow[row]}.png" srcset="img2x/${imgRow[row]}.png 2x"/></td>`;
 
             // add the slider and toggle
             slider.buildUI(tr);
@@ -1860,7 +1859,7 @@ class Mixer {
         // build the beginning of the mixer row
         var tr = document.createElement("tr");
         tr.className = "sectionRow";
-        tr.innerHTML = `<td/><td colspan="2">Master</td>`;
+        tr.innerHTML = `<td style="text-align:right">Master</td><td/>`;
 
         // add the slider and toggle
         this.masterSlider.buildUI(tr);
