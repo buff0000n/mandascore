@@ -1548,7 +1548,8 @@
 				{"id": "ls8jDRUbAtw", "name": "Lady (Hear Me Tonight)", "attr": ["Modjo"], "tags": ["Perfect"]},
 				{"id": "tP2PCjn-w-Y", "name": "Diagonal Horizon", "attr": ["killedmyself"]},
 				{"id": "v5zLqFq6O-4", "name": "Circle In The Sand", "attr": ["Belinda Carlisle"]},
-				{"id": "ZRcWNepwOCQ", "name": "Car Camping", "attr": ["Goth Babe"]}
+				{"id": "ZRcWNepwOCQ", "name": "Car Camping", "attr": ["Goth Babe"]},
+				{"id": "fX4PNDinioM", "name": "Young Folks", "attr": ["Peter Bjorn and John"], "tags": ["Perfect"]}
 			]
 		}
 	},
@@ -1783,7 +1784,9 @@
 				{"id": "bBc6GoErZY4", "name": "So Done", "attr": ["Kid Laroi"], "tags": ["Perfect"]},
 				{"id": "wHWc0caQkxM", "name": "Chill Bill", "attr": ["Rob $tone ft. J. Davis & Spooks"], "tags": ["Perfect"]},
 				{"id": "qrxMHrmicvM", "name": "Raid", "attr": ["Madvillian"]},
-				{"id": "DW7dLiOYu7s", "name": "Calling My Phone", "attr": ["Lil Tjay ft. 6LACK"], "tags": ["Perfect"]}
+				{"id": "DW7dLiOYu7s", "name": "Calling My Phone", "attr": ["Lil Tjay ft. 6LACK"], "tags": ["Perfect"]},
+				{"id": "pRitb95IC_s", "name": "I'm so special", "attr": ["Mavodo"], "tags": ["Double", "Perfect"]},
+				{"id": "6NlfOKqJ1Jc", "name": "Rock Star", "attr": ["DaBaby"], "tags": ["Perfect"]}
 			]
 		}
 	},
@@ -1907,7 +1910,8 @@
 				{"id": "d1uczDYJi3w", "name": "Flight", "attr": ["Tristam", "Braken"]},
 				{"id": "tXftZebf9Z0", "name": "Bone Dry", "attr": ["Tristam"]},
 				{"id": "01Mxbj8ByTM", "name": "Before We Fade", "attr": ["Tristam"]},
-				{"id": "dwQPyalsFDc", "name": "The Vine", "attr": ["Tristam"]}
+				{"id": "dwQPyalsFDc", "name": "The Vine", "attr": ["Tristam"]},
+				{"id": "y5GJvJ36eAI", "name": "Frame Of Mind", "attr": ["Tristam & Braken"]}
 			]
 		},
 		"Alan Walker":{
@@ -1944,7 +1948,8 @@
 				{"id": "DzM5roukYK4", "name": "Technologic", "attr": ["Daft Punk"]},
 				{"id": "buN0sI2p-b0", "name": "End of Line", "attr": ["Daft Punk", "Tron Legacy"], "tags": ["Perfect Bass", "Horos"]},
 				{"id": "5wPdb6XMPtY", "name": "Face To Face", "attr": ["Daft Punk"]},
-				{"id": "xZmmZhIglSc", "name": "One More Time", "attr": ["Daft Punk"]}
+				{"id": "xZmmZhIglSc", "name": "One More Time", "attr": ["Daft Punk"]},
+				{"id": "EadS3FleTAc", "name": "Something About Us", "attr": ["Daft Punk"]}
 			]
 		},
 		"Skrillex":{
@@ -2353,7 +2358,8 @@
 				{"id": "xO6ptlEbDtU", "name": "If I Could Fly", "attr": ["Ocean Lab"]},
 				{"id": "j7Rq9QHUIXQ", "name": "Neck And Neck", "attr": ["Zeds Dead"]},
 				{"id": "pGHdV2wPkL8", "name": "Alive", "attr": ["Mind Vortex"]},
-				{"id": "nZpZNFYDBnk", "name": "Dusk To Dawn", "attr": ["Emancipator"], "tags": ["Plogg"]}
+				{"id": "nZpZNFYDBnk", "name": "Dusk To Dawn", "attr": ["Emancipator"], "tags": ["Plogg"]},
+				{"id": "B4T9hAEf9nU", "name": "Okay", "attr": ["Shiba San"]}
 			]
 		}
 	},
@@ -3196,7 +3202,8 @@
 					{"id": "vj_A__SjhPA", "name": "PHD Flopper Jingle", "attr": ["Call of Duty: Zombies"], "tags": ["Sparse"]},
 					{"id": "RLpz-MocCr4", "name": "Glide", "attr": ["Stephen Walking", "Rocket League"]},
 					{"id": "0NBDQ47_934", "name": "Lyin' 2 Me", "attr": ["CG5", "Among Us"]},
-					{"id": "qBQ2-_zw_-w", "name": "Among Us Drip Theme Song", "attr": ["Trap remix"]}
+					{"id": "qBQ2-_zw_-w", "name": "Among Us Drip Theme Song", "attr": ["Trap remix"]},
+					{"id": "OHcoqgiErDE", "name": "Bubblegum K. K.", "attr": ["Animal Crossing"], "tags": ["Perfect"]}
 				]
 			},
 			"Games I've never heard of":{
@@ -3348,7 +3355,8 @@
 					{"id": "2mC6nk9Jf_Y", "name": "Stratosphere (So They Say)", "attr": ["Hydelic", "Tetris Effect"], "tags": ["Triple", "Perfect", "Alpha"]},
 					{"id": "HKk8fCgPKfM", "name": "Gleam Stone", "attr": ["Muse Dash", "Adapter"]},
 					{"id": "obaYi5ZoJuw", "name": "Art of Blade", "attr": ["Arknights", "Contingency Contract: Blade Main Theme"], "tags": ["Perfect"]},
-					{"id": "d_N5pITvz5o", "name": "Philistine", "attr": ["No More Heroes 2: Desperate Struggle"]}
+					{"id": "d_N5pITvz5o", "name": "Philistine", "attr": ["No More Heroes 2: Desperate Struggle"]},
+					{"id": "9p6jjeupBKQ", "name": "Low Life On The Highway", "attr": ["Battlejuice", "My Friend Pedro"]}
 				]
 			}
 		}
@@ -3834,6 +3842,7 @@
 				{"id": "Cqv9fTYodDo", "name": "Database/Log Horizon opening", "attr": ["Man with a Mission ft. Takuma"]},
 				{"id": "XLMH3M-UjvE", "name": "Seirei", "attr": ["Date A Live"], "tags": ["Adau"]},
 				{"id": "1bD9IBwm8NQ", "name": "Rise", "attr": ["Madkid", "Tate no Yuusha no Nariagari/The Rising Of The Shield Hero opening"]},
+				{"id": "5Hd0X4cWVls", "name": "Glass", "attr": ["The Rising Of The Shield Hero"]},
 				{"id": "yulGC6Ul9lU", "name": "Futari no Kimochi", "attr": ["Inuyasha"]},
 				{"id": "pokFF42Izh8", "name": "Chika Fujiwara dance", "attr": ["Kaguya-sama wa Kokurasetai"]},
 				{"id": "_Qb41L2Uu64", "name": "Daddy! Daddy! Do!", "attr": ["Masayuki Suzuki", "Kaguya-sama Love Is War opening 2"]},
@@ -3869,7 +3878,8 @@
 				{"id": "HrADt1zPw4s", "name": "Tonikawa: Over The Moon opening", "tags": ["Double", "Perfect"]},
 				{"id": "giXze1V7NlE", "name": "Fukashima no Carte", "attr": ["Seishun Buta Yarou wa Bunny Girl Senpai no Yume wo Mina"]},
 				{"id": "Kb1N4FZr1c0", "name": "Last Theater", "attr": ["Noisycell", "Death Parade ending"]},
-				{"id": "E10bWU3Zpxo", "name": "Irokousui", "attr": ["Horimiya opening", "Yoh Kamiyama"], "tags": ["Perfect"]}
+				{"id": "E10bWU3Zpxo", "name": "Irokousui", "attr": ["Horimiya opening", "Yoh Kamiyama"], "tags": ["Perfect"]},
+				{"id": "RMrJbl2JkTU", "name": "Get It By Your Hands", "attr": ["Eureka Seven Hi-Evolution"]}
 			]
 		}
 	},
@@ -4874,7 +4884,8 @@
 				{"id": "_ylTSyfQfVY", "name": "21st Century Schizoid Man", "attr": ["King Crimson"]},
 				{"id": "X39HDmf81p4", "name": "Telefono", "attr": ["Hector \"El Feather\" ft. Winsin & Yandel"], "tags": ["Gamma"]},
 				{"id": "JU_bLnAii8U", "name": "Sexual Revolution", "attr": ["Army Of Lovers"]},
-				{"id": "9r4Qi4zkPDA", "name": "Ganda Mo", "attr": ["Lil P x J-KinG"]}
+				{"id": "9r4Qi4zkPDA", "name": "Ganda Mo", "attr": ["Lil P x J-KinG"]},
+				{"id": "zb0kPlvWq94", "name": "I Follow Rivers", "attr": ["Lykke Li"], "tags": ["Perfect", "Sparse"]}
 			]
 		}
 	}
