@@ -69,7 +69,7 @@ function keyDown(e) {
 		case "Space" :
 		    // on space either start the full song playing or pause/resume whatever was already playing
             e.preventDefault();
-		    score.togglePlaying();
+		    score.togglePlaying(e.shiftKey);
 		    break;
 		case "KeyZ" :
             // ctrlKey on Windows, metaKey on Mac
@@ -166,8 +166,10 @@ function runPngMenu(button) {
 function playButton(button) {
     // chrome is doing strange things with clicked buttons so just unfocus it
     button.blur();
+    var e = window.event;
+    var restart = e && e.shiftKey;
     // play either the single measure or the whole song, depending on what object is saved on the button's container
-    getParent(button, "scoreButtonContainer").score.play(button);
+    getParent(button, "scoreButtonContainer").score.play(button, restart);
 }
 
 function copyButton(button) {
@@ -677,9 +679,9 @@ class Measure {
         this.score.endActions();
     }
 
-    play(button) {
+    play(button, restart=false) {
         // start playback with a single measure
-        this.score.doPlayback(button, [this]);
+        this.score.doPlayback(button, [this], restart);
     }
 
     startPlaybackMarker() {
@@ -1679,25 +1681,25 @@ class Score {
         }
     }
 
-    togglePlaying() {
+    togglePlaying(restart=false) {
         // space bar handler
-        if (this.playback != null) {
+        if (this.playback != null && !restart) {
             // if we are currently playing something, then either pause or resume it.
             this.playback.toggle();
         } else {
             // otherwise pretend the user clicked the song play button
-            this.play(getFirstChild(this.buttons, "playButton"));
+            this.play(getFirstChild(this.buttons, "playButton"), restart);
         }
     }
 
-    play(button) {
+    play(button, restart=false) {
         // start playback with all four measures
-        this.doPlayback(button, this.measures);
+        this.doPlayback(button, this.measures, restart);
     }
 
-    doPlayback(button, m) {
+    doPlayback(button, m, restart=false) {
         // if there already is a playback in progress
-        if (button.playback != null) {
+        if (button.playback != null && !restart) {
             // currently, kill the playback when the stop button is clicked.  get the playback marker off the screen.
             if (button.playback.playing() && stopKills) {
                 button.playback.kill();
