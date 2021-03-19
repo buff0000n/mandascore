@@ -91,20 +91,23 @@ var imgNoteColHover = Array(
 var soundPath = "mp3-hifi/";
 var soundType = "mp3";
 
-var soundFileSuffixes = Array(
-    "-1." + soundType,
-    "-2." + soundType,
-    "-3." + soundType,
-    "-4." + soundType,
-    "-5." + soundType,
-    "-6." + soundType,
-    "-7." + soundType,
-    "-8." + soundType,
-    "-9." + soundType,
-    "-10." + soundType,
-    "-11." + soundType,
-    "-12." + soundType,
-    "-13." + soundType
-);
+function singleSoundFiles(prefix) {
+    var array = Array();
+    for (var i = 1; i <= 13; i++) {
+        array.push([prefix + "-" + i + "." + soundType]);
+    }
+    return array;
+}
+
+function doubleSoundFiles(prefix) {
+    var array = Array();
+    for (var i = 1; i <= 13; i++) {
+        array.push([
+            prefix + "-" + i + "-a." + soundType,
+            prefix + "-" + i + "-b." + soundType
+        ]);
+    }
+    return array;
+}
 
 var bzztSoundFile = "bzzt." + soundType;

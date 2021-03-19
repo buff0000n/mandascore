@@ -18,7 +18,7 @@ var monoFadeTime = 0.05;
 class SoundEntry {
     constructor() {
         // init with no sound for now
-        this.setBuffer(null, null);
+        this.setBuffers(null, null);
         // default volume
         this.volume = 1.0;
         this.mixVolume = 1.0;
@@ -26,9 +26,10 @@ class SoundEntry {
         this.queuedTime = null;
     }
 
-    setBuffer(buffer, sourceName) {
+    setBuffers(buffers, sourceName) {
         // save the sound info
-        this.buffer = buffer;
+        this.buffers = buffers;
+        this.bufferIndex = 0;
         this.sourceName = sourceName;
         // if we need to play a sound then play it
         if (this.queuedTime != null) {
@@ -68,7 +69,7 @@ class SoundEntry {
             var triggerTime = 0
         }
 
-        if (this.buffer == null) {
+        if (this.buffers == null) {
             // if we don't have the sound yet then queue playback for when we do
             this.queuedTime = triggerTime;
 
@@ -89,7 +90,11 @@ class SoundEntry {
 
         // create a source node
         var source = audioContext.createBufferSource();
-        source.buffer = this.buffer;
+        source.buffer = this.buffers[this.bufferIndex];
+        this.bufferIndex++;
+        if (this.bufferIndex >= this.buffers.length) {
+            this.bufferIndex = 0;
+        }
 
         // create a volume node
         var gain = audioContext.createGain();
@@ -154,14 +159,12 @@ class SoundEntry {
 
 // object wrapping a collections of sounds from the same logical source
 class SoundBank {
-    constructor(suffixes) {
-        // file name suffixes, to be appended to the source path
-        this.suffixes = suffixes;
+    constructor(size) {
         // create the sound entries
         this.sounds = Array();
         // enabled status is also an array
         this.enabled = Array();
-        for (var i = 0; i < suffixes.length; i++) {
+        for (var i = 0; i < size; i++) {
             this.sounds.push(new SoundEntry());
             this.enabled.push(true);
         }
@@ -170,16 +173,17 @@ class SoundBank {
         this.initialized = false;
     }
 
-    setSource(source, mono=false) {
+    setSource(sourceName, sources, mono=false) {
         // don't do anything if it's the source we already have
-        if (this.source == source) {
+        if (this.sourceName == sourceName) {
             return;
         }
 
         // just save the source and reset the init flag.
         // we can't actually do anything until there's an explicit user action.
         // abuse of auto-play video and audio is why we can't have nice things.
-        this.source = source;
+        this.sourceName = sourceName;
+        this.sources = sources;
         this.mono = mono;
         this.initialized = false;
         // clear out any pending loaders
@@ -198,15 +202,20 @@ class SoundBank {
 
         // finally we can init the audio context now that we're theoretically inside a user event handler
         initAudioContext();
-        if (this.source != null) {
+        if (this.sources != null) {
             // clear our sound entries and build an array of the full source paths
-            var sources = Array();
+            var sourceList = Array();
             for (var i = 0; i < this.sounds.length; i++) {
-                this.sounds[i].setBuffer(null);
-                sources.push(soundPath + this.source + this.suffixes[i]);
+                // clear sound entry
+                this.sounds[i].setBuffers(null, null);
+                // add a sound path to the list for each entry in the source for that sound
+                // we will have to re-group these later
+                for (var j = 0; j < this.sources[i].length; j++) {
+                    sourceList.push(soundPath + this.sources[i][j]);
+                }
             }
             // start a background loader with a callback because that's how things work
-            this.loader = new BufferLoader(audioContext, sources, (loader, bufferList) => this.loaded(loader, bufferList, callback));
+            this.loader = new BufferLoader(audioContext, sourceList, (loader, bufferList) => this.loaded(loader, bufferList, callback));
             this.loader.bank = this;
             this.loader.load();
         }
@@ -219,7 +228,13 @@ class SoundBank {
         }
         // set the loaded sources into each sound entry
         for (var i = 0; i < this.sounds.length; i++) {
-            this.sounds[i].setBuffer(bufferList[i], soundPath + this.source + this.suffixes[i]);
+            // group the buffers for this sound from the buffer list
+            var soundBuffers = Array();
+            for (var j = 0; j < this.sources[i].length; j++) {
+                soundBuffers.push(bufferList.shift());
+            }
+            // set the sound buffers, concatenate the sound file paths for a name
+            this.sounds[i].setBuffers(soundBuffers, this.sources[i].join());
         }
         // set the initialized state
         this.loader = null;
@@ -317,7 +332,7 @@ class SoundPlayer {
             var m = sectionMetaData[name];
             if (!m.all) {
                 // create a new bank with the section's number of notes and sound file suffixes
-                var bank = new SoundBank(soundFileSuffixes.slice(m.rowStart, m.rowStop + 1));
+                var bank = new SoundBank(m.rowStop - m.rowStart + 1);
                 // store an extra row start property, we'll need this later
                 bank.rowStart = m.rowStart;
                 // reference the bank by name
@@ -332,17 +347,19 @@ class SoundPlayer {
         }
 
         // special error sound for when the max number of notes in a section is exceeded
-        this.bzzt = new SoundBank([bzztSoundFile]);
+        this.bzzt = new SoundBank(1);
         // the suffix is the whole path
-        this.bzzt.setSource("");
+        this.bzzt.setSource(bzztSoundFile, [[bzztSoundFile]], true);
 
         // initialization count
         this.banksInitialized = 0;
     }
 
     setSource(section, source, mono=false) {
+        var m = sectionMetaData[section];
+        var soundFiles = instrumentNameToPack[source].soundFiles
         // set the source on the given section
-        this.banks[section].setSource(source, mono);
+        this.banks[section].setSource(source, soundFiles.slice(m.rowStart, m.rowStop + 1), mono);
         // go ahead and reset the initialized count to zero
         // The initialize calls on any banks that haven't changed will simply short-circuit
         this.banksInitialized = 0;

@@ -1,6 +1,6 @@
 // instrument pack metadata
 class InstrumentPack {
-    constructor(name, displayName, formatName, monoPerc=false, monoBass=false, monoMel=false) {
+    constructor(name, displayName, formatName, double=false, monoPerc=false, monoBass=false, monoMel=false) {
         this.name = name;
         this.displayName = displayName;
         this.formatName = formatName;
@@ -8,14 +8,19 @@ class InstrumentPack {
         this.mono["perc"] = monoPerc;
         this.mono["bass"] = monoBass;
         this.mono["mel"] = monoMel;
+        if (double) {
+            this.soundFiles = doubleSoundFiles(this.name);
+        } else {
+            this.soundFiles = singleSoundFiles(this.name);
+        }
     }
 }
 
 var packs = Array(
-    new InstrumentPack("adau", "Adau", "BardTennoPackA"),
+    new InstrumentPack("adau", "Adau", "BardTennoPackA", true),
     new InstrumentPack("alpha", "Alpha", "BardCorpusPackA"),
     new InstrumentPack("beta", "Beta", "BardCorpusPackB"),
-    new InstrumentPack("bombast", "Bombast", "BardHipHopPackA", false, true, true),
+    new InstrumentPack("bombast", "Bombast", "BardHipHopPackA", true, false, true, true),
     new InstrumentPack("delta", "Delta", "BardCorpusPackD"),
     new InstrumentPack("druk", "Druk", "BardGrineerPackA"),
     new InstrumentPack("epsilon", "Epsilon", "BardCorpusPackE"),
