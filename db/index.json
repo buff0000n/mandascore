@@ -518,7 +518,8 @@
 			"songs":[
 				{"id": "i8rPlJK-gd0", "name": "Animal I Have Become", "attr": ["Three Days Grace"], "tags": ["Perfect"]},
 				{"id": "EhtAA23d7qA", "name": "Right Left Wrong", "attr": ["Three Days Grace"], "tags": ["Druk"]},
-				{"id": "A8kmTrzRCvo", "name": "Fallen Angel", "attr": ["Three Days Grace"]}
+				{"id": "A8kmTrzRCvo", "name": "Fallen Angel", "attr": ["Three Days Grace"]},
+				{"id": "Leo34vcAhlc", "name": "Never Too Late", "attr": ["Three Days Grace"]}
 			]
 		},
 		"PVRIS":{
@@ -537,7 +538,8 @@
 			"songs":[
 				{"id": "chiLI725JhE", "name": "Can You Feel My Heart", "attr": ["Bring Me The Horizon"]},
 				{"id": "0S24bO7pse0", "name": "Oh No", "attr": ["Bring Me The Horizon"], "tags": ["Perfect"]},
-				{"id": "m1Y8N9Zzwts", "name": "Ludens", "attr": ["Bring Me The Horizon"], "tags": ["Perfect"]}
+				{"id": "m1Y8N9Zzwts", "name": "Ludens", "attr": ["Bring Me The Horizon"], "tags": ["Perfect"]},
+				{"id": "ewKJLV5I6ag", "name": "Avalanche", "attr": ["Bring Me The Horizon"], "tags": ["Perfect"]}
 			]
 		},
 		"Ministry":{
@@ -1387,11 +1389,17 @@
 				{"id": "KBicT0bqHYk", "name": "We Appreciate Power", "attr": ["Grimes"], "tags": ["Epsilon"]}
 			]
 		},
-		"Misc Pop":{
-			"dbName":"Pop.MiscPop",
+		"Britney Spears":{
+			"dbName":"Pop",
 			"songs":[
 				{"id": "I0RzPwA2iYQ", "name": "Break The Ice", "attr": ["Britney Spears"]},
 				{"id": "WZi7z309LBQ", "name": "Work B**ch", "attr": ["Britney Spears"]},
+				{"id": "UqKodk8lg1w", "name": "Touch of My Hand", "attr": ["Britney Spears", "Bill Hamel Remix"]}
+			]
+		},
+		"Misc Pop":{
+			"dbName":"Pop.MiscPop",
+			"songs":[
 				{"id": "ykAVMmvgnCs", "name": "Cool Girl", "attr": ["Tove Lo"]},
 				{"id": "BcFk-w2lhag", "name": "The Best of Both Worlds", "attr": ["Hannah Montana"]},
 				{"id": "vz8DAfruWYo", "name": "Mi Mi Mi", "attr": ["Serebro"]},
@@ -1416,6 +1424,7 @@
 				{"id": "_bxXj_-qX0E", "name": "She Lovin' It", "attr": ["Trey Songz"]},
 				{"id": "CxsirRBiwI4", "name": "Solo", "attr": ["Clan Bandit ft. Demi Lovato"]},
 				{"id": "RZcqUKZnCyI", "name": "Don't Stop The Music", "attr": ["Rihanna"]},
+				{"id": "tWIE0E_euvo", "name": "Work", "attr": ["Rihanna ft. Drake"]},
 				{"id": "KXYtDskfcCI", "name": "1-800-273-8255", "attr": ["Logic"], "tags": ["Perfect"]},
 				{"id": "UHRWRxhVesw", "name": "Contact", "attr": ["Logic"], "tags": ["Adau", "Perfect"]},
 				{"id": "mkocZat5M-0", "name": "S.L.U.T", "attr": ["Bea Miller"]},
@@ -2511,7 +2520,8 @@
 				{"id": "BoCyji2TN-A", "name": "Wigglytuff's Guild", "attr": ["Pokemon: Explorers of Sky"], "tags": ["Perfect"]},
 				{"id": "Wk_zsosvP08", "name": "Pokemon Mystery Dungeon Explorers of Sky Theme"},
 				{"id": "DlZOxkV6XOA", "name": "Don't Ever Forget", "attr": ["Pokemon Mystery Dungeon: Explorers of Sky"]},
-				{"id": "KfV-Rvb-dm4", "name": "Through The Sea Of Time", "attr": ["Pokemon Mystery Dungeon Explorers Of The Sky"]}
+				{"id": "KfV-Rvb-dm4", "name": "Through The Sea Of Time", "attr": ["Pokemon Mystery Dungeon Explorers Of The Sky"]},
+				{"id": "NFu0QT1MWeU", "name": "Elesa's Gym Theme", "attr": ["Pokemon Black & White 2"], "tags": ["Perfect"]}
 			]
 		},
 		"Final Fantasy":{
@@ -3176,6 +3186,7 @@
 					{"id": "UhhMPpRVPGI", "name": "That Slippery Little Hutt of Mine", "attr": ["Star Wars: The Old Republic"]},
 					{"id": "MRV8u0nqf64", "name": "Wii Shopping Channel music"},
 					{"id": "HiF-fL9K-rM", "name": "Go Down", "attr": ["Unreal Tournament"]},
+					{"id": "kT2CxFYDIPg", "name": "Forgone Destruction (Facing Worlds)", "attr": ["Unreal Tournament"], "tags": ["Double"]},
 					{"id": "wBdB_UY8f54", "name": "Staggered Injection", "attr": ["Ekstrak", "Need For Speed: Carbon"]},
 					{"id": "UkFO2jIIhzE", "name": "Raeve Maeve theme", "attr": ["Paladins"]},
 					{"id": "th5f_bdQIiQ", "name": "Remix Jenos music", "attr": ["Paladins"], "tags": ["Perfect"]},
@@ -3279,6 +3290,7 @@
 					{"id": "o8JlrIv1MYA", "name": "Life Is Beautiful", "attr": ["Deadly Premonitions"]},
 					{"id": "fyWaoktCIMo", "name": "The Beginning", "attr": ["Dancing Line"]},
 					{"id": "wFxR6NPq4B4", "name": "Battle Theme 1", "attr": ["Legend of Dragoon"]},
+					{"id": "kdBGMYxA-FE", "name": "Boss Battle 1", "attr": ["Legend of Dragoon"]},
 					{"id": "WMbMa-dgCT0", "name": "The Void", "attr": ["Astebreed/\u30a2\u30b9\u30bf\u30d6\u30ea\u30fc\u30c9"], "tags": ["Epsilon"]},
 					{"id": "uJ3bmsCIVsI", "name": "Agent Goes In The Evening/\u30a8\u30fc\u30b8\u30a7\u30f3\u30c8\u591c\u3092\u5f80\u304f", "attr": ["THE iDOLM@STER"]},
 					{"id": "A_WRuCRUCrw", "name": "Skip & Step", "attr": ["The IDOML@STER Cinderella Girls"]},
@@ -3364,7 +3376,8 @@
 					{"id": "HKk8fCgPKfM", "name": "Gleam Stone", "attr": ["Muse Dash", "Adapter"]},
 					{"id": "obaYi5ZoJuw", "name": "Art of Blade", "attr": ["Arknights", "Contingency Contract: Blade Main Theme"], "tags": ["Perfect"]},
 					{"id": "d_N5pITvz5o", "name": "Philistine", "attr": ["No More Heroes 2: Desperate Struggle"]},
-					{"id": "9p6jjeupBKQ", "name": "Low Life On The Highway", "attr": ["Battlejuice", "My Friend Pedro"]}
+					{"id": "9p6jjeupBKQ", "name": "Low Life On The Highway", "attr": ["Battlejuice", "My Friend Pedro"]},
+					{"id": "Q7PS2TQkgqs", "name": "Street Party", "attr": ["Bloons Monkey City"]}
 				]
 			}
 		}
@@ -3690,11 +3703,17 @@
 				{"id": "TV9kDQm4BdM", "name": "Brave Heart", "attr": ["Digimon"]}
 			]
 		},
-		"Misc Anime":{
-			"dbName":"Anime.MiscAnime",
+		"Evangelion":{
+			"dbName":"Anime",
 			"songs":[
 				{"id": "ccJVTEiY2BU", "name": "Sin from Genesis", "attr": ["Evangelion 2.0"]},
 				{"id": "4s4AyadLoE0", "name": "A Cruel Angel's Thesis", "attr": ["Neon Genesis Evangelion"]},
+				{"id": "CaLxf0aKacI", "name": "One Last Kiss", "attr": ["Hikaru Utada", "Evangelion 3.0+1.0"]}
+			]
+		},
+		"Misc Anime":{
+			"dbName":"Anime.MiscAnime",
+			"songs":[
 				{"id": "cEArEYCBb8A", "name": "Dango Daikazoku", "attr": ["Clannad"], "tags": ["Perfect", "Sparse", "Beta"]},
 				{"id": "zV9Qcwf-xwA", "name": "14th Song", "attr": ["D.Gray-man"]},
 				{"id": "gvwpofdeieQ", "name": "Doubt & Trust", "attr": ["D.Gray Man opening 3"]},
@@ -3859,6 +3878,7 @@
 				{"id": "ShuZpdYTjr4", "name": "\u707c\u3051\u843d\u3061\u306a\u3044\u7ffc", "attr": ["Charlotte ending"], "tags": ["Perfect"]},
 				{"id": "BgxyV-_WXN8", "name": "Kimetsu no Yaiba opening", "attr": ["\u7d05\u84ee\u83ef by LiSA"]},
 				{"id": "GSlZe6TPLjA", "name": "Gintama theme", "attr": ["Warframe Mandachord"]},
+				{"id": "07PNiyKmllE", "name": "Samurai Heart/Some Like it Hot", "attr": ["Gintama ending 17"]},
 				{"id": "sXnAIHuNxKI", "name": "Fireworks", "attr": ["Uchiage Hanabi"], "tags": ["Double"]},
 				{"id": "6ti0OGYzSwM", "name": "Sekai Wa Koi Ni Ochiteiru", "attr": ["Ao Haru Ride opening"]},
 				{"id": "xsuELh6yN1o", "name": "Life", "attr": ["Dr Stone ending"]},
@@ -4100,7 +4120,8 @@
 				{"id": "buXwEbAuXmg", "name": "Peanuts theme"},
 				{"id": "3I09AT9siZg", "name": "Big Time Rush theme song"},
 				{"id": "9STNYRsQMsQ", "name": "La Femme Nikita Theme Song"},
-				{"id": "7098ihg6SqA", "name": "Wonder Woman Theme", "attr": ["1970's"]}
+				{"id": "7098ihg6SqA", "name": "Wonder Woman Theme", "attr": ["1970's"]},
+				{"id": "NgnxrktHzuw", "name": "Saburo's Theme", "attr": ["Android Kikaider"], "tags": ["Perfect"]}
 			]
 		},
 		"Misc Movie":{
@@ -4902,7 +4923,8 @@
 				{"id": "9r4Qi4zkPDA", "name": "Ganda Mo", "attr": ["Lil P x J-KinG"]},
 				{"id": "zb0kPlvWq94", "name": "I Follow Rivers", "attr": ["Lykke Li"], "tags": ["Perfect", "Sparse"]},
 				{"id": "O6RnpJBkFPk", "name": "Broodje Bakpao", "attr": ["The Opposites ft. Gers & Sef"]},
-				{"id": "uLnypoOiYvg", "name": "Gi\u00e0u V\u00ec B\u1ea1n, Sang V\u00ec V\u1ee3", "attr": ["Team Karik"]}
+				{"id": "uLnypoOiYvg", "name": "Gi\u00e0u V\u00ec B\u1ea1n, Sang V\u00ec V\u1ee3", "attr": ["Team Karik"]},
+				{"id": "x_77Is7WbO8", "name": "Discoteque", "attr": ["The Roop"]}
 			]
 		}
 	}
