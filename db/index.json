@@ -1119,7 +1119,6 @@
 				{"id": "7Q7_9Q9_GRU", "name": "Misery Business", "attr": ["Paramore"]},
 				{"id": "7bTmGPaody4", "name": "Brick By Boring Brick", "attr": ["Paramore"]},
 				{"id": "hM-Q7dy3zOI", "name": "Safe And Sound", "attr": ["Capital Cities"]},
-				{"id": "o6aYHPeQqQg", "name": "Here Comes Vi", "attr": ["Nicki Taylor"], "tags": ["Perfect"]},
 				{"id": "ZF1RfMyoJFU", "name": "I Believe In A Thing Called Love", "attr": ["The Darkness"]},
 				{"id": "Vpi-0KJIM5w", "name": "Doubt", "attr": ["Joywave"], "tags": ["Perfect"]},
 				{"id": "0qA2Htg2sOM", "name": "Why Don't You Get A Job?", "attr": ["Offspring"]},
@@ -1453,7 +1452,8 @@
 				{"id": "VshB5FG4vYI", "name": "Sparks", "attr": ["Hillary Duff"]},
 				{"id": "PezW1XWHYbU", "name": "Teacher", "attr": ["Prettymuch"], "tags": ["Perfect"]},
 				{"id": "tpXZiixjtT8", "name": "Rhythm Nation", "attr": ["Janet Jackson ft. [DE] Sheldon"], "tags": ["Triple", "Gamma"]},
-				{"id": "Qxe5D4MyevA", "name": "Belladonna", "attr": ["Ava Max"], "tags": ["Perfect"]}
+				{"id": "Qxe5D4MyevA", "name": "Belladonna", "attr": ["Ava Max"], "tags": ["Perfect"]},
+				{"id": "gPYo3C4eQD0", "name": "Girls Just Want To Have Fun", "attr": ["Cyndi Lauper"], "tags": ["Triple", "Perfect"]}
 			]
 		}
 	},
@@ -1485,7 +1485,8 @@
 				{"id": "dBnc_XMoo2Y", "name": "1991", "attr": ["Crystal Castles"]},
 				{"id": "xn01dxKRh4o", "name": "Kerosene", "attr": ["Crystal Castles"], "tags": ["Gamma", "Filled"]},
 				{"id": "I2vCIy5czvw", "name": "Plague", "attr": ["Crystal Castles"], "tags": ["Perfect"]},
-				{"id": "4DQBb9iOtzI", "name": "Crimewave", "attr": ["Crystal Castles"]}
+				{"id": "4DQBb9iOtzI", "name": "Crimewave", "attr": ["Crystal Castles"]},
+				{"id": "dU3qDugamek", "name": "Magic Spells", "attr": ["Crystal Castles"]}
 			]
 		},
 		"Charlie Puth":{
@@ -1572,7 +1573,7 @@
 			{"id": "9TbFMwQsrKY", "name": "Buffalo Soldier", "attr": ["Bob Marley"]},
 			{"id": "zg4B9CbwaFw", "name": "Three Little Birds", "attr": ["Bob Marley"]},
 			{"id": "8UA76iwbEO8", "name": "Gimme Hope Jo'Anna", "attr": ["Eddy Grant"]},
-			{"id": "ardJg5k6TIo", "name": "Electric Avenue", "attr": ["Eddy Grant"]},
+			{"id": "Irer5lEbKXA", "name": "Electric Avenue", "attr": ["Eddy Grant"]},
 			{"id": "dDACdljzNLA", "name": "Chase The Devil", "attr": ["Max Romeo"]},
 			{"id": "o9-7m-oWMpY", "name": "No Lie", "attr": ["Sean Paul"]},
 			{"id": "bynasaUVWJE", "name": "Under Me Sleng Teng", "attr": ["Wayne Smith"], "tags": ["Perfect"]},
@@ -1801,7 +1802,8 @@
 				{"id": "DW7dLiOYu7s", "name": "Calling My Phone", "attr": ["Lil Tjay ft. 6LACK"], "tags": ["Perfect"]},
 				{"id": "pRitb95IC_s", "name": "I'm so special", "attr": ["Mavodo"], "tags": ["Double", "Perfect"]},
 				{"id": "6NlfOKqJ1Jc", "name": "Rock Star", "attr": ["DaBaby"], "tags": ["Perfect"]},
-				{"id": "m_mKp3MNz8o", "name": "Citgo", "attr": ["Chief Keef"], "tags": ["Perfect"]}
+				{"id": "m_mKp3MNz8o", "name": "Citgo", "attr": ["Chief Keef"], "tags": ["Perfect"]},
+				{"id": "Z-OPhNcFnzU", "name": "Mansion", "attr": ["NF ft. Fleurie"], "tags": ["Perfect"]}
 			]
 		}
 	},
@@ -2663,7 +2665,8 @@
 				{"id": "ka_DPJMmKCs", "name": "Light and Shadow", "attr": ["League of Legend ft. Hiroyuki Sawano"], "tags": ["Adau"]},
 				{"id": "vn8ry47H7-M", "name": "Giants", "attr": ["True Damage", "League Of Legends"]},
 				{"id": "J51U2hbD7yI", "name": "Giants part 2", "attr": ["True Damage", "League Of Legends"]},
-				{"id": "Lt_j_IBRd1k", "name": "Phoenix", "attr": ["League of Legends"]}
+				{"id": "Lt_j_IBRd1k", "name": "Phoenix", "attr": ["League of Legends"]},
+				{"id": "o6aYHPeQqQg", "name": "Here Comes Vi", "attr": ["Nicki Taylor"], "tags": ["Perfect"]}
 			]
 		},
 		"Persona":{
@@ -2696,7 +2699,8 @@
 				{"id": "vKEfGLpOUKA", "name": "Life Goes On", "attr": ["Persona 5"]},
 				{"id": "qKFlO9gUYJc", "name": "Victory theme", "attr": ["Persona 5"]},
 				{"id": "y0kpPUrwx6A", "name": "Restlessness", "attr": ["Persona 5"], "tags": ["Filled", "Perfect"]},
-				{"id": "nh6keWgp0is", "name": "So Boring", "attr": ["Persona 5"]}
+				{"id": "nh6keWgp0is", "name": "So Boring", "attr": ["Persona 5"]},
+				{"id": "WtU7IffBIDM", "name": "Talk", "attr": ["Persona 5"], "tags": ["Druk"]}
 			]
 		},
 		"Payday 2":{
@@ -3011,7 +3015,8 @@
 			"songs":[
 				{"id": "FFyfPQ4xIi4", "name": "Your Contract Has Expired", "attr": ["A Hat in Time"]},
 				{"id": "gNlINjJ8asc", "name": "Seal The Deal", "attr": ["A Hat In Time"], "tags": ["Filled"]},
-				{"id": "K0JX6GvMinE", "name": "Rush Hour", "attr": ["A Hat In Time/Nyakuza Metro"], "tags": ["Perfect"]}
+				{"id": "K0JX6GvMinE", "name": "Rush Hour", "attr": ["A Hat In Time/Nyakuza Metro"], "tags": ["Perfect"]},
+				{"id": "f489gJbN8Fg", "name": "Killing Two Birds", "attr": ["A Hat in Time"], "tags": ["Perfect"]}
 			]
 		},
 		"Devil May Cry series":{
@@ -3080,6 +3085,14 @@
 				{"id": "pxHMetE4wYg", "name": "Crystal Peak", "attr": ["Hollow Knight"], "tags": ["Perfect"]},
 				{"id": "iBdCPYDBIk0", "name": "Dung Defender", "attr": ["Hollow Knight"]},
 				{"id": "tgbYYTDPM3w", "name": "Resting Grounds", "attr": ["Hollow Knight"], "tags": ["Beta"]}
+			]
+		},
+		"Scott Pilgrim vs. The World: The Game":{
+			"dbName":"Videogames",
+			"songs":[
+				{"id": "H3n-Y-UaSwQ", "name": "Another Winter", "attr": ["Scott Pilgrim vs the World:The Game"]},
+				{"id": "2WjHkTUxHvo", "name": "Bollywood/Matthew Patel", "attr": ["Scott Pilgrim vs The World: The Game"]},
+				{"id": "djXqwswRSzI", "name": "Character Select", "attr": ["Scott Pilgrim vs. The World: The Game"]}
 			]
 		},
 		"Misc video games":{
@@ -3251,8 +3264,6 @@
 					{"id": "eySFs-dumFo", "name": "Sami's Theme", "attr": ["Advance Wars"]},
 					{"id": "GEOAq4bbvVE", "name": "Emil Karma", "attr": ["NieR Gestalt"], "tags": ["Adau"]},
 					{"id": "3w0tZ_01MSo", "name": "Shadowlord", "attr": ["Nier (Gestalt)"], "tags": ["Adau"]},
-					{"id": "H3n-Y-UaSwQ", "name": "Another Winter", "attr": ["Scott Pilgrim vs the World:The Game"]},
-					{"id": "2WjHkTUxHvo", "name": "Bollywood/Matthew Patel", "attr": ["Scott Pilgrim vs The World: The Game"]},
 					{"id": "rIDC9WPbKbA", "name": "Glavenus/\u30c7\u30a3\u30ce\u30d0\u30eb\u30c9 Battle Theme", "attr": ["Monster Hunter X/\u30e2\u30f3\u30b9\u30bf\u30fc\u30cf\u30f3\u30bf\u30fcX"]},
 					{"id": "OD9z9-ehQQY", "name": "Return To Planet X", "attr": ["Timesplitters 2"], "tags": ["Druk"]},
 					{"id": "v9a7hsfy7QA", "name": "Lost in Thoughts All Alone", "attr": ["Fire Emblem Fates"]},
@@ -3433,7 +3444,8 @@
 				{"id": "14i4NRFzg9E", "name": "Can't Escape, Fight!", "attr": ["One Piece"]},
 				{"id": "K3CqKpNrtIE", "name": "We Are!", "attr": ["One Piece"]},
 				{"id": "kfYv3Nrk3Zg", "name": "The Bond Between Samurai And The Mink Tribe", "attr": ["One Piece"], "tags": ["Perfect"]},
-				{"id": "4rf5nqO_ex8", "name": "Brand New World", "attr": ["One Piece opening 6"]}
+				{"id": "4rf5nqO_ex8", "name": "Brand New World", "attr": ["One Piece opening 6"]},
+				{"id": "_B-bUn75UjM", "name": "Wano Theme", "attr": ["One Piece"]}
 			]
 		},
 		"Gurren Lagann":{
@@ -3897,6 +3909,7 @@
 				{"id": "4XGtyVfhsMI", "name": "Wild Side", "attr": ["Beastars opening"]},
 				{"id": "_EOxCyq1rUY", "name": "Hoshizora no Spica", "attr": ["Mahou Shoujo Lyrical Nanoha StrikerS ending 1"]},
 				{"id": "GBqLjgssm-0", "name": "Night Surfing", "attr": ["(K)NoW_NAME", "Dorohedoro ending 2"], "tags": ["Double", "Perfect"]},
+				{"id": "chhi86kaUiA", "name": "Strange Meat Pie", "attr": ["Dorohedoro ending 4", "(K)NoW_NAME"], "tags": ["Perfect"]},
 				{"id": "3T6vNYIHgd0", "name": "sustain++;", "attr": ["Mili", "Ghost In the Shell: SAC_2045"], "tags": ["Perfect", "Sparse"]},
 				{"id": "Go4N9h0a5II", "name": "Always In My Heart", "attr": ["WorldEnd", "\u52a0\u85e4\u9054\u4e5f"], "tags": ["Alpha"]},
 				{"id": "RMYw1uPTk1Q", "name": "Night Running", "attr": ["BNA ending"]},
@@ -4309,7 +4322,8 @@
 				{"id": "fa_rn7LZQBs", "name": "Bad Boy", "attr": ["Red Velvet/\ub808\ub4dc\ubca8\ubcb3"]},
 				{"id": "agT0K0d6QFo", "name": "#Cookie Jar", "attr": ["Red Velvet/\ub808\ub4dc\ubca8\ubcb3"]},
 				{"id": "BzY3BfPqhV0", "name": "Sappy", "attr": ["Red Velvet/\u30ec\u30c3\u30c9\u30d9\u30eb\u30d9\u30c3\u30c9"]},
-				{"id": "LUCpscw_GBI", "name": "Psycho", "attr": ["Red Velvet/\ub808\ub4dc\ubca8\ubcb3"], "tags": ["Perfect"]}
+				{"id": "LUCpscw_GBI", "name": "Psycho", "attr": ["Red Velvet/\ub808\ub4dc\ubca8\ubcb3"], "tags": ["Perfect"]},
+				{"id": "AHrOyWEMiVk", "name": "Monster", "attr": ["Red Velvet - Irene & Selugi"], "tags": ["Perfect"]}
 			]
 		},
 		"Blackpink":{
@@ -4600,6 +4614,14 @@
 				{"id": "APQCUYtF8z0", "name": "Pocket Crocodile", "attr": ["Kero Kero Bonito"]}
 			]
 		},
+		"Hololive":{
+			"dbName":"Internet",
+			"songs":[
+				{"id": "DxBSsoKPEEU", "name": "Pekora BGM"},
+				{"id": "VrjeF0B4xMM", "name": "\u30ea\u30b3\u30fc\u30c0\u30fc\u30d3\u30fc\u30c82", "attr": ["Minato Aqua", "Y8MD"]},
+				{"id": "D7F4uUwyEDU", "name": "\u308f\u305f\u3081\u306e\u5b50\u5b88\u5504", "attr": ["\u89d2\u5dfb\u308f\u305f\u3081"], "tags": ["Perfect"]}
+			]
+		},
 		"Misc Internet":{
 			"dbName":"Internet.MiscInternet",
 			"songs":[
@@ -4673,13 +4695,12 @@
 				{"id": "229zsNO98cw", "name": "Song for Denise (Maxi Version)", "attr": ["Piano Fantasia"], "tags": ["Perfect"]},
 				{"id": "SNJtH8E7AZw", "name": "Addict", "attr": ["Silva Hound", "Hazbin Hotel"]},
 				{"id": "kWdYPcxhd6g", "name": "Alastor's Game", "attr": ["The Living Tombstone", "Hazbin Hotel"]},
-				{"id": "DxBSsoKPEEU", "name": "Pekora BGM"},
 				{"id": "QhL90yMLluM", "name": "Henry Stickman Distraction Dance"},
 				{"id": "QccwZ6ejKAI", "name": "Corrupted Violin Fencer Boss Theme"},
-				{"id": "VrjeF0B4xMM", "name": "\u30ea\u30b3\u30fc\u30c0\u30fc\u30d3\u30fc\u30c82", "attr": ["Minato Aqua", "Y8MD"]},
 				{"id": "t_FYp5R3QCQ", "name": "Forestcall", "attr": ["Eltorro64Rus"]},
 				{"id": "B5YM_nVo6DI", "name": "stupid horse", "attr": ["100 gecs"]},
-				{"id": "qPHc07i8anA", "name": "SugarCrash!", "attr": ["ElyOtto"]}
+				{"id": "qPHc07i8anA", "name": "SugarCrash!", "attr": ["ElyOtto"]},
+				{"id": "vsXkJuqep9M", "name": "Always Running", "attr": ["Meta Runner", "AJ DiSpirito"]}
 			]
 		}
 	},
@@ -4924,7 +4945,8 @@
 				{"id": "zb0kPlvWq94", "name": "I Follow Rivers", "attr": ["Lykke Li"], "tags": ["Perfect", "Sparse"]},
 				{"id": "O6RnpJBkFPk", "name": "Broodje Bakpao", "attr": ["The Opposites ft. Gers & Sef"]},
 				{"id": "uLnypoOiYvg", "name": "Gi\u00e0u V\u00ec B\u1ea1n, Sang V\u00ec V\u1ee3", "attr": ["Team Karik"]},
-				{"id": "x_77Is7WbO8", "name": "Discoteque", "attr": ["The Roop"]}
+				{"id": "x_77Is7WbO8", "name": "Discoteque", "attr": ["The Roop"]},
+				{"id": "wZjfdlVKSK8", "name": "D\u00e5 Som Nu F\u00f6r Alltid", "attr": ["Kent"], "tags": ["Perfect", "Sparse"]}
 			]
 		}
 	}
