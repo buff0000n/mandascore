@@ -18,15 +18,15 @@ class InstrumentPack {
 
 var packs = Array(
     new InstrumentPack("adau", "Adau", "BardTennoPackA", true),
-    new InstrumentPack("alpha", "Alpha", "BardCorpusPackA"),
-    new InstrumentPack("beta", "Beta", "BardCorpusPackB"),
+    new InstrumentPack("alpha", "Alpha", "BardCorpusPackA", true),
+    new InstrumentPack("beta", "Beta", "BardCorpusPackB", true),
     new InstrumentPack("bombast", "Bombast", "BardHipHopPackA", true, false, true, true),
-    new InstrumentPack("delta", "Delta", "BardCorpusPackD"),
-    new InstrumentPack("druk", "Druk", "BardGrineerPackA"),
-    new InstrumentPack("epsilon", "Epsilon", "BardCorpusPackE"),
-    new InstrumentPack("gamma", "Gamma", "BardCorpusPackC"),
-    new InstrumentPack("horos", "Horos", "BardEDMPackA"),
-    new InstrumentPack("plogg", "Plogg", "BardGrineerPackB"),
+    new InstrumentPack("delta", "Delta", "BardCorpusPackD", true),
+    new InstrumentPack("druk", "Druk", "BardGrineerPackA", true),
+    new InstrumentPack("epsilon", "Epsilon", "BardCorpusPackE", true),
+    new InstrumentPack("gamma", "Gamma", "BardCorpusPackC", true),
+    new InstrumentPack("horos", "Horos", "BardEDMPackA", true),
+    new InstrumentPack("plogg", "Plogg", "BardGrineerPackB", true),
     new InstrumentPack("clazz", "Clazz (Concept)", "ConceptClazz"),
     new InstrumentPack("zeta", "Zeta (Concept)", "ConceptZeta"),
 );
