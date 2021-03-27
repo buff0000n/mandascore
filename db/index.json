@@ -510,7 +510,8 @@
 			"songs":[
 				{"id": "zffwOI6u-wI", "name": "War Pigs", "attr": ["Black Sabbath"], "tags": ["Druk"]},
 				{"id": "5aVSZ_au36k", "name": "N.I.B.", "attr": ["Black Sabbath"], "tags": ["Druk"]},
-				{"id": "333WKWT3Gqc", "name": "Paranoid", "attr": ["Black Sabbath"]}
+				{"id": "333WKWT3Gqc", "name": "Paranoid", "attr": ["Black Sabbath"]},
+				{"id": "o4GI3RxH6RU", "name": "Into the Void", "attr": ["Black Sabbath"], "tags": ["Perfect"]}
 			]
 		},
 		"Three Days Grace":{
@@ -519,7 +520,8 @@
 				{"id": "i8rPlJK-gd0", "name": "Animal I Have Become", "attr": ["Three Days Grace"], "tags": ["Perfect"]},
 				{"id": "EhtAA23d7qA", "name": "Right Left Wrong", "attr": ["Three Days Grace"], "tags": ["Druk"]},
 				{"id": "A8kmTrzRCvo", "name": "Fallen Angel", "attr": ["Three Days Grace"]},
-				{"id": "Leo34vcAhlc", "name": "Never Too Late", "attr": ["Three Days Grace"]}
+				{"id": "Leo34vcAhlc", "name": "Never Too Late", "attr": ["Three Days Grace"]},
+				{"id": "1o_XXfAKqQY", "name": "Infrared", "attr": ["Three Days Grace"]}
 			]
 		},
 		"PVRIS":{
@@ -670,7 +672,8 @@
 				{"id": "CWHCXUnzstg", "name": "Immortal Corruptor", "attr": ["GWAR"], "tags": ["Druk"]},
 				{"id": "EP6q8meU5Fk", "name": "Quitters Don't Smoke", "attr": ["Blood Command"]},
 				{"id": "bz6pBJ8xTfY", "name": "Incorporate Use of Cloak & Dagger", "attr": ["Blood Command"]},
-				{"id": "LjEoWS4-FZE", "name": "Sword In Mouth, Fire Eyes", "attr": ["Norma Jean"], "tags": ["Druk"]}
+				{"id": "LjEoWS4-FZE", "name": "Sword In Mouth, Fire Eyes", "attr": ["Norma Jean"], "tags": ["Druk"]},
+				{"id": "sy9mB5C_77g", "name": "Strapping Young Lad", "attr": ["Detox"], "tags": ["Druk"]}
 			]
 		}
 	},
@@ -964,6 +967,14 @@
 				{"id": "LZSwhmyyifU", "name": "Walla Walla", "attr": ["Glass Animals"]}
 			]
 		},
+		"Halsey":{
+			"dbName":"PopRock",
+			"songs":[
+				{"id": "69elqDtG0ZM", "name": "Gasoline", "attr": ["Halsey"]},
+				{"id": "3__hfuFLAek", "name": "Hold Me Down", "attr": ["Halsey"], "tags": ["Perfect"]},
+				{"id": "DalVwDT7Kps", "name": "Colors", "attr": ["Halsey"], "tags": ["Perfect"]}
+			]
+		},
 		"Misc Pop/Rock":{
 			"dbName":"PopRock.MiscPopRock",
 			"songs":[
@@ -1061,8 +1072,6 @@
 				{"id": "1ImKRYbIFZY", "name": "Zombie", "attr": ["The Cranberries"]},
 				{"id": "-bNUfRqm2QY", "name": "Your I's Are Too Close Together", "attr": ["The Elevators"], "tags": ["Perfect", "Plogg"]},
 				{"id": "zZKxP39xNZE", "name": "We Move Like Wolves", "attr": ["Philter"]},
-				{"id": "69elqDtG0ZM", "name": "Gasoline", "attr": ["Halsey"]},
-				{"id": "3__hfuFLAek", "name": "Hold Me Down", "attr": ["Halsey"], "tags": ["Perfect"]},
 				{"id": "wA4o0v8n2uI", "name": "When I Get You Alone", "attr": ["Robin Thicke"]},
 				{"id": "pYXRmNrA6Lc", "name": "Beat The Devil's Tattoo", "attr": ["Black Rebel Motorcycle Club"], "tags": ["Plogg"]},
 				{"id": "kx0bqHz8BCo", "name": "The Bomb", "attr": ["Pigeon John"], "tags": ["Perfect", "Plogg"]},
@@ -1231,7 +1240,12 @@
 				{"id": "6jbIq9xLnkc", "name": "Sad Dance", "attr": ["Cat Company"]},
 				{"id": "jr_jQR5T2Ns", "name": "Sweater Weather", "attr": ["The Neighbourhood"]},
 				{"id": "j0j6XJ0fXIM", "name": "Source", "attr": ["Fever The Ghost"], "tags": ["Perfect", "Sparse"]},
-				{"id": "gp72K26rC14", "name": "No Strings", "attr": ["I Fight Dragons"]}
+				{"id": "gp72K26rC14", "name": "No Strings", "attr": ["I Fight Dragons"]},
+				{"id": "b_g_Gl6jyFg", "name": "Flee, Thou Matadors!", "attr": ["meewithoutYou"], "tags": ["Perfect"]},
+				{"id": "Xbc6V0ymAeI", "name": "make you feel pretty", "attr": ["lovelytheband"], "tags": ["Perfect"]},
+				{"id": "hddd7T4FvEI", "name": "Lost In Paradise", "attr": ["Ali ft. Aklo"], "tags": ["Perfect"]},
+				{"id": "TkuGoMpK2KM", "name": "Drug of choice", "attr": ["10 years"], "tags": ["Perfect"]},
+				{"id": "lG5Jy5lT4Zc", "name": "A Sky Full Of Stars", "attr": ["Coldplay"]}
 			]
 		}
 	},
@@ -1453,7 +1467,8 @@
 				{"id": "PezW1XWHYbU", "name": "Teacher", "attr": ["Prettymuch"], "tags": ["Perfect"]},
 				{"id": "tpXZiixjtT8", "name": "Rhythm Nation", "attr": ["Janet Jackson ft. [DE] Sheldon"], "tags": ["Triple", "Gamma"]},
 				{"id": "Qxe5D4MyevA", "name": "Belladonna", "attr": ["Ava Max"], "tags": ["Perfect"]},
-				{"id": "gPYo3C4eQD0", "name": "Girls Just Want To Have Fun", "attr": ["Cyndi Lauper"], "tags": ["Triple", "Perfect"]}
+				{"id": "gPYo3C4eQD0", "name": "Girls Just Want To Have Fun", "attr": ["Cyndi Lauper"], "tags": ["Triple", "Perfect"]},
+				{"id": "tpNE87F9Szk", "name": "Boys/Summertime Love", "attr": ["Sabrina Salerno"], "tags": ["Perfect", "Sparse"]}
 			]
 		}
 	},
@@ -1578,7 +1593,8 @@
 			{"id": "o9-7m-oWMpY", "name": "No Lie", "attr": ["Sean Paul"]},
 			{"id": "bynasaUVWJE", "name": "Under Me Sleng Teng", "attr": ["Wayne Smith"], "tags": ["Perfect"]},
 			{"id": "DsXAB4js3CE", "name": "Make It Bun Dem", "attr": ["Skrillex & Damian \"Jr. Gong\" Marley"]},
-			{"id": "EyrVHpTOJjU", "name": "Try It Out", "attr": ["Skrillex"]}
+			{"id": "EyrVHpTOJjU", "name": "Try It Out", "attr": ["Skrillex"]},
+			{"id": "olKe5ullGaM", "name": "The Raft", "attr": ["Fat Freddy's Drop"]}
 		]
 	},
 	"Rap/Hippity Hop":{
@@ -1790,6 +1806,7 @@
 				{"id": "FHecRvK5aSM", "name": "Rapper's Delight", "attr": ["The Sugar Hill Gang"]},
 				{"id": "Aryl2DZdT6M", "name": "Tribe", "attr": ["Bas", "J.Cole"]},
 				{"id": "Ozgq29hpCEw", "name": "Earfquake", "attr": ["Tyler The Creator"]},
+				{"id": "bXjd-6bLc5A", "name": "Yonkers", "attr": ["Tyler The Creator"]},
 				{"id": "n6qePKz5D2Q", "name": "The Box", "attr": ["Roddy Ricch"]},
 				{"id": "Eq7SbgxosaU", "name": "Family Affair/Let's Get It Crunk", "attr": ["Mary J. Blige"]},
 				{"id": "dwQOqvaLpLs", "name": "Roses", "attr": ["SAINt JHN", "Imanbek Remix"]},
@@ -1802,8 +1819,12 @@
 				{"id": "DW7dLiOYu7s", "name": "Calling My Phone", "attr": ["Lil Tjay ft. 6LACK"], "tags": ["Perfect"]},
 				{"id": "pRitb95IC_s", "name": "I'm so special", "attr": ["Mavodo"], "tags": ["Double", "Perfect"]},
 				{"id": "6NlfOKqJ1Jc", "name": "Rock Star", "attr": ["DaBaby"], "tags": ["Perfect"]},
+				{"id": "o3yCP7OcNls", "name": "BOP", "attr": ["Dababy"]},
 				{"id": "m_mKp3MNz8o", "name": "Citgo", "attr": ["Chief Keef"], "tags": ["Perfect"]},
-				{"id": "Z-OPhNcFnzU", "name": "Mansion", "attr": ["NF ft. Fleurie"], "tags": ["Perfect"]}
+				{"id": "Z-OPhNcFnzU", "name": "Mansion", "attr": ["NF ft. Fleurie"], "tags": ["Perfect"]},
+				{"id": "6ejza6Cv_Vc", "name": "Big Poppa", "attr": ["The Notorious B.I.G."]},
+				{"id": "sH6rLDyYESw", "name": "Triumph", "attr": ["Wu Tang Clan"]},
+				{"id": "8yDHWQgoqPo", "name": "American Boy", "attr": ["Estelle"]}
 			]
 		}
 	},
@@ -2020,7 +2041,8 @@
 				{"id": "TWjFAvkVS54", "name": "Easy", "attr": ["Mat Zo", "Porter Robinson"], "tags": ["Alpha"]},
 				{"id": "lxIJVKJGh6o", "name": "Sad Machine", "attr": ["Porter Robinson"]},
 				{"id": "V3gWQ-zA_VE", "name": "Lionhearted", "attr": ["Porter Robinson"]},
-				{"id": "RedHH-0xtKs", "name": "Look at the Sky", "attr": ["Porter Robinson"]}
+				{"id": "RedHH-0xtKs", "name": "Look at the Sky", "attr": ["Porter Robinson"]},
+				{"id": "NO1gfkCHkxI", "name": "Musician", "attr": ["Porter Robinson"]}
 			]
 		},
 		"Carpenter Brut":{
@@ -2376,7 +2398,8 @@
 				{"id": "j7Rq9QHUIXQ", "name": "Neck And Neck", "attr": ["Zeds Dead"]},
 				{"id": "pGHdV2wPkL8", "name": "Alive", "attr": ["Mind Vortex"]},
 				{"id": "nZpZNFYDBnk", "name": "Dusk To Dawn", "attr": ["Emancipator"], "tags": ["Plogg"]},
-				{"id": "B4T9hAEf9nU", "name": "Okay", "attr": ["Shiba San"]}
+				{"id": "B4T9hAEf9nU", "name": "Okay", "attr": ["Shiba San"]},
+				{"id": "CSzh6moJpdk", "name": "Brrrlin", "attr": ["Mathematic"]}
 			]
 		}
 	},
@@ -2502,7 +2525,8 @@
 				{"id": "jK2-KCEgXhI", "name": "Robotnik's Theme/Rave Party", "attr": ["Sonic 3 & Knuckles"]},
 				{"id": "_G2qGJtlYB0", "name": "Bomber Barbara", "attr": ["Sonic Rush"]},
 				{"id": "l8qBS08XaHM", "name": "A.I.R. Mini Boss theme", "attr": ["Sonic The Hedgehog 3"]},
-				{"id": "xi3BAayb4TY", "name": "Metallic Madness Zone Act 1", "attr": ["Sonic Mania"]}
+				{"id": "xi3BAayb4TY", "name": "Metallic Madness Zone Act 1", "attr": ["Sonic Mania"]},
+				{"id": "FUirui2wmYs", "name": "So Much More", "attr": ["Sonic & Sega All Stars Racing"], "tags": ["Double"]}
 			]
 		},
 		"Pokemon":{
@@ -3076,7 +3100,8 @@
 				{"id": "_PCgUbV_7ng", "name": "High", "attr": ["Friday Night Funkin"]},
 				{"id": "OTr41vapuW0", "name": "Overhead", "attr": ["Friday Night Funkin'", "Whitmore"], "tags": ["Perfect"]},
 				{"id": "6f1xv4V4vRM", "name": "Breakfast", "attr": ["Friday Night Funkin'"]},
-				{"id": "_t2gkYz6hoo", "name": "Pico", "attr": ["Friday Night Funkin'"], "tags": ["Perfect"]}
+				{"id": "_t2gkYz6hoo", "name": "Pico", "attr": ["Friday Night Funkin'"], "tags": ["Perfect"]},
+				{"id": "7g7och3cmOo", "name": "Senpai", "attr": ["Friday Night Funkin'"]}
 			]
 		},
 		"Hollow Knight":{
@@ -3844,6 +3869,7 @@
 				{"id": "qu6TXxuJnig", "name": "Re-Awake", "attr": ["Steins;Gate"]},
 				{"id": "XsnyHzR-lXE", "name": "Gate of Steiner", "attr": ["Steins;Gate"], "tags": ["Double"]},
 				{"id": "yCGYkNiXwKo", "name": "High School DxD BorN opening 1"},
+				{"id": "P9JeEABYQ1s", "name": "Switch", "attr": ["High School DxD Hero opening 4"]},
 				{"id": "EcQ_cd-kDks", "name": "Hikaru Nara", "attr": ["Goose House", "Your Lie In April"]},
 				{"id": "Nv_KqjJJZYM", "name": "Monster Without A Name", "attr": ["Psycho-Pass ending 1"]},
 				{"id": "gHUliraeZts", "name": "Megalo Box main theme"},
@@ -4422,7 +4448,8 @@
 			"songs":[
 				{"id": "t2lz2uVVQVY", "name": "Over The Sky/\ud558\ub298\uc744 \ub118\uc5b4", "attr": ["Dreamcatcher/\ub4dc\ub9bc\uce90\uccd0"]},
 				{"id": "2VCoPvmSoC4", "name": "Wake Up", "attr": ["Dreamcatcher/\ub4dc\ub9bc\uce90\uccd0"]},
-				{"id": "7AM83cMkNkw", "name": "Piri/\ud53c\ub9ac", "attr": ["Dreamcatcher/\ub4dc\ub9bc\uce90\uccd0"]}
+				{"id": "7AM83cMkNkw", "name": "Piri/\ud53c\ub9ac", "attr": ["Dreamcatcher/\ub4dc\ub9bc\uce90\uccd0"]},
+				{"id": "zxcZcAceyqo", "name": "Scream", "attr": ["Dreamcatcher/\ub4dc\ub9bc\uce90\uccd0"]}
 			]
 		},
 		"IZ*ONE/아이즈원":{
@@ -4606,6 +4633,16 @@
 				{"id": "c9Gmqds_Kqs", "name": "Blood Gulch Blues", "attr": ["Red vs. Blue"]}
 			]
 		},
+		"Lemon Demon/Neil Cicierga":{
+			"dbName":"Internet",
+			"songs":[
+				{"id": "HUASQi9NNTE", "name": "Two Trucks", "attr": ["Lemon Demon"]},
+				{"id": "0dUNR487Zrg", "name": "The Saga of You, Confused Destroyer of Planets", "attr": ["Lemon Demon"]},
+				{"id": "XZw3eH6rzPQ", "name": "Eighth Wonder", "attr": ["Lemon Demon"], "tags": ["Perfect"]},
+				{"id": "W235TAR_YB8", "name": "Bustin", "attr": ["Neil Cicierga", "Ray Parker Jr"], "tags": ["Double"]},
+				{"id": "r96X6vwsygc", "name": "Soft Fuzzy Man", "attr": ["Lemon Demon"]}
+			]
+		},
 		"Kero Kero Bonito":{
 			"dbName":"Internet",
 			"songs":[
@@ -4668,9 +4705,6 @@
 				{"id": "3dRV5pnGKGw", "name": "All Your Base Are Belong To Us", "attr": ["Invasion Of The Gabber Robots by TLMoM"], "tags": ["Horos"]},
 				{"id": "Dt_x5oELdl8", "name": "Find Da Wae", "attr": ["CG5"], "tags": ["Double"]},
 				{"id": "yGoVmPVY42o", "name": "The Angry Video Game Nerd theme song", "tags": ["Double", "Perfect"]},
-				{"id": "W235TAR_YB8", "name": "Bustin", "attr": ["Neil Cicierga", "Ray Parker Jr"], "tags": ["Double"]},
-				{"id": "HUASQi9NNTE", "name": "Two Trucks", "attr": ["Lemon Demon"]},
-				{"id": "0dUNR487Zrg", "name": "The Saga of You, Confused Destroyer of Planets", "attr": ["Lemon Demon"]},
 				{"id": "pqUErtOM_o4", "name": "Everybody Knows Sh*t's F*cked", "attr": ["Stephen Paul Taylor"], "tags": ["Perfect"]},
 				{"id": "muJeda-82ds", "name": "Epic Meeal Time Dubstep"},
 				{"id": "xhA9pZhi5J0", "name": "Danny Don't You Know", "attr": ["Ninja Sex Party"]},
