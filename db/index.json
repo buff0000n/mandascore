@@ -326,7 +326,8 @@
 				{"id": "X2pkKSMHhEs", "name": "Disorder", "attr": ["Joy Division"]},
 				{"id": "D3rG--31Dio", "name": "Relax", "attr": ["Frankie Goes To Hollywood"], "tags": ["Perfect"]},
 				{"id": "2dL49m1EvAw", "name": "Video Killed The Radio Star", "attr": ["The Buggles"]},
-				{"id": "vYTyHV3WZfc", "name": "What I Got", "attr": ["Sublime"], "tags": ["Perfect"]}
+				{"id": "vYTyHV3WZfc", "name": "What I Got", "attr": ["Sublime"], "tags": ["Perfect"]},
+				{"id": "-pTkWKPGd8I", "name": "Higher Love", "attr": ["Steve Winwood"]}
 			]
 		}
 	},
@@ -455,7 +456,7 @@
 			"dbName":"HardRock",
 			"songs":[
 				{"id": "k-XJDbeZzJo", "name": "Hard to See Five", "attr": ["Finger Death Punch"], "tags": ["Sparse"]},
-				{"id": "mbDVTymIdtM", "name": "Life Me Up", "attr": ["Five Finger Death Punch"], "tags": ["Perfect", "Druk"]},
+				{"id": "mbDVTymIdtM", "name": "Lift Me Up", "attr": ["Five Finger Death Punch"], "tags": ["Perfect", "Druk"]},
 				{"id": "YYchps9Bk74", "name": "Bad Seed", "attr": ["Five Finger Death Punch"]},
 				{"id": "EhRjGRIVCgo", "name": "Wash It All Away", "attr": ["Five Finger Death Punch"], "tags": ["Druk", "Perfect"]},
 				{"id": "fHZI-5tiwa0", "name": "Jekyll And Hyde", "attr": ["Five Finger Death Punch"], "tags": ["Druk"]},
@@ -587,6 +588,7 @@
 				{"id": "r002rn6r0cA", "name": "Cowboys From Hell", "attr": ["Pantera"]},
 				{"id": "KIgZoEDSqRk", "name": "Cowboys From Hell - Part 2", "attr": ["Pantera"], "tags": ["Druk"]},
 				{"id": "R5leRyKUWe0", "name": "Gravedigger", "attr": ["Architects"], "tags": ["Druk"]},
+				{"id": "kLhNeQBBjzI", "name": "Black Lungs", "attr": ["Architects"]},
 				{"id": "aHxU92P5pnI", "name": "Na Na Na", "attr": ["My Chemical Romance"], "tags": ["Druk"]},
 				{"id": "xBwwu4xSMCs", "name": "Welcome To The Black Parade", "attr": ["My Chemical Romance"], "tags": ["Druk"]},
 				{"id": "AmUyV_48r6I", "name": "Syndrome", "attr": ["Deathstars"]},
@@ -763,7 +765,8 @@
 				{"id": "u3yhwY6NaEA", "name": "Sorcererz", "attr": ["Gorillaz"]},
 				{"id": "FyQA-ux8wvg", "name": "To Binge", "attr": ["Gorillaz"]},
 				{"id": "LRcVdEmh6Nw", "name": "Tranz", "attr": ["Gorillaz"], "tags": ["Sparse"]},
-				{"id": "yyATcbUA_qo", "name": "Pac-Man", "attr": ["Gorillaz"]}
+				{"id": "yyATcbUA_qo", "name": "Pac-Man", "attr": ["Gorillaz"]},
+				{"id": "z_iFyeAgC7M", "name": "Empire Ants", "attr": ["Gorillaz"]}
 			]
 		},
 		"Dance Gavin Dance":{
@@ -1245,7 +1248,8 @@
 				{"id": "Xbc6V0ymAeI", "name": "make you feel pretty", "attr": ["lovelytheband"], "tags": ["Perfect"]},
 				{"id": "hddd7T4FvEI", "name": "Lost In Paradise", "attr": ["Ali ft. Aklo"], "tags": ["Perfect"]},
 				{"id": "TkuGoMpK2KM", "name": "Drug of choice", "attr": ["10 years"], "tags": ["Perfect"]},
-				{"id": "lG5Jy5lT4Zc", "name": "A Sky Full Of Stars", "attr": ["Coldplay"]}
+				{"id": "lG5Jy5lT4Zc", "name": "A Sky Full Of Stars", "attr": ["Coldplay"]},
+				{"id": "NQilg1W4fuU", "name": "Wolf Like Me", "attr": ["TV On The Radio"], "tags": ["Perfect"]}
 			]
 		}
 	},
@@ -1289,7 +1293,8 @@
 			"songs":[
 				{"id": "3TBHe1QG3-w", "name": "Swish Swish", "attr": ["Katy Perry"]},
 				{"id": "I5J-6YRHYSA", "name": "E.T.", "attr": ["Katy Perry"]},
-				{"id": "a6K8HD0NVHA", "name": "California Gurls", "attr": ["Katy Perry"], "tags": ["Double", "Perfect"]}
+				{"id": "a6K8HD0NVHA", "name": "California Gurls", "attr": ["Katy Perry"], "tags": ["Double", "Perfect"]},
+				{"id": "6iqAxDooNPo", "name": "Cry About It Later", "attr": ["Katy Perry"], "tags": ["Perfect"]}
 			]
 		},
 		"Dua Lipa":{
@@ -1333,7 +1338,8 @@
 				{"id": "ZSt6-orNiSg", "name": "Dance In The Dark", "attr": ["Lady GaGa"]},
 				{"id": "XWJtf0YnoYI", "name": "Applause", "attr": ["Lady Gaga"], "tags": ["Perfect"]},
 				{"id": "0BdgZ1ASWq8", "name": "Rain On Me", "attr": ["Lady Gaga", "Ariana Grande"]},
-				{"id": "LqUyGxWbKIk", "name": "The Cure", "attr": ["Lady Gaga"]}
+				{"id": "LqUyGxWbKIk", "name": "The Cure", "attr": ["Lady Gaga"]},
+				{"id": "XdzvTYzVjVY", "name": "911", "attr": ["Lady Gaga"], "tags": ["Perfect"]}
 			]
 		},
 		"Nicki Minaj":{
@@ -1594,7 +1600,9 @@
 			{"id": "bynasaUVWJE", "name": "Under Me Sleng Teng", "attr": ["Wayne Smith"], "tags": ["Perfect"]},
 			{"id": "DsXAB4js3CE", "name": "Make It Bun Dem", "attr": ["Skrillex & Damian \"Jr. Gong\" Marley"]},
 			{"id": "EyrVHpTOJjU", "name": "Try It Out", "attr": ["Skrillex"]},
-			{"id": "olKe5ullGaM", "name": "The Raft", "attr": ["Fat Freddy's Drop"]}
+			{"id": "olKe5ullGaM", "name": "The Raft", "attr": ["Fat Freddy's Drop"]},
+			{"id": "4xXqBxNHPxw", "name": "Let's Get It On", "attr": ["Shabba Ranks"]},
+			{"id": "d9oWAOyTbaE", "name": "Murder She Wrote", "attr": ["Chaka Damus & Pliers"], "tags": ["Perfect", "Plogg"]}
 		]
 	},
 	"Rap/Hippity Hop":{
@@ -1824,7 +1832,8 @@
 				{"id": "Z-OPhNcFnzU", "name": "Mansion", "attr": ["NF ft. Fleurie"], "tags": ["Perfect"]},
 				{"id": "6ejza6Cv_Vc", "name": "Big Poppa", "attr": ["The Notorious B.I.G."]},
 				{"id": "sH6rLDyYESw", "name": "Triumph", "attr": ["Wu Tang Clan"]},
-				{"id": "8yDHWQgoqPo", "name": "American Boy", "attr": ["Estelle"]}
+				{"id": "8yDHWQgoqPo", "name": "American Boy", "attr": ["Estelle"]},
+				{"id": "DgFAYwQc_r4", "name": "I'm N Luv (With a Stripper)", "attr": ["T-Pain"]}
 			]
 		}
 	},
@@ -2113,6 +2122,14 @@
 				{"id": "KPYTp3mf8F8", "name": "Lean On", "attr": ["Major Lazer", "DJ Snake ft. M\u00d8"]}
 			]
 		},
+		"Chemical Brothers":{
+			"dbName":"Electronic",
+			"songs":[
+				{"id": "RE4YQsgOfAQ", "name": "Denmark", "attr": ["Chemical Brothers"]},
+				{"id": "Ffpci797WCo", "name": "In Dust We Trust", "attr": ["Chemical Brothers"]},
+				{"id": "4Svh7MC-1rY", "name": "The Big Jump", "attr": ["The Chemical Brothers"], "tags": ["Perfect"]}
+			]
+		},
 		"Misc Monstercat":{
 			"dbName":"Electronic.MiscMonstercat",
 			"songs":[
@@ -2202,8 +2219,6 @@
 				{"id": "VGMzqYbFzZY", "name": "Popcorn Funk", "attr": ["Monstaz."]},
 				{"id": "tajIS0iEpEc", "name": "Reich mir die Hand", "attr": ["Blutengel"], "tags": ["Sparse"]},
 				{"id": "xk9Rb533c1c", "name": "Feel the Melody", "attr": ["S3RL"]},
-				{"id": "RE4YQsgOfAQ", "name": "Denmark", "attr": ["Chemical Brothers"]},
-				{"id": "Ffpci797WCo", "name": "In Dust We Trust", "attr": ["Chemical Brothers"]},
 				{"id": "IUOZbU4_jD0", "name": "Faded", "attr": ["ZHU"]},
 				{"id": "Pqxz-4d9n6Q", "name": "Faded", "attr": ["ZHU", "Odesza Remix"]},
 				{"id": "0j8LX549vis", "name": "The Mother We Share", "attr": ["Chvrches"], "tags": ["Perfect"]},
@@ -2238,6 +2253,7 @@
 				{"id": "y3XbQm3F80s", "name": "Ripples Alex", "attr": ["Skrindo"], "tags": ["Epsilon"]},
 				{"id": "Nd-Q6R0D3Hw", "name": "Do You Feel It", "attr": ["Chaos Chaos"]},
 				{"id": "k74z22WFqp8", "name": "Outside", "attr": ["Calvin Harris"]},
+				{"id": "g91_aDAy_w4", "name": "Slide", "attr": ["Calvin Harris"]},
 				{"id": "Rzt0JZGzCtA", "name": "Something New", "attr": ["Joywave"], "tags": ["Perfect"]},
 				{"id": "-B8IXV6UUrk", "name": "Five Hours", "attr": ["Deorro"]},
 				{"id": "9lT0-s0_cPk", "name": "Again", "attr": ["Rebourne"]},
@@ -2399,7 +2415,10 @@
 				{"id": "pGHdV2wPkL8", "name": "Alive", "attr": ["Mind Vortex"]},
 				{"id": "nZpZNFYDBnk", "name": "Dusk To Dawn", "attr": ["Emancipator"], "tags": ["Plogg"]},
 				{"id": "B4T9hAEf9nU", "name": "Okay", "attr": ["Shiba San"]},
-				{"id": "CSzh6moJpdk", "name": "Brrrlin", "attr": ["Mathematic"]}
+				{"id": "CSzh6moJpdk", "name": "Brrrlin", "attr": ["Mathematic"]},
+				{"id": "a0D16IrR5t4", "name": "1993", "attr": ["Oliver Tree ft. Little Ricky ZR3"], "tags": ["Perfect"]},
+				{"id": "BPGfqq2He0o", "name": "Friday", "attr": ["Riton x Nightcrawlers ft. Mufasa & Hypeman"], "tags": ["Double"]},
+				{"id": "qEUBUXbfkOk", "name": "Mad Love", "attr": ["Vince Johnson ft. Lena Luisa"]}
 			]
 		}
 	},
@@ -2457,6 +2476,7 @@
 				{"id": "tIAhHtr1jUw", "name": "Metal Man Theme", "attr": ["Mega Man"]},
 				{"id": "vVW9nL-WAko", "name": "Zero's Theme", "attr": ["Mega Man X3"]},
 				{"id": "bk18TBRccqs", "name": "Standby - Zero", "attr": ["Mega Man X Command Mission"], "tags": ["Sparse"]},
+				{"id": "FRBZ6sIBvcI", "name": "Epsilon, 1st Movement", "attr": ["Megaman X Command Mission"]},
 				{"id": "diJbxmjWXcs", "name": "Stage Select Theme", "attr": ["Mega Man X"], "tags": ["Druk"]},
 				{"id": "RkDXtgQsKA4", "name": "X vs Zero", "attr": ["Mega Man X5"]},
 				{"id": "_3TatTAM0pM", "name": "Area A: Forest/Green Grass Graduation", "attr": ["Mega Man ZX"]},
@@ -3101,7 +3121,8 @@
 				{"id": "OTr41vapuW0", "name": "Overhead", "attr": ["Friday Night Funkin'", "Whitmore"], "tags": ["Perfect"]},
 				{"id": "6f1xv4V4vRM", "name": "Breakfast", "attr": ["Friday Night Funkin'"]},
 				{"id": "_t2gkYz6hoo", "name": "Pico", "attr": ["Friday Night Funkin'"], "tags": ["Perfect"]},
-				{"id": "7g7och3cmOo", "name": "Senpai", "attr": ["Friday Night Funkin'"]}
+				{"id": "7g7och3cmOo", "name": "Senpai", "attr": ["Friday Night Funkin'"]},
+				{"id": "50pC1dDRBQk", "name": "Satin Panties", "attr": ["Friday Night Funkin'"]}
 			]
 		},
 		"Hollow Knight":{
@@ -3763,6 +3784,7 @@
 				{"id": "_YBuvs4-vhU", "name": "Transparent", "attr": ["Kaiji Season 2"]},
 				{"id": "gf6utkDN1Do", "name": "Disorder", "attr": ["Big Order opening"]},
 				{"id": "NTZzUKmo00E", "name": "Ikenai Borderline", "attr": ["Macross Delta"]},
+				{"id": "5-rgTd9jfwg", "name": "Ikenai Borderline - chorus", "attr": ["Macross Delta"]},
 				{"id": "xe44rTm3zi8", "name": "Information High", "attr": ["Macross Plus"]},
 				{"id": "nyl7d4xE9w8", "name": "\u661f\u9593\u98db\u884c", "attr": ["\u30de\u30af\u30ed\u30b9FRONTIER"]},
 				{"id": "J6ytzMMB1iU", "name": "Black Bullet Opening", "attr": ["FripSide"]},
@@ -4285,7 +4307,8 @@
 				{"id": "gj9ZuuSxlkU", "name": "Conqueror", "attr": ["Sendra", "IA"]},
 				{"id": "LEA5DOYqvD4", "name": "Black&White", "attr": ["Masa", "Lui", "GUMI"]},
 				{"id": "KRVSBuacnk8", "name": "King", "attr": ["Kanaria", "GUMI"], "tags": ["Epsilon"]},
-				{"id": "CWTSKIS6NkU", "name": "Apple dot com/\u30a2\u30c3\u30d7\u30eb\u30c9\u30c3\u30c8\u30b3\u30e0", "attr": ["PinocchioP/\u30d4\u30ce\u30ad\u30aa\u30d4\u30fc"], "tags": ["Perfect"]}
+				{"id": "CWTSKIS6NkU", "name": "Apple dot com/\u30a2\u30c3\u30d7\u30eb\u30c9\u30c3\u30c8\u30b3\u30e0", "attr": ["PinocchioP/\u30d4\u30ce\u30ad\u30aa\u30d4\u30fc"], "tags": ["Perfect"]},
+				{"id": "yxIeeu1uUeM", "name": "Full Bodied", "attr": ["Ghost Data ft. AL!CE"]}
 			]
 		},
 		"BTS":{
@@ -4630,7 +4653,8 @@
 			"songs":[
 				{"id": "QV7RX8NZaWI", "name": "Agent Tex", "attr": ["Red vs. Blue"]},
 				{"id": "VrkJTAYHsys", "name": "Contact", "attr": ["Red vs. Blue season 13 ending credits"]},
-				{"id": "c9Gmqds_Kqs", "name": "Blood Gulch Blues", "attr": ["Red vs. Blue"]}
+				{"id": "c9Gmqds_Kqs", "name": "Blood Gulch Blues", "attr": ["Red vs. Blue"]},
+				{"id": "d8eoQPO37to", "name": "Bow Chicka Wow Wow Wow", "attr": ["Red Vs. Blue"], "tags": ["Sparse"]}
 			]
 		},
 		"Lemon Demon/Neil Cicierga":{
