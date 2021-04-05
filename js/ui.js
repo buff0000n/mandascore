@@ -2027,6 +2027,7 @@ function editPlaylistSave(button) {
         textarea.playlist.import(textarea.value);
     }
     clearMenus();
+    clearErrors();
 }
 
 function editPlaylist(button) {
