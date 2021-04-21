@@ -34,7 +34,8 @@
 				{"id": "2avsSiQdLqw", "name": "Octavia's Anthem remix", "attr": ["Warframe"]},
 				{"id": "1XLFK5Umnns", "name": "Fortuna Part 2 login music", "attr": ["Warframe"]},
 				{"id": "sdc36fLD9BY", "name": "Deadlock Protocol login theme", "attr": ["Warframe"], "tags": ["Double"]},
-				{"id": "DSbmlFMVaEc", "name": "Octavia Prime Trailer"}
+				{"id": "DSbmlFMVaEc", "name": "Octavia Prime Trailer"},
+				{"id": "OeyxFA4PktE", "name": "Octavia Prime Trailer"}
 			]
 		},
 		"Tenno Tunes by me":{
@@ -469,7 +470,8 @@
 				{"id": "oMQJNJtzCAI", "name": "Demons Are A Girl's Best Friend", "attr": ["Powerwolf"]},
 				{"id": "vVwyzbsc2D0", "name": "In The Name Of God", "attr": ["Powerwolf"]},
 				{"id": "NvMDWETEM_s", "name": "We Drink Your Blood", "attr": ["Powerwolf"]},
-				{"id": "utH16vxdcn0", "name": "Sanctus Dominus", "attr": ["Powerwolf"]}
+				{"id": "utH16vxdcn0", "name": "Sanctus Dominus", "attr": ["Powerwolf"]},
+				{"id": "8w-zuFKQ7VU", "name": "Sanctified With Dynamite", "attr": ["Powerwolf"]}
 			]
 		},
 		"Avenged Sevenfold":{
@@ -1843,7 +1845,9 @@
 				{"id": "sH6rLDyYESw", "name": "Triumph", "attr": ["Wu Tang Clan"]},
 				{"id": "8yDHWQgoqPo", "name": "American Boy", "attr": ["Estelle"]},
 				{"id": "DgFAYwQc_r4", "name": "I'm N Luv (With a Stripper)", "attr": ["T-Pain"]},
-				{"id": "m9p7rs3MUb4", "name": "Happy Endings", "attr": ["Mike Shinoda ft. iann dior & UPSAHL"], "tags": ["Perfect"]}
+				{"id": "m9p7rs3MUb4", "name": "Happy Endings", "attr": ["Mike Shinoda ft. iann dior & UPSAHL"], "tags": ["Perfect"]},
+				{"id": "jVUcpTor8NI", "name": "She Make It Clap", "attr": ["Soulja Boy"]},
+				{"id": "7PgbbdfD5pA", "name": "The Big Big Beat", "attr": ["Azealia Banks"]}
 			]
 		}
 	},
@@ -2140,6 +2144,14 @@
 				{"id": "4Svh7MC-1rY", "name": "The Big Jump", "attr": ["The Chemical Brothers"], "tags": ["Perfect"]}
 			]
 		},
+		"EnV":{
+			"dbName":"Electronic",
+			"songs":[
+				{"id": "F22Nk9zBnFE", "name": "Dynasty", "attr": ["EnV"], "tags": ["Beta"]},
+				{"id": "5E897fzUoEc", "name": "Dynasty - beginning", "attr": ["EnV"]},
+				{"id": "wy2-ogRmwcY", "name": "Pneumatic Tokyo", "attr": ["EnV"]}
+			]
+		},
 		"Misc Monstercat":{
 			"dbName":"Electronic.MiscMonstercat",
 			"songs":[
@@ -2253,8 +2265,6 @@
 				{"id": "aOVMgoSFb0A", "name": "The 7 Seas", "attr": ["F-777"]},
 				{"id": "OqlUeeTbBFg", "name": "A Different Way", "attr": ["DJ Snake"], "tags": ["Perfect"]},
 				{"id": "rbRD7JdJdTQ", "name": "A City Under Siege", "attr": ["Boy 8 bit", "GTA: The Ballad of Fat Tony"], "tags": ["Perfect"]},
-				{"id": "F22Nk9zBnFE", "name": "Dynasty", "attr": ["EnV"], "tags": ["Beta"]},
-				{"id": "5E897fzUoEc", "name": "Dynasty - beginning", "attr": ["EnV"]},
 				{"id": "9RBHAyhjUrI", "name": "Evil Gameboy", "attr": ["Virtual Riot"]},
 				{"id": "2k2TQ9dnVi4", "name": "Boy Oh Boy", "attr": ["Diplo & GTA"]},
 				{"id": "dpLiQLCyGb0", "name": "Nothing Inside", "attr": ["Sander van Doorn & Mayaeni"]},
@@ -2429,7 +2439,10 @@
 				{"id": "CSzh6moJpdk", "name": "Brrrlin", "attr": ["Mathematic"]},
 				{"id": "a0D16IrR5t4", "name": "1993", "attr": ["Oliver Tree ft. Little Ricky ZR3"], "tags": ["Perfect"]},
 				{"id": "BPGfqq2He0o", "name": "Friday", "attr": ["Riton x Nightcrawlers ft. Mufasa & Hypeman"], "tags": ["Double"]},
-				{"id": "qEUBUXbfkOk", "name": "Mad Love", "attr": ["Vince Johnson ft. Lena Luisa"]}
+				{"id": "qEUBUXbfkOk", "name": "Mad Love", "attr": ["Vince Johnson ft. Lena Luisa"]},
+				{"id": "COr_KozptwQ", "name": "Dying Breed", "attr": ["Aim To The Head"], "tags": ["Perfect"]},
+				{"id": "LwMEQWIDVdQ", "name": "Rather Be Alone", "attr": ["Robin Schulz & Nick Martin & Sam Martin"]},
+				{"id": "98vdlUVt5jU", "name": "Loneliness", "attr": ["Tomcraft"], "tags": ["Perfect", "Sparse"]}
 			]
 		}
 	},
@@ -3194,7 +3207,8 @@
 					{"id": "BxaXP81BiGo", "name": "Amiga Lotus 3 Track 3"},
 					{"id": "0mQc3izTrOA", "name": "Sega CD boot up music"},
 					{"id": "hZ-ni0mV07E", "name": "Area 4 theme", "attr": ["Blazing Lazers"]},
-					{"id": "NFXD5m8S9jU", "name": "Boss", "attr": ["Plok! SNES"], "tags": ["Filled"]}
+					{"id": "NFXD5m8S9jU", "name": "Boss", "attr": ["Plok! SNES"], "tags": ["Filled"]},
+					{"id": "X_3lwUs9Qgk", "name": "Top Gear 2 Title Theme"}
 				]
 			},
 			"Not as old":{
@@ -3811,6 +3825,7 @@
 				{"id": "8jYYOL9Qf3M", "name": "Fate stay night", "attr": ["Unlimited Blade Works opening 1"]},
 				{"id": "Im8pootxdIw", "name": "Disillusion", "attr": ["Fate Stay Night opening 1"]},
 				{"id": "Lh8EJvoUvGM", "name": "Oath Sign", "attr": ["Fate/Zero opening 1"]},
+				{"id": "6opPZahvn9w", "name": "Sora wa Tataku Kaze wa Utau", "attr": ["Luna Haruna", "Fate Zero ending 2"]},
 				{"id": "cSr9W6elYJk", "name": "99", "attr": ["Mob Psycho 100 opening"]},
 				{"id": "dUixoYj2B0A", "name": "99.9", "attr": ["Mob Psycho 100 opening 2"], "tags": ["Perfect"]},
 				{"id": "Px5Ar3LJYnQ", "name": "Hunter x Hunter ending 1"},
@@ -3984,7 +3999,8 @@
 				{"id": "giXze1V7NlE", "name": "Fukashima no Carte", "attr": ["Seishun Buta Yarou wa Bunny Girl Senpai no Yume wo Mina"]},
 				{"id": "Kb1N4FZr1c0", "name": "Last Theater", "attr": ["Noisycell", "Death Parade ending"]},
 				{"id": "E10bWU3Zpxo", "name": "Irokousui", "attr": ["Horimiya opening", "Yoh Kamiyama"], "tags": ["Perfect"]},
-				{"id": "RMrJbl2JkTU", "name": "Get It By Your Hands", "attr": ["Eureka Seven Hi-Evolution"]}
+				{"id": "RMrJbl2JkTU", "name": "Get It By Your Hands", "attr": ["Eureka Seven Hi-Evolution"]},
+				{"id": "Y7yVFQhbU68", "name": "Nyanpasu Yabure Kabure", "attr": ["Non Non Biyori"]}
 			]
 		}
 	},
@@ -4700,6 +4716,14 @@
 				{"id": "D7F4uUwyEDU", "name": "\u308f\u305f\u3081\u306e\u5b50\u5b88\u5504", "attr": ["\u89d2\u5dfb\u308f\u305f\u3081"], "tags": ["Perfect"]}
 			]
 		},
+		"Sunstroke Project":{
+			"dbName":"Internet",
+			"songs":[
+				{"id": "x_cVZm7GwaE", "name": "Ultra Sax Guy/Hey Mamma!", "attr": ["SunStroke Project"]},
+				{"id": "7e6tTOok4Mw", "name": "Epix Sax Guy", "attr": ["Run Away by Sunstroke Project"]},
+				{"id": "MHosiK2MknE", "name": "Walking In The Rain", "attr": ["Sunstroke Project"]}
+			]
+		},
 		"Misc Internet":{
 			"dbName":"Internet.MiscInternet",
 			"songs":[
@@ -4715,8 +4739,6 @@
 				{"id": "2okNY1mPSTw", "name": "You reposted in the wrong neighborhood", "tags": ["Gamma"]},
 				{"id": "FaI8CvqAysA", "name": "Nyan Cat"},
 				{"id": "XBS4Wl2SWq0", "name": "Out For A Rip", "attr": ["B Rich & Friends"]},
-				{"id": "x_cVZm7GwaE", "name": "Ultra Sax Guy/Hey Mamma!", "attr": ["SunStroke Project"]},
-				{"id": "7e6tTOok4Mw", "name": "Epix Sax Guy", "attr": ["Run Away by Sunstroke Project"]},
 				{"id": "A_2QmiF2Nu0", "name": "Gangnam Style/\uac15\ub0a8\uc2a4\ud0c0\uc77c", "attr": ["Psy"]},
 				{"id": "tbQ_1yhV7tE", "name": "New Face", "attr": ["Psy"]},
 				{"id": "i7UcMeZW144", "name": "Totinos Song", "attr": ["Tim & Eric"]},
