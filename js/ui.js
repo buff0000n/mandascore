@@ -2327,7 +2327,29 @@ class Playlist {
         this.selected = null;
     }
 
+
+    incrementName(name) {
+        var incrementNameRegex = /(.*?) (\d+)/;
+        var match = name.match(incrementNameRegex);
+        if (match) {
+            return match[1] + " " + (parseInt(match[2]) + 1);
+        } else {
+            return name + " " + 2;
+        }
+    }
+
     add() {
+        // make the name unique
+        var name = this.score.title;
+        for (;;) {
+            if (!this.entries.find((entry) => entry.song.name == name)) {
+                break;
+            }
+            name = this.incrementName(name);
+        }
+        if (name != this.score.title) {
+            this.score.setTitle(name, false);
+        }
         // add the song currently in the score and automatically select it
         // This bypasses the auto-update when the selection changes, so the previously selected entry remains unchanged
         this.addSong(this.score.getSongObject(), true);
