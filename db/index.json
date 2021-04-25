@@ -35,7 +35,7 @@
 				{"id": "1XLFK5Umnns", "name": "Fortuna Part 2 login music", "attr": ["Warframe"]},
 				{"id": "sdc36fLD9BY", "name": "Deadlock Protocol login theme", "attr": ["Warframe"], "tags": ["Double"]},
 				{"id": "DSbmlFMVaEc", "name": "Octavia Prime Trailer"},
-				{"id": "OeyxFA4PktE", "name": "Octavia Prime Trailer"}
+				{"id": "OeyxFA4PktE", "name": "Sleeping in the Cold Below", "attr": ["Warframe"], "tags": ["Triple"]}
 			]
 		},
 		"Tenno Tunes by me":{
@@ -328,7 +328,8 @@
 				{"id": "D3rG--31Dio", "name": "Relax", "attr": ["Frankie Goes To Hollywood"], "tags": ["Perfect"]},
 				{"id": "2dL49m1EvAw", "name": "Video Killed The Radio Star", "attr": ["The Buggles"]},
 				{"id": "vYTyHV3WZfc", "name": "What I Got", "attr": ["Sublime"], "tags": ["Perfect"]},
-				{"id": "-pTkWKPGd8I", "name": "Higher Love", "attr": ["Steve Winwood"]}
+				{"id": "-pTkWKPGd8I", "name": "Higher Love", "attr": ["Steve Winwood"]},
+				{"id": "k4KBcbmQSJM", "name": "Seether", "attr": ["Veruca Salt"], "tags": ["Perfect"]}
 			]
 		}
 	},
@@ -1735,7 +1736,8 @@
 			"songs":[
 				{"id": "x7X6kTLjkZI", "name": "Kiss The Sky", "attr": ["Machine Gun Kelly"], "tags": ["Perfect"]},
 				{"id": "JdC-rfiBqPM", "name": "Bloody Valentine", "attr": ["Machine Gun Kelly"]},
-				{"id": "F0f-HGW2xG8", "name": "my ex's best friend", "attr": ["Machine Gun Kelly"], "tags": ["Perfect"]}
+				{"id": "F0f-HGW2xG8", "name": "my ex's best friend", "attr": ["Machine Gun Kelly"], "tags": ["Perfect"]},
+				{"id": "x2BWXx2SmOA", "name": "concert for aliens", "attr": ["Machine Gun Kelly"], "tags": ["Perfect"]}
 			]
 		},
 		"Lil Nas X":{
@@ -1847,7 +1849,8 @@
 				{"id": "DgFAYwQc_r4", "name": "I'm N Luv (With a Stripper)", "attr": ["T-Pain"]},
 				{"id": "m9p7rs3MUb4", "name": "Happy Endings", "attr": ["Mike Shinoda ft. iann dior & UPSAHL"], "tags": ["Perfect"]},
 				{"id": "jVUcpTor8NI", "name": "She Make It Clap", "attr": ["Soulja Boy"]},
-				{"id": "7PgbbdfD5pA", "name": "The Big Big Beat", "attr": ["Azealia Banks"]}
+				{"id": "7PgbbdfD5pA", "name": "The Big Big Beat", "attr": ["Azealia Banks"]},
+				{"id": "89rP--0V9mo", "name": "Kill Bill", "attr": ["Hatesonny"]}
 			]
 		}
 	},
@@ -2152,6 +2155,14 @@
 				{"id": "wy2-ogRmwcY", "name": "Pneumatic Tokyo", "attr": ["EnV"]}
 			]
 		},
+		"Infected Mushroom":{
+			"dbName":"Electronic",
+			"songs":[
+				{"id": "p8n3LCvoPg4", "name": "Cities Of The Future", "attr": ["Infected Mushrooms"], "tags": ["Perfect"]},
+				{"id": "iAnURZFaIVA", "name": "Smashing The Opponent", "attr": ["Infected Mushrooms"], "tags": ["Perfect"]},
+				{"id": "OzCEyO3FzjE", "name": "Demons of Pain", "attr": ["Infected Mushroom"], "tags": ["Perfect"]}
+			]
+		},
 		"Misc Monstercat":{
 			"dbName":"Electronic.MiscMonstercat",
 			"songs":[
@@ -2411,8 +2422,6 @@
 				{"id": "Vi_UfqIP8hM", "name": "This Girl", "attr": ["KDrew"]},
 				{"id": "B6pZxckXfzI", "name": "Who", "attr": ["Modeselektor ft. Tommy Cash"], "tags": ["Perfect"]},
 				{"id": "SXJAslGIbJE", "name": "Nowhere", "attr": ["Jasper De Ceuster"]},
-				{"id": "p8n3LCvoPg4", "name": "Cities Of The Future", "attr": ["Infected Mushrooms"], "tags": ["Perfect"]},
-				{"id": "iAnURZFaIVA", "name": "Smashing The Opponent", "attr": ["Infected Mushrooms"], "tags": ["Perfect"]},
 				{"id": "s0qvzw_ksL0", "name": "Murdercycle", "attr": ["Street Cleaner"], "tags": ["Perfect"]},
 				{"id": "qcgBh6IN2Xo", "name": "Sonic B Boy", "attr": ["Aries Beats"]},
 				{"id": "DONjecDj6xw", "name": "Self Control", "attr": ["Laura Branigan"]},
@@ -2442,7 +2451,8 @@
 				{"id": "qEUBUXbfkOk", "name": "Mad Love", "attr": ["Vince Johnson ft. Lena Luisa"]},
 				{"id": "COr_KozptwQ", "name": "Dying Breed", "attr": ["Aim To The Head"], "tags": ["Perfect"]},
 				{"id": "LwMEQWIDVdQ", "name": "Rather Be Alone", "attr": ["Robin Schulz & Nick Martin & Sam Martin"]},
-				{"id": "98vdlUVt5jU", "name": "Loneliness", "attr": ["Tomcraft"], "tags": ["Perfect", "Sparse"]}
+				{"id": "98vdlUVt5jU", "name": "Loneliness", "attr": ["Tomcraft"], "tags": ["Perfect", "Sparse"]},
+				{"id": "f6_qKw2_Pvc", "name": "Fashion Freak", "attr": ["Naked Ape"], "tags": ["Perfect"]}
 			]
 		}
 	},
@@ -2768,7 +2778,8 @@
 				{"id": "qKFlO9gUYJc", "name": "Victory theme", "attr": ["Persona 5"]},
 				{"id": "y0kpPUrwx6A", "name": "Restlessness", "attr": ["Persona 5"], "tags": ["Filled", "Perfect"]},
 				{"id": "nh6keWgp0is", "name": "So Boring", "attr": ["Persona 5"]},
-				{"id": "WtU7IffBIDM", "name": "Talk", "attr": ["Persona 5"], "tags": ["Druk"]}
+				{"id": "WtU7IffBIDM", "name": "Talk", "attr": ["Persona 5"], "tags": ["Druk"]},
+				{"id": "Klaye-gVwlI", "name": "I Believe", "attr": ["Persona 5 Royal"]}
 			]
 		},
 		"Payday 2":{
@@ -4000,7 +4011,8 @@
 				{"id": "Kb1N4FZr1c0", "name": "Last Theater", "attr": ["Noisycell", "Death Parade ending"]},
 				{"id": "E10bWU3Zpxo", "name": "Irokousui", "attr": ["Horimiya opening", "Yoh Kamiyama"], "tags": ["Perfect"]},
 				{"id": "RMrJbl2JkTU", "name": "Get It By Your Hands", "attr": ["Eureka Seven Hi-Evolution"]},
-				{"id": "Y7yVFQhbU68", "name": "Nyanpasu Yabure Kabure", "attr": ["Non Non Biyori"]}
+				{"id": "Y7yVFQhbU68", "name": "Nyanpasu Yabure Kabure", "attr": ["Non Non Biyori"]},
+				{"id": "UDbRBXYMwBg", "name": "Dr. Stone season 2 opening"}
 			]
 		}
 	},
@@ -4339,7 +4351,8 @@
 				{"id": "LEA5DOYqvD4", "name": "Black&White", "attr": ["Masa", "Lui", "GUMI"]},
 				{"id": "KRVSBuacnk8", "name": "King", "attr": ["Kanaria", "GUMI"], "tags": ["Epsilon"]},
 				{"id": "CWTSKIS6NkU", "name": "Apple dot com/\u30a2\u30c3\u30d7\u30eb\u30c9\u30c3\u30c8\u30b3\u30e0", "attr": ["PinocchioP/\u30d4\u30ce\u30ad\u30aa\u30d4\u30fc"], "tags": ["Perfect"]},
-				{"id": "yxIeeu1uUeM", "name": "Full Bodied", "attr": ["Ghost Data ft. AL!CE"]}
+				{"id": "yxIeeu1uUeM", "name": "Full Bodied", "attr": ["Ghost Data ft. AL!CE"]},
+				{"id": "WFTRxRma1q8", "name": "\u6b0a\u5fa1\u5929\u4e0b/Sun Quan The Emperor", "attr": ["\u4e4c\u9f9f Sui", "Luo Tianyi"]}
 			]
 		},
 		"BTS":{
@@ -4486,7 +4499,8 @@
 			"songs":[
 				{"id": "4INDLu2KpDA", "name": "You're The Best/\ub10c is \ubb54\ub4e4", "attr": ["Mamamoo/\ub9c8\ub9c8\ubb34"], "tags": ["Beta"]},
 				{"id": "JrnKh5netAE", "name": "D\u00e9calcomanie/\ub370\uce7c\ucf54\ub9c8\ub2c8", "attr": ["Mamamoo/\ub9c8\ub9c8\ubb34"]},
-				{"id": "Od0DYjdoiY8", "name": "gogobebe/\uace0\uace0\ubca0\ubca0", "attr": ["Mamamoo/\ub9c8\ub9c8\ubb34"]}
+				{"id": "Od0DYjdoiY8", "name": "gogobebe/\uace0\uace0\ubca0\ubca0", "attr": ["Mamamoo/\ub9c8\ub9c8\ubb34"]},
+				{"id": "sn1H15scoNI", "name": "Hip", "attr": ["Mamamoo/\ub9c8\ub9c8\ubb34"]}
 			]
 		},
 		"Seventeen/세븐틴":{
@@ -4527,6 +4541,7 @@
 			"dbName":"FarEast.MiscKPop",
 			"songs":[
 				{"id": "a8RLbRck_7s", "name": "Palette/\ud314\ub808\ud2b8", "attr": ["IU/\uc544\uc774\uc720"]},
+				{"id": "B4l-DbqYAjI", "name": "Eight/\uc5d0\uc787", "attr": ["IU/\uc544\uc774\uc720"], "tags": ["Double", "Perfect"]},
 				{"id": "DwV4T1hCugE", "name": "Moya/\ubaa8\uc57c", "attr": ["AOA Black"]},
 				{"id": "QKZ2egr2R5U", "name": "Bing Bing/\ube59\ube59", "attr": ["AOA"]},
 				{"id": "505EIDq3bnk", "name": "I Am The Best/\ub0b4\uac00 \uc81c\uc77c \uc798 \ub098\uac00", "attr": ["2NE1"], "tags": ["Perfect"]},
@@ -5044,7 +5059,9 @@
 				{"id": "uLnypoOiYvg", "name": "Gi\u00e0u V\u00ec B\u1ea1n, Sang V\u00ec V\u1ee3", "attr": ["Team Karik"]},
 				{"id": "x_77Is7WbO8", "name": "Discoteque", "attr": ["The Roop"]},
 				{"id": "wZjfdlVKSK8", "name": "D\u00e5 Som Nu F\u00f6r Alltid", "attr": ["Kent"], "tags": ["Perfect", "Sparse"]},
-				{"id": "nH9mDOBVOr4", "name": "Peach Plum Pear", "attr": ["Joanna Newsom"], "tags": ["Gamma"]}
+				{"id": "nH9mDOBVOr4", "name": "Peach Plum Pear", "attr": ["Joanna Newsom"], "tags": ["Gamma"]},
+				{"id": "6nHXp_NBj5Y", "name": "help_urself", "attr": ["Ezekiel"]},
+				{"id": "kCli0kjdkEk", "name": "Rowing With One Hand", "attr": ["Ye Banished Privateers"]}
 			]
 		}
 	}
