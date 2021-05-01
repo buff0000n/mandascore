@@ -1255,7 +1255,12 @@
 				{"id": "TkuGoMpK2KM", "name": "Drug of choice", "attr": ["10 years"], "tags": ["Perfect"]},
 				{"id": "lG5Jy5lT4Zc", "name": "A Sky Full Of Stars", "attr": ["Coldplay"]},
 				{"id": "NQilg1W4fuU", "name": "Wolf Like Me", "attr": ["TV On The Radio"], "tags": ["Perfect"]},
-				{"id": "DHrKvg-JrSk", "name": "Running Up that Hill", "attr": ["Meg Meyers"]}
+				{"id": "DHrKvg-JrSk", "name": "Running Up that Hill", "attr": ["Meg Meyers"]},
+				{"id": "oRJ5L5aq6ro", "name": "Spectrum", "attr": ["Florence + The Machine"]},
+				{"id": "o-L7n9ylEVE", "name": "Black Rover", "attr": ["Vickerblanka"]},
+				{"id": "c8Vgd7qv1yc", "name": "I Hate You", "attr": ["Jim Josef x Riell"]},
+				{"id": "M5bufjPg39A", "name": "Die in this Town", "attr": ["Siege World"], "tags": ["Perfect"]},
+				{"id": "g-u3hAj7O6M", "name": "Chocolate", "attr": ["The 1975"], "tags": ["Double", "Perfect"]}
 			]
 		}
 	},
@@ -1269,7 +1274,8 @@
 				{"id": "w_fvb-pn8Qg", "name": "Smooth Criminal", "attr": ["Michael Jackson"]},
 				{"id": "jsZX269ZlAY", "name": "Bad", "attr": ["Michael Jackson"]},
 				{"id": "HpDR1SF2JQk", "name": "Beat It", "attr": ["Michael Jackson"], "tags": ["Perfect"]},
-				{"id": "rv3uomq4Oas", "name": "Beat It - break", "attr": ["Michael Jackson"], "tags": ["Perfect"]}
+				{"id": "rv3uomq4Oas", "name": "Beat It - break", "attr": ["Michael Jackson"], "tags": ["Perfect"]},
+				{"id": "6QIaF0yB3c8", "name": "Who Is It", "attr": ["Michael Jackson"]}
 			]
 		},
 		"Fifth Harmony":{
@@ -1850,7 +1856,8 @@
 				{"id": "m9p7rs3MUb4", "name": "Happy Endings", "attr": ["Mike Shinoda ft. iann dior & UPSAHL"], "tags": ["Perfect"]},
 				{"id": "jVUcpTor8NI", "name": "She Make It Clap", "attr": ["Soulja Boy"]},
 				{"id": "7PgbbdfD5pA", "name": "The Big Big Beat", "attr": ["Azealia Banks"]},
-				{"id": "89rP--0V9mo", "name": "Kill Bill", "attr": ["Hatesonny"]}
+				{"id": "89rP--0V9mo", "name": "Kill Bill", "attr": ["Hatesonny"]},
+				{"id": "s9U5biUemQk", "name": "Don't Sideline Me", "attr": ["Urthboy"]}
 			]
 		}
 	},
@@ -1875,7 +1882,6 @@
 			{"id": "aiK2JABnJNo", "name": "Angels", "attr": ["Vicetone ft. Kat Nestel"]},
 			{"id": "VVUyL6ZvIUs", "name": "Nevada", "attr": ["Vicetone"]},
 			{"id": "EJJzeBHMPEI", "name": "Harlem Shake", "attr": ["Baauer"]},
-			{"id": "hy5gXGbaHIM", "name": "Let's Go", "attr": ["Calvin Harris ft. Ne-Yo"]},
 			{"id": "Pu8gx0RXDQE", "name": "Feel The Sound", "attr": ["Mike T"]},
 			{"id": "2VYdgDaHD9E", "name": "Go Bang", "attr": ["PNAU"], "tags": ["Perfect"]},
 			{"id": "-NDIawa4kjw", "name": "Get Up / Before The Night Is Over", "attr": ["Technotronic"]},
@@ -2163,6 +2169,15 @@
 				{"id": "OzCEyO3FzjE", "name": "Demons of Pain", "attr": ["Infected Mushroom"], "tags": ["Perfect"]}
 			]
 		},
+		"Calvin Harris":{
+			"dbName":"Electronic",
+			"songs":[
+				{"id": "hy5gXGbaHIM", "name": "Let's Go", "attr": ["Calvin Harris ft. Ne-Yo"]},
+				{"id": "k74z22WFqp8", "name": "Outside", "attr": ["Calvin Harris"]},
+				{"id": "g91_aDAy_w4", "name": "Slide", "attr": ["Calvin Harris"]},
+				{"id": "4R2E1Hw3SNA", "name": "Summer", "attr": ["Calvin Harris"]}
+			]
+		},
 		"Misc Monstercat":{
 			"dbName":"Electronic.MiscMonstercat",
 			"songs":[
@@ -2283,8 +2298,6 @@
 				{"id": "lpHOrE1VCiM", "name": "Into the Night", "attr": ["Nero"]},
 				{"id": "y3XbQm3F80s", "name": "Ripples Alex", "attr": ["Skrindo"], "tags": ["Epsilon"]},
 				{"id": "Nd-Q6R0D3Hw", "name": "Do You Feel It", "attr": ["Chaos Chaos"]},
-				{"id": "k74z22WFqp8", "name": "Outside", "attr": ["Calvin Harris"]},
-				{"id": "g91_aDAy_w4", "name": "Slide", "attr": ["Calvin Harris"]},
 				{"id": "Rzt0JZGzCtA", "name": "Something New", "attr": ["Joywave"], "tags": ["Perfect"]},
 				{"id": "-B8IXV6UUrk", "name": "Five Hours", "attr": ["Deorro"]},
 				{"id": "9lT0-s0_cPk", "name": "Again", "attr": ["Rebourne"]},
@@ -2452,7 +2465,8 @@
 				{"id": "COr_KozptwQ", "name": "Dying Breed", "attr": ["Aim To The Head"], "tags": ["Perfect"]},
 				{"id": "LwMEQWIDVdQ", "name": "Rather Be Alone", "attr": ["Robin Schulz & Nick Martin & Sam Martin"]},
 				{"id": "98vdlUVt5jU", "name": "Loneliness", "attr": ["Tomcraft"], "tags": ["Perfect", "Sparse"]},
-				{"id": "f6_qKw2_Pvc", "name": "Fashion Freak", "attr": ["Naked Ape"], "tags": ["Perfect"]}
+				{"id": "f6_qKw2_Pvc", "name": "Fashion Freak", "attr": ["Naked Ape"], "tags": ["Perfect"]},
+				{"id": "8hDYzGnlpL4", "name": "Numb", "attr": ["NEEFEX"]}
 			]
 		}
 	},
@@ -3158,7 +3172,8 @@
 				{"id": "6f1xv4V4vRM", "name": "Breakfast", "attr": ["Friday Night Funkin'"]},
 				{"id": "_t2gkYz6hoo", "name": "Pico", "attr": ["Friday Night Funkin'"], "tags": ["Perfect"]},
 				{"id": "7g7och3cmOo", "name": "Senpai", "attr": ["Friday Night Funkin'"]},
-				{"id": "50pC1dDRBQk", "name": "Satin Panties", "attr": ["Friday Night Funkin'"]}
+				{"id": "50pC1dDRBQk", "name": "Satin Panties", "attr": ["Friday Night Funkin'"]},
+				{"id": "6UlYO6BIhSc", "name": "R.A.M.", "attr": ["Friday Night Funkin", "vs. Hex Mod"], "tags": ["Perfect"]}
 			]
 		},
 		"Hollow Knight":{
@@ -3473,7 +3488,8 @@
 					{"id": "d_N5pITvz5o", "name": "Philistine", "attr": ["No More Heroes 2: Desperate Struggle"]},
 					{"id": "9p6jjeupBKQ", "name": "Low Life On The Highway", "attr": ["Battlejuice", "My Friend Pedro"]},
 					{"id": "Q7PS2TQkgqs", "name": "Street Party", "attr": ["Bloons Monkey City"]},
-					{"id": "_x8q9GgfOL4", "name": "Blast Corps", "attr": ["Simian Acres"], "tags": ["Perfect"]}
+					{"id": "_x8q9GgfOL4", "name": "Blast Corps", "attr": ["Simian Acres"], "tags": ["Perfect"]},
+					{"id": "VoJsPh5B_j0", "name": "Guardian Tales main theme song"}
 				]
 			}
 		}
@@ -3986,6 +4002,7 @@
 				{"id": "fy2haS4_IpE", "name": "Inferno", "attr": ["Fire Force opening"]},
 				{"id": "dqhNahiGQK8", "name": "Shadow Is the Light", "attr": ["A Certain Scientific Accelerator opening"], "tags": ["Perfect"]},
 				{"id": "1BroylQsSmw", "name": "Gurenge", "attr": ["Demon Slayer opening"]},
+				{"id": "S8WSTk82P3U", "name": "Nezuko's Theme", "attr": ["Demon Slayer"], "tags": ["Beta"]},
 				{"id": "9-PSkNfPlXc", "name": "Dark Crow", "attr": ["Vinland Saga opening 2"], "tags": ["Perfect"]},
 				{"id": "ZFP8EUw1hUI", "name": "Sea of Fire", "attr": ["Iron Saga opening"]},
 				{"id": "FFRhE4zFVXc", "name": "Geranium", "attr": ["Yuuki Yuuna is a Hero"], "tags": ["Perfect"]},
@@ -4327,7 +4344,8 @@
 				{"id": "Izntqwa9XDg", "name": "Omoi", "attr": ["Teo ft. Hatsune Miku"], "tags": ["Filled"]},
 				{"id": "EDRSEePGzUE", "name": "Chaining Intention", "attr": ["Hatsune Miku", "ElektLyze"]},
 				{"id": "t947CFrc_ts", "name": "Gimme x Gimme", "attr": ["\u516b\u738b\u5b50P \u00d7 Giga", "Hatsune Miku", "Rin Kagamine"]},
-				{"id": "jaeZRXj7E4Y", "name": "The Path to Eternal Happiness...I Found It", "attr": ["Utata-P", "Hatsune Miku"]}
+				{"id": "jaeZRXj7E4Y", "name": "The Path to Eternal Happiness...I Found It", "attr": ["Utata-P", "Hatsune Miku"]},
+				{"id": "SLI9Hbeh4Ig", "name": "Mental Chainsaw", "attr": ["\u304b\u3044\u308a\u304d\u30d9\u30a2/Kairiki Bear ft. Hatsune Miku"]}
 			]
 		},
 		"Misc Vocaloid":{
