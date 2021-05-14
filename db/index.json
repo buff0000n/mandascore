@@ -574,6 +574,14 @@
 				{"id": "gtSOgGQb-Ro", "name": "Monstrance Clock", "attr": ["Ghost"], "tags": ["Perfect"]}
 			]
 		},
+		"Amaranthe":{
+			"dbName":"HardRock",
+			"songs":[
+				{"id": "8EV-Ec1IPTc", "name": "Massive Addiction", "attr": ["Amaranthe"], "tags": ["Perfect"]},
+				{"id": "f4zXoGF0NSc", "name": "Electroheart", "attr": ["Amaranthe"]},
+				{"id": "L5WU55qnKGU", "name": "BOOM!1", "attr": ["Amaranthe"]}
+			]
+		},
 		"Misc Hard Rock":{
 			"dbName":"HardRock.MiscHardRock",
 			"songs":[
@@ -641,8 +649,6 @@
 				{"id": "4_CPBI4Q0gU", "name": "Hard Rock Hallelujah", "attr": ["Lordi"]},
 				{"id": "TuXQmmmAcv4", "name": "Alone In A Room", "attr": ["Asking Alexandria"]},
 				{"id": "gPslqHaED-0", "name": "Into The Fire", "attr": ["Asking Alexandria"], "tags": ["Perfect"]},
-				{"id": "8EV-Ec1IPTc", "name": "Massive Addiction", "attr": ["Amaranthe"], "tags": ["Perfect"]},
-				{"id": "f4zXoGF0NSc", "name": "Electroheart", "attr": ["Amaranthe"]},
 				{"id": "YsTNhWTUQ00", "name": "Burns To Embrace", "attr": ["Kamelot"]},
 				{"id": "ez7_T05JgBY", "name": "March On", "attr": ["Ethan Meixsell"], "tags": ["Druk"]},
 				{"id": "YeKvIvcpevc", "name": "For Those Who Died Alone", "attr": ["Pentagram"]},
@@ -1260,7 +1266,9 @@
 				{"id": "o-L7n9ylEVE", "name": "Black Rover", "attr": ["Vickerblanka"]},
 				{"id": "c8Vgd7qv1yc", "name": "I Hate You", "attr": ["Jim Josef x Riell"]},
 				{"id": "M5bufjPg39A", "name": "Die in this Town", "attr": ["Siege World"], "tags": ["Perfect"]},
-				{"id": "g-u3hAj7O6M", "name": "Chocolate", "attr": ["The 1975"], "tags": ["Double", "Perfect"]}
+				{"id": "g-u3hAj7O6M", "name": "Chocolate", "attr": ["The 1975"], "tags": ["Double", "Perfect"]},
+				{"id": "z81X5FUnjqg", "name": "Wake Up", "attr": ["Elaine"]},
+				{"id": "eqJUQ5IK1iI", "name": "deathwish", "attr": ["Stand Atlantic", "nothing", "nowhere"]}
 			]
 		}
 	},
@@ -1360,7 +1368,8 @@
 				{"id": "PMnOPFzcsjs", "name": "Super Bass", "attr": ["Nicki Minaj"], "tags": ["Perfect"]},
 				{"id": "zuFKkjNLSg4", "name": "Your Love", "attr": ["Nicki Minaj", "Annie Lennox"]},
 				{"id": "xNIGO6Sv1wc", "name": "Turn Me On", "attr": ["David Guetta ft. Nicki Minaj"], "tags": ["Perfect"]},
-				{"id": "ubqN2GNtqek", "name": "Tusa", "attr": ["Karol G", "Nicki Minaj"]}
+				{"id": "ubqN2GNtqek", "name": "Tusa", "attr": ["Karol G", "Nicki Minaj"]},
+				{"id": "MSm0YqlcbN0", "name": "Roman Holiday", "attr": ["Nicki Minaj"]}
 			]
 		},
 		"Carly Rae Jepsen":{
@@ -1780,6 +1789,7 @@
 				{"id": "FyWcKy-IPzU", "name": "Druggys WitH Hoes Again", "attr": ["ScHoolboy Q"], "tags": ["Perfect"]},
 				{"id": "bqC3KovFi9s", "name": "Tra'p'e", "attr": ["Mason"], "tags": ["Perfect"]},
 				{"id": "IVxf_aG0dBo", "name": "X Gon' Give It To Ya", "attr": ["DMX"], "tags": ["Gamma", "Perfect"]},
+				{"id": "t8k325LbWhM", "name": "Ruff Ryders Anthem", "attr": ["DMX"]},
 				{"id": "4USEK25IJUA", "name": "faygo dreams", "attr": ["6 dogs"], "tags": ["Perfect"]},
 				{"id": "da65aUOzLtM", "name": "Oodles Of Os", "attr": ["De La Soul"], "tags": ["Perfect"]},
 				{"id": "Ci9BUEOpaYU", "name": "Real Muthaphuckkin G's", "attr": ["Eazy-E"]},
@@ -1857,7 +1867,9 @@
 				{"id": "jVUcpTor8NI", "name": "She Make It Clap", "attr": ["Soulja Boy"]},
 				{"id": "7PgbbdfD5pA", "name": "The Big Big Beat", "attr": ["Azealia Banks"]},
 				{"id": "89rP--0V9mo", "name": "Kill Bill", "attr": ["Hatesonny"]},
-				{"id": "s9U5biUemQk", "name": "Don't Sideline Me", "attr": ["Urthboy"]}
+				{"id": "s9U5biUemQk", "name": "Don't Sideline Me", "attr": ["Urthboy"]},
+				{"id": "Boi-i2vRQks", "name": "Six Days - Remix", "attr": ["DJ Shadow", "Mos Def"]},
+				{"id": "Li4Oy2RxQQo", "name": "Dead Star Shine", "attr": ["Horrorshow"], "tags": ["Perfect"]}
 			]
 		}
 	},
@@ -1940,7 +1952,8 @@
 				{"id": "6A4sTfKStx8", "name": "Prelude", "attr": ["TheFatRat", "JJD"]},
 				{"id": "l3J3a18uBR8", "name": "Never Be Alone", "attr": ["TheFatRat"], "tags": ["Perfect"]},
 				{"id": "EuaeLFODnhg", "name": "Infinite Power", "attr": ["TheFatRat"]},
-				{"id": "9Zf_RlJqWd8", "name": "Fly Away", "attr": ["TheFatRat"]}
+				{"id": "9Zf_RlJqWd8", "name": "Fly Away", "attr": ["TheFatRat"]},
+				{"id": "P_JUdkT33V0", "name": "The Storm", "attr": ["TheFatRat & Maisy Kay"]}
 			]
 		},
 		"Panda Eyes":{
@@ -2466,7 +2479,8 @@
 				{"id": "LwMEQWIDVdQ", "name": "Rather Be Alone", "attr": ["Robin Schulz & Nick Martin & Sam Martin"]},
 				{"id": "98vdlUVt5jU", "name": "Loneliness", "attr": ["Tomcraft"], "tags": ["Perfect", "Sparse"]},
 				{"id": "f6_qKw2_Pvc", "name": "Fashion Freak", "attr": ["Naked Ape"], "tags": ["Perfect"]},
-				{"id": "8hDYzGnlpL4", "name": "Numb", "attr": ["NEEFEX"]}
+				{"id": "8hDYzGnlpL4", "name": "Numb", "attr": ["NEEFEX"]},
+				{"id": "GmN9D1MvdCA", "name": "Bella Ciao", "attr": ["The Professor"]}
 			]
 		}
 	},
@@ -2818,7 +2832,7 @@
 				{"id": "h1uZ-jz1uNc", "name": "Let's Go Shopping", "attr": ["Payday 2"]}
 			]
 		},
-		"Nier:Automata":{
+		"Neir series":{
 			"dbName":"Videogames",
 			"songs":[
 				{"id": "w7vhkOzySlI", "name": "A Beautiful Song", "attr": ["NieR: Automata"]},
@@ -2827,7 +2841,10 @@
 				{"id": "GH8XtIaNj3w", "name": "Emil", "attr": ["Nier: Automata"]},
 				{"id": "x-ycYnYyrfY", "name": "Deserving of Life", "attr": ["Amazerashi"], "tags": ["Plogg", "Perfect"]},
 				{"id": "E8JOkW0aSjY", "name": "Machine Village", "attr": ["Nier:Automata"]},
-				{"id": "EAgVd_tYwA0", "name": "The Weight Of The World", "attr": ["NieR:Automata"]}
+				{"id": "EAgVd_tYwA0", "name": "The Weight Of The World", "attr": ["NieR:Automata"]},
+				{"id": "GEOAq4bbvVE", "name": "Emil Karma", "attr": ["NieR Gestalt"], "tags": ["Adau"]},
+				{"id": "3w0tZ_01MSo", "name": "Shadowlord", "attr": ["Nier (Gestalt)"], "tags": ["Adau"]},
+				{"id": "Yfe4Tha28D0", "name": "Kaine / Salvation", "attr": ["NieR Replicant ver. 1.22"]}
 			]
 		},
 		"Touhou":{
@@ -3360,8 +3377,6 @@
 					{"id": "q8vRimDbFms", "name": "Fatalize", "attr": ["Tales of Symphonia"]},
 					{"id": "C-V_LgbTrDI", "name": "Starry Heavens", "attr": ["Tales of Symphonia opening"]},
 					{"id": "eySFs-dumFo", "name": "Sami's Theme", "attr": ["Advance Wars"]},
-					{"id": "GEOAq4bbvVE", "name": "Emil Karma", "attr": ["NieR Gestalt"], "tags": ["Adau"]},
-					{"id": "3w0tZ_01MSo", "name": "Shadowlord", "attr": ["Nier (Gestalt)"], "tags": ["Adau"]},
 					{"id": "rIDC9WPbKbA", "name": "Glavenus/\u30c7\u30a3\u30ce\u30d0\u30eb\u30c9 Battle Theme", "attr": ["Monster Hunter X/\u30e2\u30f3\u30b9\u30bf\u30fc\u30cf\u30f3\u30bf\u30fcX"]},
 					{"id": "OD9z9-ehQQY", "name": "Return To Planet X", "attr": ["Timesplitters 2"], "tags": ["Druk"]},
 					{"id": "v9a7hsfy7QA", "name": "Lost in Thoughts All Alone", "attr": ["Fire Emblem Fates"]},
@@ -3485,6 +3500,7 @@
 					{"id": "2mC6nk9Jf_Y", "name": "Stratosphere (So They Say)", "attr": ["Hydelic", "Tetris Effect"], "tags": ["Triple", "Perfect", "Alpha"]},
 					{"id": "HKk8fCgPKfM", "name": "Gleam Stone", "attr": ["Muse Dash", "Adapter"]},
 					{"id": "obaYi5ZoJuw", "name": "Art of Blade", "attr": ["Arknights", "Contingency Contract: Blade Main Theme"], "tags": ["Perfect"]},
+					{"id": "ZWy53Y5dxwg", "name": "daydaydream", "attr": ["Arknights"]},
 					{"id": "d_N5pITvz5o", "name": "Philistine", "attr": ["No More Heroes 2: Desperate Struggle"]},
 					{"id": "9p6jjeupBKQ", "name": "Low Life On The Highway", "attr": ["Battlejuice", "My Friend Pedro"]},
 					{"id": "Q7PS2TQkgqs", "name": "Street Party", "attr": ["Bloons Monkey City"]},
@@ -4029,7 +4045,8 @@
 				{"id": "E10bWU3Zpxo", "name": "Irokousui", "attr": ["Horimiya opening", "Yoh Kamiyama"], "tags": ["Perfect"]},
 				{"id": "RMrJbl2JkTU", "name": "Get It By Your Hands", "attr": ["Eureka Seven Hi-Evolution"]},
 				{"id": "Y7yVFQhbU68", "name": "Nyanpasu Yabure Kabure", "attr": ["Non Non Biyori"]},
-				{"id": "UDbRBXYMwBg", "name": "Dr. Stone season 2 opening"}
+				{"id": "UDbRBXYMwBg", "name": "Dr. Stone season 2 opening"},
+				{"id": "yF21vsSA7HQ", "name": "Ishuzoku Reviewers ending"}
 			]
 		}
 	},
@@ -4393,7 +4410,8 @@
 				{"id": "181XoVKIuGc", "name": "Heartbeat", "attr": ["BTS/\ubc29\ud0c4\uc18c\ub144\ub2e8"]},
 				{"id": "IgzGJZniK7A", "name": "Black Swan", "attr": ["BTS/\ubc29\ud0c4\uc18c\ub144\ub2e8"], "tags": ["Perfect"]},
 				{"id": "4WxlBRTIK0I", "name": "On", "attr": ["BTS/\ubc29\ud0c4\uc18c\ub144\ub2e8"]},
-				{"id": "r9WE2Q5Twt4", "name": "Dynamite", "attr": ["BTS/\ubc29\ud0c4\uc18c\ub144\ub2e8"], "tags": ["Double"]}
+				{"id": "r9WE2Q5Twt4", "name": "Dynamite", "attr": ["BTS/\ubc29\ud0c4\uc18c\ub144\ub2e8"], "tags": ["Double"]},
+				{"id": "d43nXQzsfCo", "name": "Blood Sweat & Tears/\ud53c \ub540 \ub208\ubb3c", "attr": ["BTS/\ubc29\ud0c4\uc18c\ub144\ub2e8"], "tags": ["Perfect"]}
 			]
 		},
 		"REOL":{
@@ -4555,6 +4573,14 @@
 				{"id": "qnTnmhnz00k", "name": "Thumbs Up", "attr": ["Momoland/\ubaa8\ubaa8\ub79c\ub4dc"], "tags": ["Perfect"]}
 			]
 		},
+		"Evel":{
+			"dbName":"FarEast",
+			"songs":[
+				{"id": "fdENALhbXvY", "name": "Last Dance", "attr": ["Eve"]},
+				{"id": "T1XP7gGiftQ", "name": "As You Like It", "attr": ["Eve"]},
+				{"id": "OHZ4oL6lgZU", "name": "\u591c\u306f\u4ec4\u304b/Night is Faint", "attr": ["Eve"]}
+			]
+		},
 		"Misc K-Pop":{
 			"dbName":"FarEast.MiscKPop",
 			"songs":[
@@ -4626,8 +4652,6 @@
 				{"id": "VxxzEd73Ej0", "name": "After Rain", "attr": ["Aimer"]},
 				{"id": "_KyTyHbDin4", "name": "Chocolate Disco", "attr": ["Perfume"]},
 				{"id": "w_QX-gpWF1w", "name": "\u98db\u884c\u8247", "attr": ["King Gnu"]},
-				{"id": "fdENALhbXvY", "name": "Last Dance", "attr": ["Eve"]},
-				{"id": "T1XP7gGiftQ", "name": "As You Like It", "attr": ["Eve"]},
 				{"id": "W3pWLYsNd0U", "name": "Karma", "attr": ["Bump of Chicken"]},
 				{"id": "T5ne81SFBGc", "name": "Weathering With You", "attr": ["Radwimps ft. Toko Miura"]},
 				{"id": "bkmxC5Eookk", "name": "Summertime", "attr": ["Cinnamons x Evening Cinema"]},
@@ -4635,7 +4659,8 @@
 				{"id": "7wKp_6BDE8g", "name": "Rising", "attr": ["Yoshida Brothers"], "tags": ["Perfect"]},
 				{"id": "Romi0lRVZ7k", "name": "Cool Spiral", "attr": ["Yoshida Brothers"]},
 				{"id": "wSPGReTrumw", "name": "Emotional Prism/\u611f\u60c5\u7684\u306a\u30d7\u30ea\u30ba\u30e0", "attr": ["Bigwave"]},
-				{"id": "eGQ7XB9nIeE", "name": "Fighter", "attr": ["Kana-Boon"]}
+				{"id": "eGQ7XB9nIeE", "name": "Fighter", "attr": ["Kana-Boon"]},
+				{"id": "SZmIDB4_08c", "name": "Sparkle", "attr": ["RADWIMPS"]}
 			]
 		},
 		"Misc I Don't Know Which Letter Pop":{
@@ -4779,6 +4804,7 @@
 				{"id": "Qt1uCXIgL6Y", "name": "Squirrel Song", "tags": ["Perfect"]},
 				{"id": "o6iQE-KOwXI", "name": "Speedlord theme", "attr": ["FilthyFrank", "\u592a\u967d\u306b\u307b\u3048\u308d \u5192\u967a\u306e\u30c6\u30fc\u30de/Adventure Theme by Taiyou ni Hoero"]},
 				{"id": "5UNjHhBuuvo", "name": "Sanctuary", "attr": ["Joji"], "tags": ["Double", "Perfect"]},
+				{"id": "TxOFs2lNbZU", "name": "Gimme Love", "attr": ["Joji"], "tags": ["Perfect"]},
 				{"id": "j5z67s_zBwU", "name": "Combination Quest"},
 				{"id": "dTjsYvhQWfk", "name": "Drunk Arcade", "attr": ["Bombs Away"]},
 				{"id": "RN9GQ00VUfk", "name": "Seagulls! (Stop It Now)", "attr": ["Bad Lip Reading"], "tags": ["Perfect"]},
@@ -4804,6 +4830,7 @@
 				{"id": "pqUErtOM_o4", "name": "Everybody Knows Sh*t's F*cked", "attr": ["Stephen Paul Taylor"], "tags": ["Perfect"]},
 				{"id": "muJeda-82ds", "name": "Epic Meeal Time Dubstep"},
 				{"id": "xhA9pZhi5J0", "name": "Danny Don't You Know", "attr": ["Ninja Sex Party"]},
+				{"id": "32HXMtzh6_c", "name": "Welcome To My Parent's House", "attr": ["Ninja Sex Party"], "tags": ["Perfect"]},
 				{"id": "I4PtYHRzdBM", "name": "Goldmine", "attr": ["The Jokes"]},
 				{"id": "nJ6HUdQxr9M", "name": "Ain't Nobody Got Time For That", "attr": ["Rubber Duc"]},
 				{"id": "rv7psmnIGg4", "name": "8-Bit Enough", "attr": ["The Chongo Show"]},
