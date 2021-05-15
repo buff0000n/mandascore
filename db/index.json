@@ -1268,7 +1268,8 @@
 				{"id": "M5bufjPg39A", "name": "Die in this Town", "attr": ["Siege World"], "tags": ["Perfect"]},
 				{"id": "g-u3hAj7O6M", "name": "Chocolate", "attr": ["The 1975"], "tags": ["Double", "Perfect"]},
 				{"id": "z81X5FUnjqg", "name": "Wake Up", "attr": ["Elaine"]},
-				{"id": "eqJUQ5IK1iI", "name": "deathwish", "attr": ["Stand Atlantic", "nothing", "nowhere"]}
+				{"id": "eqJUQ5IK1iI", "name": "deathwish", "attr": ["Stand Atlantic", "nothing", "nowhere"]},
+				{"id": "8sRJAmxjfiY", "name": "Daisies", "attr": ["Ryan Caraveo"]}
 			]
 		}
 	},
@@ -3339,6 +3340,7 @@
 					{"id": "vvrsGR1YXaY", "name": "Honor For all", "attr": ["Dishonored ending"]},
 					{"id": "CuM5BMKCMnQ", "name": "Theme of Nova", "attr": ["Ultimate Marvel vs Capcom 3"]},
 					{"id": "41lIT6lRKG4", "name": "Gloria Filio", "attr": ["The Binding Of Isaac: Afterbirth"]},
+					{"id": "UmXCs3sg7zY", "name": "The Hammer of Pompeii", "attr": ["The Binding of Isaac: Antibirth"]},
 					{"id": "ajZd8_0bLsM", "name": "Final Boss Soundtrack", "attr": ["Uncharted 4: A Thief's End"], "tags": ["Perfect", "Filled"]},
 					{"id": "l4nVDXAwl8A", "name": "Room 312", "attr": ["Silent Hill"]},
 					{"id": "2blCAW25Asg", "name": "The Setup", "attr": ["Bully"]},
@@ -3350,7 +3352,8 @@
 					{"id": "RLpz-MocCr4", "name": "Glide", "attr": ["Stephen Walking", "Rocket League"]},
 					{"id": "0NBDQ47_934", "name": "Lyin' 2 Me", "attr": ["CG5", "Among Us"]},
 					{"id": "qBQ2-_zw_-w", "name": "Among Us Drip Theme Song", "attr": ["Trap remix"]},
-					{"id": "OHcoqgiErDE", "name": "Bubblegum K. K.", "attr": ["Animal Crossing"], "tags": ["Perfect"]}
+					{"id": "OHcoqgiErDE", "name": "Bubblegum K. K.", "attr": ["Animal Crossing"], "tags": ["Perfect"]},
+					{"id": "uJ8Y7vWzE_0", "name": "The Last Of Us theme song"}
 				]
 			},
 			"Games I've never heard of":{
@@ -3505,7 +3508,8 @@
 					{"id": "9p6jjeupBKQ", "name": "Low Life On The Highway", "attr": ["Battlejuice", "My Friend Pedro"]},
 					{"id": "Q7PS2TQkgqs", "name": "Street Party", "attr": ["Bloons Monkey City"]},
 					{"id": "_x8q9GgfOL4", "name": "Blast Corps", "attr": ["Simian Acres"], "tags": ["Perfect"]},
-					{"id": "VoJsPh5B_j0", "name": "Guardian Tales main theme song"}
+					{"id": "VoJsPh5B_j0", "name": "Guardian Tales main theme song"},
+					{"id": "kmXhwdWdInA", "name": "Mad Rat Heart", "attr": ["Mad Rat Dead"]}
 				]
 			}
 		}
@@ -4046,7 +4050,8 @@
 				{"id": "RMrJbl2JkTU", "name": "Get It By Your Hands", "attr": ["Eureka Seven Hi-Evolution"]},
 				{"id": "Y7yVFQhbU68", "name": "Nyanpasu Yabure Kabure", "attr": ["Non Non Biyori"]},
 				{"id": "UDbRBXYMwBg", "name": "Dr. Stone season 2 opening"},
-				{"id": "yF21vsSA7HQ", "name": "Ishuzoku Reviewers ending"}
+				{"id": "yF21vsSA7HQ", "name": "Ishuzoku Reviewers ending"},
+				{"id": "uCq5__IGVB8", "name": "Kaikai Kitan", "attr": ["Jujutsu Kaisen opening"]}
 			]
 		}
 	},
@@ -4619,7 +4624,8 @@
 				{"id": "ZjLkH5upeGY", "name": "Catallena/\uae4c\ud0c8\ub808\ub098", "attr": ["Orange Caramel"]},
 				{"id": "gCCcq3ZGF14", "name": "The Tomato Song", "attr": ["Korean Children's Song"]},
 				{"id": "a-crznHgmf8", "name": "All Night/\uc804\ud654\ud574", "attr": ["Astro/\uc544\uc2a4\ud2b8\ub85c"]},
-				{"id": "qJVgt4f6S3A", "name": "Tail/\uaf2c\ub9ac", "attr": ["Sunmi/\uc120\ubbf8"]}
+				{"id": "qJVgt4f6S3A", "name": "Tail/\uaf2c\ub9ac", "attr": ["Sunmi/\uc120\ubbf8"]},
+				{"id": "e5x5JXd8TK8", "name": "Black Mamba", "attr": ["aespa/\uc5d0\uc2a4\ud30c"]}
 			]
 		},
 		"Misc J-Pop":{
@@ -4857,7 +4863,9 @@
 				{"id": "t_FYp5R3QCQ", "name": "Forestcall", "attr": ["Eltorro64Rus"]},
 				{"id": "B5YM_nVo6DI", "name": "stupid horse", "attr": ["100 gecs"]},
 				{"id": "qPHc07i8anA", "name": "SugarCrash!", "attr": ["ElyOtto"]},
-				{"id": "vsXkJuqep9M", "name": "Always Running", "attr": ["Meta Runner", "AJ DiSpirito"]}
+				{"id": "vsXkJuqep9M", "name": "Always Running", "attr": ["Meta Runner", "AJ DiSpirito"]},
+				{"id": "fZiwyZyZw1k", "name": "Brotherman Bill", "attr": ["Terrible Tim"]},
+				{"id": "ftzastbOEmU", "name": "Break The Road", "attr": ["Diego Martinez", "Dream VS 4 Hunters Rematch"], "tags": ["Perfect"]}
 			]
 		}
 	},
@@ -5092,6 +5100,7 @@
 				{"id": "TVCEsUwJQsg", "name": "I Know", "attr": ["Red Licorice"]},
 				{"id": "IFw4ToPtM18", "name": "Gurdy's Green", "attr": ["Patty Gurdy"]},
 				{"id": "wph5YFhzX5I", "name": "Fighter", "attr": ["Jack Stauber"]},
+				{"id": "H6iWcvHg4g4", "name": "I Love You Verne Troyer", "attr": ["Jack Stauber"], "tags": ["Perfect"]},
 				{"id": "oD7QVxDXXnk", "name": "Human Sadness", "attr": ["Julian Casablanca", "The Voidz"], "tags": ["Perfect"]},
 				{"id": "3w788fKrDvw", "name": "PipeDrumz", "attr": ["Neon Pipe Drummer"], "tags": ["Double"]},
 				{"id": "dKoQn2NiIKM", "name": "Well, This Is Sh*t", "attr": ["Thomas Benjamin Wild Esq"], "tags": ["Perfect"]},
