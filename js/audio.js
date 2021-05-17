@@ -31,8 +31,8 @@ class SoundEntry {
         this.buffers = buffers;
         this.bufferIndex = 0;
         this.sourceName = sourceName;
-        // if we need to play a sound then play it
-        if (this.queuedTime != null) {
+        // if we need to play a sound and we have an actual buffer then play it
+        if (this.queuedTime != null && this.buffers != null) {
             this.triggerAtTime(this.queuedTime);
             this.queuedTime = null;
         }
