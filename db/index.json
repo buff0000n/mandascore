@@ -28,8 +28,7 @@
 				{"id": "-UMMICMA3hs", "name": "23. Sentient Tombs", "attr": ["Warframe"]},
 				{"id": "ErjdqPrGAQU", "name": "24. Rapid Adaption", "attr": ["Warframe"]},
 				{"id": "ACWE3IFHlSQ", "name": "The Sacrifice theme/Smiles From Juran", "attr": ["Warframe"]},
-				{"id": "5pTTvo5gBak", "name": "We All Lift Together", "attr": ["Fortuna chain gang song", "Warframe"]},
-				{"id": "LDvzLzWRxxg", "name": "We All Lift Together - Chorus", "attr": ["Warframe"]},
+				{"id": "RtZo26W-ugg", "name": "We All Lift Together", "attr": ["Warframe"], "tags": ["Triple"]},
 				{"id": "MAWZmPQF2w8", "name": "Cold Tundra", "attr": ["Fortuna Login Screen", "Warframe"]},
 				{"id": "2avsSiQdLqw", "name": "Octavia's Anthem remix", "attr": ["Warframe"]},
 				{"id": "1XLFK5Umnns", "name": "Fortuna Part 2 login music", "attr": ["Warframe"]},
@@ -856,7 +855,8 @@
 				{"id": "FSxommmIZ58", "name": "Supermassive Black Hole", "attr": ["Muse"]},
 				{"id": "AYu1x0KZFOU", "name": "Psycho", "attr": ["Muse"], "tags": ["Druk"]},
 				{"id": "bE9DIKUpLIA", "name": "New Born", "attr": ["Muse"], "tags": ["Druk"]},
-				{"id": "GoBeZoUMFRw", "name": "Starlight", "attr": ["Muse"], "tags": ["Perfect", "Plogg"]}
+				{"id": "GoBeZoUMFRw", "name": "Starlight", "attr": ["Muse"], "tags": ["Perfect", "Plogg"]},
+				{"id": "vyIOaxKGYnA", "name": "Undisclosed Desires", "attr": ["Muse"]}
 			]
 		},
 		"Nickelbarf":{
@@ -890,7 +890,8 @@
 				{"id": "Q-kvn6lFdd0", "name": "Chlorine", "attr": ["twenty one pilots"]},
 				{"id": "6cWdSc1lgyk", "name": "Trees", "attr": ["Twenty One Pilots"], "tags": ["Perfect"]},
 				{"id": "muCWIndkjFc", "name": "Heavy Dirty Soul", "attr": ["twenty one pilots"]},
-				{"id": "I9UiNlSs9TQ", "name": "My Blood", "attr": ["twenty one pilots"]}
+				{"id": "I9UiNlSs9TQ", "name": "My Blood", "attr": ["twenty one pilots"]},
+				{"id": "-Kk81RKI7YM", "name": "House of Gold", "attr": ["twenty one pilots"], "tags": ["Perfect"]}
 			]
 		},
 		"Panic! At the Disco":{
@@ -2481,7 +2482,8 @@
 				{"id": "98vdlUVt5jU", "name": "Loneliness", "attr": ["Tomcraft"], "tags": ["Perfect", "Sparse"]},
 				{"id": "f6_qKw2_Pvc", "name": "Fashion Freak", "attr": ["Naked Ape"], "tags": ["Perfect"]},
 				{"id": "8hDYzGnlpL4", "name": "Numb", "attr": ["NEEFEX"]},
-				{"id": "GmN9D1MvdCA", "name": "Bella Ciao", "attr": ["The Professor"]}
+				{"id": "GmN9D1MvdCA", "name": "Bella Ciao", "attr": ["The Professor"]},
+				{"id": "em_vyMr3J9Y", "name": "Moving Strong", "attr": ["Uygar Guzgun"]}
 			]
 		}
 	},
@@ -3509,7 +3511,8 @@
 					{"id": "Q7PS2TQkgqs", "name": "Street Party", "attr": ["Bloons Monkey City"]},
 					{"id": "_x8q9GgfOL4", "name": "Blast Corps", "attr": ["Simian Acres"], "tags": ["Perfect"]},
 					{"id": "VoJsPh5B_j0", "name": "Guardian Tales main theme song"},
-					{"id": "kmXhwdWdInA", "name": "Mad Rat Heart", "attr": ["Mad Rat Dead"]}
+					{"id": "kmXhwdWdInA", "name": "Mad Rat Heart", "attr": ["Mad Rat Dead"]},
+					{"id": "PqWsvEz23Yo", "name": "Geothermal Towers", "attr": ["Cyber Shadows"]}
 				]
 			}
 		}
@@ -3533,7 +3536,8 @@
 				{"id": "N3yyo4IVUYo", "name": "I May Fall", "attr": ["RWBY"], "tags": ["Perfect"]},
 				{"id": "HS8Z3SBJ0qI", "name": "Armed And Ready", "attr": ["RWBY"]},
 				{"id": "ygkNCGiSmlA", "name": "One Thing", "attr": ["RWBY volume 6"]},
-				{"id": "ZIKXhusJhpw", "name": "Miracle", "attr": ["RWBY Vol 6"]}
+				{"id": "ZIKXhusJhpw", "name": "Miracle", "attr": ["RWBY Vol 6"]},
+				{"id": "--U4jL4u2Qk", "name": "I'm The One", "attr": ["RWBY"], "tags": ["Double"]}
 			]
 		},
 		"Naruto":{
@@ -4280,7 +4284,7 @@
 				{"id": "KMQMBAc3z44", "name": "Vampire Dance Club Theme", "attr": ["Blade"]},
 				{"id": "VpwFlb3tK_A", "name": "Good Life", "attr": ["G-Eazy & Kehlani", "The Fate of the Furious"]},
 				{"id": "qpHGTK6Mt6I", "name": "Diamond", "attr": ["Klint", "Snatch"]},
-				{"id": "VctWaHZR6qk", "name": "Oh Yeah", "attr": ["Mello", "Ferris Bueller's Day Off"], "tags": ["Sparse"]},
+				{"id": "VctWaHZR6qk", "name": "Oh Yeah", "attr": ["Yello", "Ferris Bueller's Day Off"], "tags": ["Sparse"]},
 				{"id": "nYeVOeLNi_Q", "name": "Weird Science", "attr": ["Oingo Boingo"]},
 				{"id": "7uxjXP6GsYA", "name": "Splinter's Tale", "attr": ["Teenage Mutant Ninja Turtles 1990"]},
 				{"id": "N2ZVVyMopEo", "name": "Teenage Mutant Ninja Turtles theme", "attr": ["1990"]},
