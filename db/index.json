@@ -328,7 +328,8 @@
 				{"id": "2dL49m1EvAw", "name": "Video Killed The Radio Star", "attr": ["The Buggles"]},
 				{"id": "vYTyHV3WZfc", "name": "What I Got", "attr": ["Sublime"], "tags": ["Perfect"]},
 				{"id": "-pTkWKPGd8I", "name": "Higher Love", "attr": ["Steve Winwood"]},
-				{"id": "k4KBcbmQSJM", "name": "Seether", "attr": ["Veruca Salt"], "tags": ["Perfect"]}
+				{"id": "k4KBcbmQSJM", "name": "Seether", "attr": ["Veruca Salt"], "tags": ["Perfect"]},
+				{"id": "IcktKAWeOg4", "name": "One Last Caress", "attr": ["The Misfits"], "tags": ["Perfect"]}
 			]
 		}
 	},
@@ -684,7 +685,9 @@
 				{"id": "bz6pBJ8xTfY", "name": "Incorporate Use of Cloak & Dagger", "attr": ["Blood Command"]},
 				{"id": "LjEoWS4-FZE", "name": "Sword In Mouth, Fire Eyes", "attr": ["Norma Jean"], "tags": ["Druk"]},
 				{"id": "sy9mB5C_77g", "name": "Strapping Young Lad", "attr": ["Detox"], "tags": ["Druk"]},
-				{"id": "qvZXG4ARpe0", "name": "Zitti E Buoni", "attr": ["M\u00e5neskin"], "tags": ["Perfect"]}
+				{"id": "qvZXG4ARpe0", "name": "Zitti E Buoni", "attr": ["M\u00e5neskin"], "tags": ["Perfect"]},
+				{"id": "WS3Pzk_flyg", "name": "Elan", "attr": ["Nightwish"]},
+				{"id": "9Rw0JH1kbdU", "name": "The Poet and the Pendulum", "attr": ["Nightwish"]}
 			]
 		}
 	},
@@ -999,7 +1002,6 @@
 				{"id": "y68oIX7iMvg", "name": "Glitter & Gold", "attr": ["Barns Courtney"], "tags": ["Perfect"]},
 				{"id": "fLEs-M7G1TU", "name": "All Star", "attr": ["Smash Mouth"]},
 				{"id": "gHFZ4wNrvYI", "name": "Walkin' On The Sun", "attr": ["Smash Mouth"], "tags": ["Plogg"]},
-				{"id": "WS3Pzk_flyg", "name": "Elan", "attr": ["Nightwish"]},
 				{"id": "wbEhWb4MmtI", "name": "Wolf In Sheep's Clothing", "attr": ["Set It Off"], "tags": ["Druk"]},
 				{"id": "27YI1xx56l4", "name": "The Silver String", "attr": ["Saosin"]},
 				{"id": "TCJBEiqUSzE", "name": "Racing Toward a Red Light", "attr": ["Saosin"]},
@@ -1273,7 +1275,8 @@
 				{"id": "g-u3hAj7O6M", "name": "Chocolate", "attr": ["The 1975"], "tags": ["Double", "Perfect"]},
 				{"id": "z81X5FUnjqg", "name": "Wake Up", "attr": ["Elaine"]},
 				{"id": "eqJUQ5IK1iI", "name": "deathwish", "attr": ["Stand Atlantic", "nothing", "nowhere"]},
-				{"id": "8sRJAmxjfiY", "name": "Daisies", "attr": ["Ryan Caraveo"]}
+				{"id": "8sRJAmxjfiY", "name": "Daisies", "attr": ["Ryan Caraveo"]},
+				{"id": "jUpraVXCpck", "name": "De M\u00fasica Ligera", "attr": ["Soda Stereo"]}
 			]
 		}
 	},
@@ -1310,7 +1313,8 @@
 				{"id": "PQL7wGMzg5g", "name": "Look What You Made Me Do", "attr": ["Taylor Swift"], "tags": ["Alpha", "Perfect"]},
 				{"id": "Zgnl_SS73dc", "name": "Bad Blood", "attr": ["Taylor Swift"], "tags": ["Perfect"]},
 				{"id": "c_ckhAWf0YU", "name": "In The Middle Of The Night", "attr": ["Taylor Swift"]},
-				{"id": "pMwsIn-Dalg", "name": "Lover", "attr": ["Taylor Swift"]}
+				{"id": "pMwsIn-Dalg", "name": "Lover", "attr": ["Taylor Swift"]},
+				{"id": "hb-9QywnHpk", "name": "Love Story", "attr": ["Taylor Swift", "Disco Lines Remix"]}
 			]
 		},
 		"Katy Perry":{
@@ -1761,7 +1765,8 @@
 				{"id": "x7X6kTLjkZI", "name": "Kiss The Sky", "attr": ["Machine Gun Kelly"], "tags": ["Perfect"]},
 				{"id": "JdC-rfiBqPM", "name": "Bloody Valentine", "attr": ["Machine Gun Kelly"]},
 				{"id": "F0f-HGW2xG8", "name": "my ex's best friend", "attr": ["Machine Gun Kelly"], "tags": ["Perfect"]},
-				{"id": "x2BWXx2SmOA", "name": "concert for aliens", "attr": ["Machine Gun Kelly"], "tags": ["Perfect"]}
+				{"id": "x2BWXx2SmOA", "name": "concert for aliens", "attr": ["Machine Gun Kelly"], "tags": ["Perfect"]},
+				{"id": "N-pr_i0szGA", "name": "kiss kiss", "attr": ["Machine Gun Kelly"], "tags": ["Perfect"]}
 			]
 		},
 		"Lil Nas X":{
@@ -2498,7 +2503,8 @@
 				{"id": "8hDYzGnlpL4", "name": "Numb", "attr": ["NEEFEX"]},
 				{"id": "GmN9D1MvdCA", "name": "Bella Ciao", "attr": ["The Professor"]},
 				{"id": "em_vyMr3J9Y", "name": "Moving Strong", "attr": ["Uygar Guzgun"]},
-				{"id": "43KVSFjlkb4", "name": "One More Night In Tokyo", "attr": ["Flashworx"]}
+				{"id": "43KVSFjlkb4", "name": "One More Night In Tokyo", "attr": ["Flashworx"]},
+				{"id": "BR1kC1dFJRQ", "name": "Louder", "attr": ["McNeice", "Thompson"], "tags": ["Perfect"]}
 			]
 		}
 	},
@@ -3531,7 +3537,9 @@
 					{"id": "VoJsPh5B_j0", "name": "Guardian Tales main theme song"},
 					{"id": "kmXhwdWdInA", "name": "Mad Rat Heart", "attr": ["Mad Rat Dead"]},
 					{"id": "PqWsvEz23Yo", "name": "Geothermal Towers", "attr": ["Cyber Shadows"]},
-					{"id": "hbgNn3hMlSs", "name": "Infiltrator", "attr": ["Ghostrunner"]}
+					{"id": "hbgNn3hMlSs", "name": "Infiltrator", "attr": ["Ghostrunner"]},
+					{"id": "zh2OLZ4SAgw", "name": "Calling", "attr": ["TWEWY"], "tags": ["Double"]},
+					{"id": "FnO4Kr6MKnc", "name": "Don't Tattle On Me", "attr": ["Fandroid", "Tattletail"]}
 				]
 			}
 		}
@@ -3873,7 +3881,8 @@
 			"songs":[
 				{"id": "XE0RpVlI_rQ", "name": "Haruka Mirai", "attr": ["Black Clover opening"]},
 				{"id": "FSbn51Zmdtw", "name": "Answer", "attr": ["Kaf", "Black Clover Ending 11"]},
-				{"id": "AdCi-yO00iY", "name": "Grandeur", "attr": ["Black Clover opening 13"]}
+				{"id": "AdCi-yO00iY", "name": "Grandeur", "attr": ["Black Clover opening 13"]},
+				{"id": "bah-_4VULZc", "name": "Black Rover", "attr": ["Black Clover opening 3"]}
 			]
 		},
 		"Misc Anime":{
@@ -4082,7 +4091,8 @@
 				{"id": "yF21vsSA7HQ", "name": "Ishuzoku Reviewers ending"},
 				{"id": "uCq5__IGVB8", "name": "Kaikai Kitan", "attr": ["Jujutsu Kaisen opening"]},
 				{"id": "rdu76frehPs", "name": "Give It Back", "attr": ["Jujutsu Kaisen ending 2"], "tags": ["Perfect"]},
-				{"id": "M-ixX7WHPoo", "name": "Miss Kobayashi's Dragon Maid opening"}
+				{"id": "M-ixX7WHPoo", "name": "Miss Kobayashi's Dragon Maid opening"},
+				{"id": "hlA6_Gnb5D0", "name": "Pray", "attr": ["Haruka Chisaga", "Angels of Death ending"]}
 			]
 		}
 	},
@@ -4598,7 +4608,8 @@
 				{"id": "72s7j8UHtCc", "name": "\ub77c\ube44\uc559\ub85c\uc988/La Vie en Rose", "attr": ["\uc544\uc774\uc988\uc6d0/IZ*ONE"]},
 				{"id": "yBebzypsBzw", "name": "Violeta/\ube44\uc62c\ub808\ud0c0", "attr": ["Iz*One/\uc544\uc774\uc988\uc6d0"], "tags": ["Perfect"]},
 				{"id": "BZExdPucZhY", "name": "Fiesta", "attr": ["IZ*ONE/\uc544\uc774\uc988\uc6d0"], "tags": ["Gamma"]},
-				{"id": "ZeBgC0bLCz0", "name": "Panorama", "attr": ["IZ*ONE/\uc544\uc774\uc988\uc6d0"]}
+				{"id": "ZeBgC0bLCz0", "name": "Panorama", "attr": ["IZ*ONE/\uc544\uc774\uc988\uc6d0"]},
+				{"id": "uJIc-J7faOQ", "name": "Sequence", "attr": ["IZ*ONE/\uc544\uc774\uc988\uc6d0"]}
 			]
 		},
 		"Momoland/모모랜드":{
@@ -4880,6 +4891,7 @@
 				{"id": "zxE7sIiQKXQ", "name": "How Auto-Tune Works", "attr": ["Tom Scott ft. The Gregory Brothers"], "tags": ["Perfect"]},
 				{"id": "q_PomnIAlzg", "name": "Forsenbajs", "attr": ["203A"], "tags": ["Perfect"]},
 				{"id": "uAcE9wjNJVg", "name": "Dragonheart", "attr": ["TryHardNinja"], "tags": ["Double"]},
+				{"id": "kU-ScyS3xTw", "name": "Find the Pieces", "attr": ["Minecraft", "CaptainSparklez", "TryHardNinja"], "tags": ["Perfect"]},
 				{"id": "rEVwe58OAHM", "name": "Robotnik Rock", "attr": ["iteachvader"]},
 				{"id": "zlmkXH52xB8", "name": "It Burns! Burns! Burns!", "attr": ["Loco Loco"]},
 				{"id": "xKzPvp1XRqM", "name": "Snailchan Adventure - end credits", "attr": ["Snail's House"]},
@@ -4891,6 +4903,7 @@
 				{"id": "229zsNO98cw", "name": "Song for Denise (Maxi Version)", "attr": ["Piano Fantasia"], "tags": ["Perfect"]},
 				{"id": "SNJtH8E7AZw", "name": "Addict", "attr": ["Silva Hound", "Hazbin Hotel"]},
 				{"id": "kWdYPcxhd6g", "name": "Alastor's Game", "attr": ["The Living Tombstone", "Hazbin Hotel"]},
+				{"id": "6W4QEWkwsmw", "name": "My World Is Burning Down Around Me", "attr": ["Helluva Boss"], "tags": ["Perfect"]},
 				{"id": "QhL90yMLluM", "name": "Henry Stickman Distraction Dance"},
 				{"id": "QccwZ6ejKAI", "name": "Corrupted Violin Fencer Boss Theme"},
 				{"id": "t_FYp5R3QCQ", "name": "Forestcall", "attr": ["Eltorro64Rus"]},
