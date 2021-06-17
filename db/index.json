@@ -330,6 +330,7 @@
 				{"id": "-pTkWKPGd8I", "name": "Higher Love", "attr": ["Steve Winwood"]},
 				{"id": "k4KBcbmQSJM", "name": "Seether", "attr": ["Veruca Salt"], "tags": ["Perfect"]},
 				{"id": "IcktKAWeOg4", "name": "One Last Caress", "attr": ["The Misfits"], "tags": ["Perfect"]}
+				, {"id": "ifzJ8DSGRio", "name": "Don't You Want Me", "attr": ["The Human League"]}
 			]
 		}
 	},
@@ -1277,6 +1278,9 @@
 				{"id": "eqJUQ5IK1iI", "name": "deathwish", "attr": ["Stand Atlantic", "nothing", "nowhere"]},
 				{"id": "8sRJAmxjfiY", "name": "Daisies", "attr": ["Ryan Caraveo"]},
 				{"id": "jUpraVXCpck", "name": "De M\u00fasica Ligera", "attr": ["Soda Stereo"]}
+				, {"id": "DhoPD0eqC9Y", "name": "I Must Be Dreaming", "attr": ["KNOWER"]}
+				, {"id": "ZV0lOUUKbw0", "name": "Cut out to be Clyde", "attr": ["The Peculiar Pretzelman"]}
+				, {"id": "Rt3X1dkxWPc", "name": "Like a Star", "attr": ["Mike Krol"], "tags": ["Perfect"]}
 			]
 		}
 	},
@@ -2654,6 +2658,7 @@
 				{"id": "DlZOxkV6XOA", "name": "Don't Ever Forget", "attr": ["Pokemon Mystery Dungeon: Explorers of Sky"]},
 				{"id": "KfV-Rvb-dm4", "name": "Through The Sea Of Time", "attr": ["Pokemon Mystery Dungeon Explorers Of The Sky"]},
 				{"id": "NFu0QT1MWeU", "name": "Elesa's Gym Theme", "attr": ["Pokemon Black & White 2"], "tags": ["Perfect"]}
+				, {"id": "Ok5-DQWCuAs", "name": "Mirror B. Battle", "attr": ["Pokemon XD: Gale of Darkness"], "tags": ["Perfect"]}
 			]
 		},
 		"Final Fantasy":{
@@ -3380,6 +3385,7 @@
 					{"id": "qBQ2-_zw_-w", "name": "Among Us Drip Theme Song", "attr": ["Trap remix"]},
 					{"id": "OHcoqgiErDE", "name": "Bubblegum K. K.", "attr": ["Animal Crossing"], "tags": ["Perfect"]},
 					{"id": "uJ8Y7vWzE_0", "name": "The Last Of Us theme song"}
+					, {"id": "H78Bj6fCpYY", "name": "1NF3$+@+!0N", "attr": ["DM Dokuro", "Terraria Calamity Mod"]}
 				]
 			},
 			"Games I've never heard of":{
@@ -3540,6 +3546,8 @@
 					{"id": "hbgNn3hMlSs", "name": "Infiltrator", "attr": ["Ghostrunner"]},
 					{"id": "zh2OLZ4SAgw", "name": "Calling", "attr": ["TWEWY"], "tags": ["Double"]},
 					{"id": "FnO4Kr6MKnc", "name": "Don't Tattle On Me", "attr": ["Fandroid", "Tattletail"]}
+					, {"id": "j7H3ncXLGR4", "name": "Constant Moderato", "attr": ["Blue Archive"]}
+					, {"id": "zBqdi5tUPkQ", "name": "It Means Everything", "attr": ["OMORI"]}
 				]
 			}
 		}
@@ -4093,6 +4101,8 @@
 				{"id": "rdu76frehPs", "name": "Give It Back", "attr": ["Jujutsu Kaisen ending 2"], "tags": ["Perfect"]},
 				{"id": "M-ixX7WHPoo", "name": "Miss Kobayashi's Dragon Maid opening"},
 				{"id": "hlA6_Gnb5D0", "name": "Pray", "attr": ["Haruka Chisaga", "Angels of Death ending"]}
+				, {"id": "bq_7EDGPppk", "name": "\u4f50\u8cc0\u4e8b\u5909", "attr": ["Zombie Land Saga"]}
+				, {"id": "D0FB3PhwYn4", "name": "Hands Up To The Sky", "attr": ["86 Eighty Six ep 8 ending"]}
 			]
 		}
 	},
@@ -4710,6 +4720,7 @@
 				{"id": "wSPGReTrumw", "name": "Emotional Prism/\u611f\u60c5\u7684\u306a\u30d7\u30ea\u30ba\u30e0", "attr": ["Bigwave"]},
 				{"id": "eGQ7XB9nIeE", "name": "Fighter", "attr": ["Kana-Boon"]},
 				{"id": "SZmIDB4_08c", "name": "Sparkle", "attr": ["RADWIMPS"]}
+				, {"id": "-TREMgnN5Yw", "name": "Mela!", "attr": ["\u7dd1\u9ec4\u8272\u793e\u4f1a"]}
 			]
 		},
 		"Misc I Don't Know Which Letter Pop":{
@@ -4830,6 +4841,8 @@
 				{"id": "VrjeF0B4xMM", "name": "\u30ea\u30b3\u30fc\u30c0\u30fc\u30d3\u30fc\u30c82", "attr": ["Minato Aqua", "Y8MD"]},
 				{"id": "D7F4uUwyEDU", "name": "\u308f\u305f\u3081\u306e\u5b50\u5b88\u5504", "attr": ["\u89d2\u5dfb\u308f\u305f\u3081"], "tags": ["Perfect"]},
 				{"id": "LmT6k4k5WNM", "name": "Echo", "attr": ["Akaihaato/\u8d64\u4e95\u306f\u3042\u3068"]}
+				, {"id": "hLQZHg0cers", "name": "Next Wednesday", "attr": ["Roboco", "TamaOnSen"]}
+				, {"id": "d4G--lT2VBo", "name": "Live Again", "attr": ["Calliope Mori"]}
 			]
 		},
 		"Misc Internet":{
@@ -5165,6 +5178,7 @@
 				{"id": "kCli0kjdkEk", "name": "Rowing With One Hand", "attr": ["Ye Banished Privateers"]},
 				{"id": "Q5KjqZc0uNE", "name": "Tadow", "attr": ["Fkj & Masego"], "tags": ["Perfect"]},
 				{"id": "lewUjjVX51M", "name": "Mister Softee Ice Cream Truck jingle", "tags": ["Beta"]}
+				, {"id": "sohIWFJbQgM", "name": "red crystal castles", "attr": ["sektorjazza"]}
 			]
 		}
 	}
