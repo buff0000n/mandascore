@@ -543,7 +543,9 @@ class Library {
                 var songObject = new Song();
                 songObject.parseChatLink(songList[i]);
                 // calculate a match value
-                var songMatch = songObject.matchSong(searchSongObject);
+                // match in both directions and add the result.  Why not, I'm making this up as I go anyway.
+                var songMatch = songObject.matchSong(searchSongObject) +
+                                searchSongObject.matchSong(songObject);
                 // save the highest one
                 if (songMatch > match) {
                     match = songMatch;
