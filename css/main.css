@@ -425,21 +425,25 @@
 
     .loadingBox {
         text-align: center;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        z-index = 100;
+        background: #000000;
     }
     .loadingLabel {
         display: inline-block;
-        width: 50%;
-    }
-    .loadingProgress {
-        display: inline-block;
-        width: 50%;
+        position: absolute;
+        left: 0;
+        width: 100%;
     }
     .loadingProgressPos {
         display: inline-block;
         background: #405080;
-    }
-    .loadingProgressNeg {
-        display: inline-block;
+        position: absolute;
+        width: 0%;
+        left: 0;
     }
 
     /* graying everthing out when disabled */
@@ -481,6 +485,7 @@
     .tagSparse { color: #8e44ad; }
     .tagInstrument { color: #16a085; }
     .tagShot { color: #f02020; }
+    .tagMisc { color: #2020f0; }
 
     /* omg it's so hard to get images for checkboxes */
     .sectionEnable {

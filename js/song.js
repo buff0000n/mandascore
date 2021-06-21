@@ -64,6 +64,11 @@ var sectionMetaData = {
     "mel": new SectionMetaData("mel", "Melody", 8, 12, 16, "#e601ff")
 }
 
+var songMatchNoteWeight = 10;
+var songMatchExtraNoteWeight = -2;
+var songMatchMissingNoteWeight = -1;
+
+
 // The rest of this is all converted from Python because I'm not writing it twice
 
 // get the mapped in-game name from an instrument set identifier, or just the identifier if we
@@ -354,6 +359,8 @@ class Song {
             "bass": 100.0,
             "mel": 100.0
         };
+        // cached data
+        this.clearCachedData();
 
         // first array index is the time of the note, from 0-63
         // second array index is the note: 0 = lowest melody note, 12 = top percussion note
@@ -387,6 +394,7 @@ class Song {
                 this.notes[(m*16) + t][r] = mnotes[t][r];
             }
         }
+        this.clearCachedData();
     }
 
     // accessors
@@ -412,6 +420,29 @@ class Song {
 
     setVolume(section, volume) {
         this.volumes[section] = volume;
+    }
+
+    clearCachedData() {
+        this.sectionPresent = null;
+    }
+
+    hasSection(section) {
+        if (!this.sectionPresent) {
+            this.sectionPresent = {};
+        }
+        if (this.sectionPresent[section] == null) {
+            var md = sectionMetaData[section];
+            var foundOne = false;
+            for (var t = 0; t < 64 && !foundOne; t++) {
+                for (var r = md.rowStart; r <= md.rowStop && !foundOne; r++) {
+                    if (this.notes[t][r] != 0) {
+                        foundOne = true;
+                    }
+                }
+            }
+            this.sectionPresent[section] = foundOne;
+        }
+        return this.sectionPresent[section];
     }
 
     toString() {
@@ -578,5 +609,42 @@ class Song {
 
         // [SONG-<song name>:<base 64 data>:<melody instrument>:<bass instrument>:<percussion instrument>]
         return `[SONG-${name}:${encoded}:${melInst}:${bassInst}:${percInst}]`;
+    }
+
+    matchSong(otherSong) {
+        return this.matchSongSection(otherSong, "perc") +
+               this.matchSongSection(otherSong, "bass") +
+               this.matchSongSection(otherSong, "mel");
+    }
+
+    matchSongSection(otherSong, section) {
+        if (!this.hasSection(section) || !otherSong.hasSection(section)) {
+            return 0;
+        }
+
+        var md = sectionMetaData[section];
+
+        var matchNotes = 0;
+        var extraNotes = 0;
+        var missingNotes = 0;
+        for (var t = 0; t < 64; t++) {
+            for (var r = md.rowStart; r <= md.rowStop; r++) {
+                if (this.notes[t][r]) {
+                    if (otherSong.notes[t][r]) {
+                        matchNotes += 1;
+                    } else {
+                        extraNotes += 1;
+                    }
+                } else if (otherSong.notes[t][r]) {
+                    missingNotes += 1;
+                }
+            }
+        }
+
+        // weight match counts against each other, then weight the whole score by the total number of notes
+        return ((matchNotes * songMatchNoteWeight) +
+                (extraNotes * songMatchExtraNoteWeight) +
+                (missingNotes * songMatchMissingNoteWeight)) /
+                (matchNotes + extraNotes);
     }
 }
