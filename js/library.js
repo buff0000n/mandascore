@@ -195,6 +195,8 @@ class Library {
         var songLabelSpan2 = getFirstChild(div2, "libSongLabel");
         songLabelSpan2.onclick = songLabelSpan.onclick;
         songLabelSpan2.songEntry = songLabelSpan.songEntry;
+        // reset the display style in case the original is hidden
+        div2.style.display = "block";
         return div2;
     }
 
