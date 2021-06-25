@@ -50,10 +50,10 @@ class Library {
         this.libraryContainer = this.libraryBox;
 
         // loader container
-        this.loaderContainer = document.createElement("div");
-        this.loaderContainer.className = "loaderContainer";
-        this.loaderContainer.appendChild(this.loader.loadingBox);
-        this.libraryContainer.appendChild(this.loaderContainer);
+        // put the progress bar roughly where the index container actually starts
+        this.libraryContainer.style.position = "relative";
+        this.loader.loadingBox.style.top = 48;
+        this.libraryContainer.appendChild(this.loader.loadingBox);
 
         // menu container, the menu is just a search bar
         this.menuContainer = document.createElement("div");
@@ -70,7 +70,7 @@ class Library {
         `;
         this.libraryContainer.appendChild(this.menuContainer);
 
-        getFirstChild(this.menuContainer, "titleButton").addEventListener("click", () => { this.hide() });
+        getFirstChild(this.menuContainer, "titleButton").addEventListener("click", () => { this.clicked() });
 
         // index container, this is where the songs are listed
         this.indexContainer = document.createElement("div");
@@ -82,6 +82,18 @@ class Library {
         // start the loading process if it isn't already loaded
         if (this.index == null) {
             this.loader.load("Loading Demo Index", "db/index-demo.json", (indexJson) => this.demoIndexLoaded(indexJson));
+        }
+    }
+
+    clicked() {
+        var event = window.event;
+        if (event.shiftKey) {
+            // super secret experimental match search when you shift-click the Library button don't tell anybody
+            this.matchSearch();
+
+        } else {
+            // normal action: hide the library
+            this.hide();
         }
     }
 
@@ -174,6 +186,18 @@ class Library {
         songDiv.appendChild(songLabelSpan);
 
         return songDiv;
+    }
+
+    cloneSongDiv(div) {
+        var div2 = div.cloneNode(true);
+        // not everything gets cloned
+        var songLabelSpan = getFirstChild(div, "libSongLabel");
+        var songLabelSpan2 = getFirstChild(div2, "libSongLabel");
+        songLabelSpan2.onclick = songLabelSpan.onclick;
+        songLabelSpan2.songEntry = songLabelSpan.songEntry;
+        // reset the display style in case the original is hidden
+        div2.style.display = "block";
+        return div2;
     }
 
     buildTree(parent, map, dbName, cats) {
@@ -274,10 +298,10 @@ class Library {
         var words = string.toLowerCase().split(" ").filter((s) => s.length >= 3);
         if (words.length == 0) {
             // no long enough keywords, show everything
-            this.startSearch(null);
+            this.startWordSearch(null);
         } else {
             // run the search with one or more keywords
-            this.startSearch(words);
+            this.startWordSearch(words);
         }
     }
 
@@ -293,22 +317,37 @@ class Library {
         return true;
     }
 
-    startSearch(words) {
+    startWordSearch(words) {
         // only do this crap if the search has actually changed
         if (listEquals(words, this.searchWords)) {
             return;
         }
+        // save the current search criteria
+        this.searchWords = words;
+
+        // start the search
+        this.startFuncSearch(false, (song, songList, index, total) => {
+            // the song is displayed if there is no search string or if all of the words are found in its keywords
+            if (!words || this.searchKeywords(song.keywords, words)) {
+                this.showSong(song);
+            } else {
+                // otherwise, hide the song
+                this.hideSong(song);
+            }
+        })
+    }
+
+    startFuncSearch(loadSongData, func) {
         // cancel any search in progress
         if (this.searchTimeout) {
             clearTimeout(this.searchTimeout);
         }
-        // set the search parameters
-        // the search terms
-        this.searchWords = words;
         // get a copy of the search queue
-        this.searchQueue = this.searchQueuePrototype.slice();
+        var searchQueue = this.searchQueuePrototype.slice();
+        // store the total
+        var total = searchQueue.length;
         // start the search
-        this.searchTimeout = setTimeout(() => this.runSearch(), this.searchDelay);
+        this.searchTimeout = setTimeout(() => this.runSearch(searchQueue, total, loadSongData, func), this.searchDelay);
     }
 
     queueSongLists(map, queue) {
@@ -324,41 +363,46 @@ class Library {
         }
     }
 
-    runSearch() {
+    runSearch(searchQueue, totalItems, loadSongData, func) {
         // count songs searched
         var count = 0;
         // search song lists until we exceed the batch size
         while (count < this.searchBatchLimit) {
-            // dequeue
-            var songs = this.searchQueue.shift();
             // nothing left in the queue
-            if (!songs) {
+            if (searchQueue.length == 0) {
                 // clear the timeout
                 this.searchTimeout = null;
                 // end the search
                 return;
             }
-            // search the song list, showing and hiding as necessary
-            this.searchSongList(songs, this.searchWords);
+
+            // if we need to load song data then check to see if the song's database is loaded
+            if (loadSongData && !this.database[searchQueue[0][0].dbName]) {
+                // continue this search after loading the database
+                this.queryDb(searchQueue[0][0].dbName, () => {
+                    this.runSearch(searchQueue, totalItems, loadSongData, func);
+                });
+                return;
+            }
+
+            // dequeue
+            var songs = searchQueue.shift();
+            // current index
+            var index = totalItems - searchQueue.length;
+            // iterate over the songs
+            for (var songKey in songs) {
+                var song = songs[songKey];
+                // get the song data if necessary
+                var songList = loadSongData ? this.database[song.dbName][song.id] : null;
+                // run the search function on the song
+                func(song, songList, index, totalItems);
+            }
             // increment the count
             count += songs.length;
         }
 
         // schedule the next batch
-        this.searchTimeout = setTimeout(() => this.runSearch(), this.searchDelay);
-    }
-
-    searchSongList(songs, words) {
-        for (var songKey in songs) {
-            var song = songs[songKey];
-            // the song is displayed if there is no search string or if all of the words are found in its keywords
-            if (!words || this.searchKeywords(song.keywords, words)) {
-                this.showSong(song);
-            } else {
-                // otherwise, hide the song
-                this.hideSong(song);
-            }
-        }
+        this.searchTimeout = setTimeout(() => this.runSearch(searchQueue, totalItems, loadSongData, func), this.searchDelay);
     }
 
     showSong(song) {
@@ -450,45 +494,137 @@ class Library {
         // run the query
         callback(this.database[dbName]);
     }
+
+    matchSearch() {
+        // experimental song match search
+
+        // remove the regular menu and index containers temporarily
+        this.menuContainer.remove();
+        this.menuContainerSaved = this.menuContainer;
+        this.indexContainer.remove();
+        this.indexContainerSaved = this.indexContainer;
+
+        // build special menu container
+        this.menuContainer = document.createElement("div");
+        this.menuContainer.className = "menuContainer";
+        // menu bar, just HTML it
+        this.menuContainer.innerHTML = `
+            <input class="button titleButton" type="submit" value="Back"/>
+        `;
+        // build a second loaded just for the progress bar
+        this.searchLoader = new Loader();
+        this.searchLoader.setLabel("Searching");
+        this.searchLoader.log = true;
+        this.menuContainer.appendChild(this.searchLoader.loadingBox);
+        this.libraryContainer.appendChild(this.menuContainer);
+
+        getFirstChild(this.menuContainer, "titleButton").addEventListener("click", () => { this.endMatchSearch() });
+
+        // index container, this is where the songs are listed
+        this.indexContainer = document.createElement("div");
+        this.indexContainer.className = "indexContainer";
+        this.libraryContainer.appendChild(this.indexContainer);
+
+        // auto-start the match search
+        this.startMatchSearch();
+    }
+
+    startMatchSearch() {
+        // pull the match to look for from the current score
+        var searchSongObject = score.getSongObject();
+        // search result array
+        var matchListing = Array();
+        // start the search
+        this.startFuncSearch(true, (song, songList, index, total) => {
+            // min match value
+            var match = 0;
+
+            // get the highest match value among all the songs in this entry
+            for (var i = 0; i < songList.length; i++) {
+                // parse to a song object
+                var songObject = new Song();
+                songObject.parseChatLink(songList[i]);
+                // calculate a match value
+                // match in both directions and add the result.  Why not, I'm making this up as I go anyway.
+                var songMatch = songObject.matchSong(searchSongObject) +
+                                searchSongObject.matchSong(songObject);
+                // save the highest one
+                if (songMatch > match) {
+                    match = songMatch;
+                }
+            }
+
+            // arbitrarily cut off at 0
+            if (match > 0) {
+                // clone the original song listing element
+                var div = this.cloneSongDiv(song.div);
+                // append the numeric match values
+                var span = document.createElement("span")
+                span.innerHTML = `&nbsp;(${match.toFixed(2)})`;
+                span.className = "tagMisc";
+                div.appendChild(span);
+
+                // create a result object
+                var matchEntry = {"match": match, "div": div};
+                // search the results for the first result that's worse
+                var insertIndex = matchListing.findIndex((e) => { return e.match < match; } );
+                if (insertIndex > -1) {
+                    // insert this result before the first worse result
+                    this.indexContainer.insertBefore(div, matchListing[insertIndex].div);
+                    matchListing.splice(insertIndex, 0, matchEntry);
+                } else {
+                    // no worse result, append this result to the end
+                    this.indexContainer.appendChild(div);
+                    matchListing.push(matchEntry);
+                }
+            }
+
+            this.searchLoader.setProgress(index / total);
+        })
+    }
+
+    endMatchSearch() {
+        // restore the original menu bar and index
+        this.menuContainer.remove();
+        this.menuContainer = this.menuContainerSaved;
+        this.libraryContainer.appendChild(this.menuContainer);
+
+        this.indexContainer.remove();
+        this.indexContainer = this.indexContainerSaved;
+        this.libraryContainer.appendChild(this.indexContainer);
+
+        this.searchLoader = null;
+    }
 }
 
 class Loader {
     constructor() {
         // AJAX request object
         this.request = null;
+        this.lastAmount = -1;
         // build the UI
         this.buildUI();
     }
 
     buildUI() {
-        // this is probably overcomplicated
         // overall container
         this.loadingBox = document.createElement("div");
         this.loadingBox.className = "loadingBox";
-        this.loadingBox.id = "loadingBox";
+        // we need something in it to give it height
+        this.loadingBox.innerHTML = "&nbsp;";
+
+        this.progressBar = document.createElement("div");
+        this.progressBar.className = "loadingProgressPos";
+        // we need something in it to give it height
+        this.progressBar.innerHTML = "&nbsp;";
+        this.loadingBox.appendChild(this.progressBar);
 
         // label
         this.labelBar = document.createElement("div");
         this.labelBar.className = "loadingLabel";
         this.loadingBox.appendChild(this.labelBar);
 
-        // progress bar container
-        this.progressBar = document.createElement("div");
-        this.progressBar.className = "loadingProgress";
-        this.loadingBox.appendChild(this.progressBar);
-
-        // finished progress bar
-        this.progressBarPos = document.createElement("div");
-        this.progressBarPos.className = "loadingProgressPos";
-        this.progressBarPos.innerHTML = "&nbsp;";
-        this.progressBar.appendChild(this.progressBarPos);
-
-        // remaining progress bar
-        this.progressBarNeg = document.createElement("div");
-        this.progressBarNeg.className = "loadingProgressNeg";
-        this.progressBarNeg.innerHTML = "&nbsp;";
-        this.progressBar.appendChild(this.progressBarNeg);
-
+        // start hidden
         this.hide();
     }
 
@@ -497,14 +633,31 @@ class Loader {
     }
 
     show() {
-        this.loadingBox.style.display = "block";
+        this.loadingBox.style.display = "inline-block";
     }
 
     setProgress(amount) {
-        // set the finished progress
-        this.progressBarPos.style.width = Math.round(amount * 100) + "%";
-        // whatever's left is remaining progress
-        this.progressBarNeg.style.width = Math.round((1-amount) * 100) + "%";
+        // short circuit if there's no change
+        if (amount == this.lastAmount) {
+            return;
+        }
+        // set the progress bar width
+        this.progressBar.style.width = (amount * 100) + "%";
+
+        if (amount == 1) {
+            // automatically hide at 100%
+            this.hide();
+
+        } else {
+            // otherwise, make sure it's showing
+            this.show();
+        }
+        // save amount
+        this.lastAmount = amount;
+    }
+
+    setLabel(text) {
+        this.labelBar.innerHTML = text;
     }
 
     load(label, path, callback) {
@@ -514,7 +667,7 @@ class Loader {
             this.request = null;
         }
         // set the label
-        this.labelBar.innerHTML = label;
+        this.setLabel(label);
         // init progress to 0%
         this.setProgress(0);
         // show the loaded
