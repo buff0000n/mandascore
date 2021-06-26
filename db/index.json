@@ -689,6 +689,7 @@
 				{"id": "qvZXG4ARpe0", "name": "Zitti E Buoni", "attr": ["M\u00e5neskin"], "tags": ["Perfect"]},
 				{"id": "WS3Pzk_flyg", "name": "Elan", "attr": ["Nightwish"]},
 				{"id": "9Rw0JH1kbdU", "name": "The Poet and the Pendulum", "attr": ["Nightwish"]}
+				, {"id": "Br-hNee3LbQ", "name": "Masochist", "attr": ["Polaris"], "tags": ["Perfect"]}
 			]
 		}
 	},
@@ -1424,6 +1425,7 @@
 				{"id": "_c5OfglCKKI", "name": "Say So", "attr": ["Doja Cat"]},
 				{"id": "9ce6vPm_TBE", "name": "Talk Dirty", "attr": ["Doja Cat"], "tags": ["Gamma"]},
 				{"id": "zOUICuyd6rU", "name": "Boss B*tch", "attr": ["Doja Cat", "Birds of Prey"]}
+				, {"id": "okK6JNV-q0c", "name": "Kiss Me More", "attr": ["Doja Cat ft. SZA"], "tags": ["Perfect"]}
 			]
 		},
 		"Poppy":{
@@ -1450,6 +1452,14 @@
 				{"id": "UqKodk8lg1w", "name": "Touch of My Hand", "attr": ["Britney Spears", "Bill Hamel Remix"]}
 			]
 		},
+		"Ke$ha":{
+			"dbName":"Pop",
+			"songs":[
+				{"id": "ZFBkLYNgrHY", "name": "TiK ToK", "attr": ["Ke$ha"], "tags": ["Perfect"]},
+				{"id": "XPm4SqtGZgU", "name": "Cannibal", "attr": ["Ke$ha"]}
+				, {"id": "xiWKrw7YbxQ", "name": "Take It Off", "attr": ["Ke$ha"], "tags": ["Perfect"]}
+			]
+		},
 		"Misc Pop":{
 			"dbName":"Pop.MiscPop",
 			"songs":[
@@ -1460,8 +1470,6 @@
 				{"id": "9hApue3ATTY", "name": "Supercut", "attr": ["Lorde"]},
 				{"id": "G8WGj9oJxJ4", "name": "Impossible", "attr": ["Shontelle"], "tags": ["Double"]},
 				{"id": "s0ENKtIpsos", "name": "Thief", "attr": ["Ansel Elgort"], "tags": ["Perfect"]},
-				{"id": "ZFBkLYNgrHY", "name": "TiK ToK", "attr": ["Ke$ha"], "tags": ["Perfect"]},
-				{"id": "XPm4SqtGZgU", "name": "Cannibal", "attr": ["Ke$ha"]},
 				{"id": "2d7N7f9RdDU", "name": "Monster", "attr": ["Milck"]},
 				{"id": "QIl0ZAuAcNg", "name": "Sax", "attr": ["Fleur East"]},
 				{"id": "r19g_121Ub4", "name": "Walking Trophy", "attr": ["HoodCelebrity"], "tags": ["Perfect"]},
@@ -1894,6 +1902,7 @@
 				{"id": "s9U5biUemQk", "name": "Don't Sideline Me", "attr": ["Urthboy"]},
 				{"id": "Boi-i2vRQks", "name": "Six Days - Remix", "attr": ["DJ Shadow", "Mos Def"]},
 				{"id": "Li4Oy2RxQQo", "name": "Dead Star Shine", "attr": ["Horrorshow"], "tags": ["Perfect"]}
+				, {"id": "2suzA3kkOTk", "name": "BeatBox", "attr": ["SPOTTEM GOTTEM"]}
 			]
 		}
 	},
@@ -3548,6 +3557,7 @@
 					{"id": "FnO4Kr6MKnc", "name": "Don't Tattle On Me", "attr": ["Fandroid", "Tattletail"]}
 					, {"id": "j7H3ncXLGR4", "name": "Constant Moderato", "attr": ["Blue Archive"]}
 					, {"id": "zBqdi5tUPkQ", "name": "It Means Everything", "attr": ["OMORI"]}
+					, {"id": "LqlgSUrv6BM", "name": "Deathmatch", "attr": ["Spelunky"]}
 				]
 			}
 		}
@@ -3590,6 +3600,7 @@
 				{"id": "qXHeUuGqguE", "name": "Haruka Kanata", "attr": ["Naruto opening 2"], "tags": ["Perfect"]},
 				{"id": "dlWlwxJILm8", "name": "Hero's Come Back!", "attr": ["Naruto Shippuden opening 1"], "tags": ["Perfect"]},
 				{"id": "1zgNWKwNudo", "name": "Distance", "attr": ["Naruto Shippuden opening 2"]}
+				, {"id": "DfYJL9Rgyik", "name": "Beautiful Green Wild Beast", "attr": ["Naruto"], "tags": ["Druk"]}
 			]
 		},
 		"One Piece":{
@@ -3722,6 +3733,7 @@
 				{"id": "_H5hg8-3AFY", "name": "VigilaNTe", "attr": ["Gundam Narrative"]},
 				{"id": "ELu0OGcTb-0", "name": "Cerulean", "attr": ["Gundam Build Fighters opening 1"]},
 				{"id": "YGBWkQ6lCaY", "name": "Wimp", "attr": ["Gundam Build Fighters opening 2"]}
+				, {"id": "OJK6mcAPB2E", "name": "Vigilante Ver0.5+@", "attr": ["Moble Suit Gundam NT"], "tags": ["Double", "Perfect"]}
 			]
 		},
 		"Madoka Magica":{
@@ -4017,7 +4029,8 @@
 				{"id": "XsnyHzR-lXE", "name": "Gate of Steiner", "attr": ["Steins;Gate"], "tags": ["Double"]},
 				{"id": "yCGYkNiXwKo", "name": "High School DxD BorN opening 1"},
 				{"id": "P9JeEABYQ1s", "name": "Switch", "attr": ["High School DxD Hero opening 4"]},
-				{"id": "EcQ_cd-kDks", "name": "Hikaru Nara", "attr": ["Goose House", "Your Lie In April"]},
+				{"id": "EcQ_cd-kDks", "name": "Hikaru Nara", "attr": ["Goose House", "Your Lie In April"]}
+				, {"id": "qVSSkzp2bUc", "name": "Your Lie in April opening"},
 				{"id": "Nv_KqjJJZYM", "name": "Monster Without A Name", "attr": ["Psycho-Pass ending 1"]},
 				{"id": "gHUliraeZts", "name": "Megalo Box main theme"},
 				{"id": "vvFn_JTxau4", "name": "Megalo Box ending"},
@@ -4103,6 +4116,8 @@
 				{"id": "hlA6_Gnb5D0", "name": "Pray", "attr": ["Haruka Chisaga", "Angels of Death ending"]}
 				, {"id": "bq_7EDGPppk", "name": "\u4f50\u8cc0\u4e8b\u5909", "attr": ["Zombie Land Saga"]}
 				, {"id": "D0FB3PhwYn4", "name": "Hands Up To The Sky", "attr": ["86 Eighty Six ep 8 ending"]}
+				, {"id": "vbYArfUcWWc", "name": "Here", "attr": ["Junna", "Ancient Magus Bride opening"]}
+				, {"id": "M18RFGtdPJY", "name": "Ninga Nagareboshi Gin opening"}
 			]
 		}
 	},
@@ -4316,6 +4331,7 @@
 				{"id": "9STNYRsQMsQ", "name": "La Femme Nikita Theme Song"},
 				{"id": "7098ihg6SqA", "name": "Wonder Woman Theme", "attr": ["1970's"]},
 				{"id": "NgnxrktHzuw", "name": "Saburo's Theme", "attr": ["Android Kikaider"], "tags": ["Perfect"]}
+				, {"id": "Xqz4t0tWkSc", "name": "Boss Of Me", "attr": ["Malcom In The Middle theme song", "They Might Be Giants"]}
 			]
 		},
 		"Misc Movie":{
@@ -4679,6 +4695,7 @@
 				{"id": "qJVgt4f6S3A", "name": "Tail/\uaf2c\ub9ac", "attr": ["Sunmi/\uc120\ubbf8"]},
 				{"id": "e5x5JXd8TK8", "name": "Black Mamba", "attr": ["aespa/\uc5d0\uc2a4\ud30c"]},
 				{"id": "Nh7AsnBzimM", "name": "Rollin'/\ub864\ub9b0", "attr": ["Brave Girls/\ube0c\ub808\uc774\ube0c\uac78\uc2a4"]}
+				, {"id": "4sHfjOk_LLY", "name": "Love Bomb", "attr": ["fromis_9"]}
 			]
 		},
 		"Misc J-Pop":{
@@ -4721,6 +4738,8 @@
 				{"id": "eGQ7XB9nIeE", "name": "Fighter", "attr": ["Kana-Boon"]},
 				{"id": "SZmIDB4_08c", "name": "Sparkle", "attr": ["RADWIMPS"]}
 				, {"id": "-TREMgnN5Yw", "name": "Mela!", "attr": ["\u7dd1\u9ec4\u8272\u793e\u4f1a"]}
+				, {"id": "nY8hZPyjzT8", "name": "Natural", "attr": ["Moe Shop", "Ace Hashimoto"]}
+				, {"id": "b-kfkFdcTjM", "name": "Nippon Egao Hyakkei/\u30cb\u30c3\u30dd\u30f3\u7b11\u9854\u767e\u666f", "attr": ["Momoclo Tei Ichimon/Momoiro Clover Z"], "tags": ["Perfect"]}
 			]
 		},
 		"Misc I Don't Know Which Letter Pop":{
@@ -4759,6 +4778,7 @@
 				{"id": "lhIME1AeTqM", "name": "Slot Machine", "attr": ["\u0e22\u0e49\u0e2d\u0e19"]},
 				{"id": "y5KBNx-P5kw", "name": "Homura", "attr": ["Bagakki Band"]},
 				{"id": "8W6U-TlHQ_s", "name": "Rotation (Lotus-2)", "attr": ["Susumu Hirasawa"]}
+				, {"id": "z18HyW_zP0w", "name": "Fish upon the sky/\u0e02\u0e49\u0e32\u0e07\u0e46 Ost.\u0e1b\u0e25\u0e32\u0e1a\u0e19\u0e1f\u0e49\u0e32", "attr": ["Louis Thanawin"]}
 			]
 		}
 	},
@@ -4834,6 +4854,14 @@
 				{"id": "MHosiK2MknE", "name": "Walking In The Rain", "attr": ["Sunstroke Project"]}
 			]
 		},
+		"Ninja Sex Party":{
+			"dbName":"Internet",
+			"songs":[
+				{"id": "xhA9pZhi5J0", "name": "Danny Don't You Know", "attr": ["Ninja Sex Party"]},
+				{"id": "32HXMtzh6_c", "name": "Welcome To My Parent's House", "attr": ["Ninja Sex Party"], "tags": ["Perfect"]}
+				, {"id": "qfzJx7KX0-4", "name": "Manticore", "attr": ["Ninja Sex Party"]}
+			]
+		},
 		"Misc: Hololive":{
 			"dbName":"Internet.MiscHololive",
 			"songs":[
@@ -4892,8 +4920,6 @@
 				{"id": "yGoVmPVY42o", "name": "The Angry Video Game Nerd theme song", "tags": ["Double", "Perfect"]},
 				{"id": "pqUErtOM_o4", "name": "Everybody Knows Sh*t's F*cked", "attr": ["Stephen Paul Taylor"], "tags": ["Perfect"]},
 				{"id": "muJeda-82ds", "name": "Epic Meeal Time Dubstep"},
-				{"id": "xhA9pZhi5J0", "name": "Danny Don't You Know", "attr": ["Ninja Sex Party"]},
-				{"id": "32HXMtzh6_c", "name": "Welcome To My Parent's House", "attr": ["Ninja Sex Party"], "tags": ["Perfect"]},
 				{"id": "I4PtYHRzdBM", "name": "Goldmine", "attr": ["The Jokes"]},
 				{"id": "nJ6HUdQxr9M", "name": "Ain't Nobody Got Time For That", "attr": ["Rubber Duc"]},
 				{"id": "rv7psmnIGg4", "name": "8-Bit Enough", "attr": ["The Chongo Show"]},
@@ -5179,6 +5205,7 @@
 				{"id": "Q5KjqZc0uNE", "name": "Tadow", "attr": ["Fkj & Masego"], "tags": ["Perfect"]},
 				{"id": "lewUjjVX51M", "name": "Mister Softee Ice Cream Truck jingle", "tags": ["Beta"]}
 				, {"id": "sohIWFJbQgM", "name": "red crystal castles", "attr": ["sektorjazza"]}
+				, {"id": "k3_DXUZzKkA", "name": "Pique la baliene"}
 			]
 		}
 	}
