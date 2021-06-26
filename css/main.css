@@ -232,7 +232,16 @@
         margin: 0;
         border: 0;
         position: relative;
-        display: inline-block;
+        display: block;
+    }
+    .timingContainer {
+        padding: 0;
+        margin: 0;
+        border: 0;
+        background-color: red;
+        position: relative;
+        display: block;
+        cursor: pointer;
     }
 
     .measureImg {
@@ -249,13 +258,23 @@
         z-index: 4;
     }
 
-    .playbackBox {
+    .playbackBox, .playbackHandle {
         position: absolute;
         margin: 0;
         padding: 0;
+        z-index: 5;
+    }
+
+    .playbackBox {
         pointer-events: none;
         background-color: #ffffff;
         z-index: 5;
+    }
+
+    .playbackHandle {
+        cursor: pointer;
+        /*background-color: #00ff00;*/
+        z-index: 6;
     }
 
     @keyframes noteBounce {
