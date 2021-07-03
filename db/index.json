@@ -434,9 +434,10 @@
 				{"id": "U8EG2nQRpJ0", "name": "Wolfpack", "attr": ["Sabaton"], "tags": ["Druk"]},
 				{"id": "MBVCZb_kXpY", "name": "The Last Stand", "attr": ["Sabaton"], "tags": ["Druk"]},
 				{"id": "kk16H1eTjCs", "name": "To Hell And Back", "attr": ["Sabaton"]},
-				{"id": "jRYEBp-kfAM", "name": "Resist And Bite", "attr": ["Saboton"]},
-				{"id": "ji6CqX_6HI4", "name": "The Attack of the Dead Men", "attr": ["Saboton"]},
-				{"id": "Z2_BaszVDkE", "name": "Great War", "attr": ["Saboton"]}
+				{"id": "jRYEBp-kfAM", "name": "Resist And Bite", "attr": ["Sabaton"]},
+				{"id": "ji6CqX_6HI4", "name": "The Attack of the Dead Men", "attr": ["Sabaton"]},
+				{"id": "Z2_BaszVDkE", "name": "Great War", "attr": ["Sabaton"]}
+				, {"id": "ycUdHgYYNh0", "name": "Sparta", "attr": ["Sabaton"]}
 			]
 		},
 		"Amon Anarth":{
@@ -690,6 +691,7 @@
 				{"id": "WS3Pzk_flyg", "name": "Elan", "attr": ["Nightwish"]},
 				{"id": "9Rw0JH1kbdU", "name": "The Poet and the Pendulum", "attr": ["Nightwish"]}
 				, {"id": "Br-hNee3LbQ", "name": "Masochist", "attr": ["Polaris"], "tags": ["Perfect"]}
+				, {"id": "h288TNHqK0U", "name": "Alkaline", "attr": ["Sleep Token"], "tags": ["Perfect"]}
 			]
 		}
 	},
@@ -1450,6 +1452,7 @@
 				{"id": "I0RzPwA2iYQ", "name": "Break The Ice", "attr": ["Britney Spears"]},
 				{"id": "WZi7z309LBQ", "name": "Work B**ch", "attr": ["Britney Spears"]},
 				{"id": "UqKodk8lg1w", "name": "Touch of My Hand", "attr": ["Britney Spears", "Bill Hamel Remix"]}
+				, {"id": "0TPOISCu42s", "name": "Toxic", "attr": ["Britney Spears"]}
 			]
 		},
 		"Ke$ha":{
@@ -1903,6 +1906,7 @@
 				{"id": "Boi-i2vRQks", "name": "Six Days - Remix", "attr": ["DJ Shadow", "Mos Def"]},
 				{"id": "Li4Oy2RxQQo", "name": "Dead Star Shine", "attr": ["Horrorshow"], "tags": ["Perfect"]}
 				, {"id": "2suzA3kkOTk", "name": "BeatBox", "attr": ["SPOTTEM GOTTEM"]}
+				, {"id": "NZbrrvpl8ks", "name": "Welcome to the Party", "attr": ["PARTYNEXTDOOR"], "tags": ["Perfect"]}
 			]
 		}
 	},
@@ -2017,6 +2021,7 @@
 				{"id": "vDmtcemxYyY", "name": "Monophobia", "attr": ["deadmau5"], "tags": ["Double", "Perfect"]},
 				{"id": "D4zQw7u4FUk", "name": "Professional Griefers", "attr": ["deadmau5 ft. Gerard Way"]},
 				{"id": "h6a2hHyJJQE", "name": "Seeya", "attr": ["deadmau5 ft. Colleen D'Agnostino"], "tags": ["Perfect"]}
+				, {"id": "07ozJ-nO_Ag", "name": "Move For Me", "attr": ["Kaskade & deadmau5"], "tags": ["Perfect", "Sparse"]}
 			]
 		},
 		"Tristam":{
@@ -4117,7 +4122,8 @@
 				, {"id": "bq_7EDGPppk", "name": "\u4f50\u8cc0\u4e8b\u5909", "attr": ["Zombie Land Saga"]}
 				, {"id": "D0FB3PhwYn4", "name": "Hands Up To The Sky", "attr": ["86 Eighty Six ep 8 ending"]}
 				, {"id": "vbYArfUcWWc", "name": "Here", "attr": ["Junna", "Ancient Magus Bride opening"]}
-				, {"id": "M18RFGtdPJY", "name": "Ninga Nagareboshi Gin opening"}
+				, {"id": "M18RFGtdPJY", "name": "Ginga Nagareboshi Gin opening"}
+				, {"id": "MH-Lh5o67RE", "name": "Breathe Again", "attr": ["Carole & Tuesday"]}
 			]
 		}
 	},
@@ -4564,6 +4570,7 @@
 				{"id": "x1YywnNpPgY", "name": "Feel Special teaser", "attr": ["Twice/\ud2b8\uc640\uc774\uc2a4"]},
 				{"id": "IIsD7UV5XRQ", "name": "More & More", "attr": ["Twice"]},
 				{"id": "u13a5uo2L6Y", "name": "I Can't Stop Me", "attr": ["Twice"]}
+				, {"id": "fgjACQlZMT4", "name": "Alcohol-Free", "attr": ["Twice"], "tags": ["Triple", "Perfect"]}
 			]
 		},
 		"Babymetal":{
@@ -4696,6 +4703,7 @@
 				{"id": "e5x5JXd8TK8", "name": "Black Mamba", "attr": ["aespa/\uc5d0\uc2a4\ud30c"]},
 				{"id": "Nh7AsnBzimM", "name": "Rollin'/\ub864\ub9b0", "attr": ["Brave Girls/\ube0c\ub808\uc774\ube0c\uac78\uc2a4"]}
 				, {"id": "4sHfjOk_LLY", "name": "Love Bomb", "attr": ["fromis_9"]}
+				, {"id": "YwTovBuyaLc", "name": "We Go", "attr": ["fromis_9"], "tags": ["Perfect"]}
 			]
 		},
 		"Misc J-Pop":{
@@ -4952,6 +4960,7 @@
 				{"id": "fZiwyZyZw1k", "name": "Brotherman Bill", "attr": ["Terrible Tim"]},
 				{"id": "ftzastbOEmU", "name": "Break The Road", "attr": ["Diego Martinez", "Dream VS 4 Hunters Rematch"], "tags": ["Perfect"]},
 				{"id": "X719upB9_I4", "name": "EEEAAAOOO", "attr": ["Patricia Taxxon"]}
+				, {"id": "CsFTvKUw0g0", "name": "Trance Music for Racing Game"}
 			]
 		}
 	},
@@ -5017,6 +5026,7 @@
 				{"id": "BCJKsmjLoRc", "name": "Santa's Coming For Us", "attr": ["Sia"], "tags": ["Double"]},
 				{"id": "xF5peID-UAQ", "name": "In The Bleak Midwinter", "attr": ["Gustav Holst"], "tags": ["Adau"]},
 				{"id": "Q7TldVABzdE", "name": "Go Tell It On The Mountain", "attr": ["traditional"]}
+				, {"id": "dIUrB3ZmFyw", "name": "Sleigh Ride", "attr": ["Leroy Anderson"]}
 			]
 		},
 		"Halloween":{
@@ -5112,7 +5122,8 @@
 				{"id": "9W9-zzu_LHo", "name": "B\u0142ogos\u0142awieni Mi\u0142osierni (Krysiek Remix)", "attr": ["Hymn \u015aDM 2016"]},
 				{"id": "YtY7F2gpo8E", "name": "Samba De Janeiro", "attr": ["Bellini"]},
 				{"id": "sX2xiPevnFY", "name": "Havana", "attr": ["Camilla Cabello"]},
-				{"id": "K8ArGxGNbDc", "name": "Puedes Contar Conmigo", "attr": ["La Oreja De Van Gogh"]},
+				{"id": "K8ArGxGNbDc", "name": "Puedes Contar Conmigo", "attr": ["La Oreja De Van Gogh"]}
+				, {"id": "uGZHREfTXUw", "name": "Botella Tras Botella", "attr": ["Gera MX", "Christian Nodal"]},
 				{"id": "lkP3kqS6Uks", "name": "Pepsi Man theme song"},
 				{"id": "mDOBzu7fN_4", "name": "Ameno", "attr": ["ERA"], "tags": ["Perfect"]},
 				{"id": "IdYqWJg3JHQ", "name": "Chameleon", "attr": ["Herbie Hancock"]},
@@ -5198,7 +5209,8 @@
 				{"id": "O6RnpJBkFPk", "name": "Broodje Bakpao", "attr": ["The Opposites ft. Gers & Sef"]},
 				{"id": "uLnypoOiYvg", "name": "Gi\u00e0u V\u00ec B\u1ea1n, Sang V\u00ec V\u1ee3", "attr": ["Team Karik"]},
 				{"id": "x_77Is7WbO8", "name": "Discoteque", "attr": ["The Roop"]},
-				{"id": "wZjfdlVKSK8", "name": "D\u00e5 Som Nu F\u00f6r Alltid", "attr": ["Kent"], "tags": ["Perfect", "Sparse"]},
+				{"id": "wZjfdlVKSK8", "name": "D\u00e5 Som Nu F\u00f6r Alltid", "attr": ["Kent"], "tags": ["Perfect", "Sparse"]}
+				, {"id": "92NZTKNQcxg", "name": "VinterNoll2", "attr": ["Kent"], "tags": ["Perfect"]},
 				{"id": "nH9mDOBVOr4", "name": "Peach Plum Pear", "attr": ["Joanna Newsom"], "tags": ["Gamma"]},
 				{"id": "6nHXp_NBj5Y", "name": "help_urself", "attr": ["Ezekiel"]},
 				{"id": "kCli0kjdkEk", "name": "Rowing With One Hand", "attr": ["Ye Banished Privateers"]},
@@ -5206,6 +5218,8 @@
 				{"id": "lewUjjVX51M", "name": "Mister Softee Ice Cream Truck jingle", "tags": ["Beta"]}
 				, {"id": "sohIWFJbQgM", "name": "red crystal castles", "attr": ["sektorjazza"]}
 				, {"id": "k3_DXUZzKkA", "name": "Pique la baliene"}
+				, {"id": "v8F-TKFbPT0", "name": "#BrooklynBloodPop!", "attr": ["Syko"]}
+				, {"id": "lBXhEf4GV9Y", "name": "We Are One", "attr": ["Triarii"]}
 			]
 		}
 	}
