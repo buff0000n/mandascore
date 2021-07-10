@@ -547,7 +547,10 @@
 				{"id": "chiLI725JhE", "name": "Can You Feel My Heart", "attr": ["Bring Me The Horizon"]},
 				{"id": "0S24bO7pse0", "name": "Oh No", "attr": ["Bring Me The Horizon"], "tags": ["Perfect"]},
 				{"id": "m1Y8N9Zzwts", "name": "Ludens", "attr": ["Bring Me The Horizon"], "tags": ["Perfect"]},
-				{"id": "ewKJLV5I6ag", "name": "Avalanche", "attr": ["Bring Me The Horizon"], "tags": ["Perfect"]}
+				{"id": "ewKJLV5I6ag", "name": "Avalanche", "attr": ["Bring Me The Horizon"], "tags": ["Perfect"]},
+				{"id": "62oVai5poB0", "name": "Nihilist Blues", "attr": ["Bring Me The Horizon"]}
+				, {"id": "DDiCa97Ezug", "name": "Throne", "attr": ["Bring Me The Horizon"], "tags": ["Perfect"]}
+				, {"id": "aHb5w7mvAIo", "name": "Kingslayer", "attr": ["Bring Me The Horizon ft. Babymetal"]}
 			]
 		},
 		"Ministry":{
@@ -607,7 +610,8 @@
 				{"id": "AmUyV_48r6I", "name": "Syndrome", "attr": ["Deathstars"]},
 				{"id": "aOZ_jtqsuIE", "name": "I Don't Wanna Stop", "attr": ["Ozzy Osbourne"]},
 				{"id": "hGO_6d37ZkE", "name": "Mother", "attr": ["Danzig"]},
-				{"id": "OvCDA8EiDK0", "name": "Demon Cleaner", "attr": ["Kyuss"]},
+				{"id": "OvCDA8EiDK0", "name": "Demon Cleaner", "attr": ["Kyuss"]}
+				, {"id": "0rM1MPM80lY", "name": "Fatso Forgotso", "attr": ["Kyuss"], "tags": ["Perfect", "Druk"]},
 				{"id": "1BYVQvJIoIU", "name": "Shake Hands With Beef", "attr": ["Primus"], "tags": ["Druk"]},
 				{"id": "umHrzO9RRGw", "name": "Wings of a Butterfly", "attr": ["HIM"], "tags": ["Druk"]},
 				{"id": "xacHWi-BVlc", "name": "Surupuku", "attr": ["Timo Rautiainen & Trio Niskalaukaus"], "tags": ["Druk"]},
@@ -963,6 +967,7 @@
 				{"id": "e4jQwI4MpoY", "name": "bury a friend", "attr": ["Billie Eilish"]},
 				{"id": "Sj7ZdKfm8SM", "name": "bad guy", "attr": ["Billie Eilish"]},
 				{"id": "StZEoOrqkas", "name": "Bellyache", "attr": ["Billie Eilish"]}
+				, {"id": "fC4IOFo7qi0", "name": "NDA", "attr": ["Billie Eilish"], "tags": ["Perfect"]}
 			]
 		},
 		"AJR":{
@@ -1188,7 +1193,6 @@
 				{"id": "Up-O9JgsU9I", "name": "What's My Age Again", "attr": ["Blink-182"]},
 				{"id": "PmTPTvJeJGA", "name": "River", "attr": ["Bishop Briggs"], "tags": ["Perfect"]},
 				{"id": "kwm5JvHP5-Q", "name": "Somewhere In The Between", "attr": ["Streetlight Manifesto"]},
-				{"id": "62oVai5poB0", "name": "Nihilist Blues", "attr": ["Bring Me The Horizon"]},
 				{"id": "VzP22D5CWeY", "name": "You're Gonna Go Far, Kid", "attr": ["The Offspring"], "tags": ["Double", "Perfect"]},
 				{"id": "iur8aLSukDE", "name": "Afraid", "attr": ["The Neighborhood"], "tags": ["Perfect", "Gamma"]},
 				{"id": "CNsceaGFvXU", "name": "Not The Same", "attr": ["Bodyjar"]},
@@ -1284,6 +1288,7 @@
 				, {"id": "DhoPD0eqC9Y", "name": "I Must Be Dreaming", "attr": ["KNOWER"]}
 				, {"id": "ZV0lOUUKbw0", "name": "Cut out to be Clyde", "attr": ["The Peculiar Pretzelman"]}
 				, {"id": "Rt3X1dkxWPc", "name": "Like a Star", "attr": ["Mike Krol"], "tags": ["Perfect"]}
+				, {"id": "oAlVfPzot3c", "name": "Are We Having Fun Yet?", "attr": ["Sir Sly"]}
 			]
 		}
 	},
@@ -1863,7 +1868,8 @@
 				{"id": "vyDq90-Yb4I", "name": "All There", "attr": ["Jeezy"], "tags": ["Perfect"]},
 				{"id": "aZy51743OyI", "name": "happysad", "attr": ["GOLDN"]},
 				{"id": "v6oehrCKaS4", "name": "Baller", "attr": ["Osrin & Tom Martin"], "tags": ["Gamma"]},
-				{"id": "NiYhMsEGEsY", "name": "Pull Up", "attr": ["Lil Mosey"]},
+				{"id": "NiYhMsEGEsY", "name": "Pull Up", "attr": ["Lil Mosey"]}
+				, {"id": "nJ9Brcz1kd0", "name": "Holy Water", "attr": ["Lil Mosey"], "tags": ["Perfect"]},
 				{"id": "4dHxhadLgXU", "name": "No Brainer", "attr": ["DJ Khaled"], "tags": ["Perfect"]},
 				{"id": "tOsfkk3NE5Y", "name": "Get Down/God's Son", "attr": ["Nas"]},
 				{"id": "WulmZKrhF30", "name": "Start Over", "attr": ["Flame ft. NF"]},
@@ -3563,6 +3569,7 @@
 					, {"id": "j7H3ncXLGR4", "name": "Constant Moderato", "attr": ["Blue Archive"]}
 					, {"id": "zBqdi5tUPkQ", "name": "It Means Everything", "attr": ["OMORI"]}
 					, {"id": "LqlgSUrv6BM", "name": "Deathmatch", "attr": ["Spelunky"]}
+					, {"id": "4I2KkKQHGFk", "name": "Shenhua", "attr": ["Shenmue"]}
 				]
 			}
 		}
@@ -4124,6 +4131,7 @@
 				, {"id": "vbYArfUcWWc", "name": "Here", "attr": ["Junna", "Ancient Magus Bride opening"]}
 				, {"id": "M18RFGtdPJY", "name": "Ginga Nagareboshi Gin opening"}
 				, {"id": "MH-Lh5o67RE", "name": "Breathe Again", "attr": ["Carole & Tuesday"]}
+				, {"id": "M7KeBEGCjBI", "name": "\u3053\u306e\u5922\u304c\u9192\u3081\u308b\u307e\u3067", "attr": ["Mashiro no Oto ending", "\u52a0\u85e4\u30df\u30ea\u30e4 ft. Yoshida Brothers"]}
 			]
 		}
 	},
@@ -4704,6 +4712,7 @@
 				{"id": "Nh7AsnBzimM", "name": "Rollin'/\ub864\ub9b0", "attr": ["Brave Girls/\ube0c\ub808\uc774\ube0c\uac78\uc2a4"]}
 				, {"id": "4sHfjOk_LLY", "name": "Love Bomb", "attr": ["fromis_9"]}
 				, {"id": "YwTovBuyaLc", "name": "We Go", "attr": ["fromis_9"], "tags": ["Perfect"]}
+				, {"id": "9j7vFioEe_Q", "name": "Want", "attr": ["Taemin/\ud0dc\ubbfc"], "tags": ["Double", "Perfect"]}
 			]
 		},
 		"Misc J-Pop":{
