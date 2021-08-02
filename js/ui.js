@@ -351,7 +351,7 @@ class NoteAction extends Action {
 class PlaybackMarker {
     constructor() {
         this.measure = null;
-        this.time = -1;
+        this.time = -0.001;
         this.handleWidth = 10;
         this.buildUI();
     }
@@ -387,9 +387,11 @@ class PlaybackMarker {
             this.measure = measure;
             this.measure.timingContainer.appendChild(this.playbackBox);
             this.measure.timingContainer.appendChild(this.playbackHandle);
-Z        }
+        }
         this.playbackBox.style.left = (gridSizeX * 8) * time;
         this.playbackHandle.style.left = ((gridSizeX * 8) * time) - this.playbackHandleWidth;
+
+        this.time = time;
     }
 
     remove() {
@@ -751,12 +753,9 @@ class Measure {
     }
 
     setPlaybackMarkerTime(time) {
-        // absolutely position the marker
-        this.playbackMarker.setTime(this, -time);
-
         // re-initialize the playback time if it's wrapped around
         if (time < this.playbackMarker.time) {
-            this.playbackMarker.time = -0.1;
+            this.playbackMarker.time = -0.001;
         }
 
         // get the previous and current playback columns, 16 columns across a 2-second measure
@@ -806,8 +805,8 @@ class Measure {
 
     stopPlayback() {
         // clear playback state and UI
-        this.playbackMarker.remove();
-        this.playbackMarker = null;
+//        this.playbackMarker.remove();
+//        this.playbackMarker = null;
     }
 
     draw(context, imageMap, startX, startY, scale) {
@@ -1940,6 +1939,8 @@ class Playback {
 
         // hack flag to prevent moving to the next playlist entry immediately when starting
         this.hasPlayed = false;
+
+        this.marker = new PlaybackMarker();
     }
 
     playing() {
@@ -1997,6 +1998,7 @@ class Playback {
         if (this.lastMeasure != null) this.lastMeasure.stopPlayback();
         // remove the back-reference
         this.button.playback = null;
+        this.marker.remove();
     }
 
     playAudio(delay) {
@@ -2082,7 +2084,7 @@ class Playback {
             if (this.lastMeasure != null) this.lastMeasure.stopPlayback();
             // start playback on the new measure
             this.lastMeasure = measure;
-            measure.startPlaybackMarker();
+            measure.startPlaybackMarker(this.marker);
         }
         // set the measure's playback state
         measure.setPlaybackMarkerTime(this.currentTime % 2);
