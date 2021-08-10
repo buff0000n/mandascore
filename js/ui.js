@@ -11,47 +11,6 @@ function buildScore(container) {
     score.initBlank();
 }
 
-function measureMouseover() {
-    // forward a mouseover event to the measure's handler
-    var e = window.event;
-    var measure = e.currentTarget.measure;
-    measure.doMouseover();
-    // also consider this a mouse move event
-    measureMousemove();
-}
-
-function measureMousedown() {
-    measureMouseEvent(true);
-}
-
-function measureMousemove() {
-    measureMouseEvent(false);
-}
-
-function measureMouseEvent(click=false) {
-    // get the event and prevent default handling
-    var e = window.event;
-    e.preventDefault();
-    // get the target measure
-    var measure = e.currentTarget.measure;
-    // surprisingly hard to get the coordinates of the event in the target elements coordinate space
-    var targetRect = e.target.getBoundingClientRect();
-    var x = Math.round(e.clientX - targetRect.left);
-    var y = Math.round(e.clientY - targetRect.top);
-    // see if it's a drag event
-    var down = e.buttons != 0;
-    // call the measure's handler
-    measure.doMousemove(x, y, down, click);
-}
-
-function measureMouseout() {
-    // forward a mouseout event to the measure's handler
-    var e = window.event;
-    e.preventDefault();
-    var measure = e.currentTarget.measure;
-    measure.doMouseout();
-}
-
 function keyDown(e) {
     e = e || window.event;
     nodeName = e.target.nodeName;
@@ -348,57 +307,46 @@ class NoteAction extends Action {
 	}
 }
 
-class PlaybackMarker {
-    constructor() {
-        this.measure = null;
-        this.time = -0.001;
-        this.handleWidth = 10;
-        this.buildUI();
+var lastMTEvent = null;
+
+class MTEvent {
+	constructor(isTouch, currentTarget, clientX, clientY, altKey, shiftKey, ctrlKey) {
+		this.isTouch = isTouch;
+		this.currentTarget = currentTarget;
+		this.clientX = clientX;
+		this.clientY = clientY;
+		this.altKey = altKey;
+		this.shiftKey = shiftKey;
+		this.ctrlKey = ctrlKey;
+		lastMTEvent = this;
+	}
+}
+
+function mouseEventToMTEvent(e) {
+    return new MTEvent(false, e.currentTarget, e.clientX, e.clientY, e.altKey, e.shiftKey, e.ctrlKey || e.metaKey);
+}
+
+function touchEventToMTEvent(e) {
+    // this gets tricky because the first touch in the list may not necessarily be the first touch, and
+    // you can end multi-touch with a different touch than the one you started with
+    var primary = null;
+
+    if (e.touches.length > 0) {
+        // meh, just make the first one in the list the primary, no need to get fancy with multi-touch
+        primary = e.touches[1];
     }
 
-    buildUI() {
-        // just a thin div
-        this.playbackBox = document.createElement("div");
-        // absolutely positioned
-        this.playbackBox.className = "playbackBox";
-        this.playbackBox.style.width = "4px";
-        this.playbackBox.style.height = (gridSizeY * (13 + 1)) + "px";
-        this.playbackBox.style.left = 0;
-        this.playbackBox.style.top = 0;
+    if (primary) {
+        // we can generate an event, yay our team
+        this.lastTouchEvent = new MTEvent(true, primary.target, primary.clientX, primary.clientY, e.altKey, e.shiftKey)
+        return this.lastTouchEvent;
 
-        this.playbackHandle = document.createElement("div");
-        // absolutely positioned
-        this.playbackHandle.className = "playbackHandle";
-        this.playbackHandle.style.width = (4 + this.playbackHandleWidth*2) + "px";
-        this.playbackHandle.style.height = (gridSizeY * (13 + 1)) + "px";
-        this.playbackHandle.style.left = -this.playbackHandleWidth;
-        this.playbackHandle.style.top = 0;
-        // back-references
-        this.playbackBox.timingBar = this;
-        this.playbackHandle.timingBar = this;
-    }
+    } else if (this.lastTouchEvent != null) {
+        // If a touch ends then we need to look at last event to know where the touch was when it ended
+        return this.lastTouchEvent;
 
-    setTime(measure, time) {
-        if (measure != this.measure) {
-            if (this.measure != null) {
-                this.playbackBox.remove();
-                this.playbackHandle.remove();
-            }
-            this.measure = measure;
-            this.measure.timingContainer.appendChild(this.playbackBox);
-            this.measure.timingContainer.appendChild(this.playbackHandle);
-        }
-        this.playbackBox.style.left = (gridSizeX * 8) * time;
-        this.playbackHandle.style.left = ((gridSizeX * 8) * time) - this.playbackHandleWidth;
-
-        this.time = time;
-    }
-
-    remove() {
-        this.playbackBox.remove();
-        this.playbackHandle.remove();
-        this.playbackBox = null;
-        this.playbackHandle = null;
+    } else {
+        console.log("bogus touch event");
     }
 }
 
@@ -490,16 +438,85 @@ class Measure {
         this.gridImg.className = "measureImg";
         this.gridImg.style.left = 0;
         this.gridImg.style.top = 0;
-        // we need all the mouse listeners
-        this.gridImg.onmouseover = measureMouseover;
-        this.gridImg.onmousemove = measureMousemove;
-        this.gridImg.onmousedown = measureMousedown;
-        this.gridImg.onmouseout = measureMouseout;
         // todo: which of these back-references do we actually need?
         this.gridImg.measure = this;
         this.imgContainer.appendChild(this.gridImg);
+
+        this.resetListeners();
+    }
+
+    resetListeners() {
+        // we need all the mouse listeners
+        this.gridImg.onmouseover = (e) => { this.measureMouseover(e); };
+        this.gridImg.onmousemove = (e) => { this.measureMousemove(e); };
+        this.gridImg.onmousedown = (e) => { this.measureMousedown(e); };
+        this.gridImg.onmouseup = null;
+        this.gridImg.onmouseout = (e) => { this.measureMouseout(e); };
+        this.gridImg.ontouchmove = null;
+        this.gridImg.ontouchend = null;
+
+        this.timingContainer.onmouseover = null;
+        this.timingContainer.onmousemove = null;
+        this.timingContainer.onmousedown = (e) => { this.startDrag(e); };
+        this.timingContainer.onmouseup = null;
+        this.timingContainer.onmouseout = null;
+        this.timingContainer.ontouchmove = null;
+        this.timingContainer.ontouchend = null;
     }
     
+    setupDragListeners(playbackMarker) {
+        // we need all the mouse listeners
+        this.gridImg.onmouseover = (e) => { playbackMarker.mouseMove(e, this); this.measureMouseover(e, false); };
+        this.gridImg.onmousemove = (e) => { playbackMarker.mouseMove(e, this); this.measureMousemove(e, false); };
+        this.gridImg.onmousedown = null ; // shouldn't happen (e) => { playbackMarker.mouseMove(e, this) };
+        this.gridImg.onmouseup = (e) => { playbackMarker.mouseUp(e, this) };
+        this.gridImg.onmouseout = (e) => { this.measureMouseout(e); };
+        this.gridImg.ontouchmove = (e) => { playbackMarker.touchMove(e, this) };
+        this.gridImg.ontouchend = (e) => { playbackMarker.touchEnd(e, this) };
+
+        this.timingContainer.onmouseover = (e) => { playbackMarker.mouseMove(e, this) };
+        this.timingContainer.onmousemove = (e) => { playbackMarker.mouseMove(e, this) };
+        this.timingContainer.onmousedown = (e) => { playbackMarker.mouseMove(e, this) };
+        this.timingContainer.onmouseup = (e) => { playbackMarker.mouseUp(e, this) };
+        this.timingContainer.onmouseout = null;
+        this.timingContainer.ontouchmove = (e) => { playbackMarker.touchMove(e, this) };
+        this.timingContainer.ontouchend = (e) => { playbackMarker.touchEnd(e, this) };
+    }
+
+    disableListeners() {
+        // keep just the hover stuff
+        this.gridImg.onmouseover = (e) => { this.measureMouseover(e, false); };
+        this.gridImg.onmousemove = (e) => { this.measureMousemove(e, false); };
+        this.gridImg.onmousedown = (e) => null;
+        this.gridImg.onmouseup = null;
+        this.gridImg.onmouseout = (e) => { this.measureMouseout(e); };
+        this.gridImg.ontouchmove = null;
+        this.gridImg.ontouchend = null;
+
+        this.timingContainer.onmouseover = null;
+        this.timingContainer.onmousemove = null;
+        this.timingContainer.onmousedown = null;
+        this.timingContainer.onmouseup = null;
+        this.timingContainer.onmouseout = null;
+        this.timingContainer.ontouchmove = null;
+        this.timingContainer.ontouchend = null;
+    }
+
+    startDrag(e) {
+        var marker = this.score.getPlaybackMarker();
+        marker.startDrag(e, this);
+    }
+
+    disableDrag() {
+        this.timingContainer.onmousedown = null;
+        this.timingContainer.className = "timingContainer_disabled";
+    }
+
+    enableDrag() {
+        this.timingContainer.onmousedown = (e) => { this.startDrag(e); };
+        this.timingContainer.className = "timingContainer";
+    }
+
     setMeasureNotes(mnotes) {
         // load note info from an external source
         for (var t = 0; t < 16; t++) {
@@ -553,6 +570,40 @@ class Measure {
             var m = sectionMetaData[section];
             if (!m.all && row >= m.rowStart && row <= m.rowStop) return section;
         }
+    }
+
+    measureMouseover(e, writeNotes = true) {
+        this.doMouseover();
+        // also consider this a mouse move event
+        this.measureMousemove(e, writeNotes);
+    }
+
+    measureMousedown(e) {
+        this.measureMouseEvent(e, true);
+    }
+
+    measureMousemove(e, writeNotes = true) {
+        this.measureMouseEvent(e, false, writeNotes);
+    }
+
+    measureMouseEvent(e, click, writeNotes) {
+        e.preventDefault();
+        // surprisingly hard to get the coordinates of the event in the target elements coordinate space
+        var targetRect = e.target.getBoundingClientRect();
+        var x = Math.round(e.clientX - targetRect.left);
+        var y = Math.round(e.clientY - targetRect.top);
+        // see if it's a drag event
+        var down = writeNotes && e.buttons != 0;
+        // call the measure's handler
+        this.doMousemove(x, y, down, click);
+    }
+
+    measureMouseout() {
+        // forward a mouseout event to the measure's handler
+        var e = window.event;
+        e.preventDefault();
+        var measure = e.currentTarget.measure;
+        measure.doMouseout();
     }
 
     doMouseover() {
@@ -747,35 +798,36 @@ class Measure {
     }
 
     startPlaybackMarker(playbackMarker) {
-        // initialize the playback marker to just before the start
         this.playbackMarker = playbackMarker;
-        this.playbackMarker.setTime(this, -0.1);
     }
 
-    setPlaybackMarkerTime(time) {
-        // re-initialize the playback time if it's wrapped around
-        if (time < this.playbackMarker.time) {
-            this.playbackMarker.time = -0.001;
-        }
-
+    setPlaybackMarkerTime(time, bumpFirst=false) {
         // get the previous and current playback columns, 16 columns across a 2-second measure
         var oldT = Math.floor(this.playbackMarker.time * 8.0);
         var newT = Math.floor(time * 8.0);
 
+        if (newT - oldT > 4) {
+            console.log("WHE");
+        }
+
         // loop from oldT + 1 to newT, if they are the same then this loops zero times,
         // if we've moved forward one frame then this runs once
         // if we've somehow missed a few frames then this catches us up.
-        for (var t = oldT + 1; t <= newT; t++) {
-            for (var r = 0; r < 13; r++) {
-                // only bounce the note if it's enable and its section's audio is enabled
-                if (this.notes[t][r].enabled && this.score.soundPlayer.isEnabled(r)) {
-                    this.notes[t][r].bounce();
-                }
-            }
+        for (var t = oldT + (bumpFirst ? 0 : 1); t <= newT; t++) {
+            this.bounceTime(t);
         }
 
         // update state
         this.playbackMarker.setTime(this, time);
+    }
+
+    bounceTime(t) {
+        for (var r = 0; r < 13; r++) {
+            // only bounce the note if it's enable and its section's audio is enabled
+            if (this.notes[t][r].enabled && this.score.soundPlayer.isEnabled(r)) {
+                this.notes[t][r].bounce();
+            }
+        }
     }
 
     playAudioForTime(t, delay) {
@@ -1512,7 +1564,7 @@ class Score {
                 <input id="undoButton" class="button undoButton" type="submit" disabled value="Undo" onClick="doUndo()"/>
                 <input id="redoButton" class="button redoButton" type="submit" disabled value="Redo" onClick="doRedo()"/>
                 <input class="button clearButton" type="submit" value="Clear" onClick="clearButton(this)"/>
-                <input class="button playButton" type="submit" value="Play" onClick="playButton(this)"/>
+                <input id="mainPlayButton" class="button playButton" type="submit" value="Play" onClick="playButton(this)"/>
             </div>
         `;
 
@@ -1772,6 +1824,13 @@ class Score {
         return this.playback != null && this.playback.playing();
     }
 
+    getPlaybackMarker() {
+        if (!this.playback) {
+            this.playback = new Playback(this, document.getElementById("mainPlayButton"), this.measures);
+        }
+        return this.playback.marker;
+    }
+
     generatePng(linkDiv, display) {
         // let's just always use create a hi-res version
         var hidpi = true;
@@ -1903,6 +1962,170 @@ class WrapAction extends Action {
 	}
 }
 
+class PlaybackMarker {
+    constructor(playback) {
+        this.playback = playback;
+        this.measure = null;
+        this.time = -0.001;
+        this.playbackHandleWidth = 10;
+        this.buildUI();
+    }
+
+    buildUI() {
+        // just a thin div
+        this.playbackBox = document.createElement("div");
+        // absolutely positioned
+        this.playbackBox.className = "playbackBox";
+        this.playbackBox.style.width = "4px";
+        this.playbackBox.style.height = (gridSizeY * (13 + 1)) + "px";
+        this.playbackBox.style.left = 0;
+        this.playbackBox.style.top = 0;
+
+        this.playbackHandle = document.createElement("div");
+        // absolutely positioned
+        this.playbackHandle.className = "playbackHandle";
+        this.playbackHandle.style.width = (4 + this.playbackHandleWidth*2) + "px";
+        this.playbackHandle.style.height = (gridSizeY * (13 + 1)) + "px";
+        this.playbackHandle.style.left = -this.playbackHandleWidth;
+        this.playbackHandle.style.top = 0;
+        // back-references
+        this.playbackBox.marker = this;
+        this.playbackHandle.marker = this;
+
+
+    }
+
+    setTime(measure, time) {
+        if (measure != this.measure) {
+            if (this.measure != null) {
+                this.playbackBox.remove();
+                this.playbackHandle.remove();
+            }
+            this.measure = measure;
+            this.measure.timingContainer.appendChild(this.playbackBox);
+            this.measure.timingContainer.appendChild(this.playbackHandle);
+        }
+        this.playbackBox.style.left = (gridSizeX * 8) * time;
+        this.playbackHandle.style.left = ((gridSizeX * 8) * time) - this.playbackHandleWidth;
+
+        this.time = time;
+    }
+
+    remove() {
+        this.playbackBox.remove();
+        this.playbackHandle.remove();
+        this.playbackBox = null;
+        this.playbackHandle = null;
+    }
+
+    startDrag(e, measure) {
+        for (var m = 0; m < this.playback.measures.length; m++) {
+            var measure2 = this.playback.measures[m];
+            measure2.setupDragListeners(this);
+        }
+
+        var others = this.playback.getNonPlayingMeasures();
+        for (var m = 0; m < others.length; m++) {
+            others[m].disableListeners();
+        }
+
+        document.onmousemove = (e) => { e.preventDefault(); };
+        document.onmouseup = (e) => { e.preventDefault(); this.dropEvent(e); };
+
+        if (this.playback.playing()) {
+            this.didStop = true;
+            this.playback.stop();
+        } else {
+            this.didStop = false;
+        }
+
+        // immediately move the marker
+        this.dragEvent(e, measure);
+    }
+
+    mouseMove(e, measure) {
+        e = e || window.event;
+        e.preventDefault();
+
+        this.dragEvent(mouseEventToMTEvent(e), measure);
+    }
+
+    mouseUp(e, measure) {
+        e = e || window.event;
+        e.preventDefault();
+
+        this.dropEvent(mouseEventToMTEvent(e), measure);
+    }
+
+    touchMove(e, measure) {
+        e = e || window.event;
+        e.preventDefault();
+
+        if (e.touches.length == 1) {
+            // just one touch, treat like a mouse drag
+            this.dragEvent(touchEventToMTEvent(e), measure);
+        }
+    }
+
+    touchEnd(e, measure) {
+        e = e || window.event;
+        e.preventDefault();
+
+        if (e.touches.length == 0) {
+            // treat like a mouse up, touchEventToMTEvent() will need to refer to our last touch event to get the point
+            // at which the touch ended
+            this.dropEvent(touchEventToMTEvent(e), measure);
+//            // clear out any lingering touch state
+//            lastTouchEvent = null;
+//            lastTouchIdentifier = -1;
+        }
+    }
+
+    dragEvent(e, measure) {
+        var targetRect = e.currentTarget.getBoundingClientRect();
+        var x = Math.round(e.clientX - targetRect.left);
+
+        // time in seconds, 16 grid spaces/2 seconds per measure
+        var t = x / (gridSizeX * 8);
+
+        // for some reason the timing bar gets events from outside the measure when
+        // it's split into multiple lines
+        if (t < 0) t = 0;
+        else if (t > 2) t = 2;
+
+        this.playback.stop();
+        // preset the marker time so the measure doesn't try to bump all the intervening notes if you
+        // move it forward inside the same measure
+        this.time = t;
+        measure.startPlaybackMarker(this);
+        measure.setPlaybackMarkerTime(t);
+    }
+
+    dropEvent(e) {
+        console.log("DROP");
+
+        for (var m = 0; m < this.playback.score.measures.length; m++) {
+            var measure = this.playback.score.measures[m];
+            measure.resetListeners();
+        }
+
+        var others = this.playback.getNonPlayingMeasures();
+        for (var m = 0; m < others.length; m++) {
+            others[m].resetListeners();
+            others[m].disableDrag();
+        }
+
+        document.onmousemove = null;
+        document.onmouseup = null;
+
+        this.playback.setTime(this.measure.number * 2 + this.time);
+
+        if (this.didStop) {
+            this.playback.start();
+        }
+    }
+}
+
 // playback marker animation speed
 var tickms = 15;
 
@@ -1931,16 +2154,39 @@ class Playback {
         // current time within the loop
         this.currentTime = 0.0;
         // current time column
-        this.currentT = -2;
+        this.currentT = 0;
         // sound play column currently scheduled
-        this.playT = -1;
+        this.playT = 0;
         // the last measure we set playback state on
         this.lastMeasure = null;
 
         // hack flag to prevent moving to the next playlist entry immediately when starting
         this.hasPlayed = false;
+        // flag to prevent an extra tick after being stopped
+        this.stopped = false;
 
-        this.marker = new PlaybackMarker();
+        // marker reference
+        this.marker = new PlaybackMarker(this);
+
+        // disable dragging on any measure not in the list
+        var others = this.getNonPlayingMeasures();
+        for (var m = 0; m < others.length; m++) {
+            others[m].disableDrag();
+        }
+    }
+
+    getNonPlayingMeasures() {
+        if (this.measures.length == this.score.measures.length) {
+            return Array();
+        }
+        var others = Array();
+        for (var m = 0; m < this.score.measures.length; m++) {
+            var measure = this.score.measures[m];
+            if (!this.measures.includes(measure)) {
+                others.push(measure);
+            }
+        }
+        return others;
     }
 
     playing() {
@@ -1978,6 +2224,23 @@ class Playback {
 
         // change the Stop button to a Play button
         this.button.value = "Play";
+
+        // set a flag
+        this.stopped = true;
+    }
+
+    setTime(t) {
+        var time = getTime() / 1000;
+        // time zero for the current iteration of the loop
+        this.startTime = time = t;
+        // current time within the loop, prevent dragging beyond the end of the currently playing measures
+        this.currentTime = t >= this.runTime ? 0 : t;
+        // current time column
+        this.currentT = Math.floor(this.currentTime * 8);
+        // sound play column currently scheduled, set to the next time segment
+        this.playT = (this.currentT + 1) % this.runT;
+        // have to reset the last measure to prevent weirdness
+        this.lastMeasure = this.measures[Math.floor(this.currentTime / 2.0)];
     }
 
     toggle() {
@@ -1999,6 +2262,12 @@ class Playback {
         // remove the back-reference
         this.button.playback = null;
         this.marker.remove();
+
+        // re-enable dragging on any measure not in the list
+        var others = this.getNonPlayingMeasures();
+        for (var m = 0; m < others.length; m++) {
+            others[m].enableDrag();
+        }
     }
 
     playAudio(delay) {
@@ -2019,11 +2288,20 @@ class Playback {
     }
 
     tick(start=false) {
+        // check for stopped, we don't want an extra tick
+        if (!start && this.stopped) {
+            return;
+        }
+        // reset the flag
+        this.stopped = false;
+
         // schedule the next tick right away, so we get as close to the specified animation speed as possible
         this.animTimeout = setTimeout(() => { this.tick() }, tickms);
 
         // get the current time in seconds
         var time = getTime() / 1000;
+
+        var measureWrapped = false;
 
         // console.log("tick at " + time + ", currentT=" + this.currentT + ", playT=" + this.playT);
 
@@ -2054,6 +2332,9 @@ class Playback {
                 this.currentTime -= this.runTime;
                 // move the start time up by one loop
                 this.startTime += this.runTime;
+                // set the flag
+                measureWrapped = true;
+                console.log("wrapped: " + this.currentTime);
             }
             // calcluate the current time column
             this.currentT = Math.floor(this.currentTime * 8);
@@ -2084,10 +2365,26 @@ class Playback {
             if (this.lastMeasure != null) this.lastMeasure.stopPlayback();
             // start playback on the new measure
             this.lastMeasure = measure;
+            // initialize the playback marker to just before the start
+            this.marker.setTime(measure, 0);
             measure.startPlaybackMarker(this.marker);
+            measureWrapped = true;
+                console.log("wrapped: " + this.currentTime);
         }
+        // determining when to bounce the first column of notes in a measure is tricky
+        // force the bounce if we're starting playback at the exact beginning of a measure,
+        var forceBounce = (this.currentTime % 2 == 0 && start)
+            // or if we're in the first column and have just wrapped around to a new measure
+            // or the beginning of the same measure
+            || ((this.currentTime % 2) < (1 / 8) && measureWrapped);
+
+        if (forceBounce) {
+            // still pretty hacky I guess, but not as much as before
+            this.marker.time = 0;
+        }
+
         // set the measure's playback state
-        measure.setPlaybackMarkerTime(this.currentTime % 2);
+        measure.setPlaybackMarkerTime(this.currentTime % 2, forceBounce);
     }
 
 }
