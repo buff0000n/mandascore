@@ -227,6 +227,14 @@
         padding: 0 0 0 2ex;
     }
 
+    .measureTimingContainer {
+        padding: 0;
+        margin: 0;
+        border: 0;
+        position: relative;
+        display: block;
+    }
+
     .measureImgContainer {
         padding: 0;
         margin: 0;
@@ -238,19 +246,15 @@
         padding: 0;
         margin: 0;
         border: 0;
-        background-color: red;
         position: relative;
         display: block;
-        cursor: pointer;
     }
 
     .timingContainer {
-        background-color: red;
         cursor: pointer;
     }
 
     .timingContainer_disabled {
-        background-color: black;
         cursor: default;
     }
 
@@ -273,8 +277,6 @@
         margin: 0;
         padding: 0;
         z-index: 5;
-        /* todo: remove */
-        background-color: #00ff0080;
     }
 
     .playbackBox {
@@ -285,7 +287,6 @@
 
     .playbackHandle {
         cursor: pointer;
-        /*background-color: #00ff00;*/
         z-index: 6;
     }
 

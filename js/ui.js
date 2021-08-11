@@ -179,6 +179,7 @@ class Note {
 
         // note state
         this.enabled = false;
+        this.noteShown = false;
         this.hover = false;
         this.timeHover = false;
 
@@ -208,7 +209,7 @@ class Note {
             this.img = null;
         }
 
-        // create the nore image
+        // create the note image
         this.img = createNoteImage(baseName);
         // let the measure add it in the right place
         this.measure.addImage(this.img, this.time, this.row);
@@ -217,19 +218,27 @@ class Note {
     updateState() {
         if (this.enabled) {
             // if the note is enabled then that image takes precedence
-            this.setImg(imgNote[this.row]);
-
-        } else if (this.hover) {
-            // if the note has the mouse hovering over it then that's the next precedence
-            this.setImg(imgNoteHover[this.row]);
-
-        } else if (this.timeHover) {
-            // if the mouse is hovering over the same time column as the note then that's the last precedence
-            this.setImg(imgNoteColHover[this.row]);
-
+            // only update the image once, so we don't interfere with bounce()
+            if (!this.noteShown) {
+                this.setImg(imgNote[this.row]);
+                // set the flag
+                this.noteShown = true;
+            }
         } else {
-            // otherwise there's note image to display
-            this.setImg(null);
+            // unset the flag
+            this.noteShown = false;
+            if (this.hover) {
+                // if the note has the mouse hovering over it then that's the next precedence
+                this.setImg(imgNoteHover[this.row]);
+
+            } else if (this.timeHover) {
+                // if the mouse is hovering over the same time column as the note then that's the last precedence
+                this.setImg(imgNoteColHover[this.row]);
+
+            } else {
+                // otherwise there's note image to display
+                this.setImg(null);
+            }
         }
     }
 
@@ -279,6 +288,8 @@ class Note {
         this.img.remove();
         this.img = img2;
         this.measure.addImage(this.img, this.time, this.row);
+        // make sure update() doesn't blow away the bounce animation before it starts
+        this.noteShown = true;
     }
 
     toString() {
@@ -308,11 +319,13 @@ class NoteAction extends Action {
 }
 
 var lastMTEvent = null;
+var lastTouchEvent = null;
 
 class MTEvent {
 	constructor(isTouch, currentTarget, clientX, clientY, altKey, shiftKey, ctrlKey) {
 		this.isTouch = isTouch;
 		this.currentTarget = currentTarget;
+		this.target = currentTarget;
 		this.clientX = clientX;
 		this.clientY = clientY;
 		this.altKey = altKey;
@@ -322,11 +335,11 @@ class MTEvent {
 	}
 }
 
-function mouseEventToMTEvent(e) {
-    return new MTEvent(false, e.currentTarget, e.clientX, e.clientY, e.altKey, e.shiftKey, e.ctrlKey || e.metaKey);
+function mouseEventToMTEvent(e, overrideTarget=null) {
+    return new MTEvent(false, overrideTarget ? overrideTarget : e.currentTarget, e.clientX, e.clientY, e.altKey, e.shiftKey, e.ctrlKey || e.metaKey);
 }
 
-function touchEventToMTEvent(e) {
+function touchEventToMTEvent(e, overrideTarget=null) {
     // this gets tricky because the first touch in the list may not necessarily be the first touch, and
     // you can end multi-touch with a different touch than the one you started with
     var primary = null;
@@ -338,12 +351,12 @@ function touchEventToMTEvent(e) {
 
     if (primary) {
         // we can generate an event, yay our team
-        this.lastTouchEvent = new MTEvent(true, primary.target, primary.clientX, primary.clientY, e.altKey, e.shiftKey)
-        return this.lastTouchEvent;
+        lastTouchEvent = new MTEvent(true, overrideTarget ? overrideTarget : primary.target, primary.clientX, primary.clientY, e.altKey, e.shiftKey)
+        return lastTouchEvent;
 
-    } else if (this.lastTouchEvent != null) {
+    } else if (lastTouchEvent != null) {
         // If a touch ends then we need to look at last event to know where the touch was when it ended
-        return this.lastTouchEvent;
+        return lastTouchEvent;
 
     } else {
         console.log("bogus touch event");
@@ -413,14 +426,22 @@ class Measure {
         `;
         this.container.appendChild(this.buttons);
 
+        // we need something that contains the timing bar, playback marker, and measure image
+        this.measureTimingContainer = document.createElement("div");
+        this.measureTimingContainer.className = "measureTimingContainer";
+        this.measureTimingContainer.style.width = (gridSizeX * 16) + "px";
+        this.measureTimingContainer.style.height = (gridSizeY * 14) + "px";
+        this.container.appendChild(this.measureTimingContainer);
+
         // container for the timing bar
         this.timingContainer = document.createElement("div");
         this.timingContainer.className = "timingContainer";
         this.timingContainer.style.width = (gridSizeX * 16) + "px";
         this.timingContainer.style.height = (gridSizeY) + "px";
+        this.timingContainer.innerHTML = `<img src="img/timingbar.png" srcset="img2x/timingbar.png 2x"/>`;
         // back-reference
         this.timingContainer.measure = this;
-        this.container.appendChild(this.timingContainer);
+        this.measureTimingContainer.appendChild(this.timingContainer);
 
         // container for the background image and all note images
         this.imgContainer = document.createElement("div");
@@ -430,7 +451,7 @@ class Measure {
         this.imgContainer.style.height = (gridSizeY * 13) + "px";
         // back-reference
         this.imgContainer.measure = this;
-        this.container.appendChild(this.imgContainer);
+        this.measureTimingContainer.appendChild(this.imgContainer);
 
         // create the background grid image
         this.gridImg = createNoteImage(imgGrid[this.number]);
@@ -510,11 +531,13 @@ class Measure {
     disableDrag() {
         this.timingContainer.onmousedown = null;
         this.timingContainer.className = "timingContainer_disabled";
+        this.timingContainer.innerHTML = `<img src="img/timingbar-disabled.png" srcset="img2x/timingbar-disabled.png 2x" width="352" height="25"/>`;
     }
 
     enableDrag() {
         this.timingContainer.onmousedown = (e) => { this.startDrag(e); };
         this.timingContainer.className = "timingContainer";
+        this.timingContainer.innerHTML = `<img src="img/timingbar.png" srcset="img2x/timingbar.png 2x" width="352" height="25"/>`;
     }
 
     setMeasureNotes(mnotes) {
@@ -1969,6 +1992,8 @@ class PlaybackMarker {
         this.time = -0.001;
         this.playbackHandleWidth = 10;
         this.buildUI();
+        this.lastMeasure = null;
+        this.lastTick = null;
     }
 
     buildUI() {
@@ -1992,7 +2017,20 @@ class PlaybackMarker {
         this.playbackBox.marker = this;
         this.playbackHandle.marker = this;
 
+        this.enableHandleDrag();
+    }
 
+    enableHandleDrag() {
+        this.playbackHandle.onmousedown = (e) => { this.startDrag(mouseEventToMTEvent(e, this.lastMeasure.timingContainer), this.lastMeasure); };
+        this.playbackBox.style.pointerEvents = "auto";
+        this.playbackHandle.style.pointerEvents = "auto";
+    }
+
+    disableHandleDrag() {
+        // disable this event handling entirely and let the underlying measure and timing bar handle the drag events
+        this.playbackHandle.onmousedown = null;
+        this.playbackBox.style.pointerEvents = "none";
+        this.playbackHandle.style.pointerEvents = "none";
     }
 
     setTime(measure, time) {
@@ -2002,13 +2040,14 @@ class PlaybackMarker {
                 this.playbackHandle.remove();
             }
             this.measure = measure;
-            this.measure.timingContainer.appendChild(this.playbackBox);
-            this.measure.timingContainer.appendChild(this.playbackHandle);
+            this.measure.measureTimingContainer.appendChild(this.playbackBox);
+            this.measure.measureTimingContainer.appendChild(this.playbackHandle);
         }
         this.playbackBox.style.left = (gridSizeX * 8) * time;
         this.playbackHandle.style.left = ((gridSizeX * 8) * time) - this.playbackHandleWidth;
 
         this.time = time;
+        this.lastMeasure = measure;
     }
 
     remove() {
@@ -2038,6 +2077,13 @@ class PlaybackMarker {
         } else {
             this.didStop = false;
         }
+
+        this.lastMeasure = null;
+        this.lastTick = null;
+
+        // need to disable the handle event listener because we want it to fall through to the timing bar and measure
+        // listeners
+        this.disableHandleDrag();
 
         // immediately move the marker
         this.dragEvent(e, measure);
@@ -2099,11 +2145,20 @@ class PlaybackMarker {
         this.time = t;
         measure.startPlaybackMarker(this);
         measure.setPlaybackMarkerTime(t);
+
+        var tick = Math.floor(t * 8);
+
+        if (measure != this.lastMeasure || tick != this.lastTick) {
+            if (tick >= 0 && tick < 16) {
+                measure.bounceTime(tick);
+                measure.playAudioForTime(tick);
+            }
+            this.lastMeasure = measure;
+            this.lastTick = tick;
+        }
     }
 
     dropEvent(e) {
-        console.log("DROP");
-
         for (var m = 0; m < this.playback.score.measures.length; m++) {
             var measure = this.playback.score.measures[m];
             measure.resetListeners();
@@ -2123,6 +2178,8 @@ class PlaybackMarker {
         if (this.didStop) {
             this.playback.start();
         }
+
+        this.enableHandleDrag();
     }
 }
 
@@ -2334,7 +2391,6 @@ class Playback {
                 this.startTime += this.runTime;
                 // set the flag
                 measureWrapped = true;
-                console.log("wrapped: " + this.currentTime);
             }
             // calcluate the current time column
             this.currentT = Math.floor(this.currentTime * 8);
@@ -2369,7 +2425,6 @@ class Playback {
             this.marker.setTime(measure, 0);
             measure.startPlaybackMarker(this.marker);
             measureWrapped = true;
-                console.log("wrapped: " + this.currentTime);
         }
         // determining when to bounce the first column of notes in a measure is tricky
         // force the bounce if we're starting playback at the exact beginning of a measure,
