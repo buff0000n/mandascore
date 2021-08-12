@@ -318,6 +318,7 @@ class NoteAction extends Action {
 	}
 }
 
+// combined mouse/touch event handling
 var lastMTEvent = null;
 var lastTouchEvent = null;
 
@@ -483,7 +484,7 @@ class Measure {
     }
 
     resetListeners() {
-        // we need all the mouse listeners
+        // default listener state, ready to enter notes or start dragging the playback marker
         this.gridImg.onmouseover = (e) => { this.measureMouseover(e); };
         this.gridImg.onmousemove = (e) => { this.measureMousemove(e); };
         this.gridImg.onmousedown = (e) => { this.measureMousedown(e); }; // touch event default click handler calls this
@@ -496,7 +497,7 @@ class Measure {
     }
     
     setupDragListeners(playbackMarker) {
-        // we need all the mouse listeners
+        // listener state when dragging the playback marker, still hover but don't enter notes
         this.gridImg.onmouseover = (e) => { this.measureMouseover(e, false); };
         this.gridImg.onmousemove = (e) => { this.measureMousemove(e, false); };
         this.gridImg.onmousedown = null ; // shouldn't happen (e) => { playbackMarker.mouseMove(e, this) };
@@ -507,7 +508,8 @@ class Measure {
     }
 
     disableListeners() {
-        // keep just the hover stuff
+        // listener state when dragging the playback marker and not an actively playing measure
+        // still hover but don't enter notes
         this.gridImg.onmouseover = (e) => { this.measureMouseover(e, false); };
         this.gridImg.onmousemove = (e) => { this.measureMousemove(e, false); };
         this.gridImg.onmousedown = (e) => null;
@@ -520,7 +522,9 @@ class Measure {
     }
 
     startDrag(e) {
+        // get or create a playback marker
         var marker = this.score.getPlaybackMarker();
+        // start dragging
         marker.startDrag(e, this);
     }
 
@@ -830,10 +834,6 @@ class Measure {
         var oldT = Math.floor(this.playbackMarker.time * 8.0);
         var newT = Math.floor(time * 8.0);
 
-        if (newT - oldT > 4) {
-            console.log("WHE");
-        }
-
         // loop from oldT + 1 to newT, if they are the same then this loops zero times,
         // if we've moved forward one frame then this runs once
         // if we've somehow missed a few frames then this catches us up.
@@ -879,15 +879,16 @@ class Measure {
         }
     }
 
-    stopPlayback() {
-        // clear playback state and UI
-//        this.playbackMarker.remove();
-//        this.playbackMarker = null;
-    }
-
     draw(context, imageMap, startX, startY, scale) {
         // set the start x coordinate based on which measure this is
         startX = startX + (gridSizeX * 16) * this.number;
+
+        // draw the timing bar
+        context.drawImage(imageMap["timingbar"], startX * scale, startY * scale);
+
+        // move down under the timing bar
+        startY = startY + gridSizeY;
+
         // draw the background grid image for the correct measure
         context.drawImage(imageMap["m" + this.number], startX * scale, startY * scale);
 
@@ -1849,9 +1850,11 @@ class Score {
     }
 
     getPlaybackMarker() {
+        // start playback if there isn't one active
         if (!this.playback) {
             this.playback = new Playback(this, document.getElementById("mainPlayButton"), this.measures);
         }
+        // get the marker
         return this.playback.marker;
     }
 
@@ -1871,7 +1874,8 @@ class Score {
             "nm": createNoteImagePath(imgNote[8], hidpi),
             "perc": createNoteImagePath(sectionImages["perc"], hidpi),
             "bass": createNoteImagePath(sectionImages["bass"], hidpi),
-            "mel": createNoteImagePath(sectionImages["mel"], hidpi)
+            "mel": createNoteImagePath(sectionImages["mel"], hidpi),
+            "timingbar": createNoteImagePath("timingBar-disabled", hidpi)
         },
         // provide a call-back to draw the PNG once the images are loaded
         (imageMap) => this.doGeneratePng(imageMap, hidpi, linkDiv)
@@ -1897,7 +1901,7 @@ class Score {
             + (fontSize * 2)
             + margin
             + (sectionHeight * 3)
-            + (gridSizeY * 13)
+            + (gridSizeY * 14)
             + fontSize
             + margin
         ) * scale;
@@ -1934,7 +1938,7 @@ class Score {
         context.font = (fontSize * scale) + "px Arial";
         context.textAlign = "right";
         context.fillStyle = "#808080";
-        context.fillText("buff0000n.github.io/mandascore", (margin + (gridSizeX * 64)) * scale, (startY + (gridSizeY * 13) + fontSize + (margin / 2)) * scale);
+        context.fillText("buff0000n.github.io/mandascore", (margin + (gridSizeX * 64)) * scale, (startY + (gridSizeY * 14) + fontSize + (margin / 2)) * scale);
 
         var link = convertToPngLink(canvas, this.title);
         linkDiv.innerHTML = "";
@@ -1986,15 +1990,25 @@ class WrapAction extends Action {
 	}
 }
 
+// encapsulate the playback marker in its own class
 class PlaybackMarker {
     constructor(playback) {
+        // playback object back reference
         this.playback = playback;
+
+        // measure and last measure
+        // todo: do we need lastMeasure?
         this.measure = null;
-        this.time = -0.001;
-        this.playbackHandleWidth = 10;
-        this.buildUI();
         this.lastMeasure = null;
+
+        // last location
         this.lastTick = null;
+        this.time = 0;
+
+        // width of the grabbable area
+        this.playbackHandleWidth = 10;
+        // build the UI
+        this.buildUI();
     }
 
     buildUI() {
@@ -2007,6 +2021,7 @@ class PlaybackMarker {
         this.playbackBox.style.left = 0;
         this.playbackBox.style.top = 0;
 
+        // grab handle is an invisible div
         this.playbackHandle = document.createElement("div");
         // absolutely positioned
         this.playbackHandle.className = "playbackHandle";
@@ -2024,6 +2039,7 @@ class PlaybackMarker {
     }
 
     setTime(measure, time) {
+        // move to the new measure, if necessary
         if (measure != this.measure) {
             if (this.measure != null) {
                 this.playbackBox.remove();
@@ -2033,14 +2049,17 @@ class PlaybackMarker {
             this.measure.measureTimingContainer.appendChild(this.playbackBox);
             this.measure.measureTimingContainer.appendChild(this.playbackHandle);
         }
+        // set position
         this.playbackBox.style.left = (gridSizeX * 8) * time;
         this.playbackHandle.style.left = ((gridSizeX * 8) * time) - this.playbackHandleWidth;
 
+        // save time and measure
         this.time = time;
         this.lastMeasure = measure;
     }
 
     remove() {
+        // clean up
         this.playbackBox.remove();
         this.playbackHandle.remove();
         this.playbackBox = null;
@@ -2048,21 +2067,27 @@ class PlaybackMarker {
     }
 
     startDrag(e, measure) {
+        // setup all actively playing measure for dragging
         for (var m = 0; m < this.playback.measures.length; m++) {
             var measure2 = this.playback.measures[m];
             measure2.setupDragListeners(this);
         }
 
+        // disable dragging on any non-active measures
         var others = this.playback.getNonPlayingMeasures();
         for (var m = 0; m < others.length; m++) {
             others[m].disableListeners();
         }
 
+        // set up drag listeners on the document itself
+        // touch events down work across DOM elements unless you go all the way
+        // to the document level
         document.onmousemove = (e2) => { this.dragEvent(mouseEventToMTEvent(e2)); };
         document.onmouseup = (e2) => { this.dropEvent(mouseEventToMTEvent(e2)); };
         document.ontouchmove = (e2) => { this.dragEvent(touchEventToMTEvent(e2)); };
         document.ontouchend = (e2) => { this.dropEvent(touchEventToMTEvent(e2)); };
 
+        // stop playback if it's gurrently playing
         if (this.playback.playing()) {
             this.didStop = true;
             this.playback.stop();
@@ -2070,6 +2095,7 @@ class PlaybackMarker {
             this.didStop = false;
         }
 
+        // clear last position
         this.lastMeasure = null;
         this.lastTick = null;
 
@@ -2082,7 +2108,6 @@ class PlaybackMarker {
 
         // for touch events our only option is to run in the global document listener and then calculate what
         // element we're over top of
-
         var element = document.elementFromPoint(e.clientX, e.clientY);
         var timingContainer = getParent(element, "measureTimingContainer");
         if (!timingContainer) {
@@ -2095,7 +2120,9 @@ class PlaybackMarker {
             return;
         }
 
+        // get the relevant measure
         var measure = timingContainer.measure;
+        // calcuate the drag position inside the measure
         var targetRect = timingContainer.getBoundingClientRect();
         var x = Math.round(e.clientX - targetRect.left);
 
@@ -2107,20 +2134,29 @@ class PlaybackMarker {
         if (t < 0) t = 0;
         else if (t > 2) t = 2;
 
+        // make sure the playback is stopped
+        // todo: necessary?
         this.playback.stop();
-        // preset the marker time so the measure doesn't try to bump all the intervening notes if you
+
+        // pre-set the marker time so the measure doesn't try to bump all the intervening notes if you
         // move it forward inside the same measure
         this.time = t;
         measure.startPlaybackMarker(this);
         measure.setPlaybackMarkerTime(t);
 
+        // get the current tick
         var tick = Math.floor(t * 8);
 
+        // if we've moved to a new tick
         if (measure != this.lastMeasure || tick != this.lastTick) {
+            // sanity check, we can get 16 here if it's dragged to the exact end of a measure
             if (tick >= 0 && tick < 16) {
+                // bounce the notes at this tick
                 measure.bounceTime(tick);
+                // and play them
                 measure.playAudioForTime(tick);
             }
+            // save the position for next time
             this.lastMeasure = measure;
             this.lastTick = tick;
         }
@@ -2129,24 +2165,30 @@ class PlaybackMarker {
     dropEvent(e) {
         this.dragEvent(e);
 
+        // reset any listeners on actively playing measures that were
+        // set up for dragging
         for (var m = 0; m < this.playback.score.measures.length; m++) {
             var measure = this.playback.score.measures[m];
             measure.resetListeners();
         }
 
+        // reset any listeners on non-active measures
         var others = this.playback.getNonPlayingMeasures();
         for (var m = 0; m < others.length; m++) {
             others[m].resetListeners();
             others[m].disableDrag();
         }
 
+        // clear drag listeners
         document.onmousemove = null;
         document.onmouseup = null;
         document.ontouchmove = null;
         document.ontouchend = null;
 
+        // commit the playback time
         this.playback.setTime(this.measure.number * 2 + this.time);
 
+        // if we had to pause playback for the drag process then restart it again
         if (this.didStop) {
             this.playback.start();
         }
@@ -2203,9 +2245,11 @@ class Playback {
     }
 
     getNonPlayingMeasures() {
+        // check f it's just all measures
         if (this.measures.length == this.score.measures.length) {
             return Array();
         }
+        // pull out score measures that are not the playvak measure list
         var others = Array();
         for (var m = 0; m < this.score.measures.length; m++) {
             var measure = this.score.measures[m];
@@ -2257,8 +2301,10 @@ class Playback {
     }
 
     setTime(t) {
+        // explicitly set playback time
+        // get the current time
         var time = getTime() / 1000;
-        // time zero for the current iteration of the loop
+        // retroactively set time zero for the current iteration of the loop
         this.startTime = time = t;
         // current time within the loop, prevent dragging beyond the end of the currently playing measures
         this.currentTime = t >= this.runTime ? 0 : t;
@@ -2284,8 +2330,6 @@ class Playback {
     kill() {
         // stop playing
         this.stop();
-        // clean up measure playback marker
-        if (this.lastMeasure != null) this.lastMeasure.stopPlayback();
         // remove the back-reference
         this.button.playback = null;
         this.marker.remove();
@@ -2328,6 +2372,7 @@ class Playback {
         // get the current time in seconds
         var time = getTime() / 1000;
 
+        // flag to keep track of whether we wrapped to the beginning of a measure
         var measureWrapped = false;
 
         // console.log("tick at " + time + ", currentT=" + this.currentT + ", playT=" + this.playT);
@@ -2387,8 +2432,6 @@ class Playback {
         var measure = this.measures[measureIndex];
         // if we've moved to a different measure
         if (measure != this.lastMeasure) {
-            // clear the last measure's playback state, if any
-            if (this.lastMeasure != null) this.lastMeasure.stopPlayback();
             // start playback on the new measure
             this.lastMeasure = measure;
             // initialize the playback marker to just before the start
