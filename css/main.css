@@ -133,6 +133,25 @@
 	    color: #FFFFFF;
     }
 
+    /* debug bar formatting */
+    #debugBar {
+	    text-align: center;
+    }
+    #debug {
+        background-color: #0000B0;
+	    font-weight: bold;
+	    text-align: left;
+	    color: #FFFFFF;
+        margin: 1ex;
+        padding: 1ex;
+        border-radius: 1ex;
+        display: inline-block;
+    }
+    .debugLine {
+	    font-weight: bold;
+	    color: #FFFFFF;
+    }
+
     /* measure formatting */
 
     .measureBlock {
@@ -227,12 +246,35 @@
         padding: 0 0 0 2ex;
     }
 
+    .measureTimingContainer {
+        padding: 0;
+        margin: 0;
+        border: 0;
+        position: relative;
+        display: block;
+    }
+
     .measureImgContainer {
         padding: 0;
         margin: 0;
         border: 0;
         position: relative;
-        display: inline-block;
+        display: block;
+    }
+    .timingContainer, .timingContainer_disabled {
+        padding: 0;
+        margin: 0;
+        border: 0;
+        position: relative;
+        display: block;
+    }
+
+    .timingContainer {
+        cursor: pointer;
+    }
+
+    .timingContainer_disabled {
+        cursor: default;
     }
 
     .measureImg {
@@ -249,13 +291,22 @@
         z-index: 4;
     }
 
-    .playbackBox {
+    .playbackBox, .playbackHandle {
         position: absolute;
         margin: 0;
         padding: 0;
+        z-index: 5;
+    }
+
+    .playbackBox {
         pointer-events: none;
         background-color: #ffffff;
         z-index: 5;
+    }
+
+    .playbackHandle {
+        cursor: pointer;
+        z-index: 6;
     }
 
     @keyframes noteBounce {

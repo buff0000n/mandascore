@@ -11,47 +11,6 @@ function buildScore(container) {
     score.initBlank();
 }
 
-function measureMouseover() {
-    // forward a mouseover event to the measure's handler
-    var e = window.event;
-    var measure = e.currentTarget.measure;
-    measure.doMouseover();
-    // also consider this a mouse move event
-    measureMousemove();
-}
-
-function measureMousedown() {
-    measureMouseEvent(true);
-}
-
-function measureMousemove() {
-    measureMouseEvent(false);
-}
-
-function measureMouseEvent(click=false) {
-    // get the event and prevent default handling
-    var e = window.event;
-    e.preventDefault();
-    // get the target measure
-    var measure = e.currentTarget.measure;
-    // surprisingly hard to get the coordinates of the event in the target elements coordinate space
-    var targetRect = e.target.getBoundingClientRect();
-    var x = Math.round(e.clientX - targetRect.left);
-    var y = Math.round(e.clientY - targetRect.top);
-    // see if it's a drag event
-    var down = e.buttons != 0;
-    // call the measure's handler
-    measure.doMousemove(x, y, down, click);
-}
-
-function measureMouseout() {
-    // forward a mouseout event to the measure's handler
-    var e = window.event;
-    e.preventDefault();
-    var measure = e.currentTarget.measure;
-    measure.doMouseout();
-}
-
 function keyDown(e) {
     e = e || window.event;
     nodeName = e.target.nodeName;
@@ -220,6 +179,7 @@ class Note {
 
         // note state
         this.enabled = false;
+        this.noteShown = false;
         this.hover = false;
         this.timeHover = false;
 
@@ -249,7 +209,7 @@ class Note {
             this.img = null;
         }
 
-        // create the nore image
+        // create the note image
         this.img = createNoteImage(baseName);
         // let the measure add it in the right place
         this.measure.addImage(this.img, this.time, this.row);
@@ -258,19 +218,27 @@ class Note {
     updateState() {
         if (this.enabled) {
             // if the note is enabled then that image takes precedence
-            this.setImg(imgNote[this.row]);
-
-        } else if (this.hover) {
-            // if the note has the mouse hovering over it then that's the next precedence
-            this.setImg(imgNoteHover[this.row]);
-
-        } else if (this.timeHover) {
-            // if the mouse is hovering over the same time column as the note then that's the last precedence
-            this.setImg(imgNoteColHover[this.row]);
-
+            // only update the image once, so we don't interfere with bounce()
+            if (!this.noteShown) {
+                this.setImg(imgNote[this.row]);
+                // set the flag
+                this.noteShown = true;
+            }
         } else {
-            // otherwise there's note image to display
-            this.setImg(null);
+            // unset the flag
+            this.noteShown = false;
+            if (this.hover) {
+                // if the note has the mouse hovering over it then that's the next precedence
+                this.setImg(imgNoteHover[this.row]);
+
+            } else if (this.timeHover) {
+                // if the mouse is hovering over the same time column as the note then that's the last precedence
+                this.setImg(imgNoteColHover[this.row]);
+
+            } else {
+                // otherwise there's note image to display
+                this.setImg(null);
+            }
         }
     }
 
@@ -320,6 +288,8 @@ class Note {
         this.img.remove();
         this.img = img2;
         this.measure.addImage(this.img, this.time, this.row);
+        // make sure update() doesn't blow away the bounce animation before it starts
+        this.noteShown = true;
     }
 
     toString() {
@@ -346,6 +316,65 @@ class NoteAction extends Action {
 	toString() {
 	    return (this.enabled? "Enable " : "Disable ") + " note " + this.note.toString();
 	}
+}
+
+// combined mouse/touch event handling
+var lastMTEvent = null;
+var lastTouchEvent = null;
+
+class MTEvent {
+	constructor(original, isTouch, currentTarget, clientX, clientY, altKey, shiftKey, ctrlKey, buttons) {
+	    this.original = original;
+		this.isTouch = isTouch;
+		this.currentTarget = currentTarget;
+		this.target = currentTarget;
+		this.clientX = clientX;
+		this.clientY = clientY;
+		this.altKey = altKey;
+		this.shiftKey = shiftKey;
+		this.ctrlKey = ctrlKey;
+		this.buttons = buttons;
+		lastMTEvent = this;
+	}
+
+	preventDefault() {
+        this.original.preventDefault();
+	}
+}
+
+function mouseEventToMTEvent(e, overrideTarget=null) {
+    return new MTEvent(e, false,
+        overrideTarget ? overrideTarget : e.currentTarget,
+        e.clientX, e.clientY,
+        e.altKey, e.shiftKey, e.ctrlKey || e.metaKey,
+        e.buttons);
+}
+
+function touchEventToMTEvent(e, overrideTarget=null) {
+    // this gets tricky because the first touch in the list may not necessarily be the first touch, and
+    // you can end multi-touch with a different touch than the one you started with
+    var primary = null;
+
+    if (e.touches.length > 0) {
+        // meh, just make the first one in the list the primary, no need to get fancy with multi-touch
+        primary = e.touches[0];
+    }
+
+    if (primary) {
+        // we can generate an event, yay our team
+        lastTouchEvent = new MTEvent(e, true,
+            overrideTarget ? overrideTarget : primary.target,
+            primary.clientX, primary.clientY,
+            e.altKey, e.shiftKey, e.touches.length);
+        return lastTouchEvent;
+
+    } else if (lastTouchEvent != null) {
+        // If a touch ends then we need to look at last event to know where the touch was when it ended
+        return lastTouchEvent;
+
+    } else {
+        console.log("bogus touch event");
+    }
 }
 
 // object for handling the state/display of a measure, there will be four of these
@@ -385,8 +414,7 @@ class Measure {
         this.hoveredRow = -1;
         
         // playback state
-        this.playbackTime = -1;
-        this.playbackBox = null;
+        this.timingBar = null;
     }
 
     buildUI() {
@@ -412,6 +440,26 @@ class Measure {
         `;
         this.container.appendChild(this.buttons);
 
+        // we need something that contains the timing bar, playback marker, and measure image
+        this.measureTimingContainer = document.createElement("div");
+        this.measureTimingContainer.className = "measureTimingContainer";
+        this.measureTimingContainer.style.width = (gridSizeX * 16) + "px";
+        this.measureTimingContainer.style.height = (gridSizeY * 14) + "px";
+        // this back-reference is used by the drag handler
+        this.measureTimingContainer.measure = this;
+        this.measureTimingContainer.disabled = false;
+        this.container.appendChild(this.measureTimingContainer);
+
+        // container for the timing bar
+        this.timingContainer = document.createElement("div");
+        this.timingContainer.className = "timingContainer";
+        this.timingContainer.style.width = (gridSizeX * 16) + "px";
+        this.timingContainer.style.height = (gridSizeY) + "px";
+        this.timingContainer.innerHTML = `<img src="img/timingbar.png" srcset="img2x/timingbar.png 2x"/>`;
+        // back-reference
+        this.timingContainer.measure = this;
+        this.measureTimingContainer.appendChild(this.timingContainer);
+
         // container for the background image and all note images
         this.imgContainer = document.createElement("div");
         this.imgContainer.className = "measureImgContainer";
@@ -420,7 +468,7 @@ class Measure {
         this.imgContainer.style.height = (gridSizeY * 13) + "px";
         // back-reference
         this.imgContainer.measure = this;
-        this.container.appendChild(this.imgContainer);
+        this.measureTimingContainer.appendChild(this.imgContainer);
 
         // create the background grid image
         this.gridImg = createNoteImage(imgGrid[this.number]);
@@ -428,16 +476,75 @@ class Measure {
         this.gridImg.className = "measureImg";
         this.gridImg.style.left = 0;
         this.gridImg.style.top = 0;
-        // we need all the mouse listeners
-        this.gridImg.onmouseover = measureMouseover;
-        this.gridImg.onmousemove = measureMousemove;
-        this.gridImg.onmousedown = measureMousedown;
-        this.gridImg.onmouseout = measureMouseout;
         // todo: which of these back-references do we actually need?
         this.gridImg.measure = this;
         this.imgContainer.appendChild(this.gridImg);
+
+        this.resetListeners();
+    }
+
+    resetListeners() {
+        // default listener state, ready to enter notes or start dragging the playback marker
+        this.gridImg.onmouseover = (e) => { this.measureMouseover(e); };
+        this.gridImg.onmousemove = (e) => { this.measureMousemove(e); };
+        this.gridImg.onmousedown = (e) => { this.measureMousedown(e); }; // touch event default click handler calls this
+        this.gridImg.onmouseout = (e) => { this.measureMouseout(e); };
+
+        this.timingContainer.onmousedown = (e) => { this.startDrag(mouseEventToMTEvent(e)); };
+        this.timingContainer.ontouchstart = (e) => { this.startDrag(touchEventToMTEvent(e)); };
+
+        this.measureTimingContainer.disabled = false;
     }
     
+    setupDragListeners(playbackMarker) {
+        // listener state when dragging the playback marker, still hover but don't enter notes
+        this.gridImg.onmouseover = (e) => { this.measureMouseover(e, false); };
+        this.gridImg.onmousemove = (e) => { this.measureMousemove(e, false); };
+        this.gridImg.onmousedown = null ; // shouldn't happen (e) => { playbackMarker.mouseMove(e, this) };
+        this.gridImg.onmouseout = (e) => { this.measureMouseout(e); };
+
+        this.timingContainer.onmousedown = null;
+        this.timingContainer.ontouchstart = null;
+    }
+
+    disableListeners() {
+        // listener state when dragging the playback marker and not an actively playing measure
+        // still hover but don't enter notes
+        this.gridImg.onmouseover = (e) => { this.measureMouseover(e, false); };
+        this.gridImg.onmousemove = (e) => { this.measureMousemove(e, false); };
+        this.gridImg.onmousedown = (e) => null;
+        this.gridImg.onmouseout = (e) => { this.measureMouseout(e); };
+
+        this.timingContainer.onmousedown = null;
+        this.timingContainer.ontouchstart = null;
+
+        this.measureTimingContainer.disabled = true;
+    }
+
+    startDrag(e) {
+        // get or create a playback marker
+        var marker = this.score.getPlaybackMarker();
+        // start dragging
+        marker.startDrag(e, this);
+    }
+
+    disableDrag() {
+        // prevent any event handling on the timing bar
+        this.timingContainer.onmousedown = (e) => { e.preventDefault(); };
+        this.timingContainer.ontouchstart = (e) => { e.preventDefault(); };
+        // switch image
+        this.timingContainer.className = "timingContainer_disabled";
+        this.timingContainer.innerHTML = `<img src="img/timingbar-disabled.png" srcset="img2x/timingbar-disabled.png 2x" width="352" height="25"/>`;
+    }
+
+    enableDrag() {
+        this.timingContainer.onmousedown = (e) => { this.startDrag(mouseEventToMTEvent(e)); };
+        this.timingContainer.ontouchstart = (e) => { this.startDrag(touchEventToMTEvent(e)); };
+        // switch image
+        this.timingContainer.className = "timingContainer";
+        this.timingContainer.innerHTML = `<img src="img/timingbar.png" srcset="img2x/timingbar.png 2x" width="352" height="25"/>`;
+    }
+
     setMeasureNotes(mnotes) {
         // load note info from an external source
         for (var t = 0; t < 16; t++) {
@@ -491,6 +598,40 @@ class Measure {
             var m = sectionMetaData[section];
             if (!m.all && row >= m.rowStart && row <= m.rowStop) return section;
         }
+    }
+
+    measureMouseover(e, writeNotes = true) {
+        this.doMouseover();
+        // also consider this a mouse move event
+        this.measureMousemove(e, writeNotes);
+    }
+
+    measureMousedown(e) {
+        this.measureMouseEvent(e, true);
+    }
+
+    measureMousemove(e, writeNotes = true) {
+        this.measureMouseEvent(e, false, writeNotes);
+    }
+
+    measureMouseEvent(e, click, writeNotes) {
+        e.preventDefault();
+        // surprisingly hard to get the coordinates of the event in the target elements coordinate space
+        var targetRect = e.target.getBoundingClientRect();
+        var x = Math.round(e.clientX - targetRect.left);
+        var y = Math.round(e.clientY - targetRect.top);
+        // see if it's a drag event
+        var down = writeNotes && e.buttons != 0;
+        // call the measure's handler
+        this.doMousemove(x, y, down, click);
+    }
+
+    measureMouseout() {
+        // forward a mouseout event to the measure's handler
+        var e = window.event;
+        e.preventDefault();
+        var measure = e.currentTarget.measure;
+        measure.doMouseout();
     }
 
     doMouseover() {
@@ -684,53 +825,33 @@ class Measure {
         this.score.doPlayback(button, [this], restart);
     }
 
-    startPlaybackMarker() {
-        // initialize the playback marker to just before the start
-        this.playbackTime = -0.1;
-
-        // create the marker if it's not present
-        if (this.playbackBox == null) {
-            // just a thin div
-            this.playbackBox = document.createElement("div");
-            // absolutely positioned
-            this.playbackBox.className = "playbackBox";
-            this.playbackBox.style.width = "4px";
-            this.playbackBox.style.height = (gridSizeY * 13) + "px";
-            this.playbackBox.style.left = 0;
-            this.playbackBox.style.top = 0;
-            // back-reference
-            this.playbackBox.measure = this;
-            this.imgContainer.appendChild(this.playbackBox);
-        }
+    startPlaybackMarker(playbackMarker) {
+        this.playbackMarker = playbackMarker;
     }
 
-    setPlaybackMarkerTime(time) {
-        // absolutely position the marker
-        this.playbackBox.style.left = (gridSizeX * 8) * time;
-
-        // re-initialize the playback time if it's wrapped around
-        if (time < this.playbackTime) {
-            this.playbackTime = -0.1;
-        }
-
+    setPlaybackMarkerTime(time, bumpFirst=false) {
         // get the previous and current playback columns, 16 columns across a 2-second measure
-        var oldT = Math.floor(this.playbackTime * 8.0);
+        var oldT = Math.floor(this.playbackMarker.time * 8.0);
         var newT = Math.floor(time * 8.0);
 
         // loop from oldT + 1 to newT, if they are the same then this loops zero times,
         // if we've moved forward one frame then this runs once
         // if we've somehow missed a few frames then this catches us up.
-        for (var t = oldT + 1; t <= newT; t++) {
-            for (var r = 0; r < 13; r++) {
-                // only bounce the note if it's enable and its section's audio is enabled
-                if (this.notes[t][r].enabled && this.score.soundPlayer.isEnabled(r)) {
-                    this.notes[t][r].bounce();
-                }
-            }
+        for (var t = oldT + (bumpFirst ? 0 : 1); t <= newT; t++) {
+            this.bounceTime(t);
         }
 
         // update state
-        this.playbackTime = time;
+        this.playbackMarker.setTime(this, time);
+    }
+
+    bounceTime(t) {
+        for (var r = 0; r < 13; r++) {
+            // only bounce the note if it's enable and its section's audio is enabled
+            if (this.notes[t][r].enabled && this.score.soundPlayer.isEnabled(r)) {
+                this.notes[t][r].bounce();
+            }
+        }
     }
 
     playAudioForTime(t, delay) {
@@ -758,16 +879,16 @@ class Measure {
         }
     }
 
-    stopPlayback() {
-        // clear playback state and UI
-        this.playbackTime = -1;
-        this.playbackBox.remove();
-        this.playbackBox = null;
-    }
-
     draw(context, imageMap, startX, startY, scale) {
         // set the start x coordinate based on which measure this is
         startX = startX + (gridSizeX * 16) * this.number;
+
+        // draw the timing bar
+        context.drawImage(imageMap["timingbar"], startX * scale, startY * scale);
+
+        // move down under the timing bar
+        startY = startY + gridSizeY;
+
         // draw the background grid image for the correct measure
         context.drawImage(imageMap["m" + this.number], startX * scale, startY * scale);
 
@@ -1468,7 +1589,7 @@ class Score {
                 <input id="undoButton" class="button undoButton" type="submit" disabled value="Undo" onClick="doUndo()"/>
                 <input id="redoButton" class="button redoButton" type="submit" disabled value="Redo" onClick="doRedo()"/>
                 <input class="button clearButton" type="submit" value="Clear" onClick="clearButton(this)"/>
-                <input class="button playButton" type="submit" value="Play" onClick="playButton(this)"/>
+                <input id="mainPlayButton" class="button playButton" type="submit" value="Play" onClick="playButton(this)"/>
             </div>
         `;
 
@@ -1728,6 +1849,15 @@ class Score {
         return this.playback != null && this.playback.playing();
     }
 
+    getPlaybackMarker() {
+        // start playback if there isn't one active
+        if (!this.playback) {
+            this.playback = new Playback(this, document.getElementById("mainPlayButton"), this.measures);
+        }
+        // get the marker
+        return this.playback.marker;
+    }
+
     generatePng(linkDiv, display) {
         // let's just always use create a hi-res version
         var hidpi = true;
@@ -1744,7 +1874,8 @@ class Score {
             "nm": createNoteImagePath(imgNote[8], hidpi),
             "perc": createNoteImagePath(sectionImages["perc"], hidpi),
             "bass": createNoteImagePath(sectionImages["bass"], hidpi),
-            "mel": createNoteImagePath(sectionImages["mel"], hidpi)
+            "mel": createNoteImagePath(sectionImages["mel"], hidpi),
+            "timingbar": createNoteImagePath("timingBar-disabled", hidpi)
         },
         // provide a call-back to draw the PNG once the images are loaded
         (imageMap) => this.doGeneratePng(imageMap, hidpi, linkDiv)
@@ -1770,7 +1901,7 @@ class Score {
             + (fontSize * 2)
             + margin
             + (sectionHeight * 3)
-            + (gridSizeY * 13)
+            + (gridSizeY * 14)
             + fontSize
             + margin
         ) * scale;
@@ -1807,752 +1938,11 @@ class Score {
         context.font = (fontSize * scale) + "px Arial";
         context.textAlign = "right";
         context.fillStyle = "#808080";
-        context.fillText("buff0000n.github.io/mandascore", (margin + (gridSizeX * 64)) * scale, (startY + (gridSizeY * 13) + fontSize + (margin / 2)) * scale);
+        context.fillText("buff0000n.github.io/mandascore", (margin + (gridSizeX * 64)) * scale, (startY + (gridSizeY * 14) + fontSize + (margin / 2)) * scale);
 
         var link = convertToPngLink(canvas, this.title);
         linkDiv.innerHTML = "";
         linkDiv.appendChild(link);
-    }
-}
-
-class Mixer {
-    constructor(score) {
-        // back reference to the score
-        this.score = score;
-
-        // build the UI
-        this.buildUI();
-    }
-
-    buildUI() {
-        // main container
-        this.mixerBox = document.createElement("div");
-        this.mixerBox.className = "mixerBox";
-        this.mixerBox.id = "mixerBox";
-        // back reference because why not
-        this.mixerBox.mixer = this;
-
-        this.container = this.mixerBox;
-
-        // button container
-        this.buttons = document.createElement("div");
-        this.buttons.className = "scoreButtonContainer";
-        // back-reference
-        this.buttons.score = this;
-        // build the buttons in a single row
-        this.buttons.innerHTML = `
-            <div class="scoreButtonRow">
-                <input class="titleButton" type="submit" value="Mixer"/>
-                <input class="button resetButton" type="submit" value="Reset"/>
-            </div>
-        `;
-        this.container.appendChild(this.buttons);
-
-        // hook up events
-        getFirstChild(this.container, "resetButton").addEventListener("click", () => { this.resetMixerButton() });
-        getFirstChild(this.container, "titleButton").addEventListener("click", () => { this.hide() });
-
-        // table fon containing the mixer list
-        var table = document.createElement("table");
-
-        // build a row slider
-        this.masterSlider = new MixerSlider(this, true, null, null, true);
-
-        // build the beginning of the mixer row
-        var tr = document.createElement("tr");
-        tr.className = "sectionRow";
-        tr.innerHTML = `<td style="text-align:right">Master</td><td/>`;
-
-        // add the slider and toggle
-        this.masterSlider.buildUI(tr);
-        // add the mixer row to the table
-        table.appendChild(tr);
-
-        // build the mixer UI for each section
-        for (var name in this.score.sections) {
-            this.score.sections[name].buildMixerUI(table);
-        }
-
-        // add the table to a scrollable container div
-        var tableDiv = document.createElement("div");
-        tableDiv.className = "mixerlistScollArea";
-        tableDiv.appendChild(table);
-
-        // add mixer list to container
-        this.container.appendChild(tableDiv);
-    }
-
-    init() {
-        // nothing to init
-    }
-
-    hide() {
-        toggleMixer(getFirstChild(this.container, "titleButton"));
-    }
-
-    resetMixerButton(e) {
-        // chrome thing
-        getFirstChild(this.container, "resetButton").blur();
-        this.resetMixer();
-    }
-
-    resetMixer() {
-        // reset each section
-        for (name in this.score.sections) {
-            this.score.sections[name].resetMixer();
-        }
-    }
-
-    mixerVolumeChange(isMixer, row, value, commit, secondary=false) {
-        // only called by the master slider
-        this.score.soundPlayer.setMasterVolume(value);
-    }
-
-
-    export() {
-        // moxer config code header
-        var string = "[Mixer";
-        var first = true;
-        var hasAdjustments = false;
-        // go over the sections
-        for (name in this.score.sections) {
-            // section delimiter
-            string += ":";
-            // get the section's config string
-            var sectionString = this.score.sections[name].exportMixer();
-            // add to the mixer config
-            string += sectionString;
-            // check if there actually was any section mixer config
-            if (sectionString.length > 0) {
-                hasAdjustments = true;
-            }
-        }
-
-        // if all sections are at default values then we don't need a mixer config at all
-        if (!hasAdjustments) {
-            return "";
-
-        } else {
-            // add the footer and return the config string
-            string += "]";
-            return string;
-        }
-    }
-
-    isMixerExportString(string) {
-        // check an import line for the mixer config format
-        return string.startsWith("[Mixer:") && string.endsWith("]");
-    }
-
-    import(string) {
-        // format check
-        if (!this.isMixerExportString(string)) {
-            throw "Invalid mixer format";
-        }
-        // extract the inside of the config and split by the section delimiter
-        var importSections = string.slice(7, -1).split(":");
-        // format check
-        // It's surprisingly hard to get the size of an associative array.
-        if (importSections.length != Object.getOwnPropertyNames(this.score.sections).length) {
-            throw "Invalid mixer format";
-        }
-
-        // iterate over the sections and config strings
-        var i = 0;
-        for (name in this.score.sections) {
-            // import mixer config into the section
-            this.score.sections[name].importMixer(importSections[i]);
-            i++;
-        }
-    }
-}
-
-function clearPlaylist(button) {
-    // chrome is doing strange things with clicked buttons so just unfocus it
-    button.blur();
-
-    // clear all menus
-    clearMenus();
-    // create a div and set some properties
-    var div = document.createElement("div");
-    div.className = "menu";
-    div.button = button;
-
-    // build the section menu out of buttons
-    var html = "";
-    html += `<input class="button" type="submit" value="Clear Playlist" onClick="reallyClearPlaylist(this)"/>`;
-    html += `<input class="button" type="submit" value="Cancel" onClick="clearMenus()"/>`;
-    div.innerHTML = html;
-
-    // put the menu in the clicked button's parent and anchor it to button
-    showMenu(div, getParent(button, "scoreButtonRow"), button);
-}
-
-function reallyClearPlaylist(button) {
-   // chrome is doing strange things with clicked buttons so just unfocus it
-    button.blur();
-
-    // need to get this before clearing menus
-    var playlist = getParent(button, "playlistBox").playlist;
-
-    // clear all menus
-    clearMenus();
-
-    // clear the playlist
-    playlist.clear();
-}
-
-function loopPlaylist(button) {
-    // chrome is doing strange things with clicked buttons so just unfocus it
-    button.blur();
-    var playlist = getParent(button, "playlistBox").playlist;
-
-    playlist.toggleLoop(button);
-}
-
-function addToPlaylist(button) {
-    // chrome is doing strange things with clicked buttons so just unfocus it
-    button.blur();
-    var playlist = getParent(button, "playlistBox").playlist;
-    playlist.add();
-}
-
-function editPlaylistSaveButton(e) {
-    editPlaylistSave(e.target);
-}
-
-function editPlaylistSave(button) {
-    var textarea = getFirstChild(getParent(button, "playlistBox"), "playlistEditArea");
-    if (textarea.exp != textarea.value) {
-        textarea.playlist.import(textarea.value);
-    }
-    clearMenus();
-    clearErrors();
-}
-
-function editPlaylist(button) {
-    // chrome is doing strange things with clicked buttons so just unfocus it
-    button.blur();
-    var playlist = getParent(button, "playlistBox").playlist;
-
-    // clear all menus
-    clearMenus();
-    // create a div and set some properties
-    var div = document.createElement("div");
-    div.className = "menu";
-    div.button = button;
-//    div.callback = callback
-
-    // build the section menu out of buttons
-    var textArea = document.createElement("textarea");
-    textArea.className = "playlistEditArea";
-    textArea.rows = "5";
-    textArea.cols = "64";
-    var exp = playlist.export();
-    textArea.value = exp;
-    textArea.exp = exp;
-    textArea.playlist = playlist;
-    // escape is usually ignored in text areas
-    textArea.onkeydown = textAreaKeyDown;
-
-    div.appendChild(textArea);
-
-    var save = document.createElement("input");
-    save.className = "button";
-    save.value = "Save";
-    save.textarea = textArea;
-    save.playlist = playlist;
-    save.onclick = editPlaylistSaveButton
-
-    div.appendChild(save);
-
-
-//    div.innerHTML = `<textarea id="songCode" rows="5" cols="64" onchange="editPlaylistChanged(this);"></textarea>`;
-
-    // put the menu in the clicked button's parent and anchor it to button
-    showMenu(div, getParent(button, "scoreButtonRow"), button);
-
-    textArea.focus();
-    textArea.select();
-}
-
-function textAreaKeyDown(e) {
-    e = e || window.event;
-    nodeName = e.target.nodeName;
-
-    switch (e.code) {
-		case "Escape" :
-		    // clear any open menus on escape
-		    clearMenu();
-		    break;
-		case "Enter" :
-		case "NumpadEnter" :
-		    // commit when enter is pressed
-		    editPlaylistSave(e.target);
-		    break;
-    }
-}
-
-class Playlist {
-    constructor(score) {
-        // back reference to the score
-        this.score = score;
-        // list of playlist entries
-        this.entries = Array();
-        // looping state
-        this.looping = false;
-        // build the UI
-        this.buildUI();
-    }
-
-    buildUI() {
-
-        // this.playlistContainer = document.createElement("div");
-        // this.playlistContainer.className = "playlistContainer";
-        // this.playlistContainer.measure = this;
-
-        // main container
-        // this will expand vertically with the playlist
-        // todo: figure out a good cross-browser way to add a scrollbar
-        this.playlistBox = document.createElement("div");
-        this.playlistBox.className = "playlistBox";
-        this.playlistBox.id = "playlistBox";
-        // back reference because why not
-        this.playlistBox.playlist = this;
-
-        // this.playlistContainer.appendChild(this.playlistBox);
-        this.playlistContainer = this.playlistBox;
-
-        // menu bar, just HTML it
-        this.playlistBox.innerHTML = `
-            <div class="scoreButtonRow">
-                <input class="titleButton" type="submit" value="Playlist"/>
-                <input class="button addButton" type="submit" value="Add" onClick="addToPlaylist(this)"/>
-                <input class="button loopButton" type="submit" value="Enable" onClick="loopPlaylist(this)"/>
-                <input class="button clearButton" type="submit" value="Clear" onClick="clearPlaylist(this)"/>
-                <input class="button editButton" type="submit" value="Copy/Paste" onClick="editPlaylist(this)"/>
-                <div class="popup">
-                    <input id="playlistCopyUrlButton" class="button urlButton popup" type="submit" value="Link"
-                           onClick="copyPlaylistUrl()"/>
-                    <div class="popuptext" id="playlistPopupBox">
-                        <input id="playlistUrlHolder" type="text" size="60" onblur="hideUrlPopup()"/>
-                    </div>
-                </div>
-            </div>
-        `;
-
-        // get a reference to the looping toggle button
-        this.loopingButton = getFirstChild(this.playlistBox, "loopButton");
-
-        getFirstChild(this.playlistBox, "titleButton").addEventListener("click", () => { this.hide() });
-
-        this.playlistScollArea = document.createElement("div");
-        this.playlistScollArea.className = "playlistScollArea";
-        this.playlistBox.appendChild(this.playlistScollArea);
-    }
-
-    hide() {
-        hidePlaylist();
-    }
-
-    addSongCode(code, select, insert=true) {
-        var song = new Song();
-        song.parseChatLink(code);
-        this.addSong(song, select, insert);
-    }
-
-    addSong(song, select, insert=true) {
-        // create a new entry
-        var entry = new PlaylistEntry(song, this);
-        if (this.selected && insert) {
-            // if there's a selection, the insert the new entry immediately after the selection
-            var index = this.entries.indexOf(this.selected);
-            this.entries.splice(index+1, 0, entry);
-            // do the same insertion in the dom
-            insertAfter(entry.playlistEntryContainer, this.selected.playlistEntryContainer);
-            // renumber entries
-            this.reIndex();
-
-        } else {
-            // no current selection or we're support to append instead of insert
-            this.entries.push(entry);
-            // no need to reindex the whole list
-            entry.setIndex(this.entries.length);
-            // insert into the dom
-            this.playlistScollArea.appendChild(entry.playlistEntryContainer);
-        }
-        if (select) {
-            // optionally select
-            this.select(entry, false);
-        }
-    }
-
-    removeEntry(entry) {
-        // remove from the entry list
-        if (removeFromList(this.entries, entry)) {
-            // remove from the dom
-            deleteNode(entry.playlistEntryContainer);
-            // if the node was selected then we have no selection now
-            if (this.selected == entry) {
-                this.selected = null;
-            }
-            // renumber entries
-            this.reIndex();
-        }
-    }
-
-    moveUp(entry) {
-        // get the index of the entry
-        var index = this.entries.indexOf(entry);
-        // make sure it's not already at the top
-        if (index > 0) {
-            // remove and insert one spot up
-            this.entries.splice(index, 1);
-            this.entries.splice(index-1, 0, entry);
-            // same move in the dom
-            deleteNode(entry.playlistEntryContainer);
-            insertBefore(entry.playlistEntryContainer, this.entries[index].playlistEntryContainer);
-            // renumber entries
-            this.reIndex();
-        }
-    }
-
-    moveToTop(entry) {
-        // get the index of the entry
-        var index = this.entries.indexOf(entry);
-        // make sure it's not already at the top
-        if (index > 0) {
-            // remove and insert at the beginning
-            this.entries.splice(index, 1);
-            this.entries.splice(0, 0, entry);
-            // same move in the dom
-            deleteNode(entry.playlistEntryContainer);
-            insertBefore(entry.playlistEntryContainer, this.entries[1].playlistEntryContainer);
-            // renumber entries
-            this.reIndex();
-        }
-    }
-
-    moveDown(entry) {
-        // get the index of the entry
-        var index = this.entries.indexOf(entry);
-        // make sure it's not already at the bottom
-        if (index >= 0 && index < this.entries.length - 1) {
-            // remove and insert one spot down
-            this.entries.splice(index, 1);
-            this.entries.splice(index+1, 0, entry);
-            // same move in the dom
-            deleteNode(entry.playlistEntryContainer);
-            insertAfter(entry.playlistEntryContainer, this.entries[index].playlistEntryContainer);
-            // renumber entries
-            this.reIndex();
-        }
-    }
-
-    moveToBottom(entry) {
-        // get the index of the entry
-        var index = this.entries.indexOf(entry);
-        if (index >= 0 && index < this.entries.length - 1) {
-            // remove and insert at the end
-            this.entries.splice(index, 1);
-            this.entries.splice(this.entries.length, 0, entry);
-            // same move in the dom
-            deleteNode(entry.playlistEntryContainer);
-            insertAfter(entry.playlistEntryContainer, this.entries[this.entries.length - 2].playlistEntryContainer);
-            // renumber entries
-            this.reIndex();
-        }
-    }
-
-    reIndex() {
-        // lazy, just loop through and re-index eveything.
-        for (var i = 0; i < this.entries.length; i++) {
-            this.entries[i].setIndex(i + 1);
-        }
-    }
-
-    select(entry, setScore, resetPlayback=false) {
-        // already selected
-        if (this.selected == entry) {
-            return;
-        }
-        // not sure if I need a null check but whatever
-        if (entry == null) {
-            return;
-        }
-        // check if there is already a selection
-        if (this.selected) {
-            // update the playlist entry's song, if this isn't an add action
-            if (setScore) {
-                this.selected.updateSong();
-            }
-            // clear selection
-            this.selected.setSelected(false);
-        }
-        // select the new entry
-        entry.setSelected(true);
-        this.selected = entry;
-        // update the score, if this isn't an add action
-        if (setScore) {
-            this.score.setSongObject(this.selected.song, true, resetPlayback);
-            // let's make this simple for now: switching songs in the playlist clears the undo history.
-            clearUndoStack();
-        }
-    }
-
-    selectNext() {
-        // if there is no selection then select the first entry
-        if (!this.selected) {
-            this.select(this.entries[0], true);
-            return;
-        }
-        // get the currently selected index
-        var index = this.entries.indexOf(this.selected);
-        // increment and wrap around if necessary
-        index += 1;
-        if (index >= this.entries.length) {
-            index = 0;
-        }
-        // change the selection, updating the score
-        this.select(this.entries[index], true);
-    }
-
-    clear() {
-        // delete from the dom
-        for (var i = 0; i < this.entries.length; i++) {
-            deleteNode(this.entries[i].playlistEntryContainer);
-        }
-        // clear state
-        this.entries = Array();
-        this.selected = null;
-    }
-
-
-    incrementName(name) {
-        var incrementNameRegex = /(.*?) (\d+)/;
-        var match = name.match(incrementNameRegex);
-        if (match) {
-            return match[1] + " " + (parseInt(match[2]) + 1);
-        } else {
-            return name + " " + 2;
-        }
-    }
-
-    add() {
-        // make the name unique
-        var name = this.score.title;
-        for (;;) {
-            if (!this.entries.find((entry) => entry.song.name == name)) {
-                break;
-            }
-            name = this.incrementName(name);
-        }
-        if (name != this.score.title) {
-            this.score.setTitle(name, false);
-        }
-        // add the song currently in the score and automatically select it
-        // This bypasses the auto-update when the selection changes, so the previously selected entry remains unchanged
-        this.addSong(this.score.getSongObject(), true);
-    }
-
-    toggleLoop() {
-        this.setLooping(!this.looping)
-    }
-
-    setLooping(looping) {
-        if (!looping) {
-            this.loopingButton.value = "Enable";
-            this.looping = false;
-        } else {
-            this.loopingButton.value = "Disable";
-            this.looping = true;
-        }
-    }
-
-    export() {
-        // build a string with each playlist song's code on a new line
-        var str = "";
-        for (var i = 0; i < this.entries.length; i++) {
-            str = str + this.entries[i].song.formatAsChatLink() + "\n";
-        }
-        // see if there's a mixer config to export
-        var mixerString = this.score.mixer.export();
-        if (mixerString != "") {
-            // put the mixer config at the end
-            str = str + mixerString + "\n";
-        }
-        return str;
-    }
-
-    import(str) {
-        // split into lines
-        var songCodes = str.split("\n")
-        var readEntries = Array();
-
-        var hasMixerConfig = false;
-        for (var i = 0; i < songCodes.length; i++) {
-            // trim and check for blank lines
-            var code = songCodes[i].trim();
-
-            // check for a mixer config
-            if (this.score.mixer.isMixerExportString(code)) {
-                // make sure the mixer is visible
-                showMixer();
-                // import the mixer config
-                this.score.mixer.import(code);
-                hasMixerConfig = true;
-
-            } else if (code != "") {
-                // parse the song
-                var song = new Song();
-                song.parseChatLink(code);
-                readEntries.push(song);
-            }
-
-            if (!hasMixerConfig) {
-                this.score.mixer.resetMixer();
-                hideMixer();
-            }
-        }
-
-        // don't make any changes if we didn't read any valid songs
-        // we also avoid making any changes if there was an error parsing the song list
-        if (readEntries.length > 0) {
-            // clear the current playlist
-            this.clear();
-            // add each song
-            for (var i = 0; i < readEntries.length; i++) {
-                // add it to the playlist, without affecting the selection
-                this.addSong(readEntries[i], false);
-            }
-            // finally, select the first entry and reset playback
-            this.select(this.entries[0], true, true);
-        }
-    }
-}
-
-class PlaylistEntry {
-    constructor(song, playlist) {
-        // song object
-        this.song = song;
-        // back reference
-        this.playlist = playlist;
-        // build the UI
-        this.buildUI();
-    }
-
-    buildUI() {
-        // main container
-        this.playlistEntryContainer = document.createElement("div");
-        this.playlistEntryContainer.className = "playlistEntryContainer";
-        this.playlistEntryContainer.playlist = this;
-
-        // I kind of regret this, but build the dom manually
-        {
-            var span = document.createElement("span");
-            span.className = "smallButton";
-            span.onclick = this.deletePlaylistEntry
-            span.entry = this;
-            span.innerHTML = `X`;
-            this.playlistEntryContainer.appendChild(span);
-        }
-
-        {
-            var span = document.createElement("span");
-            span.className = "smallButton";
-            span.onclick = this.movePlaylistEntryToTop
-            span.entry = this;
-            span.innerHTML = `⇈`;
-            this.playlistEntryContainer.appendChild(span);
-        }
-        {
-            var span = document.createElement("span");
-            span.className = "smallButton";
-            span.onclick = this.movePlaylistEntryUp
-            span.entry = this;
-            span.innerHTML = `↑`;
-            this.playlistEntryContainer.appendChild(span);
-        }
-
-        {
-            var span = document.createElement("span");
-            span.className = "smallButton";
-            span.onclick = this.movePlaylistEntryDown
-            span.entry = this;
-            span.innerHTML = `↓`;
-            this.playlistEntryContainer.appendChild(span);
-        }
-        {
-            var span = document.createElement("span");
-            span.className = "smallButton";
-            span.onclick = this.movePlaylistEntryToBottom
-            span.entry = this;
-            span.innerHTML = `⇊`;
-            this.playlistEntryContainer.appendChild(span);
-        }
-
-        {
-            // we need to keep a reference to the index span to change its color when selected
-            this.indexBar = document.createElement("span");
-            this.indexBar.className = "playlistEntry";
-            this.indexBar.onclick = this.selectPlaylistEntry
-            this.indexBar.entry = this;
-            this.playlistEntryContainer.appendChild(this.indexBar);
-        }
-        {
-            // we need to keep a reference to the title span to change its color when selected
-            this.titleBar = document.createElement("span");
-            this.titleBar.className = "playlistEntry";
-            this.titleBar.onclick = this.selectPlaylistEntry
-            this.titleBar.entry = this;
-            this.titleBar.innerHTML = this.song.getName();
-            this.playlistEntryContainer.appendChild(this.titleBar);
-        }
-    }
-
-    setIndex(index) {
-        this.indexBar.innerHTML = index;
-    }
-
-    deletePlaylistEntry() {
-        this.entry.playlist.removeEntry(this.entry);
-    }
-
-    movePlaylistEntryUp() {
-        this.entry.playlist.moveUp(this.entry);
-    }
-
-    movePlaylistEntryToTop() {
-        this.entry.playlist.moveToTop(this.entry);
-    }
-
-    movePlaylistEntryDown() {
-        this.entry.playlist.moveDown(this.entry);
-    }
-
-    movePlaylistEntryToBottom() {
-        this.entry.playlist.moveToBottom(this.entry);
-    }
-
-    selectPlaylistEntry() {
-        this.entry.playlist.select(this.entry, true);
-    }
-
-    setSelected(selected) {
-        // change the css depending on whether it's selected
-        this.indexBar.className = selected ? "playlistEntrySelected" : "playlistEntry";
-        this.titleBar.className = selected ? "playlistEntrySelected" : "playlistEntry";
-        if (selected) {
-            // scroll the playlist viewer to the selected entry, either at the top or the botton, whichever is nearest
-            this.playlistEntryContainer.scrollIntoView({"behavior": "auto", "block": "nearest", "inline": "nearest"});
-        }
-    }
-
-    updateSong() {
-        // load the current song from the score
-        this.song = this.playlist.score.getSongObject();
-        // update the title
-        this.titleBar.innerHTML = this.song.getName();
     }
 }
 
@@ -2600,6 +1990,211 @@ class WrapAction extends Action {
 	}
 }
 
+// encapsulate the playback marker in its own class
+class PlaybackMarker {
+    constructor(playback) {
+        // playback object back reference
+        this.playback = playback;
+
+        // measure and last measure
+        // todo: do we need lastMeasure?
+        this.measure = null;
+        this.lastMeasure = null;
+
+        // last location
+        this.lastTick = null;
+        this.time = 0;
+
+        // width of the grabbable area
+        this.playbackHandleWidth = 10;
+        // build the UI
+        this.buildUI();
+    }
+
+    buildUI() {
+        // just a thin div
+        this.playbackBox = document.createElement("div");
+        // absolutely positioned
+        this.playbackBox.className = "playbackBox";
+        this.playbackBox.style.width = "4px";
+        this.playbackBox.style.height = (gridSizeY * (13 + 1)) + "px";
+        this.playbackBox.style.left = 0;
+        this.playbackBox.style.top = 0;
+
+        // grab handle is an invisible div
+        this.playbackHandle = document.createElement("div");
+        // absolutely positioned
+        this.playbackHandle.className = "playbackHandle";
+        this.playbackHandle.style.width = (4 + this.playbackHandleWidth*2) + "px";
+        this.playbackHandle.style.height = (gridSizeY * (13 + 1)) + "px";
+        this.playbackHandle.style.left = -this.playbackHandleWidth;
+        this.playbackHandle.style.top = 0;
+        // back-references
+        this.playbackBox.marker = this;
+        this.playbackHandle.marker = this;
+
+        // listeners to start dragging
+        this.playbackHandle.onmousedown = (e) => { this.startDrag(mouseEventToMTEvent(e)); };
+        this.playbackHandle.ontouchstart = (e) => { this.startDrag(touchEventToMTEvent(e)); };
+    }
+
+    setTime(measure, time) {
+        // move to the new measure, if necessary
+        if (measure != this.measure) {
+            if (this.measure != null) {
+                this.playbackBox.remove();
+                this.playbackHandle.remove();
+            }
+            this.measure = measure;
+            this.measure.measureTimingContainer.appendChild(this.playbackBox);
+            this.measure.measureTimingContainer.appendChild(this.playbackHandle);
+        }
+        // set position
+        this.playbackBox.style.left = (gridSizeX * 8) * time;
+        this.playbackHandle.style.left = ((gridSizeX * 8) * time) - this.playbackHandleWidth;
+
+        // save time and measure
+        this.time = time;
+        this.lastMeasure = measure;
+    }
+
+    remove() {
+        // clean up
+        this.playbackBox.remove();
+        this.playbackHandle.remove();
+        this.playbackBox = null;
+        this.playbackHandle = null;
+    }
+
+    startDrag(e, measure) {
+        // setup all actively playing measure for dragging
+        for (var m = 0; m < this.playback.measures.length; m++) {
+            var measure2 = this.playback.measures[m];
+            measure2.setupDragListeners(this);
+        }
+
+        // disable dragging on any non-active measures
+        var others = this.playback.getNonPlayingMeasures();
+        for (var m = 0; m < others.length; m++) {
+            others[m].disableListeners();
+        }
+
+        // set up drag listeners on the document itself
+        // touch events down work across DOM elements unless you go all the way
+        // to the document level
+        document.onmousemove = (e2) => { this.dragEvent(mouseEventToMTEvent(e2)); };
+        document.onmouseup = (e2) => { this.dropEvent(mouseEventToMTEvent(e2)); };
+        document.ontouchmove = (e2) => { this.dragEvent(touchEventToMTEvent(e2)); };
+        document.ontouchend = (e2) => { this.dropEvent(touchEventToMTEvent(e2)); };
+
+        // stop playback if it's gurrently playing
+        if (this.playback.playing()) {
+            this.didStop = true;
+            this.playback.stop();
+        } else {
+            this.didStop = false;
+        }
+
+        // clear last position
+        this.lastMeasure = null;
+        this.lastTick = null;
+
+        // immediately move the marker
+        this.dragEvent(e, measure);
+    }
+
+    dragEvent(e) {
+        e.preventDefault();
+
+        // for touch events our only option is to run in the global document listener and then calculate what
+        // element we're over top of
+        var element = document.elementFromPoint(e.clientX, e.clientY);
+        var timingContainer = getParent(element, "measureTimingContainer");
+        if (!timingContainer) {
+            // dragging outside the measure containers
+            return;
+        }
+
+        if (timingContainer.disabled) {
+            // dragging to a disabled measure
+            return;
+        }
+
+        // get the relevant measure
+        var measure = timingContainer.measure;
+        // calcuate the drag position inside the measure
+        var targetRect = timingContainer.getBoundingClientRect();
+        var x = Math.round(e.clientX - targetRect.left);
+
+        // time in seconds, 16 grid spaces/2 seconds per measure
+        var t = x / (gridSizeX * 8);
+
+        // for some reason the timing bar gets events from outside the measure when
+        // it's split into multiple lines
+        if (t < 0) t = 0;
+        else if (t > 2) t = 2;
+
+        // make sure the playback is stopped
+        // todo: necessary?
+        this.playback.stop();
+
+        // pre-set the marker time so the measure doesn't try to bump all the intervening notes if you
+        // move it forward inside the same measure
+        this.time = t;
+        measure.startPlaybackMarker(this);
+        measure.setPlaybackMarkerTime(t);
+
+        // get the current tick
+        var tick = Math.floor(t * 8);
+
+        // if we've moved to a new tick
+        if (measure != this.lastMeasure || tick != this.lastTick) {
+            // sanity check, we can get 16 here if it's dragged to the exact end of a measure
+            if (tick >= 0 && tick < 16) {
+                // bounce the notes at this tick
+                measure.bounceTime(tick);
+                // and play them
+                measure.playAudioForTime(tick);
+            }
+            // save the position for next time
+            this.lastMeasure = measure;
+            this.lastTick = tick;
+        }
+    }
+
+    dropEvent(e) {
+        this.dragEvent(e);
+
+        // reset any listeners on actively playing measures that were
+        // set up for dragging
+        for (var m = 0; m < this.playback.score.measures.length; m++) {
+            var measure = this.playback.score.measures[m];
+            measure.resetListeners();
+        }
+
+        // reset any listeners on non-active measures
+        var others = this.playback.getNonPlayingMeasures();
+        for (var m = 0; m < others.length; m++) {
+            others[m].resetListeners();
+            others[m].disableDrag();
+        }
+
+        // clear drag listeners
+        document.onmousemove = null;
+        document.onmouseup = null;
+        document.ontouchmove = null;
+        document.ontouchend = null;
+
+        // commit the playback time
+        this.playback.setTime(this.measure.number * 2 + this.time);
+
+        // if we had to pause playback for the drag process then restart it again
+        if (this.didStop) {
+            this.playback.start();
+        }
+    }
+}
+
 // playback marker animation speed
 var tickms = 15;
 
@@ -2628,14 +2223,41 @@ class Playback {
         // current time within the loop
         this.currentTime = 0.0;
         // current time column
-        this.currentT = -2;
+        this.currentT = 0;
         // sound play column currently scheduled
-        this.playT = -1;
+        this.playT = 0;
         // the last measure we set playback state on
         this.lastMeasure = null;
 
         // hack flag to prevent moving to the next playlist entry immediately when starting
         this.hasPlayed = false;
+        // flag to prevent an extra tick after being stopped
+        this.stopped = false;
+
+        // marker reference
+        this.marker = new PlaybackMarker(this);
+
+        // disable dragging on any measure not in the list
+        var others = this.getNonPlayingMeasures();
+        for (var m = 0; m < others.length; m++) {
+            others[m].disableDrag();
+        }
+    }
+
+    getNonPlayingMeasures() {
+        // check f it's just all measures
+        if (this.measures.length == this.score.measures.length) {
+            return Array();
+        }
+        // pull out score measures that are not the playvak measure list
+        var others = Array();
+        for (var m = 0; m < this.score.measures.length; m++) {
+            var measure = this.score.measures[m];
+            if (!this.measures.includes(measure)) {
+                others.push(measure);
+            }
+        }
+        return others;
     }
 
     playing() {
@@ -2673,6 +2295,25 @@ class Playback {
 
         // change the Stop button to a Play button
         this.button.value = "Play";
+
+        // set a flag
+        this.stopped = true;
+    }
+
+    setTime(t) {
+        // explicitly set playback time
+        // get the current time
+        var time = getTime() / 1000;
+        // retroactively set time zero for the current iteration of the loop
+        this.startTime = time = t;
+        // current time within the loop, prevent dragging beyond the end of the currently playing measures
+        this.currentTime = t >= this.runTime ? 0 : t;
+        // current time column
+        this.currentT = Math.floor(this.currentTime * 8);
+        // sound play column currently scheduled, set to the next time segment
+        this.playT = (this.currentT + 1) % this.runT;
+        // have to reset the last measure to prevent weirdness
+        this.lastMeasure = this.measures[Math.floor(this.currentTime / 2.0)];
     }
 
     toggle() {
@@ -2689,10 +2330,15 @@ class Playback {
     kill() {
         // stop playing
         this.stop();
-        // clean up measure playback marker
-        if (this.lastMeasure != null) this.lastMeasure.stopPlayback();
         // remove the back-reference
         this.button.playback = null;
+        this.marker.remove();
+
+        // re-enable dragging on any measure not in the list
+        var others = this.getNonPlayingMeasures();
+        for (var m = 0; m < others.length; m++) {
+            others[m].enableDrag();
+        }
     }
 
     playAudio(delay) {
@@ -2713,11 +2359,21 @@ class Playback {
     }
 
     tick(start=false) {
+        // check for stopped, we don't want an extra tick
+        if (!start && this.stopped) {
+            return;
+        }
+        // reset the flag
+        this.stopped = false;
+
         // schedule the next tick right away, so we get as close to the specified animation speed as possible
         this.animTimeout = setTimeout(() => { this.tick() }, tickms);
 
         // get the current time in seconds
         var time = getTime() / 1000;
+
+        // flag to keep track of whether we wrapped to the beginning of a measure
+        var measureWrapped = false;
 
         // console.log("tick at " + time + ", currentT=" + this.currentT + ", playT=" + this.playT);
 
@@ -2748,6 +2404,8 @@ class Playback {
                 this.currentTime -= this.runTime;
                 // move the start time up by one loop
                 this.startTime += this.runTime;
+                // set the flag
+                measureWrapped = true;
             }
             // calcluate the current time column
             this.currentT = Math.floor(this.currentTime * 8);
@@ -2774,14 +2432,27 @@ class Playback {
         var measure = this.measures[measureIndex];
         // if we've moved to a different measure
         if (measure != this.lastMeasure) {
-            // clear the last measure's playback state, if any
-            if (this.lastMeasure != null) this.lastMeasure.stopPlayback();
             // start playback on the new measure
             this.lastMeasure = measure;
-            measure.startPlaybackMarker();
+            // initialize the playback marker to just before the start
+            this.marker.setTime(measure, 0);
+            measure.startPlaybackMarker(this.marker);
+            measureWrapped = true;
         }
+        // determining when to bounce the first column of notes in a measure is tricky
+        // force the bounce if we're starting playback at the exact beginning of a measure,
+        var forceBounce = (this.currentTime % 2 == 0 && start)
+            // or if we're in the first column and have just wrapped around to a new measure
+            // or the beginning of the same measure
+            || ((this.currentTime % 2) < (1 / 8) && measureWrapped);
+
+        if (forceBounce) {
+            // still pretty hacky I guess, but not as much as before
+            this.marker.time = 0;
+        }
+
         // set the measure's playback state
-        measure.setPlaybackMarkerTime(this.currentTime % 2);
+        measure.setPlaybackMarkerTime(this.currentTime % 2, forceBounce);
     }
 
 }

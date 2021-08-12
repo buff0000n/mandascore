@@ -161,6 +161,30 @@ function windowOnError(msg, url, lineNo, columnNo, error) {
     return false;
 }
 
+var debugCount = 0;
+
+function showDebug(msg) {
+    // find the error bar
+    var debugBarElement = document.getElementById("debugBar");
+    if (debugBarElement.children.length == 0) {
+        debugBarElement.innerHTML = `<div id="debug">`;
+    }
+    var debugElement = document.getElementById("debug");
+
+    var line = document.createElement("div");
+    line.className = "debugLine";
+    debugCount += 1;
+    // why the hell is replaceAll() not working
+    // line.innerHTML = debugCount + ": " + msg.replaceAll("\n", "<br/>");
+    line.innerHTML = debugCount + ": " + msg;
+
+    debugElement.appendChild(line);
+    var kids = debugElement.children
+    while (kids.length > 5) {
+        kids.item(0).remove();
+    }
+}
+
 //==============================================================
 // PNG
 //==============================================================
