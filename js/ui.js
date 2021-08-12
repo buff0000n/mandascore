@@ -322,7 +322,8 @@ var lastMTEvent = null;
 var lastTouchEvent = null;
 
 class MTEvent {
-	constructor(isTouch, currentTarget, clientX, clientY, altKey, shiftKey, ctrlKey) {
+	constructor(original, isTouch, currentTarget, clientX, clientY, altKey, shiftKey, ctrlKey, buttons) {
+	    this.original = original;
 		this.isTouch = isTouch;
 		this.currentTarget = currentTarget;
 		this.target = currentTarget;
@@ -331,12 +332,21 @@ class MTEvent {
 		this.altKey = altKey;
 		this.shiftKey = shiftKey;
 		this.ctrlKey = ctrlKey;
+		this.buttons = buttons;
 		lastMTEvent = this;
+	}
+
+	preventDefault() {
+        this.original.preventDefault();
 	}
 }
 
 function mouseEventToMTEvent(e, overrideTarget=null) {
-    return new MTEvent(false, overrideTarget ? overrideTarget : e.currentTarget, e.clientX, e.clientY, e.altKey, e.shiftKey, e.ctrlKey || e.metaKey);
+    return new MTEvent(e, false,
+        overrideTarget ? overrideTarget : e.currentTarget,
+        e.clientX, e.clientY,
+        e.altKey, e.shiftKey, e.ctrlKey || e.metaKey,
+        e.buttons);
 }
 
 function touchEventToMTEvent(e, overrideTarget=null) {
@@ -346,12 +356,15 @@ function touchEventToMTEvent(e, overrideTarget=null) {
 
     if (e.touches.length > 0) {
         // meh, just make the first one in the list the primary, no need to get fancy with multi-touch
-        primary = e.touches[1];
+        primary = e.touches[0];
     }
 
     if (primary) {
         // we can generate an event, yay our team
-        lastTouchEvent = new MTEvent(true, overrideTarget ? overrideTarget : primary.target, primary.clientX, primary.clientY, e.altKey, e.shiftKey)
+        lastTouchEvent = new MTEvent(e, true,
+            overrideTarget ? overrideTarget : primary.target,
+            primary.clientX, primary.clientY,
+            e.altKey, e.shiftKey, e.touches.length);
         return lastTouchEvent;
 
     } else if (lastTouchEvent != null) {
@@ -431,6 +444,9 @@ class Measure {
         this.measureTimingContainer.className = "measureTimingContainer";
         this.measureTimingContainer.style.width = (gridSizeX * 16) + "px";
         this.measureTimingContainer.style.height = (gridSizeY * 14) + "px";
+        // this back-reference is used by the drag handler
+        this.measureTimingContainer.measure = this;
+        this.measureTimingContainer.disabled = false;
         this.container.appendChild(this.measureTimingContainer);
 
         // container for the timing bar
@@ -470,38 +486,24 @@ class Measure {
         // we need all the mouse listeners
         this.gridImg.onmouseover = (e) => { this.measureMouseover(e); };
         this.gridImg.onmousemove = (e) => { this.measureMousemove(e); };
-        this.gridImg.onmousedown = (e) => { this.measureMousedown(e); };
-        this.gridImg.onmouseup = null;
+        this.gridImg.onmousedown = (e) => { this.measureMousedown(e); }; // touch event default click handler calls this
         this.gridImg.onmouseout = (e) => { this.measureMouseout(e); };
-        this.gridImg.ontouchmove = null;
-        this.gridImg.ontouchend = null;
 
-        this.timingContainer.onmouseover = null;
-        this.timingContainer.onmousemove = null;
-        this.timingContainer.onmousedown = (e) => { this.startDrag(e); };
-        this.timingContainer.onmouseup = null;
-        this.timingContainer.onmouseout = null;
-        this.timingContainer.ontouchmove = null;
-        this.timingContainer.ontouchend = null;
+        this.timingContainer.onmousedown = (e) => { this.startDrag(mouseEventToMTEvent(e)); };
+        this.timingContainer.ontouchstart = (e) => { this.startDrag(touchEventToMTEvent(e)); };
+
+        this.measureTimingContainer.disabled = false;
     }
     
     setupDragListeners(playbackMarker) {
         // we need all the mouse listeners
-        this.gridImg.onmouseover = (e) => { playbackMarker.mouseMove(e, this); this.measureMouseover(e, false); };
-        this.gridImg.onmousemove = (e) => { playbackMarker.mouseMove(e, this); this.measureMousemove(e, false); };
+        this.gridImg.onmouseover = (e) => { this.measureMouseover(e, false); };
+        this.gridImg.onmousemove = (e) => { this.measureMousemove(e, false); };
         this.gridImg.onmousedown = null ; // shouldn't happen (e) => { playbackMarker.mouseMove(e, this) };
-        this.gridImg.onmouseup = (e) => { playbackMarker.mouseUp(e, this) };
         this.gridImg.onmouseout = (e) => { this.measureMouseout(e); };
-        this.gridImg.ontouchmove = (e) => { playbackMarker.touchMove(e, this) };
-        this.gridImg.ontouchend = (e) => { playbackMarker.touchEnd(e, this) };
 
-        this.timingContainer.onmouseover = (e) => { playbackMarker.mouseMove(e, this) };
-        this.timingContainer.onmousemove = (e) => { playbackMarker.mouseMove(e, this) };
-        this.timingContainer.onmousedown = (e) => { playbackMarker.mouseMove(e, this) };
-        this.timingContainer.onmouseup = (e) => { playbackMarker.mouseUp(e, this) };
-        this.timingContainer.onmouseout = null;
-        this.timingContainer.ontouchmove = (e) => { playbackMarker.touchMove(e, this) };
-        this.timingContainer.ontouchend = (e) => { playbackMarker.touchEnd(e, this) };
+        this.timingContainer.onmousedown = null;
+        this.timingContainer.ontouchstart = null;
     }
 
     disableListeners() {
@@ -509,18 +511,12 @@ class Measure {
         this.gridImg.onmouseover = (e) => { this.measureMouseover(e, false); };
         this.gridImg.onmousemove = (e) => { this.measureMousemove(e, false); };
         this.gridImg.onmousedown = (e) => null;
-        this.gridImg.onmouseup = null;
         this.gridImg.onmouseout = (e) => { this.measureMouseout(e); };
-        this.gridImg.ontouchmove = null;
-        this.gridImg.ontouchend = null;
 
-        this.timingContainer.onmouseover = null;
-        this.timingContainer.onmousemove = null;
         this.timingContainer.onmousedown = null;
-        this.timingContainer.onmouseup = null;
-        this.timingContainer.onmouseout = null;
-        this.timingContainer.ontouchmove = null;
-        this.timingContainer.ontouchend = null;
+        this.timingContainer.ontouchstart = null;
+
+        this.measureTimingContainer.disabled = true;
     }
 
     startDrag(e) {
@@ -529,13 +525,18 @@ class Measure {
     }
 
     disableDrag() {
-        this.timingContainer.onmousedown = null;
+        // prevent any event handling on the timing bar
+        this.timingContainer.onmousedown = (e) => { e.preventDefault(); };
+        this.timingContainer.ontouchstart = (e) => { e.preventDefault(); };
+        // switch image
         this.timingContainer.className = "timingContainer_disabled";
         this.timingContainer.innerHTML = `<img src="img/timingbar-disabled.png" srcset="img2x/timingbar-disabled.png 2x" width="352" height="25"/>`;
     }
 
     enableDrag() {
-        this.timingContainer.onmousedown = (e) => { this.startDrag(e); };
+        this.timingContainer.onmousedown = (e) => { this.startDrag(mouseEventToMTEvent(e)); };
+        this.timingContainer.ontouchstart = (e) => { this.startDrag(touchEventToMTEvent(e)); };
+        // switch image
         this.timingContainer.className = "timingContainer";
         this.timingContainer.innerHTML = `<img src="img/timingbar.png" srcset="img2x/timingbar.png 2x" width="352" height="25"/>`;
     }
@@ -2017,20 +2018,9 @@ class PlaybackMarker {
         this.playbackBox.marker = this;
         this.playbackHandle.marker = this;
 
-        this.enableHandleDrag();
-    }
-
-    enableHandleDrag() {
-        this.playbackHandle.onmousedown = (e) => { this.startDrag(mouseEventToMTEvent(e, this.lastMeasure.timingContainer), this.lastMeasure); };
-        this.playbackBox.style.pointerEvents = "auto";
-        this.playbackHandle.style.pointerEvents = "auto";
-    }
-
-    disableHandleDrag() {
-        // disable this event handling entirely and let the underlying measure and timing bar handle the drag events
-        this.playbackHandle.onmousedown = null;
-        this.playbackBox.style.pointerEvents = "none";
-        this.playbackHandle.style.pointerEvents = "none";
+        // listeners to start dragging
+        this.playbackHandle.onmousedown = (e) => { this.startDrag(mouseEventToMTEvent(e)); };
+        this.playbackHandle.ontouchstart = (e) => { this.startDrag(touchEventToMTEvent(e)); };
     }
 
     setTime(measure, time) {
@@ -2068,8 +2058,10 @@ class PlaybackMarker {
             others[m].disableListeners();
         }
 
-        document.onmousemove = (e) => { e.preventDefault(); };
-        document.onmouseup = (e) => { e.preventDefault(); this.dropEvent(e); };
+        document.onmousemove = (e2) => { this.dragEvent(mouseEventToMTEvent(e2)); };
+        document.onmouseup = (e2) => { this.dropEvent(mouseEventToMTEvent(e2)); };
+        document.ontouchmove = (e2) => { this.dragEvent(touchEventToMTEvent(e2)); };
+        document.ontouchend = (e2) => { this.dropEvent(touchEventToMTEvent(e2)); };
 
         if (this.playback.playing()) {
             this.didStop = true;
@@ -2081,54 +2073,30 @@ class PlaybackMarker {
         this.lastMeasure = null;
         this.lastTick = null;
 
-        // need to disable the handle event listener because we want it to fall through to the timing bar and measure
-        // listeners
-        this.disableHandleDrag();
-
         // immediately move the marker
         this.dragEvent(e, measure);
     }
 
-    mouseMove(e, measure) {
-        e = e || window.event;
+    dragEvent(e) {
         e.preventDefault();
 
-        this.dragEvent(mouseEventToMTEvent(e), measure);
-    }
+        // for touch events our only option is to run in the global document listener and then calculate what
+        // element we're over top of
 
-    mouseUp(e, measure) {
-        e = e || window.event;
-        e.preventDefault();
-
-        this.dropEvent(mouseEventToMTEvent(e), measure);
-    }
-
-    touchMove(e, measure) {
-        e = e || window.event;
-        e.preventDefault();
-
-        if (e.touches.length == 1) {
-            // just one touch, treat like a mouse drag
-            this.dragEvent(touchEventToMTEvent(e), measure);
+        var element = document.elementFromPoint(e.clientX, e.clientY);
+        var timingContainer = getParent(element, "measureTimingContainer");
+        if (!timingContainer) {
+            // dragging outside the measure containers
+            return;
         }
-    }
 
-    touchEnd(e, measure) {
-        e = e || window.event;
-        e.preventDefault();
-
-        if (e.touches.length == 0) {
-            // treat like a mouse up, touchEventToMTEvent() will need to refer to our last touch event to get the point
-            // at which the touch ended
-            this.dropEvent(touchEventToMTEvent(e), measure);
-//            // clear out any lingering touch state
-//            lastTouchEvent = null;
-//            lastTouchIdentifier = -1;
+        if (timingContainer.disabled) {
+            // dragging to a disabled measure
+            return;
         }
-    }
 
-    dragEvent(e, measure) {
-        var targetRect = e.currentTarget.getBoundingClientRect();
+        var measure = timingContainer.measure;
+        var targetRect = timingContainer.getBoundingClientRect();
         var x = Math.round(e.clientX - targetRect.left);
 
         // time in seconds, 16 grid spaces/2 seconds per measure
@@ -2159,6 +2127,8 @@ class PlaybackMarker {
     }
 
     dropEvent(e) {
+        this.dragEvent(e);
+
         for (var m = 0; m < this.playback.score.measures.length; m++) {
             var measure = this.playback.score.measures[m];
             measure.resetListeners();
@@ -2172,14 +2142,14 @@ class PlaybackMarker {
 
         document.onmousemove = null;
         document.onmouseup = null;
+        document.ontouchmove = null;
+        document.ontouchend = null;
 
         this.playback.setTime(this.measure.number * 2 + this.time);
 
         if (this.didStop) {
             this.playback.start();
         }
-
-        this.enableHandleDrag();
     }
 }
 

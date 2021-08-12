@@ -133,6 +133,25 @@
 	    color: #FFFFFF;
     }
 
+    /* debug bar formatting */
+    #debugBar {
+	    text-align: center;
+    }
+    #debug {
+        background-color: #0000B0;
+	    font-weight: bold;
+	    text-align: left;
+	    color: #FFFFFF;
+        margin: 1ex;
+        padding: 1ex;
+        border-radius: 1ex;
+        display: inline-block;
+    }
+    .debugLine {
+	    font-weight: bold;
+	    color: #FFFFFF;
+    }
+
     /* measure formatting */
 
     .measureBlock {

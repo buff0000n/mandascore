@@ -132,6 +132,7 @@
 
         // set up the error listener
         window.onerror = windowOnError;
+        // window.onerror = (e) => { windowOnError(e + "\n" + e.stack); };
         // get the window size for menu placement
         doonresize();
 
@@ -360,6 +361,7 @@
             }
         }
     }
+
 </script>
 
 <div class="titleBar">
@@ -370,6 +372,9 @@
     <div id="error">
         <div class="errorLine">Javascript not enabled.</div>
     </div>
+</div>
+
+<div id="debugBar">
 </div>
 
 <div class="songContainer">
