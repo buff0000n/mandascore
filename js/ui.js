@@ -1875,7 +1875,7 @@ class Score {
             "perc": createNoteImagePath(sectionImages["perc"], hidpi),
             "bass": createNoteImagePath(sectionImages["bass"], hidpi),
             "mel": createNoteImagePath(sectionImages["mel"], hidpi),
-            "timingbar": createNoteImagePath("timingBar-disabled", hidpi)
+            "timingbar": createNoteImagePath("timingbar-disabled", hidpi)
         },
         // provide a call-back to draw the PNG once the images are loaded
         (imageMap) => this.doGeneratePng(imageMap, hidpi, linkDiv)
