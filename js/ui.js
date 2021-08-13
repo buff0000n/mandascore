@@ -2185,8 +2185,11 @@ class PlaybackMarker {
         document.ontouchmove = null;
         document.ontouchend = null;
 
+        // Figuring out the playback time is complicated by the fact that not all measures may be playing
+        var measureTime = this.playback.measures.indexOf(this.measure) * 2;
+
         // commit the playback time
-        this.playback.setTime(this.measure.number * 2 + this.time);
+        this.playback.setTime(measureTime + this.time);
 
         // if we had to pause playback for the drag process then restart it again
         if (this.didStop) {
