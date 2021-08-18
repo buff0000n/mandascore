@@ -2240,6 +2240,9 @@ class Playback {
         // marker reference
         this.marker = new PlaybackMarker(this);
 
+        // hack flag for when the timing marker has been dragged and dropped
+        this.dropped = false;
+
         // disable dragging on any measure not in the list
         var others = this.getNonPlayingMeasures();
         for (var m = 0; m < others.length; m++) {
@@ -2317,6 +2320,8 @@ class Playback {
         this.playT = (this.currentT + 1) % this.runT;
         // have to reset the last measure to prevent weirdness
         this.lastMeasure = this.measures[Math.floor(this.currentTime / 2.0)];
+        // set the dropped flag
+        this.dropped = true;
     }
 
     toggle() {
@@ -2348,7 +2353,7 @@ class Playback {
         // hack to switch to the next song in the playlist
         // only switch if we've played through once, have wrapped back to 0, have four measures,
         // have a playlist, and the playlist is enabled.
-        if (this.hasPlayed && this.playT == 0 && this.measures.length == 4 &&
+        if (this.hasPlayed && !this.dropped && this.playT == 0 && this.runT > 0 && this.measures.length == 4 &&
             this.score.playlist != null && this.score.playlist.looping) {
             this.score.playlist.selectNext();
         }
@@ -2359,6 +2364,8 @@ class Playback {
         var measure = Math.floor(this.playT / 16);
         // play the measure's corresponding time column
         this.measures[measure].playAudioForTime(this.playT - (measure * 16), delay);
+        // reset the flag
+        this.dropped = false;
     }
 
     tick(start=false) {
