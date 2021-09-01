@@ -281,6 +281,11 @@
         position: absolute;
     }
 
+    @keyframes measureSelectBoxFade {
+        0%   { opacity: 1; }
+        100% { opacity: 0; }
+    }
+
     .measureSelectBox {
         position: absolute;
         border-style: solid;
@@ -289,6 +294,10 @@
         padding: 0;
         pointer-events: none;
         z-index: 4;
+        animation-name: measureSelectBoxFade;
+        animation-duration: 1.0s;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
     }
 
     .playbackBox, .playbackHandle {

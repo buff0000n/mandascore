@@ -136,13 +136,8 @@ function copyButton(button) {
     button.blur();
     // get the associated measure
     var measure = getParent(button, "scoreButtonContainer").score;
-    // clicking copy on a measure that already has something selected will clear the selection
-    if (measure.hasSelection()) {
-        measure.clearSelection();
-    } else {
-        // otherwise we need to show the section menu and ask which section to copy
-        runSectionMenu("Copy", button, doCopy);
-    }
+    // otherwise we need to show the section menu and ask which section to copy
+    runSectionMenu("Copy", button, doCopy);
 }
 
 function doCopy(button, section) {
@@ -377,6 +372,32 @@ function touchEventToMTEvent(e, overrideTarget=null) {
     }
 }
 
+class CopyData {
+    constructor(measure, section) {
+        this.section = section;
+        this.sectionMetaData = sectionMetaData[this.section];
+        // initialize the note array, 16x23 notes
+        this.notes = Array(16);
+        for (var t = 0; t < this.notes.length; t++) {
+            this.notes[t] = new Array(13);
+            for (var r = this.sectionMetaData.rowStart; r <= this.sectionMetaData.rowStop; r++) {
+                this.notes[t][r] = measure.notes[t][r].enabled;
+            }
+        }
+    }
+
+    apply(measure) {
+        // iterate over all notes in the section
+        for (var t = 0; t < this.notes.length; t++) {
+            for (var r = this.sectionMetaData.rowStart; r <= this.sectionMetaData.rowStop; r++) {
+                // copy the enabled state from each note in the source measure
+                // to the corresponding note in this measure
+                measure.notes[t][r].setEnabled(this.notes[t][r]);
+            }
+        }
+    }
+}
+
 // object for handling the state/display of a measure, there will be four of these
 class Measure {
     constructor(score, number) {
@@ -405,7 +426,6 @@ class Measure {
         }
 
         // selection state
-        this.selectSection = null;
         this.selectBox = null;
 
         // mouse state
@@ -723,10 +743,6 @@ class Measure {
     clear(section="all") {
         // contain all the note changes in a single undo action
         this.score.startActions();
-        // if the section being cleared is currently selected then clear the selection
-        if (this.selectSection == section || section == "all") {
-            this.clearSelection();
-        }
         // iterate over each note in the section and turn it off
         for (var t = 0; t < this.notes.length; t++) {
             for (var r = sectionMetaData[section].rowStart; r <= sectionMetaData[section].rowStop; r++) {
@@ -738,13 +754,6 @@ class Measure {
     }
 
     noteChanged(note) {
-        // if a note in the currently selected section was changed then clear the selection
-        if (this.selectSection != null
-            && note.row >= sectionMetaData[this.selectSection].rowStart
-            && note.row <= sectionMetaData[this.selectSection].rowStop) {
-                this.clearSelection();
-        }
-
         // get the section containing the note
         var section = this.getSection(note.row);
         if (note.enabled) {
@@ -757,18 +766,29 @@ class Measure {
     }
 
     clearSelection() {
-        if (this.selectSection != null) {
+        if (this.selectBox != null) {
             // clear all selection state and UI
-            this.selectSection = null;
             this.selectBox.remove();
             this.selectBox = null;
-            // notify the score that the selection was cleared
-            this.score.setSelectedMeasure(null);
         }
     }
 
-    hasSelection() {
-        return this.selectSection != null;
+    showSelection(section) {
+        // create the selection box, it's just a div with a border
+        this.selectBox = document.createElement("div");
+        // absolutely position it according to the section
+        this.selectBox.className = "measureSelectBox";
+        this.selectBox.style.width = ((gridSizeX * 16) - 8) + "px";
+        this.selectBox.style.height = ((gridSizeY * (sectionMetaData[section].rowStop - sectionMetaData[section].rowStart + 1)) - 8) + "px";
+        this.selectBox.style.left = 0;
+        this.selectBox.style.top = gridSizeY * sectionMetaData[section].rowStart;
+        // set the color based on the section
+        this.selectBox.style.borderColor = sectionMetaData[section].color;
+        // obligatory back-reference
+        this.selectBox.measure = this;
+        this.imgContainer.appendChild(this.selectBox);
+
+        setTimeout(() => { this.clearSelection(); }, 1000);
     }
 
     copy(section) {
@@ -776,22 +796,8 @@ class Measure {
         this.clearSelection();
 
         if (section != null) {
-            // save section state in this measure and the score
-            this.score.setSelectedMeasure(this);
-            this.selectSection = section;
-            // create the selection box, it's just a div with a border
-            this.selectBox = document.createElement("div");
-            // absolutely position it according to the section
-            this.selectBox.className = "measureSelectBox";
-            this.selectBox.style.width = ((gridSizeX * 16) - 8) + "px";
-            this.selectBox.style.height = ((gridSizeY * (sectionMetaData[section].rowStop - sectionMetaData[section].rowStart + 1)) - 8) + "px";
-            this.selectBox.style.left = 0;
-            this.selectBox.style.top = gridSizeY * sectionMetaData[section].rowStart;
-            // set the color based on the section
-            this.selectBox.style.borderColor = sectionMetaData[section].color;
-            // obligatory back-reference
-            this.selectBox.measure = this;
-            this.imgContainer.appendChild(this.selectBox);
+            this.score.setCopyData(new CopyData(this, section));
+            this.showSelection(section);
         }
     }
 
@@ -801,23 +807,16 @@ class Measure {
     }
 
     paste() {
-        // pull the copy source from the score
-        var fromMeasure = this.score.selectedMeasure;
-        // sanity check
-        if (fromMeasure == null || fromMeasure == this) return;
-
-        // contain all the note changes in a single undo action
-        this.score.startActions();
-        // iterate over all notes in the section
-        for (var t = 0; t < this.notes.length; t++) {
-            for (var r = sectionMetaData[fromMeasure.selectSection].rowStart; r <= sectionMetaData[fromMeasure.selectSection].rowStop; r++) {
-                // copy the enabled state from each note in the source measure
-                // to the corresponding note in this measure
-                this.notes[t][r].setEnabled(fromMeasure.notes[t][r].enabled);
-            }
+        if (this.score.copyData) {
+            // contain all the note changes in a single undo action
+            this.score.startActions();
+            // apply the copy data
+            this.score.copyData.apply(this);
+            // commit the undo action
+            this.score.endActions();
+            // UI feedback
+            this.showSelection(this.score.copyData.section);
         }
-        // commit the undo action
-        this.score.endActions();
     }
 
     play(button, restart=false) {
@@ -1695,30 +1694,10 @@ class Score {
         return this.getSongObject().formatAsChatLink();
     }
 
-    setSelectedMeasure(measure) {
-        // check if we already have a selection and it's different
-        if (this.selectedMeasure != null && this.selectedMeasure != measure) {
-            // clear the section state
-            var t = this.selectedMeasure;
-            this.selectedMeasure = null;
-            // clear the measure's section state
-            t.clearSelection();
-            // disable paste buttons
-            for (var m = 0; m < 4; m++) {
-                this.measures[m].setPasteEnabled(false);
-            }
-        }
-
-        // if it's a valid selection
-        if (measure != null) {
-            // update selection state, assume the measure's own state is already updated
-            this.selectedMeasure = measure;
-            // enable paste buttons for the other three measures
-            for (var m = 0; m < 4; m++) {
-                if (this.measures[m] != measure) {
-                    this.measures[m].setPasteEnabled(true);
-                }
-            }
+    setCopyData(copyData) {
+        this.copyData = copyData;
+        for (var m = 0; m < 4; m++) {
+            this.measures[m].setPasteEnabled(true);
         }
     }
 
