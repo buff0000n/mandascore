@@ -27,7 +27,6 @@ class SoundEntry {
     }
 
     setBuffers(buffers, sourceName) {
-        console.log("setting buffer for sound " + sourceName);
         // save the sound info
         this.buffers = buffers;
         this.bufferIndex = 0;
