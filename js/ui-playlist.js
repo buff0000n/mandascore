@@ -215,6 +215,13 @@ class Playlist {
         if (select) {
             // optionally select
             this.select(entry, false);
+
+        } else {
+            // pre-cache the section packs so we don't have hiccups during payback of a playlist
+            // with sectio pack changes
+            for (var section in entry.song.packs) {
+                this.score.precacheSectionSource(section, entry.song.packs[section]);
+            }
         }
     }
 

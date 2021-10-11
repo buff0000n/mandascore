@@ -1751,6 +1751,11 @@ class Score {
         this.soundPlayer.setSource(section, pack, this.isSectionMono(section));
     }
 
+    precacheSectionSource(section, pack) {
+        // set the audio source
+        this.soundPlayer.setSource(section, pack, this.isSectionMono(section), true);
+    }
+
     isSectionMono(section) {
         return instrumentNameToPack[this.sectionPacks[section]].mono[section];
     }
