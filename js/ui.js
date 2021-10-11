@@ -372,6 +372,23 @@ function touchEventToMTEvent(e, overrideTarget=null) {
     }
 }
 
+function setupDragDropListeners(onDrag, onDrop) {
+    // set up drag listeners on the document itself
+    // touch events down work across DOM elements unless you go all the way
+    // to the document level
+    document.onmousemove = (e) => { onDrag(mouseEventToMTEvent(e)); };
+    document.onmouseup = (e) => { onDrop(mouseEventToMTEvent(e)); };
+    document.ontouchmove = (e) => { onDrag(touchEventToMTEvent(e)); };
+    document.ontouchend = (e) => { onDrop(touchEventToMTEvent(e)); };
+}
+
+function clearDragDropListeners() {
+    document.onmousemove = null;
+    document.onmouseup = null;
+    document.ontouchmove = null;
+    document.ontouchend = null;
+}
+
 class CopyData {
     constructor(measure, section) {
         this.section = section;
@@ -2058,15 +2075,12 @@ class PlaybackMarker {
             others[m].disableListeners();
         }
 
-        // set up drag listeners on the document itself
-        // touch events down work across DOM elements unless you go all the way
-        // to the document level
-        document.onmousemove = (e2) => { this.dragEvent(mouseEventToMTEvent(e2)); };
-        document.onmouseup = (e2) => { this.dropEvent(mouseEventToMTEvent(e2)); };
-        document.ontouchmove = (e2) => { this.dragEvent(touchEventToMTEvent(e2)); };
-        document.ontouchend = (e2) => { this.dropEvent(touchEventToMTEvent(e2)); };
+        setupDragDropListeners(
+            (mte) => { this.dragEvent(mte); },
+            (mte) => { this.dropEvent(mte); }
+        )
 
-        // stop playback if it's gurrently playing
+        // stop playback if it's currently playing
         if (this.playback.playing()) {
             this.didStop = true;
             this.playback.stop();
@@ -2159,10 +2173,7 @@ class PlaybackMarker {
         }
 
         // clear drag listeners
-        document.onmousemove = null;
-        document.onmouseup = null;
-        document.ontouchmove = null;
-        document.ontouchend = null;
+        clearDragDropListeners();
 
         // Figuring out the playback time is complicated by the fact that not all measures may be playing
         var measureTime = this.playback.measures.indexOf(this.measure) * 2;

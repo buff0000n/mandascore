@@ -177,9 +177,9 @@ class Playlist {
 
         getFirstChild(this.playlistBox, "titleButton").addEventListener("click", () => { this.hide() });
 
-        this.playlistScollArea = document.createElement("div");
-        this.playlistScollArea.className = "playlistScollArea";
-        this.playlistBox.appendChild(this.playlistScollArea);
+        this.playlistScrollArea = document.createElement("div");
+        this.playlistScrollArea.className = "playlistScrollArea";
+        this.playlistBox.appendChild(this.playlistScrollArea);
     }
 
     hide() {
@@ -210,7 +210,7 @@ class Playlist {
             // no need to reindex the whole list
             entry.setIndex(this.entries.length);
             // insert into the dom
-            this.playlistScollArea.appendChild(entry.playlistEntryContainer);
+            this.playlistScrollArea.appendChild(entry.playlistEntryContainer);
         }
         if (select) {
             // optionally select
@@ -232,67 +232,145 @@ class Playlist {
         }
     }
 
-    moveUp(entry) {
-        // get the index of the entry
-        var index = this.entries.indexOf(entry);
-        // make sure it's not already at the top
-        if (index > 0) {
-            // remove and insert one spot up
-            this.entries.splice(index, 1);
-            this.entries.splice(index-1, 0, entry);
-            // same move in the dom
-            deleteNode(entry.playlistEntryContainer);
-            insertBefore(entry.playlistEntryContainer, this.entries[index].playlistEntryContainer);
-            // renumber entries
-            this.reIndex();
-        }
-    }
+    startDrag(mte, entry) {
+        // scroll speed parameters, guessed
+        var maxScrollDistance = 30;
+        var scrollWait = 100;
 
-    moveToTop(entry) {
         // get the index of the entry
         var index = this.entries.indexOf(entry);
-        // make sure it's not already at the top
-        if (index > 0) {
-            // remove and insert at the beginning
-            this.entries.splice(index, 1);
-            this.entries.splice(0, 0, entry);
-            // same move in the dom
-            deleteNode(entry.playlistEntryContainer);
-            insertBefore(entry.playlistEntryContainer, this.entries[1].playlistEntryContainer);
-            // renumber entries
-            this.reIndex();
-        }
-    }
 
-    moveDown(entry) {
-        // get the index of the entry
-        var index = this.entries.indexOf(entry);
-        // make sure it's not already at the bottom
-        if (index >= 0 && index < this.entries.length - 1) {
-            // remove and insert one spot down
-            this.entries.splice(index, 1);
-            this.entries.splice(index+1, 0, entry);
-            // same move in the dom
-            deleteNode(entry.playlistEntryContainer);
-            insertAfter(entry.playlistEntryContainer, this.entries[index].playlistEntryContainer);
-            // renumber entries
-            this.reIndex();
-        }
-    }
+        // get the screen coordinates of the scroll area and the entry div
+        var areaRect = this.playlistScrollArea.getBoundingClientRect();
+        var entryRect = entry.playlistEntryContainer.getBoundingClientRect();
 
-    moveToBottom(entry) {
-        // get the index of the entry
-        var index = this.entries.indexOf(entry);
-        if (index >= 0 && index < this.entries.length - 1) {
-            // remove and insert at the end
-            this.entries.splice(index, 1);
-            this.entries.splice(this.entries.length, 0, entry);
-            // same move in the dom
-            deleteNode(entry.playlistEntryContainer);
-            insertAfter(entry.playlistEntryContainer, this.entries[this.entries.length - 2].playlistEntryContainer);
-            // renumber entries
+        // get the relative click offset inside the entry div
+        var clickOffsetX = mte.clientX - entryRect.left;
+        var clickOffsetY = mte.clientY - entryRect.top;
+
+        // build a placeholder div to keep a blank space where the entry will go
+        var placeholder = document.createElement("div");
+        // try our best to make the placeholder div exactly the same height as the entry div
+        placeholder.innerHTML = `<span class="playlistEntryContainerPlaceholder">X↑↓`+(index+1)+entry.song.name+`</span>`;
+        // start it right by the entry div
+        insertAfter(placeholder, entry.playlistEntryContainer);
+
+        // set the entry div to absolute positioning
+        entry.playlistEntryContainer.className = "playlistEntryContainerDrag";
+
+        // function to iteratively move the entry and its placeholder around the list, following the cursor
+        var followPlaceholder = (mte) => {
+            // calcluate the cursor position inside the scroll area
+            var y2 = mte.clientY - areaRect.top - this.playlistScrollArea.scrollTop;
+
+            var newIndex = index;
+            // if we're not at the beginning and the cursor is above the placeholder
+            if (index > 0 && y2 < placeholder.getBoundingClientRect().top - areaRect.top - this.playlistScrollArea.scrollTop) {
+                // we need to move the placeholder up
+                newIndex -= 1;
+            }
+            // if we're not at the end and the cursor is below the placeholder
+            if (index < this.entries.length - 1 && y2 > placeholder.getBoundingClientRect().bottom - areaRect.top - this.playlistScrollArea.scrollTop) {
+                // we need to move the placeholder down
+                newIndex += 1;
+            }
+            // if there's no change in index then we're done
+            if (index != newIndex) {
+                // move the entry to the new index
+                this.entries.splice(index, 1);
+                this.entries.splice(newIndex, 0, entry);
+                index = newIndex;
+                // remove the entry div
+                deleteNode(entry.playlistEntryContainer);
+                // use insertBefore unless it's at the end of the list
+                if (index < this.entries.length - 1) {
+                    insertBefore(entry.playlistEntryContainer, this.entries[index + 1].playlistEntryContainer);
+                } else {
+                    insertAfter(entry.playlistEntryContainer, this.entries[index - 1].playlistEntryContainer);
+                }
+                // remove the plceholder
+                deleteNode(placeholder);
+                // put the placeholder where the entry div is
+                insertAfter(placeholder, entry.playlistEntryContainer);
+                // yield the event handling thread so it can re-position elements
+                // we'll do another iteration once that's done
+                setTimeout(() => { followPlaceholder(mte); }, 1);
+            }
+        };
+
+        // scrolling timeout callback
+        var dragTimeout = null;
+
+        // drag event handler
+        var dragEvent = (mte) => {
+            // prevent things like selecting text while dragging
+            mte.preventDefault();
+            // move the dragged entry
+            entry.playlistEntryContainer.style.left = mte.clientX - areaRect.left - clickOffsetX + this.playlistScrollArea.scrollLeft;
+            entry.playlistEntryContainer.style.top = mte.clientY - areaRect.top - clickOffsetY + this.playlistScrollArea.scrollTop;
+
+            // clear the timeout
+            if (dragTimeout) {
+        		clearTimeout(dragTimeout);
+        		dragTimeout = null;
+            }
+
+            // get the top position of the dragged entry div
+            var top = mte.clientY - clickOffsetY;
+            // get the bottom position of the dragged entry div
+            var bottom = mte.clientY - clickOffsetY + entryRect.height;
+
+            var scrollAmount = 0;
+            // check if the entry div is past the top of the scroll area
+            if (top < areaRect.top) {
+                // calculate the scroll amount based on how far the entry div is past the top of the scroll area
+                scrollAmount = -maxScrollDistance * Math.min((areaRect.top - top) / entryRect.height, 1);
+            }
+            // check if the entry div is past the bottom of the scroll area
+            if (bottom > areaRect.bottom) {
+                // calculate the scroll amount based on how far the entry div is past the bottom of the scroll area
+                scrollAmount = maxScrollDistance * Math.min((bottom - areaRect.bottom) / entryRect.height, 1);
+            }
+
+            // check if there is a scroll amount
+            if (scrollAmount != 0) {
+                // scroll the scroll area
+                this.playlistScrollArea.scrollBy(0, scrollAmount);
+                // scheule a timeout so the area will keep scrolling when the cursor isn't moving
+                dragTimeout = setTimeout(() => { dragEvent(mte); }, scrollWait);
+            }
+
+            // move the placeholder so it's under the dragged entry
+            followPlaceholder(mte);
+        };
+
+        // drop event handler
+        var dropEvent =  (mte) => {
+            // prevent defaults again
+            mte.preventDefault();
+            // reset global drag/drop listeners
+            clearDragDropListeners();
+            // reset the entry's style to regular positioning, it's already in the correct location in the DOM
+            entry.playlistEntryContainer.className = "playlistEntryContainer";
+            entry.playlistEntryContainer.style.left = "";
+            entry.playlistEntryContainer.style.top = "";
+            // remove the placeholder
+            deleteNode(placeholder);
+            // reindex entries
             this.reIndex();
+
+            // clear the timeout
+            if (dragTimeout) {
+        		clearTimeout(dragTimeout);
+        		dragTimeout = null;
+            }
         }
+
+        // setup global drag/drop listeners
+        setupDragDropListeners(dragEvent, dropEvent);
+
+        // call the drag listener right away
+        dragEvent(mte);
     }
 
     reIndex() {
@@ -491,34 +569,10 @@ class PlaylistEntry {
         {
             var span = document.createElement("span");
             span.className = "smallButton";
-            span.onclick = this.movePlaylistEntryToTop
+            span.onmousedown = (e) => { this.startPlayListEntryDrag(mouseEventToMTEvent(e)); }
+            span.ontouchstart = (e) => { this.startPlayListEntryDrag(touchEventToMTEvent(e)); }
             span.entry = this;
-            span.innerHTML = `⇈`;
-            this.playlistEntryContainer.appendChild(span);
-        }
-        {
-            var span = document.createElement("span");
-            span.className = "smallButton";
-            span.onclick = this.movePlaylistEntryUp
-            span.entry = this;
-            span.innerHTML = `↑`;
-            this.playlistEntryContainer.appendChild(span);
-        }
-
-        {
-            var span = document.createElement("span");
-            span.className = "smallButton";
-            span.onclick = this.movePlaylistEntryDown
-            span.entry = this;
-            span.innerHTML = `↓`;
-            this.playlistEntryContainer.appendChild(span);
-        }
-        {
-            var span = document.createElement("span");
-            span.className = "smallButton";
-            span.onclick = this.movePlaylistEntryToBottom
-            span.entry = this;
-            span.innerHTML = `⇊`;
+            span.innerHTML = `↑↓`;
             this.playlistEntryContainer.appendChild(span);
         }
 
@@ -549,20 +603,8 @@ class PlaylistEntry {
         this.entry.playlist.removeEntry(this.entry);
     }
 
-    movePlaylistEntryUp() {
-        this.entry.playlist.moveUp(this.entry);
-    }
-
-    movePlaylistEntryToTop() {
-        this.entry.playlist.moveToTop(this.entry);
-    }
-
-    movePlaylistEntryDown() {
-        this.entry.playlist.moveDown(this.entry);
-    }
-
-    movePlaylistEntryToBottom() {
-        this.entry.playlist.moveToBottom(this.entry);
+    startPlayListEntryDrag(mte) {
+        this.playlist.startDrag(mte, this);
     }
 
     selectPlaylistEntry() {

@@ -188,11 +188,12 @@
         vertical-align: bottom;
     }
 
-    .playlistScollArea {
+    .playlistScrollArea {
         overflow: auto;
         max-height: 32ex;
         min-height: 32ex;
         overflow-anchor: none;
+        position: relative;
     }
 
     .playlistBox {
@@ -205,6 +206,24 @@
         overflow: auto;
         overflow-anchor: none;
         */
+    }
+
+    .playlistEntryContainer {
+    }
+
+    .playlistEntryContainerDrag {
+        position: absolute;
+    }
+
+    .playlistEntryContainerPlaceholder {
+        color: #000000;
+        background: #000000;
+        border: none;
+        padding: 0ex 1ex;
+        font-size: 100%;
+        border-radius: 1ex;
+        margin: 0ex 0ex ;
+        display: block-inline;
     }
 
     .libraryBox {
