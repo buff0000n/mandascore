@@ -257,6 +257,8 @@ class Playlist {
 
         // set the entry div to absolute positioning
         entry.playlistEntryContainer.className = "playlistEntryContainerDrag";
+        // set the button cursor style to grabbing
+        entry.grabSpan.className = "smallButtonGrabbing";
 
         // function to iteratively move the entry and its placeholder around the list, following the cursor
         var followPlaceholder = (mte) => {
@@ -354,6 +356,8 @@ class Playlist {
             entry.playlistEntryContainer.className = "playlistEntryContainer";
             entry.playlistEntryContainer.style.left = "";
             entry.playlistEntryContainer.style.top = "";
+            // reset the button cursor style
+            entry.grabSpan.className = "smallButtonGrab";
             // remove the placeholder
             deleteNode(placeholder);
             // reindex entries
@@ -567,13 +571,13 @@ class PlaylistEntry {
         }
 
         {
-            var span = document.createElement("span");
-            span.className = "smallButton";
-            span.onmousedown = (e) => { this.startPlayListEntryDrag(mouseEventToMTEvent(e)); }
-            span.ontouchstart = (e) => { this.startPlayListEntryDrag(touchEventToMTEvent(e)); }
-            span.entry = this;
-            span.innerHTML = `↑↓`;
-            this.playlistEntryContainer.appendChild(span);
+            this.grabSpan = document.createElement("span");
+            this.grabSpan.className = "smallButtonGrab";
+            this.grabSpan.onmousedown = (e) => { this.startPlayListEntryDrag(mouseEventToMTEvent(e)); }
+            this.grabSpan.ontouchstart = (e) => { this.startPlayListEntryDrag(touchEventToMTEvent(e)); }
+            this.grabSpan.entry = this;
+            this.grabSpan.innerHTML = `↑↓`;
+            this.playlistEntryContainer.appendChild(this.grabSpan);
         }
 
         {

@@ -2092,6 +2092,10 @@ class PlaybackMarker {
         this.lastMeasure = null;
         this.lastTick = null;
 
+        // set the cursor to grabbing
+        this.playbackHandle.className = "playbackHandleGrabbing";
+        this.playbackBox.className = "playbackBoxGrabbing";
+
         // immediately move the marker
         this.dragEvent(e, measure);
     }
@@ -2185,6 +2189,10 @@ class PlaybackMarker {
         if (this.didStop) {
             this.playback.start();
         }
+
+        // reset the cursor
+        this.playbackHandle.className = "playbackHandle";
+        this.playbackBox.className = "playbackBox";
     }
 }
 
