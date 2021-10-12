@@ -1742,6 +1742,10 @@ class Score {
         }
         // save state
         this.title = title;
+        // update the title in the playlist, if there's an entry selected
+        if (this.playlist && this.playlist.selected) {
+            this.playlist.selected.updateSong();
+        }
     }
 
     setSectionSource(section, pack) {
