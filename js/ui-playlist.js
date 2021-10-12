@@ -214,7 +214,7 @@ class Playlist {
         }
         if (select) {
             // optionally select
-            this.select(entry, false);
+            this.select(entry, true);
 
         } else {
             // pre-cache the section packs so we don't have hiccups during payback of a playlist
