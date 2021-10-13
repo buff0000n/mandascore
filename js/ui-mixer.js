@@ -128,6 +128,7 @@ class Mixer {
     }
 
     import(string) {
+        // this is never imported by itself, only as part of a playlist import, so no undo action is necessary right now
         // format check
         if (!this.isMixerExportString(string)) {
             throw "Invalid mixer format";

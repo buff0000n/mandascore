@@ -572,19 +572,16 @@ class Playlist {
         // split into lines
         var songCodes = str.split("\n")
         var readEntries = Array();
+        var mixerCode = "";
 
-        var hasMixerConfig = false;
         for (var i = 0; i < songCodes.length; i++) {
             // trim and check for blank lines
             var code = songCodes[i].trim();
 
             // check for a mixer config
             if (this.score.mixer.isMixerExportString(code)) {
-                // make sure the mixer is visible
-                showMixer();
-                // import the mixer config
-                this.score.mixer.import(code);
-                hasMixerConfig = true;
+                // just store the code
+                mixerCode = code;
 
             } else if (code != "") {
                 // parse the song
@@ -592,38 +589,51 @@ class Playlist {
                 song.parseChatLink(code);
                 readEntries.push(new PlaylistEntry(song, this));
             }
-
-            if (!hasMixerConfig) {
-                this.score.mixer.resetMixer();
-                hideMixer();
-            }
         }
 
         // don't make any changes if we didn't read any valid songs
         // we also avoid making any changes if there was an error parsing the song list
         if (readEntries.length > 0) {
-            this.importEntries(readEntries, action);
+            this.importEntries(readEntries, mixerCode, action);
         }
     }
     
-    importEntries(entries, action=true, selectEntry=null) {
+    importEntries(entries, mixerCode, action=true, selectEntry=null) {
         // select the first entry and reset playback
         if (!selectEntry && entries && entries.length > 0) {
             selectEntry = entries[0];
         }
+
         if (action) {
             this.score.startActions();
-            this.score.addAction(new changePlaylistAction(this, this.entries, this.selected, entries, selectEntry));
+            this.score.addAction(new changePlaylistAction(this, this.entries, this.selected, this.score.mixer.export(), entries, selectEntry, mixerCode));
         }
         // clear the current playlist
         this.clear(false);
         if (entries) {
+            // make sure the playlist is showing but don't enable it automatically
+            showPlaylist(false);
             // add each song
             for (var i = 0; i < entries.length; i++) {
                 // add it to end of the playlist, without affecting the selection
                 this.addSongEntry(entries[i], false, this.entries.length, false);
             }
             this.select(selectEntry, true, true, false);
+        }
+
+        var hasMixerConfig = false;
+
+        if (mixerCode && mixerCode != "") {
+            // make sure the mixer is visible
+            showMixer();
+            // import the mixer config
+            this.score.mixer.import(mixerCode);
+            hasMixerConfig = true;
+        }
+
+        if (!hasMixerConfig) {
+            this.score.mixer.resetMixer(action);
+            hideMixer();
         }
 
         if (action) {
@@ -775,21 +785,23 @@ class addRemovePlaylistEntryAction extends Action {
 }
 
 class changePlaylistAction extends Action {
-    constructor(playlist, oldEntries, oldSelectedEntry, newEntries, newSelectedEntry) {
+    constructor(playlist, oldEntries, oldSelectedEntry, oldMixerCode, newEntries, newSelectedEntry, newMixerCode) {
         super();
         this.playlist = playlist;
         this.oldEntries = oldEntries;
         this.oldSelectedEntry = oldSelectedEntry;
+        this.oldMixerCode = oldMixerCode;
         this.newEntries = newEntries;
         this.newSelectedEntry = newSelectedEntry;
+        this.newMixerCode = newMixerCode;
     }
 
 	undoAction() {
-	    this.playlist.importEntries(this.oldEntries, false, this.oldSelectedEntry);
+	    this.playlist.importEntries(this.oldEntries, this.oldMixerCode, false, this.oldSelectedEntry);
 	}
 
 	redoAction() {
-	    this.playlist.importEntries(this.newEntries, false, this.newSelectedEntry);
+	    this.playlist.importEntries(this.newEntries, this.newMixerCode, false, this.newSelectedEntry);
 	}
 
 	toString() {
