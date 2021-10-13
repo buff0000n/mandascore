@@ -2,32 +2,8 @@ function clearPlaylist(button) {
     // chrome is doing strange things with clicked buttons so just unfocus it
     button.blur();
 
-    // clear all menus
-    clearMenus();
-    // create a div and set some properties
-    var div = document.createElement("div");
-    div.className = "menu";
-    div.button = button;
-
-    // build the section menu out of buttons
-    var html = "";
-    html += `<input class="button" type="submit" value="Clear Playlist" onClick="reallyClearPlaylist(this)"/>`;
-    html += `<input class="button" type="submit" value="Cancel" onClick="clearMenus()"/>`;
-    div.innerHTML = html;
-
-    // put the menu in the clicked button's parent and anchor it to button
-    showMenu(div, getParent(button, "scoreButtonRow"), button);
-}
-
-function reallyClearPlaylist(button) {
-   // chrome is doing strange things with clicked buttons so just unfocus it
-    button.blur();
-
-    // need to get this before clearing menus
+    // get the playlist
     var playlist = getParent(button, "playlistBox").playlist;
-
-    // clear all menus
-    clearMenus();
 
     // clear the playlist
     playlist.clear();
@@ -186,56 +162,103 @@ class Playlist {
         hidePlaylist();
     }
 
-    addSongCode(code, select, insert=true) {
+    addSongCode(code, select, insert=true, action=true) {
         var song = new Song();
         song.parseChatLink(code);
-        this.addSong(song, select, insert);
+        this.addSong(song, select, insert, action);
     }
 
-    addSong(song, select, insert=true) {
-        // create a new entry
-        var entry = new PlaylistEntry(song, this);
+    addSong(song, select, insert=true, action=true) {
+        var index = -1;
+
         if (this.selected && insert) {
             // if there's a selection, the insert the new entry immediately after the selection
-            var index = this.entries.indexOf(this.selected);
-            this.entries.splice(index+1, 0, entry);
+            index = this.entries.indexOf(this.selected) + 1;
+
+        } else {
+            index = this.entries.length;
+        }
+
+        // create a new entry
+        var entry = new PlaylistEntry(song, this);
+
+        this.addSongEntry(entry, select, index, action);
+    }
+
+    addSongEntry(entry, select, index, action=true) {
+        if (index == 0) {
+            this.entries.unshift(entry);
             // do the same insertion in the dom
-            insertAfter(entry.playlistEntryContainer, this.selected.playlistEntryContainer);
+            if (this.entries.length == 1) {
+                this.playlistScrollArea.appendChild(entry.playlistEntryContainer);
+            } else {
+                insertBefore(entry.playlistEntryContainer, this.entries[1].playlistEntryContainer);
+            }
+            // renumber entries
+            this.reIndex();
+
+        } else if (index < this.entries.length) {
+            this.entries.splice(index, 0, entry);
+            // do the same insertion in the dom
+            insertBefore(entry.playlistEntryContainer, this.entries[index+1].playlistEntryContainer);
             // renumber entries
             this.reIndex();
 
         } else {
-            // no current selection or we're support to append instead of insert
+            // insert at the end
             this.entries.push(entry);
             // no need to reindex the whole list
             entry.setIndex(this.entries.length);
             // insert into the dom
             this.playlistScrollArea.appendChild(entry.playlistEntryContainer);
         }
+
+        if (action) {
+            this.score.startActions();
+            this.score.addAction(new addRemovePlaylistEntryAction(this, entry, index, select, true));
+        }
+
         if (select) {
             // optionally select
-            this.select(entry, true);
+            this.select(entry, true, false, action);
 
         } else {
             // pre-cache the section packs so we don't have hiccups during payback of a playlist
-            // with sectio pack changes
+            // with section pack changes
             for (var section in entry.song.packs) {
                 this.score.precacheSectionSource(section, entry.song.packs[section]);
             }
         }
+        if (action) {
+            this.score.endActions();
+        }
     }
 
-    removeEntry(entry) {
+    removeEntry(entry, action=true) {
         // remove from the entry list
-        if (removeFromList(this.entries, entry)) {
+        var index = removeFromList(this.entries, entry);
+        if (index >= 0) {
+            if (action) {
+                this.score.startActions();
+                this.score.addAction(new addRemovePlaylistEntryAction(this, entry, index, this.selected == entry, false));
+            }
             // remove from the dom
             deleteNode(entry.playlistEntryContainer);
-            // if the node was selected then we have no selection now
+            // if the entry was selected then select another entry
             if (this.selected == entry) {
+                // clear selection
                 this.selected = null;
+                // if the playlist is nonempty, select the nearest entry
+                if (this.entries.length >= 0) {
+                    // select either the next entry, or the last entry if the deleted one was the last entry
+                    this.select(this.entries[Math.min(index, this.entries.length - 1)], true, false, action);
+                }
             }
             // renumber entries
             this.reIndex();
+            if (action) {
+                this.score.endActions();
+            }
         }
     }
 
@@ -245,7 +268,8 @@ class Playlist {
         var scrollWait = 100;
 
         // get the index of the entry
-        var index = this.entries.indexOf(entry);
+        var startIndex = this.entries.indexOf(entry);
+        var index = startIndex;
 
         // get the screen coordinates of the scroll area and the entry div
         var areaRect = this.playlistScrollArea.getBoundingClientRect();
@@ -285,19 +309,11 @@ class Playlist {
             }
             // if there's no change in index then we're done
             if (index != newIndex) {
-                // move the entry to the new index
-                this.entries.splice(index, 1);
-                this.entries.splice(newIndex, 0, entry);
+
+                this.moveEntry(entry, newIndex, index, false);
+
                 index = newIndex;
-                // remove the entry div
-                deleteNode(entry.playlistEntryContainer);
-                // use insertBefore unless it's at the end of the list
-                if (index < this.entries.length - 1) {
-                    insertBefore(entry.playlistEntryContainer, this.entries[index + 1].playlistEntryContainer);
-                } else {
-                    insertAfter(entry.playlistEntryContainer, this.entries[index - 1].playlistEntryContainer);
-                }
-                // remove the plceholder
+                // remove the placeholder
                 deleteNode(placeholder);
                 // put the placeholder where the entry div is
                 insertAfter(placeholder, entry.playlistEntryContainer);
@@ -375,6 +391,12 @@ class Playlist {
         		clearTimeout(dragTimeout);
         		dragTimeout = null;
             }
+
+            if (index != startIndex) {
+                this.score.startActions();
+                this.score.addAction(new movePlaylistEntryAction(this, entry, startIndex, index));
+                this.score.endActions();
+            }
         }
 
         // setup global drag/drop listeners
@@ -384,6 +406,34 @@ class Playlist {
         dragEvent(mte);
     }
 
+    moveEntry(entry, newIndex, oldIndex=null, action=true) {
+        // get the index of the entry, if not provided
+        if (oldIndex == null) {
+            oldIndex = this.entries.indexOf(entry);
+        }
+
+        if (action) {
+            this.score.startActions();
+            this.score.addAction(new movePlaylistEntryAction(this, entry, oldIndex, newIndex));
+        }
+
+        // move the entry to the new index
+        this.entries.splice(oldIndex, 1);
+        this.entries.splice(newIndex, 0, entry);
+        // remove the entry div
+        deleteNode(entry.playlistEntryContainer);
+        // use insertBefore unless it's at the end of the list
+        if (newIndex < this.entries.length - 1) {
+            insertBefore(entry.playlistEntryContainer, this.entries[newIndex + 1].playlistEntryContainer);
+        } else {
+            insertAfter(entry.playlistEntryContainer, this.entries[newIndex - 1].playlistEntryContainer);
+        }
+
+        if (action) {
+            this.score.endActions();
+        }
+    }
+
     reIndex() {
         // lazy, just loop through and re-index eveything.
         for (var i = 0; i < this.entries.length; i++) {
@@ -391,14 +441,14 @@ class Playlist {
         }
     }
 
-    select(entry, setScore, resetPlayback=false) {
+    select(entry, setScore, resetPlayback=false, action=true) {
         // already selected
         if (this.selected == entry) {
             return;
         }
-        // not sure if I need a null check but whatever
-        if (entry == null) {
-            return;
+        if (action) {
+            this.score.startActions();
+            this.score.addAction(new selectPlaylistEntryAction(this, this.selected, entry));
         }
         // check if there is already a selection
         if (this.selected) {
@@ -409,14 +459,22 @@ class Playlist {
             // clear selection
             this.selected.setSelected(false);
         }
-        // select the new entry
-        entry.setSelected(true);
+        // change the selection
         this.selected = entry;
-        // update the score, if this isn't an add action
-        if (setScore) {
-            this.score.setSongObject(this.selected.song, true, resetPlayback);
-            // let's make this simple for now: switching songs in the playlist clears the undo history.
-            clearUndoStack();
+        // if there is a selection then change state
+        if (entry != null) {
+            // select the new entry
+            entry.setSelected(true);
+            // update the score, if this isn't an add action
+            if (setScore) {
+                // don't add undo actions for this
+                this.score.setSongObject(this.selected.song, false, resetPlayback);
+    //            // let's make this simple for now: switching songs in the playlist clears the undo history.
+    //            clearUndoStack();
+            }
+        }
+        if (action) {
+            this.score.endActions();
         }
     }
 
@@ -437,7 +495,12 @@ class Playlist {
         this.select(this.entries[index], true);
     }
 
-    clear() {
+    clear(action=true) {
+        if (action) {
+            this.score.startActions();
+            this.score.addAction(new changePlaylistAction(this, this.entries, this.selected, null, null));
+            this.score.endActions();
+        }
         // delete from the dom
         for (var i = 0; i < this.entries.length; i++) {
             deleteNode(this.entries[i].playlistEntryContainer);
@@ -458,21 +521,22 @@ class Playlist {
         }
     }
 
-    add() {
-        // make the name unique
-        var name = this.score.title;
+    add(action=true) {
+        // pull the current song from the score
+        var song = this.score.getSongObject();
+
+        // make the name unique, but don't set it yet
+        var name = song.name;
         for (;;) {
             if (!this.entries.find((entry) => entry.song.name == name)) {
                 break;
             }
             name = this.incrementName(name);
+            song.name = name;
         }
-        if (name != this.score.title) {
-            this.score.setTitle(name, false);
-        }
-        // add the song currently in the score and automatically select it
-        // This bypasses the auto-update when the selection changes, so the previously selected entry remains unchanged
-        this.addSong(this.score.getSongObject(), true);
+
+        // add the song and automatically select it
+        this.addSong(song, true, true, action);
     }
 
     toggleLoop() {
@@ -504,7 +568,7 @@ class Playlist {
         return str;
     }
 
-    import(str) {
+    import(str, action=true) {
         // split into lines
         var songCodes = str.split("\n")
         var readEntries = Array();
@@ -526,7 +590,7 @@ class Playlist {
                 // parse the song
                 var song = new Song();
                 song.parseChatLink(code);
-                readEntries.push(song);
+                readEntries.push(new PlaylistEntry(song, this));
             }
 
             if (!hasMixerConfig) {
@@ -538,15 +602,32 @@ class Playlist {
         // don't make any changes if we didn't read any valid songs
         // we also avoid making any changes if there was an error parsing the song list
         if (readEntries.length > 0) {
-            // clear the current playlist
-            this.clear();
+            this.importEntries(readEntries, action);
+        }
+    }
+    
+    importEntries(entries, action=true, selectEntry=null) {
+        // select the first entry and reset playback
+        if (!selectEntry && entries && entries.length > 0) {
+            selectEntry = entries[0];
+        }
+        if (action) {
+            this.score.startActions();
+            this.score.addAction(new changePlaylistAction(this, this.entries, this.selected, entries, selectEntry));
+        }
+        // clear the current playlist
+        this.clear(false);
+        if (entries) {
             // add each song
-            for (var i = 0; i < readEntries.length; i++) {
-                // add it to the playlist, without affecting the selection
-                this.addSong(readEntries[i], false);
+            for (var i = 0; i < entries.length; i++) {
+                // add it to end of the playlist, without affecting the selection
+                this.addSongEntry(entries[i], false, this.entries.length, false);
             }
-            // finally, select the first entry and reset playback
-            this.select(this.entries[0], true, true);
+            this.select(selectEntry, true, true, false);
+        }
+
+        if (action) {
+            this.score.endActions();
         }
     }
 }
@@ -639,3 +720,107 @@ class PlaylistEntry {
         this.titleBar.innerHTML = this.song.getName();
     }
 }
+
+class selectPlaylistEntryAction extends Action {
+    constructor(playlist, oldEntry, newEntry) {
+        super();
+        this.playlist = playlist;
+        this.oldEntry = oldEntry;
+        this.newEntry = newEntry;
+    }
+
+	undoAction() {
+	    this.playlist.select(this.oldEntry, true, false, false);
+	}
+
+	redoAction() {
+	    this.playlist.select(this.newEntry, true, false, false);
+	}
+
+	toString() {
+	    return "Select " + this.newEntry.song.title;
+	}
+}
+
+class addRemovePlaylistEntryAction extends Action {
+    constructor(playlist, entry, index, select, add) {
+        super();
+        this.playlist = playlist;
+        this.entry = entry;
+        this.index = index;
+        this.select = select;
+        this.add = add;
+    }
+
+	undoAction() {
+	    this.doAction(!this.add);
+	}
+
+	redoAction() {
+	    this.doAction(this.add);
+	}
+
+	doAction(add) {
+	    if (add) {
+    	    this.playlist.addSongEntry(this.entry, this.select, this.index, false);
+
+	    } else {
+    	    this.playlist.removeEntry(this.entry, false);
+	    }
+	}
+
+	toString() {
+	    return (this.add ? "Add " : "Remove ") + this.entry.song.title;
+	}
+}
+
+class changePlaylistAction extends Action {
+    constructor(playlist, oldEntries, oldSelectedEntry, newEntries, newSelectedEntry) {
+        super();
+        this.playlist = playlist;
+        this.oldEntries = oldEntries;
+        this.oldSelectedEntry = oldSelectedEntry;
+        this.newEntries = newEntries;
+        this.newSelectedEntry = newSelectedEntry;
+    }
+
+	undoAction() {
+	    this.playlist.importEntries(this.oldEntries, false, this.oldSelectedEntry);
+	}
+
+	redoAction() {
+	    this.playlist.importEntries(this.newEntries, false, this.newSelectedEntry);
+	}
+
+	toString() {
+	    return this.newEntries ? "Import playlist" : "Clear playlist";
+	}
+}
+
+class movePlaylistEntryAction extends Action {
+    constructor(playlist, entry, oldIndex, newIndex) {
+        super();
+        this.playlist = playlist;
+        this.entry = entry;
+        this.oldIndex = oldIndex;
+        this.newIndex = newIndex;
+    }
+
+	undoAction() {
+	    this.doAction(this.newIndex, this.oldIndex);
+	}
+
+	redoAction() {
+	    this.doAction(this.oldIndex, this.newIndex);
+	}
+
+	doAction(fromIndex, toIndex) {
+	    this.playlist.moveEntry(this.entry, toIndex, fromIndex, false);
+	    this.playlist.reIndex();
+	}
+
+	toString() {
+	    return (this.add ? "Add " : "Remove ") + this.entry.song.title;
+	}
+}
+

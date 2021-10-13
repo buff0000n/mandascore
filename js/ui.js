@@ -582,12 +582,12 @@ class Measure {
         this.timingContainer.innerHTML = `<img src="img/timingbar.png" srcset="img2x/timingbar.png 2x" width="352" height="25"/>`;
     }
 
-    setMeasureNotes(mnotes) {
+    setMeasureNotes(mnotes, action=true) {
         // load note info from an external source
         for (var t = 0; t < 16; t++) {
             for (var r = 0; r < 13; r++) {
                 // rows from the song parser are in reverse order
-                this.notes[t][r].setEnabled(mnotes[t][12-r] == 1);
+                this.notes[t][r].setEnabled(mnotes[t][12-r] == 1, action);
             }
         }
     }
@@ -1637,42 +1637,47 @@ class Score {
         }
     }
 
-    setSong(songCode, disableUndo, resetPlayback=false) {
+    setSong(songCode, action=true, resetPlayback=false) {
         // parse the song code
         var song = new Song();
         song.parseChatLink(songCode);
-        this.setSongObject(song, disableUndo, resetPlayback);
+        this.setSongObject(song, action, resetPlayback);
     }
 
-    setSongObject(song, disableUndo, resetPlayback=false) {
+    setSongObject(song, action=true, resetPlayback=false) {
         if (resetPlayback) {
             // remember whether we were playing before stopping playback
             var playing = this.isPlaying();
             this.stopPlayback();
         }
-        // put the entire process of loading the song into a single undo action
-        this.startActions();
+        if (action) {
+            // put the entire process of loading the song into a single undo action
+            this.startActions();
+        }
+
         // set the title, make sure to update the UI
-        this.setTitle(song.getName(), true, true);
+        this.setTitle(song.getName(), action, true);
 
         // loop over each section that's not the "all" section
         for (var section in sectionMetaData) {
             if (!sectionMetaData[section].all) {
                 // set the instrument pack, make sure to update the UI
-                this.sections[section].setPack(song.getPack(section), true, true);
+                this.sections[section].setPack(song.getPack(section), action, true);
                 // set the volume, make sure to update the UI
                 // song stores the volume as a percentage 0-100
-                this.sections[section].setVolume(song.getVolume(section) / 100.0, true, false, true);
+                this.sections[section].setVolume(song.getVolume(section) / 100.0, action, false, true);
             }
         }
 
         for (var m = 0; m < 4; m++) {
             // extract each measure's note info from the parsed song and update the measure UI
-            this.measures[m].setMeasureNotes(song.getMeasureNotes(m));
+            this.measures[m].setMeasureNotes(song.getMeasureNotes(m), action);
         }
 
         // commit as a single undo action
-        this.endActions(disableUndo);
+        if (action) {
+            this.endActions();
+        }
 
         // resume playing if it was playing before
         if (resetPlayback && playing) {
@@ -1742,9 +1747,11 @@ class Score {
         }
         // save state
         this.title = title;
-        // update the title in the playlist, if there's an entry selected
-        if (this.playlist && this.playlist.selected) {
-            this.playlist.selected.updateSong();
+        if (action) {
+            // update the title in the playlist, if there's an entry selected
+            if (this.playlist && this.playlist.selected) {
+                this.playlist.selected.updateSong();
+            }
         }
     }
 

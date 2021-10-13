@@ -74,15 +74,15 @@ function deleteNode(node) {
     node.parentNode.removeChild(node);
 }
 
-// returns true if the list was changed
+// returns the index of the item was removed, or -1 if nothing was removed
 function removeFromList(list, item) {
 	var index = list.indexOf(item);
 	if (index >= 0) {
 		list.splice(index, 1);
-		return true;
+		return index;
 
 	} else {
-		return false;
+		return -1;
 	}
 }
 
