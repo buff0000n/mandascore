@@ -249,8 +249,9 @@ class SoundBankSource {
 
 // object wrapping a collections of sounds from the same logical source
 class SoundBank {
-    constructor(size) {
+    constructor(name, size) {
         // source cache
+        this.name = name;
         this.sources = {};
         this.currentSource = null;
         this.volume = null;
@@ -457,7 +458,7 @@ class SoundPlayer {
             var m = sectionMetaData[name];
             if (!m.all) {
                 // create a new bank with the section's number of notes and sound file suffixes
-                var bank = new SoundBank(m.rowStop - m.rowStart + 1);
+                var bank = new SoundBank(name, m.rowStop - m.rowStart + 1);
                 // store an extra row start property, we'll need this later
                 bank.rowStart = m.rowStart;
                 // reference the bank by name
@@ -472,12 +473,12 @@ class SoundPlayer {
         }
 
         // special error sound for when the max number of notes in a section is exceeded
-        this.bzzt = new SoundBank(1);
+        this.bzzt = new SoundBank("bzzt", 1);
         // the suffix is the whole path
         this.bzzt.setSource(bzztSoundFile, [[bzztSoundFile]], true);
 
-        // initialization count
-        this.banksInitialized = 0;
+        // initialization flag
+        this.initialized = false;
     }
 
     setSource(section, source, mono=false, precache=false) {
@@ -485,9 +486,8 @@ class SoundPlayer {
         var soundFiles = instrumentNameToPack[source].soundFiles
         // set the source on the given section
         this.banks[section].setSource(source, soundFiles.slice(m.rowStart, m.rowStop + 1), mono, precache);
-        // go ahead and reset the initialized count to zero
-        // The initialize calls on any banks that haven't changed will simply short-circuit
-        this.banksInitialized = 0;
+        // go ahead and reset the initialized flag
+        this.initialized = false;
     }
 
     setVolume(section, volume) {
@@ -520,20 +520,34 @@ class SoundPlayer {
         return bank.isEnabled(index - bank.rowStart);
     }
 
+    allBanksInitialized() {
+        if (this.initialized) {
+            return true;
+        }
+        for (var section in this.banks) {
+            if (!this.banks[section].initialized) {
+                return false;
+            }
+        }
+        this.initialized = true;
+        return true;
+    }
+
     initialize(callback) {
         // short-circuit if we're already initialized
-        if (this.banksInitialized >= this.numBanks) {
+        if (this.allBanksInitialized()) {
             callback();
             return;
         }
+
         // loop over the sections
         for (var section in this.banks) {
             // initialize each section with a callback
             this.banks[section].initialize(() => {
-                // increment the initialization counter
-                this.banksInitialized++;
                 // if we've hit all banks then run the callback
-                if (this.banksInitialized == this.numBanks) callback();
+                if (this.allBanksInitialized()) {
+                    callback();
+                }
             });
         }
     }

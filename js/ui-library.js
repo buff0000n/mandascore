@@ -435,42 +435,56 @@ class Library {
             // load the song data from the db
             var songs = db[id];
 
-            // fill in the current song and reset playback
-            this.score.setSong(songs[0], false, true);
+            // remember whether we were playing before stopping playback
+            var playing = this.score.isPlaying();
+            this.score.stopPlayback();
 
-            if (songs.length == 1) {
-                // just one song
-                if (playlistEnabled()) {
-                    // playlist is enabled, add the song to the playlist
-                    this.score.playlist.add();
-                    // disable looping if it's just one song
-                    this.score.playlist.setLooping(false);
+            this.score.startActions();
+
+            if (playlistEnabled()) {
+                this.score.playlist.addSongCode(songs[0], true, true, true);
+
+            } else if (playlistVisible()) {
+                this.score.playlist.clear(true);
+                if (songs.length == 1) {
+                    hidePlaylist();
+                    this.score.setSong(songs[0], true, false);
 
                 } else {
-                    // playlist was not manually enabled, hide it and turn off looping
-                    hidePlaylist();
-                    // clear the playlist
-                    this.score.playlist.clear();
+                    this.score.playlist.addSongCode(songs[0], true, true, true);
                 }
 
-            } else {
-                // multiple songs
+            } else if (songs.length > 1) {
                 // show the playlist, but don't enable it automatically
                 showPlaylist(false);
-                // clear the playlist if it hasn't been manually enabled
-                if (!playlistEnabled()) {
-                    this.score.playlist.clear();
-                }
-                // Add the first song, already in the score, to the playlist and select it
-                this.score.playlist.add();
+                this.score.playlist.clear(true);
+                this.score.playlist.addSongCode(songs[0], true, true, true);
 
-                // append the rest of the songs, without selecting them and appended to the end of the playlist
+            } else {
+                // fill in the current song and reset playback
+                // this will also populate the current playlist entry
+                this.score.setSong(songs[0], true, false);
+            }
+
+            if (songs.length > 1) {
+                // append the rest of the songs, without selecting them and appended after the first one
                 for (var i = 1; i < songs.length; i++) {
-                    this.score.playlist.addSongCode(songs[i], false, false);
+                    this.score.playlist.addSongCode(songs[i], false, true, true);
                 }
 
                 // enable looping
                 this.score.playlist.setLooping(true);
+
+            } else if (playlistVisible()) {
+                // disable looping if it's just one song
+                this.score.playlist.setLooping(false);
+            }
+
+            this.score.endActions();
+
+            // resume playing if it was playing before
+            if (playing) {
+                this.score.togglePlaying();
             }
         });
     }

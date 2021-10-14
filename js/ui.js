@@ -1747,11 +1747,9 @@ class Score {
         }
         // save state
         this.title = title;
-        if (action) {
-            // update the title in the playlist, if there's an entry selected
-            if (this.playlist && this.playlist.selected) {
-                this.playlist.selected.updateSong();
-            }
+        // update the title in the playlist, if there's an entry selected
+        if (this.playlist && this.playlist.selected) {
+            this.playlist.selected.updateSong();
         }
     }
 
