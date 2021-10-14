@@ -473,8 +473,10 @@ class Playlist {
             // clear selection
             this.selected.setSelected(false);
         }
-        // change the selection
-        this.selected = entry;
+
+        // temporarily clear the selection to prevent changing the score from looping back and doing an update
+        this.selected = null;
+
         // if there is a selection then change state
         if (entry != null) {
             // select the new entry
@@ -482,11 +484,13 @@ class Playlist {
             // update the score, if this isn't an add action
             if (setScore) {
                 // don't add undo actions for this
-                this.score.setSongObject(this.selected.song, false, resetPlayback);
-    //            // let's make this simple for now: switching songs in the playlist clears the undo history.
-    //            clearUndoStack();
+                this.score.setSongObject(entry.song, false, resetPlayback);
             }
         }
+
+        // change the selection
+        this.selected = entry;
+
         // end the undo action
         if (action) {
             this.score.endActions();
@@ -514,7 +518,7 @@ class Playlist {
         // add an undo action if needed
         if (action) {
             this.score.startActions();
-            this.score.addAction(new changePlaylistAction(this, this.entries, this.selected, null, null));
+            this.score.addAction(new changePlaylistAction(this, this.entries, this.selected, this.score.mixer.export(), null, null, null));
             this.score.endActions();
         }
         // delete from the dom
@@ -638,6 +642,9 @@ class Playlist {
                 this.addSongEntry(entries[i], false, this.entries.length, false);
             }
             this.select(selectEntry, true, true, false);
+
+        } else if (!playlistenabled) {
+            hidePlaylist();
         }
 
         // check for mixed config
