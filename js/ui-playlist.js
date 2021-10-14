@@ -239,6 +239,9 @@ class Playlist {
         if (action) {
             this.score.endActions();
         }
+
+        // make sure the playlist is showing but don't auto-enable it
+        showPlaylist(false);
     }
 
     removeEntry(entry, action=true) {
@@ -265,9 +268,14 @@ class Playlist {
             }
             // renumber entries
             this.reIndex();
-        // end the undo action
+
+            // end the undo action
             if (action) {
                 this.score.endActions();
+            }
+
+            if (this.entries.length == 0 && !playlistEnabled()) {
+                hidePlaylist();
             }
         }
     }
@@ -464,8 +472,10 @@ class Playlist {
             this.score.startActions();
             this.score.addAction(new selectPlaylistEntryAction(this, this.selected, entry));
         }
+
+        var hasSelected = this.selected;
         // check if there is already a selection
-        if (this.selected) {
+        if (hasSelected) {
             // update the playlist entry's song, if this isn't an add action
             if (setScore) {
                 this.selected.updateSong();
@@ -484,7 +494,7 @@ class Playlist {
             // update the score, if this isn't an add action
             if (setScore) {
                 // don't add undo actions for this
-                this.score.setSongObject(entry.song, false, resetPlayback);
+                this.score.setSongObject(entry.song, !hasSelected, resetPlayback);
             }
         }
 
@@ -633,7 +643,7 @@ class Playlist {
         }
         // clear the current playlist
         this.clear(false);
-        if (entries) {
+        if (entries && entries.length > 0) {
             // make sure the playlist is showing but don't enable it automatically
             showPlaylist(false);
             // add each song
@@ -643,7 +653,7 @@ class Playlist {
             }
             this.select(selectEntry, true, true, false);
 
-        } else if (!playlistenabled) {
+        } else if (!playlistEnabled()) {
             hidePlaylist();
         }
 
