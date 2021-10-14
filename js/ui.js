@@ -383,6 +383,7 @@ function setupDragDropListeners(onDrag, onDrop) {
 }
 
 function clearDragDropListeners() {
+    // remove drag/drop listeners from the document
     document.onmousemove = null;
     document.onmouseup = null;
     document.ontouchmove = null;
@@ -2089,6 +2090,7 @@ class PlaybackMarker {
             others[m].disableListeners();
         }
 
+        // setup the drag listeners
         setupDragDropListeners(
             (mte) => { this.dragEvent(mte); },
             (mte) => { this.dropEvent(mte); }

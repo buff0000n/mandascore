@@ -5,7 +5,7 @@ function clearPlaylist(button) {
     // get the playlist
     var playlist = getParent(button, "playlistBox").playlist;
 
-    // clear the playlist
+    // clear the playlist, no confirmation necessary because we have undo now
     playlist.clear();
 }
 
@@ -169,6 +169,7 @@ class Playlist {
     }
 
     addSong(song, select, insert=true, action=true) {
+        // variable for index search
         var index = -1;
 
         if (this.selected && insert) {
@@ -176,19 +177,22 @@ class Playlist {
             index = this.entries.indexOf(this.selected) + 1;
 
         } else {
+            // otherwise insert the entry at the end
             index = this.entries.length;
         }
 
         // create a new entry
         var entry = new PlaylistEntry(song, this);
 
+        // add the entry
         this.addSongEntry(entry, select, index, action);
     }
 
     addSongEntry(entry, select, index, action=true) {
         if (index == 0) {
+            // insert at the beginning
             this.entries.unshift(entry);
-            // do the same insertion in the dom
+            // do the same insertion in the dom, probably an easier way
             if (this.entries.length == 1) {
                 this.playlistScrollArea.appendChild(entry.playlistEntryContainer);
             } else {
@@ -198,6 +202,7 @@ class Playlist {
             this.reIndex();
 
         } else if (index < this.entries.length) {
+            // insert the song in the middle of the playlist
             this.entries.splice(index, 0, entry);
             // do the same insertion in the dom
             insertBefore(entry.playlistEntryContainer, this.entries[index+1].playlistEntryContainer);
@@ -213,6 +218,7 @@ class Playlist {
             this.playlistScrollArea.appendChild(entry.playlistEntryContainer);
         }
 
+        // start an undo action if we need to
         if (action) {
             this.score.startActions();
             this.score.addAction(new addRemovePlaylistEntryAction(this, entry, index, select, true));
@@ -229,6 +235,7 @@ class Playlist {
                 this.score.precacheSectionSource(section, entry.song.packs[section]);
             }
         }
+        // end the undo action
         if (action) {
             this.score.endActions();
         }
@@ -237,7 +244,9 @@ class Playlist {
     removeEntry(entry, action=true) {
         // remove from the entry list
         var index = removeFromList(this.entries, entry);
+        // sanity check
         if (index >= 0) {
+            // start an undo action of needed
             if (action) {
                 this.score.startActions();
                 this.score.addAction(new addRemovePlaylistEntryAction(this, entry, index, this.selected == entry, false));
@@ -256,6 +265,7 @@ class Playlist {
             }
             // renumber entries
             this.reIndex();
+        // end the undo action
             if (action) {
                 this.score.endActions();
             }
@@ -392,6 +402,7 @@ class Playlist {
         		dragTimeout = null;
             }
 
+            // if there was an index change then add an undo action
             if (index != startIndex) {
                 this.score.startActions();
                 this.score.addAction(new movePlaylistEntryAction(this, entry, startIndex, index));
@@ -412,6 +423,7 @@ class Playlist {
             oldIndex = this.entries.indexOf(entry);
         }
 
+        // start an undo action if needed
         if (action) {
             this.score.startActions();
             this.score.addAction(new movePlaylistEntryAction(this, entry, oldIndex, newIndex));
@@ -429,6 +441,7 @@ class Playlist {
             insertAfter(entry.playlistEntryContainer, this.entries[newIndex - 1].playlistEntryContainer);
         }
 
+        // end the undo action
         if (action) {
             this.score.endActions();
         }
@@ -446,6 +459,7 @@ class Playlist {
         if (this.selected == entry) {
             return;
         }
+        // start an undo action if needed
         if (action) {
             this.score.startActions();
             this.score.addAction(new selectPlaylistEntryAction(this, this.selected, entry));
@@ -473,6 +487,7 @@ class Playlist {
     //            clearUndoStack();
             }
         }
+        // end the undo action
         if (action) {
             this.score.endActions();
         }
@@ -496,6 +511,7 @@ class Playlist {
     }
 
     clear(action=true) {
+        // add an undo action if needed
         if (action) {
             this.score.startActions();
             this.score.addAction(new changePlaylistAction(this, this.entries, this.selected, null, null));
@@ -525,15 +541,15 @@ class Playlist {
         // pull the current song from the score
         var song = this.score.getSongObject();
 
-        // make the name unique, but don't set it yet
+        // make the name unique
         var name = song.name;
         for (;;) {
             if (!this.entries.find((entry) => entry.song.name == name)) {
                 break;
             }
             name = this.incrementName(name);
-            song.name = name;
         }
+        song.name = name;
 
         // add the song and automatically select it
         this.addSong(song, true, true, action);
@@ -572,6 +588,7 @@ class Playlist {
         // split into lines
         var songCodes = str.split("\n")
         var readEntries = Array();
+        // mixer code
         var mixerCode = "";
 
         for (var i = 0; i < songCodes.length; i++) {
@@ -593,6 +610,7 @@ class Playlist {
 
         // don't make any changes if we didn't read any valid songs
         // we also avoid making any changes if there was an error parsing the song list
+        // todo: import just mixer code?
         if (readEntries.length > 0) {
             this.importEntries(readEntries, mixerCode, action);
         }
@@ -604,6 +622,7 @@ class Playlist {
             selectEntry = entries[0];
         }
 
+        // start an undo action if needed
         if (action) {
             this.score.startActions();
             this.score.addAction(new changePlaylistAction(this, this.entries, this.selected, this.score.mixer.export(), entries, selectEntry, mixerCode));
@@ -621,21 +640,20 @@ class Playlist {
             this.select(selectEntry, true, true, false);
         }
 
-        var hasMixerConfig = false;
-
+        // check for mixed config
         if (mixerCode && mixerCode != "") {
             // make sure the mixer is visible
             showMixer();
             // import the mixer config
             this.score.mixer.import(mixerCode);
-            hasMixerConfig = true;
-        }
 
-        if (!hasMixerConfig) {
+        } else {
+            // reset and hide the mixer
             this.score.mixer.resetMixer(action);
             hideMixer();
         }
 
+        // end the undo action
         if (action) {
             this.score.endActions();
         }
@@ -828,6 +846,7 @@ class movePlaylistEntryAction extends Action {
 
 	doAction(fromIndex, toIndex) {
 	    this.playlist.moveEntry(this.entry, toIndex, fromIndex, false);
+	    // moveEntry() doesn't reindex
 	    this.playlist.reIndex();
 	}
 

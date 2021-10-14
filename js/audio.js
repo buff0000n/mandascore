@@ -521,15 +521,20 @@ class SoundPlayer {
     }
 
     allBanksInitialized() {
+        // short circuit
         if (this.initialized) {
             return true;
         }
+        // check to see if every bank is initialized
         for (var section in this.banks) {
             if (!this.banks[section].initialized) {
+                // found an uninitialized one
                 return false;
             }
         }
+        // short circuit in the future
         this.initialized = true;
+        // we are initialized
         return true;
     }
 
