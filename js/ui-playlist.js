@@ -494,7 +494,7 @@ class Playlist {
             // update the score, if this isn't an add action
             if (setScore) {
                 // don't add undo actions for this
-                this.score.setSongObject(entry.song, !hasSelected, resetPlayback);
+                this.score.setSongObject(entry.song, action && !hasSelected, resetPlayback);
             }
         }
 
@@ -631,7 +631,7 @@ class Playlist {
     }
     
     importEntries(entries, mixerCode, action=true, selectEntry=null) {
-        // select the first entry and reset playback
+        // select the first entry by default
         if (!selectEntry && entries && entries.length > 0) {
             selectEntry = entries[0];
         }
