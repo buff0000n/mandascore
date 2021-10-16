@@ -393,6 +393,7 @@ class Playlist {
             mte.preventDefault();
             // reset global drag/drop listeners
             clearDragDropListeners();
+            this.score.resetListeners();
             // reset the entry's style to regular positioning, it's already in the correct location in the DOM
             entry.playlistEntryContainer.className = "playlistEntryContainer";
             entry.playlistEntryContainer.style.left = "";
@@ -420,6 +421,7 @@ class Playlist {
 
         // setup global drag/drop listeners
         setupDragDropListeners(dragEvent, dropEvent);
+        this.score.disableListeners();
 
         // call the drag listener right away
         dragEvent(mte);

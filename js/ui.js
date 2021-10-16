@@ -534,29 +534,20 @@ class Measure {
         this.measureTimingContainer.disabled = false;
     }
     
-    setupDragListeners(playbackMarker) {
+    disableListeners(disableTimingBar=false) {
+        // listener state when dragging the playback marker and not an actively playing measure
         // listener state when dragging the playback marker, still hover but don't enter notes
         this.gridImg.onmouseover = (e) => { this.measureMouseover(e, false); };
         this.gridImg.onmousemove = (e) => { this.measureMousemove(e, false); };
-        this.gridImg.onmousedown = null ; // shouldn't happen (e) => { playbackMarker.mouseMove(e, this) };
-        this.gridImg.onmouseout = (e) => { this.measureMouseout(e); };
-
-        this.timingContainer.onmousedown = null;
-        this.timingContainer.ontouchstart = null;
-    }
-
-    disableListeners() {
-        // listener state when dragging the playback marker and not an actively playing measure
-        // still hover but don't enter notes
-        this.gridImg.onmouseover = (e) => { this.measureMouseover(e, false); };
-        this.gridImg.onmousemove = (e) => { this.measureMousemove(e, false); };
-        this.gridImg.onmousedown = (e) => null;
+        this.gridImg.onmousedown = null;
         this.gridImg.onmouseout = (e) => { this.measureMouseout(e); };
 
         this.timingContainer.onmousedown = null;
         this.timingContainer.ontouchstart = null;
 
-        this.measureTimingContainer.disabled = true;
+        if (disableTimingBar) {
+            this.measureTimingContainer.disabled = true;
+        }
     }
 
     startDrag(e) {
@@ -1869,6 +1860,18 @@ class Score {
         return this.playback.marker;
     }
 
+    disableListeners() {
+        for (var m = 0; m < 4; m++) {
+            this.measures[m].disableListeners();
+        }
+    }
+
+    resetListeners() {
+        for (var m = 0; m < 4; m++) {
+            this.measures[m].resetListeners();
+        }
+    }
+
     generatePng(linkDiv, display) {
         // let's just always use create a hi-res version
         var hidpi = true;
@@ -2081,13 +2084,13 @@ class PlaybackMarker {
         // setup all actively playing measure for dragging
         for (var m = 0; m < this.playback.measures.length; m++) {
             var measure2 = this.playback.measures[m];
-            measure2.setupDragListeners(this);
+            measure2.disableListeners(false);
         }
 
         // disable dragging on any non-active measures
         var others = this.playback.getNonPlayingMeasures();
         for (var m = 0; m < others.length; m++) {
-            others[m].disableListeners();
+            others[m].disableListeners(true);
         }
 
         // setup the drag listeners
