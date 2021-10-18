@@ -149,7 +149,7 @@ function pasteButton(button) {
     // chrome is doing strange things with clicked buttons so just unfocus it
     button.blur();
     // get the associated measure and paste the selected section from another measure
-    getParent(button, "scoreButtonContainer").score.paste();
+    getParent(button, "scoreButtonContainer").score.paste(score.copyData);
 }
 
 function clearButton(button) {
@@ -391,7 +391,7 @@ function clearDragDropListeners() {
 }
 
 class CopyData {
-    constructor(measures, section) {
+    constructor(measure, section) {
         this.section = section;
         this.sectionMetaData = sectionMetaData[this.section];
         // initialize the note array, 16x23 notes
@@ -815,16 +815,16 @@ class Measure {
         getFirstChild(this.buttons, "pasteButton").disabled = !enabled;
     }
 
-    paste() {
-        if (this.score.copyData) {
+    paste(copyData) {
+        if (copyData) {
             // contain all the note changes in a single undo action
             this.score.startActions();
             // apply the copy data
-            this.score.copyData.apply(this);
+            copyData.apply(this);
             // commit the undo action
             this.score.endActions();
             // UI feedback
-            this.showSelection(this.score.copyData.section);
+            this.showSelection(copyData.section);
         }
     }
 
@@ -1597,8 +1597,8 @@ class Score {
                 <input id="undoButton" class="button undoButton" type="submit" disabled value="Undo" onClick="doUndo()"/>
                 <input id="redoButton" class="button redoButton" type="submit" disabled value="Redo" onClick="doRedo()"/>
                 <input class="button clearButton" type="submit" value="Clear" onClick="clearButton(this)"/>
-                <input class="button copyButton" type="submit" value="Copy" onClick="copyAllButton(this)"/>
-                <input class="button pasteButton" type="submit" value="Paste" disabled onClick="pasteAllButton(this)"/>
+                <input class="button copyButton" type="submit" value="Copy" onClick="copyButton(this)"/>
+                <input class="button pasteButton" type="submit" value="Paste" disabled onClick="pasteButton(this)"/>
                 <input id="mainPlayButton" class="button playButton" type="submit" value="Play" onClick="playButton(this)"/>
             </div>
         `;
@@ -1712,9 +1712,48 @@ class Score {
 
     setCopyData(copyData) {
         this.copyData = copyData;
-        for (var m = 0; m < 4; m++) {
-            this.measures[m].setPasteEnabled(true);
+        // check if it's an array
+        if (this.copyData.length) {
+            // whole song copy, enable the song paste button and disable the measure paste buttons
+            this.setPasteEnabled(true);
+            for (var m = 0; m < 4; m++) {
+                this.measures[m].setPasteEnabled(false);
+            }
+
+        } else {
+            // single measure copy, enable the measure paste buttons and disable the song paste button
+            this.setPasteEnabled(false);
+            for (var m = 0; m < 4; m++) {
+                this.measures[m].setPasteEnabled(true);
+            }
         }
+    }
+
+    copy(section) {
+        // build copy data for all four measures
+        var copyDataList = [];
+        for (var m = 0; m < 4; m++) {
+            // directly copy measure
+            copyDataList.push(new CopyData(this.measures[m], section));
+            // flash the selection
+            this.measures[m].showSelection(section);
+        }
+        // set the copy data to a list and enable/disable paste buttons accordingly
+        this.setCopyData(copyDataList);
+    }
+
+    paste(copyDataList) {
+        this.startActions();
+        // paste all four measures
+        for (var m = 0; m < 4; m++) {
+            this.measures[m].paste(copyDataList[m]);
+        }
+        this.endActions();
+    }
+
+    setPasteEnabled(enabled) {
+        // get the paste button and enabled/disable based on whether something is selected for copy
+        getFirstChild(this.buttons, "pasteButton").disabled = !enabled;
     }
 
     clear(section) {
