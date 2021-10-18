@@ -793,6 +793,7 @@
 				{"id": "LRcVdEmh6Nw", "name": "Tranz", "attr": ["Gorillaz"], "tags": ["Sparse"]},
 				{"id": "yyATcbUA_qo", "name": "Pac-Man", "attr": ["Gorillaz"]},
 				{"id": "z_iFyeAgC7M", "name": "Empire Ants", "attr": ["Gorillaz"]}
+				, {"id": "r1tkqzPeYiA", "name": "The Valley of the Pagans", "attr": ["Gorillaz"], "tags": ["Perfect"]}
 			]
 		},
 		"Dance Gavin Dance":{
@@ -1264,7 +1265,8 @@
 				{"id": "eF456PxkSQc", "name": "Radical Businessman", "attr": ["Japanther ft. Spank Rock"], "tags": ["Double"]},
 				{"id": "MNIwLQbMIXI", "name": "Forever", "attr": ["Haim"]},
 				{"id": "IvTnTngJZQ8", "name": "dirty", "attr": ["grandson"], "tags": ["Triple", "Perfect"]},
-				{"id": "XUcQ8a4_Qb4", "name": "Leave Me Alone", "attr": ["I Don't Know How But They've Found Me"], "tags": ["Perfect"]},
+				{"id": "XUcQ8a4_Qb4", "name": "Leave Me Alone", "attr": ["I Don't Know How But They Found Me"], "tags": ["Perfect"]}
+				, {"id": "Zau8jY8f_PI", "name": "Do It All The Time", "attr": ["I Dont Know How But They Found Me"]},
 				{"id": "ptFmJLGyL8A", "name": "Take The World By Storm", "attr": ["Lukas Graham"], "tags": ["Double", "Sparse", "Perfect"]},
 				{"id": "EocA_Izk294", "name": "One Week", "attr": ["The Barenaked Ladies"]},
 				{"id": "JN5uJWVOka0", "name": "Alien", "attr": ["Dennis Lloyd"]},
@@ -1930,7 +1932,8 @@
 				{"id": "Z-OPhNcFnzU", "name": "Mansion", "attr": ["NF ft. Fleurie"], "tags": ["Perfect"]},
 				{"id": "6ejza6Cv_Vc", "name": "Big Poppa", "attr": ["The Notorious B.I.G."]}
 				, {"id": "InGUxfCLvVo", "name": "Suicidal Thoughts", "attr": ["The Notorious B.I.G."], "tags": ["Perfect"]},
-				{"id": "sH6rLDyYESw", "name": "Triumph", "attr": ["Wu Tang Clan"]},
+				{"id": "sH6rLDyYESw", "name": "Triumph", "attr": ["Wu Tang Clan"]}
+				, {"id": "soey18sMP08", "name": "Rumble", "attr": ["U-God"]},
 				{"id": "8yDHWQgoqPo", "name": "American Boy", "attr": ["Estelle"]},
 				{"id": "DgFAYwQc_r4", "name": "I'm N Luv (With a Stripper)", "attr": ["T-Pain"]},
 				{"id": "m9p7rs3MUb4", "name": "Happy Endings", "attr": ["Mike Shinoda ft. iann dior & UPSAHL"], "tags": ["Perfect"]},
@@ -3611,7 +3614,8 @@
 					{"id": "kmXhwdWdInA", "name": "Mad Rat Heart", "attr": ["Mad Rat Dead"]},
 					{"id": "PqWsvEz23Yo", "name": "Geothermal Towers", "attr": ["Cyber Shadows"]},
 					{"id": "hbgNn3hMlSs", "name": "Infiltrator", "attr": ["Ghostrunner"]},
-					{"id": "zh2OLZ4SAgw", "name": "Calling", "attr": ["TWEWY"], "tags": ["Double"]},
+					{"id": "zh2OLZ4SAgw", "name": "Calling", "attr": ["TWEWY"], "tags": ["Double"]}
+					, {"id": "P6TX3sjFr1I", "name": "Make or Break", "attr": ["TWEWY"], "tags": ["Perfect"]},
 					{"id": "FnO4Kr6MKnc", "name": "Don't Tattle On Me", "attr": ["Fandroid", "Tattletail"]}
 					, {"id": "j7H3ncXLGR4", "name": "Constant Moderato", "attr": ["Blue Archive"]}
 					, {"id": "zBqdi5tUPkQ", "name": "It Means Everything", "attr": ["OMORI"]}
@@ -4181,6 +4185,7 @@
 				, {"id": "M18RFGtdPJY", "name": "Ginga Nagareboshi Gin opening"}
 				, {"id": "MH-Lh5o67RE", "name": "Breathe Again", "attr": ["Carole & Tuesday"]}
 				, {"id": "M7KeBEGCjBI", "name": "\u3053\u306e\u5922\u304c\u9192\u3081\u308b\u307e\u3067", "attr": ["Mashiro no Oto ending", "\u52a0\u85e4\u30df\u30ea\u30e4 ft. Yoshida Brothers"]}
+				, {"id": "Jbqp79WNeQY", "name": "Irregular God", "attr": ["Tower of God"], "tags": ["Adau"]}
 			]
 		}
 	},
@@ -4853,7 +4858,8 @@
 				{"id": "JB8wvtczhUY", "name": "Little Apple/\u5c0f\u82f9\u679c\u5bf9\u767d\u5b8c\u6574\u7248", "attr": ["Chopstick Brothers/\u7b77\u5b50\u5144\u5f1f"]},
 				{"id": "5e3eSAWYOQA", "name": "\u9858\u3044\uff5e\u3042\u306e\u9803\u306e\u30ad\u30df\u3078\uff5e", "attr": ["\u7576\u5c71\u307f\u308c\u3044"]},
 				{"id": "UGKh8xKAYKc", "name": "\u0e23\u0e31\u0e01\u0e15\u0e34\u0e14\u0e44\u0e0b\u0e40\u0e23\u0e19/My Ambulance", "attr": ["\u0e44\u0e2d\u0e0b\u0e4c \u0e1e\u0e32\u0e23\u0e34\u0e2a", "\u0e41\u0e1e\u0e23\u0e27\u0e32 \u0e13\u0e34\u0e0a\u0e32\u0e20\u0e31\u0e17\u0e23"]},
-				{"id": "lhIME1AeTqM", "name": "Slot Machine", "attr": ["\u0e22\u0e49\u0e2d\u0e19"]},
+				{"id": "lhIME1AeTqM", "name": "Slot Machine", "attr": ["\u0e22\u0e49\u0e2d\u0e19"]}
+				, {"id": "YUDqz9NT8Es", "name": "\u0e21\u0e30\u0e25\u0e34", "attr": ["CGM48"]},
 				{"id": "y5KBNx-P5kw", "name": "Homura", "attr": ["Bagakki Band"]},
 				{"id": "8W6U-TlHQ_s", "name": "Rotation (Lotus-2)", "attr": ["Susumu Hirasawa"]}
 				, {"id": "z18HyW_zP0w", "name": "Fish upon the sky/\u0e02\u0e49\u0e32\u0e07\u0e46 Ost.\u0e1b\u0e25\u0e32\u0e1a\u0e19\u0e1f\u0e49\u0e32", "attr": ["Louis Thanawin"]}
@@ -4941,7 +4947,7 @@
 				, {"id": "qfzJx7KX0-4", "name": "Manticore", "attr": ["Ninja Sex Party"]}
 			]
 		},
-		"Misc: Hololive":{
+		"Misc Hololive":{
 			"dbName":"Internet.MiscHololive",
 			"songs":[
 				{"id": "DxBSsoKPEEU", "name": "Pekora BGM"},
@@ -4950,6 +4956,7 @@
 				{"id": "LmT6k4k5WNM", "name": "Echo", "attr": ["Akaihaato/\u8d64\u4e95\u306f\u3042\u3068"]}
 				, {"id": "hLQZHg0cers", "name": "Next Wednesday", "attr": ["Roboco", "TamaOnSen"]}
 				, {"id": "d4G--lT2VBo", "name": "Live Again", "attr": ["Calliope Mori"]}
+				, {"id": "uo7FassZCnk", "name": "Blue Clapper", "attr": ["PandaBoY", "Hololive"], "tags": ["Perfect"]}
 			]
 		},
 		"Misc Internet":{
