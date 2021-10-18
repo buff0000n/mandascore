@@ -59,6 +59,17 @@
         updatedSongCode = getSongCode();
         // fill in the song code input box
         document.getElementById("songCode").value = updatedSongCode;
+
+        // update the URL depending on whether the playlist is open or not
+        if (playlistVisible() && score.playlist.entries.length > 0) {
+            modifyUrlQueryParam("playlist", encodePlaylistToUrl(getPlaylistCode()));
+            removeUrlQueryParam("song");
+
+        } else {
+            modifyUrlQueryParam("song", urlEncodeString(updatedSongCode, false));
+            removeUrlQueryParam("playlist");
+        }
+
         // clear state
         songCodeUpdateTimeout = null;
     }
@@ -201,7 +212,7 @@
         // build a model from the UI
         var songCode = getSongCode();
 
-        var query = "?song=" + urlEncodeString(songCode, false)
+        var query = "?song=" + urlEncodeString(songCode, false);
 
         // build a full URL using the current URL
         var url = buildQueryUrl(query);

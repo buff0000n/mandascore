@@ -316,6 +316,56 @@ class imageLoader {
         return decodeURIComponent(res);
     }
 
+    var hrefUpdateDelay = 1000;
+    var hrefUpdateTimeout = null;
+    var hrefToUpdate = null;
+
+    // modify a URL parameter directly in the browser location bar
+    function modifyUrlQueryParam(key, value) {
+        var href = getHref();
+
+        if (href.match(new RegExp("[?&]" + key + "="))) {
+            href = href.replace(new RegExp("([?&]" + key + "=)[^&#]*"), "$1" + value);
+
+        } else if (href.indexOf("?") > 0) {
+            href += "&" + key + "=" + value;
+        } else {
+            href += "?" + key + "=" + value;
+        }
+
+        updateHref(href);
+    }
+
+    function removeUrlQueryParam(key) {
+        var href = getHref();
+
+        // corner cases the stupid way
+        href = href.replace(new RegExp("([?&])" + key + "=[^&#]*&"), "$1");
+        href = href.replace(new RegExp("[&?]" + key + "=[^&#]*"), "");
+
+        updateHref(href);
+    }
+
+    function getHref() {
+        return hrefToUpdate ? hrefToUpdate : window.location.href;
+    }
+
+    function updateHref(href) {
+        if (hrefUpdateTimeout) {
+            clearTimeout(hrefUpdateTimeout);
+        }
+
+        hrefToUpdate = href;
+        hrefUpdateTimeout = setTimeout(actuallyModifyUrl, hrefUpdateDelay);
+    }
+
+    function actuallyModifyUrl() {
+        // shenanigans
+        history.replaceState( {} , document.title, hrefToUpdate );
+        hrefUpdateTimeout = null;
+        hrefToUpdate = null;
+    }
+
 //==============================================================
 // high precision timing, or as high a precision as the browser allows
 // yoinked from: https://stackoverflow.com/questions/4874408/better-way-of-getting-time-in-milliseconds-in-javascript

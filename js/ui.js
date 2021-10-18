@@ -391,7 +391,7 @@ function clearDragDropListeners() {
 }
 
 class CopyData {
-    constructor(measure, section) {
+    constructor(measures, section) {
         this.section = section;
         this.sectionMetaData = sectionMetaData[this.section];
         // initialize the note array, 16x23 notes
@@ -1597,6 +1597,8 @@ class Score {
                 <input id="undoButton" class="button undoButton" type="submit" disabled value="Undo" onClick="doUndo()"/>
                 <input id="redoButton" class="button redoButton" type="submit" disabled value="Redo" onClick="doRedo()"/>
                 <input class="button clearButton" type="submit" value="Clear" onClick="clearButton(this)"/>
+                <input class="button copyButton" type="submit" value="Copy" onClick="copyAllButton(this)"/>
+                <input class="button pasteButton" type="submit" value="Paste" disabled onClick="pasteAllButton(this)"/>
                 <input id="mainPlayButton" class="button playButton" type="submit" value="Play" onClick="playButton(this)"/>
             </div>
         `;
@@ -1614,7 +1616,7 @@ class Score {
         titleContainer.innerHTML = `
             <div class="tooltip">
                 <span class="label">Song Title:</span>
-                <input class="songTitle" type="text" size="24" maxlength="24" onchange="titleChanged()"/>
+                <input class="songTitle" type="text" size="36" maxlength="24" onchange="titleChanged()"/>
                 <span class="tooltiptextbottom">Give your song a name</span>
             </div>
         `;
