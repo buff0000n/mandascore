@@ -157,151 +157,78 @@ class SoundEntry {
     }
 }
 
-// object wrapping a collections of sounds from the same logical source
-class SoundBank {
-    constructor(size) {
-        // create the sound entries
-        this.sounds = Array();
-        // enabled status is also an array
-        this.enabled = Array();
-        for (var i = 0; i < size; i++) {
-            this.sounds.push(new SoundEntry());
-            this.enabled.push(true);
-        }
-        // sound loader and state for when the source changes
-        this.loader = null;
-        this.initialized = false;
-    }
-
-    setSource(sourceName, sources, mono=false) {
-        // don't do anything if it's the source we already have
-        if (this.sourceName == sourceName) {
-            return;
-        }
-
-        // just save the source and reset the init flag.
-        // we can't actually do anything until there's an explicit user action.
-        // abuse of auto-play video and audio is why we can't have nice things.
+// object wrapping a bank of sounds from a single source
+class SoundBankSource {
+    constructor(sourceName, sources, mono=false) {
+        // source data
         this.sourceName = sourceName;
         this.sources = sources;
         this.mono = mono;
+        // intialized flag
         this.initialized = false;
-        // clear out any pending loaders
-        // this can happen if sound packs are changed really fast by holding down undo/redo
-        this.loader = null;
-    }
 
-    initialize(callback=null) {
-        // check if we're already initialized or in the process of initialization
-        if (this.initialized || this.loader != null) {
-            // call the callback directly
-            if (callback != null) callback();
-            // short circuit
-            return;
-        }
-
-        // finally we can init the audio context now that we're theoretically inside a user event handler
-        initAudioContext();
-        if (this.sources != null) {
-            // clear our sound entries and build an array of the full source paths
-            var sourceList = Array();
-            for (var i = 0; i < this.sounds.length; i++) {
-                // clear sound entry
-                this.sounds[i].setBuffers(null, null);
-                // add a sound path to the list for each entry in the source for that sound
-                // we will have to re-group these later
-                for (var j = 0; j < this.sources[i].length; j++) {
-                    sourceList.push(soundPath + this.sources[i][j]);
-                }
-            }
-            // start a background loader with a callback because that's how things work
-            this.loader = new BufferLoader(audioContext, sourceList, (loader, bufferList) => this.loaded(loader, bufferList, callback));
-            this.loader.bank = this;
-            this.loader.load();
+        // create the sound entries
+        this.sounds = Array();
+        for (var i = 0; i < this.sources.length; i++) {
+            this.sounds.push(new SoundEntry());
         }
     }
 
-    loaded(loader, bufferList, callback) {
-        if (loader != this.loader) {
-            // ignore, things have changed since this loader was started
-            return;
-        }
-        // set the loaded sources into each sound entry
+    getSourceList() {
+        var sourceList = Array();
         for (var i = 0; i < this.sounds.length; i++) {
-            // group the buffers for this sound from the buffer list
+            // add a sound path to the list for each entry in the source for that sound
+            // these will be the keys in the map passed to applySourceBuffers()
+            for (var j = 0; j < this.sources[i].length; j++) {
+                sourceList.push(this.sources[i][j]);
+            }
+        }
+        return sourceList;
+    }
+
+    applySourceBuffers(bufferMap) {
+        for (var i = 0; i < this.sounds.length; i++) {
+            // collect the buffers for this sound
             var soundBuffers = Array();
             for (var j = 0; j < this.sources[i].length; j++) {
-                soundBuffers.push(bufferList.shift());
+                // the key is the original source path
+                soundBuffers.push(bufferMap[this.sources[i][j]]);
             }
             // set the sound buffers, concatenate the sound file paths for a name
             this.sounds[i].setBuffers(soundBuffers, this.sources[i].join());
         }
-        // set the initialized state
-        this.loader = null;
+        // this sound bank source is now initialized and will stay that way
         this.initialized = true;
-
-        // hit the callback if provided
-        if (callback != null) callback();
     }
 
     setVolume(volume) {
-        // change check
-        if (this.volume == volume) {
-            return;
-        }
-
-        // save the volume
-        this.volume = volume;
-        // pass on the setting to each of the sound entries
+        // propagate song-level volume to each sound
         for (var i = 0; i < this.sounds.length; i++) {
-            this.sounds[i].setVolume(this.volume);
+            this.sounds[i].setVolume(volume);
         }
     }
 
     setMixVolume(index, mixVolume) {
+        // propagate mixer volume to the relevant sound
         this.sounds[index].setMixVolume(mixVolume);
     }
 
     setMasterVolume(masterVolume) {
+        // propagate master volume to each sound
         for (var index = 0; index < this.sounds.length; index++) {
             this.sounds[index].setMasterVolume(masterVolume);
         }
     }
 
-
-    setEnabled(index, enabled) {
-        // enable/disable sound
-        this.enabled[index] = enabled;
-    }
-
-    isEnabled(index) {
-        return this.enabled[index];
-    }
-
-    play(index) {
-        // play the sound immediately
-        this.playLater(index, 0);
-    }
-
     playLater(index, time) {
-        // check if we're enabled
-        if (this.enabled[index]) {
-            // make sure we're initialized.  Regardless of whether it's from clicking a note or starting playback,
-            // the first sound should be played directly inside a user event handler so we're allowed to init the
-            // audio context
-            this.initialize();
-            if (this.mono) {
-                for (var i = 0; i < this.sounds.length; i++) {
-                    this.sounds[i].stopLater(time);
-                }
+        if (this.mono) {
+            // if this bank is mono then schedule any currently playing sounds to stop
+            for (var i = 0; i < this.sounds.length; i++) {
+                this.sounds[i].stopLater(time);
             }
-            // play the sound
-            this.sounds[index].triggerLater(time);
-            // todo: I don't think anything uses this return value?
-            return true;
-        } else {
-            return false;
         }
+        // play the sound
+        this.sounds[index].triggerLater(time);
     }
 
     stop() {
@@ -320,6 +247,205 @@ class SoundBank {
     }
 }
 
+// object wrapping a collections of sounds from the same logical source
+class SoundBank {
+    constructor(name, size) {
+        // source cache
+        this.name = name;
+        this.sources = {};
+        this.currentSource = null;
+        this.volume = null;
+
+        // enabled status is also an array
+        this.enabled = Array();
+        for (var i = 0; i < size; i++) {
+            this.enabled.push(true);
+        }
+
+        // initialization state
+        this.initialized = false;
+    }
+
+    precacheSource(sourceName, sources, mono=false) {
+        if (!this.sources[sourceName]) {
+            // create a new, uninitialized  bank source if it doesn't exist
+            this.sources[sourceName] = new SoundBankSource(sourceName, sources, mono);
+        }
+        return this.sources[sourceName];
+    }
+
+    setSource(sourceName, sources, mono=false, precache=false) {
+        // don't do anything if it's the source we already have
+        if (this.currentSource && this.currentSource.sourceName == sourceName) {
+            return;
+        }
+
+        // get or create a bank source and set it as the current
+        var bankSource = this.precacheSource(sourceName, sources, mono);
+        // check if it's initialized
+        if (!bankSource.initialized) {
+            // reset the init flag.
+            // we can't actually do anything until there's an explicit user action.
+            // abuse of auto-play video and audio is why we can't have nice things.
+            this.initialized = false;
+            // clear out any pending loaders
+            // this can happen if sound packs are changed really fast by holding down undo/redo
+            this.loader = null;
+
+        }
+
+        if (!precache) {
+            this.currentSource = bankSource;
+            // make sure the song-level volume is correct
+            if (this.volume != null) {
+                this.currentSource.setVolume(this.volume);
+            }
+        }
+
+    }
+
+    initialize(callback=null) {
+        // check if we're already initialized or in the process of initialization
+        if (this.initialized || this.loader != null) {
+            // call the callback directly
+            if (callback != null) callback();
+            // short circuit
+            return;
+        }
+
+        // finally we can init the audio context now that we're theoretically inside a user event handler
+        initAudioContext();
+        if (this.sources != null) {
+            // collect the source paths from all unintialized bank sources
+            var originalSourceList = Array();
+            for (var sourceName in this.sources) {
+                var source = this.sources[sourceName];
+                if (!source.initialized) {
+                    // append the source paths into one big list
+                    originalSourceList = originalSourceList.concat(source.getSourceList());
+                }
+            }
+            // build a corresponding array of the full source paths
+            var sourceList = Array();
+            for (var i = 0; i < originalSourceList.length; i++) {
+                sourceList.push(soundPath + originalSourceList[i]);
+            }
+            // start a background loader with a callback because that's how things work
+            this.loader = new BufferLoader(audioContext, sourceList,
+                (loader, bufferList) => this.loaded(loader, originalSourceList, bufferList, callback));
+            this.loader.bank = this;
+            this.loader.load();
+        }
+    }
+
+    loaded(loader, originalSourceList, bufferList, callback) {
+        if (loader != this.loader) {
+            // ignore, things have changed since this loader was started
+            return;
+        }
+        // build a map of source path to buffer
+        var bufferMap = {};
+        for (var i = 0; i < originalSourceList.length; i++) {
+            // order is preserved, set the key for each buffer using the corresponding original path entry
+            bufferMap[originalSourceList[i]] = bufferList[i];
+        }
+
+        // set the loaded sources into each sound entry
+        for (var sourceName in this.sources) {
+            var source = this.sources[sourceName];
+            if (!source.initialized) {
+                // Each source will pull the buffers they need from the map
+                source.applySourceBuffers(bufferMap);
+            }
+        }
+        // set the initialized state
+        this.loader = null;
+        this.initialized = true;
+
+        // hit the callback if provided
+        if (callback != null) callback();
+    }
+
+    setVolume(volume) {
+        // change check
+        if (this.volume == volume) {
+            return;
+        }
+
+        // save the volume
+        this.volume = volume;
+        // pass on the setting to the current bank source
+        // no need to set it on all sources
+        if (this.currentSource) {
+            this.currentSource.setVolume(this.volume);
+        }
+    }
+
+    setMixVolume(index, mixVolume) {
+        // pass on the mixer setting to each of the bank sources
+        // mixer settings typically don't change that often and this is easier than
+        // saving and reinitializing mixer settings every time the bank source changes
+        for (var sourceName in this.sources) {
+            var source = this.sources[sourceName];
+            source.setMixVolume(index, mixVolume);
+        }
+    }
+
+    setMasterVolume(masterVolume) {
+        // pass on the mixer setting to each of the bank sources
+        for (var sourceName in this.sources) {
+            var source = this.sources[sourceName];
+            source.setMasterVolume(masterVolume);
+        }
+    }
+
+    setEnabled(index, enabled) {
+        // enable/disable sound
+        this.enabled[index] = enabled;
+    }
+
+    isEnabled(index) {
+        return this.enabled[index];
+    }
+
+    play(index) {
+        // play the sound immediately
+        this.playLater(index, 0);
+    }
+
+    playLater(index, time) {
+        // check if the given sound is enabled
+        if (this.enabled[index]) {
+            // make sure we're initialized.  Regardless of whether it's from clicking a note or starting playback,
+            // the first sound must be played directly inside a user event handler so we're allowed to init the
+            // audio context
+            this.initialize();
+            if (this.currentSource) {
+                this.currentSource.playLater(index, time);
+            }
+            return true;
+
+        } else {
+            return false;
+        }
+    }
+
+    stop() {
+        // stop the current bank source
+        if (this.currentSource) {
+            this.currentSource.stop();
+        }
+    }
+
+    clearStops() {
+        // clear all stoppable sounds in the current bank source.
+        // This is because we can't know on our own when a sound has started playing
+        if (this.currentSource) {
+            this.currentSource.clearStops();
+        }
+    }
+}
+
 // This object wraps three sound banks, one each for percussion, bass, and melody
 class SoundPlayer {
     constructor() {
@@ -332,7 +458,7 @@ class SoundPlayer {
             var m = sectionMetaData[name];
             if (!m.all) {
                 // create a new bank with the section's number of notes and sound file suffixes
-                var bank = new SoundBank(m.rowStop - m.rowStart + 1);
+                var bank = new SoundBank(name, m.rowStop - m.rowStart + 1);
                 // store an extra row start property, we'll need this later
                 bank.rowStart = m.rowStart;
                 // reference the bank by name
@@ -347,22 +473,21 @@ class SoundPlayer {
         }
 
         // special error sound for when the max number of notes in a section is exceeded
-        this.bzzt = new SoundBank(1);
+        this.bzzt = new SoundBank("bzzt", 1);
         // the suffix is the whole path
         this.bzzt.setSource(bzztSoundFile, [[bzztSoundFile]], true);
 
-        // initialization count
-        this.banksInitialized = 0;
+        // initialization flag
+        this.initialized = false;
     }
 
-    setSource(section, source, mono=false) {
+    setSource(section, source, mono=false, precache=false) {
         var m = sectionMetaData[section];
         var soundFiles = instrumentNameToPack[source].soundFiles
         // set the source on the given section
-        this.banks[section].setSource(source, soundFiles.slice(m.rowStart, m.rowStop + 1), mono);
-        // go ahead and reset the initialized count to zero
-        // The initialize calls on any banks that haven't changed will simply short-circuit
-        this.banksInitialized = 0;
+        this.banks[section].setSource(source, soundFiles.slice(m.rowStart, m.rowStop + 1), mono, precache);
+        // go ahead and reset the initialized flag
+        this.initialized = false;
     }
 
     setVolume(section, volume) {
@@ -395,20 +520,39 @@ class SoundPlayer {
         return bank.isEnabled(index - bank.rowStart);
     }
 
+    allBanksInitialized() {
+        // short circuit
+        if (this.initialized) {
+            return true;
+        }
+        // check to see if every bank is initialized
+        for (var section in this.banks) {
+            if (!this.banks[section].initialized) {
+                // found an uninitialized one
+                return false;
+            }
+        }
+        // short circuit in the future
+        this.initialized = true;
+        // we are initialized
+        return true;
+    }
+
     initialize(callback) {
         // short-circuit if we're already initialized
-        if (this.banksInitialized >= this.numBanks) {
+        if (this.allBanksInitialized()) {
             callback();
             return;
         }
+
         // loop over the sections
         for (var section in this.banks) {
             // initialize each section with a callback
             this.banks[section].initialize(() => {
-                // increment the initialization counter
-                this.banksInitialized++;
                 // if we've hit all banks then run the callback
-                if (this.banksInitialized == this.numBanks) callback();
+                if (this.allBanksInitialized()) {
+                    callback();
+                }
             });
         }
     }

@@ -435,42 +435,67 @@ class Library {
             // load the song data from the db
             var songs = db[id];
 
-            // fill in the current song and reset playback
-            this.score.setSong(songs[0], false, true);
+            // remember whether we were playing before stopping playback
+            var playing = this.score.isPlaying();
+            this.score.stopPlayback();
 
-            if (songs.length == 1) {
-                // just one song
-                if (playlistEnabled()) {
-                    // playlist is enabled, add the song to the playlist
-                    this.score.playlist.add();
-                    // disable looping if it's just one song
-                    this.score.playlist.setLooping(false);
+            // put all this into one undo action
+            this.score.startActions();
+
+            if (playlistEnabled()) {
+                // if the playlist is fully enabled then just add the first song and select it
+                this.score.playlist.addSongCode(songs[0], true, true, true);
+
+            } else if (playlistVisible()) {
+                // if the playlist is visible but not enabled, then clear it
+                // it must have been enabled by a previous multi-song library entry
+                this.score.playlist.clear(true);
+                if (songs.length == 1) {
+                    // if there's only one song in this library entry then hide the playlist
+                    // and set the song in the score
+                    hidePlaylist();
+                    this.score.setSong(songs[0], true, false);
 
                 } else {
-                    // playlist was not manually enabled, hide it and turn off looping
-                    hidePlaylist();
-                    // clear the playlist
-                    this.score.playlist.clear();
+                    // there are more songs to come, just add the first song and select it
+                    this.score.playlist.addSongCode(songs[0], true, true, true);
                 }
 
-            } else {
-                // multiple songs
+            } else if (songs.length > 1) {
+                // if the playlist is not visible and there is more than one song the
                 // show the playlist, but don't enable it automatically
                 showPlaylist(false);
-                // clear the playlist if it hasn't been manually enabled
-                if (!playlistEnabled()) {
-                    this.score.playlist.clear();
-                }
-                // Add the first song, already in the score, to the playlist and select it
-                this.score.playlist.add();
+                // clear it for grins
+                this.score.playlist.clear(true);
+                // there are more songs to come, just add the first song and select it
+                this.score.playlist.addSongCode(songs[0], true, true, true);
 
-                // append the rest of the songs, without selecting them and appended to the end of the playlist
+            } else {
+                // if there's no playlist visible and only one song in the library entry then
+                // just set the song in the score
+                this.score.setSong(songs[0], true, false);
+            }
+
+            if (songs.length > 1) {
+                // append the rest of the songs, without selecting them and appended after the first one
                 for (var i = 1; i < songs.length; i++) {
-                    this.score.playlist.addSongCode(songs[i], false, false);
+                    this.score.playlist.addSongCode(songs[i], false, true, true);
                 }
 
                 // enable looping
                 this.score.playlist.setLooping(true);
+
+            } else if (playlistVisible()) {
+                // disable looping if it's just one song
+                this.score.playlist.setLooping(false);
+            }
+
+            // close the undo action
+            this.score.endActions();
+
+            // resume playing if it was playing before
+            if (playing) {
+                this.score.togglePlaying();
             }
         });
     }

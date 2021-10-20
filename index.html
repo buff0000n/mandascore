@@ -59,6 +59,17 @@
         updatedSongCode = getSongCode();
         // fill in the song code input box
         document.getElementById("songCode").value = updatedSongCode;
+
+        // update the URL depending on whether the playlist is open or not
+        if (playlistVisible() && score.playlist.entries.length > 0) {
+            modifyUrlQueryParam("playlist", encodePlaylistToUrl(getPlaylistCode()));
+            removeUrlQueryParam("song");
+
+        } else {
+            modifyUrlQueryParam("song", urlEncodeString(updatedSongCode, false));
+            removeUrlQueryParam("playlist");
+        }
+
         // clear state
         songCodeUpdateTimeout = null;
     }
@@ -194,14 +205,14 @@
     function setPlaylistCode(playlistCode) {
         showPlaylist();
         score.playlist.setLooping(true);
-        score.playlist.import(playlistCode);
+        score.playlist.import(playlistCode, false);
     }
 
     function copyModelUrl() {
         // build a model from the UI
         var songCode = getSongCode();
 
-        var query = "?song=" + urlEncodeString(songCode, false)
+        var query = "?song=" + urlEncodeString(songCode, false);
 
         // build a full URL using the current URL
         var url = buildQueryUrl(query);
@@ -489,8 +500,13 @@
                                 <li><a href="#tocClearSong">Clear Song</a></li>
                             </ul>
                         </li>
-                        <li><a href="#tocCopy">Copy</a></li>
-                        <li><a href="#tocPaste">Paste</a></li>
+                        <li>
+                            <a href="#tocCopyPaste">Copy/Paste</a>
+                            <ul>
+                                <li><a href="#tocCopyPasteMeasure">Copy/Paste Measure</a></li>
+                                <li><a href="#tocCopyPasteSong">Copy/Paste Song</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </li>
                 <li><a href="#tocUndoRedo">Undo/Redo</a></li>
@@ -506,6 +522,7 @@
                         <li><a href="#tocSongCode">SongCode</a></li>
                         <li><a href="#tocShareURL">Share URL</a></li>
                         <li><a href="#tocExportToPng">Export to PNG</a></li>
+                        <li><a href="#tocAutosaveSong">Autosave</a></li>
                     </ul>
                 </li>
                 <li><a href="#tocLibrary">Library</a>
@@ -528,8 +545,9 @@
                         <li>
                             <a href="#tocSavingPlaylist">Saving the playlist</a>
                             <ul>
-                                <li><a href="#tocCopyPaste">Copy/Paste</a></li>
+                                <li><a href="#tocCopyPastePlaylist">Copy/Paste</a></li>
                                 <li><a href="#tocPlaylistURL">Playlist URL</a></li>
+                                <li><a href="#tocAutosavePlaylist">Autosave</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -647,7 +665,8 @@
                 button: <strong>All</strong>, <strong>Percussion</strong>, <strong>Bass</strong>, or
                 <strong>Melody</strong>.
             </p>
-            <h2 id="tocCopy">Copy</h2>
+            <h2 id="tocCopyPaste">Copy/Paste</h2>
+            <h3 id="tocCopyPasteMeasure">Copy/Paste Measure</h3>
             <p>
                 Above each measure is a <strong>Copy</strong> button.  This can be used to copy part or all of the
                 measure, allowing it to be pasted to a different measure.  Clicking the <strong>Copy</strong> button
@@ -655,15 +674,24 @@
                 <strong>Bass</strong>, or <strong>Melody</strong>.
             </p>
             <p>
-                Once a section is selected, it will be outlined in that measure.  If any changes are made to that
-                section, or if the <strong>Copy</strong> button is clicked again, then the selection will be cleared.
-            </p>
-            <h2 id="tocPaste">Paste</h2>
-            <p>
                 Once a copy selection is made in one measure, the <strong>Paste</strong> buttons are enabled on the
                 other three measures.  Clicking the <strong>Paste</strong> button will copy the selected section from
                 the copied measure into that measure, overwriting any existing notes in that section.
             </p>
+            <h3 id="tocCopyPasteSong">Copy/Paste song</h3>
+            <p>
+                Above the <strong>Song Title</strong> bar is another set of <strong>Copy</strong> and
+                <strong>Paste</strong> buttons.  This allows you to copy and paste notes from all four measures.
+            </p>
+            <p>
+                This is mainly useful when editing a playlist.  It allows you to copy all or part of a song into
+                another playlist entry.
+            </p>
+            <p>
+                <strong class="warn">Only one thing cna be copied at a time, either part of a measure or part of the
+                whole song</strong>
+            </p>
+
             <h1 id="tocUndoRedo">Undo/Redo</h1>
             <p>
                 Undo and Redo is available using either the <strong>Undo</strong> and <strong>Redo</strong> buttons
@@ -756,6 +784,15 @@
                 <strong>Note that you cannot re-import a PNG to edit it again.</strong>  You should also save your
                 song as either a Song Code or URL so you can come back to it later.
             </p>
+            <h2 id="tocAutosaveSong">Autosave</h2>
+            <p>
+                As you are editing, your song will automatically be saved to your browser's location bar.  If you use
+                the browser's forward/back buttons, intentionally or accidentally, then reversing that back to this
+                page should resume where you left off.
+            </p>
+            <p>
+                <strong class="warn">Note: Updates take a second or two to appear in the location bar.</strong>
+            </p>
 
             <h1 id="tocLibrary">Library</h1>
             <p>
@@ -838,19 +875,13 @@
                 The current contents of the song editor will be automatically saved to the currently selected playlist
                 entry before switching to the new selection.
             </p>
-            <p>
-                <strong class="warn">Selecting a different song in the playlist will clear the undo history.</strong>
-            </p>
             <h2 id="tocEditingPlaylist">Editing the playlist</h2>
             <p>
                 Use the buttons to the left of the song titles to edit the playlist itself.
             </p>
             <ul>
                 <li><strong>X</strong>: Remove the playlist entry</li>
-                <li><strong>⇈</strong>: Move the playlist entry to the top</li>
-                <li><strong>↑</strong>: Move the playlist entry up one spot</li>
-                <li><strong>↓</strong>: Move the playlist entry down one spot</li>
-                <li><strong>⇊</strong>: Move the playlist entry to the bottom</li>
+                <li><strong>↑↓</strong>: Click and drag this button to move the entry somewhere else in the playlist</li>
             </ul>
             <h2 id="tocPlayingPlaylist">Playing the playlist</h2>
             <p>
@@ -869,7 +900,7 @@
             <p>
                 There are two options for saving/loading a playlist.
             </p>
-            <h3 id="tocCopyPaste">Copy/Paste</h3>
+            <h3 id="tocCopyPastePlaylist">Copy/Paste</h3>
             <p>
                 Click <strong>Copy/Paste</strong> to bring up a text area containing the song codes for every song in
                 the playlist.  You can copy this and save it wherever you want.
@@ -884,6 +915,15 @@
             </p>
             <p>
                 <strong class="warn">I'm compressing it, but this URL can still be very large.</strong>
+            </p>
+            <h2 id="tocAutosavePlaylist">Autosave</h2>
+            <p>
+                As you are editing, your playlist will automatically be saved to your browser's location bar.  If you
+                use the browser's forward/back buttons, intentionally or accidentally, then reversing that back to this
+                page should resume mostly where you left off.
+            </p>
+            <p>
+                <strong class="warn">Note: Updates take a second or two to appear in the location bar.</strong>
             </p>
 
             <h1 id="tocMixer">Mixer</h1>
@@ -1276,12 +1316,15 @@
                 <li>You can now click and drag the playback cursor.  What a country.</li>
                 <li>Revamped copy/paste so you can use it between loops in a playlist.</li>
             </ul>
+            <h2>v3.1: 2020-10-19</h2>
+            <ul>
+                <li>Reworked the playlist editor to support moving entries by dragging, and also undo.</li>
+                <li>Added whole song copy/paste options.</li>
+                <li>Added autosave to the browser URL, why did that take me so long</li>
+            </ul>
 
             <h1 id="tocToDo">To Do</h1>
             <ul>
-                <li>
-                    Copy/paste working across songs in a playlist.
-                </li>
                 <li>
                    Maybe some icons instead of word buttons for play, stop, copy, paste, undo, redo.
                 </li>
@@ -1332,7 +1375,7 @@
             <a href="https://github.com/buff0000n/mandascore/issues/2 ">Feedback</a>
         </div>
         <div>
-            v3.0.1: 2021-08-31
+            v3.1.0: 2021-10-19
         </div>
         <div>
             <a href="https://warframe.com">Ninjas Jam Free</a>

@@ -149,7 +149,7 @@ function pasteButton(button) {
     // chrome is doing strange things with clicked buttons so just unfocus it
     button.blur();
     // get the associated measure and paste the selected section from another measure
-    getParent(button, "scoreButtonContainer").score.paste();
+    getParent(button, "scoreButtonContainer").score.paste(score.copyData);
 }
 
 function clearButton(button) {
@@ -372,6 +372,24 @@ function touchEventToMTEvent(e, overrideTarget=null) {
     }
 }
 
+function setupDragDropListeners(onDrag, onDrop) {
+    // set up drag listeners on the document itself
+    // touch events down work across DOM elements unless you go all the way
+    // to the document level
+    document.onmousemove = (e) => { onDrag(mouseEventToMTEvent(e)); };
+    document.onmouseup = (e) => { onDrop(mouseEventToMTEvent(e)); };
+    document.ontouchmove = (e) => { onDrag(touchEventToMTEvent(e)); };
+    document.ontouchend = (e) => { onDrop(touchEventToMTEvent(e)); };
+}
+
+function clearDragDropListeners() {
+    // remove drag/drop listeners from the document
+    document.onmousemove = null;
+    document.onmouseup = null;
+    document.ontouchmove = null;
+    document.ontouchend = null;
+}
+
 class CopyData {
     constructor(measure, section) {
         this.section = section;
@@ -516,29 +534,20 @@ class Measure {
         this.measureTimingContainer.disabled = false;
     }
     
-    setupDragListeners(playbackMarker) {
+    disableListeners(disableTimingBar=false) {
+        // listener state when dragging the playback marker and not an actively playing measure
         // listener state when dragging the playback marker, still hover but don't enter notes
         this.gridImg.onmouseover = (e) => { this.measureMouseover(e, false); };
         this.gridImg.onmousemove = (e) => { this.measureMousemove(e, false); };
-        this.gridImg.onmousedown = null ; // shouldn't happen (e) => { playbackMarker.mouseMove(e, this) };
-        this.gridImg.onmouseout = (e) => { this.measureMouseout(e); };
-
-        this.timingContainer.onmousedown = null;
-        this.timingContainer.ontouchstart = null;
-    }
-
-    disableListeners() {
-        // listener state when dragging the playback marker and not an actively playing measure
-        // still hover but don't enter notes
-        this.gridImg.onmouseover = (e) => { this.measureMouseover(e, false); };
-        this.gridImg.onmousemove = (e) => { this.measureMousemove(e, false); };
-        this.gridImg.onmousedown = (e) => null;
+        this.gridImg.onmousedown = null;
         this.gridImg.onmouseout = (e) => { this.measureMouseout(e); };
 
         this.timingContainer.onmousedown = null;
         this.timingContainer.ontouchstart = null;
 
-        this.measureTimingContainer.disabled = true;
+        if (disableTimingBar) {
+            this.measureTimingContainer.disabled = true;
+        }
     }
 
     startDrag(e) {
@@ -565,12 +574,12 @@ class Measure {
         this.timingContainer.innerHTML = `<img src="img/timingbar.png" srcset="img2x/timingbar.png 2x" width="352" height="25"/>`;
     }
 
-    setMeasureNotes(mnotes) {
+    setMeasureNotes(mnotes, action=true) {
         // load note info from an external source
         for (var t = 0; t < 16; t++) {
             for (var r = 0; r < 13; r++) {
                 // rows from the song parser are in reverse order
-                this.notes[t][r].setEnabled(mnotes[t][12-r] == 1);
+                this.notes[t][r].setEnabled(mnotes[t][12-r] == 1, action);
             }
         }
     }
@@ -806,16 +815,16 @@ class Measure {
         getFirstChild(this.buttons, "pasteButton").disabled = !enabled;
     }
 
-    paste() {
-        if (this.score.copyData) {
+    paste(copyData) {
+        if (copyData) {
             // contain all the note changes in a single undo action
             this.score.startActions();
             // apply the copy data
-            this.score.copyData.apply(this);
+            copyData.apply(this);
             // commit the undo action
             this.score.endActions();
             // UI feedback
-            this.showSelection(this.score.copyData.section);
+            this.showSelection(copyData.section);
         }
     }
 
@@ -1588,6 +1597,8 @@ class Score {
                 <input id="undoButton" class="button undoButton" type="submit" disabled value="Undo" onClick="doUndo()"/>
                 <input id="redoButton" class="button redoButton" type="submit" disabled value="Redo" onClick="doRedo()"/>
                 <input class="button clearButton" type="submit" value="Clear" onClick="clearButton(this)"/>
+                <input class="button copyButton" type="submit" value="Copy" onClick="copyButton(this)"/>
+                <input class="button pasteButton" type="submit" value="Paste" disabled onClick="pasteButton(this)"/>
                 <input id="mainPlayButton" class="button playButton" type="submit" value="Play" onClick="playButton(this)"/>
             </div>
         `;
@@ -1605,7 +1616,7 @@ class Score {
         titleContainer.innerHTML = `
             <div class="tooltip">
                 <span class="label">Song Title:</span>
-                <input class="songTitle" type="text" size="24" maxlength="24" onchange="titleChanged()"/>
+                <input class="songTitle" type="text" size="36" maxlength="24" onchange="titleChanged()"/>
                 <span class="tooltiptextbottom">Give your song a name</span>
             </div>
         `;
@@ -1620,42 +1631,47 @@ class Score {
         }
     }
 
-    setSong(songCode, disableUndo, resetPlayback=false) {
+    setSong(songCode, action=true, resetPlayback=false) {
         // parse the song code
         var song = new Song();
         song.parseChatLink(songCode);
-        this.setSongObject(song, disableUndo, resetPlayback);
+        this.setSongObject(song, action, resetPlayback);
     }
 
-    setSongObject(song, disableUndo, resetPlayback=false) {
+    setSongObject(song, action=true, resetPlayback=false) {
         if (resetPlayback) {
             // remember whether we were playing before stopping playback
             var playing = this.isPlaying();
             this.stopPlayback();
         }
-        // put the entire process of loading the song into a single undo action
-        this.startActions();
+        if (action) {
+            // put the entire process of loading the song into a single undo action
+            this.startActions();
+        }
+
         // set the title, make sure to update the UI
-        this.setTitle(song.getName(), true, true);
+        this.setTitle(song.getName(), action, true);
 
         // loop over each section that's not the "all" section
         for (var section in sectionMetaData) {
             if (!sectionMetaData[section].all) {
                 // set the instrument pack, make sure to update the UI
-                this.sections[section].setPack(song.getPack(section), true, true);
+                this.sections[section].setPack(song.getPack(section), action, true);
                 // set the volume, make sure to update the UI
                 // song stores the volume as a percentage 0-100
-                this.sections[section].setVolume(song.getVolume(section) / 100.0, true, false, true);
+                this.sections[section].setVolume(song.getVolume(section) / 100.0, action, false, true);
             }
         }
 
         for (var m = 0; m < 4; m++) {
             // extract each measure's note info from the parsed song and update the measure UI
-            this.measures[m].setMeasureNotes(song.getMeasureNotes(m));
+            this.measures[m].setMeasureNotes(song.getMeasureNotes(m), action);
         }
 
         // commit as a single undo action
-        this.endActions(disableUndo);
+        if (action) {
+            this.endActions();
+        }
 
         // resume playing if it was playing before
         if (resetPlayback && playing) {
@@ -1696,9 +1712,48 @@ class Score {
 
     setCopyData(copyData) {
         this.copyData = copyData;
-        for (var m = 0; m < 4; m++) {
-            this.measures[m].setPasteEnabled(true);
+        // check if it's an array
+        if (this.copyData.length) {
+            // whole song copy, enable the song paste button and disable the measure paste buttons
+            this.setPasteEnabled(true);
+            for (var m = 0; m < 4; m++) {
+                this.measures[m].setPasteEnabled(false);
+            }
+
+        } else {
+            // single measure copy, enable the measure paste buttons and disable the song paste button
+            this.setPasteEnabled(false);
+            for (var m = 0; m < 4; m++) {
+                this.measures[m].setPasteEnabled(true);
+            }
         }
+    }
+
+    copy(section) {
+        // build copy data for all four measures
+        var copyDataList = [];
+        for (var m = 0; m < 4; m++) {
+            // directly copy measure
+            copyDataList.push(new CopyData(this.measures[m], section));
+            // flash the selection
+            this.measures[m].showSelection(section);
+        }
+        // set the copy data to a list and enable/disable paste buttons accordingly
+        this.setCopyData(copyDataList);
+    }
+
+    paste(copyDataList) {
+        this.startActions();
+        // paste all four measures
+        for (var m = 0; m < 4; m++) {
+            this.measures[m].paste(copyDataList[m]);
+        }
+        this.endActions();
+    }
+
+    setPasteEnabled(enabled) {
+        // get the paste button and enabled/disable based on whether something is selected for copy
+        getFirstChild(this.buttons, "pasteButton").disabled = !enabled;
     }
 
     clear(section) {
@@ -1725,6 +1780,10 @@ class Score {
         }
         // save state
         this.title = title;
+        // update the title in the playlist, if there's an entry selected
+        if (this.playlist && this.playlist.selected) {
+            this.playlist.selected.updateSong();
+        }
     }
 
     setSectionSource(section, pack) {
@@ -1732,6 +1791,11 @@ class Score {
         this.sectionPacks[section] = pack;
         // set the audio source
         this.soundPlayer.setSource(section, pack, this.isSectionMono(section));
+    }
+
+    precacheSectionSource(section, pack) {
+        // set the audio source
+        this.soundPlayer.setSource(section, pack, this.isSectionMono(section), true);
     }
 
     isSectionMono(section) {
@@ -1835,6 +1899,18 @@ class Score {
         }
         // get the marker
         return this.playback.marker;
+    }
+
+    disableListeners() {
+        for (var m = 0; m < 4; m++) {
+            this.measures[m].disableListeners();
+        }
+    }
+
+    resetListeners() {
+        for (var m = 0; m < 4; m++) {
+            this.measures[m].resetListeners();
+        }
     }
 
     generatePng(linkDiv, display) {
@@ -2049,24 +2125,22 @@ class PlaybackMarker {
         // setup all actively playing measure for dragging
         for (var m = 0; m < this.playback.measures.length; m++) {
             var measure2 = this.playback.measures[m];
-            measure2.setupDragListeners(this);
+            measure2.disableListeners(false);
         }
 
         // disable dragging on any non-active measures
         var others = this.playback.getNonPlayingMeasures();
         for (var m = 0; m < others.length; m++) {
-            others[m].disableListeners();
+            others[m].disableListeners(true);
         }
 
-        // set up drag listeners on the document itself
-        // touch events down work across DOM elements unless you go all the way
-        // to the document level
-        document.onmousemove = (e2) => { this.dragEvent(mouseEventToMTEvent(e2)); };
-        document.onmouseup = (e2) => { this.dropEvent(mouseEventToMTEvent(e2)); };
-        document.ontouchmove = (e2) => { this.dragEvent(touchEventToMTEvent(e2)); };
-        document.ontouchend = (e2) => { this.dropEvent(touchEventToMTEvent(e2)); };
+        // setup the drag listeners
+        setupDragDropListeners(
+            (mte) => { this.dragEvent(mte); },
+            (mte) => { this.dropEvent(mte); }
+        )
 
-        // stop playback if it's gurrently playing
+        // stop playback if it's currently playing
         if (this.playback.playing()) {
             this.didStop = true;
             this.playback.stop();
@@ -2077,6 +2151,10 @@ class PlaybackMarker {
         // clear last position
         this.lastMeasure = null;
         this.lastTick = null;
+
+        // set the cursor to grabbing
+        this.playbackHandle.className = "playbackHandleGrabbing";
+        this.playbackBox.className = "playbackBoxGrabbing";
 
         // immediately move the marker
         this.dragEvent(e, measure);
@@ -2159,10 +2237,7 @@ class PlaybackMarker {
         }
 
         // clear drag listeners
-        document.onmousemove = null;
-        document.onmouseup = null;
-        document.ontouchmove = null;
-        document.ontouchend = null;
+        clearDragDropListeners();
 
         // Figuring out the playback time is complicated by the fact that not all measures may be playing
         var measureTime = this.playback.measures.indexOf(this.measure) * 2;
@@ -2174,6 +2249,10 @@ class PlaybackMarker {
         if (this.didStop) {
             this.playback.start();
         }
+
+        // reset the cursor
+        this.playbackHandle.className = "playbackHandle";
+        this.playbackBox.className = "playbackBox";
     }
 }
 

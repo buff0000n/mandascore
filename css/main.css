@@ -188,11 +188,12 @@
         vertical-align: bottom;
     }
 
-    .playlistScollArea {
+    .playlistScrollArea {
         overflow: auto;
         max-height: 32ex;
         min-height: 32ex;
         overflow-anchor: none;
+        position: relative;
     }
 
     .playlistBox {
@@ -205,6 +206,24 @@
         overflow: auto;
         overflow-anchor: none;
         */
+    }
+
+    .playlistEntryContainer {
+    }
+
+    .playlistEntryContainerDrag {
+        position: absolute;
+    }
+
+    .playlistEntryContainerPlaceholder {
+        color: #000000;
+        background: #000000;
+        border: none;
+        padding: 0ex 1ex;
+        font-size: 100%;
+        border-radius: 1ex;
+        margin: 0ex 0ex ;
+        display: inline-block;
     }
 
     .libraryBox {
@@ -300,22 +319,33 @@
         animation-fill-mode: forwards;
     }
 
-    .playbackBox, .playbackHandle {
+    .playbackBox, .playbackHandle, .playbackBoxGrabbing, .playbackHandleGrabbing {
         position: absolute;
         margin: 0;
         padding: 0;
         z-index: 5;
     }
 
-    .playbackBox {
+    .playbackBox, .playbackBoxGrabbing {
         pointer-events: none;
         background-color: #ffffff;
         z-index: 5;
     }
+    .playbackBox {
+        cursor: grab;
+    }
+    .playbackBoxGrabbing {
+        cursor: grabbing;
+    }
 
-    .playbackHandle {
-        cursor: pointer;
+    .playbackHandle, playbackHandleGrabbing {
         z-index: 6;
+    }
+    .playbackHandle {
+        cursor: grab;
+    }
+    .playbackHandleGrabbing {
+        cursor: grabbing;
     }
 
     @keyframes noteBounce {
@@ -345,7 +375,7 @@
         text-decoration: none;
         font-size: 100%;
         border-radius: 1ex 1ex 0ex 0ex;
-        display: block-inline;
+        display: inline-block;
     }
 
     .scoreButtonRow > .titleButton {
@@ -358,7 +388,7 @@
         text-decoration: none;
         font-size: 100%;
         border-radius: 1ex 1ex 0ex 0ex;
-        display: block-inline;
+        display: inline-block;
     }
 
     .menu {
@@ -398,7 +428,7 @@
         font-size: 100%;
         border-radius: 1ex;
         margin: 1ex 1ex 1ex 1ex;
-        display: block-inline;
+        display: inline-block;
     }
 
     #scoreArea {
@@ -423,7 +453,7 @@
         border-radius: 1ex;
         margin: 1ex 1ex 1ex 1ex;
         cursor: pointer;
-        display: block-inline;
+        display: inline-block;
     }
     .smallButton {
         background-color: #404080;
@@ -436,7 +466,28 @@
         border-radius: 1ex;
         margin: 0ex 0ex ;
         cursor: pointer;
-        display: block-inline;
+        display: inline-block;
+    }
+    .smallButton, .smallButtonGrab, .smallButtonGrabbing {
+        background-color: #404080;
+        border: none;
+        color: #FFFFFF;
+        padding: 0ex 1ex;
+        text-align: center;
+        text-decoration: none;
+        font-size: 100%;
+        border-radius: 1ex;
+        margin: 0ex 0ex ;
+        display: inline-block;
+    }
+    .smallButton {
+        cursor: pointer;
+    }
+    .smallButtonGrab {
+        cursor: grab;
+    }
+    .smallButtonGrabbing {
+        cursor: grabbing;
     }
     .playlistEntry, .playlistEntrySelected, .libCatLabel {
         background-color: #202020;
@@ -448,7 +499,7 @@
         border-radius: 1ex;
         margin: 0ex 0ex ;
         cursor: pointer;
-        display: block-inline;
+        display: inline-block;
     }
     .playlistEntrySelected {
         background-color: #404040;
