@@ -194,6 +194,7 @@
         min-height: 32ex;
         overflow-anchor: none;
         position: relative;
+        margin: 0.5ex 0 0 0;
     }
 
     .playlistBox {
@@ -202,6 +203,8 @@
         margin: 0 1ex 0 0;
         background: #000000;
         display: none;
+        max-width: 48ex;
+        min-width: 48ex;
         /*
         overflow: auto;
         overflow-anchor: none;
@@ -219,11 +222,16 @@
         color: #000000;
         background: #000000;
         border: none;
-        padding: 0ex 1ex;
         font-size: 100%;
         border-radius: 1ex;
-        margin: 0ex 0ex ;
+        padding: 0;
+        margin: 0ex 0.25ex 2px 0;
         display: inline-block;
+        vertical-align: bottom;
+    }
+
+    .playlistEntryContainerPlaceholder > img {
+        vertical-align: bottom;
     }
 
     .libraryBox {
@@ -246,11 +254,12 @@
         overflow-anchor: none;
     }
 
-    .mixerlistScollArea {
+    .mixerlistScrollArea {
         overflow: auto;
         max-height: 32ex;
         min-height: 32ex;
         overflow-anchor: none;
+        margin: 0.5ex 0 0 0;
     }
 
     .indexContainer {
@@ -372,10 +381,30 @@
         padding: 1ex 1ex 0.5ex 1ex;
         margin: 1ex 0ex 0ex 0ex;
         text-align: center;
+        vertical-align: bottom;
         text-decoration: none;
         font-size: 100%;
         border-radius: 1ex 1ex 0ex 0ex;
         display: inline-block;
+    }
+    .scoreButtonRow > .imgButton, .scoreButtonRow > .imgButtonDisabled {
+        border: none;
+        color: #FFFFFF;
+        padding: 0.5ex 1ex 0 1ex;
+        margin: 1ex 0 0ex 0;
+        text-align: center;
+        vertical-align: bottom;
+        text-decoration: none;
+        font-size: 100%;
+        border-radius: 1ex 1ex 0ex 0ex;
+        display: inline-block;
+    }
+    .scoreButtonRow > .imgButton {
+        background-color: #404040;
+    }
+
+    .scoreButtonRow > .imgButtonDisabled {
+        background-color: #202020;
     }
 
     .scoreButtonRow > .titleButton {
@@ -385,6 +414,7 @@
         padding: 1ex 1ex 0.5ex 1ex;
         margin: 1ex 0ex 0ex 0ex;
         text-align: center;
+        vertical-align: bottom;
         text-decoration: none;
         font-size: 100%;
         border-radius: 1ex 1ex 0ex 0ex;
@@ -455,40 +485,39 @@
         cursor: pointer;
         display: inline-block;
     }
-    .smallButton {
-        background-color: #404080;
+    .imgButton {
+        background-color: #808080;
         border: none;
         color: #FFFFFF;
-        padding: 0ex 1ex;
         text-align: center;
         text-decoration: none;
         font-size: 100%;
+        margin: 0;
+        padding: 0;
         border-radius: 1ex;
-        margin: 0ex 0ex ;
         cursor: pointer;
         display: inline-block;
     }
-    .smallButton, .smallButtonGrab, .smallButtonGrabbing {
-        background-color: #404080;
+    .smallButton, .smallButtonSelected {
         border: none;
         color: #FFFFFF;
-        padding: 0ex 1ex;
+        padding: 0ex 0ex;
         text-align: center;
+        vertical-align: bottom;
         text-decoration: none;
         font-size: 100%;
         border-radius: 1ex;
-        margin: 0ex 0ex ;
+        margin: 0ex 0.25ex 2px 0;
+        cursor: pointer;
         display: inline-block;
     }
     .smallButton {
-        cursor: pointer;
+        background-color: #202040;
     }
-    .smallButtonGrab {
-        cursor: grab;
+    .smallButtonSelected {
+        background-color: #404080;
     }
-    .smallButtonGrabbing {
-        cursor: grabbing;
-    }
+
     .playlistEntry, .playlistEntrySelected, .libCatLabel {
         background-color: #202020;
         border: none;
@@ -497,7 +526,7 @@
         text-decoration: none;
         font-size: 100%;
         border-radius: 1ex;
-        margin: 0ex 0ex ;
+        margin: 0ex 0.25ex 2px 0;
         cursor: pointer;
         display: inline-block;
     }
@@ -558,11 +587,23 @@
     }
 
     /* graying everthing out when disabled */
-    .button:disabled {
+    .buttonDisabled, .imgButtonDisabled {
         background-color: #202020;
         color: #808080;
         cursor: not-allowed;
     }
+
+    .imgButton > img {
+        margin: 0;
+        padding: 0;
+    }
+
+    .imgButtonDisabled > img {
+        margin: 0;
+        padding: 0;
+        filter: brightness(50%) saturate(0%);
+    }
+
     .gray {
         background-color: #202020;
         color: #808080;
@@ -732,7 +773,7 @@
         position: absolute;
         z-index: 1;
         top: 120%;
-        left: -40ex;
+        left: -44ex;
         margin-left: -2ex;
     }
     .popup .popuptext::after {

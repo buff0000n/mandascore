@@ -26,7 +26,9 @@ class Mixer {
         this.buttons.innerHTML = `
             <div class="scoreButtonRow">
                 <input class="titleButton" type="submit" value="Mixer"/>
-                <input class="button resetButton" type="submit" value="Reset"/>
+                <span class="imgButton resetButton tooltip"><img src="img/icon-reset.png" srcset="img2x/icon-reset.png 2x" alt="Reset"/>
+                    <span class="tooltiptextbottom">Reset the mixer</span>
+                </span>
             </div>
         `;
         this.container.appendChild(this.buttons);
@@ -58,7 +60,7 @@ class Mixer {
 
         // add the table to a scrollable container div
         var tableDiv = document.createElement("div");
-        tableDiv.className = "mixerlistScollArea";
+        tableDiv.className = "mixerlistScrollArea";
         tableDiv.appendChild(table);
 
         // add mixer list to container

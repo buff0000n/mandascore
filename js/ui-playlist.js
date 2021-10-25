@@ -134,17 +134,24 @@ class Playlist {
         this.playlistBox.innerHTML = `
             <div class="scoreButtonRow">
                 <input class="titleButton" type="submit" value="Playlist"/>
-                <input class="button addButton" type="submit" value="Add" onClick="addToPlaylist(this)"/>
-                <input class="button loopButton" type="submit" value="Enable" onClick="loopPlaylist(this)"/>
-                <input class="button clearButton" type="submit" value="Clear" onClick="clearPlaylist(this)"/>
-                <input class="button editButton" type="submit" value="Copy/Paste" onClick="editPlaylist(this)"/>
-                <div class="popup">
-                    <input id="playlistCopyUrlButton" class="button urlButton popup" type="submit" value="Link"
-                           onClick="copyPlaylistUrl()"/>
+                <span class="imgButton addButton tooltip" onclick="addToPlaylist(this)"><img src="img/icon-add.png" srcset="img2x/icon-add.png 2x" alt="Add"/>
+                    <span class="tooltiptextbottom">Add or duplicate the currently selected song</span>
+                </span>
+                <span class="imgButton loopButton tooltip" onclick="loopPlaylist(this)"><img src="img/icon-playlist-enabled.png" srcset="img2x/icon-playlist-enabled.png 2x" alt="Enabled"/>
+                    <span class="tooltiptextbottom">Disable the playlist advancing to the next song</span>
+                </span>
+                <span class="imgButton clearButton tooltip" onclick="clearPlaylist(this)"><img src="img/icon-clear.png" srcset="img2x/icon-clear.png 2x" alt="Clear"/>
+                    <span class="tooltiptextbottom">Clear the playlist</span>
+                </span>
+                <span class="imgButton editButton tooltip" onclick="editPlaylist(this)"><img src="img/icon-playlist-copypaste.png" srcset="img2x/icon-playlist-copypaste.png 2x" alt="Copy/Paste"/>
+                    <span class="tooltiptextbottom">Copy/Paste the playlist to the clipboard</span>
+                </span>
+                <span id="playlistCopyUrlButton" class="imgButton urlButton popup tooltip" onclick="copyPlaylistUrl(this)"><img src="img/icon-link.png" srcset="img2x/icon-link.png 2x" alt="Generate Link"/>
                     <div class="popuptext" id="playlistPopupBox">
                         <input id="playlistUrlHolder" type="text" size="60" onblur="hideUrlPopup()"/>
                     </div>
-                </div>
+                    <span class="tooltiptextbottom">Generate a link containing the entire playlist</span>
+                </span>
             </div>
         `;
 
@@ -300,14 +307,14 @@ class Playlist {
         // build a placeholder div to keep a blank space where the entry will go
         var placeholder = document.createElement("div");
         // try our best to make the placeholder div exactly the same height as the entry div
-        placeholder.innerHTML = `<span class="playlistEntryContainerPlaceholder">X↑↓`+(index+1)+entry.song.name+`</span>`;
+        placeholder.innerHTML = `<span class="playlistEntryContainerPlaceholder"><img src="img/icon-blank.png" srcset="img2x/icon-blank.png 2x" width="32" height="20"/>`+(index+1)+entry.song.name+`</span>`;
         // start it right by the entry div
         insertAfter(placeholder, entry.playlistEntryContainer);
 
         // set the entry div to absolute positioning
         entry.playlistEntryContainer.className = "playlistEntryContainerDrag";
         // set the button cursor style to grabbing
-        entry.grabSpan.className = "smallButtonGrabbing";
+        entry.grabSpan.style.cursor = "grabbing";
 
         // function to iteratively move the entry and its placeholder around the list, following the cursor
         var followPlaceholder = (mte) => {
@@ -399,7 +406,7 @@ class Playlist {
             entry.playlistEntryContainer.style.left = "";
             entry.playlistEntryContainer.style.top = "";
             // reset the button cursor style
-            entry.grabSpan.className = "smallButtonGrab";
+            entry.grabSpan.style.cursor = "grab";
             // remove the placeholder
             deleteNode(placeholder);
             // reindex entries
@@ -503,6 +510,8 @@ class Playlist {
         // change the selection
         this.selected = entry;
 
+        this.clearHighlightedEntries();
+
         // end the undo action
         if (action) {
             this.score.endActions();
@@ -524,6 +533,31 @@ class Playlist {
         }
         // change the selection, updating the score
         this.select(this.entries[index], true);
+    }
+
+    highlightEntries(endEntry) {
+        var startIndex = this.entries.indexOf(this.selected);
+        var endIndex = this.entries.indexOf(endEntry);
+
+        if (startIndex > endIndex) {
+            var t = startIndex;
+            startIndex = endIndex;
+            endIndex = t;
+        }
+
+        this.clearHighlightedEntries();
+        this.highlightedEntries = [];
+        for (var i = startIndex; i <= endIndex; i++) {
+            this.entries[i].setHightlighted(true);
+            this.highlightedEntries.push(this.entries[i]);
+        }
+    }
+
+    clearHighlightedEntries() {
+        for (var i = 0; i < this.entries.length; i++) {
+            this.entries[i].setHightlighted(false);
+        }
+        this.highlightedEntries = null;
     }
 
     clear(action=true) {
@@ -577,10 +611,10 @@ class Playlist {
 
     setLooping(looping) {
         if (!looping) {
-            this.loopingButton.value = "Enable";
+            this.loopingButton.innerHTML = `<img src="img/icon-playlist-disabled.png" srcset="img2x/icon-playlist-disabled.png 2x" alt="Disabled"/><span class="tooltiptextbottom">Enable the playlist advancing to the next song</span>`;
             this.looping = false;
         } else {
-            this.loopingButton.value = "Disable";
+            this.loopingButton.innerHTML = `<img src="img/icon-playlist-enabled.png" srcset="img2x/icon-playlist-enabled.png 2x" alt="Enabled"/><span class="tooltiptextbottom">Disable the playlist advancing to the next song</span>`;
             this.looping = true;
         }
     }
@@ -701,35 +735,49 @@ class PlaylistEntry {
             span.className = "smallButton";
             span.onclick = this.deletePlaylistEntry
             span.entry = this;
-            span.innerHTML = `X`;
-            this.playlistEntryContainer.appendChild(span);
+            span.innerHTML = `<img src="img/icon-playlist-delete.png" srcset="img2x/icon-playlist-delete.png 2x" width="32" height="20" alt="Delete"/>`;
+            this.deleteSpan = span;
+            this.playlistEntryContainer.appendChild(this.deleteSpan);
         }
-
         {
-            this.grabSpan = document.createElement("span");
-            this.grabSpan.className = "smallButtonGrab";
-            this.grabSpan.onmousedown = (e) => { this.startPlayListEntryDrag(mouseEventToMTEvent(e)); }
-            this.grabSpan.ontouchstart = (e) => { this.startPlayListEntryDrag(touchEventToMTEvent(e)); }
-            this.grabSpan.entry = this;
-            this.grabSpan.innerHTML = `↑↓`;
+            var span = document.createElement("span");
+            span.className = "smallButton";
+            span.onclick = this.highlightPlaylistEntry
+            span.entry = this;
+            span.innerHTML = `<img src="img/icon-playlist-select.png" srcset="img2x/icon-playlist-select.png 2x" width="32" height="20" alt="Select"/>`;
+            this.selectSpan = span;
+            this.playlistEntryContainer.appendChild(this.selectSpan);
+        }
+        {
+            var span = document.createElement("span");
+            span.className = "smallButton";
+            span.style.cursor = "grab";
+            span.onmousedown = (e) => { this.startPlayListEntryDrag(mouseEventToMTEvent(e)); }
+            span.ontouchstart = (e) => { this.startPlayListEntryDrag(touchEventToMTEvent(e)); }
+            span.entry = this;
+            span.innerHTML = `↑↓`;
+            span.innerHTML = `<img src="img/icon-playlist-move.png" srcset="img2x/icon-playlist-move.png 2x" width="32" height="20" alt="Move"/>`;
+            this.grabSpan = span;
             this.playlistEntryContainer.appendChild(this.grabSpan);
         }
 
         {
             // we need to keep a reference to the index span to change its color when selected
-            this.indexBar = document.createElement("span");
-            this.indexBar.className = "playlistEntry";
-            this.indexBar.onclick = this.selectPlaylistEntry
-            this.indexBar.entry = this;
+            var span = document.createElement("span");
+            span.className = "playlistEntry";
+            span.onclick = this.selectPlaylistEntry
+            span.entry = this;
+            this.indexBar = span;
             this.playlistEntryContainer.appendChild(this.indexBar);
         }
         {
             // we need to keep a reference to the title span to change its color when selected
-            this.titleBar = document.createElement("span");
-            this.titleBar.className = "playlistEntry";
-            this.titleBar.onclick = this.selectPlaylistEntry
-            this.titleBar.entry = this;
-            this.titleBar.innerHTML = this.song.getName();
+            var span = document.createElement("span");
+            span.className = "playlistEntry";
+            span.onclick = this.selectPlaylistEntry
+            span.entry = this;
+            span.innerHTML = this.song.getName();
+            this.titleBar = span;
             this.playlistEntryContainer.appendChild(this.titleBar);
         }
     }
@@ -742,6 +790,10 @@ class PlaylistEntry {
         this.entry.playlist.removeEntry(this.entry);
     }
 
+    highlightPlaylistEntry() {
+        this.entry.playlist.highlightEntries(this.entry);
+    }
+
     startPlayListEntryDrag(mte) {
         this.playlist.startDrag(mte, this);
     }
@@ -751,13 +803,33 @@ class PlaylistEntry {
     }
 
     setSelected(selected) {
-        // change the css depending on whether it's selected
-        this.indexBar.className = selected ? "playlistEntrySelected" : "playlistEntry";
-        this.titleBar.className = selected ? "playlistEntrySelected" : "playlistEntry";
+        this.selected = selected;
+        this.updateHighlighting();
         if (selected) {
             // scroll the playlist viewer to the selected entry, either at the top or the botton, whichever is nearest
             this.playlistEntryContainer.scrollIntoView({"behavior": "auto", "block": "nearest", "inline": "nearest"});
         }
+    }
+
+    setHightlighted(highlighted) {
+        this.highlighted = highlighted;
+        this.updateHighlighting();
+    }
+
+    updateHighlighting() {
+        // change the css depending on whether it's selected
+        this.indexBar.className = this.selected ? "playlistEntrySelected" : "playlistEntry";
+        this.titleBar.className = this.selected ? "playlistEntrySelected" : "playlistEntry";
+        // change the css depending on whether it's selected or highlighted
+        this.deleteSpan.className = this.highlighted || this.selected ? "smallButtonSelected" : "smallButton";
+        if (this.highlighted || this.selected) {
+            this.selectSpan.className = "smallButtonSelected";
+            this.selectSpan.innerHTML = `<img src="img/icon-playlist-selected.png" srcset="img2x/icon-playlist-selected.png 2x" width="32" height="20" alt="Select"/>`;
+        } else {
+            this.selectSpan.className = "smallButton";
+            this.selectSpan.innerHTML = `<img src="img/icon-playlist-select.png" srcset="img2x/icon-playlist-select.png 2x" width="32" height="20" alt="Select"/>`;
+        }
+        this.grabSpan.className = this.highlighted || this.selected ? "smallButtonSelected" : "smallButton";
     }
 
     updateSong() {

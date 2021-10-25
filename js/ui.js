@@ -82,7 +82,7 @@ function runSectionMenu(title, button, callback) {
     var html = "";
     for (var name in sectionMetaData) {
         var m = sectionMetaData[name];
-        html += `<input class="button ${m.name}Button" type="submit" value="${m.displayName}" onClick="selectSection(this, '${m.name}')" style="color: ${m.color}"/>`;
+        html += `<div class="button ${m.name}Button" onClick="selectSection(this, '${m.name}')" style="color: ${m.color}">${m.displayName}</div>`;
     }
     div.innerHTML = html;
 
@@ -162,6 +162,16 @@ function clearButton(button) {
 function doClear(button, section) {
     // get the associated measure and clear the given section
     getParent(button, "scoreButtonContainer").score.clear(section);
+}
+
+function setButtonEnabled(button, enabled) {
+    if (enabled) {
+        button.classList.remove("imgButtonDisabled");
+        button.classList.add("imgButton");
+    } else {
+        button.classList.remove("imgButton");
+        button.classList.add("imgButtonDisabled");
+    }
 }
 
 // object for tracking the state of an individual node.  There will be 64*13 of these.
@@ -470,10 +480,18 @@ class Measure {
         // build the buttons ina single row
         this.buttons.innerHTML = `
             <div class="scoreButtonRow">
-                <input class="button clearButton" type="submit" value="Clear" onClick="clearButton(this)"/>
-                <input class="button copyButton" type="submit" value="Copy" onClick="copyButton(this)"/>
-                <input class="button pasteButton" type="submit" value="Paste" disabled onClick="pasteButton(this)"/>
-                <input class="button playButton" type="submit" value="Play" onClick="playButton(this)"/>
+                <span class="imgButton clearButton tooltip" onclick="clearButton(this)"><img src="img/icon-clear.png" srcset="img2x/icon-clear.png 2x" alt="Clear"/>
+                    <span class="tooltiptextbottom">Clear all or part of the measure</span>
+                </span>
+                <span class="imgButton copyButton tooltip" onclick="copyButton(this)"><img src="img/icon-copy.png" srcset="img2x/icon-copy.png 2x" alt="Copy"/>
+                    <span class="tooltiptextbottom">Copy all or part of the measure</span>
+                </span>
+                <span class="imgButtonDisabled pasteButton tooltip" onclick="pasteButton(this)"><img src="img/icon-paste.png" srcset="img2x/icon-paste.png 2x" alt="Paste"/>
+                    <span class="tooltiptextbottom">Paste the last copied measure or partial measure</span>
+                </span>
+                <span class="imgButton playButton tooltip" onclick="playButton(this)"><img src="img/icon-play.png" srcset="img2x/icon-play.png 2x" alt="Play"/>
+                    <span class="tooltiptextbottom">Play this measure</span>
+                </span>
             </div>
         `;
         this.container.appendChild(this.buttons);
@@ -812,7 +830,7 @@ class Measure {
 
     setPasteEnabled(enabled) {
         // get the paste button and enabled/disable based on whether something is selected for copy
-        getFirstChild(this.buttons, "pasteButton").disabled = !enabled;
+        setButtonEnabled(getFirstChild(this.buttons, "pasteButton"), enabled);
     }
 
     paste(copyData) {
@@ -1594,12 +1612,24 @@ class Score {
         // build buttons
         div.innerHTML = `
             <div class="scoreButtonRow">
-                <input id="undoButton" class="button undoButton" type="submit" disabled value="Undo" onClick="doUndo()"/>
-                <input id="redoButton" class="button redoButton" type="submit" disabled value="Redo" onClick="doRedo()"/>
-                <input class="button clearButton" type="submit" value="Clear" onClick="clearButton(this)"/>
-                <input class="button copyButton" type="submit" value="Copy" onClick="copyButton(this)"/>
-                <input class="button pasteButton" type="submit" value="Paste" disabled onClick="pasteButton(this)"/>
-                <input id="mainPlayButton" class="button playButton" type="submit" value="Play" onClick="playButton(this)"/>
+                <span id="undoButton" class="imgButtonDisabled undoButton tooltip" onclick="doUndo(this)"><img src="img/icon-undo.png" srcset="img2x/icon-undo.png 2x" alt="Redo"/>
+                    <span class="tooltiptextbottom">Undo the last action</span>
+                </span>
+                <span id="redoButton" class="imgButtonDisabled redoButton tooltip" onclick="doRedo(this)"><img src="img/icon-redo.png" srcset="img2x/icon-redo.png 2x" alt="Redo"/>
+                    <span class="tooltiptextbottom">Redo the last undone action</span>
+                </span>
+                <span class="imgButton clearButton tooltip" onclick="clearButton(this)"><img src="img/icon-clear.png" srcset="img2x/icon-clear.png 2x" alt="Clear"/>
+                    <span class="tooltiptextbottom">Clear all or part of the song</span>
+                </span>
+                <span class="imgButton copyButton tooltip" onclick="copyButton(this)"><img src="img/icon-copy.png" srcset="img2x/icon-copy.png 2x" alt="Copy"/>
+                    <span class="tooltiptextbottom">Copy all or part of the song</span>
+                </span>
+                <span class="imgButtonDisabled pasteButton tooltip" onclick="pasteButton(this)"><img src="img/icon-paste.png" srcset="img2x/icon-paste.png 2x" alt="Paste"/>
+                    <span class="tooltiptextbottom">Paste the last copied song or partial song</span>
+                </span>
+                <span id="mainPlayButton" class="imgButton playButton tooltip" onclick="playButton(this)"><img src="img/icon-play.png" srcset="img2x/icon-play.png 2x" alt="Play"/>
+                    <span class="tooltiptextbottom">Play the song</span>
+                </span>
             </div>
         `;
 
@@ -1753,7 +1783,7 @@ class Score {
 
     setPasteEnabled(enabled) {
         // get the paste button and enabled/disable based on whether something is selected for copy
-        getFirstChild(this.buttons, "pasteButton").disabled = !enabled;
+        setButtonEnabled(getFirstChild(this.buttons, "pasteButton"), enabled);
     }
 
     clear(section) {
@@ -2331,8 +2361,9 @@ class Playback {
 
     start() {
         // change the Play button to a Loading button while the sounds are loaded
-        this.button.value = "Loading";
-        this.button.enabled = false;
+//        this.button.innerHTML= `<img src="img/icon-pause.png" srcset="img2x/icon-pause.png 2x" alt="Loading"/>`;
+        this.button.innerHTML= `Loading...`;
+        setButtonEnabled(this.button, false);
 
         // don't start playing until the player has been initialized
         // After the sound player is loaded this should go straight through to loaded()
@@ -2341,8 +2372,8 @@ class Playback {
 
     loaded() {
         // change the Play button to a Stop button
-        this.button.value = "Stop";
-        this.button.enabled = true;
+        this.button.innerHTML= `<img src="img/icon-stop.png" srcset="img2x/icon-stop.png 2x" alt="Stop"/>`;
+        setButtonEnabled(this.button, true);
         // start the first/next animation tick
         this.tick(true);
     }
@@ -2358,7 +2389,7 @@ class Playback {
         this.score.soundPlayer.stop();
 
         // change the Stop button to a Play button
-        this.button.value = "Play";
+        this.button.innerHTML= `<img src="img/icon-play.png" srcset="img2x/icon-play.png 2x" alt="Play"/>`;
 
         // set a flag
         this.stopped = true;
