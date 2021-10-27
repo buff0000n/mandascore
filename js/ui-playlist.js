@@ -183,6 +183,7 @@ class Playlist {
 
     add(action=true) {
         if (this.entries.length == 0 || !this.selected) {
+            // special case for a blank playlist
             // pull the current song from the score
             var song = this.score.getSongObject();
             this.makeNameUnique(song);
@@ -190,7 +191,10 @@ class Playlist {
             this.addSong(song, true, true, action);
 
         } else {
+            // save the current selection
             this.selected.updateSong();
+            // figure out where the currently highlighted songs start and end,
+            // what those songs are, and which one is selected
             var startIndex = -1;
             var endIndex = -1;
             var newSelected = null;
@@ -199,19 +203,25 @@ class Playlist {
                 var hEntry = this.entries[i];
                 if (hEntry.highlighted) {
                     if (startIndex == -1) {
+                        // found the start
                         startIndex = i;
                     }
+                    // create a copy of the  highlighted song and add it to the list
                     var newEntry = new PlaylistEntry(hEntry.song, this);
                     newEntryList.push(newEntry);
+                    // transfer selection
                     if (hEntry.selected) {
                         newSelected = newEntry;
                     }
                 } else if (startIndex > -1) {
+                    // found the end
                     endIndex = i - 1;
                     break;
                 }
             }
+            // if we didn't find the end then it's at the end of the song list
             if (endIndex == -1) { endIndex = this.entries.length - 1; }
+            // add the new entries
             this.addSongEntries(newEntryList, newSelected, endIndex + 1, action);
         }
     }
@@ -243,10 +253,13 @@ class Playlist {
     }
 
     addSongEntries(entryList, selectEntry, index, action=true) {
+        // hold off reindexing until the end
         var doReindex = false;
+        // loop over the entries
         for (var e = 0; e < entryList.length; e++) {
-            var entryIndex = index + e;
             var entry = entryList[e];
+            // index for insertion
+            var entryIndex = index + e;
             if (entryIndex == 0) {
                 // insert at the beginning
                 this.entries.unshift(entry);
@@ -290,12 +303,14 @@ class Playlist {
         if (selectEntry) {
             // optionally select
             this.select(selectEntry, true, false, action);
+            // reset the highlighted entries to be the ones newly added
             this.clearHighlightedEntries();
             for (var i = 0; i < entryList.length; i++) {
                 entryList[i].setHightlighted(true);
             }
 
         } else {
+            // make sure highlights are contiguous
             this.fixHighlights();
 
             // pre-cache the section packs so we don't have hiccups during payback of a playlist
@@ -314,22 +329,26 @@ class Playlist {
     }
 
     removeEntries(entryList, action=true) {
-
+        // track whether the deletio list includes the selected entry
         var removedSelected = null;
+        // track the start and end index
         var firstIndex = -1;
         var lastIndex = -1;
+        // loop over the deletion list
         for (var i = 0; i < entryList.length; i++) {
             var entry = entryList[i];
-            // remove from the entry list
+            // remove from the entry list and get its index
             lastIndex = removeFromList(this.entries, entry);
             if (firstIndex == -1) {
+                // got the first index
                 firstIndex = lastIndex;
             }
 
             // remove from the dom
             deleteNode(entry.playlistEntryContainer);
-            // if the entry was selected then select another entry
+            // track whether we deleted the selected entry
             if (this.selected == entry) {
+                // unselect
                 entry.setSelected(false);
                 removedSelected = entry;
             }
@@ -341,6 +360,7 @@ class Playlist {
             this.score.addAction(new addRemovePlaylistEntryAction(this, entryList, removedSelected, firstIndex, false));
         }
 
+        // check if we removed the selected entry
         if (removedSelected) {
             // clear selection
             this.selected = null;
@@ -369,34 +389,31 @@ class Playlist {
         var maxScrollDistance = 30;
         var scrollWait = 100;
 
-        // get the index of the highlight, or selected entry if it's not highlighted
+        // check if a highlighted entry is being dragged
         if (entry.highlighted) {
+            // build a list of the entire highlighted section
             var startIndex = -1;
-            var endIndex = -1;
             var entryList = [];
             for (var i = 0; i < this.entries.length; i++) {
                 var hEntry = this.entries[i];
                 if (hEntry.highlighted) {
                     if (startIndex == -1) {
+                        // found the start index
                         startIndex = i;
                     }
+                    // add to the list
                     entryList.push(hEntry);
                 }
-                if (startIndex >= 0 && !hEntry.highlighted) {
-                    endIndex = i;
-                    break;
-                }
             }
-            if (endIndex == -1) { endIndex = this.entries.length - 1; }
 
         } else {
+            // clicked entry is not highlighted, just drag the one entry
             var startIndex = this.entries.indexOf(entry);
-            var endIndex = startIndex;
             var entryList = [entry];
         }
 
+        // initialize the working index
         var index = startIndex;
-        var index2 = endIndex;
 
         // get the screen coordinates of the scroll area and the entry div
         var areaRect = this.playlistScrollArea.getBoundingClientRect();
@@ -466,11 +483,12 @@ class Playlist {
         var dragEvent = (mte) => {
             // prevent things like selecting text while dragging
             mte.preventDefault();
-            // move the dragged entry
+            // move the dragged entries
             for (var i = 0; i < entryList.length; i++) {
                 var hEntry = entryList[i];
                 hEntry.playlistEntryContainer.style.left = mte.clientX - areaRect.left - hEntry.clickOffsetX + this.playlistScrollArea.scrollLeft;
                 var top = mte.clientY - areaRect.top - hEntry.clickOffsetY + this.playlistScrollArea.scrollTop;
+                // save the y coordinate outside the style to use elsewhere
                 hEntry.playlistEntryContainer.top = top;
                 hEntry.playlistEntryContainer.style.top = top;
             }
@@ -517,6 +535,7 @@ class Playlist {
             // reset global drag/drop listeners
             clearDragDropListeners();
             this.score.resetListeners();
+            // finish dragging all the dragged entries
             for (var i = 0; i < entryList.length; i++) {
                 var hEntry = entryList[i];
                 // reset the entry's style to regular positioning, it's already in the correct location in the DOM
@@ -527,6 +546,7 @@ class Playlist {
                 hEntry.grabSpan.style.cursor = "grab";
                 // remove the placeholder
                 deleteNode(hEntry.placeholder);
+                // remove temp variables
                 hEntry.placeholder = null;
                 hEntry.rect = null;
                 hEntry.clickOffsetX = null;
@@ -602,13 +622,16 @@ class Playlist {
             }
         }
 
+        // reset highlights if necessary
         if (highlight) {
             for (var i = 0; i < entryList.length; i++) {
                 var entry = entryList[i];
                 entry.setHightlighted(true);
             }
+            // sanity check
             this.fixHighlights();
         }
+        // reindex
 	    this.reIndex();
 
         // end the undo action
@@ -618,6 +641,7 @@ class Playlist {
     }
 
     fixHighlights() {
+        // state
         var highlightStart = -1;
         var hasSelectedEntry = false;
 
@@ -625,18 +649,24 @@ class Playlist {
             var entry = this.entries[i];
             if (entry.highlighted) {
                 if (highlightStart == -1) {
+                    // found the first highlighted index
                     highlightStart = i;
                 }
                 if (entry.selected) {
+                    // found a selected entry in the highlight
                     hasSelectedEntry = true;
                 }
 
             } else if (highlightStart >= 0) {
+                // found the end of a highlight
+                // check to see if there was a selected entry in there
                 if (!hasSelectedEntry) {
+                    // highlight section with no selection, clear it
                     for (var j = highlightStart; j < i; j++) {
                         this.entries[j].setHightlighted(false);
                     }
                 }
+                // reset
                 var highlightStart = -1;
                 var hasSelectedEntry = false;
             }
@@ -689,6 +719,8 @@ class Playlist {
         // change the selection
         this.selected = entry;
 
+        // make things easier on myself and just reset the highlight when the
+        // selection changes
         this.clearHighlightedEntries();
 
         // end the undo action
@@ -715,28 +747,33 @@ class Playlist {
     }
 
     highlightEntries(endEntry) {
+        // highlight all entries between the currently selected entry and
+        // the given entry, inclusive
+        // get the indices of the selection and the given entry
         var startIndex = this.entries.indexOf(this.selected);
         var endIndex = this.entries.indexOf(endEntry);
 
+        // fix ordering
         if (startIndex > endIndex) {
             var t = startIndex;
             startIndex = endIndex;
             endIndex = t;
         }
 
+        // clear current highlight
         this.clearHighlightedEntries();
-        this.highlightedEntries = [];
+
+        // set highlighted entries
         for (var i = startIndex; i <= endIndex; i++) {
             this.entries[i].setHightlighted(true);
-            this.highlightedEntries.push(this.entries[i]);
         }
     }
 
     clearHighlightedEntries() {
+        // unset current highlights
         for (var i = 0; i < this.entries.length; i++) {
             this.entries[i].setHightlighted(false);
         }
-        this.highlightedEntries = null;
     }
 
     clear(action=true) {

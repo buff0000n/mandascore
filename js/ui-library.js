@@ -75,7 +75,8 @@ class Library {
         `;
         this.libraryContainer.appendChild(this.menuContainer);
 
-        getFirstChild(this.menuContainer, "titleButton").addEventListener("click", () => { this.clicked(); });
+        // click handlers
+        getFirstChild(this.menuContainer, "titleButton").addEventListener("click", () => { this.hide(); });
         getFirstChild(this.menuContainer, "searchButton").addEventListener("click", () => { this.matchSearch(); });
 
         // index container, this is where the songs are listed
@@ -89,10 +90,6 @@ class Library {
         if (this.index == null) {
             this.loader.load("Loading Demo Index", "db/index-demo.json", (indexJson) => this.demoIndexLoaded(indexJson));
         }
-    }
-
-    clicked() {
-        this.hide();
     }
 
     hide() {

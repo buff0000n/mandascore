@@ -165,6 +165,7 @@ function doClear(button, section) {
 }
 
 function setButtonEnabled(button, enabled) {
+    // convenience function for changing the enabled state of a button
     if (enabled) {
         button.classList.remove("imgButtonDisabled");
         button.classList.add("imgButton");
