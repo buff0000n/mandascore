@@ -69,7 +69,7 @@ class Library {
                     </span>
                 </span>
                 <span class="imgButton searchButton tooltip"><img src="img/icon-search.png" srcset="img2x/icon-search.png 2x" alt="Reverse Search"/>
-                    <span class="tooltiptextbottom">Search the library for matches for current song</span>
+                    <span class="tooltiptextbottom">Reverse search for the current song in the library</span>
                 </span>
             </div>
         `;
