@@ -169,6 +169,53 @@ class Playlist {
         hidePlaylist();
     }
 
+    makeNameUnique(song) {
+        // make the name unique
+        var name = song.name;
+        for (;;) {
+            if (!this.entries.find((entry) => entry.song.name == name)) {
+                break;
+            }
+            name = this.incrementName(name);
+        }
+        song.name = name;
+    }
+
+    add(action=true) {
+        if (this.entries.length == 0 || !this.selected) {
+            // pull the current song from the score
+            var song = this.score.getSongObject();
+            this.makeNameUnique(song);
+            // add the song and automatically select it
+            this.addSong(song, true, true, action);
+
+        } else {
+            this.selected.updateSong();
+            var startIndex = -1;
+            var endIndex = -1;
+            var newSelected = null;
+            var newEntryList = [];
+            for (var i = 0; i < this.entries.length; i++) {
+                var hEntry = this.entries[i];
+                if (hEntry.highlighted) {
+                    if (startIndex == -1) {
+                        startIndex = i;
+                    }
+                    var newEntry = new PlaylistEntry(hEntry.song, this);
+                    newEntryList.push(newEntry);
+                    if (hEntry.selected) {
+                        newSelected = newEntry;
+                    }
+                } else if (startIndex > -1) {
+                    endIndex = i - 1;
+                    break;
+                }
+            }
+            if (endIndex == -1) { endIndex = this.entries.length - 1; }
+            this.addSongEntries(newEntryList, newSelected, endIndex + 1, action);
+        }
+    }
+
     addSongCode(code, select, insert=true, action=true) {
         var song = new Song();
         song.parseChatLink(code);
@@ -192,50 +239,65 @@ class Playlist {
         var entry = new PlaylistEntry(song, this);
 
         // add the entry
-        this.addSongEntry(entry, select, index, action);
+        this.addSongEntries([entry], select ? entry : null, index, action);
     }
 
-    addSongEntry(entry, select, index, action=true) {
-        if (index == 0) {
-            // insert at the beginning
-            this.entries.unshift(entry);
-            // do the same insertion in the dom, probably an easier way
-            if (this.entries.length == 1) {
-                this.playlistScrollArea.appendChild(entry.playlistEntryContainer);
+    addSongEntries(entryList, selectEntry, index, action=true) {
+        var doReindex = false;
+        for (var e = 0; e < entryList.length; e++) {
+            var entryIndex = index + e;
+            var entry = entryList[e];
+            if (entryIndex == 0) {
+                // insert at the beginning
+                this.entries.unshift(entry);
+                // do the same insertion in the dom, probably an easier way
+                if (this.entries.length == 1) {
+                    this.playlistScrollArea.appendChild(entry.playlistEntryContainer);
+                } else {
+                    insertBefore(entry.playlistEntryContainer, this.entries[1].playlistEntryContainer);
+                }
+                doReindex = true;
+
+            } else if (entryIndex < this.entries.length) {
+                // insert the song in the middle of the playlist
+                this.entries.splice(entryIndex, 0, entry);
+                // do the same insertion in the dom
+                insertBefore(entry.playlistEntryContainer, this.entries[entryIndex+1].playlistEntryContainer);
+                // renumber entries
+                doReindex = true;
+
             } else {
-                insertBefore(entry.playlistEntryContainer, this.entries[1].playlistEntryContainer);
+                // insert at the end
+                this.entries.push(entry);
+                // no need to reindex the whole list
+                entry.setIndex(this.entries.length);
+                // insert into the dom
+                this.playlistScrollArea.appendChild(entry.playlistEntryContainer);
             }
+        }
+
+        if (doReindex) {
             // renumber entries
             this.reIndex();
-
-        } else if (index < this.entries.length) {
-            // insert the song in the middle of the playlist
-            this.entries.splice(index, 0, entry);
-            // do the same insertion in the dom
-            insertBefore(entry.playlistEntryContainer, this.entries[index+1].playlistEntryContainer);
-            // renumber entries
-            this.reIndex();
-
-        } else {
-            // insert at the end
-            this.entries.push(entry);
-            // no need to reindex the whole list
-            entry.setIndex(this.entries.length);
-            // insert into the dom
-            this.playlistScrollArea.appendChild(entry.playlistEntryContainer);
         }
 
         // start an undo action if we need to
         if (action) {
             this.score.startActions();
-            this.score.addAction(new addRemovePlaylistEntryAction(this, entry, index, select, true));
+            this.score.addAction(new addRemovePlaylistEntryAction(this, entryList, selectEntry, index, true));
         }
 
-        if (select) {
+        if (selectEntry) {
             // optionally select
-            this.select(entry, true, false, action);
+            this.select(selectEntry, true, false, action);
+            this.clearHighlightedEntries();
+            for (var i = 0; i < entryList.length; i++) {
+                entryList[i].setHightlighted(true);
+            }
 
         } else {
+            this.fixHighlights();
+
             // pre-cache the section packs so we don't have hiccups during payback of a playlist
             // with section pack changes
             for (var section in entry.song.packs) {
@@ -251,39 +313,54 @@ class Playlist {
         showPlaylist(false);
     }
 
-    removeEntry(entry, action=true) {
-        // remove from the entry list
-        var index = removeFromList(this.entries, entry);
-        // sanity check
-        if (index >= 0) {
-            // start an undo action of needed
-            if (action) {
-                this.score.startActions();
-                this.score.addAction(new addRemovePlaylistEntryAction(this, entry, index, this.selected == entry, false));
+    removeEntries(entryList, action=true) {
+
+        var removedSelected = null;
+        var firstIndex = -1;
+        var lastIndex = -1;
+        for (var i = 0; i < entryList.length; i++) {
+            var entry = entryList[i];
+            // remove from the entry list
+            lastIndex = removeFromList(this.entries, entry);
+            if (firstIndex == -1) {
+                firstIndex = lastIndex;
             }
+
             // remove from the dom
             deleteNode(entry.playlistEntryContainer);
             // if the entry was selected then select another entry
             if (this.selected == entry) {
-                // clear selection
-                this.selected = null;
-                // if the playlist is nonempty, select the nearest entry
-                if (this.entries.length >= 0) {
-                    // select either the next entry, or the last entry if the deleted one was the last entry
-                    this.select(this.entries[Math.min(index, this.entries.length - 1)], true, false, action);
-                }
+                entry.setSelected(false);
+                removedSelected = entry;
             }
-            // renumber entries
-            this.reIndex();
+        }
 
-            // end the undo action
-            if (action) {
-                this.score.endActions();
-            }
+        // start an undo action of needed
+        if (action) {
+            this.score.startActions();
+            this.score.addAction(new addRemovePlaylistEntryAction(this, entryList, removedSelected, firstIndex, false));
+        }
 
-            if (this.entries.length == 0 && !playlistEnabled()) {
-                hidePlaylist();
+        if (removedSelected) {
+            // clear selection
+            this.selected = null;
+            // if the playlist is nonempty, select the nearest entry
+            if (this.entries.length >= 0) {
+                // select either the next entry, or the last entry if the deleted one was the last entry
+                this.select(this.entries[Math.min(lastIndex, this.entries.length - 1)], true, false, action);
             }
+        }
+
+        // renumber entries
+        this.reIndex();
+
+        // end the undo action
+        if (action) {
+            this.score.endActions();
+        }
+
+        if (this.entries.length == 0 && !playlistEnabled()) {
+            hidePlaylist();
         }
     }
 
@@ -292,56 +369,90 @@ class Playlist {
         var maxScrollDistance = 30;
         var scrollWait = 100;
 
-        // get the index of the entry
-        var startIndex = this.entries.indexOf(entry);
+        // get the index of the highlight, or selected entry if it's not highlighted
+        if (entry.highlighted) {
+            var startIndex = -1;
+            var endIndex = -1;
+            var entryList = [];
+            for (var i = 0; i < this.entries.length; i++) {
+                var hEntry = this.entries[i];
+                if (hEntry.highlighted) {
+                    if (startIndex == -1) {
+                        startIndex = i;
+                    }
+                    entryList.push(hEntry);
+                }
+                if (startIndex >= 0 && !hEntry.highlighted) {
+                    endIndex = i;
+                    break;
+                }
+            }
+            if (endIndex == -1) { endIndex = this.entries.length - 1; }
+
+        } else {
+            var startIndex = this.entries.indexOf(entry);
+            var endIndex = startIndex;
+            var entryList = [entry];
+        }
+
         var index = startIndex;
+        var index2 = endIndex;
 
         // get the screen coordinates of the scroll area and the entry div
         var areaRect = this.playlistScrollArea.getBoundingClientRect();
-        var entryRect = entry.playlistEntryContainer.getBoundingClientRect();
 
-        // get the relative click offset inside the entry div
-        var clickOffsetX = mte.clientX - entryRect.left;
-        var clickOffsetY = mte.clientY - entryRect.top;
+        for (var i = 0; i < entryList.length; i++) {
+            hEntry = entryList[i];
+            // get the relative click offset inside the entry div
+            hEntry.rect = hEntry.playlistEntryContainer.getBoundingClientRect();
+            hEntry.clickOffsetX = mte.clientX - hEntry.rect.left;
+            hEntry.clickOffsetY = mte.clientY - hEntry.rect.top;
 
-        // build a placeholder div to keep a blank space where the entry will go
-        var placeholder = document.createElement("div");
-        // try our best to make the placeholder div exactly the same height as the entry div
-        placeholder.innerHTML = `<span class="playlistEntryContainerPlaceholder"><img src="img/icon-blank.png" srcset="img2x/icon-blank.png 2x" width="32" height="20"/>`+(index+1)+entry.song.name+`</span>`;
-        // start it right by the entry div
-        insertAfter(placeholder, entry.playlistEntryContainer);
+            // build a placeholder div to keep a blank space where the entry will go
+            hEntry.placeholder = document.createElement("div");
+            // try our best to make the placeholder div exactly the same height as the entry div
+            hEntry.placeholder.innerHTML = `<span class="playlistEntryContainerPlaceholder"><img src="img/icon-blank.png" srcset="img2x/icon-blank.png 2x" width="32" height="20"/>`+(index+i+1)+hEntry.song.name+`</span>`;
+            // start it right by the entry div
+            insertAfter(hEntry.placeholder, hEntry.playlistEntryContainer);
 
-        // set the entry div to absolute positioning
-        entry.playlistEntryContainer.className = "playlistEntryContainerDrag";
-        // set the button cursor style to grabbing
-        entry.grabSpan.style.cursor = "grabbing";
+            // set the entry div to absolute positioning
+            hEntry.playlistEntryContainer.className = "playlistEntryContainerDrag";
+            // set the button cursor style to grabbing
+            hEntry.grabSpan.style.cursor = "grabbing";
+        }
 
         // function to iteratively move the entry and its placeholder around the list, following the cursor
         var followPlaceholder = (mte) => {
-            // calcluate the cursor position inside the scroll area
-            var y2 = mte.clientY - areaRect.top - this.playlistScrollArea.scrollTop;
+            // calculate the center height of the dragged entry inside the scroll area
+            // don't use the cursor position because it gets weird when it's close to the boundary between two entries
+            var y2 = entry.playlistEntryContainer.top + (entry.rect.height / 2);
 
             var newIndex = index;
             // if we're not at the beginning and the cursor is above the placeholder
-            if (index > 0 && y2 < placeholder.getBoundingClientRect().top - areaRect.top - this.playlistScrollArea.scrollTop) {
+            if (index > 0 && y2 < entry.placeholder.getBoundingClientRect().top - areaRect.top - this.playlistScrollArea.scrollTop) {
                 // we need to move the placeholder up
                 newIndex -= 1;
             }
             // if we're not at the end and the cursor is below the placeholder
-            if (index < this.entries.length - 1 && y2 > placeholder.getBoundingClientRect().bottom - areaRect.top - this.playlistScrollArea.scrollTop) {
+            if (index < this.entries.length - entryList.length &&
+                    y2 > entry.placeholder.getBoundingClientRect().bottom - areaRect.top - this.playlistScrollArea.scrollTop) {
                 // we need to move the placeholder down
                 newIndex += 1;
             }
             // if there's no change in index then we're done
             if (index != newIndex) {
+                // easier to move a single entry around the highlighted entries
+                if (newIndex > index) {
+                    // move the entry after the highlight to be before the highlight
+                    this.moveEntry([this.entries[index + entryList.length]], index, index + entryList.length, false, false);
 
-                this.moveEntry(entry, newIndex, index, false);
+                } else {
+                    // move the entry before the highlight to be after the highlight
+                    this.moveEntry([this.entries[index -1]], index + entryList.length - 1, index - 1, false, false);
+                }
 
                 index = newIndex;
-                // remove the placeholder
-                deleteNode(placeholder);
-                // put the placeholder where the entry div is
-                insertAfter(placeholder, entry.playlistEntryContainer);
+
                 // yield the event handling thread so it can re-position elements
                 // we'll do another iteration once that's done
                 setTimeout(() => { followPlaceholder(mte); }, 1);
@@ -356,8 +467,13 @@ class Playlist {
             // prevent things like selecting text while dragging
             mte.preventDefault();
             // move the dragged entry
-            entry.playlistEntryContainer.style.left = mte.clientX - areaRect.left - clickOffsetX + this.playlistScrollArea.scrollLeft;
-            entry.playlistEntryContainer.style.top = mte.clientY - areaRect.top - clickOffsetY + this.playlistScrollArea.scrollTop;
+            for (var i = 0; i < entryList.length; i++) {
+                var hEntry = entryList[i];
+                hEntry.playlistEntryContainer.style.left = mte.clientX - areaRect.left - hEntry.clickOffsetX + this.playlistScrollArea.scrollLeft;
+                var top = mte.clientY - areaRect.top - hEntry.clickOffsetY + this.playlistScrollArea.scrollTop;
+                hEntry.playlistEntryContainer.top = top;
+                hEntry.playlistEntryContainer.style.top = top;
+            }
 
             // clear the timeout
             if (dragTimeout) {
@@ -365,21 +481,21 @@ class Playlist {
         		dragTimeout = null;
             }
 
-            // get the top position of the dragged entry div
-            var top = mte.clientY - clickOffsetY;
+            // get the top position of the dragged entry div, the entry that was actually clicked on
+            var top = mte.clientY - entry.clickOffsetY;
             // get the bottom position of the dragged entry div
-            var bottom = mte.clientY - clickOffsetY + entryRect.height;
+            var bottom = mte.clientY - entry.clickOffsetY + entry.rect.height;
 
             var scrollAmount = 0;
             // check if the entry div is past the top of the scroll area
             if (top < areaRect.top) {
                 // calculate the scroll amount based on how far the entry div is past the top of the scroll area
-                scrollAmount = -maxScrollDistance * Math.min((areaRect.top - top) / entryRect.height, 1);
+                scrollAmount = -maxScrollDistance * Math.min((areaRect.top - top) / entry.rect.height, 1);
             }
             // check if the entry div is past the bottom of the scroll area
             if (bottom > areaRect.bottom) {
                 // calculate the scroll amount based on how far the entry div is past the bottom of the scroll area
-                scrollAmount = maxScrollDistance * Math.min((bottom - areaRect.bottom) / entryRect.height, 1);
+                scrollAmount = maxScrollDistance * Math.min((bottom - areaRect.bottom) / entry.rect.height, 1);
             }
 
             // check if there is a scroll amount
@@ -401,14 +517,22 @@ class Playlist {
             // reset global drag/drop listeners
             clearDragDropListeners();
             this.score.resetListeners();
-            // reset the entry's style to regular positioning, it's already in the correct location in the DOM
-            entry.playlistEntryContainer.className = "playlistEntryContainer";
-            entry.playlistEntryContainer.style.left = "";
-            entry.playlistEntryContainer.style.top = "";
-            // reset the button cursor style
-            entry.grabSpan.style.cursor = "grab";
-            // remove the placeholder
-            deleteNode(placeholder);
+            for (var i = 0; i < entryList.length; i++) {
+                var hEntry = entryList[i];
+                // reset the entry's style to regular positioning, it's already in the correct location in the DOM
+                hEntry.playlistEntryContainer.className = "playlistEntryContainer";
+                hEntry.playlistEntryContainer.style.left = "";
+                hEntry.playlistEntryContainer.style.top = "";
+                // reset the button cursor style
+                hEntry.grabSpan.style.cursor = "grab";
+                // remove the placeholder
+                deleteNode(hEntry.placeholder);
+                hEntry.placeholder = null;
+                hEntry.rect = null;
+                hEntry.clickOffsetX = null;
+                hEntry.clickOffsetY = null;
+            }
+
             // reindex entries
             this.reIndex();
 
@@ -421,7 +545,7 @@ class Playlist {
             // if there was an index change then add an undo action
             if (index != startIndex) {
                 this.score.startActions();
-                this.score.addAction(new movePlaylistEntryAction(this, entry, startIndex, index));
+                this.score.addAction(new movePlaylistEntryAction(this, entryList, startIndex, index));
                 this.score.endActions();
             }
         }
@@ -434,33 +558,88 @@ class Playlist {
         dragEvent(mte);
     }
 
-    moveEntry(entry, newIndex, oldIndex=null, action=true) {
+    moveEntry(entryList, newIndex, oldIndex=null, action=true, highlight=true) {
         // get the index of the entry, if not provided
         if (oldIndex == null) {
-            oldIndex = this.entries.indexOf(entry);
+            oldIndex = this.entries.indexOf(entryList[0]);
         }
 
         // start an undo action if needed
         if (action) {
             this.score.startActions();
-            this.score.addAction(new movePlaylistEntryAction(this, entry, oldIndex, newIndex));
+            this.score.addAction(new movePlaylistEntryAction(this, entryList, oldIndex, newIndex));
         }
 
-        // move the entry to the new index
-        this.entries.splice(oldIndex, 1);
-        this.entries.splice(newIndex, 0, entry);
-        // remove the entry div
-        deleteNode(entry.playlistEntryContainer);
-        // use insertBefore unless it's at the end of the list
-        if (newIndex < this.entries.length - 1) {
-            insertBefore(entry.playlistEntryContainer, this.entries[newIndex + 1].playlistEntryContainer);
-        } else {
-            insertAfter(entry.playlistEntryContainer, this.entries[newIndex - 1].playlistEntryContainer);
+        // assume the entries are contiguous
+
+        // remove the whole list
+        this.entries.splice(oldIndex, entryList.length);
+        // add each item back at the right index
+        for (var i = 0; i < entryList.length; i++) {
+            var entry = entryList[i];
+            this.entries.splice(newIndex + i, 0, entry);
+            // remove the entry div
+            deleteNode(entry.playlistEntryContainer);
+            // remove the entry placeholder if present
+            if (entry.placeholder) {
+                deleteNode(entry.placeholder);
+            }
+            // use insertBefore unless it's at the end of the list
+            if (newIndex + i < this.entries.length - 1) {
+                insertBefore(entry.playlistEntryContainer, this.entries[newIndex + i + 1].playlistEntryContainer);
+
+            } else {
+                // insert after the previous entry's placeholder, if present, otherwise after the previous entry itself
+                insertAfter(entry.playlistEntryContainer,
+                    this.entries[newIndex + i - 1].placeholder ?
+                        this.entries[newIndex + i - 1].placeholder :
+                        this.entries[newIndex + i - 1].playlistEntryContainer);
+            }
+
+            // insert the placeholder, if present
+            if (entry.placeholder) {
+                insertAfter(entry.placeholder, entry.playlistEntryContainer);
+            }
         }
+
+        if (highlight) {
+            for (var i = 0; i < entryList.length; i++) {
+                var entry = entryList[i];
+                entry.setHightlighted(true);
+            }
+            this.fixHighlights();
+        }
+	    this.reIndex();
 
         // end the undo action
         if (action) {
             this.score.endActions();
+        }
+    }
+
+    fixHighlights() {
+        var highlightStart = -1;
+        var hasSelectedEntry = false;
+
+        for (var i = 0; i < this.entries.length; i++) {
+            var entry = this.entries[i];
+            if (entry.highlighted) {
+                if (highlightStart == -1) {
+                    highlightStart = i;
+                }
+                if (entry.selected) {
+                    hasSelectedEntry = true;
+                }
+
+            } else if (highlightStart >= 0) {
+                if (!hasSelectedEntry) {
+                    for (var j = highlightStart; j < i; j++) {
+                        this.entries[j].setHightlighted(false);
+                    }
+                }
+                var highlightStart = -1;
+                var hasSelectedEntry = false;
+            }
         }
     }
 
@@ -587,24 +766,6 @@ class Playlist {
         }
     }
 
-    add(action=true) {
-        // pull the current song from the score
-        var song = this.score.getSongObject();
-
-        // make the name unique
-        var name = song.name;
-        for (;;) {
-            if (!this.entries.find((entry) => entry.song.name == name)) {
-                break;
-            }
-            name = this.incrementName(name);
-        }
-        song.name = name;
-
-        // add the song and automatically select it
-        this.addSong(song, true, true, action);
-    }
-
     toggleLoop() {
         this.setLooping(!this.looping)
     }
@@ -682,11 +843,9 @@ class Playlist {
         if (entries && entries.length > 0) {
             // make sure the playlist is showing but don't enable it automatically
             showPlaylist(false);
-            // add each song
-            for (var i = 0; i < entries.length; i++) {
-                // add it to end of the playlist, without affecting the selection
-                this.addSongEntry(entries[i], false, this.entries.length, false);
-            }
+            // add it to end of the playlist, without affecting the selection
+            this.addSongEntries(entries, null, this.entries.length, false);
+
             this.select(selectEntry, true, true, false);
 
         } else if (!playlistEnabled()) {
@@ -787,7 +946,8 @@ class PlaylistEntry {
     }
 
     deletePlaylistEntry() {
-        this.entry.playlist.removeEntry(this.entry);
+        // todo: delete all highlighted entries?
+        this.entry.playlist.removeEntries([this.entry]);
     }
 
     highlightPlaylistEntry() {
@@ -862,12 +1022,12 @@ class selectPlaylistEntryAction extends Action {
 }
 
 class addRemovePlaylistEntryAction extends Action {
-    constructor(playlist, entry, index, select, add) {
+    constructor(playlist, entryList, selectedEntry, index, add) {
         super();
         this.playlist = playlist;
-        this.entry = entry;
+        this.entryList = entryList;
+        this.selectedEntry = selectedEntry;
         this.index = index;
-        this.select = select;
         this.add = add;
     }
 
@@ -881,15 +1041,15 @@ class addRemovePlaylistEntryAction extends Action {
 
 	doAction(add) {
 	    if (add) {
-    	    this.playlist.addSongEntry(this.entry, this.select, this.index, false);
+    	    this.playlist.addSongEntries(this.entryList, this.selectedEntry, this.index, false);
 
 	    } else {
-    	    this.playlist.removeEntry(this.entry, false);
+    	    this.playlist.removeEntries(this.entryList, false);
 	    }
 	}
 
 	toString() {
-	    return (this.add ? "Add " : "Remove ") + this.entry.song.title;
+	    return (this.add ? "Add " : "Remove ") + this.entryList.length + " songs";
 	}
 }
 
@@ -919,10 +1079,10 @@ class changePlaylistAction extends Action {
 }
 
 class movePlaylistEntryAction extends Action {
-    constructor(playlist, entry, oldIndex, newIndex) {
+    constructor(playlist, entryList, oldIndex, newIndex) {
         super();
         this.playlist = playlist;
-        this.entry = entry;
+        this.entryList = entryList;
         this.oldIndex = oldIndex;
         this.newIndex = newIndex;
     }
@@ -936,9 +1096,7 @@ class movePlaylistEntryAction extends Action {
 	}
 
 	doAction(fromIndex, toIndex) {
-	    this.playlist.moveEntry(this.entry, toIndex, fromIndex, false);
-	    // moveEntry() doesn't reindex
-	    this.playlist.reIndex();
+	    this.playlist.moveEntry(this.entryList, toIndex, fromIndex, false);
 	}
 
 	toString() {
