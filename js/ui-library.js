@@ -57,20 +57,26 @@ class Library {
 
         // menu container, the menu is just a search bar
         this.menuContainer = document.createElement("div");
-        this.menuContainer.className = "menuContainer";
+        this.menuContainer.className = "scoreButtonContainer";
         // menu bar, just HTML it
         this.menuContainer.innerHTML = `
-            <input class="button titleButton" type="submit" value="Library"/>
-            <div class="songTitleDiv">
-                <div class="tooltip">
-                    <input class="searchBar" type="text" size="36" onkeyup="setLibrarySearch()"/>
-                    <span class="tooltiptextbottom">Search by keyword</span>
-                </div>
+            <div class="scoreButtonRow">
+                <input class="titleButton" type="submit" value="Library"/>
+                <span class="songTitleDiv">
+                    <span class="tooltip">
+                        <input class="searchBar" type="text" size="28" onkeyup="setLibrarySearch()"/>
+                        <span class="tooltiptextbottom">Search by keyword</span>
+                    </span>
+                </span>
+                <span class="imgButton searchButton tooltip"><img src="img/icon-search.png" srcset="img2x/icon-search.png 2x" alt="Reverse Search"/>
+                    <span class="tooltiptextbottom">Search the library for matches for current song</span>
+                </span>
             </div>
         `;
         this.libraryContainer.appendChild(this.menuContainer);
 
-        getFirstChild(this.menuContainer, "titleButton").addEventListener("click", () => { this.clicked() });
+        getFirstChild(this.menuContainer, "titleButton").addEventListener("click", () => { this.clicked(); });
+        getFirstChild(this.menuContainer, "searchButton").addEventListener("click", () => { this.matchSearch(); });
 
         // index container, this is where the songs are listed
         this.indexContainer = document.createElement("div");
@@ -86,15 +92,7 @@ class Library {
     }
 
     clicked() {
-        var event = window.event;
-        if (event.shiftKey) {
-            // super secret experimental match search when you shift-click the Library button don't tell anybody
-            this.matchSearch();
-
-        } else {
-            // normal action: hide the library
-            this.hide();
-        }
+        this.hide();
     }
 
     hide() {
@@ -531,11 +529,16 @@ class Library {
 
         // build special menu container
         this.menuContainer = document.createElement("div");
-        this.menuContainer.className = "menuContainer";
+        this.menuContainer.className = "scoreButtonContainer";
         // menu bar, just HTML it
         this.menuContainer.innerHTML = `
-            <input class="button titleButton" type="submit" value="Back"/>
+            <div class="scoreButtonRow">
+                <span class="imgButton titleButton tooltip"><img src="img/icon-clear.png" srcset="img2x/icon-clear.png 2x" alt="Back"/>
+                    <span class="tooltiptextbottom">Go back</span>
+                </span>
+            </div>
         `;
+
         // build a second loaded just for the progress bar
         this.searchLoader = new Loader();
         this.searchLoader.setLabel("Searching");

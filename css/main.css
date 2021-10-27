@@ -471,6 +471,7 @@
     .util {
         margin: 1ex 0ex 1ex 0ex;
         display: inline;
+        vertical-align: middle;
     }
     .button, .urlButton, #demoSelectDiv {
         background-color: #808080;

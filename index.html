@@ -402,9 +402,11 @@
                 <span class="tooltiptextbottom">Enable or disable the playlist</span>
             </div>
         </div>
-        <div class="tooltip">
-            <input id="mixerButton" class="button popup gray" type="submit" value="Mixer" onClick="toggleMixer(this)"/>
-            <span class="tooltiptextbottom">Enable or disable the mixer</span>
+        <div class="util">
+            <div class="tooltip">
+                <input id="mixerButton" class="button popup gray" type="submit" value="Mixer" onClick="toggleMixer(this)"/>
+                <span class="tooltiptextbottom">Enable or disable the mixer</span>
+            </div>
         </div>
         <div class="util" id="songCodeDiv">
             <div class="tooltip">
@@ -414,17 +416,21 @@
             </div>
         </div>
         <div class="util">
-            <div class="popup">
-                <input id="copyUrlButton" class="button urlButton popup" type="submit" value="Generate Link"
-                       onClick="copyModelUrl()"/>
-                <div class="popuptext" id="popupBox">
-                    <input id="urlHolder" type="text" size="60" onblur="hideUrlPopup()"/>
-                </div>
+            <div class="tooltip">
+                <span id="copyUrlButton" class="button urlButton popup" onclick="copyModelUrl(this)">
+                    <img src="img/icon-link.png" srcset="img2x/icon-link.png 2x" alt="Clear"/>
+                    <span class="popuptext" id="popupBox">
+                        <input id="urlHolder" type="text" size="60" onblur="hideUrlPopup()"/>
+                    </span>
+                </span>
+                <span class="tooltiptextbottom">Generate a URL for this song</span>
             </div>
         </div>
         <div class="util">
             <div class="tooltip">
-                <input id="pngButton" class="button popup" type="submit" value="Generate PNG" onClick="generatePng(this)"/>
+                <span id="pngButton" class="button popup tooltip" onclick="generatePng(this)">
+                    <img src="img/icon-png.png" srcset="img2x/icon-png.png 2x" alt="Clear"/>
+                </span>
                 <span class="tooltiptextbottom">Generate an image of the song</span>
             </div>
         </div>
