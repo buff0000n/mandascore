@@ -82,7 +82,10 @@ function runSectionMenu(title, button, callback) {
     var html = "";
     for (var name in sectionMetaData) {
         var m = sectionMetaData[name];
-        html += `<div class="button ${m.name}Button" onClick="selectSection(this, '${m.name}')" style="color: ${m.color}">${m.displayName}</div>`;
+        html += `<div class="button ${m.name}Button" onClick="selectSection(this, '${m.name}')" style="color: ${m.color}; vertical-align: middle; text-align: left;">
+            <img style="vertical-align: middle;" class="imgButton" src="img/${sectionImages[name]}.png" srcset="img2x/${sectionImages[name]}.png 2x"/>
+            ${m.displayName}</span>
+        </div>`;
     }
     div.innerHTML = html;
 
@@ -1021,7 +1024,7 @@ class SectionEditor {
 
         // build the icon, section label, and start the instrument pack drop-down
         var html = `
-            <td><img src="img/${sectionImages[this.section]}.png" srcset="img2x/${sectionImages[this.section]}.png 2x"></td>
+            <td><img src="img/${sectionImages[this.section]}.png" srcset="img2x/${sectionImages[this.section]}.png 2x"/></td>
             <td><span>${sectionMetaData[this.section].displayName}</span></td>
             <td><select class="dropDown sectionPack" onchange="sectionPack()">`;
 

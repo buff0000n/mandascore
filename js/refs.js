@@ -11,7 +11,7 @@ var gridSizeX = noteSpacingX + noteSizeX;
 var gridSizeY = noteSpacingY + noteSizeY;
 
 sectionImages = {
-    "all": "perc-3",
+    "all": "all",
     "perc": "perc-3",
     "bass": "bass",
     "mel": "mel",
