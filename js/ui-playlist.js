@@ -446,13 +446,13 @@ class Playlist {
 
             var newIndex = index;
             // if we're not at the beginning and the cursor is above the placeholder
-            if (index > 0 && y2 < entry.placeholder.getBoundingClientRect().top - areaRect.top - this.playlistScrollArea.scrollTop) {
+            if (index > 0 && y2 < entry.placeholder.getBoundingClientRect().top - areaRect.top + this.playlistScrollArea.scrollTop) {
                 // we need to move the placeholder up
                 newIndex -= 1;
             }
             // if we're not at the end and the cursor is below the placeholder
             if (index < this.entries.length - entryList.length &&
-                    y2 > entry.placeholder.getBoundingClientRect().bottom - areaRect.top - this.playlistScrollArea.scrollTop) {
+                    y2 > entry.placeholder.getBoundingClientRect().bottom - areaRect.top + this.playlistScrollArea.scrollTop) {
                 // we need to move the placeholder down
                 newIndex += 1;
             }
@@ -478,9 +478,13 @@ class Playlist {
 
         // scrolling timeout callback
         var dragTimeout = null;
+        // need to save the last mouse/touch event in case there's a scroll event
+        var lastMTE = null;
 
         // drag event handler
         var dragEvent = (mte) => {
+            // save the last event
+            lastMTE = mte;
             // prevent things like selecting text while dragging
             mte.preventDefault();
             // move the dragged entries
@@ -530,11 +534,15 @@ class Playlist {
 
         // drop event handler
         var dropEvent =  (mte) => {
+            // save the last event
+            lastMTE = mte;
             // prevent defaults again
             mte.preventDefault();
             // reset global drag/drop listeners
             clearDragDropListeners();
             this.score.resetListeners();
+            // clear scroll listener
+            this.playlistScrollArea.onscroll = null;
             // finish dragging all the dragged entries
             for (var i = 0; i < entryList.length; i++) {
                 var hEntry = entryList[i];
@@ -573,6 +581,8 @@ class Playlist {
         // setup global drag/drop listeners
         setupDragDropListeners(dragEvent, dropEvent);
         this.score.disableListeners();
+        // add a scroll listener to the scroll area
+        this.playlistScrollArea.onscroll = (e) => { dragEvent(lastMTE); };
 
         // call the drag listener right away
         dragEvent(mte);

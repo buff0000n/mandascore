@@ -518,6 +518,15 @@
     .smallButtonSelected {
         background-color: #404080;
     }
+    .docButton {
+        background-color: #404080;
+        border: none;
+        padding: 0ex;
+        text-align: center;
+        vertical-align: middle;
+        border-radius: 1ex;
+        margin: 0;
+    }
 
     .playlistEntry, .playlistEntrySelected, .libCatLabel {
         background-color: #202020;
