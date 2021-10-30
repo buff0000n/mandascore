@@ -201,7 +201,7 @@ class Playlist {
             var newEntryList = [];
             for (var i = 0; i < this.entries.length; i++) {
                 var hEntry = this.entries[i];
-                if (hEntry.highlighted) {
+                if (hEntry.highlighted || hEntry.selected) {
                     if (startIndex == -1) {
                         // found the start
                         startIndex = i;
@@ -312,13 +312,19 @@ class Playlist {
         } else {
             // make sure highlights are contiguous
             this.fixHighlights();
+        }
 
-            // pre-cache the section packs so we don't have hiccups during payback of a playlist
-            // with section pack changes
-            for (var section in entry.song.packs) {
-                this.score.precacheSectionSource(section, entry.song.packs[section]);
+        // pre-cache the section packs so we don't have hiccups during payback of a playlist
+        // with section pack changes
+        for (var i = 0; i < entryList.length; i++) {
+            var entry = entryList[i];
+            if (!entry.selected) {
+                for (var section in entry.song.packs) {
+                    this.score.precacheSectionSource(section, entry.song.packs[section]);
+                }
             }
         }
+
         // end the undo action
         if (action) {
             this.score.endActions();
