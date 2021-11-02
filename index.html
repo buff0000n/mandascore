@@ -402,9 +402,11 @@
                 <span class="tooltiptextbottom">Enable or disable the playlist</span>
             </div>
         </div>
-        <div class="tooltip">
-            <input id="mixerButton" class="button popup gray" type="submit" value="Mixer" onClick="toggleMixer(this)"/>
-            <span class="tooltiptextbottom">Enable or disable the mixer</span>
+        <div class="util">
+            <div class="tooltip">
+                <input id="mixerButton" class="button popup gray" type="submit" value="Mixer" onClick="toggleMixer(this)"/>
+                <span class="tooltiptextbottom">Enable or disable the mixer</span>
+            </div>
         </div>
         <div class="util" id="songCodeDiv">
             <div class="tooltip">
@@ -414,17 +416,21 @@
             </div>
         </div>
         <div class="util">
-            <div class="popup">
-                <input id="copyUrlButton" class="button urlButton popup" type="submit" value="Generate Link"
-                       onClick="copyModelUrl()"/>
-                <div class="popuptext" id="popupBox">
-                    <input id="urlHolder" type="text" size="60" onblur="hideUrlPopup()"/>
-                </div>
+            <div class="tooltip">
+                <span id="copyUrlButton" class="button urlButton popup" onclick="copyModelUrl(this)">
+                    <img src="img/icon-link.png" srcset="img2x/icon-link.png 2x" alt="Clear"/>
+                    <span class="popuptext" id="popupBox">
+                        <input id="urlHolder" type="text" size="60" onblur="hideUrlPopup()"/>
+                    </span>
+                </span>
+                <span class="tooltiptextbottom">Generate a URL for this song</span>
             </div>
         </div>
         <div class="util">
             <div class="tooltip">
-                <input id="pngButton" class="button popup" type="submit" value="Generate PNG" onClick="generatePng(this)"/>
+                <span id="pngButton" class="button popup tooltip" onclick="generatePng(this)">
+                    <img src="img/icon-png.png" srcset="img2x/icon-png.png 2x" alt="Clear"/>
+                </span>
                 <span class="tooltiptextbottom">Generate an image of the song</span>
             </div>
         </div>
@@ -534,13 +540,26 @@
                                 <li><a href="#tocBuildingAPlaylist">Building a playlist</a></li>
                             </ul>
                         </li>
+                        <li><a href="#tocReverseSearchingTheLibrary">Reverse Searching the library</a></li>
                     </ul>
                 </li>
                 <li><a href="#tocPlaylist">Playlist</a>
                     <ul>
                         <li><a href="#tocAddingASong">Adding a song</a></li>
-                        <li><a href="#tocEditingASong">Editing a song</a></li>
-                        <li><a href="#tocEditingPlaylist">Editing the playlist</a></li>
+                        <li>
+                            <a href="#tocEditingPlaylist">Editing the playlist</a>
+                            <ul>
+                                <li>
+                                    <a href="#tocSelectingASong">Selecting a song</a>
+                                    <ul>
+                                        <li><a href="#tocSelectingMultipleSongs">Highlighting multiple songs</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#tocCopyingSongs">Copying songs</a></li>
+                                <li><a href="#tocMovingSong">Moving songs</a></li>
+                                <li><a href="#tocDeletingASong">Deleting a song</a></li>
+                            </ul>
+                        </li>
                         <li><a href="#tocPlayingPlaylist">Playing the playlist</a></li>
                         <li>
                             <a href="#tocSavingPlaylist">Saving the playlist</a>
@@ -649,8 +668,10 @@
             <h2 id="tocClear">Clear</h2>
             <h3 id="tocClearMeasure">Clear Measure</h3>
             <p>
-                Above each measure is a <strong>Clear</strong> button.  This can be used to clear part or all of the
-                measure.  Clicking <strong>Clear</strong> will bring up a menu:
+                Above each measure is a
+                <img class="docButton" src="img/icon-clear.png" srcset="img2x/icon-clear.png 2x"/>
+                <strong>Clear</strong> button.  This can be used to clear part or all of the
+                measure.  Clicking this will bring up a menu:
             </p>
             <ul>
                 <li><strong>All</strong>: Use this to completely clear the measure</li>
@@ -660,27 +681,36 @@
             </ul>
             <h3 id="tocClearSong">Clear Song</h3>
             <p>
-                Above the <strong>Song Title</strong> bar is another <strong>Clear</strong> button.  This allows you to
-                clear notes from all four measures.  It has the same options as the per-measure <strong>Clear</strong>
-                button: <strong>All</strong>, <strong>Percussion</strong>, <strong>Bass</strong>, or
-                <strong>Melody</strong>.
+                Above the <strong>Song Title</strong> bar is another
+                <img class="docButton" src="img/icon-clear.png" srcset="img2x/icon-clear.png 2x"/>
+                <strong>Clear</strong> button.  This allows you to clear notes from all four measures.  It has the same
+                options as the per-measure <strong>Clear</strong> button: <strong>All</strong>,
+                <strong>Percussion</strong>, <strong>Bass</strong>, or <strong>Melody</strong>.
             </p>
             <h2 id="tocCopyPaste">Copy/Paste</h2>
             <h3 id="tocCopyPasteMeasure">Copy/Paste Measure</h3>
             <p>
-                Above each measure is a <strong>Copy</strong> button.  This can be used to copy part or all of the
-                measure, allowing it to be pasted to a different measure.  Clicking the <strong>Copy</strong> button
+                Above each measure is a
+                <img class="docButton" src="img/icon-copy.png" srcset="img2x/icon-copy.png 2x"/>
+                <strong>Copy</strong> button.  This can be used to copy part or all of the
+                measure, allowing it to be pasted to a different measure.  Clicking this button
                 will bring up the usual section options: <strong>All</strong>, <strong>Percussion</strong>,
                 <strong>Bass</strong>, or <strong>Melody</strong>.
             </p>
             <p>
-                Once a copy selection is made in one measure, the <strong>Paste</strong> buttons are enabled on the
+                Once a copy selection is made in one measure, the
+                <img class="docButton" src="img/icon-paste.png" srcset="img2x/icon-paste.png 2x"/>
+                <strong>Paste</strong>
+                buttons are enabled on the
                 other three measures.  Clicking the <strong>Paste</strong> button will copy the selected section from
                 the copied measure into that measure, overwriting any existing notes in that section.
             </p>
             <h3 id="tocCopyPasteSong">Copy/Paste song</h3>
             <p>
-                Above the <strong>Song Title</strong> bar is another set of <strong>Copy</strong> and
+                Above the <strong>Song Title</strong> bar is another set of
+                <img class="docButton" src="img/icon-copy.png" srcset="img2x/icon-copy.png 2x"/>
+                <strong>Copy</strong> and
+                <img class="docButton" src="img/icon-paste.png" srcset="img2x/icon-paste.png 2x"/>
                 <strong>Paste</strong> buttons.  This allows you to copy and paste notes from all four measures.
             </p>
             <p>
@@ -694,17 +724,24 @@
 
             <h1 id="tocUndoRedo">Undo/Redo</h1>
             <p>
-                Undo and Redo is available using either the <strong>Undo</strong> and <strong>Redo</strong> buttons
+                Undo and Redo is available using either the
+                <img class="docButton" src="img/icon-undo.png" srcset="img2x/icon-undo.png 2x"/>
+                <strong>Undo</strong> and
+                <img class="docButton" src="img/icon-redo.png" srcset="img2x/icon-redo.png 2x"/>
+                <strong>Redo</strong> buttons
                 above the <strong>Song Title</strong> bar, or by using <strong>Ctrl-Z</strong> for undo and
                 <strong>Ctrl-Shift-Z</strong> or <strong>Ctrl-Y</strong> for redo.
             </p>
             <p>
                 All actions can be undone, including note changes, section setting changes, title changes, paste,
-                clear, and loading a song from the library.
+                clear, loading a song from the library, and all edits made to the playlist.
             </p>
             <h1 id="tocPlayback">Playback</h1>
             <p>
-                Use the <strong>Play</strong> buttons to start and stop playback on either all or part of the song.
+                Use the
+                <img class="docButton" src="img/icon-play.png" srcset="img2x/icon-play.png 2x"/>
+                <strong>Play</strong>
+                buttons to start and stop playback on either all or part of the song.
                 Playback will loop back to the beginning until stopped.
             </p>
             <p>
@@ -721,7 +758,9 @@
                 beginning of the song or measure.
             </p>
             <p>
-                Pressing the same <strong>Play</strong> button while playing will stop playback and clear the current
+                Pressing the same
+                <img class="docButton" src="img/icon-stop.png" srcset="img2x/icon-stop.png 2x"/>
+                <strong>Stop</strong> button while playing will stop playback and clear the current
                 playback location.
             </p>
             <p>
@@ -729,15 +768,22 @@
             </p>
             <h2 id="tocPlaySong">Play Song</h2>
             <p>
-                Click the <strong>Play</strong> button above the <strong>Song Title</strong> bar to play the entire
+                Click the
+                <img class="docButton" src="img/icon-play.png" srcset="img2x/icon-play.png 2x"/>
+                <strong>Play</strong> button above the <strong>Song Title</strong> bar to play the entire
                 song.  Playback will go through all four measures before looping back to the beginning.
             </p>
             <h2 id="tocPlayMeasure">Play Measure</h2>
             <p>
-                Click the <strong>Play</strong> button above a measure to play just that measure in a loop.
+                Click the
+                <img class="docButton" src="img/icon-play.png" srcset="img2x/icon-play.png 2x"/>
+                <strong>Play</strong> button above a measure to play just that measure in a loop.
             </p>
             <p>
-                Clicking the <strong>Play</strong> button above a different measure, or clicking the whole song
+                Clicking the
+                <img class="docButton" src="img/icon-play.png" srcset="img2x/icon-play.png 2x"/>
+                <strong>Play</strong> button above a different measure, or clicking the whole song
+                <img class="docButton" src="img/icon-play.png" srcset="img2x/icon-play.png 2x"/>
                 <strong>Play</strong> button, will immediately stop the current playback and start a fresh playback
                 on the clicked measure or song.
             </p>
@@ -770,13 +816,17 @@
             </p>
             <h2 id="tocShareURL">Share URL</h2>
             <p>
-                If you want a shareable URL that goes directly to your song, click the <strong>Generate Link</strong>
+                If you want a shareable URL that goes directly to your song, click the
+                <img class="docButton" src="img/icon-link.png" srcset="img2x/icon-link.png 2x"/>
+                <strong>Link</strong>
                 button at the top of the page.  Copy this, and paste it into a browser to bring up this page
                 auto-populated with your song.
             </p>
             <h2 id="tocExportToPng">Export to PNG</h2>
             <p>
-                If you want an image, then click the <strong>Generate PNG</strong> button at the top of the page.
+                If you want an image, then click the
+                <img class="docButton" src="img/icon-png.png" srcset="img2x/icon-png.png 2x"/>
+                <strong>Generate PNG</strong> button at the top of the page.
                 This will bring up a link to download your song as a PNG, including section settings and all four
                 measures.
             </p>
@@ -847,6 +897,29 @@
                 Enable the playlist by clicking the <strong>Playlist</strong> button, making sure it's lit up.
                 This will keep the playlist up and append songs as they are selected.
             </p>
+            <h2 id="tocReverseSearchingTheLibrary">Reverse Searching the library</h2>
+            <p>
+                Clicking the
+                <img class="docButton" src="img/icon-search.png" srcset="img2x/icon-search.png 2x"/>
+                <strong>Reverse Search</strong> button above the library will kick off a reverse search.  This
+                searches the entire library for songs matching the one currently in the editor.
+            </p>
+            <p>
+                The reverse search will only take into account sections in the editor that have notes in them.
+                If the <strong>Percussion</strong>, <strong>Bass</strong>, or <strong>Melody</strong> section is left
+                blank then the that section will be ignored while searching library songs.
+            </p>
+            <p><strong class="warn">I highly recommend limiting the search to one section</strong></p>
+            <p>
+                The reverse search will return an ordered list of results, with the closest match at the top of the
+                list.  Each match has a "closeness" number in <span class="tagMisc">blue</span>, where
+                <span class="tagMisc">60.00</span> is a perfect match for all three sections and partial matches
+                have lower closeness numbers.
+            </p>
+            <p>
+                <strong class="warn">Note: The reverse search is still a work in progress and it's tuned pretty
+                arbitrarily for how I search.</strong>
+            </p>
 
             <h1 id="tocPlaylist">Playlist</h1>
             <p>
@@ -861,28 +934,82 @@
 
             <h2 id="tocAddingASong">Adding a song</h2>
             <p>
-                Clicking the <strong>Add</strong> button will add the current contents of the song editor as a new
+                If the playlist is empty, then clicking the
+                <img class="docButton" src="img/icon-add.png" srcset="img2x/icon-add.png 2x"/>
+                <strong>Add</strong> button will add the current contents of the song editor as a new
                 song in the playlist.
             </p>
-            <p>
-                If a song is currently selected in the playlist then the new song will inserted after that one.
-            </p>
-            <h2 id="tocEditingASong">Editing a song</h2>
-            <p>
-                Click on a song in the playlist to bring that song up in the song editor.
-            </p>
-            <p>
-                The current contents of the song editor will be automatically saved to the currently selected playlist
-                entry before switching to the new selection.
-            </p>
+
             <h2 id="tocEditingPlaylist">Editing the playlist</h2>
+
+            <h3 id="tocSelectingASong">Selecting a song</h3>
             <p>
-                Use the buttons to the left of the song titles to edit the playlist itself.
+                Click on a title in the playlist to select that song and display it in the song editor.  Any changes
+                will be saved to the selected playlist entry.
             </p>
-            <ul>
-                <li><strong>X</strong>: Remove the playlist entry</li>
-                <li><strong>↑↓</strong>: Click and drag this button to move the entry somewhere else in the playlist</li>
-            </ul>
+            <h4 id="tocSelectingMultipleSongs">Highlighting multiple songs</h4>
+            <p>
+                When a single song is selected, click the
+                <img class="docButton" src="img/icon-playlist-select.png" srcset="img2x/icon-playlist-select.png 2x"/>
+                highlight button beside another song entry above or below it to highlight a contiguous block of songs.
+                Currently highlighted songs will be marked with
+                <img class="docButton" src="img/icon-playlist-selected.png" srcset="img2x/icon-playlist-selected.png 2x"/>.
+            </p>
+            <p>
+                Only one song can be selected and displayed in the song editor, but any number of songs above or below
+                the selected song can be highlighted.
+            </p>
+            <p>
+                Click another
+                <img class="docButton" src="img/icon-playlist-select.png" srcset="img2x/icon-playlist-select.png 2x"/> or
+                <img class="docButton" src="img/icon-playlist-selected.png" srcset="img2x/icon-playlist-selected.png 2x"/>
+                button to change where the highlight stops.
+            </p>
+            <p>
+                Selecting a new song will clear the highlight.
+            </p>
+
+            <h3 id="tocCopyingSongs">Copying songs</h3>
+            <p>
+                When a song is selected in the playlist use the
+                <img class="docButton" src="img/icon-add.png" srcset="img2x/icon-add.png 2x"/>
+                <strong>Add</strong> button to make a copy of this song.  It will be inserted directly after the
+                selection and automatically selected.
+            </p>
+            <p>
+                If there are highlighted songs in addition to the selected song, then the entire block of songs will
+                be copied and placed after the last highlighted song.
+            </p>
+
+            <h3 id="tocMovingSong">Moving songs</h3>
+            <p>
+                Click and hold the
+                <img class="docButton" src="img/icon-playlist-move.png" srcset="img2x/icon-playlist-move.png 2x"/>
+                move button beside a song to drag that song to a new location.
+            </p>
+            <p>
+                You can move any song, whether it's selected or not.
+            </p>
+            <p>
+                If there is a block of songs highlighted, then clicking an dragging the
+                <img class="docButton" src="img/icon-playlist-move.png" srcset="img2x/icon-playlist-move.png 2x"/>
+                move button beside any highlighted song will move the entire block.
+            </p>
+            <p>
+                If there are enough songs to scroll out of the playlist window, then dragging near the edge will
+                automatically scroll.
+            </p>
+
+            <h3 id="tocDeletingASong">Deleting a song</h3>
+            <p>
+                Click the
+                <img class="docButton" src="img/icon-playlist-delete.png" srcset="img2x/icon-playlist-delete.png 2x"/>
+                delete button beside a song to remove that entry from the playlist.
+            </p>
+            <p>
+                If the currently selected song is deleted then the next song will be automatically selected.
+            </p>
+
             <h2 id="tocPlayingPlaylist">Playing the playlist</h2>
             <p>
                 By default playlist looping is enabled.  This means that if you play the full song then it will
@@ -892,17 +1019,23 @@
                 The playlist will not advance when playing a single measure.
             </p>
             <p>
-                Click <strong>Disable</strong> above the playlist to disable it.  While disabled the song will not
-                advance to the next playlist entry after measure four; it will stay on the same song.  Click
-                <strong>Enable</strong> to re-enable it.
+                Click the
+                <img class="docButton" src="img/icon-playlist-enabled.png" srcset="img2x/icon-playlist-enabled.png 2x"/>
+                <strong>Disable</strong> button above the playlist to disable it.  While disabled the song will not
+                advance to the next playlist entry after measure four; it will stay on the same song.  Click the same
+                <img class="docButton" src="img/icon-playlist-disabled.png" srcset="img2x/icon-playlist-disabled.png 2x"/>
+                <strong>Enable</strong> button to re-enable it.
             </p>
+
             <h2 id="tocSavingPlaylist">Saving the playlist</h2>
             <p>
                 There are two options for saving/loading a playlist.
             </p>
             <h3 id="tocCopyPastePlaylist">Copy/Paste</h3>
             <p>
-                Click <strong>Copy/Paste</strong> to bring up a text area containing the song codes for every song in
+                Click the
+                <img class="docButton" src="img/icon-playlist-copypaste.png" srcset="img2x/icon-playlist-copypaste.png 2x"/>
+                <strong>Copy/Paste</strong> button to bring up a text area containing the song codes for every song in
                 the playlist.  You can copy this and save it wherever you want.
             </p>
             <p>
@@ -910,7 +1043,9 @@
             </p>
             <h3 id="tocPlaylistURL">Playlist URL</h3>
             <p>
-                Click the <strong>Generate Link</strong> button above the paylist to generate a shareable URL with the
+                Click the
+                <img class="docButton" src="img/icon-link.png" srcset="img2x/icon-link.png 2x"/>
+                <strong>Link</strong> button above the paylist to generate a shareable URL with the
                 entire playlist embedded in it.  Opening the URL will open Mandascore and restore the playlist.
             </p>
             <p>
@@ -978,7 +1113,9 @@
             </p>
             <h2 id="tocResetMixer">Reset Mixer</h2>
             <p>
-                Clicking <strong>Reset</strong> Will revert the mixer to having all note tracks enabled at full volume.
+                Clicking the
+                <img class="docButton" src="img/icon-reset.png" srcset="img2x/icon-reset.png 2x"/>
+                <strong>Reset</strong> button Will revert the mixer to having all note tracks enabled at full volume.
             </p>
 
             <h1 id="tocInstrumentSetNotes">Instrument Set Notes</h1>
@@ -1322,11 +1459,17 @@
                 <li>Added whole song copy/paste options.</li>
                 <li>Added autosave to the browser URL, why did that take me so long</li>
             </ul>
+            <h2>v3.5: 2020-11-02</h2>
+            <ul>
+                <li>Switched most icons to buttons.</li>
+                <li>Multi-select support in the playlist editor for moving and copying.</li>
+                <li>Added button for reverse song search because why not</li>
+            </ul>
 
             <h1 id="tocToDo">To Do</h1>
             <ul>
                 <li>
-                   Maybe some icons instead of word buttons for play, stop, copy, paste, undo, redo.
+                    Saving to local storage?
                 </li>
             </ul>
 
@@ -1375,7 +1518,7 @@
             <a href="https://github.com/buff0000n/mandascore/issues/2 ">Feedback</a>
         </div>
         <div>
-            v3.1.0: 2021-10-19
+            v3.5.0: 2021-11-02
         </div>
         <div>
             <a href="https://warframe.com">Ninjas Jam Free</a>

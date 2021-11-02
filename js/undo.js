@@ -36,11 +36,11 @@ function clearUndoStack() {
 
 function updateUndoRedoButton(button, stack, prefix) {
 	if (stack.length > 0) {
-		button.disabled = false;
+	    setButtonEnabled(button, true);
 //		button.children[0].title = prefix + " " + stack[stack.length - 1].toString();
 
 	} else {
-		button.disabled = true;
+	    setButtonEnabled(button, false);
 		button.alt = prefix;
 	}
 }
