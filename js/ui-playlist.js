@@ -441,7 +441,7 @@ class Playlist {
             // set the entry div to absolute positioning
             hEntry.playlistEntryContainer.className = "playlistEntryContainerDrag";
             // set the button cursor style to grabbing
-            hEntry.grabSpan.style.cursor = "grabbing";
+            hEntry.setGrabbing(true);
         }
 
         // get this before we start scrolling anything
@@ -511,14 +511,16 @@ class Playlist {
             var dragY = mte.clientY - areaRect.top + this.playlistScrollArea.scrollTop;
 
             // calculate the max drag X if it hasn't been calculated already
+            // going through a lot of trouble to allow horizontal dragging which is cool-looking but absolutely pointless
             if (maxDragX == 0) {
                 for (var i = 0; i < entryList.length; i++) {
                     var hEntry = entryList[i];
                     // get a new bounging rect now that it's absolutely positioned
                     var rect = hEntry.playlistEntryContainer.getBoundingClientRect()
-                    var entryMaxX = this.playlistScrollArea.scrollWidth - rect.width + hEntry.clickOffsetX - 20;
-                    // get the widest one
-                    if (entryMaxX > maxDragX) {
+                    // leave an extra pixel because there's some rounding thing happening in chrome
+                    var entryMaxX = this.playlistScrollArea.scrollWidth - rect.width + hEntry.clickOffsetX - 1;
+                    // get the widest one, ignoring any values <= 0
+                    if (entryMaxX > 0 && (maxDragX == 0 || entryMaxX < maxDragX)) {
                         maxDragX = entryMaxX;
                     }
                 }
@@ -607,7 +609,7 @@ class Playlist {
                 hEntry.playlistEntryContainer.style.left = "";
                 hEntry.playlistEntryContainer.style.top = "";
                 // reset the button cursor style
-                hEntry.grabSpan.style.cursor = "grab";
+                hEntry.setGrabbing(false);
                 // remove the placeholder
                 deleteNode(hEntry.placeholder);
                 // remove temp variables
@@ -1006,23 +1008,22 @@ class PlaylistEntry {
         {
             var span = document.createElement("span");
             span.className = "smallButton";
+            span.style.cursor = "grab";
+            span.onmousedown = (e) => { this.startPlayListEntryDrag(mouseEventToMTEvent(e)); }
+            span.ontouchstart = (e) => { this.startPlayListEntryDrag(touchEventToMTEvent(e)); }
+            span.entry = this;
+            this.grabSpan = span;
+            this.setGrabbing(false);
+            this.playlistEntryContainer.appendChild(this.grabSpan);
+        }
+        {
+            var span = document.createElement("span");
+            span.className = "smallButton";
             span.onclick = this.highlightPlaylistEntry
             span.entry = this;
             span.innerHTML = `<img src="img/icon-playlist-select.png" srcset="img2x/icon-playlist-select.png 2x" width="32" height="20" alt="Select"/>`;
             this.selectSpan = span;
             this.playlistEntryContainer.appendChild(this.selectSpan);
-        }
-        {
-            var span = document.createElement("span");
-            span.className = "smallButton";
-            span.style.cursor = "grab";
-            span.onmousedown = (e) => { this.startPlayListEntryDrag(mouseEventToMTEvent(e)); }
-            span.ontouchstart = (e) => { this.startPlayListEntryDrag(touchEventToMTEvent(e)); }
-            span.entry = this;
-            span.innerHTML = `↑↓`;
-            span.innerHTML = `<img src="img/icon-playlist-move.png" srcset="img2x/icon-playlist-move.png 2x" width="32" height="20" alt="Move"/>`;
-            this.grabSpan = span;
-            this.playlistEntryContainer.appendChild(this.grabSpan);
         }
 
         {
@@ -1095,6 +1096,17 @@ class PlaylistEntry {
             this.selectSpan.innerHTML = `<img src="img/icon-playlist-select.png" srcset="img2x/icon-playlist-select.png 2x" width="32" height="20" alt="Select"/>`;
         }
         this.grabSpan.className = this.highlighted || this.selected ? "smallButtonSelected" : "smallButton";
+    }
+
+    setGrabbing(grabbing) {
+        if (grabbing) {
+            this.grabSpan.style.cursor = "grabbing";
+            this.grabSpan.innerHTML = `<img src="img/icon-playlist-moving.png" srcset="img2x/icon-playlist-moving.png 2x" width="32" height="20" alt="Move"/>`;
+
+        } else {
+            this.grabSpan.style.cursor = "grab";
+            this.grabSpan.innerHTML = `<img src="img/icon-playlist-move.png" srcset="img2x/icon-playlist-move.png 2x" width="32" height="20" alt="Move"/>`;
+        }
     }
 
     updateSong() {
