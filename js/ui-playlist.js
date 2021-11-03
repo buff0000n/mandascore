@@ -444,6 +444,9 @@ class Playlist {
             hEntry.grabSpan.style.cursor = "grabbing";
         }
 
+        // get this before we start scrolling anything
+        var maxScroll = this.playlistScrollArea.scrollHeight - areaRect.height;
+
         // function to iteratively move the entry and its placeholder around the list, following the cursor
         var followPlaceholder = (mte) => {
             // calculate the center height of the dragged entry inside the scroll area
@@ -528,8 +531,21 @@ class Playlist {
 
             // check if there is a scroll amount
             if (scrollAmount != 0) {
-                // scroll the scroll area
-                this.playlistScrollArea.scrollBy(0, scrollAmount);
+                // check if we're scrolling down past the end
+                if (scrollAmount > 0 || this.playlistScrollArea.scrollTop >= maxScroll) {
+                    // put the scroll area at the end
+                    this.playlistScrollArea.scrollBy(0, maxScroll - this.playlistScrollArea.scrollTop);
+
+                // check if we're scrolling up past the beginning
+                } else if (scrollAmount < 0 || this.playlistScrollArea.scrollTop <= 0) {
+                    // put the scroll area at the beginning
+                    this.playlistScrollArea.scrollBy(0, -this.playlistScrollArea.scrollTop);
+
+                } else {
+                    // scroll up or down by the amount
+                    this.playlistScrollArea.scrollBy(0, scrollAmount);
+                    console.log("scrollamt: " + scrollAmount + ", scroll top: " + this.playlistScrollArea.scrollTop + ", heihht: " + maxScroll );
+                }
                 // scheule a timeout so the area will keep scrolling when the cursor isn't moving
                 dragTimeout = setTimeout(() => { dragEvent(mte); }, scrollWait);
             }
