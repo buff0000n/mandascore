@@ -446,6 +446,12 @@ class Playlist {
 
         // get this before we start scrolling anything
         var maxScroll = this.playlistScrollArea.scrollHeight - areaRect.height;
+        // drag offset bounds so we don't move the dragged entries outside the scroll area
+        var minDragY = entryList[0].clickOffsetY;
+        var minDragX = entryList[0].clickOffsetX;
+        var maxDragY = this.playlistScrollArea.scrollHeight - entryList[entryList.length-1].rect.height + entryList[entryList.length-1].clickOffsetY;
+        // can't calculate the width of the widest entry until it's set to absolute positioning
+        var maxDragX = 0;
 
         // function to iteratively move the entry and its placeholder around the list, following the cursor
         var followPlaceholder = (mte) => {
@@ -470,11 +476,15 @@ class Playlist {
                 // easier to move a single entry around the highlighted entries
                 if (newIndex > index) {
                     // move the entry after the highlight to be before the highlight
-                    this.moveEntry([this.entries[index + entryList.length]], index, index + entryList.length, false, false);
+                    this.moveEntry([this.entries[index + entryList.length]], index, index + entryList.length, false, false, false);
+                    // partial reindex
+                    this.reIndex(index, index + entryList.length + 1);
 
                 } else {
                     // move the entry before the highlight to be after the highlight
-                    this.moveEntry([this.entries[index -1]], index + entryList.length - 1, index - 1, false, false);
+                    this.moveEntry([this.entries[index - 1]], index + entryList.length - 1, index - 1, false, false, false);
+                    // partial reindex
+                    this.reIndex(index -1, index + entryList.length);
                 }
 
                 index = newIndex;
@@ -496,11 +506,36 @@ class Playlist {
             lastMTE = mte;
             // prevent things like selecting text while dragging
             mte.preventDefault();
+            // calculate the drag offsets
+            var dragX = mte.clientX  - areaRect.left + this.playlistScrollArea.scrollLeft;
+            var dragY = mte.clientY - areaRect.top + this.playlistScrollArea.scrollTop;
+
+            // calculate the max drag X if it hasn't been calculated already
+            if (maxDragX == 0) {
+                for (var i = 0; i < entryList.length; i++) {
+                    var hEntry = entryList[i];
+                    // get a new bounging rect now that it's absolutely positioned
+                    var rect = hEntry.playlistEntryContainer.getBoundingClientRect()
+                    var entryMaxX = this.playlistScrollArea.scrollWidth - rect.width + hEntry.clickOffsetX - 20;
+                    // get the widest one
+                    if (entryMaxX > maxDragX) {
+                        maxDragX = entryMaxX;
+                    }
+                }
+            }
+
+            // bound the drag offsets
+            if (dragX < minDragX) dragX = minDragX
+            else if (dragX > maxDragX) dragX = maxDragX;
+
+            if (dragY < minDragY) dragY = minDragY
+            else if (dragY > maxDragY) dragY = maxDragY;
+
             // move the dragged entries
             for (var i = 0; i < entryList.length; i++) {
                 var hEntry = entryList[i];
-                hEntry.playlistEntryContainer.style.left = mte.clientX - areaRect.left - hEntry.clickOffsetX + this.playlistScrollArea.scrollLeft;
-                var top = mte.clientY - areaRect.top - hEntry.clickOffsetY + this.playlistScrollArea.scrollTop;
+                hEntry.playlistEntryContainer.style.left = dragX - hEntry.clickOffsetX;
+                var top = dragY - hEntry.clickOffsetY;
                 // save the y coordinate outside the style to use elsewhere
                 hEntry.playlistEntryContainer.top = top;
                 hEntry.playlistEntryContainer.style.top = top;
@@ -532,19 +567,18 @@ class Playlist {
             // check if there is a scroll amount
             if (scrollAmount != 0) {
                 // check if we're scrolling down past the end
-                if (scrollAmount > 0 || this.playlistScrollArea.scrollTop >= maxScroll) {
+                if (scrollAmount > 0 && this.playlistScrollArea.scrollTop >= maxScroll) {
                     // put the scroll area at the end
                     this.playlistScrollArea.scrollBy(0, maxScroll - this.playlistScrollArea.scrollTop);
 
                 // check if we're scrolling up past the beginning
-                } else if (scrollAmount < 0 || this.playlistScrollArea.scrollTop <= 0) {
+                } else if (scrollAmount < 0 && this.playlistScrollArea.scrollTop <= 0) {
                     // put the scroll area at the beginning
                     this.playlistScrollArea.scrollBy(0, -this.playlistScrollArea.scrollTop);
 
                 } else {
                     // scroll up or down by the amount
                     this.playlistScrollArea.scrollBy(0, scrollAmount);
-                    console.log("scrollamt: " + scrollAmount + ", scroll top: " + this.playlistScrollArea.scrollTop + ", heihht: " + maxScroll );
                 }
                 // scheule a timeout so the area will keep scrolling when the cursor isn't moving
                 dragTimeout = setTimeout(() => { dragEvent(mte); }, scrollWait);
@@ -610,7 +644,7 @@ class Playlist {
         dragEvent(mte);
     }
 
-    moveEntry(entryList, newIndex, oldIndex=null, action=true, highlight=true) {
+    moveEntry(entryList, newIndex, oldIndex=null, action=true, highlight=true, reindex=true) {
         // get the index of the entry, if not provided
         if (oldIndex == null) {
             oldIndex = this.entries.indexOf(entryList[0]);
@@ -663,8 +697,10 @@ class Playlist {
             // sanity check
             this.fixHighlights();
         }
-        // reindex
-	    this.reIndex();
+        if (reindex) {
+            // reindex
+            this.reIndex();
+        }
 
         // end the undo action
         if (action) {
@@ -705,9 +741,9 @@ class Playlist {
         }
     }
 
-    reIndex() {
+    reIndex(start=0, end=this.entries.length) {
         // lazy, just loop through and re-index eveything.
-        for (var i = 0; i < this.entries.length; i++) {
+        for (var i = start; i < end; i++) {
             this.entries[i].setIndex(i + 1);
         }
     }
