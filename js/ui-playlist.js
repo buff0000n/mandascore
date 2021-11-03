@@ -169,12 +169,14 @@ class Playlist {
         hidePlaylist();
     }
 
-    makeNameUnique(song) {
+    makeNameUnique(song, moreEntries=null) {
         // make the name unique
         var name = song.name;
         for (;;) {
             if (!this.entries.find((entry) => entry.song.name == name)) {
-                break;
+                if (!moreEntries || !moreEntries.find((entry) => entry.song.name == name)) {
+                    break;
+                }
             }
             name = this.incrementName(name);
         }
@@ -206,8 +208,10 @@ class Playlist {
                         // found the start
                         startIndex = i;
                     }
+                    var newSong = hEntry.song.clone();
+                    this.makeNameUnique(newSong, newEntryList);
                     // create a copy of the  highlighted song and add it to the list
-                    var newEntry = new PlaylistEntry(hEntry.song, this);
+                    var newEntry = new PlaylistEntry(newSong, this);
                     newEntryList.push(newEntry);
                     // transfer selection
                     if (hEntry.selected) {

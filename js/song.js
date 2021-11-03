@@ -374,6 +374,24 @@ class Song {
         }
     }
 
+    clone() {
+        // ugh
+        var song = new Song();
+        song.setName(this.getName());
+        song.setPack("perc", this.getPack("perc"));
+        song.setPack("bass", this.getPack("bass"));
+        song.setPack("mel", this.getPack("mel"));
+        song.setVolume("perc", this.getVolume("perc"));
+        song.setVolume("bass", this.getVolume("bass"));
+        song.setVolume("mel", this.getVolume("mel"));
+        for (var t = 0; t < this.notes.length; t++) {
+            for (var r = 0; r < this.notes[t].length; r++) {
+                song.notes[t][r] = this.notes[t][r];
+            }
+        }
+        return song;
+    }
+
     getMeasureNotes(m) {
         // extract the notes for the given measure into a 16x13 array of 1s and 0s
         var mnotes = Array(16);
