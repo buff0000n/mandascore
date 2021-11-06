@@ -1308,6 +1308,7 @@
 				, {"id": "YoKsRn4i0-E", "name": "Birds Fly (Whisper To A Scream)", "attr": ["The Icicle Works"]}
 				, {"id": "6RsyBRvfKNg", "name": "Reckless Paradise", "attr": ["Billy Talent"], "tags": ["Perfect"]}
 				, {"id": "YPt8B4eLpzc", "name": "Fractions", "attr": ["Juniper Vale"]}
+				, {"id": "sd5r6Eh7IhE", "name": "I Melt With You", "attr": ["Modern English"]}
 			]
 		}
 	},
@@ -1402,6 +1403,8 @@
 				{"id": "LqUyGxWbKIk", "name": "The Cure", "attr": ["Lady Gaga"]},
 				{"id": "XdzvTYzVjVY", "name": "911", "attr": ["Lady Gaga"], "tags": ["Perfect"]}
 				, {"id": "r3k_geaUf28", "name": "Replay", "attr": ["Lady Gaga"]}
+				, {"id": "Pj9oTA19p_M", "name": "Babylon", "attr": ["Lady Gaga", "Haus Labs"], "tags": ["Alpha"]}
+				, {"id": "zTpTkML_Yho", "name": "Perfect Illusion", "attr": ["Lady Gaga"], "tags": ["Double"]}
 			]
 		},
 		"Nicki Minaj":{
@@ -1959,6 +1962,7 @@
 				, {"id": "2suzA3kkOTk", "name": "BeatBox", "attr": ["SPOTTEM GOTTEM"]}
 				, {"id": "NZbrrvpl8ks", "name": "Welcome to the Party", "attr": ["PARTYNEXTDOOR"], "tags": ["Perfect"]}
 				, {"id": "0MPH2-n4vD0", "name": "Magnolia", "attr": ["Playboi Carti"], "tags": ["Bombast"]}
+				, {"id": "qoIOxKceO5o", "name": "Money Do", "attr": ["Gucci Mane"], "tags": ["Perfect"]}
 			]
 		}
 	},
@@ -2273,6 +2277,7 @@
 				{"id": "p8n3LCvoPg4", "name": "Cities Of The Future", "attr": ["Infected Mushrooms"], "tags": ["Perfect"]},
 				{"id": "iAnURZFaIVA", "name": "Smashing The Opponent", "attr": ["Infected Mushrooms"], "tags": ["Perfect"]},
 				{"id": "OzCEyO3FzjE", "name": "Demons of Pain", "attr": ["Infected Mushroom"], "tags": ["Perfect"]}
+				, {"id": "AgEhFfKekW8", "name": "Spitfire", "attr": ["Infected Mushroom"], "tags": ["Perfect"]}
 			]
 		},
 		"Calvin Harris":{
@@ -4205,6 +4210,8 @@
 				, {"id": "MH-Lh5o67RE", "name": "Breathe Again", "attr": ["Carole & Tuesday"]}
 				, {"id": "M7KeBEGCjBI", "name": "\u3053\u306e\u5922\u304c\u9192\u3081\u308b\u307e\u3067", "attr": ["Mashiro no Oto ending", "\u52a0\u85e4\u30df\u30ea\u30e4 ft. Yoshida Brothers"]}
 				, {"id": "Jbqp79WNeQY", "name": "Irregular God", "attr": ["Tower of God"], "tags": ["Adau"]}
+				, {"id": "NCDPFooEph4", "name": "God Knows...", "attr": ["The Melancholy of Haruhi Suzumiya"]}
+				, {"id": "6XI7XGere-E", "name": "Bursty Greedy Spider", "attr": ["So I'm a Spider", "So What?"]}
 			]
 		}
 	},
@@ -4629,6 +4636,7 @@
 				{"id": "t8To_p3W5zw", "name": "Ice Cream", "attr": ["Blackpink"]},
 				{"id": "UqnHnX-YvaI", "name": "Lovesick Girls", "attr": ["Blackpink"], "tags": ["Perfect"]},
 				{"id": "L2ktIC-B3Zc", "name": "Kick It", "attr": ["Blackpink"], "tags": ["Double", "Perfect"]}
+				, {"id": "-08I0VoVzCY", "name": "Money", "attr": ["Lalisa"]}
 			]
 		},
 		"Man With A Mission":{
@@ -4884,6 +4892,7 @@
 				{"id": "8W6U-TlHQ_s", "name": "Rotation (Lotus-2)", "attr": ["Susumu Hirasawa"]}
 				, {"id": "z18HyW_zP0w", "name": "Fish upon the sky/\u0e02\u0e49\u0e32\u0e07\u0e46 Ost.\u0e1b\u0e25\u0e32\u0e1a\u0e19\u0e1f\u0e49\u0e32", "attr": ["Louis Thanawin"]}
 				, {"id": "ulnvCFqaRgM", "name": "Love of a Lifetime/\u4e00\u751f\u6240\u611b", "attr": ["\u76e7\u51a0\u5ef7"]}
+				, {"id": "JxRc1RegXkU", "name": "\u8ff7\u5931\u5e7b\u5883", "attr": ["\u8303\u8339"], "tags": ["Perfect"]}
 			]
 		}
 	},
@@ -5154,6 +5163,7 @@
 				{"id": "4Ogi6OI79WU", "name": "The Truth Reigns", "attr": ["Roman Reigns theme", "WWE"], "tags": ["Druk"]},
 				{"id": "FlS6uaCEkec", "name": "What You Think", "attr": ["Tamina theme", "WWE"]},
 				{"id": "NxgMO5AQrmg", "name": "The Hardy Boyz Theme song", "attr": ["Loaded by Zack Tempest"], "tags": ["Druk", "Perfect"]}
+				, {"id": "YSfW6p6EGEA", "name": "The Time Is Now", "attr": ["John Cena Theme"]}
 			]
 		},
 		"Country/Folk":{
