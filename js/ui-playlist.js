@@ -999,11 +999,17 @@ class PlaylistEntry {
         this.playlistEntryContainer.className = "playlistEntryContainer";
         this.playlistEntryContainer.playlist = this;
 
+        // With clicks and drags and shift-clicks all over the place, I need something to prevent
+        // default text selection inside the playlist editor
+        var preventer = (e) => { e.preventDefault(); };
+
         // I kind of regret this, but build the dom manually
         {
             var span = document.createElement("span");
             span.className = "smallButton";
-            span.onclick = this.deletePlaylistEntry
+            span.onclick = (e) => { e.preventDefault(); this.deletePlaylistEntry(); };
+            span.onmousedown = preventer;
+            span.ontouchstart = preventer;
             span.entry = this;
             span.innerHTML = `<img src="img/icon-playlist-delete.png" srcset="img2x/icon-playlist-delete.png 2x" width="32" height="20" alt="Delete"/>`;
             this.deleteSpan = span;
@@ -1013,8 +1019,8 @@ class PlaylistEntry {
             var span = document.createElement("span");
             span.className = "smallButton";
             span.style.cursor = "grab";
-            span.onmousedown = (e) => { this.startPlayListEntryDrag(mouseEventToMTEvent(e)); }
-            span.ontouchstart = (e) => { this.startPlayListEntryDrag(touchEventToMTEvent(e)); }
+            span.onmousedown = (e) => { e.preventDefault(); this.startPlayListEntryDrag(mouseEventToMTEvent(e)); };
+            span.ontouchstart = (e) => { e.preventDefault(); this.startPlayListEntryDrag(touchEventToMTEvent(e)); };
             span.entry = this;
             this.grabSpan = span;
             this.setGrabbing(false);
@@ -1023,18 +1029,28 @@ class PlaylistEntry {
         {
             var span = document.createElement("span");
             span.className = "smallButton";
-            span.onclick = this.highlightPlaylistEntry
+            span.onclick = (e) => { e.preventDefault(); this.highlightPlaylistEntry(); };
+            span.onmousedown = preventer;
+            span.ontouchstart = preventer;
             span.entry = this;
             span.innerHTML = `<img src="img/icon-playlist-select.png" srcset="img2x/icon-playlist-select.png 2x" width="32" height="20" alt="Select"/>`;
             this.selectSpan = span;
             this.playlistEntryContainer.appendChild(this.selectSpan);
         }
 
+        var clickHandler = (e) => {
+            e.preventDefault();
+            if (e.shiftKey) this.highlightPlaylistEntry();
+            else this.selectPlaylistEntry();
+        };
+
         {
             // we need to keep a reference to the index span to change its color when selected
             var span = document.createElement("span");
             span.className = "playlistEntry";
-            span.onclick = this.selectPlaylistEntry
+            span.onclick = clickHandler;
+            span.onmousedown = preventer;
+            span.ontouchstart = preventer;
             span.entry = this;
             this.indexBar = span;
             this.playlistEntryContainer.appendChild(this.indexBar);
@@ -1043,7 +1059,9 @@ class PlaylistEntry {
             // we need to keep a reference to the title span to change its color when selected
             var span = document.createElement("span");
             span.className = "playlistEntry";
-            span.onclick = this.selectPlaylistEntry
+            span.onclick = clickHandler;
+            span.onmousedown = preventer;
+            span.ontouchstart = preventer;
             span.entry = this;
             span.innerHTML = this.song.getName();
             this.titleBar = span;
@@ -1057,11 +1075,11 @@ class PlaylistEntry {
 
     deletePlaylistEntry() {
         // todo: delete all highlighted entries?
-        this.entry.playlist.removeEntries([this.entry]);
+        this.playlist.removeEntries([this]);
     }
 
     highlightPlaylistEntry() {
-        this.entry.playlist.highlightEntries(this.entry);
+        this.playlist.highlightEntries(this);
     }
 
     startPlayListEntryDrag(mte) {
@@ -1069,7 +1087,7 @@ class PlaylistEntry {
     }
 
     selectPlaylistEntry() {
-        this.entry.playlist.select(this.entry, true);
+        this.playlist.select(this, true);
     }
 
     setSelected(selected) {

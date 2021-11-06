@@ -511,6 +511,7 @@
                             <ul>
                                 <li><a href="#tocCopyPasteMeasure">Copy/Paste Measure</a></li>
                                 <li><a href="#tocCopyPasteSong">Copy/Paste Song</a></li>
+                                <li><a href="#tocPasteSwap">Copy/Paste between Melody and Bass</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -720,6 +721,18 @@
             <p>
                 <strong class="warn">Only one thing cna be copied at a time, either part of a measure or part of the
                 whole song</strong>
+            </p>
+            <h3 id="tocPasteSwap">Copy/Paste between Melody and Bass </h3>
+            <p>
+                If just a melody or a bass section has been copied, then holding the <strong>Shift</strong> key
+                down while clicking the
+                <img class="docButton" src="img/icon-paste.png" srcset="img2x/icon-paste.png 2x"/>
+                <strong>Paste</strong> button will bring up another section menu, containing just
+                <strong>Bass</strong> or <strong>Melody</strong>.  Select the section to paste into.
+            </p>
+            <p>
+                This allows you to copy a melody to a bass, or vice-verse.  This works with both a single measure and
+                the whole song.
             </p>
 
             <h1 id="tocUndoRedo">Undo/Redo</h1>
@@ -967,6 +980,12 @@
             </p>
             <p>
                 Selecting a new song will clear the highlight.
+            </p>
+            <p>
+                Holding the <strong>Shift</strong> key while selecting another entry in the playlist does the same thing
+                as clicking the
+                <img class="docButton" src="img/icon-playlist-select.png" srcset="img2x/icon-playlist-select.png 2x"/>
+                highlight button.  It will highlight the block of entries instead of selecting that entry.
             </p>
 
             <h3 id="tocCopyingSongs">Copying songs</h3>
@@ -1464,12 +1483,21 @@
                 <li>Switched most icons to buttons.</li>
                 <li>Multi-select support in the playlist editor for moving and copying.</li>
                 <li>Added button for reverse song search because why not</li>
+                <li>Copying a melody or bass and shift-clicking on the paste button will let you copy a melody to a
+                    bass and vice-versa.</li>
+                <li>Shift-clicking on a playlist entry will highlight the block.</li>
             </ul>
 
             <h1 id="tocToDo">To Do</h1>
             <ul>
                 <li>
                     Saving to local storage?
+                </li>
+                <li>
+                    Touch support for copying between melody/bass, somehow.
+                </li>
+                <li>
+                    Improve library reverse search.
                 </li>
             </ul>
 
@@ -1518,7 +1546,7 @@
             <a href="https://github.com/buff0000n/mandascore/issues/2 ">Feedback</a>
         </div>
         <div>
-            v3.5.1: 2021-11-03
+            v3.5.2: 2021-11-06
         </div>
         <div>
             <a href="https://warframe.com">Ninjas Jam Free</a>

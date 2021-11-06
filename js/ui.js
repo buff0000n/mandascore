@@ -69,7 +69,7 @@ function createNoteImage(baseName) {
     return img;
 }
 
-function runSectionMenu(title, button, callback) {
+function runSectionMenu(title, button, callback, sectionList=sectionMetaData) {
     // clear all menus
     clearMenus();
     // create a div and set some properties
@@ -80,7 +80,7 @@ function runSectionMenu(title, button, callback) {
 
     // build the section menu out of buttons
     var html = "";
-    for (var name in sectionMetaData) {
+    for (var name in sectionList) {
         var m = sectionMetaData[name];
         html += `<div class="button ${m.name}Button" onClick="selectSection(this, '${m.name}')" style="color: ${m.color}; vertical-align: middle; text-align: left;">
             <img style="vertical-align: middle;" class="imgButton" src="img/${sectionImages[name]}.png" srcset="img2x/${sectionImages[name]}.png 2x"/>
@@ -151,6 +151,28 @@ function doCopy(button, section) {
 function pasteButton(button) {
     // chrome is doing strange things with clicked buttons so just unfocus it
     button.blur();
+
+    // check if the shift key is pressed
+    var e = window.event;
+    if (e.shiftKey) {
+        // get the section of the current copy data
+        var section = getCopyDataSection(score.copyData);
+        // only allowed with bass and melody
+        if (section == "bass" || section == "mel") {
+            // make the other section first in the section selection dropdown
+            var sectionSelection = section == "bass" ? {"mel": "", "bass": ""} : {"bass": "", "mel": ""};
+            // run the menu
+            runSectionMenu("Paste", button, (button, section) => {
+                // create a copy of the copy data with the sections swapped
+                var copyData = swapCopyDataSection(score.copyData, section);
+                // do the paste operation with the copy copy
+                getParent(button, "scoreButtonContainer").score.paste(copyData);
+            }, sectionSelection);
+            // prevent the default past behavior
+            return;
+        }
+    }
+
     // get the associated measure and paste the selected section from another measure
     getParent(button, "scoreButtonContainer").score.paste(score.copyData);
 }
@@ -413,7 +435,7 @@ class CopyData {
         for (var t = 0; t < this.notes.length; t++) {
             this.notes[t] = new Array(13);
             for (var r = this.sectionMetaData.rowStart; r <= this.sectionMetaData.rowStop; r++) {
-                this.notes[t][r] = measure.notes[t][r].enabled;
+                this.notes[t][r] = measure ? measure.notes[t][r].enabled : false;
             }
         }
     }
@@ -427,6 +449,58 @@ class CopyData {
                 measure.notes[t][r].setEnabled(this.notes[t][r]);
             }
         }
+    }
+
+    createSwapped(section) {
+        // shortcut
+        if (section == this.section) {
+            return this;
+        }
+
+        // make sure the sections are the same size
+        if ((this.sectionMetaData.rowStop - this.sectionMetaData.rowStart) !=
+                (sectionMetaData[section].rowStop - sectionMetaData[section].rowStart)) {
+            throw "Cannot swap " + this.section + " and " + section;
+        }
+
+        // create a new object
+        var copy = new CopyData(null, section);
+
+        // get the offset from the current section to the new one
+        var rOffset = copy.sectionMetaData.rowStart - this.sectionMetaData.rowStart;
+        // copy data
+        for (var t = 0; t < this.notes.length; t++) {
+            for (var r = this.sectionMetaData.rowStart; r <= this.sectionMetaData.rowStop; r++) {
+                // use the offset to copy data to the new section in the new object
+                copy.notes[t][r + rOffset] = this.notes[t][r];
+            }
+        }
+        return copy;
+    }
+}
+
+function getCopyDataSection(copyData) {
+    // it can be an array or a single one because of reasons
+    if (copyData.length) {
+        return copyData[0].section;
+
+    } else {
+        return copyData.section;
+    }
+}
+
+function swapCopyDataSection(copyData, section) {
+    if (copyData.length) {
+        // copy each measure in the array
+        var newCopyData = [];
+        for (var i = 0; i < copyData.length; i++) {
+            newCopyData.push(copyData[i].createSwapped(section));
+        }
+        return newCopyData;
+
+    } else {
+        // just one emasure
+        return copyData.createSwapped(section);
     }
 }
 
