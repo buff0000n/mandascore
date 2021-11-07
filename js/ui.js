@@ -1788,6 +1788,13 @@ class Score {
     }
 
     getSongObject() {
+        // make sure we have the latest from the title editor
+        // If it still had focus when a playlist entry is clicked then it won't have fired the onupdate event yet
+        var title = getFirstChild(this.titleContainer, "songTitle").value
+        if (title != this.title) {
+            this.setTitle(title);
+        }
+
         // create a song object
         var song = new Song();
 
