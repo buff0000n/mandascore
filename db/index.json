@@ -336,6 +336,7 @@
 				, {"id": "ifzJ8DSGRio", "name": "Don't You Want Me", "attr": ["The Human League"]}
 				, {"id": "fSHzLWcPVkE", "name": "I Ran (So Far Away)", "attr": ["A Flock Of Seagulls"], "tags": ["Perfect"]}
 				, {"id": "wkc0FTR0M3Q", "name": "Invisible", "attr": ["Alison Moyet"]}
+				, {"id": "mmhvUQnLlKI", "name": "Just The Two Of Us", "attr": ["Grover Washington ft. Bill Withers"]}
 			]
 		}
 	},
@@ -1309,6 +1310,8 @@
 				, {"id": "6RsyBRvfKNg", "name": "Reckless Paradise", "attr": ["Billy Talent"], "tags": ["Perfect"]}
 				, {"id": "YPt8B4eLpzc", "name": "Fractions", "attr": ["Juniper Vale"]}
 				, {"id": "sd5r6Eh7IhE", "name": "I Melt With You", "attr": ["Modern English"]}
+				, {"id": "WpYAHB0Jq2U", "name": "Lonely Town", "attr": ["Brandon Flowers"]}
+				, {"id": "CE7hjFK_8lc", "name": "Undercover Martyn", "attr": ["Two Door Cinema Club"], "tags": ["Double", "Perfect"]}
 			]
 		}
 	},
@@ -1502,6 +1505,14 @@
 				, {"id": "6TXnZ39FHLY", "name": "The Way I Are", "attr": ["Timbaland ft. Keri Hilston", "D.O.E.", "Sebastian"]}
 			]
 		},
+		"Rihanna":{
+			"dbName":"Pop",
+			"songs":[
+				{"id": "RZcqUKZnCyI", "name": "Don't Stop The Music", "attr": ["Rihanna"]},
+				{"id": "tWIE0E_euvo", "name": "Work", "attr": ["Rihanna ft. Drake"]}
+				, {"id": "vRJepZtD86M", "name": "Kiss It Better", "attr": ["Rihanna"], "tags": ["Perfect"]}
+			]
+		},
 		"Misc Pop":{
 			"dbName":"Pop.MiscPop",
 			"songs":[
@@ -1527,8 +1538,6 @@
 				{"id": "xoE-8PZIbFI", "name": "Fancy", "attr": ["Iggy Azalea"]},
 				{"id": "_bxXj_-qX0E", "name": "She Lovin' It", "attr": ["Trey Songz"]},
 				{"id": "CxsirRBiwI4", "name": "Solo", "attr": ["Clan Bandit ft. Demi Lovato"]},
-				{"id": "RZcqUKZnCyI", "name": "Don't Stop The Music", "attr": ["Rihanna"]},
-				{"id": "tWIE0E_euvo", "name": "Work", "attr": ["Rihanna ft. Drake"]},
 				{"id": "KXYtDskfcCI", "name": "1-800-273-8255", "attr": ["Logic"], "tags": ["Perfect"]},
 				{"id": "UHRWRxhVesw", "name": "Contact", "attr": ["Logic"], "tags": ["Adau", "Perfect"]},
 				{"id": "mkocZat5M-0", "name": "S.L.U.T", "attr": ["Bea Miller"]},
@@ -2332,6 +2341,7 @@
 				{"id": "a_6fh1ZXnsc", "name": "Dreams", "attr": ["Lost Sky"]},
 				{"id": "fHQlzFsl4_I", "name": "Why Do I?", "attr": ["Unknown Brain ft. Bri Tolani"]},
 				{"id": "VEzb-o8jtZI", "name": "Tropic Love", "attr": ["Diviners ft. Contacreast"], "tags": ["Perfect"]}
+				, {"id": "bX1RSN5v-cE", "name": "Luna", "attr": ["Abandoned & Galaxy Tones ft. DNAKM"], "tags": ["Perfect"]}
 			]
 		},
 		"Misc Proximity":{
@@ -2593,6 +2603,7 @@
 				, {"id": "sbopDr4xMt4", "name": "Shooting Stars", "attr": ["Bag Raiders"]}
 				, {"id": "Wp7xfhVarqM", "name": "Holographic Landscape", "attr": ["S U R V I V E"]}
 				, {"id": "Rt1RSKUVm1U", "name": "Strange Harvest", "attr": ["Tempers"], "tags": ["Perfect"]}
+				, {"id": "QkfLza25-a4", "name": "Bright Red Lips", "attr": ["Young Bear"]}
 			]
 		}
 	},
@@ -2852,6 +2863,7 @@
 				{"id": "sc83TWHq9Cc", "name": "Nuclear", "attr": ["Mike Oldfield", "Metal Gear Solid V"]},
 				{"id": "I3U68QzWYxk", "name": "The Stains Of Time", "attr": ["Metal Gear Rising: Revengeance"]},
 				{"id": "sPyvAupokc8", "name": "Red Sun", "attr": ["Metal Gear Rising: Revengeance"], "tags": ["Perfect"]}
+				, {"id": "d5TPieoFJlY", "name": "The Only Thing I Know For Real", "attr": ["Metal Gear Rising: Revengeance"], "tags": ["Perfect"]}
 			]
 		},
 		"Assassin's Creed":{
@@ -2889,6 +2901,7 @@
 				{"id": "J51U2hbD7yI", "name": "Giants part 2", "attr": ["True Damage", "League Of Legends"]},
 				{"id": "Lt_j_IBRd1k", "name": "Phoenix", "attr": ["League of Legends"]},
 				{"id": "o6aYHPeQqQg", "name": "Here Comes Vi", "attr": ["Nicki Taylor"], "tags": ["Perfect"]}
+				, {"id": "fkvvuM1pWG4", "name": "Take Over", "attr": ["League Of Legends Worlds 2020"], "tags": ["Double"]}
 			]
 		},
 		"Persona":{
@@ -4427,6 +4440,7 @@
 				{"id": "NgnxrktHzuw", "name": "Saburo's Theme", "attr": ["Android Kikaider"], "tags": ["Perfect"]}
 				, {"id": "Xqz4t0tWkSc", "name": "Boss Of Me", "attr": ["Malcom In The Middle theme song", "They Might Be Giants"]}
 				, {"id": "uqd5pPVabZw", "name": "Space 1999 Year 2 Opening"}
+				, {"id": "7EgFxUned8s", "name": "Invader Zim Theme"}
 			]
 		},
 		"Misc Movie":{
@@ -4851,6 +4865,7 @@
 				, {"id": "nY8hZPyjzT8", "name": "Natural", "attr": ["Moe Shop", "Ace Hashimoto"]}
 				, {"id": "b-kfkFdcTjM", "name": "Nippon Egao Hyakkei/\u30cb\u30c3\u30dd\u30f3\u7b11\u9854\u767e\u666f", "attr": ["Momoclo Tei Ichimon/Momoiro Clover Z"], "tags": ["Perfect"]}
 				, {"id": "ox-emIlBl_c", "name": "Last Summer", "attr": ["Anri/\u674f\u91cc"]}
+				, {"id": "ai2I7kF33_s", "name": "Jolly Jolly", "attr": ["JiLL-Decoy association"]}
 			]
 		},
 		"Misc I Don't Know Which Letter Pop":{
@@ -5068,7 +5083,7 @@
 				{"id": "fZiwyZyZw1k", "name": "Brotherman Bill", "attr": ["Terrible Tim"]},
 				{"id": "ftzastbOEmU", "name": "Break The Road", "attr": ["Diego Martinez", "Dream VS 4 Hunters Rematch"], "tags": ["Perfect"]},
 				{"id": "X719upB9_I4", "name": "EEEAAAOOO", "attr": ["Patricia Taxxon"]}
-				, {"id": "CsFTvKUw0g0", "name": "Trance Music for Racing Game"}
+				, {"id": "CsFTvKUw0g0", "name": "Trance Music for Racing Game", "attr": ["Dream Speedrun Music"]}
 				, {"id": "whkawQzAFCI", "name": "i want to be ninja", "attr": ["Jennifer Murphy"], "tags": ["Perfect"]}
 				, {"id": "L5DCa-dxFr4", "name": "Baby I'm Yours", "attr": ["Breakbot", "Ladies And Gentlemen We Got Him meme"]}
 				, {"id": "uttbtZQHFxc", "name": "Welcome to the Internet", "attr": ["Bo Burnham"]}
