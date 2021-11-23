@@ -739,7 +739,7 @@
 			"dbName":"PopRock",
 			"songs":[
 				{"id": "0L_Z6Ariox8", "name": "Believer", "attr": ["Imagine Dragons"]},
-				{"id": "mi_CZcTf_C4", "name": "Thunder Imagine", "attr": ["Dragons"], "tags": ["Gamma", "Perfect"]},
+				{"id": "mi_CZcTf_C4", "name": "Thunder", "attr": ["Imagine Dragons"], "tags": ["Gamma", "Perfect"]},
 				{"id": "vKUmz3zS1b0", "name": "Radioactive", "attr": ["Imagine Dragons"], "tags": ["Epsilon"]},
 				{"id": "jAzcrquoHDI", "name": "Radioactive - Karaoke version", "attr": ["Imagine Dragons"]},
 				{"id": "SsyFDTMyHWY", "name": "Friction", "attr": ["Imagine Dragons"]},
@@ -914,7 +914,7 @@
 			"songs":[
 				{"id": "_QSw5FTTN0E", "name": "Morph", "attr": ["twenty one pilots"]},
 				{"id": "Q-kvn6lFdd0", "name": "Chlorine", "attr": ["twenty one pilots"]},
-				{"id": "6cWdSc1lgyk", "name": "Trees", "attr": ["Twenty One Pilots"], "tags": ["Perfect"]},
+				{"id": "6cWdSc1lgyk", "name": "Trees", "attr": ["twenty one pilots"], "tags": ["Perfect"]},
 				{"id": "muCWIndkjFc", "name": "Heavy Dirty Soul", "attr": ["twenty one pilots"]},
 				{"id": "I9UiNlSs9TQ", "name": "My Blood", "attr": ["twenty one pilots"]},
 				{"id": "-Kk81RKI7YM", "name": "House of Gold", "attr": ["twenty one pilots"], "tags": ["Perfect"]}
@@ -960,7 +960,7 @@
 			"dbName":"PopRock",
 			"songs":[
 				{"id": "OLp5RHuOY6Y", "name": "The Wolf", "attr": ["SIAM\u00c9S"]},
-				{"id": "6yGhvZIiHbw", "name": "As You Get High", "attr": ["Siames"], "tags": ["Perfect"]},
+				{"id": "6yGhvZIiHbw", "name": "As You Get High", "attr": ["SIAM\u00c9S"], "tags": ["Perfect"]},
 				{"id": "eCFtL4AeWAg", "name": "Summer Nights", "attr": ["SIAM\u00c9S"]}
 			]
 		},
