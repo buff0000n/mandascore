@@ -512,6 +512,7 @@
                                 <li><a href="#tocCopyPasteMeasure">Copy/Paste Measure</a></li>
                                 <li><a href="#tocCopyPasteSong">Copy/Paste Song</a></li>
                                 <li><a href="#tocPasteSwap">Copy/Paste between Melody and Bass</a></li>
+                                <li><a href="#tocCopyPastePerformance">Copy/Paste Performance</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -733,6 +734,16 @@
             <p>
                 This allows you to copy a melody to a bass, or vice-verse.  This works with both a single measure and
                 the whole song.
+            </p>
+            <h3 id="tocCopyPastePerformance">Copy/Paste Performance</h3>
+            <p>
+                Click the song-level
+                <img class="docButton" src="img/icon-copy.png" srcset="img2x/icon-copy.png 2x"/>
+                <strong>Copy</strong> button and choose
+                <img class="docButton" src="img/perf.png" srcset="img2x/perf.png 2x"/>
+                <strong>Performance</strong> to copy the instrument pack and volume settings for the current song.
+                Clicking <img class="docButton" src="img/icon-paste.png" srcset="img2x/icon-paste.png 2x"/>
+                <strong>Paste</strong> on another song in the playlist will paste those settings into that song.
             </p>
 
             <h1 id="tocUndoRedo">Undo/Redo</h1>
@@ -1486,6 +1497,7 @@
                 <li>Copying a melody or bass and shift-clicking on the paste button will let you copy a melody to a
                     bass and vice-versa.</li>
                 <li>Shift-clicking on a playlist entry will highlight the block.</li>
+                <li>Added copy/paste performance option</li>
             </ul>
 
             <h1 id="tocToDo">To Do</h1>
@@ -1530,6 +1542,13 @@
                     not register the drop and you have to click again to stop dragging the cursor.  I'm too lazy to fix
                     it right now.
                 </li>
+                <li>
+                    If you stop playback close enough to the end of a song and then start it again it will skip over a
+                    song in the playlist.
+                </li>
+                <li>
+                    Playback stutters between songs in a really long playlist
+                </li>
             </ul>
         </div>
     </div>
@@ -1546,7 +1565,7 @@
             <a href="https://github.com/buff0000n/mandascore/issues/2 ">Feedback</a>
         </div>
         <div>
-            v3.5.2: 2021-11-06
+            v3.5.3: 2021-11-22
         </div>
         <div>
             <a href="https://warframe.com">Ninjas Jam Free</a>

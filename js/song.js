@@ -58,10 +58,11 @@ class SectionMetaData {
 var sectionNames = ["perc", "bass", "mel"];
 
 var sectionMetaData = {
-    "all": new SectionMetaData("all", "All", 0, 12, 0, "#ffffff", true),
+    "all": new SectionMetaData("all", "All", 0, 12, 56, "#ffffff", true),
     "perc": new SectionMetaData("perc", "Percussion", 0, 2, 24, "#ffffff"),
     "bass": new SectionMetaData("bass", "Bass", 3, 7, 16, "#1fb5ff"),
-    "mel": new SectionMetaData("mel", "Melody", 8, 12, 16, "#e601ff")
+    "mel": new SectionMetaData("mel", "Melody", 8, 12, 16, "#e601ff"),
+    "perf": new SectionMetaData("perf", "Performance", -1, -1, 0, "#ffffff", true)
 }
 
 var songMatchNoteWeight = 10;

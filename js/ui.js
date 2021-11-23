@@ -69,7 +69,7 @@ function createNoteImage(baseName) {
     return img;
 }
 
-function runSectionMenu(title, button, callback, sectionList=sectionMetaData) {
+function runSectionMenu(title, button, callback, sectionList) {
     // clear all menus
     clearMenus();
     // create a div and set some properties
@@ -80,7 +80,8 @@ function runSectionMenu(title, button, callback, sectionList=sectionMetaData) {
 
     // build the section menu out of buttons
     var html = "";
-    for (var name in sectionList) {
+    for (var i = 0; i < sectionList.length; i++) {
+        var name = sectionList[i];
         var m = sectionMetaData[name];
         html += `<div class="button ${m.name}Button" onClick="selectSection(this, '${m.name}')" style="color: ${m.color}; vertical-align: middle; text-align: left;">
             <img style="vertical-align: middle;" class="imgButton" src="img/${sectionImages[name]}.png" srcset="img2x/${sectionImages[name]}.png 2x"/>
@@ -139,8 +140,17 @@ function copyButton(button) {
     button.blur();
     // get the associated measure
     var measure = getParent(button, "scoreButtonContainer").score;
-    // otherwise we need to show the section menu and ask which section to copy
-    runSectionMenu("Copy", button, doCopy);
+    // show the section menu and ask which section to copy
+    runSectionMenu("Copy", button, doCopy, ["all", "perc", "bass", "mel"]);
+}
+
+function copyScoreButton(button) {
+    // chrome is doing strange things with clicked buttons so just unfocus it
+    button.blur();
+    // get the associated score
+    var score = getParent(button, "scoreButtonContainer").score;
+    // show the section menu and ask which section to copy, add an option for copying the performance
+    runSectionMenu("Copy", button, doCopy, ["all", "perc", "bass", "mel", "perf"]);
 }
 
 function doCopy(button, section) {
@@ -160,7 +170,7 @@ function pasteButton(button) {
         // only allowed with bass and melody
         if (section == "bass" || section == "mel") {
             // make the other section first in the section selection dropdown
-            var sectionSelection = section == "bass" ? {"mel": "", "bass": ""} : {"bass": "", "mel": ""};
+            var sectionSelection = section == "bass" ? ["mel", "bass"] : ["bass", "mel"];
             // run the menu
             runSectionMenu("Paste", button, (button, section) => {
                 // create a copy of the copy data with the sections swapped
@@ -181,7 +191,7 @@ function clearButton(button) {
     // chrome is doing strange things with clicked buttons so just unfocus it
     button.blur();
     // show the section menu and ask which section to clear
-    runSectionMenu("Clear", button, doClear);
+    runSectionMenu("Clear", button, doClear, ["all", "perc", "bass", "mel"]);
 }
 
 function doClear(button, section) {
@@ -476,6 +486,24 @@ class CopyData {
             }
         }
         return copy;
+    }
+}
+
+class CopyPerformance {
+    constructor(score) {
+        this.packs = {};
+        this.volumes = {};
+        for (var section in score.sections) {
+            this.packs[section] = score.sections[section].pack;
+            this.volumes[section] = score.sections[section].volume;
+        }
+    }
+
+    apply(score) {
+        for (var section in score.sections) {
+            score.sections[section].setPack(this.packs[section], true, true);
+            score.sections[section].setVolume(this.volumes[section], true, false, true);
+        }
     }
 }
 
@@ -1589,8 +1617,8 @@ class Score {
         // section editors
         this.sections = {};
         for (var name in sectionMetaData) {
-            // skip the "all" section
-            if (sectionMetaData[name].all) continue;
+            // skip the "all" and "performance" sections
+            if (sectionMetaData[name].all || sectionMetaData[name].maxNotes == 0) continue;
             // build section editor
             var section = new SectionEditor (this, name);
             this.sections[name] = section;
@@ -1644,7 +1672,8 @@ class Score {
         this.title = "";
 
         // container for section editors is a div with a table
-        var sectionContainer = document.createElement("div");
+        this.sectionContainer = document.createElement("div");
+        this.sectionContainer.style.position = "relative";
         var sectionTable = document.createElement("table");
         sectionTable.style.display = "inline-block";
 
@@ -1653,8 +1682,8 @@ class Score {
             sectionTable.appendChild(this.sections[name].container);
         }
 
-        sectionContainer.appendChild(sectionTable);
-        this.songControls.appendChild(sectionContainer);
+        this.sectionContainer.appendChild(sectionTable);
+        this.songControls.appendChild(this.sectionContainer);
 
         this.controlBar.appendChild(this.library.libraryBox);
         this.controlBar.appendChild(this.playlist.playlistContainer);
@@ -1699,7 +1728,7 @@ class Score {
                 <span class="imgButton clearButton tooltip" onclick="clearButton(this)"><img src="img/icon-clear.png" srcset="img2x/icon-clear.png 2x" alt="Clear"/>
                     <span class="tooltiptextbottom">Clear all or part of the song</span>
                 </span>
-                <span class="imgButton copyButton tooltip" onclick="copyButton(this)"><img src="img/icon-copy.png" srcset="img2x/icon-copy.png 2x" alt="Copy"/>
+                <span class="imgButton copyButton tooltip" onclick="copyScoreButton(this)"><img src="img/icon-copy.png" srcset="img2x/icon-copy.png 2x" alt="Copy"/>
                     <span class="tooltiptextbottom">Copy all or part of the song</span>
                 </span>
                 <span class="imgButtonDisabled pasteButton tooltip" onclick="pasteButton(this)"><img src="img/icon-paste.png" srcset="img2x/icon-paste.png 2x" alt="Paste"/>
@@ -1827,8 +1856,8 @@ class Score {
 
     setCopyData(copyData) {
         this.copyData = copyData;
-        // check if it's an array
-        if (this.copyData.length) {
+        // check if it's an array or a performance
+        if (this.copyData.length || this.copyData.packs) {
             // whole song copy, enable the song paste button and disable the measure paste buttons
             this.setPasteEnabled(true);
             for (var m = 0; m < 4; m++) {
@@ -1845,25 +1874,66 @@ class Score {
     }
 
     copy(section) {
-        // build copy data for all four measures
-        var copyDataList = [];
-        for (var m = 0; m < 4; m++) {
-            // directly copy measure
-            copyDataList.push(new CopyData(this.measures[m], section));
-            // flash the selection
-            this.measures[m].showSelection(section);
+        if (section == "perf") {
+            var copyData = new CopyPerformance(this);
+            this.setCopyData(copyData);
+            this.showPerformanceSelection();
+
+        } else {
+            // build copy data for all four measures
+            var copyDataList = [];
+            for (var m = 0; m < 4; m++) {
+                // directly copy measure
+                copyDataList.push(new CopyData(this.measures[m], section));
+                // flash the selection
+                this.measures[m].showSelection(section);
+            }
+            // set the copy data to a list and enable/disable paste buttons accordingly
+            this.setCopyData(copyDataList);
         }
-        // set the copy data to a list and enable/disable paste buttons accordingly
-        this.setCopyData(copyDataList);
     }
 
-    paste(copyDataList) {
+    paste(copyData) {
         this.startActions();
-        // paste all four measures
-        for (var m = 0; m < 4; m++) {
-            this.measures[m].paste(copyDataList[m]);
+        if (this.copyData.packs) {
+            // performance
+            this.copyData.apply(this);
+            this.showPerformanceSelection();
+
+        } else {
+            // paste all four measures
+            for (var m = 0; m < 4; m++) {
+                this.measures[m].paste(copyDataList[m]);
+            }
         }
         this.endActions();
+    }
+
+    clearSelection() {
+        if (this.selectBox != null) {
+            // clear all selection state and UI
+            this.selectBox.remove();
+            this.selectBox = null;
+        }
+    }
+
+    showPerformanceSelection(section) {
+        // create the selection box, it's just a div with a border
+        var selectBox = document.createElement("div");
+        // absolutely position it according to the section
+        selectBox.className = "measureSelectBox";
+        var bcr = score.sectionContainer.getBoundingClientRect()
+        selectBox.style.width = bcr.width;
+        selectBox.style.height = bcr.height;
+        selectBox.style.left = 0;
+        selectBox.style.top = 0;
+        // set the color based on the section
+        selectBox.style.borderColor = "#ffffff";
+        score.sectionContainer.appendChild(selectBox);
+
+        setTimeout(() => {
+            selectBox.remove();
+        }, 1000);
     }
 
     setPasteEnabled(enabled) {

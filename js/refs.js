@@ -15,6 +15,7 @@ sectionImages = {
     "perc": "perc-3",
     "bass": "bass",
     "mel": "mel",
+    "perf": "perf",
 };
 
 var imgGrid = Array(
