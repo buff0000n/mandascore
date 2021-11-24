@@ -1903,7 +1903,7 @@ class Score {
         } else {
             // paste all four measures
             for (var m = 0; m < 4; m++) {
-                this.measures[m].paste(copyDataList[m]);
+                this.measures[m].paste(copyData[m]);
             }
         }
         this.endActions();
