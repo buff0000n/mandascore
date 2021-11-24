@@ -1980,11 +1980,11 @@ class Score {
 
     precacheSectionSource(section, pack) {
         // set the audio source
-        this.soundPlayer.setSource(section, pack, this.isSectionMono(section), true);
+        this.soundPlayer.setSource(section, pack, this.isSectionMono(section, pack), true);
     }
 
-    isSectionMono(section) {
-        return instrumentNameToPack[this.sectionPacks[section]].mono[section];
+    isSectionMono(section, pack=this.sectionPacks[section]) {
+        return instrumentNameToPack[pack].mono[section];
     }
 
     startActions() {

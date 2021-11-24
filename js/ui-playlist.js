@@ -106,6 +106,8 @@ class Playlist {
         this.score = score;
         // list of playlist entries
         this.entries = Array();
+        // list of highlighted playlist entries
+        this.highlightedEntries = Array();
         // looping state
         this.looping = false;
         // build the UI
@@ -310,7 +312,7 @@ class Playlist {
             // reset the highlighted entries to be the ones newly added
             this.clearHighlightedEntries();
             for (var i = 0; i < entryList.length; i++) {
-                entryList[i].setHightlighted(true);
+                this.highlightEntry(entryList[i]);
             }
 
         } else {
@@ -396,7 +398,7 @@ class Playlist {
 
     startDrag(mte, entry) {
         // scroll speed parameters, guessed
-        var maxScrollDistance = 30;
+        var maxScrollDistance = 10;
         var scrollWait = 100;
 
         // check if a highlighted entry is being dragged
@@ -698,7 +700,7 @@ class Playlist {
         if (highlight) {
             for (var i = 0; i < entryList.length; i++) {
                 var entry = entryList[i];
-                entry.setHightlighted(true);
+                this.highlightEntry(entry);
             }
             // sanity check
             this.fixHighlights();
@@ -839,15 +841,25 @@ class Playlist {
 
         // set highlighted entries
         for (var i = startIndex; i <= endIndex; i++) {
-            this.entries[i].setHightlighted(true);
+            this.highlightEntry(this.entries[i]);
         }
+    }
+
+    highlightEntry(entry) {
+        // set state on the entry
+        entry.setHightlighted(true);
+        // save in a list so we don't have to search the entire playlist
+        // every time we have to clear highlighted entries
+        addToListIfNotPresent(this.highlightedEntries, entry);
     }
 
     clearHighlightedEntries() {
         // unset current highlights
-        for (var i = 0; i < this.entries.length; i++) {
-            this.entries[i].setHightlighted(false);
+        for (var i = 0; i < this.highlightedEntries.length; i++) {
+            this.highlightedEntries[i].setHightlighted(false);
         }
+        // clear the list
+        this.highlightedEntries = Array();
     }
 
     clear(action=true) {
@@ -863,6 +875,7 @@ class Playlist {
         }
         // clear state
         this.entries = Array();
+        this.highlightedEntries = Array();
         this.selected = null;
     }
 
@@ -1023,7 +1036,8 @@ class PlaylistEntry {
             span.ontouchstart = (e) => { e.preventDefault(); this.startPlayListEntryDrag(touchEventToMTEvent(e)); };
             span.entry = this;
             this.grabSpan = span;
-            this.setGrabbing(false);
+            this.grabSpan.style.cursor = "grab";
+            this.grabSpan.innerHTML = `<img src="img/icon-playlist-move.png" srcset="img2x/icon-playlist-move.png 2x" width="32" height="20" alt="Move"/>`;
             this.playlistEntryContainer.appendChild(this.grabSpan);
         }
         {
@@ -1112,10 +1126,14 @@ class PlaylistEntry {
         this.deleteSpan.className = this.highlighted || this.selected ? "smallButtonSelected" : "smallButton";
         if (this.highlighted || this.selected) {
             this.selectSpan.className = "smallButtonSelected";
-            this.selectSpan.innerHTML = `<img src="img/icon-playlist-selected.png" srcset="img2x/icon-playlist-selected.png 2x" width="32" height="20" alt="Select"/>`;
+            // change the image in place
+            this.selectSpan.firstChild.src = "img/icon-playlist-selected.png";
+            this.selectSpan.firstChild.srcset = "img2x/icon-playlist-selected.png 2x";
         } else {
             this.selectSpan.className = "smallButton";
-            this.selectSpan.innerHTML = `<img src="img/icon-playlist-select.png" srcset="img2x/icon-playlist-select.png 2x" width="32" height="20" alt="Select"/>`;
+            // change the image in place
+            this.selectSpan.firstChild.src = "img/icon-playlist-select.png";
+            this.selectSpan.firstChild.srcset = "img2x/icon-playlist-select.png 2x";
         }
         this.grabSpan.className = this.highlighted || this.selected ? "smallButtonSelected" : "smallButton";
     }
@@ -1123,11 +1141,15 @@ class PlaylistEntry {
     setGrabbing(grabbing) {
         if (grabbing) {
             this.grabSpan.style.cursor = "grabbing";
-            this.grabSpan.innerHTML = `<img src="img/icon-playlist-moving.png" srcset="img2x/icon-playlist-moving.png 2x" width="32" height="20" alt="Move"/>`;
+            // change the image in place
+            this.grabSpan.firstChild.src = "img/icon-playlist-moving.png";
+            this.grabSpan.firstChild.srcset = "img2x/icon-playlist-moving.png 2x";
 
         } else {
             this.grabSpan.style.cursor = "grab";
-            this.grabSpan.innerHTML = `<img src="img/icon-playlist-move.png" srcset="img2x/icon-playlist-move.png 2x" width="32" height="20" alt="Move"/>`;
+            // change the image in place
+            this.grabSpan.firstChild.src = "img/icon-playlist-move.png";
+            this.grabSpan.firstChild.srcset = "img2x/icon-playlist-move.png 2x";
         }
     }
 
