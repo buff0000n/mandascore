@@ -340,7 +340,8 @@
 				{"id": "MAN_oRcVp10", "name": "Wot!", "attr": ["Captain Sensible"]},
 				{"id": "jR9x1NsoKN8", "name": "Do You Believe In Magic", "attr": ["The Lovin' Spoonfull"]},
 				{"id": "Yq1UjGB89Mo", "name": "Notorious", "attr": ["Duran Duran"]},
-				{"id": "X2pkKSMHhEs", "name": "Disorder", "attr": ["Joy Division"]},
+				{"id": "X2pkKSMHhEs", "name": "Disorder", "attr": ["Joy Division"]}
+				, {"id": "ffNtVtuAka4", "name": "Incubation", "attr": ["Joy Division"]},
 				{"id": "D3rG--31Dio", "name": "Relax", "attr": ["Frankie Goes To Hollywood"], "tags": ["Perfect"]},
 				{"id": "2dL49m1EvAw", "name": "Video Killed The Radio Star", "attr": ["The Buggles"]},
 				{"id": "vYTyHV3WZfc", "name": "What I Got", "attr": ["Sublime"], "tags": ["Perfect"]},
@@ -1598,6 +1599,7 @@
 				{"id": "i2EfVbhd7t0", "name": "Something Just Like This", "attr": ["The Chainsmokers & Coldplay"], "tags": ["Perfect"]},
 				{"id": "CQlcWepObvs", "name": "This Feeling", "attr": ["The Chainsmokers"], "tags": ["Perfect"]},
 				{"id": "cAXL2zR0cdE", "name": "Roses", "attr": ["Chainsmokers ft. Rozes"]}
+				, {"id": "BWfJGjjK4Fw", "name": "Don't Let Me Down", "attr": ["The Chainsmokers"], "tags": ["Perfect"]}
 			]
 		},
 		"Owl City":{
@@ -1703,6 +1705,8 @@
 				{"id": "6VS8UTQynR0", "name": "Coin Laundry", "attr": ["Lisa Mitchell"], "tags": ["Perfect"]}
 				, {"id": "zENtBpHFHoY", "name": "Summer Son", "attr": ["Texas"], "tags": ["Perfect"]}
 				, {"id": "2GFBm7Owtss", "name": "Loverboy", "attr": ["A-Wall"], "tags": ["Perfect"]}
+				, {"id": "xAzSBsRPjpk", "name": "Yam Yam", "attr": ["No Vacation"]}
+				, {"id": "qTcrJ8O3as0", "name": "My Kind of Woman", "attr": ["Marc DeMarco"], "tags": ["Perfect"]}
 			]
 		}
 	},
@@ -1988,6 +1992,7 @@
 				, {"id": "NZbrrvpl8ks", "name": "Welcome to the Party", "attr": ["PARTYNEXTDOOR"], "tags": ["Perfect"]}
 				, {"id": "0MPH2-n4vD0", "name": "Magnolia", "attr": ["Playboi Carti"], "tags": ["Bombast"]}
 				, {"id": "qoIOxKceO5o", "name": "Money Do", "attr": ["Gucci Mane"], "tags": ["Perfect"]}
+				, {"id": "EcvVz09fZqU", "name": "Palm Angel", "attr": ["Eric IV"], "tags": ["Perfect"]}
 			]
 		}
 	},
