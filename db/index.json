@@ -36,6 +36,7 @@
 				, {"id": "s3JJb7zClgM", "name": "Deadlock Protocol Combat Music", "attr": ["Warframe"], "tags": ["Filled"]},
 				{"id": "DSbmlFMVaEc", "name": "Octavia Prime Trailer"},
 				{"id": "OeyxFA4PktE", "name": "Sleeping in the Cold Below", "attr": ["Warframe"], "tags": ["Triple"]}
+				, {"id": "sVDGTMj6pNo", "name": "For Narmer"}
 			]
 		},
 		"Tenno Tunes by me":{
@@ -352,6 +353,7 @@
 				, {"id": "fSHzLWcPVkE", "name": "I Ran (So Far Away)", "attr": ["A Flock Of Seagulls"], "tags": ["Perfect"]}
 				, {"id": "wkc0FTR0M3Q", "name": "Invisible", "attr": ["Alison Moyet"]}
 				, {"id": "mmhvUQnLlKI", "name": "Just The Two Of Us", "attr": ["Grover Washington ft. Bill Withers"]}
+				, {"id": "_WgFnGBc0Ek", "name": "Jessie's Girl", "attr": ["Rick Springfield"], "tags": ["Double"]}
 			]
 		}
 	},
@@ -4848,7 +4850,8 @@
 				{"id": "gCCcq3ZGF14", "name": "The Tomato Song", "attr": ["Korean Children's Song"]},
 				{"id": "a-crznHgmf8", "name": "All Night/\uc804\ud654\ud574", "attr": ["Astro/\uc544\uc2a4\ud2b8\ub85c"]},
 				{"id": "qJVgt4f6S3A", "name": "Tail/\uaf2c\ub9ac", "attr": ["Sunmi/\uc120\ubbf8"]},
-				{"id": "e5x5JXd8TK8", "name": "Black Mamba", "attr": ["aespa/\uc5d0\uc2a4\ud30c"]},
+				{"id": "e5x5JXd8TK8", "name": "Black Mamba", "attr": ["aespa/\uc5d0\uc2a4\ud30c"], "tags": ["Perfect"]}
+				, {"id": "89IIIL-mb-8", "name": "Savage", "attr": ["aespa/\uc5d0\uc2a4\ud30c"]},
 				{"id": "Nh7AsnBzimM", "name": "Rollin'/\ub864\ub9b0", "attr": ["Brave Girls/\ube0c\ub808\uc774\ube0c\uac78\uc2a4"]}
 				, {"id": "4sHfjOk_LLY", "name": "Love Bomb", "attr": ["fromis_9"]}
 				, {"id": "YwTovBuyaLc", "name": "We Go", "attr": ["fromis_9"], "tags": ["Perfect"]}
@@ -4901,6 +4904,7 @@
 				, {"id": "b-kfkFdcTjM", "name": "Nippon Egao Hyakkei/\u30cb\u30c3\u30dd\u30f3\u7b11\u9854\u767e\u666f", "attr": ["Momoclo Tei Ichimon/Momoiro Clover Z"], "tags": ["Perfect"]}
 				, {"id": "ox-emIlBl_c", "name": "Last Summer", "attr": ["Anri/\u674f\u91cc"]}
 				, {"id": "ai2I7kF33_s", "name": "Jolly Jolly", "attr": ["JiLL-Decoy association"]}
+				, {"id": "VySdMmxbqTQ", "name": "Endless Tears", "attr": ["Cliff Edge"]}
 			]
 		},
 		"Misc I Don't Know Which Letter Pop":{
@@ -4971,6 +4975,7 @@
 			{"id": "pJ-zotBxX0c", "name": "Beverly Hills", "attr": ["Zivert"]},
 			{"id": "wd9TLFL07wU", "name": "August", "attr": ["Intelligency"]},
 			{"id": "tCKgNiWNG-Q", "name": "\u041c\u0430\u0448\u0438\u043d\u0430 \u0420\u0430\u0431\u043e\u0442\u0430\u0435\u0442", "attr": ["Molchat Dogma"], "tags": ["Perfect"]}
+			, {"id": "zFQrBa_xowM", "name": "Yamakasi", "attr": ["Miyagi & Andy Panda"]}
 		]
 	},
 	"Internet":{
