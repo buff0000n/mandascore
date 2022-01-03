@@ -8,6 +8,9 @@ var shotTags = {"Double":true, "Triple":true, "Quadruple":true, "QUINTUPLE":true
 
 class Library {
     constructor(score) {
+        this.localDbName = "local";
+        this.localDbDisplayName = "Local Storage";
+
         // back reference to the score
         this.score = score;
         // index map, loaded at init time
@@ -88,7 +91,8 @@ class Library {
     init() {
         // start the loading process if it isn't already loaded
         if (this.index == null) {
-            this.loader.load("Loading Demo Index", "db/index-demo.json", (indexJson) => this.demoIndexLoaded(indexJson));
+            this.index = {};
+            this.loadLocalStorage();
         }
     }
 
@@ -96,12 +100,34 @@ class Library {
         toggleLibrary(getFirstChild(this.menuContainer, "titleButton"));
     }
 
+    loadLocalStorage() {
+        this.reloadLocalStorage();
+        this.loader.load("Loading Demo Index", "db/index-demo.json", (indexJson) => this.demoIndexLoaded(indexJson));
+    }
+
+    reloadLocalStorage() {
+        var cat = {
+          "dbName": this.localDbName,
+          "songs":[]
+        };
+        var listing = storage.getListing();
+        for (var i in listing) {
+            var entry = listing[i];
+            var song = {"id": entry.name, "name": entry.name, "date": entry.date};
+            cat.songs.push(song);
+        }
+
+        this.index[this.localDbDisplayName] = cat;
+    }
+
     demoIndexLoaded(indexJson) {
         // callback for when the demo index is loaded
         // parse it as JSON
         var demoIndex = JSON.parse(indexJson);
-        // just set it as our index
-        this.index = demoIndex;
+        // concat with the existing index
+        for (var name in demoIndex) {
+            this.index[name] = demoIndex[name];
+        }
 
         // load the main index
         this.loader.load("Loading Index", "db/index.json", (indexJson) => this.indexLoaded(indexJson));
@@ -111,7 +137,7 @@ class Library {
         // callback for when the index is loaded
         // parse it as JSON
         var mainIndex = JSON.parse(indexJson);
-        // concat with the existing demo index
+        // concat with the existing index
         for (var name in mainIndex) {
             this.index[name] = mainIndex[name];
         }
@@ -126,6 +152,42 @@ class Library {
         // build the search queue prototype, no point in building this every time
         this.searchQueuePrototype = [];
         this.queueSongLists(this.index, this.searchQueuePrototype);
+    }
+
+    updateAutosave() {
+        this.updateLocalStorage(storage.autosaveName);
+    }
+
+    updateLocalStorage(name) {
+        if (this.index && this.localDbDisplayName in this.index) {
+            var cat = this.index[this.localDbDisplayName];
+            // have to use id because name is blanked out
+            var index = cat.songs.findIndex(n => n.id == name);
+            if (index >= 0) {
+                var oldEntry = cat.songs[index];
+                var shown = this.showSong(oldEntry);
+
+                var oldDiv = oldEntry.div;
+
+                var entry = storage.getFullItem(name);
+                var song = {"id": entry.name, "name": entry.name, "date": entry.date};
+                cat.songs[index] = song;
+
+                var songDiv = this.buildSongDiv(song, this.localDbName);
+                // replace in the DOM
+                oldDiv.parentNode.insertBefore(songDiv, oldDiv.nextSibling);
+                oldDiv.remove();
+
+                // references from the song entry tothe UI
+                song.div = songDiv;
+                // prepare the song entry for searching
+                this.indexSong(song, [this.localDbDisplayName]);
+
+                if (shown) {
+                    this.hideSong(song);
+                }
+            }
+        }
     }
 
     buildCatDiv(categoryName) {
@@ -149,6 +211,18 @@ class Library {
         // build the div for displaying a song entry
         var songDiv = document.createElement("div");
         songDiv.className = "libSong";
+        if (dbName == this.localDbName) {
+            var deleteSpan = document.createElement("span");
+            deleteSpan.className = "smallButton";
+            deleteSpan.innerHTML = `<img src="img/icon-playlist-delete.png" srcset="img2x/icon-playlist-delete.png 2x" width="32" height="20" alt="Delete">`;
+            songDiv.appendChild(deleteSpan);
+
+            var saveSpan = document.createElement("span");
+            saveSpan.className = "smallButton";
+            saveSpan.innerHTML = `<img src="img/icon-playlist-delete.png" srcset="img2x/icon-playlist-delete.png 2x" width="32" height="20" alt="Delete">`;
+            songDiv.appendChild(saveSpan);
+        }
+
         var label = "<strong>" + songEntry.name + "</strong>";
         if (songEntry.attr) {
             label = label + " (" + songEntry.attr.join(", ") + ")";
@@ -169,6 +243,9 @@ class Library {
                 }
             }
         }
+        if (songEntry.date) {
+            label = label + ' <span class="tagDate">(' + songEntry.date + ')</span>';
+        }
         var songLabelSpan = document.createElement("span");
         songLabelSpan.className = "libSongLabel";
         songLabelSpan.innerHTML = label;
@@ -178,6 +255,27 @@ class Library {
         songLabelSpan.songEntry = songEntry;
         // just easier to put the dbName on each song entry
         songEntry.dbName = dbName;
+        songDiv.appendChild(songLabelSpan);
+
+        return songDiv;
+    }
+
+    buildStorageSaveDiv() {
+        // build the div for displaying a song entry
+        var songDiv = document.createElement("div");
+        songDiv.className = "libSong";
+
+        var saveSpan = document.createElement("span");
+        saveSpan.className = "smallButton";
+        saveSpan.innerHTML = `<img src="img/icon-playlist-delete.png" srcset="img2x/icon-playlist-delete.png 2x" width="32" height="20" alt="Delete">`;
+        songDiv.appendChild(saveSpan);
+
+        var label = "<strong>Save</strong>";
+        var songLabelSpan = document.createElement("span");
+        songLabelSpan.className = "libSongLabel";
+        songLabelSpan.innerHTML = label;
+        // click event for adding a song to local storage
+        songLabelSpan.onclick = (event) => this.saveClick(event)
         songDiv.appendChild(songLabelSpan);
 
         return songDiv;
@@ -218,6 +316,11 @@ class Library {
                 // prepare the song entry for searching
                 this.indexSong(song, cats);
             }
+            if (dbName2 == this.localDbName) {
+                var saveDiv = this.buildStorageSaveDiv();
+                parent.appendChild(saveDiv);
+            }
+
         } else {
             // it's a branch category that contains subcategories
             for (var cat in map) {
@@ -407,7 +510,11 @@ class Library {
             song.div.style.display = "block";
             // show its parent, if necessary
             this.incrementVisibleChildren(song.div.parentElement);
+            // something was shown
+            return true;
         }
+        // no change
+        return false;
     }
 
     hideSong(song) {
@@ -417,7 +524,11 @@ class Library {
             song.div.style.display = "none";
             // hide its parent, if necessary
             this.decrementVisibleChildren(song.div.parentElement);
+            // something was hidden
+            return true;
         }
+        // no change
+        return false;
     }
 
     songClick(event) {
@@ -425,74 +536,84 @@ class Library {
         var songEntry = event.currentTarget.songEntry;
         var id = songEntry.id;
         var dbName = songEntry.dbName;
-        // load the database and run a callback when it's loaded
-        this.queryDb(dbName, (db) => {
-            // load the song data from the db
-            var songs = db[id];
 
-            // remember whether we were playing before stopping playback
-            var playing = this.score.isPlaying();
-            this.score.stopPlayback();
+        if (dbName == this.localDbName) {
+            var songs = storage.getItem(id);
+            this.loadSongEntry(songs);
 
-            // put all this into one undo action
-            this.score.startActions();
+        } else {
+            // load the database and run a callback when it's loaded
+            this.queryDb(dbName, (db) => {
+                // load the song data from the db
+                var songs = db[id];
+                this.loadSongEntry(songs);
+            });
+        }
+    }
 
-            if (playlistEnabled()) {
-                // if the playlist is fully enabled then just add the first song and select it
-                this.score.playlist.addSongCode(songs[0], true, true, true);
+    loadSongEntry(songs) {
+        // remember whether we were playing before stopping playback
+        var playing = this.score.isPlaying();
+        this.score.stopPlayback();
 
-            } else if (playlistVisible()) {
-                // if the playlist is visible but not enabled, then clear it
-                // it must have been enabled by a previous multi-song library entry
-                this.score.playlist.clear(true);
-                if (songs.length == 1) {
-                    // if there's only one song in this library entry then hide the playlist
-                    // and set the song in the score
-                    hidePlaylist();
-                    this.score.setSong(songs[0], true, false);
+        // put all this into one undo action
+        this.score.startActions();
 
-                } else {
-                    // there are more songs to come, just add the first song and select it
-                    this.score.playlist.addSongCode(songs[0], true, true, true);
-                }
+        if (playlistEnabled()) {
+            // if the playlist is fully enabled then just add the first song and select it
+            this.score.playlist.addSongCode(songs[0], true, true, true);
 
-            } else if (songs.length > 1) {
-                // if the playlist is not visible and there is more than one song the
-                // show the playlist, but don't enable it automatically
-                showPlaylist(false);
-                // clear it for grins
-                this.score.playlist.clear(true);
-                // there are more songs to come, just add the first song and select it
-                this.score.playlist.addSongCode(songs[0], true, true, true);
+        } else if (playlistVisible()) {
+            // if the playlist is visible but not enabled, then clear it
+            // it must have been enabled by a previous multi-song library entry
+            this.score.playlist.clear(true);
+            if (songs.length == 1) {
+                // if there's only one song in this library entry then hide the playlist
+                // and set the song in the score
+                hidePlaylist();
+                this.score.setSong(songs[0], true, false);
 
             } else {
-                // if there's no playlist visible and only one song in the library entry then
-                // just set the song in the score
-                this.score.setSong(songs[0], true, false);
+                // there are more songs to come, just add the first song and select it
+                this.score.playlist.addSongCode(songs[0], true, true, true);
             }
 
-            if (songs.length > 1) {
-                // append the rest of the songs, without selecting them and appended after the first one
-                for (var i = 1; i < songs.length; i++) {
-                    this.score.playlist.addSongCode(songs[i], false, true, true);
-                }
+        } else if (songs.length > 1) {
+            // if the playlist is not visible and there is more than one song the
+            // show the playlist, but don't enable it automatically
+            showPlaylist(false);
+            // clear it for grins
+            this.score.playlist.clear(true);
+            // there are more songs to come, just add the first song and select it
+            this.score.playlist.addSongCode(songs[0], true, true, true);
 
-                // enable looping
-                this.score.playlist.setLooping(true);
+        } else {
+            // if there's no playlist visible and only one song in the library entry then
+            // just set the song in the score
+            this.score.setSong(songs[0], true, false);
+        }
 
-            } else if (playlistVisible()) {
-                // disable looping if it's just one song
-                this.score.playlist.setLooping(false);
+        if (songs.length > 1) {
+            // append the rest of the songs, without selecting them and appended after the first one
+            for (var i = 1; i < songs.length; i++) {
+                this.score.playlist.addSongCode(songs[i], false, true, true);
             }
 
-            // close the undo action
-            this.score.endActions();
+            // enable looping
+            this.score.playlist.setLooping(true);
 
-            // resume playing if it was playing before
-            if (playing) {
-                this.score.togglePlaying();
-            }
-        });
+        } else if (playlistVisible()) {
+            // disable looping if it's just one song
+            this.score.playlist.setLooping(false);
+        }
+
+        // close the undo action
+        this.score.endActions();
+
+        // resume playing if it was playing before
+        if (playing) {
+            this.score.togglePlaying();
+        }
     }
 
     queryDb(dbName, func) {

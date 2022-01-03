@@ -12,6 +12,7 @@
 <body onload="initModel()" onkeydown="keyDown()" onresize="doonresize()">
 <script type="text/javascript" language="javascript" src="js/refs.js"></script>
 <script type="text/javascript" language="javascript" src="js/util.js"></script>
+<script type="text/javascript" language="javascript" src="js/settings.js"></script>
 <script type="text/javascript" language="javascript" src="js/undo.js"></script>
 <script type="text/javascript" language="javascript" src="js/menus.js"></script>
 <script type="text/javascript" language="javascript" src="js/lib/float16.js"></script>
@@ -22,7 +23,9 @@
 <script type="text/javascript" language="javascript" src="js/ui.js"></script>
 <script type="text/javascript" language="javascript" src="js/ui-mixer.js"></script>
 <script type="text/javascript" language="javascript" src="js/ui-playlist.js"></script>
+<script type="text/javascript" language="javascript" src="js/storage.js"></script>
 <script type="text/javascript" language="javascript" src="js/ui-library.js"></script>
+<!--<script type="text/javascript" language="javascript" src="js/midi.js"></script>-->
 <script type="text/javascript" language="javascript">
 
 
@@ -41,6 +44,7 @@
 
     // song code update state
     var songCodeUpdateDelay = 1000;
+    var songUrlUpdateDelay = 9000;
     var songCodeUpdateTimeout = null;
     var updatedSongCode = null;
 
@@ -51,23 +55,40 @@
         }
 
         // set a timeout to update the code.  We don't want to do it with every single click.
-        songCodeUpdateTimeout = setTimeout(() => { actuallyUpdateSongCode() }, songCodeUpdateDelay);
+        songCodeUpdateTimeout = setTimeout(() => { actuallyUpdateSongCode1() }, songCodeUpdateDelay);
     }
 
-    function actuallyUpdateSongCode() {
+    function actuallyUpdateSongCode1() {
         // extract a song code from the UI
         updatedSongCode = getSongCode();
         // fill in the song code input box
         document.getElementById("songCode").value = updatedSongCode;
 
+        // set a timeout to update the code.  We don't want to do it with every single click.
+        songCodeUpdateTimeout = setTimeout(() => { actuallyUpdateSongCode2() }, songUrlUpdateDelay);
+    }
+
+    function actuallyUpdateSongCode2() {
         // update the URL depending on whether the playlist is open or not
         if (playlistVisible() && score.playlist.entries.length > 0) {
-            modifyUrlQueryParam("playlist", encodePlaylistToUrl(getPlaylistCode()));
+            var code = getPlaylistCode();
+            modifyUrlQueryParam("playlist", encodePlaylistToUrl(code));
             removeUrlQueryParam("song");
+            if (settings.autosave) {
+                // split the code by line and remove blank lines
+                var splitCodes = code.split("\n").filter(n => n)
+                storage.autosaveItem(splitCodes);
+                score.library.updateAutosave();
+            }
 
         } else {
-            modifyUrlQueryParam("song", urlEncodeString(updatedSongCode, false));
+            var code = getSongCode();
+            modifyUrlQueryParam("song", urlEncodeString(code, false));
             removeUrlQueryParam("playlist");
+            if (settings.autosave) {
+                storage.autosaveItem([code]);
+                score.library.updateAutosave();
+            }
         }
 
         // clear state

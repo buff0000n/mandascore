@@ -648,6 +648,7 @@
     .tagInstrument { color: #16a085; }
     .tagShot { color: #f02020; }
     .tagMisc { color: #2020f0; }
+    .tagDate { color: #4040B0; }
 
     /* omg it's so hard to get images for checkboxes */
     .sectionEnable {
