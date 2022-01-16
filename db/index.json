@@ -340,7 +340,8 @@
 				{"id": "5BGx-xc4mH8", "name": "Knock On Wood", "attr": ["Eddie Floyd"], "tags": ["Perfect"]},
 				{"id": "MAN_oRcVp10", "name": "Wot!", "attr": ["Captain Sensible"]},
 				{"id": "jR9x1NsoKN8", "name": "Do You Believe In Magic", "attr": ["The Lovin' Spoonfull"]},
-				{"id": "Yq1UjGB89Mo", "name": "Notorious", "attr": ["Duran Duran"]},
+				{"id": "Yq1UjGB89Mo", "name": "Notorious", "attr": ["Duran Duran"]}
+				, {"id": "STSRNOqVh00", "name": "Hungry Like The Wolf", "attr": ["Duran Duran"]},
 				{"id": "X2pkKSMHhEs", "name": "Disorder", "attr": ["Joy Division"]}
 				, {"id": "ffNtVtuAka4", "name": "Incubation", "attr": ["Joy Division"]},
 				{"id": "D3rG--31Dio", "name": "Relax", "attr": ["Frankie Goes To Hollywood"], "tags": ["Perfect"]},
@@ -1330,6 +1331,8 @@
 				, {"id": "sd5r6Eh7IhE", "name": "I Melt With You", "attr": ["Modern English"]}
 				, {"id": "WpYAHB0Jq2U", "name": "Lonely Town", "attr": ["Brandon Flowers"]}
 				, {"id": "CE7hjFK_8lc", "name": "Undercover Martyn", "attr": ["Two Door Cinema Club"], "tags": ["Double", "Perfect"]}
+				, {"id": "V4GcLeFFT-k", "name": "Trampoline", "attr": ["Shaed"], "tags": ["Perfect"]}
+				, {"id": "fCsmg5XqSyc", "name": "Overwhelmed", "attr": ["Royal & The Serpent"], "tags": ["Perfect"]}
 			]
 		}
 	},
@@ -1639,7 +1642,8 @@
 			"songs":[
 				{"id": "a9Fu4PJAscw", "name": "Secrets", "attr": ["OneRepublic"]},
 				{"id": "4530y2uufnc", "name": "You're BeautifuL", "attr": ["James BLunt"]},
-				{"id": "eSUqm8n_ugo", "name": "I'll Be Good", "attr": ["Jaymes Young"]},
+				{"id": "eSUqm8n_ugo", "name": "I'll Be Good", "attr": ["Jaymes Young"]}
+				, {"id": "Ch05q9qI9mQ", "name": "Infinity", "attr": ["Jaymes Young"]},
 				{"id": "Rz2TvLuwyvY", "name": "Crystals", "attr": ["Of Monsters And Men"], "tags": ["Perfect"]},
 				{"id": "EYMJ2FtFqBI", "name": "This Girl", "attr": ["Kungs vs Cookin' on 3 Burners"], "tags": ["Perfect"]},
 				{"id": "8gANEOxxs_Y", "name": "A Thousand Miles", "attr": ["Vanessa Carlton"]},
@@ -1709,6 +1713,7 @@
 				, {"id": "2GFBm7Owtss", "name": "Loverboy", "attr": ["A-Wall"], "tags": ["Perfect"]}
 				, {"id": "xAzSBsRPjpk", "name": "Yam Yam", "attr": ["No Vacation"]}
 				, {"id": "qTcrJ8O3as0", "name": "My Kind of Woman", "attr": ["Marc DeMarco"], "tags": ["Perfect"]}
+				, {"id": "sf3Ds_EO9Jc", "name": "Sound It Out", "attr": ["Rosemary Fairweather"], "tags": ["Perfect"]}
 			]
 		}
 	},
@@ -2348,6 +2353,7 @@
 				{"id": "wmDkL5MXYeg", "name": "Are We Still Young", "attr": ["Grant"]},
 				{"id": "fDOW7cSL0pc", "name": "Combine", "attr": ["Bustre"], "tags": ["Perfect"]},
 				{"id": "IZYvtNO9kVY", "name": "Swamp thing", "attr": ["Pegboard Nerds"], "tags": ["Triple"]}
+				, {"id": "kNU-fWCP6UM", "name": "Empty Bed", "attr": ["Saint Punk"], "tags": ["Perfect"]}
 			]
 		},
 		"Misc NCS":{
@@ -3693,6 +3699,7 @@
 					, {"id": "IdSloxlZKoU", "name": "Panic Cube", "attr": ["Custom Robo Battle Revolution"], "tags": ["Perfect"]}
 					, {"id": "fQbZKDWAoIA", "name": "Battle Cats intro theme", "tags": ["Perfect", "Sparse"]}
 					, {"id": "v2lvgaGQkwU", "name": "Battle Cats Battle Theme #1"}
+					, {"id": "I9jPUeULnWE", "name": "CM Beelzebub Dungeon 2", "attr": ["Closers Online"]}
 				]
 			}
 		}
@@ -4477,6 +4484,7 @@
 				, {"id": "Xqz4t0tWkSc", "name": "Boss Of Me", "attr": ["Malcom In The Middle theme song", "They Might Be Giants"]}
 				, {"id": "uqd5pPVabZw", "name": "Space 1999 Year 2 Opening"}
 				, {"id": "7EgFxUned8s", "name": "Invader Zim Theme"}
+				, {"id": "zvEaLWkfrYg", "name": "Stargate Atlantis theme", "tags": ["Perfect", "Adau"]}
 			]
 		},
 		"Misc Movie":{
