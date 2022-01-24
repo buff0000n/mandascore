@@ -196,7 +196,7 @@
 				{"id": "0A2Fz_8gQiI", "name": "Big in Japan", "attr": ["Alphaville"]},
 				{"id": "QPEVIxqo_TA", "name": "Africa", "attr": ["Toto"]},
 				{"id": "8GmHu0ZJBfE", "name": "A Fifth of Beethoven", "attr": ["Walter Murphy"]},
-				{"id": "Krv-M6D0B7o", "name": "In the Air", "attr": ["Tonight Phil Collins"], "tags": ["Perfect"]},
+				{"id": "Krv-M6D0B7o", "name": "In the Air Tonight", "attr": ["Phil Collins"], "tags": ["Perfect"]},
 				{"id": "ChVf327FFTM", "name": "Easy Lover", "attr": ["Phil Collins"], "tags": ["Perfect"]},
 				{"id": "uhBKtepOq9I", "name": "Land of Confusion", "attr": ["Genesis"]},
 				{"id": "p7ks3fSKjWI", "name": "Take On Me", "attr": ["a-ha"]},
@@ -726,6 +726,8 @@
 				, {"id": "k3o_YYvCGO8", "name": "Freezing Moon", "attr": ["Mayhem"], "tags": ["Druk"]},
 				{"id": "7k3MhSZK4u0", "name": "The Fountain", "attr": ["Bad Omens"], "tags": ["Perfect"]}
 				, {"id": "vxJ8a0gpmP8", "name": "The Death of Peace Of Mind", "attr": ["Bad Omens"]}
+				, {"id": "dTokiX5O0jM", "name": "Collapsing", "attr": ["Demon Hunter ft. Bjorn \"Speed\" Strid"]}
+				, {"id": "n8snMy5Sqvo", "name": "Getting Away With Murder", "attr": ["Papa Roach"], "tags": ["Perfect"]}
 			]
 		}
 	},
@@ -1333,6 +1335,8 @@
 				, {"id": "CE7hjFK_8lc", "name": "Undercover Martyn", "attr": ["Two Door Cinema Club"], "tags": ["Double", "Perfect"]}
 				, {"id": "V4GcLeFFT-k", "name": "Trampoline", "attr": ["Shaed"], "tags": ["Perfect"]}
 				, {"id": "fCsmg5XqSyc", "name": "Overwhelmed", "attr": ["Royal & The Serpent"], "tags": ["Perfect"]}
+				, {"id": "Uk_IZf2HG1A", "name": "Life Goes On", "attr": ["Oliver Tree"], "tags": ["Triple"]}
+				, {"id": "WsoifELh7QQ", "name": "carwash", "attr": ["striptease"], "tags": ["Perfect"]}
 			]
 		}
 	},
@@ -2000,6 +2004,7 @@
 				, {"id": "0MPH2-n4vD0", "name": "Magnolia", "attr": ["Playboi Carti"], "tags": ["Bombast"]}
 				, {"id": "qoIOxKceO5o", "name": "Money Do", "attr": ["Gucci Mane"], "tags": ["Perfect"]}
 				, {"id": "EcvVz09fZqU", "name": "Palm Angel", "attr": ["Eric IV"], "tags": ["Perfect"]}
+				, {"id": "JGMoPq5c19I", "name": "Nights", "attr": ["Frank Ocean"]}
 			]
 		}
 	},
@@ -2553,7 +2558,8 @@
 				{"id": "TC9DgsURFMs", "name": "Angel", "attr": ["Massive Attack"]},
 				{"id": "s9OGljiuK1Y", "name": "Burn Hard", "attr": ["Hollywood Burns"]},
 				{"id": "jjzIO8c5lLk", "name": "Days Go By", "attr": ["Dirty Vegas"], "tags": ["Double"]},
-				{"id": "EgRnvGpcZ2g", "name": "When You Grow Up, Your Heart Dies", "attr": ["Gunship"]},
+				{"id": "EgRnvGpcZ2g", "name": "When You Grow Up, Your Heart Dies", "attr": ["Gunship"]}
+				, {"id": "gEp321_qHgA", "name": "Tech Noir", "attr": ["GUNSHIP"]},
 				{"id": "uT3d-h_lcH8", "name": "Gas Gas Gas", "attr": ["Manuel"]},
 				{"id": "ucutMwtCxLQ", "name": "The Weekend", "attr": ["Michael Gray"]},
 				{"id": "zCN38T-eRiw", "name": "Fingerbang", "attr": ["MDK"]},
@@ -2682,6 +2688,7 @@
 				{"id": "ZQ5jqSPuAxc", "name": "Ballad of the Goddess", "attr": ["Legend of Zelda: Skyward Sword"]},
 				{"id": "dFBaeuQazfc", "name": "Zora's Domain", "attr": ["Legend of Zelda: Ocarina of Time"]},
 				{"id": "TeJd7_2FAI8", "name": "Stone Tower Temple", "attr": ["The Legend Of Zelda: Majora's Mask"]}
+				, {"id": "xQF6V6Bos4s", "name": "Realm Overworld", "attr": ["Legend of Zelda: Spirit Tracks"]}
 			]
 		},
 		"Mega Man":{
@@ -3340,6 +3347,7 @@
 				{"id": "_lPdpgZqXKY", "name": "Ponpon Sh*t", "attr": ["Cyberpunk 2077"]},
 				{"id": "9J4zomj9lkA", "name": "Flying Heads", "attr": ["Cyberpunk 2077"], "tags": ["Perfect"]},
 				{"id": "xgLXmDc0Ob4", "name": "Never Fade Away", "attr": ["Samurai", "Cyberpunk 2077"], "tags": ["Perfect"]}
+				, {"id": "nERbXyqAdds", "name": "Antagonistic", "attr": ["Cyberpunk 2077"], "tags": ["Perfect", "Sparse"]}
 			]
 		},
 		"Grand Theft Auto series":{
@@ -4913,6 +4921,7 @@
 				, {"id": "ox-emIlBl_c", "name": "Last Summer", "attr": ["Anri/\u674f\u91cc"]}
 				, {"id": "ai2I7kF33_s", "name": "Jolly Jolly", "attr": ["JiLL-Decoy association"]}
 				, {"id": "VySdMmxbqTQ", "name": "Endless Tears", "attr": ["Cliff Edge"]}
+				, {"id": "yF8lkrZN1SE", "name": "Stay With Me", "attr": ["Miki Matsubura"]}
 			]
 		},
 		"Misc I Don't Know Which Letter Pop":{
@@ -4955,6 +4964,7 @@
 				, {"id": "z18HyW_zP0w", "name": "Fish upon the sky/\u0e02\u0e49\u0e32\u0e07\u0e46 Ost.\u0e1b\u0e25\u0e32\u0e1a\u0e19\u0e1f\u0e49\u0e32", "attr": ["Louis Thanawin"]}
 				, {"id": "ulnvCFqaRgM", "name": "Love of a Lifetime/\u4e00\u751f\u6240\u611b", "attr": ["\u76e7\u51a0\u5ef7"]}
 				, {"id": "JxRc1RegXkU", "name": "\u8ff7\u5931\u5e7b\u5883", "attr": ["\u8303\u8339"], "tags": ["Perfect"]}
+				, {"id": "wvnvMwITp9A", "name": "Super Idol/\u70ed\u7231105\u00b0C\u7684\u4f60", "attr": ["\u963f\u8086"]}
 			]
 		}
 	},
@@ -5415,6 +5425,7 @@
 				, {"id": "tyGdSWr_wzs", "name": "My Mother Told Me", "attr": ["Song of the Vikings"]}
 				, {"id": "n4mlC-X_7kU", "name": "Cherry Pepsi", "attr": ["Saint Pepsi"], "tags": ["Perfect"]}
 				, {"id": "z4tsojstf1U", "name": "Will Power", "attr": ["Something Rotten", "Christian Borle"]}
+				, {"id": "3iTAt1NQZVc", "name": "Dawson's Christian", "attr": ["Carmen Miranda's Ghost"], "tags": ["Plogg"]}
 			]
 		}
 	}
