@@ -994,6 +994,30 @@ class Playlist {
             this.score.endActions();
         }
     }
+
+    generateWav(linkDiv) {
+        this.score.stopPlayback();
+
+        this.score.startRenderingWav(this.entries.length, () => {
+
+            this.score.startActions();
+
+            for (var s = 0; s < this.entries.length; s++) {
+                this.select(this.entries[s], true, false, true);
+                // console.log("Rendering " + this.entries[s].song.name);
+                this.score.renderWav(s * 8);
+            }
+
+            this.score.endActions();
+            doUndo();
+
+            this.score.soundPlayer.finishRendering((buffer) => {
+                var hrefElement = convertToWavLink(buffer, this.entries[0].song.name);
+                linkDiv.innerHTML = "";
+                linkDiv.appendChild(hrefElement);
+            });
+        });
+    }
 }
 
 class PlaylistEntry {

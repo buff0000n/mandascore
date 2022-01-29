@@ -3,7 +3,7 @@
 var audioContext;
 
 function initAudioContext() {
-    // init the audio contest if it's not initialized
+    // init the audio context if it's not initialized
     if (audioContext == null) {
         window.AudioContext = window.AudioContext || window.webkitAudioContext;
         audioContext = new AudioContext();
@@ -60,10 +60,10 @@ class SoundEntry {
         this.triggerLater(0);
     }
 
-    triggerLater(time=0) {
+    triggerLater(time=0, context=audioContext) {
         if (time > 0) {
             // calculate the sound start time in the audio context's terms
-            var triggerTime = audioContext.currentTime + (time/1000);
+            var triggerTime = context.currentTime + (time/1000);
         } else {
             // just start the source immediately and forget it
             var triggerTime = 0
@@ -75,11 +75,11 @@ class SoundEntry {
 
         } else {
             // create the sound and schedule it
-            this.triggerAtTime(triggerTime);
+            this.triggerAtTime(triggerTime, context);
         }
     }
 
-    triggerAtTime(triggerTime) {
+    triggerAtTime(triggerTime, context=audioContext) {
         // combine section volume, master volume, and individual sound mix volume
         var gainValue = this.volume * this.mixVolume * this.masterVolume;
 
@@ -89,7 +89,7 @@ class SoundEntry {
         }
 
         // create a source node
-        var source = audioContext.createBufferSource();
+        var source = context.createBufferSource();
         source.buffer = this.buffers[this.bufferIndex];
         this.bufferIndex++;
         if (this.bufferIndex >= this.buffers.length) {
@@ -97,15 +97,16 @@ class SoundEntry {
         }
 
         // create a volume node
-        var gain = audioContext.createGain();
+        var gain = context.createGain();
         // set the volume on the gain node
         gain.gain.value = gainValue;
 
         // connect the nodes to the audio context output
         source.connect(gain);
-        gain.connect(audioContext.destination);
+        gain.connect(context.destination);
 
         // schedule the sound
+        // console.log("Playing at " + triggerTime + ": " + this.sourceName);
         source.start(triggerTime);
 
         // hold on to the source and gain nodes in case we have to cancel it or stop it
@@ -220,7 +221,7 @@ class SoundBankSource {
         }
     }
 
-    playLater(index, time) {
+    playLater(index, time, context=audioContext) {
         if (this.mono) {
             // if this bank is mono then schedule any currently playing sounds to stop
             for (var i = 0; i < this.sounds.length; i++) {
@@ -228,7 +229,7 @@ class SoundBankSource {
             }
         }
         // play the sound
-        this.sounds[index].triggerLater(time);
+        this.sounds[index].triggerLater(time, context);
     }
 
     stop() {
@@ -413,7 +414,7 @@ class SoundBank {
         this.playLater(index, 0);
     }
 
-    playLater(index, time) {
+    playLater(index, time, context=audioContext) {
         // check if the given sound is enabled
         if (this.enabled[index]) {
             // make sure we're initialized.  Regardless of whether it's from clicking a note or starting playback,
@@ -421,7 +422,7 @@ class SoundBank {
             // audio context
             this.initialize();
             if (this.currentSource) {
-                this.currentSource.playLater(index, time);
+                this.currentSource.playLater(index, time, context);
             }
             return true;
 
@@ -566,7 +567,8 @@ class SoundPlayer {
         // find the correct section
         var bank = this.indexToBank[index];
         // play the sound, reindexing according to the section's starting row index
-        return bank.playLater(index - bank.rowStart, time);
+        // use the offline context if present, otherwise play live
+        return bank.playLater(index - bank.rowStart, time, this.offlineCtx ? this.offlineCtx : audioContext);
     }
 
     clearStops() {
@@ -587,5 +589,24 @@ class SoundPlayer {
     playBzzt(index) {
         // play the error sound immediately
         this.bzzt.play(0);
+    }
+
+    startRendering(duration, callback) {
+        // assume 44100 sample rate
+        var sampleRate = 44100;
+
+        this.initialize(() => {
+            this.offlineCtx = new OfflineAudioContext(2, duration * sampleRate, sampleRate);
+            callback();
+        });
+    }
+
+    finishRendering(callback) {
+        console.log("Started audio rendering");
+        this.offlineCtx.startRendering().then((buffer) => {
+            console.log("Finished audio rendering");
+            this.offlineCtx = null;
+            callback(buffer);
+        });
     }
 }

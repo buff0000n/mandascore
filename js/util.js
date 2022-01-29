@@ -257,6 +257,56 @@ class imageLoader {
 }
 
 //==============================================================
+// WAV
+//==============================================================
+
+function convertToWavLink(buffer, name) {
+    // build a wav file link
+    var src = makeWavDownloadLink(buffer);
+
+    var hrefElement = document.createElement("a");
+
+    // generate a file name
+    var fileName = name + ".wav";
+
+    var a = document.createElement("a");
+    a.download = fileName;
+    a.href = src;
+    a.innerHTML = fileName;
+    a.onclick = doWavClick;
+    return a;
+}
+
+function doWavClick(e) {
+    var e = e || window.event;
+    if (e.altKey) {
+        // super-secret debug mode: alt-click on a wav link to create a player instead of downloading it
+        e.preventDefault();
+
+	    var link = e.currentTarget;
+
+	    if (link.altClicked) {
+	        return;
+	    }
+	    link.altClicked = true;
+
+	    var src = link.href;
+
+	    var audio = document.createElement("audio");
+	    audio.controls = true;
+	    audio.autoplay = true;
+
+	    var source = document.createElement("source");
+	    source.src = link.href;
+	    source.type = "audio/wav";
+	    audio.appendChild(source);
+
+	    var parent = link.parentNode;
+	    parent.appendChild(audio);
+    }
+}
+
+//==============================================================
 // URL stuff
 //==============================================================
 

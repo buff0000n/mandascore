@@ -126,6 +126,32 @@ function runPngMenu(button) {
     score.generatePng(linkDiv);
 }
 
+function runWavMenu(button) {
+    // clear all menus
+    clearMenus();
+    // create the menu div and set some props
+    var div = document.createElement("div");
+    div.className = "menu";
+    div.button = button;
+
+    // add the container div with some default content
+    var html = `<div class="pngLinkDiv">...</div>`;
+    div.innerHTML = html;
+
+    // show it like a menu, but it's just a popup
+    showMenu(div, button.parentElement, button);
+
+    // get the container div
+    var linkDiv = getFirstChild(div, "pngLinkDiv");
+
+    // kick off the wav generation in the background
+    if (playlistVisible()) {
+        score.playlist.generateWav(linkDiv);
+    } else {
+        score.generateWav(linkDiv);
+    }
+}
+
 function playButton(button) {
     // chrome is doing strange things with clicked buttons so just unfocus it
     button.blur();
@@ -1038,6 +1064,13 @@ class Measure {
                     );
                 }
             }
+        }
+    }
+
+    renderWav(offset, callback) {
+        for (var t = 0; t < 16; t++) {
+            // todo: it's in milliseconds for some reason?
+            this.playAudioForTime(t, (offset + (t/8.0)) * 1000);
         }
     }
 
@@ -2183,6 +2216,32 @@ class Score {
         var link = convertToPngLink(canvas, this.title);
         linkDiv.innerHTML = "";
         linkDiv.appendChild(link);
+    }
+
+    generateWav(linkDiv) {
+        this.stopPlayback();
+
+        this.startRenderingWav(1, () => {
+            this.renderWav(0);
+            this.soundPlayer.finishRendering((buffer) => {
+                var hrefElement = convertToWavLink(buffer, this.title)
+                linkDiv.innerHTML = "";
+                linkDiv.appendChild(hrefElement);
+            });
+        });
+    }
+
+    startRenderingWav(numSongs, callback) {
+        // just add two seconds on the end for the last notes to finish playing
+        this.soundPlayer.startRendering((numSongs * 8) + 2, () => {
+            callback();
+        });
+    }
+
+    renderWav(offset=0) {
+        for (var m = 0; m < 4; m++) {
+            this.measures[m].renderWav(offset + (m * 2));
+        }
     }
 }
 
