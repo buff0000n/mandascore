@@ -63,6 +63,7 @@
 				{"id": "HOIzdcUz_yw", "name": "Codex", "attr": ["Tenno Tunes Vol 2", "nostraightanswer"], "tags": ["Double", "Perfect"]},
 				{"id": "-r4Bw9_MDU4", "name": "Umbral Impetus", "attr": ["Rahetalius", "Warframe: No Endgame"]},
 				{"id": "gYISju-Zgkk", "name": "Scream Out", "attr": ["Divide Music", "Tenno Tunes"], "tags": ["Double"]}
+				, {"id": "vzsP0wR2QM8", "name": "Dream Again", "attr": ["Miracle of Sound", "Warframe Song"], "tags": ["Perfect"]}
 			]
 		}
 	},
@@ -463,6 +464,7 @@
 				{"id": "ji6CqX_6HI4", "name": "The Attack of the Dead Men", "attr": ["Sabaton"]},
 				{"id": "Z2_BaszVDkE", "name": "Great War", "attr": ["Sabaton"]}
 				, {"id": "ycUdHgYYNh0", "name": "Sparta", "attr": ["Sabaton"]}
+				, {"id": "vfO3iSATz9Q", "name": "Shiroyama", "attr": ["Sabaton"]}
 			]
 		},
 		"Amon Anarth":{
@@ -727,7 +729,9 @@
 				{"id": "7k3MhSZK4u0", "name": "The Fountain", "attr": ["Bad Omens"], "tags": ["Perfect"]}
 				, {"id": "vxJ8a0gpmP8", "name": "The Death of Peace Of Mind", "attr": ["Bad Omens"]}
 				, {"id": "dTokiX5O0jM", "name": "Collapsing", "attr": ["Demon Hunter ft. Bjorn \"Speed\" Strid"]}
-				, {"id": "n8snMy5Sqvo", "name": "Getting Away With Murder", "attr": ["Papa Roach"], "tags": ["Perfect"]}
+				, {"id": "n8snMy5Sqvo", "name": "Getting Away With Murder", "attr": ["Papa Roach"], "tags": ["Perfect"]},
+				{"id": "4QtGvvBCSAY", "name": "Strange Days", "attr": ["Health"], "tags": ["Double"]}
+				, {"id": "DSUP-Qd4lNs", "name": "Feel Nothing", "attr": ["Health"]}
 			]
 		}
 	},
@@ -1283,7 +1287,6 @@
 				{"id": "uZZ6K1u0wWo", "name": "Monsters", "attr": ["All Time Low"], "tags": ["Perfect"]},
 				{"id": "M9te9WKRh9M", "name": "Still Feel", "attr": ["Half Alive"]},
 				{"id": "YOo31lY4MJE", "name": "aawake at night", "attr": ["half\u2022alive"], "tags": ["Double"]},
-				{"id": "4QtGvvBCSAY", "name": "Strange Days", "attr": ["Health"], "tags": ["Double"]},
 				{"id": "b9FbVvd1Rg8", "name": "Never Wanna Fall in Love With U", "attr": ["nelward"]},
 				{"id": "XvNBsctY3lo", "name": "Static", "attr": ["Veela"], "tags": ["Perfect"]},
 				{"id": "BRaukkTEsHc", "name": "Lost Cause", "attr": ["KeeyHoopla", "grandson"]},
@@ -1337,6 +1340,7 @@
 				, {"id": "fCsmg5XqSyc", "name": "Overwhelmed", "attr": ["Royal & The Serpent"], "tags": ["Perfect"]}
 				, {"id": "Uk_IZf2HG1A", "name": "Life Goes On", "attr": ["Oliver Tree"], "tags": ["Triple"]}
 				, {"id": "WsoifELh7QQ", "name": "carwash", "attr": ["striptease"], "tags": ["Perfect"]}
+				, {"id": "uOSq-N_nZCo", "name": "Concrete", "attr": ["Lovejoy"]}
 			]
 		}
 	},
@@ -1538,6 +1542,14 @@
 				, {"id": "vRJepZtD86M", "name": "Kiss It Better", "attr": ["Rihanna"], "tags": ["Perfect"]}
 			]
 		},
+		"Selena Gomez":{
+			"dbName":"Pop",
+			"songs":[
+				{"id": "T_BQDREQAfc", "name": "Back To You", "attr": ["Selena Gomez"]},
+				{"id": "M-lC86Yo0Cg", "name": "Lose You To Love Me", "attr": ["Selena Gomez"]}
+				, {"id": "A7uhROaln08", "name": "Love You Like A Love Song", "attr": ["Selena Gomez"]}
+			]
+		},
 		"Misc Pop":{
 			"dbName":"Pop.MiscPop",
 			"songs":[
@@ -1553,8 +1565,6 @@
 				{"id": "r19g_121Ub4", "name": "Walking Trophy", "attr": ["HoodCelebrity"], "tags": ["Perfect"]},
 				{"id": "JCpqydYBCE0", "name": "Music", "attr": ["Madonna"], "tags": ["Perfect"]},
 				{"id": "fjLVT-qhK9g", "name": "Material Girl", "attr": ["Madonna"], "tags": ["Perfect"]},
-				{"id": "T_BQDREQAfc", "name": "Back To You", "attr": ["Selena Gomez"]},
-				{"id": "M-lC86Yo0Cg", "name": "Lose You To Love Me", "attr": ["Selena Gomez"]},
 				{"id": "DctzRtbmxKA", "name": "Die Young", "attr": ["Sylvan Esso"]},
 				{"id": "BDt7bo5wPBU", "name": "Pynk", "attr": ["Janelle Monae"]},
 				{"id": "eJQ9ZLRDGhU", "name": "I Want It That Way", "attr": ["Backstreet Boys"]}
@@ -2642,6 +2652,7 @@
 				, {"id": "QkfLza25-a4", "name": "Bright Red Lips", "attr": ["Young Bear"]}
 				, {"id": "dvkP99YDM9k", "name": "Rhythmkane", "attr": ["Neon Park"], "tags": ["Perfect"]}
 				, {"id": "eotW-gWcbX0", "name": "stress", "attr": ["CRIM3S"], "tags": ["Perfect"]}
+				, {"id": "lPbvIvo3_Mo", "name": "Like You!", "attr": ["fusq"]}
 			]
 		}
 	},
@@ -3490,7 +3501,8 @@
 					{"id": "qZfZRytRB4c", "name": "Pressure Cooker", "attr": ["VVVVV"], "tags": ["Perfect"]},
 					{"id": "bcxqboC_rAY", "name": "Anduin Theme", "attr": ["World of Warcraft: Legion"]},
 					{"id": "XPSnbQy49Ig", "name": "City of Gold/Zandalari intro", "attr": ["World Of Warcraft: Battle For Azeroth"]},
-					{"id": "Hh6yYN9n1zE", "name": "Proof of a Hero", "attr": ["Monster Hunter World"]},
+					{"id": "Hh6yYN9n1zE", "name": "Proof of a Hero", "attr": ["Monster Hunter World"]}
+					, {"id": "8OU_fXRmXeo", "name": "Seliana Day Theme", "attr": ["Monster Hunter: World: Iceborne"]},
 					{"id": "1uHUBEjZmOs", "name": "The Port of Adia", "attr": ["Turok 2 Seeds of Evil"], "tags": ["Filled"]},
 					{"id": "UhhMPpRVPGI", "name": "That Slippery Little Hutt of Mine", "attr": ["Star Wars: The Old Republic"]},
 					{"id": "MRV8u0nqf64", "name": "Wii Shopping Channel music"},
@@ -3536,6 +3548,7 @@
 					{"id": "uJ8Y7vWzE_0", "name": "The Last Of Us theme song"}
 					, {"id": "H78Bj6fCpYY", "name": "1NF3$+@+!0N", "attr": ["DM Dokuro", "Terraria Calamity Mod"]}
 					, {"id": "-yOFqdKLvrg", "name": "Liyue/Jade Moon Upon A Sea Of Clouds", "attr": ["Genshin Impact"], "tags": ["Perfect"]}
+					, {"id": "qZutJ6ku7k4", "name": "Die For You", "attr": ["Grabbitz", "Valorant Champions 2021"], "tags": ["Double"]}
 				]
 			},
 			"Games I've never heard of":{
@@ -3839,6 +3852,7 @@
 				{"id": "BWopwZ1LknY", "name": "\u9032\u6483st-hrn-egt20130629\u5de8\u4eba", "attr": ["Attack on Titan OST 2"]},
 				{"id": "eoaPIPmcV1Y", "name": "Vogel im Kafig", "attr": ["Attack on Titan"], "tags": ["Adau"]},
 				{"id": "U1X3pSKrWSA", "name": "My War", "attr": ["Attack On Titan opening 4"]}
+				, {"id": "S86A3JUFqSY", "name": "The Rumbling", "attr": ["Attack on Titan season 4 opening 2"]}
 			]
 		},
 		"Re:CREATORS":{
@@ -4224,7 +4238,7 @@
 				{"id": "gOs6080hKuA", "name": "Ring My Bell", "attr": ["Heaven's Lost Property opening 1"]},
 				{"id": "ShuZpdYTjr4", "name": "\u707c\u3051\u843d\u3061\u306a\u3044\u7ffc", "attr": ["Charlotte ending"], "tags": ["Perfect"]},
 				{"id": "BgxyV-_WXN8", "name": "Kimetsu no Yaiba opening", "attr": ["\u7d05\u84ee\u83ef by LiSA"]},
-				{"id": "GSlZe6TPLjA", "name": "Gintama theme", "attr": ["Warframe Mandachord"]},
+				{"id": "GSlZe6TPLjA", "name": "Gintama theme"},
 				{"id": "07PNiyKmllE", "name": "Samurai Heart/Some Like it Hot", "attr": ["Gintama ending 17"]},
 				{"id": "sXnAIHuNxKI", "name": "Fireworks", "attr": ["Uchiage Hanabi"], "tags": ["Double"]},
 				{"id": "6ti0OGYzSwM", "name": "Sekai Wa Koi Ni Ochiteiru", "attr": ["Ao Haru Ride opening"]},
@@ -4915,6 +4929,7 @@
 				{"id": "wSPGReTrumw", "name": "Emotional Prism/\u611f\u60c5\u7684\u306a\u30d7\u30ea\u30ba\u30e0", "attr": ["Bigwave"]},
 				{"id": "eGQ7XB9nIeE", "name": "Fighter", "attr": ["Kana-Boon"]},
 				{"id": "SZmIDB4_08c", "name": "Sparkle", "attr": ["RADWIMPS"]}
+				, {"id": "Ga79TW4fSX4", "name": "\u30bb\u30d7\u30c6\u30f3\u30d0\u30fc\u3055\u3093", "attr": ["RADWIMPS"]}
 				, {"id": "-TREMgnN5Yw", "name": "Mela!", "attr": ["\u7dd1\u9ec4\u8272\u793e\u4f1a"]}
 				, {"id": "nY8hZPyjzT8", "name": "Natural", "attr": ["Moe Shop", "Ace Hashimoto"]}
 				, {"id": "b-kfkFdcTjM", "name": "Nippon Egao Hyakkei/\u30cb\u30c3\u30dd\u30f3\u7b11\u9854\u767e\u666f", "attr": ["Momoclo Tei Ichimon/Momoiro Clover Z"], "tags": ["Perfect"]}
@@ -5255,6 +5270,7 @@
 				{"id": "_Og8K_niz3I", "name": "Orange Blossom Special", "attr": ["Johnny Cash"], "tags": ["Plogg"]},
 				{"id": "UnjxgUtsONw", "name": "The Night The Lights Went Out In Georgia", "attr": ["Reba McEntire"]},
 				{"id": "tcZYjcjziEA", "name": "Homeward Looking Angel", "attr": ["Pam Tillis"]}
+				, {"id": "Ap42_U3rRnU", "name": "Neon Moon", "attr": ["Brooks & Dunn"]}
 			]
 		},
 		"Unlike Pluto":{
