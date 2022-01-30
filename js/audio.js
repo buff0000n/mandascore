@@ -118,12 +118,12 @@ class SoundEntry {
         this.stopLater(0);
     }
 
-    stopLater(time=0) {
+    stopLater(time=0, context=audioContext) {
         // if we have a scheduled source then cancel it
         if (this.lastSource != null) {
             if (time > 0) {
                 // calculate the sound start time in the audio context's terms
-                var t = audioContext.currentTime + (time/1000);
+                var t = context.currentTime + (time/1000);
                 // schedule the stop
                 // We can't just stop the sound instantly because there will be an audio pop
                 // this.lastSource.stop(t);
@@ -225,7 +225,7 @@ class SoundBankSource {
         if (this.mono) {
             // if this bank is mono then schedule any currently playing sounds to stop
             for (var i = 0; i < this.sounds.length; i++) {
-                this.sounds[i].stopLater(time);
+                this.sounds[i].stopLater(time, context);
             }
         }
         // play the sound
