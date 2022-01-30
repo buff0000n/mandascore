@@ -138,7 +138,7 @@ function runWavMenu(button) {
     };
 
     // add the container div with some default content
-    var html = `<div class="pngLinkDiv">Building sequence...</div>`;
+    var html = `<div class="pngLinkDiv">Initializing...</div>`;
     div.innerHTML = html;
 
     // show it like a menu, but it's just a popup
@@ -2248,6 +2248,7 @@ class Score {
         });
 
         var bar = new ProgressBar2();
+        linkDiv.style.textAlign = "center";
         linkDiv.innerHTML = `Rendering audio...<br/><div class="progbar"></div>`;
         getFirstChild(linkDiv, "progbar").appendChild(bar.loadingBox);
         bar.show();
@@ -2266,7 +2267,9 @@ class Score {
         progressCheck();
     }
 
-    renderWav(offset=0) {
+    renderWav(linkDiv, offset=0) {
+        linkDiv.style.textAlign = "left";
+        linkDiv.innerHTML = "Sequencing " + this.title + "...";
         for (var m = 0; m < 4; m++) {
             this.measures[m].renderWav(offset + (m * 2));
         }

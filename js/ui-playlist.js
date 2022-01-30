@@ -1008,7 +1008,7 @@ class Playlist {
             var renderSongCallback = () => {
                 this.select(entryList[index], true, false, true);
                 // console.log("Rendering " + this.entries[s].song.name);
-                this.score.renderWav(index * 8);
+                this.score.renderWav(linkDiv, index * 8);
 
                 index += 1;
                 if (index < entryList.length) {
