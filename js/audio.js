@@ -591,22 +591,36 @@ class SoundPlayer {
         this.bzzt.play(0);
     }
 
-    startRendering(duration, callback) {
+    initRendering(duration, callback) {
         // assume 44100 sample rate
         var sampleRate = 44100;
 
         this.initialize(() => {
             this.offlineCtx = new OfflineAudioContext(2, duration * sampleRate, sampleRate);
+            this.renderingDuration = duration;
             callback();
         });
     }
 
-    finishRendering(callback) {
+    startRendering(callback) {
         console.log("Started audio rendering");
         this.offlineCtx.startRendering().then((buffer) => {
-            console.log("Finished audio rendering");
-            this.offlineCtx = null;
-            callback(buffer);
+            // make sure it wasn't canceled
+            if (this.offlineCtx) {
+                console.log("Finished audio rendering");
+                this.offlineCtx = null;
+                callback(buffer);
+            }
         });
+        return () => { return this.offlineCtx ? this.offlineCtx.currentTime : 0; };
+    }
+
+    cancelRendering() {
+        if (this.offlineCtx) {
+            console.log("Canceling audio rendering");
+            this.offlineCtx.suspend(this.offlineCtx.currentTime + 1);
+            this.offlineCtx = null;
+            this.renderingDuration = null;
+        }
     }
 }

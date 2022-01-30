@@ -133,9 +133,12 @@ function runWavMenu(button) {
     var div = document.createElement("div");
     div.className = "menu";
     div.button = button;
+    div.cleanup = () => {
+        score.soundPlayer.cancelRendering();
+    };
 
     // add the container div with some default content
-    var html = `<div class="pngLinkDiv">...</div>`;
+    var html = `<div class="pngLinkDiv">Building sequence...</div>`;
     div.innerHTML = html;
 
     // show it like a menu, but it's just a popup
@@ -2221,21 +2224,46 @@ class Score {
     generateWav(linkDiv) {
         this.stopPlayback();
 
-        this.startRenderingWav(1, () => {
+        this.initRendering(1, () => {
             this.renderWav(0);
-            this.soundPlayer.finishRendering((buffer) => {
-                var hrefElement = convertToWavLink(buffer, this.title)
-                linkDiv.innerHTML = "";
-                linkDiv.appendChild(hrefElement);
-            });
+            this.doRendering(linkDiv, this.title);
         });
     }
 
-    startRenderingWav(numSongs, callback) {
+    initRendering(numSongs, callback) {
         // just add two seconds on the end for the last notes to finish playing
-        this.soundPlayer.startRendering((numSongs * 8) + 2, () => {
+        this.soundPlayer.initRendering((numSongs * 8) + 2, () => {
             callback();
         });
+    }
+
+    doRendering(linkDiv, title, progressDescFunc=null) {
+        var progressFunc = this.soundPlayer.startRendering((buffer) => {
+            linkDiv.innerHTML = "Creating WAV file...";
+            setTimeout(() => {
+                var hrefElement = convertToWavLink(buffer, this.title)
+                linkDiv.innerHTML = "";
+                linkDiv.appendChild(hrefElement);
+            }, 10);
+        });
+
+        var bar = new ProgressBar2();
+        linkDiv.innerHTML = `Rendering audio...<br/><div class="progbar"></div>`;
+        getFirstChild(linkDiv, "progbar").appendChild(bar.loadingBox);
+        bar.show();
+
+        var progressCheck = () => {
+            var time = progressFunc();
+            var progress = Math.min(time / this.soundPlayer.renderingDuration, 1);
+            bar.setProgress(progress);
+            if (progressDescFunc) {
+                bar.setLabel(progressDescFunc(time));
+            }
+            if (progress < 1) {
+                setTimeout(progressCheck, 100);
+            }
+        }
+        progressCheck();
     }
 
     renderWav(offset=0) {

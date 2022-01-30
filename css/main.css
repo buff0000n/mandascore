@@ -459,6 +459,7 @@
         border-radius: 1ex;
         margin: 1ex 1ex 1ex 1ex;
         display: inline-block;
+        width: 40ex;
     }
 
     #scoreArea {
@@ -594,6 +595,9 @@
         position: absolute;
         width: 0%;
         left: 0;
+    }
+    .progressBar2 {
+        background: #405080;
     }
 
     /* graying everthing out when disabled */

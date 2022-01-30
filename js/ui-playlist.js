@@ -998,24 +998,35 @@ class Playlist {
     generateWav(linkDiv) {
         this.score.stopPlayback();
 
-        this.score.startRenderingWav(this.entries.length, () => {
+        this.score.initRendering(this.entries.length, () => {
 
             this.score.startActions();
 
-            for (var s = 0; s < this.entries.length; s++) {
-                this.select(this.entries[s], true, false, true);
+            var entryList = this.entries.slice();
+            var index = 0;
+
+            var renderSongCallback = () => {
+                this.select(entryList[index], true, false, true);
                 // console.log("Rendering " + this.entries[s].song.name);
-                this.score.renderWav(s * 8);
-            }
+                this.score.renderWav(index * 8);
 
-            this.score.endActions();
-            doUndo();
+                index += 1;
+                if (index < entryList.length) {
+                    setTimeout(renderSongCallback, 10);
 
-            this.score.soundPlayer.finishRendering((buffer) => {
-                var hrefElement = convertToWavLink(buffer, this.entries[0].song.name);
-                linkDiv.innerHTML = "";
-                linkDiv.appendChild(hrefElement);
-            });
+                } else {
+                    this.score.endActions();
+                    doUndo();
+
+                    var title = entryList[0].song.name;
+                    this.score.doRendering(linkDiv, title, (time) => {
+                        index = Math.floor(time / 8);
+                        return index < entryList.length ? entryList[index].song.name : "";
+                    });
+                }
+            };
+
+            renderSongCallback();
         });
     }
 }
