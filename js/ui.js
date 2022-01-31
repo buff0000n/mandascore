@@ -2225,7 +2225,7 @@ class Score {
         this.stopPlayback();
 
         this.initRendering(1, () => {
-            this.renderWav(0);
+            this.renderWav(linkDiv, 0);
             this.doRendering(linkDiv, this.title);
         });
     }
