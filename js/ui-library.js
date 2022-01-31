@@ -622,67 +622,11 @@ class Library {
     }
 }
 
-class Loader {
+class Loader extends ProgressBar {
     constructor() {
+        super();
         // AJAX request object
         this.request = null;
-        this.lastAmount = -1;
-        // build the UI
-        this.buildUI();
-    }
-
-    buildUI() {
-        // overall container
-        this.loadingBox = document.createElement("div");
-        this.loadingBox.className = "loadingBox";
-        // we need something in it to give it height
-        this.loadingBox.innerHTML = "&nbsp;";
-
-        this.progressBar = document.createElement("div");
-        this.progressBar.className = "loadingProgressPos";
-        // we need something in it to give it height
-        this.progressBar.innerHTML = "&nbsp;";
-        this.loadingBox.appendChild(this.progressBar);
-
-        // label
-        this.labelBar = document.createElement("div");
-        this.labelBar.className = "loadingLabel";
-        this.loadingBox.appendChild(this.labelBar);
-
-        // start hidden
-        this.hide();
-    }
-
-    hide() {
-        this.loadingBox.style.display = "none";
-    }
-
-    show() {
-        this.loadingBox.style.display = "inline-block";
-    }
-
-    setProgress(amount) {
-        // short circuit if there's no change
-        if (amount == this.lastAmount) {
-            return;
-        }
-        // set the progress bar width
-        this.progressBar.style.width = (amount * 100) + "%";
-
-        if (amount == 1) {
-            // automatically hide at 100%
-            this.hide();
-
-        } else {
-            // otherwise, make sure it's showing
-            this.show();
-        }
-        // save amount
-        this.lastAmount = amount;
-    }
-
-    setLabel(text) {
-        this.labelBar.innerHTML = text;
     }
 
     load(label, path, callback) {

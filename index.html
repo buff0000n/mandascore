@@ -17,6 +17,7 @@
 <script type="text/javascript" language="javascript" src="js/lib/float16.js"></script>
 <script type="text/javascript" language="javascript" src="js/song.js"></script>
 <script type="text/javascript" language="javascript" src="js/lib/buffer-loader.js"></script>
+<script type="text/javascript" language="javascript" src="js/lib/bufferToWave.js"></script>
 <script type="text/javascript" language="javascript" src="js/audio.js"></script>
 <script type="text/javascript" language="javascript" src="js/lib/lz-string.js"></script>
 <script type="text/javascript" language="javascript" src="js/ui.js"></script>
@@ -267,6 +268,13 @@
         runPngMenu(button);
     }
 
+    function generateWav(button) {
+        // chrome is doing strange things with clicked buttons so just unfocus it
+        button.blur();
+        // show the PNG menu and generate an image
+        runWavMenu(button);
+    }
+
     function playlistEnabled() {
         return !document.getElementById("playlistButton").classList.contains("gray");
     }
@@ -418,7 +426,7 @@
         <div class="util">
             <div class="tooltip">
                 <span id="copyUrlButton" class="button urlButton popup" onclick="copyModelUrl(this)">
-                    <img src="img/icon-link.png" srcset="img2x/icon-link.png 2x" alt="Clear"/>
+                    <img src="img/icon-link.png" srcset="img2x/icon-link.png 2x" alt="URL"/>
                     <span class="popuptext" id="popupBox">
                         <input id="urlHolder" type="text" size="60" onblur="hideUrlPopup()"/>
                     </span>
@@ -429,9 +437,17 @@
         <div class="util">
             <div class="tooltip">
                 <span id="pngButton" class="button popup tooltip" onclick="generatePng(this)">
-                    <img src="img/icon-png.png" srcset="img2x/icon-png.png 2x" alt="Clear"/>
+                    <img src="img/icon-png.png" srcset="img2x/icon-png.png 2x" alt="PNG"/>
                 </span>
                 <span class="tooltiptextbottom">Generate an image of the song</span>
+            </div>
+        </div>
+        <div class="util">
+            <div class="tooltip">
+                <span id="wavButton" class="button popup tooltip" onclick="generateWav(this)">
+                    <img src="img/icon-wav.png" srcset="img2x/icon-wav.png 2x" alt="WAV"/>
+                </span>
+                <span class="tooltiptextbottom">Render the song to a WAV file</span>
             </div>
         </div>
     </div>
@@ -530,6 +546,7 @@
                         <li><a href="#tocSongCode">SongCode</a></li>
                         <li><a href="#tocShareURL">Share URL</a></li>
                         <li><a href="#tocExportToPng">Export to PNG</a></li>
+                        <li><a href="#tocExportToWav">Export to WAV</a></li>
                         <li><a href="#tocAutosaveSong">Autosave</a></li>
                     </ul>
                 </li>
@@ -857,6 +874,26 @@
             <p>
                 <strong>Note that you cannot re-import a PNG to edit it again.</strong>  You should also save your
                 song as either a Song Code or URL so you can come back to it later.
+            </p>
+            <h2 id="tocExportToWav">Export to WAV</h2>
+            <p>
+                If you want an audio file, then click the
+                <img class="docButton" src="img/icon-wav.png" srcset="img2x/icon-wav.png 2x"/>
+                <strong>Generate WAV</strong> button at the top of the page.
+                This will export the song loop, or the entire playlist if you have one open, to an uncompressed
+                WAV file.
+            </p>
+            <p>
+                While the WAV file is rendering, clicking anywhere outside the progress box will close it and cancel
+                the process.
+            </p>
+            <p>
+                <strong class="warn">Note that this can take a long time.</strong>  You will be able to watch the progress as it
+                renders the WAV file.
+            </p>
+            <p>
+                <strong class="warn">Note that this does not work in all browsers.</strong>  Nothing I can really do
+                about it.  There is full support in Chrome and Edge, partial support in Firefox, and no support in Safari.
             </p>
             <h2 id="tocAutosaveSong">Autosave</h2>
             <p>
@@ -1499,6 +1536,8 @@
                 <li>Shift-clicking on a playlist entry will highlight the block.</li>
                 <li>Added copy/paste performance option</li>
                 <li>Optimized the playlist advancing to the next song a tiny bit</li>
+                <li>Added slight volume randomization and minimum volume because I just figured out the in-game player
+                    does that.</li>
             </ul>
 
             <h1 id="tocToDo">To Do</h1>
@@ -1551,7 +1590,11 @@
                     song in the playlist.
                 </li>
                 <li>
-                    Playback stutters between songs in a really long playlist
+                    Generating a WAV file is much faster on Firefox than Chrome, but you can't cancel a rendering in
+                    progress in Firefox.
+                </li>
+                <li>
+                    Generating a WAV file is not supported at all in Safari.
                 </li>
             </ul>
         </div>
@@ -1569,7 +1612,7 @@
             <a href="https://github.com/buff0000n/mandascore/issues/2 ">Feedback</a>
         </div>
         <div>
-            v3.5.4: 2021-11-24
+            v3.6.0: 2021-01-31
         </div>
         <div>
             <a href="https://warframe.com">Ninjas Jam Free</a>

@@ -257,6 +257,189 @@ class imageLoader {
 }
 
 //==============================================================
+// WAV
+//==============================================================
+
+function convertToWavLink(buffer, name) {
+    // build a wav file link
+    var src = makeWavDownloadLink(buffer);
+
+    var hrefElement = document.createElement("a");
+
+    // generate a file name
+    var fileName = name + ".wav";
+
+    var a = document.createElement("a");
+    a.download = fileName;
+    a.href = src;
+    a.innerHTML = fileName;
+    a.onclick = doWavClick;
+    return a;
+}
+
+function doWavClick(e) {
+    var e = e || window.event;
+    if (e.altKey) {
+        // super-secret debug mode: alt-click on a wav link to create a player instead of downloading it
+        e.preventDefault();
+
+	    var link = e.currentTarget;
+
+	    if (link.altClicked) {
+	        return;
+	    }
+	    link.altClicked = true;
+
+	    var src = link.href;
+
+	    var audio = document.createElement("audio");
+	    audio.controls = true;
+	    audio.autoplay = true;
+
+	    var source = document.createElement("source");
+	    source.src = link.href;
+	    source.type = "audio/wav";
+	    audio.appendChild(source);
+
+	    var parent = link.parentNode;
+	    parent.appendChild(document.createElement("br"));
+	    parent.appendChild(document.createElement("br"));
+	    parent.appendChild(audio);
+    }
+}
+
+//==============================================================
+// Progress bar
+//==============================================================
+
+class ProgressBar {
+    constructor() {
+        this.lastAmount = -1;
+        // build the UI
+        this.buildUI();
+    }
+
+    buildUI() {
+        // overall container
+        this.loadingBox = document.createElement("div");
+        this.loadingBox.className = "loadingBox";
+        // we need something in it to give it height
+        this.loadingBox.innerHTML = "&nbsp;";
+
+        this.progressBar = document.createElement("div");
+        this.progressBar.className = "loadingProgressPos";
+        // we need something in it to give it height
+        this.progressBar.innerHTML = "&nbsp;";
+        this.loadingBox.appendChild(this.progressBar);
+
+        // label
+        this.labelBar = document.createElement("div");
+        this.labelBar.className = "loadingLabel";
+        this.loadingBox.appendChild(this.labelBar);
+
+        // start hidden
+        this.hide();
+    }
+
+    hide() {
+        this.loadingBox.style.display = "none";
+    }
+
+    show() {
+        this.loadingBox.style.display = "inline-block";
+    }
+
+    setProgress(amount) {
+        // short circuit if there's no change
+        if (amount == this.lastAmount) {
+            return;
+        }
+        // set the progress bar width
+        this.progressBar.style.width = (amount * 100) + "%";
+
+        if (amount == 1) {
+            // automatically hide at 100%
+            this.hide();
+
+        } else {
+            // otherwise, make sure it's showing
+            this.show();
+        }
+        // save amount
+        this.lastAmount = amount;
+    }
+
+    setLabel(text) {
+        this.labelBar.innerHTML = text;
+    }
+}
+
+class ProgressBar2 {
+    constructor() {
+        this.lastAmount = -1;
+        // build the UI
+        this.buildUI();
+    }
+
+    buildUI() {
+        // overall container
+        this.loadingBox = document.createElement("div");
+        this.loadingBox.width = "100%";
+
+        this.progressBar = document.createElement("div");
+        this.progressBar.width = "0%";
+        this.progressBar.className = "progressBar2";
+        // we need something in it to give it height
+        this.progressBar.innerHTML = "&nbsp;";
+        this.loadingBox.appendChild(this.progressBar);
+
+        // label
+        this.labelBar = document.createElement("div");
+        this.labelBar.width = "100%";
+        this.labelBar.textAlign = "center";
+        this.loadingBox.appendChild(this.labelBar);
+
+        // start hidden
+        this.hide();
+    }
+
+    hide() {
+        this.loadingBox.style.display = "none";
+    }
+
+    show() {
+        this.loadingBox.style.display = "block";
+    }
+
+    setProgress(amount) {
+        // short circuit if there's no change
+        if (amount == this.lastAmount) {
+            return;
+        }
+        // set the progress bar width
+        this.progressBar.style.width = (amount * 100) + "%";
+
+        if (amount == 1) {
+            // automatically hide at 100%
+            this.hide();
+
+        } else {
+            // otherwise, make sure it's showing
+            this.show();
+        }
+        // save amount
+        this.lastAmount = amount;
+    }
+
+    setLabel(text) {
+        if (this.label != text) {
+            this.labelBar.innerHTML = text;
+            this.label = text;
+        }
+    }
+}
+
+//==============================================================
 // URL stuff
 //==============================================================
 

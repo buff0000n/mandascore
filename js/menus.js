@@ -43,6 +43,9 @@ function clearMenus(leave = 0) {
     leave = Math.max(leave, 0);
     while (getCurrentMenuLevel() > leave) {
         var menu = menus.pop();
+        if (menu.cleanup) {
+            menu.cleanup();
+        }
         menu.remove();
     }
 }
