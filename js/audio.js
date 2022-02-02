@@ -38,6 +38,16 @@ class SoundEntry {
         }
     }
 
+    getMaxDuration() {
+        var duration = 0;
+        for (var b = 0; b < this.buffers.length; b++) {
+            if (this.buffers[b].length > duration) {
+                duration = this.buffers[b].length;
+            }
+        }
+        return duration;
+    }
+
     setVolume(volume) {
         if (volume != this.volume) {
             this.volume = volume;
@@ -185,6 +195,19 @@ class SoundBankSource {
             }
         }
         return sourceList;
+    }
+
+    getMaxDuration() {
+        if (!this.maxDuration) {
+            this.maxDuration = 0;
+            for (var s = 0; s < this.sounds.length; s++) {
+                var soundDuration = this.sounds[s].getMaxDuration();
+                if (soundDuration > this.maxDuration) {
+                    this.maxDuration = soundDuration;
+                }
+            }
+        }
+        return this.maxDuration;
     }
 
     applySourceBuffers(bufferMap) {
@@ -367,6 +390,11 @@ class SoundBank {
         if (callback != null) callback();
     }
 
+    getMaxDuration() {
+        return this.currentSource.getMaxDuration();
+    }
+
+
     setVolume(volume) {
         // change check
         if (this.volume == volume) {
@@ -491,6 +519,17 @@ class SoundPlayer {
         this.initialized = false;
     }
 
+    getMaxDuration() {
+        var duration = 0;
+        for (var section in this.banks) {
+            var bankDuration = this.banks[section].getMaxDuration();
+            if (bankDuration > duration) {
+                duration = bankDuration;
+            }
+        }
+        return duration;
+    }
+
     setVolume(section, volume) {
         // set the volume on the given section
         this.banks[section].setVolume(volume);
@@ -592,27 +631,32 @@ class SoundPlayer {
     }
 
     initRendering(duration, callback) {
+        this.resetOfflineProgress();
         // assume 44100 sample rate
         var sampleRate = 44100;
 
+        this.resetOfflineProgress();
+
         this.initialize(() => {
-            this.offlineCtx = new OfflineAudioContext(2, duration * sampleRate, sampleRate);
+            // use the base duration and append the length of our longest sound
+            this.offlineCtx = new OfflineAudioContext(2, (duration * sampleRate) + this.getMaxDuration(), sampleRate);
             this.renderingDuration = duration;
             callback();
         });
     }
 
     startRendering(callback) {
-        console.log("Started audio rendering");
+        // console.log("Started audio rendering");
         this.offlineCtx.startRendering().then((buffer) => {
             // make sure it wasn't canceled
             if (this.offlineCtx) {
-                console.log("Finished audio rendering");
-                this.offlineCtx = null;
+                // console.log("Finished audio rendering");
+                this.finishOfflineProgress();
                 callback(buffer);
             }
         });
-        return () => { return this.offlineCtx ? this.offlineCtx.currentTime : 0; };
+
+        return () => { return this.getOfflineContextProgress(); };
     }
 
     cancelRendering() {
@@ -622,5 +666,60 @@ class SoundPlayer {
             this.offlineCtx = null;
             this.renderingDuration = null;
         }
+    }
+
+    finishOfflineProgress() {
+        this.offlineCtx = null;
+        this.offlineCtxFinished = true;
+    }
+
+    resetOfflineProgress() {
+        this.offlineCtx = null;
+        this.offlineCtxFinished = false;
+    }
+
+    getOfflineContextProgress() {
+        if (this.offlineCtx) {
+            return (this.offlineCtx.currentTime * this.offlineCtx.sampleRate) / this.offlineCtx.length;
+
+        } else if (this.offlineCtxFinished) { return 1; }
+
+        else { return 0; }
+    }
+
+    renderSongList(bufferList, spacing, callback) {
+        // assume 44100 sample rate
+        var sampleRate = 44100;
+        // calculate the total samples to the end of the last buffer
+        // assume no earlier buffer lasts past the end of the last buffer
+        var totalSamples = (((bufferList.length - 1) * spacing) * sampleRate) + bufferList[bufferList.length - 1].length
+
+        this.resetOfflineProgress();
+
+        setTimeout(() => {
+            var context = new OfflineAudioContext(2, totalSamples, sampleRate);
+
+            // to allow canceling
+            this.offlineCtx = context;
+
+            // don't bother with a progress bar for this
+            for (var i = 0; i < bufferList.length; i++) {
+                var source = context.createBufferSource();
+                source.buffer = bufferList[i];
+                source.connect(context.destination);
+                source.start(i * spacing);
+            }
+
+            context.startRendering().then((buffer) => {
+                // make sure it wasn't canceled
+                if (this.offlineCtx) {
+                    console.log("Finished audio rendering");
+                    this.finishOfflineProgress();
+                    callback(buffer);
+                }
+            });
+        }, 1);
+
+        return () => { return this.getOfflineContextProgress(); };
     }
 }

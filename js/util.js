@@ -386,29 +386,19 @@ class ProgressBar2 {
         this.loadingBox = document.createElement("div");
         this.loadingBox.width = "100%";
 
-        this.progressBar = document.createElement("div");
-        this.progressBar.width = "0%";
-        this.progressBar.className = "progressBar2";
-        // we need something in it to give it height
-        this.progressBar.innerHTML = "&nbsp;";
-        this.loadingBox.appendChild(this.progressBar);
-
         // label
         this.labelBar = document.createElement("div");
         this.labelBar.width = "100%";
         this.labelBar.textAlign = "center";
         this.loadingBox.appendChild(this.labelBar);
 
-        // start hidden
-        this.hide();
-    }
-
-    hide() {
-        this.loadingBox.style.display = "none";
-    }
-
-    show() {
-        this.loadingBox.style.display = "block";
+        // bar
+        this.progressBar = document.createElement("div");
+        this.progressBar.width = "0%";
+        this.progressBar.className = "progressBar2";
+        // we need something in it to give it height
+        this.progressBar.innerHTML = "&nbsp;";
+        this.loadingBox.appendChild(this.progressBar);
     }
 
     setProgress(amount) {
@@ -419,14 +409,6 @@ class ProgressBar2 {
         // set the progress bar width
         this.progressBar.style.width = (amount * 100) + "%";
 
-        if (amount == 1) {
-            // automatically hide at 100%
-            this.hide();
-
-        } else {
-            // otherwise, make sure it's showing
-            this.show();
-        }
         // save amount
         this.lastAmount = amount;
     }

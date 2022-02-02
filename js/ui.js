@@ -138,20 +138,30 @@ function runWavMenu(button) {
     };
 
     // add the container div with some default content
-    var html = `<div class="pngLinkDiv">Initializing...</div>`;
-    div.innerHTML = html;
+    var linkDiv = document.createElement("div");
+    linkDiv.className = "pngLinkDiv";
+    div.appendChild(linkDiv);
 
     // show it like a menu, but it's just a popup
     showMenu(div, button.parentElement, button);
 
-    // get the container div
-    var linkDiv = getFirstChild(div, "pngLinkDiv");
-
+    // callbak for finished audio buffer
+    var callback = (buffer, title) => {
+        linkDiv.innerHTML = "Creating WAV file...";
+        setTimeout(() => {
+            // convert to a wav file and generate a link
+            var hrefElement = convertToWavLink(buffer, title)
+            // show the link
+            linkDiv.innerHTML = "";
+            linkDiv.appendChild(hrefElement);
+        }, 1);
+    };
     // kick off the wav generation in the background
     if (playlistVisible()) {
-        score.playlist.generateWav(linkDiv);
+        score.playlist.renderAudio(linkDiv, callback);
+
     } else {
-        score.generateWav(linkDiv);
+        score.renderAudio(linkDiv, callback);
     }
 }
 
@@ -2230,49 +2240,39 @@ class Score {
         });
     }
 
-    initRendering(numSongs, callback) {
-        // just add two seconds on the end for the last notes to finish playing
-        this.soundPlayer.initRendering((numSongs * 8) + 2, () => {
-            callback();
-        });
-    }
-
-    doRendering(linkDiv, title, progressDescFunc=null) {
-        var progressFunc = this.soundPlayer.startRendering((buffer) => {
-            linkDiv.innerHTML = "Creating WAV file...";
-            setTimeout(() => {
-                var hrefElement = convertToWavLink(buffer, this.title)
-                linkDiv.innerHTML = "";
-                linkDiv.appendChild(hrefElement);
-            }, 10);
-        });
-
+    renderAudio(linkDiv, callback) {
+        // init
         var bar = new ProgressBar2();
         linkDiv.style.textAlign = "center";
-        linkDiv.innerHTML = `Rendering audio...<br/><div class="progbar"></div>`;
-        getFirstChild(linkDiv, "progbar").appendChild(bar.loadingBox);
-        bar.show();
+        linkDiv.appendChild(bar.loadingBox);
+        bar.setLabel(this.title);
 
-        var progressCheck = () => {
-            var time = progressFunc();
-            var progress = Math.min(time / this.soundPlayer.renderingDuration, 1);
-            bar.setProgress(progress);
-            if (progressDescFunc) {
-                bar.setLabel(progressDescFunc(time));
-            }
-            if (progress < 1) {
-                setTimeout(progressCheck, 100);
-            }
-        }
-        progressCheck();
-    }
+        // assume 8 seconds, soundPlayer will add on more at the end depending on how long the notes are
+        this.soundPlayer.initRendering(8, () => {
+            setTimeout(() => {
+                // add notes
+                for (var m = 0; m < 4; m++) {
+                   this.measures[m].renderWav(m * 2);
+                }
 
-    renderWav(linkDiv, offset=0) {
-        linkDiv.style.textAlign = "left";
-        linkDiv.innerHTML = "Sequencing " + this.title + "...";
-        for (var m = 0; m < 4; m++) {
-            this.measures[m].renderWav(offset + (m * 2));
-        }
+                // start actual rendering
+                var progressFunc = this.soundPlayer.startRendering((buffer) => {
+                    // finished rendering, clear progress and call callback
+                    bar.loadingBox.remove();
+                    callback(buffer, this.title);
+                });
+
+                // progress background thread
+                var progressCheck = () => {
+                   var progress = progressFunc();
+                   bar.setProgress(progress);
+                   if (progress < 1) {
+                       setTimeout(progressCheck, 100);
+                   }
+                }
+                progressCheck();
+            }, 10);
+        });
     }
 }
 

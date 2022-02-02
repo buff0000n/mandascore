@@ -995,39 +995,57 @@ class Playlist {
         }
     }
 
-    generateWav(linkDiv) {
+    renderAudio(linkDiv, callback) {
         this.score.stopPlayback();
 
-        this.score.initRendering(this.entries.length, () => {
+        // init
+        var playlistBar = new ProgressBar2();
+        linkDiv.style.textAlign = "center";
+        linkDiv.appendChild(playlistBar.loadingBox);
+        playlistBar.setLabel("Rendering songs...");
 
-            this.score.startActions();
+        this.score.startActions();
+        var entryList = this.entries.slice();
+        var oldSelected = this.selected;
+        var index = 0;
+        var songBuffers = [];
 
-            var entryList = this.entries.slice();
-            var index = 0;
+        var renderNextSong = () => {
+            this.select(entryList[index], true, false, true);
+            playlistBar.setProgress((index + 1) / entryList.length);
 
-            var renderSongCallback = () => {
-                this.select(entryList[index], true, false, true);
-                // console.log("Rendering " + this.entries[s].song.name);
-                this.score.renderWav(linkDiv, index * 8);
-
+            this.score.renderAudio(linkDiv, (buffer, title) => {
+                songBuffers.push(buffer);
                 index += 1;
+
                 if (index < entryList.length) {
-                    setTimeout(renderSongCallback, 10);
+                    setTimeout(renderNextSong, 1);
 
                 } else {
-                    this.score.endActions();
-                    doUndo();
+                    // revert the section
+                    this.select(oldSelected, true, false, true);
+                    // end action and throw it away
+                    this.score.endActions(true);
 
-                    var title = entryList[0].song.name;
-                    this.score.doRendering(linkDiv, title, (time) => {
-                        index = Math.floor(time / 8);
-                        return index < entryList.length ? entryList[index].song.name : "";
+                    playlistBar.setLabel("Starting full render...");
+                    var progressFunc = score.soundPlayer.renderSongList(songBuffers, 8, (combinedBuffer) => {
+                        callback(combinedBuffer, entryList[0].song.name);
                     });
-                }
-            };
 
-            renderSongCallback();
-        });
+                    playlistBar.setLabel("Assembling songs...");
+                    var progressCheck = () => {
+                        var progress = progressFunc();
+                        playlistBar.setProgress(progress);
+                        if (progress < 1) {
+                            setTimeout(progressCheck, 100);
+                        }
+                    }
+                    progressCheck();
+                }
+            });
+        };
+
+        renderNextSong();
     }
 }
 

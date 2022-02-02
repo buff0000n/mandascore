@@ -1537,6 +1537,7 @@
                 <li>Added copy/paste performance option</li>
                 <li>Optimized the playlist advancing to the next song a tiny bit</li>
                 <li>Added ability to export the song/playlist to a WAV file.  Not completely supported by all browsers.</li>
+                <li>Optimized the WAV export, like, a lot.  On a long playlist it's literally 100 times faster.</li>
             </ul>
 
             <h1 id="tocToDo">To Do</h1>
@@ -1589,11 +1590,13 @@
                     song in the playlist.
                 </li>
                 <li>
-                    Generating a WAV file is much faster on Firefox than Chrome, but you can't cancel a rendering in
-                    progress in Firefox.
+                    You can't cancel a rendering in progress in Firefox.
                 </li>
                 <li>
                     Generating a WAV file is not supported at all in Safari.
+                </li>
+                <li>
+                    There's currently a lot of ways to mess up WAV rendering by clicking where you shouldn't while it's running.
                 </li>
             </ul>
         </div>
@@ -1611,7 +1614,7 @@
             <a href="https://github.com/buff0000n/mandascore/issues/2 ">Feedback</a>
         </div>
         <div>
-            v3.6.0: 2021-01-31
+            v3.6.1: 2021-02-01
         </div>
         <div>
             <a href="https://warframe.com">Ninjas Jam Free</a>
