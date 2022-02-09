@@ -620,6 +620,32 @@ class Library {
 
         this.searchLoader = null;
     }
+
+    sortNonMiscCategories() {
+        var catCounts = [];
+        this.getCategoryCounts("main", this.index, catCounts, (n) => {return !n.startsWith("Misc")});
+
+        catCounts.sort( (a, b) => {
+            return b.count - a.count;
+        })
+
+        return catCounts;
+    }
+
+    getCategoryCounts(name, cat, catCounts, filter=null) {
+        if (filter && !filter(name)) {
+            return;
+        }
+        console.log("Counting " + name);
+        if (cat.songs) {
+            catCounts.push( { "name": name, "count": cat.songs.length });
+            return;
+        }
+        for (var name2 in cat) {
+            var cat2 = cat[name2];
+            this.getCategoryCounts(name2, cat2, catCounts, filter);
+        }
+    }
 }
 
 class Loader extends ProgressBar {
