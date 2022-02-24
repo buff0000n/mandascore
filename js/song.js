@@ -311,8 +311,8 @@ function valtoBytes(v) {
 //}
 
 // compile a regular expression that matches the [SONG-...] format.  It looks like this:
-// [SONG-<song name>:<base 64 data>:<melody instrument>:<bass instrument>:<percussion instrument>]
-chatLinkPattern = /\[SONG-([^:]+):([^:]+):([^:]+):([^:]+):([^:\]]+)\]/;
+// [SONG-<song name>:<base 64 data>:<melody instrument>:<bass instrument>:<percussion instrument>]:1-4
+chatLinkPattern = /\[SONG-([^:]+):([^:]+):([^:]+):([^:]+):([^:\]]+)\](?::([1-4])-([1-4]))?/;
 
 var maxNameLength = 24;
 
@@ -373,6 +373,9 @@ class Song {
                 this.notes[t][r] = 0;
             }
         }
+
+        this.startAt = 1;
+        this.stopAt = 4;
     }
 
     clone() {
@@ -390,6 +393,8 @@ class Song {
                 song.notes[t][r] = this.notes[t][r];
             }
         }
+        song.startAt = this.startAt;
+        song.stopAt = this.stopAt;
         return song;
     }
 
@@ -534,6 +539,9 @@ class Song {
         this.packs["perc"] = getPackName(reMatch[5]);
         this.packs["bass"] = getPackName(reMatch[4]);
         this.packs["mel"] = getPackName(reMatch[3]);
+        // read optional measure range
+        this.startAt = reMatch[6] ? parseInt(reMatch[6]) : 1;
+        this.stopAt = reMatch[7] ? parseInt(reMatch[7]) : 4;
 
         // base64 -> binary one-liner
         var b = base64ToUint8(encoded);
@@ -627,7 +635,13 @@ class Song {
         var encoded = uint8ToBase64(b.slice(0, lastNonzeroByte+1));
 
         // [SONG-<song name>:<base 64 data>:<melody instrument>:<bass instrument>:<percussion instrument>]
-        return `[SONG-${name}:${encoded}:${melInst}:${bassInst}:${percInst}]`;
+        var songString = `[SONG-${name}:${encoded}:${melInst}:${bassInst}:${percInst}]`;
+
+        // add optional measure range, this is not part of the official in-game song string
+        if (this.startAt != 1 || this.stopAt != 4) {
+            songString = `${songString}:${this.startAt}-${this.stopAt}`;
+        }
+        return songString;
     }
 
     matchSong(otherSong) {

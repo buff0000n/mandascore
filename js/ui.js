@@ -608,6 +608,7 @@ class Measure {
         
         // playback state
         this.timingBar = null;
+        this.dragDisabled = false;
     }
 
     buildUI() {
@@ -721,20 +722,27 @@ class Measure {
     }
 
     disableDrag() {
-        // prevent any event handling on the timing bar
-        this.timingContainer.onmousedown = (e) => { e.preventDefault(); };
-        this.timingContainer.ontouchstart = (e) => { e.preventDefault(); };
-        // switch image
-        this.timingContainer.className = "timingContainer_disabled";
-        this.timingContainer.innerHTML = `<img src="img/timingbar-disabled.png" srcset="img2x/timingbar-disabled.png 2x" width="352" height="25"/>`;
+        if (!this.dragDisabled) {
+            // prevent any event handling on the timing bar
+            this.timingContainer.onmousedown = (e) => { e.preventDefault(); };
+            this.timingContainer.ontouchstart = (e) => { e.preventDefault(); };
+            // switch image
+            this.timingContainer.className = "timingContainer_disabled";
+            this.timingContainer.innerHTML = `<img src="img/timingbar-disabled.png" srcset="img2x/timingbar-disabled.png 2x" width="352" height="25"/>`;
+            this.dragDisabled = true;
+        }
+
     }
 
     enableDrag() {
-        this.timingContainer.onmousedown = (e) => { this.startDrag(mouseEventToMTEvent(e)); };
-        this.timingContainer.ontouchstart = (e) => { this.startDrag(touchEventToMTEvent(e)); };
-        // switch image
-        this.timingContainer.className = "timingContainer";
-        this.timingContainer.innerHTML = `<img src="img/timingbar.png" srcset="img2x/timingbar.png 2x" width="352" height="25"/>`;
+        if (this.dragDisabled) {
+            this.timingContainer.onmousedown = (e) => { this.startDrag(mouseEventToMTEvent(e)); };
+            this.timingContainer.ontouchstart = (e) => { this.startDrag(touchEventToMTEvent(e)); };
+            // switch image
+            this.timingContainer.className = "timingContainer";
+            this.timingContainer.innerHTML = `<img src="img/timingbar.png" srcset="img2x/timingbar.png 2x" width="352" height="25"/>`;
+            this.dragDisabled = false;
+        }
     }
 
     setMeasureNotes(mnotes, action=true) {
@@ -1694,6 +1702,10 @@ class Score {
 
         // playback state
         this.playback = null;
+
+        // playback range
+        this.startAt = 1;
+        this.stopAt = 4;
     }
 
     buildUI() {
@@ -1851,6 +1863,9 @@ class Score {
             this.measures[m].setMeasureNotes(song.getMeasureNotes(m), action);
         }
 
+        this.setStartAt(song.startAt);
+        this.setStopAt(song.stopAt);
+
         // commit as a single undo action
         if (action) {
             this.endActions();
@@ -1891,6 +1906,9 @@ class Score {
             // extract each measure's note info from the UI and save to the song
             song.setMeasureNotes(m, this.measures[m].getMeasureNotes());
         }
+
+        song.startAt = this.startAt;
+        song.stopAt = this.stopAt;
 
         return song;
     }
@@ -2017,6 +2035,14 @@ class Score {
         }
     }
 
+    setStartAt(startAt) {
+        this.startAt = startAt;
+    }
+
+    setStopAt(stopAt) {
+        this.stopAt = stopAt;
+    }
+
     setSectionSource(section, pack) {
         // save the section pack info
         this.sectionPacks[section] = pack;
@@ -2089,7 +2115,11 @@ class Score {
 
     play(button, restart=false) {
         // start playback with all four measures
-        this.doPlayback(button, this.measures, restart);
+        if (this.startAt == 1 && this.stopAt == 4) {
+            this.doPlayback(button, this.measures, restart);
+        } else {
+            this.doPlayback(button, this.measures.slice(this.startAt - 1, this.stopAt), restart);
+        }
     }
 
     doPlayback(button, m, restart=false) {
@@ -2466,9 +2496,9 @@ class PlaybackMarker {
         if (t < 0) t = 0;
         else if (t > 2) t = 2;
 
-        // make sure the playback is stopped
-        // todo: necessary?
-        this.playback.stop();
+        // // make sure the playback is stopped
+        // // todo: necessary?
+        // this.playback.stop();
 
         // pre-set the marker time so the measure doesn't try to bump all the intervening notes if you
         // move it forward inside the same measure
@@ -2544,12 +2574,7 @@ class Playback {
         // back-reference the button to this playback object
         this.button.playback = this;
 
-        // the measures to play
-        this.measures = measures;
-
-        // run parameters
-        this.runTime = 2.0 * measures.length;
-        this.runT = 16 * measures.length;
+        this.setMeasures(measures);
 
         // playback state
         // animation tick timeout reference
@@ -2576,11 +2601,30 @@ class Playback {
         // hack flag for when the timing marker has been dragged and dropped
         this.dropped = false;
 
+    }
+
+    setMeasures(measures) {
+        // the measures to play
+        this.measures = measures;
+
+        // run parameters
+        this.runTime = 2.0 * measures.length;
+        this.runT = 16 * measures.length;
+
         // disable dragging on any measure not in the list
-        var others = this.getNonPlayingMeasures();
-        for (var m = 0; m < others.length; m++) {
-            others[m].disableDrag();
+        for (var m = 0; m < this.score.measures.length; m++) {
+            var measure = this.score.measures[m];
+            if (this.measures.includes(measure)) {
+                measure.enableDrag();
+
+            } else {
+                measure.disableDrag();
+            }
         }
+//        var others = this.getNonPlayingMeasures();
+//        for (var m = 0; m < others.length; m++) {
+//            others[m].disableDrag();
+//        }
     }
 
     getNonPlayingMeasures() {
@@ -2687,8 +2731,9 @@ class Playback {
         // hack to switch to the next song in the playlist
         // only switch if we've played through once, have wrapped back to 0, have four measures,
         // have a playlist, and the playlist is enabled.
-        if (this.hasPlayed && !this.dropped && this.playT == 0 && this.runT > 0 && this.measures.length == 4 &&
-            this.score.playlist != null && this.score.playlist.looping) {
+        if (this.hasPlayed && !this.dropped && this.playT == 0 && this.runT > 0
+            && this.measures.length == (this.score.stopAt - this.score.startAt + 1)
+            && this.score.playlist != null && this.score.playlist.looping) {
             this.score.playlist.selectNext();
         }
         this.hasPlayed = true;
