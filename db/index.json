@@ -955,6 +955,7 @@
 				{"id": "H19CDTgaJG0", "name": "High Hopes", "attr": ["Panic! At The Disco"]},
 				{"id": "OWZkH7YsmB4", "name": "Hey Look Ma, I Made It", "attr": ["Panic! At The Disco"], "tags": ["Perfect"]},
 				{"id": "BSwtvMj85ng", "name": "Don't Threaten Me With a Good Time", "attr": ["Panic! At The Disco"], "tags": ["Perfect"]}
+				, {"id": "dLS7ftfOPa0", "name": "Victorious", "attr": ["Panic! at the Disco"]}
 			]
 		},
 		"Chiasm":{
@@ -2017,6 +2018,7 @@
 				, {"id": "EcvVz09fZqU", "name": "Palm Angel", "attr": ["Eric IV"], "tags": ["Perfect"]}
 				, {"id": "JGMoPq5c19I", "name": "Nights", "attr": ["Frank Ocean"]}
 				, {"id": "D5Fi-_SXG0E", "name": "Tell Em", "attr": ["Cochise ft. $not"], "tags": ["Bombast"]}
+				, {"id": "WgtZ2PxmWFk", "name": "Hello", "attr": ["Pop Smoke ft. A Bookie wit da Hoodie"]}
 			]
 		}
 	},
@@ -2344,6 +2346,14 @@
 				{"id": "4R2E1Hw3SNA", "name": "Summer", "attr": ["Calvin Harris"]}
 			]
 		},
+		"Martin Garrix":{
+			"dbName":"Electronic",
+			"songs":[
+				{"id": "TllsolQrjOU", "name": "High On Life", "attr": ["Martin Garrix"]},
+				{"id": "hB1RC4ojw0A", "name": "Summer Days", "attr": ["Martin Garrix", "ft. Fall Out Boy and that other guy"]}
+				, {"id": "u0byM_pej9E", "name": "Animals", "attr": ["Martin Garrix"]}
+			]
+		},
 		"Misc Monstercat":{
 			"dbName":"Electronic.MiscMonstercat",
 			"songs":[
@@ -2553,8 +2563,6 @@
 				{"id": "0zxHcamzPCc", "name": "Just Feeling", "attr": ["Deepshoutz"]},
 				{"id": "F5YRzEgCM4Y", "name": "Smoke & Retribution", "attr": ["Flume etc."], "tags": ["Perfect"]},
 				{"id": "2oscM9-rCdk", "name": "Beardo", "attr": ["Benny Benassi"]},
-				{"id": "TllsolQrjOU", "name": "High On Life", "attr": ["Martin Garrix"]},
-				{"id": "hB1RC4ojw0A", "name": "Summer Days", "attr": ["Martin Garrix", "ft. Fall Out Boy and that other guy"]},
 				{"id": "IPdtgLXrIiE", "name": "Secret", "attr": ["Receptor"]},
 				{"id": "unaK-QDNvCI", "name": "Day 1", "attr": ["Honne"]},
 				{"id": "b3FxxjjCBA4", "name": "Basstrap", "attr": ["Overseer"]},
@@ -2656,6 +2664,7 @@
 				, {"id": "dvkP99YDM9k", "name": "Rhythmkane", "attr": ["Neon Park"], "tags": ["Perfect"]}
 				, {"id": "eotW-gWcbX0", "name": "stress", "attr": ["CRIM3S"], "tags": ["Perfect"]}
 				, {"id": "lPbvIvo3_Mo", "name": "Like You!", "attr": ["fusq"]}
+				, {"id": "Samoyuai5cU", "name": "Crashing", "attr": ["DirtySnatcha & Matt Doe"]}
 			]
 		}
 	},
@@ -3363,6 +3372,7 @@
 				{"id": "9J4zomj9lkA", "name": "Flying Heads", "attr": ["Cyberpunk 2077"], "tags": ["Perfect"]},
 				{"id": "xgLXmDc0Ob4", "name": "Never Fade Away", "attr": ["Samurai", "Cyberpunk 2077"], "tags": ["Perfect"]}
 				, {"id": "nERbXyqAdds", "name": "Antagonistic", "attr": ["Cyberpunk 2077"], "tags": ["Perfect", "Sparse"]}
+				, {"id": "Mlziieeewv0", "name": "Night City", "attr": ["Cyberpunk 2077", "REL & Artemis Delta"], "tags": ["Perfect"]}
 			]
 		},
 		"Grand Theft Auto series":{
@@ -3513,7 +3523,8 @@
 					{"id": "HiF-fL9K-rM", "name": "Go Down", "attr": ["Unreal Tournament"]},
 					{"id": "kT2CxFYDIPg", "name": "Forgone Destruction (Facing Worlds)", "attr": ["Unreal Tournament"], "tags": ["Double"]},
 					{"id": "wBdB_UY8f54", "name": "Staggered Injection", "attr": ["Ekstrak", "Need For Speed: Carbon"]},
-					{"id": "UkFO2jIIhzE", "name": "Raeve Maeve theme", "attr": ["Paladins"]},
+					{"id": "UkFO2jIIhzE", "name": "Raeve Maeve theme", "attr": ["Paladins"]}
+					, {"id": "Ww8t9mAwUlk", "name": "Raeve Maeve part 2", "attr": ["Paladins"]},
 					{"id": "th5f_bdQIiQ", "name": "Remix Jenos music", "attr": ["Paladins"], "tags": ["Perfect"]},
 					{"id": "LJArEa7su1c", "name": "Aurum Island", "attr": ["Kid Icarus Uprising"]},
 					{"id": "RwhSORzL-hI", "name": "Little One", "attr": ["Detroit: Become Human"]},
@@ -3725,6 +3736,7 @@
 					, {"id": "fQbZKDWAoIA", "name": "Battle Cats intro theme", "tags": ["Perfect", "Sparse"]}
 					, {"id": "v2lvgaGQkwU", "name": "Battle Cats Battle Theme #1"}
 					, {"id": "I9jPUeULnWE", "name": "CM Beelzebub Dungeon 2", "attr": ["Closers Online"]}
+					, {"id": "5x1DTPADhWQ", "name": "Coronation", "attr": ["Jump King"]}
 				]
 			}
 		}
@@ -3773,7 +3785,7 @@
 		"One Piece":{
 			"dbName":"Anime",
 			"songs":[
-				{"id": "HmugM7A3DxI", "name": "Luffy'mis Fierce Attack!", "attr": ["One Piece: Marvelous Battles"]},
+				{"id": "HmugM7A3DxI", "name": "Luffy's Fierce Attack!", "attr": ["One Piece: Marvelous Battles"]},
 				{"id": "gWyTd0nRtJs", "name": "Overtaken", "attr": ["One Piece"], "tags": ["Sparse"]},
 				{"id": "xueOgBiQlDc", "name": "We Fight Together", "attr": ["Namie Amuro", "One Piece opening 14"]},
 				{"id": "eNNMdHhYNPk", "name": "The Very Very Very Strongest", "attr": ["One Piece"]},
@@ -4149,8 +4161,8 @@
 				{"id": "C9MdPwUCNPA", "name": "\u6211\u7ba1\u4f60\u3010\u7d66\u4f60\u7206\u70b8\u7684\u611f\u89ba\uff01\u3011", "attr": ["\u767d\u6b62"]},
 				{"id": "4m273uYdJY8", "name": "Canaria's Song", "attr": ["Qualidea Code"]},
 				{"id": "VduRFmb-vkw", "name": "Overlord opening"},
-				{"id": "pdJeX6Q6RAw", "name": "Hydra", "attr": ["Overlord ending 2"], "tags": ["Beta"]},
-				{"id": "caTs23vNmjI", "name": "aLIEz", "attr": ["Aldnoah Zero"]},
+				{"id": "pdJeX6Q6RAw", "name": "Hydra", "attr": ["Overlord ending 2"], "tags": ["Beta"]}
+				, {"id": "t1slgAh5TMk", "name": "aLIEz", "attr": ["Aldnoah.Zero", "SawanoHiroyuki/NZK"]},
 				{"id": "dFgfM3wixAo", "name": "Breathless", "attr": ["Aldnoah Zero"]},
 				{"id": "Ycb5sidoJrM", "name": "Silver Wing", "attr": ["Accel World"]},
 				{"id": "8T_7kBSIeOg", "name": "The New Shrimp Groove/Sweet Sweet Everytime Sweet", "attr": ["Android 52", "Himouoto!"]},
@@ -4301,6 +4313,8 @@
 				, {"id": "f-vxdlx-BXE", "name": "\u300c\u56de\u30ec! \u96ea\u6708\u82b1\u300d", "attr": ["\u6a5f\u5de7\u5c11\u5973\u306f\u50b7\u3064\u304b\u306a\u3044 ending"]}
 				, {"id": "Vc3JrT2RXZ4", "name": "Fire Ground", "attr": ["Hinomaru Sumo opening 1"]}
 				, {"id": "du5yNOIYxa4", "name": "Lotus Juice", "attr": ["Katanagatari"]}
+				, {"id": "LA43LCdlfuE", "name": "Mr. Osomatsu opening 1", "tags": ["Perfect"]}
+				, {"id": "uq73UHhBKfQ", "name": "Sakura no Uta opening", "attr": ["Hana"]}
 			]
 		}
 	},
@@ -4514,6 +4528,7 @@
 				{"id": "9STNYRsQMsQ", "name": "La Femme Nikita Theme Song"},
 				{"id": "7098ihg6SqA", "name": "Wonder Woman Theme", "attr": ["1970's"]},
 				{"id": "NgnxrktHzuw", "name": "Saburo's Theme", "attr": ["Android Kikaider"], "tags": ["Perfect"]}
+				, {"id": "xUPyymZIYK4", "name": "Gridman The Hyper Agent opening"}
 				, {"id": "Xqz4t0tWkSc", "name": "Boss Of Me", "attr": ["Malcom In The Middle theme song", "They Might Be Giants"]}
 				, {"id": "uqd5pPVabZw", "name": "Space 1999 Year 2 Opening"}
 				, {"id": "7EgFxUned8s", "name": "Invader Zim Theme"}
@@ -4622,6 +4637,7 @@
 				{"id": "t947CFrc_ts", "name": "Gimme x Gimme", "attr": ["\u516b\u738b\u5b50P \u00d7 Giga", "Hatsune Miku", "Rin Kagamine"]},
 				{"id": "jaeZRXj7E4Y", "name": "The Path to Eternal Happiness...I Found It", "attr": ["Utata-P", "Hatsune Miku"]},
 				{"id": "SLI9Hbeh4Ig", "name": "Mental Chainsaw", "attr": ["\u304b\u3044\u308a\u304d\u30d9\u30a2/Kairiki Bear ft. Hatsune Miku"]}
+				, {"id": "TcyjjExaBNg", "name": "Loop Memory/\u30eb\u30fc\u30d7\u30e1\u30e2\u30ea\u30fc", "attr": ["Yunosuke/\u96c4\u4e4b\u52a9 ft. Hatsune Miku/\u521d\u97f3\u30df\u30af"], "tags": ["SIX"]}
 			]
 		},
 		"Misc Vocaloid":{
@@ -4754,6 +4770,7 @@
 				{"id": "IIsD7UV5XRQ", "name": "More & More", "attr": ["Twice"]},
 				{"id": "u13a5uo2L6Y", "name": "I Can't Stop Me", "attr": ["Twice"]}
 				, {"id": "fgjACQlZMT4", "name": "Alcohol-Free", "attr": ["Twice"], "tags": ["Triple", "Perfect"]}
+				, {"id": "hy3wXok13vA", "name": "Fancy - Instrumental", "attr": ["Twice"]}
 			]
 		},
 		"Babymetal":{
@@ -5177,6 +5194,7 @@
 				, {"id": "whkawQzAFCI", "name": "i want to be ninja", "attr": ["Jennifer Murphy"], "tags": ["Perfect"]}
 				, {"id": "L5DCa-dxFr4", "name": "Baby I'm Yours", "attr": ["Breakbot", "Ladies And Gentlemen We Got Him meme"]}
 				, {"id": "uttbtZQHFxc", "name": "Welcome to the Internet", "attr": ["Bo Burnham"]}
+				, {"id": "5dG_epSao4o", "name": "take the bait", "attr": ["Demondice"]}
 			]
 		}
 	},
