@@ -52,6 +52,18 @@ function keyDown(e) {
                 doRedo();
             }
 		    break;
+        case "ArrowDown":
+            if (playlistVisible()) {
+                score.playlist.selectNext();
+                e.preventDefault();
+            }
+		    break;
+        case "ArrowUp":
+            if (playlistVisible()) {
+                score.playlist.selectPrevious();
+                e.preventDefault();
+            }
+		    break;
 	}
 }
 

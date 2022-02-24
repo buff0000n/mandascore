@@ -806,6 +806,14 @@ class Playlist {
     }
 
     selectNext() {
+        this.selectDirection(1);
+    }
+
+    selectPrevious() {
+        this.selectDirection(-1);
+    }
+
+    selectDirection(dir) {
         // if there is no selection then select the first entry
         if (!this.selected) {
             this.select(this.entries[0], true);
@@ -814,9 +822,11 @@ class Playlist {
         // get the currently selected index
         var index = this.entries.indexOf(this.selected);
         // increment and wrap around if necessary
-        index += 1;
+        index += dir;
         if (index >= this.entries.length) {
             index = 0;
+        } else if (index < 0) {
+            index = this.entries.length - 1;
         }
         // change the selection, updating the score
         this.select(this.entries[index], true);
