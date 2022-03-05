@@ -435,6 +435,7 @@
 				{"id": "RNy8vIweNsw", "name": "Sober", "attr": ["Tool"]},
 				{"id": "CHoZV28vocc", "name": "Stinkfist", "attr": ["Tool"], "tags": ["Druk"]},
 				{"id": "R21MDOx32_U", "name": "Fear Inoculum", "attr": ["Tool"], "tags": ["Perfect"]}
+				, {"id": "RpIWTA1Ykhc", "name": "Reflection", "attr": ["Tool"], "tags": ["Double", "Perfect", "Druk"]}
 			]
 		},
 		"Breaking Benjamin":{
@@ -1174,7 +1175,8 @@
 				{"id": "daNUeI9DQBM", "name": "Rose Tattoo", "attr": ["Dropkick Murphys"]},
 				{"id": "4oNLbjVvir4", "name": "The Less I Know The Better", "attr": ["Tame Impala"]}
 				, {"id": "NkBFRUWj7qg", "name": "Elephant", "attr": ["Tame Impala"], "tags": ["Perfect"]},
-				{"id": "Z7qCXuJdxmE", "name": "Buddy Holly", "attr": ["Weezer"]},
+				{"id": "Z7qCXuJdxmE", "name": "Buddy Holly", "attr": ["Weezer"]}
+				, {"id": "acJWyl8Uxn0", "name": "Across The Sea", "attr": ["Weezer"], "tags": ["Perfect"]},
 				{"id": "TQ7PmwfhSgQ", "name": "Wrecking Ball", "attr": ["Mother Mother"]},
 				{"id": "bCLGHCZD9PU", "name": "Fire Fire", "attr": ["David Michael Bennet"], "tags": ["Plogg", "Perfect"]},
 				{"id": "7Yly77JNVto", "name": "Lucretia My Reflection", "attr": ["The Sisters Of Mercy"]},
@@ -1343,6 +1345,9 @@
 				, {"id": "WsoifELh7QQ", "name": "carwash", "attr": ["striptease"], "tags": ["Perfect"]}
 				, {"id": "uOSq-N_nZCo", "name": "Concrete", "attr": ["Lovejoy"]}
 				, {"id": "X2jIuChjJis", "name": "Fire Water Burn (The Roof is on Fire)", "attr": ["Bloodhound Gang"]}
+				, {"id": "RVu9FxpxCJk", "name": "A Good Song Never Dies", "attr": ["Saint Motel"]}
+				, {"id": "rln2X772E3g", "name": "Untitled", "attr": ["Knuckle Puck"]}
+				, {"id": "fSZz-VJByEQ", "name": "Ghost Ship", "attr": ["Blur"], "tags": ["Perfect"]}
 			]
 		}
 	},
@@ -2018,7 +2023,7 @@
 				, {"id": "EcvVz09fZqU", "name": "Palm Angel", "attr": ["Eric IV"], "tags": ["Perfect"]}
 				, {"id": "JGMoPq5c19I", "name": "Nights", "attr": ["Frank Ocean"]}
 				, {"id": "D5Fi-_SXG0E", "name": "Tell Em", "attr": ["Cochise ft. $not"], "tags": ["Bombast"]}
-				, {"id": "WgtZ2PxmWFk", "name": "Hello", "attr": ["Pop Smoke ft. A Bookie wit da Hoodie"]}
+				, {"id": "WgtZ2PxmWFk", "name": "Hello", "attr": ["Pop Smoke ft. A Boogie wit da Hoodie"]}
 			]
 		}
 	},
@@ -2665,6 +2670,7 @@
 				, {"id": "eotW-gWcbX0", "name": "stress", "attr": ["CRIM3S"], "tags": ["Perfect"]}
 				, {"id": "lPbvIvo3_Mo", "name": "Like You!", "attr": ["fusq"]}
 				, {"id": "Samoyuai5cU", "name": "Crashing", "attr": ["DirtySnatcha & Matt Doe"]}
+				, {"id": "EToOIAG9k2c", "name": "The Far Side", "attr": ["Aviators"], "tags": ["Perfect"]}
 			]
 		}
 	},
@@ -2852,7 +2858,8 @@
 				{"id": "LS8ApnSPJvQ", "name": "Shadowbringers Boss theme", "attr": ["Final Fantasy XIV"], "tags": ["Double"]},
 				{"id": "BdeWbgxw6fo", "name": "Titania Theme", "attr": ["Final Fantasy XIV"]},
 				{"id": "cmnBdui0xpw", "name": "Omega's Theme", "attr": ["Final Fantasy XIV"], "tags": ["Druk"]},
-				{"id": "6MJhYVoMPBc", "name": "A Long Fall/The Twinning Theme", "attr": ["Final Fantasy XIV"], "tags": ["Perfect"]},
+				{"id": "6MJhYVoMPBc", "name": "A Long Fall/The Twinning Theme", "attr": ["Final Fantasy XIV"], "tags": ["Perfect"]}
+				, {"id": "YnLb6zCW3eM", "name": "Who Brings Shadow/Hades Theme", "attr": ["Final Fantasy XIV"]},
 				{"id": "oiBBwC8G9LI", "name": "Valse di Fantastica", "attr": ["Final Fantasy XV"]},
 				{"id": "7wJ9_oRwIi8", "name": "Warrior Battle Theme 1", "attr": ["Mobius Final Fantasy"]},
 				{"id": "chYqN1_KNAM", "name": "Character Selection", "attr": ["Dissidia Final Fantasy NT"], "tags": ["Double"]},
@@ -3415,6 +3422,14 @@
 				{"id": "djXqwswRSzI", "name": "Character Select", "attr": ["Scott Pilgrim vs. The World: The Game"]}
 			]
 		},
+		"Guilty Gear":{
+			"dbName":"Videogames",
+			"songs":[
+				{"id": "4LNpUYEap2o", "name": "Instant Kill Theme", "attr": ["Guilty Gear Xrd"]},
+				{"id": "PpyWJ9-FKu8", "name": "Drumhead Pulsation", "attr": ["Guilty Gear Isuka"], "tags": ["Druk"]}
+				, {"id": "YkCAGFaE6FE", "name": "Mirror of the World", "attr": ["Guilty Gear Strive"], "tags": ["Triple"]}
+			]
+		},
 		"Misc video games":{
 			"Old as dirt":{
 				"dbName":"Videogames.Miscvideogames",
@@ -3617,8 +3632,6 @@
 					{"id": "kHOQcfWEDhU", "name": "\u0411\u0435\u0441\u043a\u043e\u043d\u0435\u0447\u043d\u043e\u0435 \u043b\u0435\u0442\u043e/Everlasting Summer main theme", "tags": ["Double"]},
 					{"id": "EvAuzRroVz0", "name": "HuniePop main theme", "tags": ["Perfect"]},
 					{"id": "kjQ7Z8Z8QSQ", "name": "Piano Hero", "attr": ["Raycord Legends"]},
-					{"id": "4LNpUYEap2o", "name": "Instant Kill Theme", "attr": ["Guilty Gear Xrd"]},
-					{"id": "PpyWJ9-FKu8", "name": "Drumhead Pulsation", "attr": ["Guilty Gear Isuka"], "tags": ["Druk"]},
 					{"id": "S8EA9tWDiNM", "name": "On Parade", "attr": ["Ristar The Shooting Star", "Round 4-2"], "tags": ["Perfect"]},
 					{"id": "zGouBVQq090", "name": "Just Like Sleep", "attr": ["Passarella Death Squad", "Hellblade: Senua's Sacrifice"]},
 					{"id": "5yvyovTw_OE", "name": "The Silver Case main theme", "tags": ["Sparse"]},
@@ -3737,6 +3750,7 @@
 					, {"id": "v2lvgaGQkwU", "name": "Battle Cats Battle Theme #1"}
 					, {"id": "I9jPUeULnWE", "name": "CM Beelzebub Dungeon 2", "attr": ["Closers Online"]}
 					, {"id": "5x1DTPADhWQ", "name": "Coronation", "attr": ["Jump King"]}
+					, {"id": "rLYtCeuWTOQ", "name": "Black Knight 2000 pinball theme", "tags": ["Filled"]}
 				]
 			}
 		}
@@ -4315,6 +4329,8 @@
 				, {"id": "du5yNOIYxa4", "name": "Lotus Juice", "attr": ["Katanagatari"]}
 				, {"id": "LA43LCdlfuE", "name": "Mr. Osomatsu opening 1", "tags": ["Perfect"]}
 				, {"id": "uq73UHhBKfQ", "name": "Sakura no Uta opening", "attr": ["Hana"]}
+				, {"id": "igWFvwILlQU", "name": "Kakegurui opening 2"}
+				, {"id": "8p4J5lEfl00", "name": "Tales of the Abyss opening"}
 			]
 		}
 	},
@@ -4489,6 +4505,7 @@
 				{"id": "HTGWPuHexBY", "name": "Kim Possible Theme"},
 				{"id": "bgiRHNo_IPs", "name": "Let it Go", "attr": ["Frozen"]},
 				{"id": "onVl8ilqdNE", "name": "He Mele No Lilo", "attr": ["Lilo & Stitch"]}
+				, {"id": "6wRU7uknO7w", "name": "Jimmy Neutron theme song"}
 			]
 		},
 		"Misc TV":{
@@ -4546,7 +4563,8 @@
 				{"id": "UQqRZTAZK7o", "name": "Push It To The Limit", "attr": ["Scarface"], "tags": ["Sparse"]},
 				{"id": "pO142YrClPE", "name": "Casey Junior", "attr": ["Dumbo"]},
 				{"id": "KMQMBAc3z44", "name": "Vampire Dance Club Theme", "attr": ["Blade"]},
-				{"id": "VpwFlb3tK_A", "name": "Good Life", "attr": ["G-Eazy & Kehlani", "The Fate of the Furious"]},
+				{"id": "VpwFlb3tK_A", "name": "Good Life", "attr": ["G-Eazy & Kehlani", "The Fate of the Furious"]}
+				, {"id": "f8DLnlWpbzg", "name": "Gangsta", "attr": ["Kehlani", "Suicide Squad"]},
 				{"id": "qpHGTK6Mt6I", "name": "Diamond", "attr": ["Klint", "Snatch"]},
 				{"id": "VctWaHZR6qk", "name": "Oh Yeah", "attr": ["Yello", "Ferris Bueller's Day Off"], "tags": ["Sparse"]},
 				{"id": "nYeVOeLNi_Q", "name": "Weird Science", "attr": ["Oingo Boingo"]},
@@ -5368,6 +5386,7 @@
 				{"id": "sX2xiPevnFY", "name": "Havana", "attr": ["Camilla Cabello"]},
 				{"id": "K8ArGxGNbDc", "name": "Puedes Contar Conmigo", "attr": ["La Oreja De Van Gogh"]}
 				, {"id": "uGZHREfTXUw", "name": "Botella Tras Botella", "attr": ["Gera MX", "Christian Nodal"]}
+				, {"id": "w9KHltqnyfQ", "name": "Botella Tras Botella 2", "attr": ["Gera MX", "Christian Nodal"]}
 				, {"id": "cMePELbvZNs", "name": "Cositas Que Haciamos", "attr": ["Farruko"]},
 				{"id": "lkP3kqS6Uks", "name": "Pepsi Man theme song"},
 				{"id": "mDOBzu7fN_4", "name": "Ameno", "attr": ["ERA"], "tags": ["Perfect"]},
