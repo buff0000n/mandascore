@@ -37,6 +37,7 @@
 				{"id": "DSbmlFMVaEc", "name": "Octavia Prime Trailer"},
 				{"id": "OeyxFA4PktE", "name": "Sleeping in the Cold Below", "attr": ["Warframe"], "tags": ["Triple"]}
 				, {"id": "sVDGTMj6pNo", "name": "For Narmer"}
+				, {"id": "crK5g7lnQEE", "name": "Veso Segment Combat", "attr": ["Warframe"]}
 			]
 		},
 		"Tenno Tunes by me":{
@@ -1000,6 +1001,7 @@
 				{"id": "k9selKmyKLI", "name": "Nice Guys Finish Last", "attr": ["Green Day"], "tags": ["Perfect"]},
 				{"id": "OVHC8N5xa6I", "name": "Paper Lanterns", "attr": ["Green Day"], "tags": ["Perfect", "Druk"]},
 				{"id": "ElCiDQSiOno", "name": "Boulevard Of Broken Dreams", "attr": ["Green Day"]}
+				, {"id": "_soq01ybPPs", "name": "Oh Yeah!", "attr": ["Green Day"], "tags": ["Double", "Perfect"]}
 			]
 		},
 		"Billie Eilish":{
@@ -1348,6 +1350,8 @@
 				, {"id": "RVu9FxpxCJk", "name": "A Good Song Never Dies", "attr": ["Saint Motel"]}
 				, {"id": "rln2X772E3g", "name": "Untitled", "attr": ["Knuckle Puck"]}
 				, {"id": "fSZz-VJByEQ", "name": "Ghost Ship", "attr": ["Blur"], "tags": ["Perfect"]}
+				, {"id": "xLcKJSwNDh0", "name": "Let's Drink Bleach", "attr": ["Unknown Brain"]}
+				, {"id": "TjXiv98pyy0", "name": "The Devil You Know", "attr": ["X Ambassadors"], "tags": ["Perfect"]}
 			]
 		}
 	},
@@ -1475,7 +1479,8 @@
 		"Shakira":{
 			"dbName":"Pop",
 			"songs":[
-				{"id": "vRCBUiwwgwg", "name": "She Wolf", "attr": ["Shakira"], "tags": ["Perfect"]},
+				{"id": "vRCBUiwwgwg", "name": "She Wolf", "attr": ["Shakira"], "tags": ["Perfect"]}
+				, {"id": "NLeLg3g25rI", "name": "She Wolf", "attr": ["Shakira"], "tags": ["Quintuple"]},
 				{"id": "d6qMbVb2KUQ", "name": "Waka Waka/This Time For Africa", "attr": ["Shakira"]},
 				{"id": "SwOEcCMmxaw", "name": "Me Gusta", "attr": ["Shakira", "Anuel AA"], "tags": ["Double", "Gamma"]}
 			]
@@ -1613,6 +1618,7 @@
 				{"id": "keE-An1R50U", "name": "AAA Powerline", "attr": ["Ecco2K"], "tags": ["Perfect"]},
 				{"id": "AdUVWXXMJdY", "name": "Bailando", "attr": ["Paradiso ft. Maria Garcia & DJ Patrick Samoy"]}
 				, {"id": "8uuDvk0lVUQ", "name": "Raise Your Glass", "attr": ["P!nk"], "tags": ["Perfect"]}
+				, {"id": "IrW2h3prjZk", "name": "Se Mig", "attr": ["Veronica Maggio"], "tags": ["Perfect"]}
 			]
 		}
 	},
@@ -2671,6 +2677,10 @@
 				, {"id": "lPbvIvo3_Mo", "name": "Like You!", "attr": ["fusq"]}
 				, {"id": "Samoyuai5cU", "name": "Crashing", "attr": ["DirtySnatcha & Matt Doe"]}
 				, {"id": "EToOIAG9k2c", "name": "The Far Side", "attr": ["Aviators"], "tags": ["Perfect"]}
+				, {"id": "w5BXl91bNSA", "name": "Can You Hear It?", "attr": ["Aviators"]}
+				, {"id": "WrAgf4ZoF4c", "name": "Cosmic", "attr": ["Phaedra"]}
+				, {"id": "BFkJjvabGJ8", "name": "Warehouse", "attr": ["M.O.O.N ft. Glass Teeth"], "tags": ["Perfect"]}
+				, {"id": "r8_j99JQc1Q", "name": "Say A Little Prayer", "attr": ["Brooks ft. Gia Koka"], "tags": ["Perfect"]}
 			]
 		}
 	},
@@ -3751,6 +3761,8 @@
 					, {"id": "I9jPUeULnWE", "name": "CM Beelzebub Dungeon 2", "attr": ["Closers Online"]}
 					, {"id": "5x1DTPADhWQ", "name": "Coronation", "attr": ["Jump King"]}
 					, {"id": "rLYtCeuWTOQ", "name": "Black Knight 2000 pinball theme", "tags": ["Filled"]}
+					, {"id": "y-uDPe14IQ0", "name": "Underworld", "attr": ["Vamps", "Code Vein"]}
+					, {"id": "oNmVXNqQBdI", "name": "Cold Moon", "attr": ["Fallen Haven"], "tags": ["Perfect"]}
 				]
 			}
 		}
@@ -4331,6 +4343,9 @@
 				, {"id": "uq73UHhBKfQ", "name": "Sakura no Uta opening", "attr": ["Hana"]}
 				, {"id": "igWFvwILlQU", "name": "Kakegurui opening 2"}
 				, {"id": "8p4J5lEfl00", "name": "Tales of the Abyss opening"}
+				, {"id": "i4j1yNcajvk", "name": "Masquerade", "attr": ["Code Geass"]}
+				, {"id": "TWcwHxEgo0I", "name": "Butterfly", "attr": ["Miyavi", "Id:INVADED"], "tags": ["Perfect"]}
+				, {"id": "nesbtE0cFwY", "name": "Medal Suzdal Panic", "attr": ["Revue Starlight", "Starlight Kukugumi"]}
 			]
 		}
 	},
@@ -4719,6 +4734,7 @@
 				{"id": "6CQO97SZ85w", "name": "No Title", "attr": ["REOL"]},
 				{"id": "RrlGUyvZm8s", "name": "1LDK", "attr": ["Reol"]},
 				{"id": "jYvgjXFpdvs", "name": "[A]ddiction", "attr": ["GigaReol x EVO+"]}
+				, {"id": "q8N-c24KoQg", "name": "drop pop candy", "attr": ["REOL"]}
 			]
 		},
 		"miwa":{
@@ -4934,6 +4950,7 @@
 				, {"id": "9j7vFioEe_Q", "name": "Want", "attr": ["Taemin/\ud0dc\ubbfc"], "tags": ["Double", "Perfect"]}
 				, {"id": "jfTHgcIM5rw", "name": "After School", "attr": ["Weekly/\uc704\ud074\ub9ac"], "tags": ["Perfect"]}
 				, {"id": "-JxXpJMLW6g", "name": "Apple", "attr": ["GFRIEND/\uc5ec\uc790\uce5c\uad6c"], "tags": ["Perfect"]}
+				, {"id": "R0DvKUVenTs", "name": "Bop Bop!", "attr": ["Viviz/\ube44\ube44\uc9c0"], "tags": ["Triple"]}
 			]
 		},
 		"Misc J-Pop":{
@@ -4983,6 +5000,8 @@
 				, {"id": "ai2I7kF33_s", "name": "Jolly Jolly", "attr": ["JiLL-Decoy association"]}
 				, {"id": "VySdMmxbqTQ", "name": "Endless Tears", "attr": ["Cliff Edge"]}
 				, {"id": "yF8lkrZN1SE", "name": "Stay With Me", "attr": ["Miki Matsubura"]}
+				, {"id": "4MalgeHeFLM", "name": "\u30a6\u30a7\u30ab\u30d4\u30dd", "attr": ["Soul'd Out"], "tags": ["Perfect"]}
+				, {"id": "vufCLglpxqg", "name": "Rage of Dust", "attr": ["Spyair"]}
 			]
 		},
 		"Misc I Don't Know Which Letter Pop":{
@@ -5213,6 +5232,7 @@
 				, {"id": "L5DCa-dxFr4", "name": "Baby I'm Yours", "attr": ["Breakbot", "Ladies And Gentlemen We Got Him meme"]}
 				, {"id": "uttbtZQHFxc", "name": "Welcome to the Internet", "attr": ["Bo Burnham"]}
 				, {"id": "5dG_epSao4o", "name": "take the bait", "attr": ["Demondice"]}
+				, {"id": "kd1kjiCLfQg", "name": "Close Eyes", "attr": ["DVRST"]}
 			]
 		}
 	},
@@ -5488,8 +5508,14 @@
 				, {"id": "Q1D7dNQEd9Q", "name": "Money Shot", "attr": ["The Sex-o-rama Band"]}
 				, {"id": "tyGdSWr_wzs", "name": "My Mother Told Me", "attr": ["Song of the Vikings"]}
 				, {"id": "n4mlC-X_7kU", "name": "Cherry Pepsi", "attr": ["Saint Pepsi"], "tags": ["Perfect"]}
+				, {"id": "XkHhOFWI2No", "name": "Enjoy Yourself", "attr": ["Saint Pepsi"]}
+				, {"id": "qIWlE5PzLvE", "name": "Fun Tonight", "attr": ["Macross 82-99"]}
 				, {"id": "z4tsojstf1U", "name": "Will Power", "attr": ["Something Rotten", "Christian Borle"]}
 				, {"id": "3iTAt1NQZVc", "name": "Dawson's Christian", "attr": ["Carmen Miranda's Ghost"], "tags": ["Plogg"]}
+				, {"id": "P9L8cJt-6BA", "name": "Single Normal Year", "attr": ["uamee"]}
+				, {"id": "cwH6M0B_KMg", "name": "Les bateaux dans la baie", "attr": ["P'tit Belliveau"], "tags": ["Perfect"]}
+				, {"id": "epOqH5t_dIo", "name": "It's Not Unusual", "attr": ["Tom Jones"]}
+				, {"id": "Ml_bj-v-rCg", "name": "4'33\"", "attr": ["John Cage"], "tags": ["Perfect"]}
 			]
 		}
 	}
