@@ -357,6 +357,8 @@
 				, {"id": "wkc0FTR0M3Q", "name": "Invisible", "attr": ["Alison Moyet"]}
 				, {"id": "mmhvUQnLlKI", "name": "Just The Two Of Us", "attr": ["Grover Washington ft. Bill Withers"]}
 				, {"id": "_WgFnGBc0Ek", "name": "Jessie's Girl", "attr": ["Rick Springfield"], "tags": ["Double"]}
+				, {"id": "fcNII3-6WHo", "name": "Physical", "attr": ["Olivia Newton-John"], "tags": ["Perfect"]}
+				, {"id": "GONloYu11Es", "name": "Escape (The Pina Colada Song)", "attr": ["Rupert Holmes"], "tags": ["Perfect"]}
 			]
 		}
 	},
@@ -616,6 +618,14 @@
 				{"id": "L5WU55qnKGU", "name": "BOOM!1", "attr": ["Amaranthe"]}
 			]
 		},
+		"Rammstein":{
+			"dbName":"HardRock",
+			"songs":[
+				{"id": "wQVaoRGmi1U", "name": "Du Hast", "attr": ["Rammstein"], "tags": ["Druk"]},
+				{"id": "D9TJDMwBm-M", "name": "Links 2 3 4", "attr": ["Rammstein"], "tags": ["Druk"]}
+				, {"id": "Q0gtzkf_H1s", "name": "Giftig", "attr": ["Rammstein"], "tags": ["Perfect", "Druk"]}
+			]
+		},
 		"Misc Hard Rock":{
 			"dbName":"HardRock.MiscHardRock",
 			"songs":[
@@ -628,8 +638,6 @@
 				{"id": "abg3ghB4HGs", "name": "Smells Like a Freakshow", "attr": ["Avatar"], "tags": ["Druk"]},
 				{"id": "PSSza1y7PrA", "name": "One For The Money", "attr": ["Escape The Fate"]},
 				{"id": "-tU4LixpaM4", "name": "Out Of The Black", "attr": ["Royal Blood"], "tags": ["Druk"]},
-				{"id": "wQVaoRGmi1U", "name": "Du Hast", "attr": ["Rammstein"], "tags": ["Druk"]},
-				{"id": "D9TJDMwBm-M", "name": "Links 2 3 4", "attr": ["Rammstein"], "tags": ["Druk"]},
 				{"id": "r002rn6r0cA", "name": "Cowboys From Hell", "attr": ["Pantera"]},
 				{"id": "KIgZoEDSqRk", "name": "Cowboys From Hell - Part 2", "attr": ["Pantera"], "tags": ["Druk"]}
 				, {"id": "Nhdzea6Ho8E", "name": "Cemetery Gates", "attr": ["Pantera"], "tags": ["Druk"]},
@@ -782,6 +790,7 @@
 				{"id": "Kr4IqZm5Tho", "name": "Working Man", "attr": ["Imagine Dragons"]},
 				{"id": "N7Jg770xmQ8", "name": "Whatever It Takes", "attr": ["Imagine Dragons"], "tags": ["Double", "Perfect"]}
 				, {"id": "E8ofBLEGDyA", "name": "Battle Cry", "attr": ["Imagine Dragons"], "tags": ["Double"]}
+				, {"id": "PlEIXB-3jBs", "name": "Bones", "attr": ["Imagine Dragons"], "tags": ["Perfect"]}
 			]
 		},
 		"Linkin Park":{
@@ -983,6 +992,7 @@
 				{"id": "tRMkNxGkzRc", "name": "Dani California", "attr": ["Red Hot Chili Peppers"]},
 				{"id": "EZDx-9p9M8E", "name": "Can't Stop", "attr": ["Red Hot Chili Peppers"], "tags": ["Perfect"]},
 				{"id": "mNu0gT-Z0L8", "name": "Can't Stop (just the intro forever)", "attr": ["Red Hot Chili Peppers"], "tags": ["Perfect"]}
+				, {"id": "Uo_MnUXVE8c", "name": "Black Summer", "attr": ["Red Hot Chili Peppers"], "tags": ["Perfect"]}
 			]
 		},
 		"SIAMÉS":{
@@ -1654,6 +1664,7 @@
 				{"id": "I2vCIy5czvw", "name": "Plague", "attr": ["Crystal Castles"], "tags": ["Perfect"]},
 				{"id": "4DQBb9iOtzI", "name": "Crimewave", "attr": ["Crystal Castles"]},
 				{"id": "dU3qDugamek", "name": "Magic Spells", "attr": ["Crystal Castles"]}
+				, {"id": "Ec86pXKmheU", "name": "Vanished", "attr": ["Crystal Castles"]}
 			]
 		},
 		"Charlie Puth":{
@@ -3438,6 +3449,7 @@
 				{"id": "4LNpUYEap2o", "name": "Instant Kill Theme", "attr": ["Guilty Gear Xrd"]},
 				{"id": "PpyWJ9-FKu8", "name": "Drumhead Pulsation", "attr": ["Guilty Gear Isuka"], "tags": ["Druk"]}
 				, {"id": "YkCAGFaE6FE", "name": "Mirror of the World", "attr": ["Guilty Gear Strive"], "tags": ["Triple"]}
+				, {"id": "i1ArnUNf5hE", "name": "Love the Subhuman Self / Millia's Rage Theme", "attr": ["Guilty Gear Strive"], "tags": ["Triple", "Perfect"]}
 			]
 		},
 		"Misc video games":{
@@ -3763,6 +3775,8 @@
 					, {"id": "rLYtCeuWTOQ", "name": "Black Knight 2000 pinball theme", "tags": ["Filled"]}
 					, {"id": "y-uDPe14IQ0", "name": "Underworld", "attr": ["Vamps", "Code Vein"]}
 					, {"id": "oNmVXNqQBdI", "name": "Cold Moon", "attr": ["Fallen Haven"], "tags": ["Perfect"]}
+					, {"id": "m-9mW1WLo5s", "name": "The Rain Formerly Known As Purple", "attr": ["Risk Of Rain 2"]}
+					, {"id": "x5gkA1jr-s0", "name": "In Hell We Live, Lament", "attr": ["Limbus Company"], "tags": ["Perfect"]}
 				]
 			}
 		}
@@ -4346,6 +4360,8 @@
 				, {"id": "i4j1yNcajvk", "name": "Masquerade", "attr": ["Code Geass"]}
 				, {"id": "TWcwHxEgo0I", "name": "Butterfly", "attr": ["Miyavi", "Id:INVADED"], "tags": ["Perfect"]}
 				, {"id": "nesbtE0cFwY", "name": "Medal Suzdal Panic", "attr": ["Revue Starlight", "Starlight Kukugumi"]}
+				, {"id": "2mS6ykSr-aE", "name": "Ya Boy Kongming! opening"}
+				, {"id": "Vqj_Mb9w4Mk", "name": "Styx Helix", "attr": ["re:ZERO Starting Life in Another World ending"]}
 			]
 		}
 	},
@@ -5002,6 +5018,7 @@
 				, {"id": "yF8lkrZN1SE", "name": "Stay With Me", "attr": ["Miki Matsubura"]}
 				, {"id": "4MalgeHeFLM", "name": "\u30a6\u30a7\u30ab\u30d4\u30dd", "attr": ["Soul'd Out"], "tags": ["Perfect"]}
 				, {"id": "vufCLglpxqg", "name": "Rage of Dust", "attr": ["Spyair"]}
+				, {"id": "Mz_QKAXam4A", "name": "\u30ab\u30c8\u30e9\u30ea\u30fc", "attr": ["\u6709\u6a5f\u9178/ewe feat.\u521d\u97f3\u30df\u30af"]}
 			]
 		},
 		"Misc I Don't Know Which Letter Pop":{
@@ -5368,7 +5385,8 @@
 				{"id": "iPAUakIpcrI", "name": "Somebody's Watching Me", "attr": ["Mysto & Pizze", "GEICO"]},
 				{"id": "jjT87fxCbD0", "name": "\"Put Your Hands Up\"", "attr": ["Kat Graham"]},
 				{"id": "naDJnlqxxFI", "name": "Erika", "attr": ["Herms Niel"]},
-				{"id": "EyobRgndW1I", "name": "Redbone", "attr": ["Childish Gambino"]},
+				{"id": "EyobRgndW1I", "name": "Redbone", "attr": ["Childish Gambino"]}
+				, {"id": "vnhistd92HM", "name": "V.3005", "attr": ["Childish Gambino"], "tags": ["Double", "Perfect"]},
 				{"id": "tLy_RpbOUgo", "name": "Got To Be Real", "attr": ["Cheryl Lynn"]},
 				{"id": "EN4ogMDXXgQ", "name": "The 7th Element", "attr": ["VITAS"]},
 				{"id": "-JY3mLi0hAA", "name": "Latin Industries", "attr": ["Kevin MacLeod"]},
