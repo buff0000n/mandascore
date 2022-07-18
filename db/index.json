@@ -2401,7 +2401,7 @@
 		"Aviators":{
 			"dbName":"Electronic",
 			"songs":[
-				, {"id": "EToOIAG9k2c", "name": "The Far Side", "attr": ["Aviators"], "tags": ["Perfect"]}
+				{"id": "EToOIAG9k2c", "name": "The Far Side", "attr": ["Aviators"], "tags": ["Perfect"]}
 				, {"id": "w5BXl91bNSA", "name": "Can You Hear It?", "attr": ["Aviators"]}
 				, {"id": "cSZPZYUhffs", "name": "Into The Black", "attr": ["Aviators"], "tags": ["Perfect"]}
 			]
