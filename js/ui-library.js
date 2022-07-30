@@ -31,6 +31,8 @@ class Library {
         this.searchWords = null;
         // current search queue
         this.searchQueue = null;
+        // current result size
+        this.visibleSongCount = 0;
 
         // search queue prototype, we only need to build this once
         this.searchQueuePrototype = null;
@@ -71,6 +73,7 @@ class Library {
                 <span class="imgButton searchButton tooltip"><img src="img/icon-search.png" srcset="img2x/icon-search.png 2x" alt="Reverse Search"/>
                     <span class="tooltiptextbottom">Reverse search for the current song in the library</span>
                 </span>
+                <span><strong id="visibleSongCount"></strong></span>
             </div>
         `;
         this.libraryContainer.appendChild(this.menuContainer);
@@ -94,6 +97,10 @@ class Library {
 
     hide() {
         toggleLibrary(getFirstChild(this.menuContainer, "titleButton"));
+    }
+
+    updateVisibleSongCount() {
+        document.getElementById("visibleSongCount").innerHTML = this.visibleSongCount;
     }
 
     demoIndexLoaded(indexJson) {
@@ -122,6 +129,8 @@ class Library {
 
         // build the index tree UI and get the entries ready for searching
         this.buildTree(this.indexContainer, this.index, null, []);
+
+        this.updateVisibleSongCount();
 
         // build the search queue prototype, no point in building this every time
         this.searchQueuePrototype = [];
@@ -212,7 +221,7 @@ class Library {
                 // add to the DOM
                 parent.appendChild(songDiv);
                 // track the parent's visible children
-                this.incrementVisibleChildren(parent);
+                this.incrementVisibleChildren(parent, true);
                 // references from the song entry tothe UI
                 song.div = songDiv;
                 // prepare the song entry for searching
@@ -243,9 +252,13 @@ class Library {
         parent.visibleChildren = 0;
     }
 
-    incrementVisibleChildren(parent) {
+    incrementVisibleChildren(parent, isSong = false) {
         // check if this is a valid tracking parent
         if (parent && parent.visibleChildren != null) {
+            // increment search result size if this is a song
+            if (isSong) {
+                this.visibleSongCount += 1;
+            }
             // increment the visible children
             var count = parent.visibleChildren + 1;
             parent.visibleChildren = count;
@@ -258,9 +271,13 @@ class Library {
         }
     }
 
-    decrementVisibleChildren(parent) {
+    decrementVisibleChildren(parent, isSong = false) {
         // check if this is a valid tracking parent
         if (parent && parent.visibleChildren != null) {
+            // decrement search result size if this is a song
+            if (isSong) {
+                this.visibleSongCount -= 1;
+            }
             // decrement the visible children
             var count = parent.visibleChildren - 1;
             parent.visibleChildren = count;
@@ -368,6 +385,7 @@ class Library {
                 // clear the timeout
                 this.searchTimeout = null;
                 // end the search
+                this.updateVisibleSongCount();
                 return;
             }
 
@@ -396,6 +414,7 @@ class Library {
             count += songs.length;
         }
 
+        this.updateVisibleSongCount();
         // schedule the next batch
         this.searchTimeout = setTimeout(() => this.runSearch(searchQueue, totalItems, loadSongData, func), this.searchDelay);
     }
@@ -406,7 +425,7 @@ class Library {
             // show it
             song.div.style.display = "block";
             // show its parent, if necessary
-            this.incrementVisibleChildren(song.div.parentElement);
+            this.incrementVisibleChildren(song.div.parentElement, true);
         }
     }
 
@@ -416,7 +435,7 @@ class Library {
             // hide it
             song.div.style.display = "none";
             // hide its parent, if necessary
-            this.decrementVisibleChildren(song.div.parentElement);
+            this.decrementVisibleChildren(song.div.parentElement, true);
         }
     }
 
