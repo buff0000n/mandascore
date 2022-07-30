@@ -1,6 +1,14 @@
 // instrument pack metadata
+// Mono settings need their own struct
+class MonoSpec {
+    constructor(perTone=false, fadeTime=0.05) {
+        this.perTone = perTone;
+        this.fadeTime = fadeTime;
+    }
+}
+
 class InstrumentPack {
-    constructor(name, displayName, formatName, double=false, monoPerc=false, monoBass=false, monoMel=false) {
+    constructor(name, displayName, formatName, double=false, monoPerc=null, monoBass=null, monoMel=null) {
         this.name = name;
         this.displayName = displayName;
         this.formatName = formatName;
@@ -20,10 +28,10 @@ var packs = Array(
     new InstrumentPack("adau", "Adau", "BardTennoPackA", true),
     new InstrumentPack("alpha", "Alpha", "BardCorpusPackA", true),
     new InstrumentPack("beta", "Beta", "BardCorpusPackB", true),
-    new InstrumentPack("bombast", "Bombast", "BardHipHopPackA", true, false, true, true),
-    new InstrumentPack("delta", "Delta", "BardCorpusPackD", true),
+    new InstrumentPack("bombast", "Bombast", "BardHipHopPackA", true, null, new MonoSpec(false, 0.05), new MonoSpec(false, 0.20)),
+    new InstrumentPack("delta", "Delta", "BardCorpusPackD", true, false, new MonoSpec(false, 0.50), new MonoSpec(false, 0.10)),
     new InstrumentPack("druk", "Druk", "BardGrineerPackA", true),
-    new InstrumentPack("epsilon", "Epsilon", "BardCorpusPackE", true),
+    new InstrumentPack("epsilon", "Epsilon", "BardCorpusPackE", true, false, new MonoSpec(true, 0.25), false),
     new InstrumentPack("gamma", "Gamma", "BardCorpusPackC", true),
     new InstrumentPack("horos", "Horos", "BardEDMPackA", true),
     new InstrumentPack("plogg", "Plogg", "BardGrineerPackB", true),

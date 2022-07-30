@@ -10,13 +10,9 @@ function initAudioContext() {
     }
 }
 
-// fade time for stopping a sound
-// we can't just stop a sound instantly because there will be an audible pop.
-var monoFadeTime = 0.05;
-
 // object wrapping a single sound and keeping track of its source, volume, and play state.
 class SoundEntry {
-    constructor() {
+    constructor(monoFadeTime=0.05) {
         // init with no sound for now
         this.setBuffers(null, null);
         // default volume
@@ -24,6 +20,9 @@ class SoundEntry {
         this.mixVolume = 1.0;
         this.masterVolume = 1.0;
         this.queuedTime = null;
+        // fade time for stopping a sound
+        // we can't just stop a sound instantly because there will be an audible pop.
+        this.monoFadeTime = monoFadeTime;
     }
 
     setBuffers(buffers, sourceName) {
@@ -140,18 +139,18 @@ class SoundEntry {
                 // schedule the start of a fade
                 this.lastGain.gain.setValueAtTime(this.volume, t);
                 // schedule a very quick fade, down to 0.01 volume because it doesn't like 0.
-                this.lastGain.gain.exponentialRampToValueAtTime(0.01, t + monoFadeTime);
+                this.lastGain.gain.exponentialRampToValueAtTime(0.01, t + this.monoFadeTime);
                 // stop the source at the end of the fade
-                this.lastSource.stop(t + monoFadeTime);
+                this.lastSource.stop(t + this.monoFadeTime);
 
             } else {
                 // stop immediately
                 // We can't just stop the sound instantly because there will be an audio pop
                 // this.lastSource.stop();
                 // start a very quick fade, down to 0.01 volume because it doesn't like 0.
-                this.lastGain.gain.exponentialRampToValueAtTime(0.01, monoFadeTime);
+                this.lastGain.gain.exponentialRampToValueAtTime(0.01, this.monoFadeTime);
                 // stop the source at the end of the fade
-                this.lastSource.stop(monoFadeTime);
+                this.lastSource.stop(this.monoFadeTime);
             }
             // clear the source state
             this.lastSource = null;
@@ -170,7 +169,7 @@ class SoundEntry {
 
 // object wrapping a bank of sounds from a single source
 class SoundBankSource {
-    constructor(sourceName, sources, mono=false) {
+    constructor(sourceName, sources, mono=null) {
         // source data
         this.sourceName = sourceName;
         this.sources = sources;
@@ -181,7 +180,7 @@ class SoundBankSource {
         // create the sound entries
         this.sounds = Array();
         for (var i = 0; i < this.sources.length; i++) {
-            this.sounds.push(new SoundEntry());
+            this.sounds.push(new SoundEntry(this.mono ? this.mono.fadeTime : 0));
         }
     }
 
@@ -247,8 +246,15 @@ class SoundBankSource {
     playLater(index, time, context=audioContext) {
         if (this.mono) {
             // if this bank is mono then schedule any currently playing sounds to stop
-            for (var i = 0; i < this.sounds.length; i++) {
-                this.sounds[i].stopLater(time, context);
+            if (this.mono.perTone) {
+                // per-tone mono: just stop the sound about to play,
+                this.sounds[index].stopLater(time, context);
+
+            } else {
+                // otherwise stop all sounds in the bank
+                for (var i = 0; i < this.sounds.length; i++) {
+                    this.sounds[i].stopLater(time, context);
+                }
             }
         }
         // play the sound
@@ -290,7 +296,7 @@ class SoundBank {
         this.initialized = false;
     }
 
-    precacheSource(sourceName, sources, mono=false) {
+    precacheSource(sourceName, sources, mono=null) {
         if (!this.sources[sourceName]) {
             // create a new, uninitialized  bank source if it doesn't exist
             this.sources[sourceName] = new SoundBankSource(sourceName, sources, mono);
@@ -298,7 +304,7 @@ class SoundBank {
         return this.sources[sourceName];
     }
 
-    setSource(sourceName, sources, mono=false, precache=false) {
+    setSource(sourceName, sources, mono=null, precache=false) {
         // don't do anything if it's the source we already have
         if (this.currentSource && this.currentSource.sourceName == sourceName) {
             return;
@@ -510,7 +516,7 @@ class SoundPlayer {
         this.initialized = false;
     }
 
-    setSource(section, source, mono=false, precache=false) {
+    setSource(section, source, mono=null, precache=false) {
         var m = sectionMetaData[section];
         var soundFiles = instrumentNameToPack[source].soundFiles
         // set the source on the given section
