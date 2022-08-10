@@ -100,7 +100,10 @@ class Library {
     }
 
     updateVisibleSongCount() {
-        document.getElementById("visibleSongCount").innerHTML = this.visibleSongCount;
+        var countElement = document.getElementById("visibleSongCount")
+        if (countElement) {
+            countElement.innerHTML = this.visibleSongCount;
+        }
     }
 
     demoIndexLoaded(indexJson) {
