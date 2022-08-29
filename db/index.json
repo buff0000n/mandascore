@@ -228,7 +228,8 @@
 				{"id": "xbZbCcfh-Bg", "name": "Crosstown Traffic", "attr": ["Jimi Hendrix"], "tags": ["Perfect"]},
 				{"id": "eNAqqBqxXhQ", "name": "Do It Again", "attr": ["Steely Dan"]},
 				{"id": "82r9TST5noE", "name": "September", "attr": ["Earth", "Wind & Fire"], "tags": ["Perfect"]},
-				{"id": "-BJ3UzM5BNc", "name": "Let's Groove", "attr": ["Earth", "Wind & Fire"]},
+				{"id": "-BJ3UzM5BNc", "name": "Let's Groove", "attr": ["Earth", "Wind & Fire"]}
+				, {"id": "Y0b_2oeoHlA", "name": "I Like It Like That", "attr": ["Inner Life"]},
 				{"id": "7ckBgBhbmig", "name": "I Was Made For Lovin' You", "attr": ["KISS"]},
 				{"id": "7f5VMcIvADU", "name": "I Love It Loud", "attr": ["Kiss"], "tags": ["Perfect"]},
 				{"id": "eqyaZJnrOLc", "name": "Tequila", "attr": ["The Champs"], "tags": ["Perfect"]},
@@ -612,6 +613,7 @@
 				{"id": "aUPoNuHn08g", "name": "Dance Macabre", "attr": ["Ghost"], "tags": ["Perfect"]},
 				{"id": "gtSOgGQb-Ro", "name": "Monstrance Clock", "attr": ["Ghost"], "tags": ["Perfect"]}
 				, {"id": "koTNEUWGOmg", "name": "Call Me Little Sunshine", "attr": ["Ghost"]}
+				, {"id": "ZKRUu7c1o5c", "name": "Mary On A Cross", "attr": ["Ghost"], "tags": ["Perfect"]}
 			]
 		},
 		"Amaranthe":{
@@ -695,7 +697,8 @@
 				{"id": "EtAf0gLH_pc", "name": "Victorias Secret", "attr": ["Sonata Arctica"]},
 				{"id": "NGgMUQK-mII", "name": "The Sword", "attr": ["Freya"], "tags": ["Druk"]},
 				{"id": "psAjtpoUQPs", "name": "Blood", "attr": ["In This Moment"], "tags": ["Perfect"]},
-				{"id": "9cyFomFFSjQ", "name": "A Demon's Fate", "attr": ["Within Temptation"]},
+				{"id": "9cyFomFFSjQ", "name": "A Demon's Fate", "attr": ["Within Temptation"]}
+				, {"id": "vmdqhws38yk", "name": "Shed My Skin", "attr": ["Within Temptation"]},
 				{"id": "8IVeqlQWUtw", "name": "Golgotha", "attr": ["W.A.S.P"]},
 				{"id": "0H5csvEDrbY", "name": "Inside The Fire", "attr": ["Disturbed"], "tags": ["Druk", "Filled"]}
 				, {"id": "Va2gk6v3Cpk", "name": "Criminal", "attr": ["Disturbed"], "tags": ["Druk"]},
@@ -758,6 +761,7 @@
 				{"id": "4QtGvvBCSAY", "name": "Strange Days", "attr": ["Health"], "tags": ["Double"]}
 				, {"id": "DSUP-Qd4lNs", "name": "Feel Nothing", "attr": ["Health"]}
 				, {"id": "66rDiUcPzpU", "name": "TicToc (Brace For Impact)", "attr": ["Self Deception"], "tags": ["Perfect"]}
+				, {"id": "HFq13vzRsXQ", "name": "Obey", "attr": ["Priest"]}
 			]
 		}
 	},
@@ -1085,6 +1089,22 @@
 				, {"id": "NVvdIfVxiHg", "name": "Island In The Sun", "attr": ["Weezer"]}
 			]
 		},
+		"The Hoosiers":{
+			"dbName":"PopRock",
+			"songs":[
+				{"id": "ORbQcu_7NIY", "name": "Cops and Robbers", "attr": ["The Hoosiers"]},
+				{"id": "AJo2OGkQAAQ", "name": "Goodbye Mr A", "attr": ["The Hoosiers"]}
+				, {"id": "F8KVnRouY4c", "name": "Killer", "attr": ["The Hoosiers"]}
+			]
+		},
+		"Maroon 5":{
+			"dbName":"PopRock",
+			"songs":[
+				{"id": "AJktJhlaMvg", "name": "Shiver", "attr": ["Maroon 5"]},
+				{"id": "nW1ChERvScQ", "name": "Girls Like You", "attr": ["Maroon 5"]}
+				, {"id": "PVek0xTo4Oo", "name": "This Love", "attr": ["Maroon 5"], "tags": ["Perfect"]}
+			]
+		},
 		"Misc Pop/Rock":{
 			"dbName":"PopRock.MiscPopRock",
 			"songs":[
@@ -1186,8 +1206,6 @@
 				{"id": "kx0bqHz8BCo", "name": "The Bomb", "attr": ["Pigeon John"], "tags": ["Perfect", "Plogg"]},
 				{"id": "92wrCZiAyec", "name": "Shed Some Skin", "attr": ["Slow Gherkin"]},
 				{"id": "v54mU-9A-Dw", "name": "Burning Man", "attr": ["watt"]},
-				{"id": "AJktJhlaMvg", "name": "Shiver", "attr": ["Maroon 5"]},
-				{"id": "nW1ChERvScQ", "name": "Girls Like You", "attr": ["Maroon 5"]},
 				{"id": "imrL4X1ZZdE", "name": "Move Along", "attr": ["The All American Rejects"], "tags": ["Perfect"]},
 				{"id": "F1MRmt-0UYQ", "name": "Gives You Hell", "attr": ["The All-American Rejects"], "tags": ["Perfect"]},
 				{"id": "fzgaEJssh3Q", "name": "Hit Me", "attr": ["Fit For Rivals"], "tags": ["Druk"]},
@@ -1306,8 +1324,6 @@
 				{"id": "HGGWE9Xsg7Y", "name": "Tom's Diner", "attr": ["Suzanne Vega"]},
 				{"id": "ub472uOSnL4", "name": "3 Foot Tall", "attr": ["Classified"], "tags": ["Perfect"]},
 				{"id": "UYlxUt-psf8", "name": "Pump My Pumps", "attr": ["Dan Black"], "tags": ["Perfect"]},
-				{"id": "ORbQcu_7NIY", "name": "Cops and Robbers", "attr": ["The Hoosiers"]},
-				{"id": "AJo2OGkQAAQ", "name": "Goodbye Mr A", "attr": ["The Hoosiers"]},
 				{"id": "n_FjM1xparc", "name": "The Seed 2.0", "attr": ["The Roots"]},
 				{"id": "QavOexC_33c", "name": "About A Girl", "attr": ["Nirvana"], "tags": ["Double", "Perfect"]},
 				{"id": "19J7x0Qulyg", "name": "Heart Shaped Box", "attr": ["Nirvana"]},
@@ -1389,6 +1405,8 @@
 				, {"id": "TjXiv98pyy0", "name": "The Devil You Know", "attr": ["X Ambassadors"], "tags": ["Perfect"]}
 				, {"id": "KKUuZSFtshg", "name": "Move Your Feet", "attr": ["Junior Senior"]}
 				, {"id": "FCVgkwkaV_A", "name": "December (Again)", "attr": ["Neck Deep"]}
+				, {"id": "DWqeZfal8B0", "name": "Geyser", "attr": ["Mitski"]}
+				, {"id": "d-WMNyoJfJY", "name": "The Adults Are Talking", "attr": ["The Strokes"], "tags": ["Perfect"]}
 			]
 		}
 	},
@@ -1656,9 +1674,14 @@
 				{"id": "keE-An1R50U", "name": "AAA Powerline", "attr": ["Ecco2K"], "tags": ["Perfect"]},
 				{"id": "AdUVWXXMJdY", "name": "Bailando", "attr": ["Paradiso ft. Maria Garcia & DJ Patrick Samoy"]}
 				, {"id": "8uuDvk0lVUQ", "name": "Raise Your Glass", "attr": ["P!nk"], "tags": ["Perfect"]}
+				, {"id": "COHsqdMYgd8", "name": "Irrelevant", "attr": ["P!nk"], "tags": ["Double"]}
 				, {"id": "IrW2h3prjZk", "name": "Se Mig", "attr": ["Veronica Maggio"], "tags": ["Perfect"]}
 				, {"id": "e-B6yOvhR-8", "name": "Hello", "attr": ["Adele"], "tags": ["Double"]}
 				, {"id": "aBLUfI8k9Bw", "name": "XS", "attr": ["Rina Sawayama"], "tags": ["Perfect"]}
+				, {"id": "dmS5LmLP8Zk", "name": "This Hell", "attr": ["Rina Sawayama"]}
+				, {"id": "2ECIb9Blnmk", "name": "Psycho", "attr": ["Mia Rodriguez"], "tags": ["Perfect"]}
+				, {"id": "ljRS6_iic18", "name": "Childhood Dreams", "attr": ["ARY"]}
+				, {"id": "a9oenhh3-NY", "name": "Shirt", "attr": ["SZA"], "tags": ["Perfect"]}
 			]
 		}
 	},
@@ -1961,6 +1984,14 @@
 				, {"id": "5Urylb6q9h0", "name": "Corso", "attr": ["Tyler The Creator"], "tags": ["Perfect"]}
 			]
 		},
+		"Future":{
+			"dbName":"RapHippityHop",
+			"songs":[
+				{"id": "pxyngbB_dPs", "name": "Mask Off", "attr": ["Future"]},
+				{"id": "S7GQbx-mOC0", "name": "You Da Baddest", "attr": ["Future"]}
+				, {"id": "2K8XGn1V1yo", "name": "Ain't No Way Around It", "attr": ["DJ Drama ft. Future"], "tags": ["Perfect"]}
+			]
+		},
 		"Misc Rap/Hippity Hop":{
 			"dbName":"RapHippityHop.MiscRapHippityHop",
 			"songs":[
@@ -1972,7 +2003,6 @@
 				{"id": "nBs0A0LAL_I", "name": "4 Lit", "attr": ["B.o.B"]},
 				{"id": "7ueAzoHjqVo", "name": "Just What I Am", "attr": ["Kid Cudi"], "tags": ["Perfect"]},
 				{"id": "ZnKqTsHAgkc", "name": "Day 'N' Nite", "attr": ["Kid Cudi"]},
-				{"id": "pxyngbB_dPs", "name": "Mask Off", "attr": ["Future"]},
 				{"id": "Cx4X33_cf5E", "name": "Thrift Shop", "attr": ["Macklemore & Ryan Lewis"], "tags": ["Perfect"]},
 				{"id": "_bHSwpOPhhk", "name": "Smoke Weed Everyday", "attr": ["Snoop Dogg"], "tags": ["Perfect"]},
 				{"id": "ZdHQj_m4BiA", "name": "I Like To Move It", "attr": ["Reel 2 Real"], "tags": ["Gamma"]},
@@ -1992,7 +2022,6 @@
 				{"id": "v8rZkd1hr-s", "name": "Spitfire", "attr": ["Bugzy Malone"]},
 				{"id": "uIyAlEjbP1A", "name": "Push It", "attr": ["Salt-N-Peppa"]},
 				{"id": "39mb8WxhySE", "name": "The Loft", "attr": ["City Of Dreams"], "tags": ["Perfect"]},
-				{"id": "S7GQbx-mOC0", "name": "You Da Baddest", "attr": ["Future"]},
 				{"id": "JhWz_DN91Ac", "name": "LA Lights", "attr": ["NetNobody"], "tags": ["Perfect"]},
 				{"id": "9-O73mywDFE", "name": "NY State of Mind", "attr": ["Nas"]},
 				{"id": "FpCrQeU0HS4", "name": "It Was A Good Day", "attr": ["Ice Cube"]},
@@ -2070,6 +2099,7 @@
 				, {"id": "2suzA3kkOTk", "name": "BeatBox", "attr": ["SPOTTEM GOTTEM"]}
 				, {"id": "NZbrrvpl8ks", "name": "Welcome to the Party", "attr": ["PARTYNEXTDOOR"], "tags": ["Perfect"]}
 				, {"id": "0MPH2-n4vD0", "name": "Magnolia", "attr": ["Playboi Carti"], "tags": ["Bombast"]}
+				, {"id": "oKNgQqUbEgQ", "name": "MEH", "attr": ["Playboi Carti"]}
 				, {"id": "qoIOxKceO5o", "name": "Money Do", "attr": ["Gucci Mane"], "tags": ["Perfect"]}
 				, {"id": "EcvVz09fZqU", "name": "Palm Angel", "attr": ["Eric IV"], "tags": ["Perfect"]}
 				, {"id": "JGMoPq5c19I", "name": "Nights", "attr": ["Frank Ocean"]}
@@ -2079,6 +2109,8 @@
 				, {"id": "94WsNntH02Y", "name": "drain", "attr": ["lieu"]}
 				, {"id": "pWibHhzLPs4", "name": "How I Been", "attr": ["Nba YoungBoy"], "tags": ["Perfect"]}
 				, {"id": "ASgIGg43gAk", "name": "Bad News", "attr": ["Tom MacDonald"], "tags": ["Perfect"]}
+				, {"id": "Var58Mu53ts", "name": "Victim", "attr": ["bladee", "Thaiboy Digital", "ECCO2K"], "tags": ["Perfect"]}
+				, {"id": "aHJT-TKsQ8I", "name": "Stefania", "attr": ["Kalush Orchestra"]}
 			]
 		}
 	},
@@ -2742,6 +2774,7 @@
 				, {"id": "T3yLV7F2z_c", "name": "Spin", "attr": ["Floorplan"]}
 				, {"id": "RtlRp-QhScQ", "name": "Parallel Lines", "attr": ["ATTLAS", "Enzo Bennet Remix"]}
 				, {"id": "P-PvJUydNqs", "name": "Run Wild", "attr": ["PLS&TY"]}
+				, {"id": "-rdayNH-Csk", "name": "Supernatural", "attr": ["Synthetic Dimension"], "tags": ["Perfect"]}
 			]
 		}
 	},
@@ -2932,7 +2965,8 @@
 				{"id": "6MJhYVoMPBc", "name": "A Long Fall/The Twinning Theme", "attr": ["Final Fantasy XIV"], "tags": ["Perfect"]}
 				, {"id": "YnLb6zCW3eM", "name": "Who Brings Shadow/Hades Theme", "attr": ["Final Fantasy XIV"]}
 				, {"id": "jK--p_eE72Q", "name": "Endwalker", "attr": ["Final Fantasy XIV"]}
-				, {"id": "PyewDWMp1ak", "name": "To The Edge/Warrior of Light's Theme", "attr": ["Final Fantasy XIV"]},
+				, {"id": "PyewDWMp1ak", "name": "To The Edge/Warrior of Light's Theme", "attr": ["Final Fantasy XIV"]}
+				, {"id": "-kB1qiWkALI", "name": "Freefall/Final Steps of Faith", "attr": ["Final Fantasy XIV"]},
 				{"id": "oiBBwC8G9LI", "name": "Valse di Fantastica", "attr": ["Final Fantasy XV"]},
 				{"id": "7wJ9_oRwIi8", "name": "Warrior Battle Theme 1", "attr": ["Mobius Final Fantasy"]},
 				{"id": "chYqN1_KNAM", "name": "Character Selection", "attr": ["Dissidia Final Fantasy NT"], "tags": ["Double"]},
@@ -4199,6 +4233,7 @@
 				{"id": "FSbn51Zmdtw", "name": "Answer", "attr": ["Kaf", "Black Clover Ending 11"]},
 				{"id": "AdCi-yO00iY", "name": "Grandeur", "attr": ["Black Clover opening 13"]},
 				{"id": "bah-_4VULZc", "name": "Black Rover", "attr": ["Black Clover opening 3"]}
+				, {"id": "LB6au2w0Ax0", "name": "Against The Gods", "attr": ["Black Clover ending 8"]}
 			]
 		},
 		"Panty & Stocking":{
@@ -4217,13 +4252,22 @@
 				, {"id": "2s_I4mDwfVQ", "name": "Zankyou Sanka", "attr": ["Aimer", "Demon Slayer season 2 opening"]}
 			]
 		},
+		"Fullmetal Alchemist Brotherhood":{
+			"dbName":"Anime",
+			"songs":[
+				{"id": "WVRGrvaJNOc", "name": "Chemistry", "attr": ["Period", "Full Metal Alchemist Brotherhood opening 4"]},
+				{"id": "7IFE-On5k3k", "name": "Again", "attr": ["Full Metal Alchemist Brotherhood opening 1"], "tags": ["Perfect"]}
+				, {"id": "93cOfZ_kfv8", "name": "Let It Out", "attr": ["Fullmetal Alchemist Brotherhood ending 2"]}
+			]
+		},
 		"Misc Anime":{
 			"dbName":"Anime.MiscAnime",
 			"songs":[
 				{"id": "cEArEYCBb8A", "name": "Dango Daikazoku", "attr": ["Clannad"], "tags": ["Perfect", "Sparse", "Beta"]},
 				{"id": "zV9Qcwf-xwA", "name": "14th Song", "attr": ["D.Gray-man"]},
 				{"id": "gvwpofdeieQ", "name": "Doubt & Trust", "attr": ["D.Gray Man opening 3"]},
-				{"id": "bwdcCV-6SRM", "name": "Kuusou Mesorogiwi", "attr": ["Yousei Teikoku", "Mirai Nikki Opening"], "tags": ["Druk"]},
+				{"id": "bwdcCV-6SRM", "name": "Kuusou Mesorogiwi", "attr": ["Yousei Teikoku", "Mirai Nikki Opening"], "tags": ["Druk"]}
+				, {"id": "hDN5l1_BpZs", "name": "Filament", "attr": ["Mirai Nikki ending 2"]},
 				{"id": "6V5sL8rJCj4", "name": "Run Rabbit Junk", "attr": ["Stand Alone Complex"]},
 				{"id": "bXPmEdFri2I", "name": "Speed Racer Theme"},
 				{"id": "uIOMdTd_Z4s", "name": "This Game", "attr": ["No Game No Life"], "tags": ["Perfect"]},
@@ -4265,8 +4309,6 @@
 				{"id": "J2t4PWDKbRg", "name": "Durarara!! Opening 1"},
 				{"id": "OB7TanR_tkY", "name": "Durarara x2 Ketsu opening"},
 				{"id": "QRKaKo_ZMrs", "name": "The Asterisk War opening 1"},
-				{"id": "WVRGrvaJNOc", "name": "Chemistry", "attr": ["Period", "Full Metal Alchemist Brotherhood opening 4"]},
-				{"id": "7IFE-On5k3k", "name": "Again", "attr": ["Full Metal Alchemist Brotherhood opening 1"], "tags": ["Perfect"]},
 				{"id": "bJojNfzXCK0", "name": "Bravely You", "attr": ["Lia", "Charlotte/\u30b7\u30e3\u30fc\u30ed\u30c3\u30c8 opening"], "tags": ["Perfect"]},
 				{"id": "n2uEhkFQ3KU", "name": "Tonogata Gomen Asobase"},
 				{"id": "4Nh-JzWi2ok", "name": "Neptune\u2606Sagashlte", "attr": ["Hyperdimension Neptunia The Animation ending 1"]},
@@ -4443,10 +4485,13 @@
 				, {"id": "TWcwHxEgo0I", "name": "Butterfly", "attr": ["Miyavi", "Id:INVADED"], "tags": ["Perfect"]}
 				, {"id": "nesbtE0cFwY", "name": "Medal Suzdal Panic", "attr": ["Revue Starlight", "Starlight Kukugumi"]}
 				, {"id": "2mS6ykSr-aE", "name": "Ya Boy Kongming! opening"}
+				, {"id": "SIQKitqQ3ns", "name": "Underworld", "attr": ["Ya Boy Kongming!"], "tags": ["Double", "Druk", "Filled"]}
 				, {"id": "Vqj_Mb9w4Mk", "name": "Styx Helix", "attr": ["re:ZERO Starting Life in Another World ending"]}
 				, {"id": "zYWtqQbSbFc", "name": "Hana ni Bourei/Ghost In A Flower", "attr": ["Nakitai Watashi wa Neko wo Kaburu"]}
 				, {"id": "bvpj2d5PCBs", "name": "Union", "attr": ["SSSS. Gridman opening"]}
 				, {"id": "xtERCngAmI0", "name": "Parkour", "attr": ["Bubble", "Hiroyuki Sawano"]}
+				, {"id": "HaFfJ9qS7CE", "name": "Comedy", "attr": ["Spy x Family ending 1"]}
+				, {"id": "Z48VXRsq1oQ", "name": "Groovy!", "attr": ["Card Captor Sakura ending 1"], "tags": ["Perfect"]}
 			]
 		}
 	},
@@ -4669,6 +4714,7 @@
 				, {"id": "7EgFxUned8s", "name": "Invader Zim Theme"}
 				, {"id": "zvEaLWkfrYg", "name": "Stargate Atlantis theme", "tags": ["Perfect", "Adau"]}
 				, {"id": "dxjk6rSAXZc", "name": "Do Ya Wanna Taste It", "attr": ["Wig Wam", "Peacemaker"]}
+				, {"id": "V_d4_SnC8P8", "name": "Come Join The Murder", "attr": ["White Buffalo & The Forest Rangers"]}
 			]
 		},
 		"Misc Movie":{
@@ -5013,6 +5059,14 @@
 				, {"id": "khfAD88Ztw8", "name": "Celebrity", "attr": ["IU/\uc544\uc774\uc720"]}
 			]
 		},
+		"aespa/에스파":{
+			"dbName":"FarEast",
+			"songs":[
+				{"id": "e5x5JXd8TK8", "name": "Black Mamba", "attr": ["aespa/\uc5d0\uc2a4\ud30c"], "tags": ["Perfect"]}
+				, {"id": "89IIIL-mb-8", "name": "Savage", "attr": ["aespa/\uc5d0\uc2a4\ud30c"]}
+				, {"id": "rYoQGufF85Q", "name": "Girls", "attr": ["aespa/\uc5d0\uc2a4\ud30c"]}
+			]
+		},
 		"Misc K-Pop":{
 			"dbName":"FarEast.MiscKPop",
 			"songs":[
@@ -5050,8 +5104,6 @@
 				{"id": "gCCcq3ZGF14", "name": "The Tomato Song", "attr": ["Korean Children's Song"]},
 				{"id": "a-crznHgmf8", "name": "All Night/\uc804\ud654\ud574", "attr": ["Astro/\uc544\uc2a4\ud2b8\ub85c"]},
 				{"id": "qJVgt4f6S3A", "name": "Tail/\uaf2c\ub9ac", "attr": ["Sunmi/\uc120\ubbf8"]},
-				{"id": "e5x5JXd8TK8", "name": "Black Mamba", "attr": ["aespa/\uc5d0\uc2a4\ud30c"], "tags": ["Perfect"]}
-				, {"id": "89IIIL-mb-8", "name": "Savage", "attr": ["aespa/\uc5d0\uc2a4\ud30c"]},
 				{"id": "Nh7AsnBzimM", "name": "Rollin'/\ub864\ub9b0", "attr": ["Brave Girls/\ube0c\ub808\uc774\ube0c\uac78\uc2a4"]}
 				, {"id": "4sHfjOk_LLY", "name": "Love Bomb", "attr": ["fromis_9"]}
 				, {"id": "YwTovBuyaLc", "name": "We Go", "attr": ["fromis_9"], "tags": ["Perfect"]}
@@ -5062,6 +5114,7 @@
 				, {"id": "_Mf_UN00sSk", "name": "D-Day", "attr": ["Whee In/\ud718\uc778"], "tags": ["Perfect"]}
 				, {"id": "kgS5qwSbGD4", "name": "Love Dive", "attr": ["IVE/\uc544\uc774\ube0c"], "tags": ["Perfect"]}
 				, {"id": "MEu8Z8wv1MI", "name": "Beautiful Monster", "attr": ["STAYC/\uc2a4\ud14c\uc774\uc528"], "tags": ["Gamma"]}
+				, {"id": "A2oYdlVXwGw", "name": "Yellow Cab", "attr": ["DPR Live"], "tags": ["Perfect"]}
 			]
 		},
 		"Misc J-Pop":{
@@ -5115,6 +5168,7 @@
 				, {"id": "4MalgeHeFLM", "name": "\u30a6\u30a7\u30ab\u30d4\u30dd", "attr": ["Soul'd Out"], "tags": ["Perfect"]}
 				, {"id": "vufCLglpxqg", "name": "Rage of Dust", "attr": ["Spyair"]}
 				, {"id": "Mz_QKAXam4A", "name": "\u30ab\u30c8\u30e9\u30ea\u30fc", "attr": ["\u6709\u6a5f\u9178/ewe feat.\u521d\u97f3\u30df\u30af"]}
+				, {"id": "VM58LP1W1Sc", "name": "Chronos", "attr": ["Cepheid"], "tags": ["Perfect", "Druk"]}
 			]
 		},
 		"Misc I Don't Know Which Letter Pop":{
@@ -5260,6 +5314,7 @@
 				, {"id": "hLQZHg0cers", "name": "Next Wednesday", "attr": ["Roboco", "TamaOnSen"]}
 				, {"id": "d4G--lT2VBo", "name": "Live Again", "attr": ["Calliope Mori"]}
 				, {"id": "uo7FassZCnk", "name": "Blue Clapper", "attr": ["PandaBoY", "Hololive"], "tags": ["Perfect"]}
+				, {"id": "C0t0msQSPXE", "name": "Fever Night", "attr": ["Takanashi Kiara"]}
 			]
 		},
 		"Misc Internet":{
@@ -5461,6 +5516,7 @@
 				, {"id": "Ap42_U3rRnU", "name": "Neon Moon", "attr": ["Brooks & Dunn"]}
 				, {"id": "hrzjBc0c-XQ", "name": "Ghost Riders in the Sky", "attr": ["Stan Jones"], "tags": ["Perfect"]}
 				, {"id": "1pTTXlLUX3g", "name": "Grave Digger", "attr": ["Blues Saraceno"], "tags": ["Plogg"]}
+				, {"id": "W5iuQtCW3RI", "name": "Didn't Leave Nobody But The Baby", "attr": ["O Brother Where Art Thou", "EmmyLou Harris"], "tags": ["Double"]}
 			]
 		},
 		"Misc Electro Swing":{
