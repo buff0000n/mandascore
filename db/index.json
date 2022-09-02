@@ -310,7 +310,8 @@
 				{"id": "6RStHgJPOX4", "name": "Blister In The Sun", "attr": ["Violent Femmes"]},
 				{"id": "b_c-AyVeZro", "name": "Strange Kind Of Love", "attr": ["Peter Murphy"]},
 				{"id": "oY_VtqhLIb8", "name": "All We Are", "attr": ["Warlock"]},
-				{"id": "bWL1_vqws9U", "name": "Don't Stop Believin'", "attr": ["Journey"], "tags": ["QUINTUPLE"]},
+				{"id": "bWL1_vqws9U", "name": "Don't Stop Believin'", "attr": ["Journey"], "tags": ["QUINTUPLE"]}
+				, {"id": "xMAGzxCev5o", "name": "Who's Crying Now", "attr": ["Journey"], "tags": ["Perfect"]},
 				{"id": "q1WAYFNy2qk", "name": "Promises Promises", "attr": ["Naked Eyes"], "tags": ["Perfect"]},
 				{"id": "n_sTdU3HVpw", "name": "Last Night A DJ Saved My Life", "attr": ["Indeep"], "tags": ["Perfect"]},
 				{"id": "pfu34lag8pI", "name": "Bora Bora 2000/Love Bomb", "attr": ["The Tubes"], "tags": ["Perfect"]},
@@ -762,6 +763,7 @@
 				, {"id": "DSUP-Qd4lNs", "name": "Feel Nothing", "attr": ["Health"]}
 				, {"id": "66rDiUcPzpU", "name": "TicToc (Brace For Impact)", "attr": ["Self Deception"], "tags": ["Perfect"]}
 				, {"id": "HFq13vzRsXQ", "name": "Obey", "attr": ["Priest"]}
+				, {"id": "sx8dAE2N9DI", "name": "Fight Music For The Fight", "attr": ["Bromheads Jacket"], "tags": ["Druk"]}
 			]
 		}
 	},
@@ -2111,6 +2113,7 @@
 				, {"id": "ASgIGg43gAk", "name": "Bad News", "attr": ["Tom MacDonald"], "tags": ["Perfect"]}
 				, {"id": "Var58Mu53ts", "name": "Victim", "attr": ["bladee", "Thaiboy Digital", "ECCO2K"], "tags": ["Perfect"]}
 				, {"id": "aHJT-TKsQ8I", "name": "Stefania", "attr": ["Kalush Orchestra"]}
+				, {"id": "C-mZHwgXcds", "name": "Gucci Gang", "attr": ["Lil Pump"]}
 			]
 		}
 	},
@@ -2126,9 +2129,11 @@
 			{"id": "Yr0DDox3A18", "name": "C'Mon Ride It (The Train)", "attr": ["Quad City Dj's"], "tags": ["Perfect"]},
 			{"id": "PF7URYJ2xNY", "name": "Another Night", "attr": ["Real McCoy"]},
 			{"id": "-olNt1jyxfI", "name": "Limbo", "attr": ["Daddy Yankee"], "tags": ["Perfect"]},
-			{"id": "nrE8htXYc7Q", "name": "The Realness", "attr": ["RuPaul"]},
-			{"id": "lv3XgxW7dog", "name": "Jukebox", "attr": ["Wawa"], "tags": ["Perfect"]},
 			{"id": "DMl_oTJik9w", "name": "Despacito", "attr": ["Luis Fonsi ft. Daddy Yankee"]}
+			, {"id": "YFeVd0IpXwI", "name": "Vuelve", "attr": ["Daddy Yankee & Bad Bunny"]},
+			{"id": "Alg1G2edyfw", "name": "Mia", "attr": ["Bad Bunny ft. Drake"]},
+			{"id": "nrE8htXYc7Q", "name": "The Realness", "attr": ["RuPaul"]},
+			{"id": "lv3XgxW7dog", "name": "Jukebox", "attr": ["Wawa"], "tags": ["Perfect"]}
 			, {"id": "vmQIlTP3UUI", "name": "T\u00e1 Rocheda", "attr": ["Os Bar\u00f5es da Pisadinha"]},
 			{"id": "lL1AsX-jY74", "name": "Stole The Show", "attr": ["Kygo"]},
 			{"id": "1mK-G4rJPiU", "name": "Dreamer", "attr": ["Livin' Joy"]},
@@ -2144,7 +2149,6 @@
 			{"id": "wRvQbYqMuJg", "name": "Rhythm of the Night", "attr": ["Corona"]},
 			{"id": "q5yu3zjxxL0", "name": "Body 2 Body", "attr": ["MK"]},
 			{"id": "EAKa2aWLJkc", "name": "Can't Stop Won't Stop", "attr": ["Ian Post"]},
-			{"id": "Alg1G2edyfw", "name": "Mia", "attr": ["Bad Bunny ft. Drake"]},
 			{"id": "b8jWzuVmhHs", "name": "Pump Up the Jam", "attr": ["Technotronic"]},
 			{"id": "6nXaZjmL_MY", "name": "Exterminate", "attr": ["SNAP"]},
 			{"id": "Bu99u_umuzs", "name": "Show Me Love", "attr": ["Robin S"], "tags": ["Perfect"]},
@@ -4063,6 +4067,7 @@
 				{"id": "ELu0OGcTb-0", "name": "Cerulean", "attr": ["Gundam Build Fighters opening 1"]},
 				{"id": "YGBWkQ6lCaY", "name": "Wimp", "attr": ["Gundam Build Fighters opening 2"]}
 				, {"id": "OJK6mcAPB2E", "name": "Vigilante Ver0.5+@", "attr": ["Moble Suit Gundam NT"], "tags": ["Double", "Perfect"]}
+				, {"id": "6sAW46c-x6k", "name": "Survivor", "attr": ["Gundam: Iron-Blooded Orphans opening 2"], "tags": ["Perfect"]}
 			]
 		},
 		"Madoka Magica":{
@@ -4931,6 +4936,7 @@
 				{"id": "UqnHnX-YvaI", "name": "Lovesick Girls", "attr": ["Blackpink"], "tags": ["Perfect"]},
 				{"id": "L2ktIC-B3Zc", "name": "Kick It", "attr": ["Blackpink"], "tags": ["Double", "Perfect"]}
 				, {"id": "-08I0VoVzCY", "name": "Money", "attr": ["Lalisa"]}
+				, {"id": "pfIuUjtpRZo", "name": "Pink Venom", "attr": ["Blackpink"], "tags": ["Double", "Gamma"]}
 			]
 		},
 		"Man With A Mission":{
@@ -4958,6 +4964,7 @@
 				{"id": "u13a5uo2L6Y", "name": "I Can't Stop Me", "attr": ["Twice"]}
 				, {"id": "fgjACQlZMT4", "name": "Alcohol-Free", "attr": ["Twice"], "tags": ["Triple", "Perfect"]}
 				, {"id": "hy3wXok13vA", "name": "Fancy - Instrumental", "attr": ["Twice"]}
+				, {"id": "8prnG6I_Aa0", "name": "Talk that Talk", "attr": ["Twice"]}
 			]
 		},
 		"Babymetal":{
@@ -5212,6 +5219,7 @@
 				, {"id": "ulnvCFqaRgM", "name": "Love of a Lifetime/\u4e00\u751f\u6240\u611b", "attr": ["\u76e7\u51a0\u5ef7"]}
 				, {"id": "JxRc1RegXkU", "name": "\u8ff7\u5931\u5e7b\u5883", "attr": ["\u8303\u8339"], "tags": ["Perfect"]}
 				, {"id": "wvnvMwITp9A", "name": "Super Idol/\u70ed\u7231105\u00b0C\u7684\u4f60", "attr": ["\u963f\u8086"]}
+				, {"id": "8gVlF7pUOpg", "name": "See T\u00ecnh", "attr": ["Ho\u00e0ng Thu\u1ef3 Linh"], "tags": ["Double", "Perfect"]}
 			]
 		}
 	},
@@ -5434,6 +5442,7 @@
 				{"id": "NW0J-69ciq8", "name": "Jump", "attr": ["Two Steps From Hell"]},
 				{"id": "13eAHPl5sLQ", "name": "For The Win", "attr": ["Two Steps From Hell"], "tags": ["Adau"]},
 				{"id": "G8SEc0htKAQ", "name": "Flight of the Silverbird", "attr": ["Two Steps From Hell"]}
+				, {"id": "Ej46qlOn6Tg", "name": "None Shall Live", "attr": ["Two Steps From Hell"], "tags": ["Perfect", "Filled"]}
 			]
 		},
 		"Unlike Pluto":{
