@@ -768,6 +768,7 @@
 				, {"id": "HFq13vzRsXQ", "name": "Obey", "attr": ["Priest"]}
 				, {"id": "sx8dAE2N9DI", "name": "Fight Music For The Fight", "attr": ["Bromheads Jacket"], "tags": ["Druk"]}
 				, {"id": "qx6luN_9IZs", "name": "I See Stars", "attr": ["Murder Mitten"], "tags": ["Perfect"]}
+				, {"id": "pSrdaf7oANY", "name": "Face to the Floor", "attr": ["Chevelle"], "tags": ["Double", "Druk"]}
 			]
 		}
 	},
@@ -1826,6 +1827,7 @@
 				, {"id": "xAzSBsRPjpk", "name": "Yam Yam", "attr": ["No Vacation"]}
 				, {"id": "qTcrJ8O3as0", "name": "My Kind of Woman", "attr": ["Marc DeMarco"], "tags": ["Perfect"]}
 				, {"id": "sf3Ds_EO9Jc", "name": "Sound It Out", "attr": ["Rosemary Fairweather"], "tags": ["Perfect"]}
+				, {"id": "sDL8YfP7ozw", "name": "Snowman", "attr": ["WYS"]}
 			]
 		}
 	},
@@ -2728,7 +2730,8 @@
 				{"id": "1JsrES92ql8", "name": "Just Can't Stay Away", "attr": ["Hard Rock Sofa & Squire"]},
 				{"id": "p9dGlS6geMU", "name": "Boomerang", "attr": ["Bassnectar"]},
 				{"id": "FFLgMj1BT9Q", "name": "Love Beam", "attr": ["Agrume"]},
-				{"id": "rTLwz1AM6hg", "name": "Dancin", "attr": ["Aaron Smith", "Krono remix"], "tags": ["Perfect"]},
+				{"id": "rTLwz1AM6hg", "name": "Dancin", "attr": ["Aaron Smith", "Krono remix"], "tags": ["Perfect"]}
+				, {"id": "zA_29_8Gbco", "name": "Dancin", "attr": ["Aaron Smith ft. Luvli"]},
 				{"id": "8KkmHS-U7Ro", "name": "Feather", "attr": ["Nujabes"]},
 				{"id": "sL7mrmRKi-U", "name": "Close To Me", "attr": ["Sabrepulse"], "tags": ["Perfect"]},
 				{"id": "2t1KhkiKZLA", "name": "Neo-Tokyo", "attr": ["Scandroid"]},
@@ -3753,6 +3756,7 @@
 					, {"id": "H78Bj6fCpYY", "name": "1NF3$+@+!0N", "attr": ["DM Dokuro", "Terraria Calamity Mod"]}
 					, {"id": "-yOFqdKLvrg", "name": "Liyue/Jade Moon Upon A Sea Of Clouds", "attr": ["Genshin Impact"], "tags": ["Perfect"]}
 					, {"id": "qZutJ6ku7k4", "name": "Die For You", "attr": ["Grabbitz", "Valorant Champions 2021"], "tags": ["Double"]}
+					, {"id": "pjYSw8REpaI", "name": "Hard Rain Horde Theme", "attr": ["Left 4 Dead 2"]}
 				]
 			},
 			"Games I've never heard of":{
@@ -4071,6 +4075,7 @@
 				{"id": "eoaPIPmcV1Y", "name": "Vogel im Kafig", "attr": ["Attack on Titan"], "tags": ["Adau"]},
 				{"id": "U1X3pSKrWSA", "name": "My War", "attr": ["Attack On Titan opening 4"]}
 				, {"id": "S86A3JUFqSY", "name": "The Rumbling", "attr": ["Attack on Titan season 4 opening 2"]}
+				, {"id": "ljvuEOnmjEM", "name": "Zero Eclipse/Historia Reiss Theme", "attr": ["Attack on Titan"], "tags": ["NINE"]}
 			]
 		},
 		"Re:CREATORS":{
@@ -4448,7 +4453,8 @@
 				{"id": "0-rtBkSG-Vg", "name": "1hundredknight: M", "attr": ["Owari no Seraph"]},
 				{"id": "r5T21aNeT-0", "name": "Hill Of Sorrow", "attr": ["Guilty Crown", "Sawano Hiroyuki"]},
 				{"id": "7NPjtBO6Op0", "name": "Trigun opening", "tags": ["Druk"]},
-				{"id": "zk7Jvvcq0DU", "name": "Made in Abyss opening"},
+				{"id": "zk7Jvvcq0DU", "name": "Made in Abyss opening"}
+				, {"id": "neCfXYX4Ojs", "name": "Maul", "attr": ["Made In Abyss"]},
 				{"id": "MMCvxsfvf_s", "name": "Violet Evergarden opening", "attr": ["Sincerely by True"], "tags": ["Perfect"]},
 				{"id": "-nNC12y3n4o", "name": "Seraph of the End: Vampire Reign opening"},
 				{"id": "cP80mHIlT8I", "name": "Zero", "attr": ["Nana"]},
@@ -5182,6 +5188,7 @@
 				, {"id": "A2oYdlVXwGw", "name": "Yellow Cab", "attr": ["DPR Live"], "tags": ["Perfect"]}
 				, {"id": "GEIb-8hkpVs", "name": "Hype Boy", "attr": ["NewJeans/\ub274\uc9c4\uc2a4"]}
 				, {"id": "v-E_F9ZS0eo", "name": "Fearless", "attr": ["Le Sserafim"]}
+				, {"id": "Mdjuo4F3t1w", "name": "Lxxk 2 U", "attr": ["Yena"]}
 			]
 		},
 		"Misc J-Pop":{

@@ -1032,7 +1032,7 @@ class Playlist {
                     setTimeout(renderNextSong, 1);
 
                 } else {
-                    // revert the section
+                    // revert the selection
                     this.select(oldSelected, true, false, true);
                     // end action and throw it away
                     this.score.endActions(true);

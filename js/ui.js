@@ -1834,6 +1834,7 @@ class Score {
     }
 
     setSongObject(song, action=true, resetPlayback=false) {
+        // todo: blur the title field
         if (resetPlayback) {
             // remember whether we were playing before stopping playback
             var playing = this.isPlaying();
