@@ -87,6 +87,7 @@
 				{"id": "D2kKho2YkW4", "name": "Suffragette City", "attr": ["David Bowie"]},
 				{"id": "G_6WD3fyLcA", "name": "I'm Afraid Of Americans", "attr": ["David Bowie"]},
 				{"id": "fVs4U4TlNOc", "name": "Fashion", "attr": ["David Bowie"], "tags": ["Perfect"]}
+				, {"id": "Qwj9RtQoMvk", "name": "TVC15", "attr": ["David Bowie"]}
 			]
 		},
 		"CCR":{
@@ -737,7 +738,8 @@
 				{"id": "ajiwz-17RAQ", "name": "Throw Your Roses", "attr": ["The Color Morale"]},
 				{"id": "unmiq0Pn9Xc", "name": "Blitzkreuz", "attr": ["Callejon"], "tags": ["Druk"]},
 				{"id": "nDdvTvJpg38", "name": "Hyopgeum", "attr": ["Invocation Army"], "tags": ["Perfect"]},
-				{"id": "Lle0SstRUnU", "name": "Monsters", "attr": ["Shinedown"], "tags": ["Perfect"]},
+				{"id": "Lle0SstRUnU", "name": "Monsters", "attr": ["Shinedown"], "tags": ["Perfect"]}
+				, {"id": "SvZjkmMvGng", "name": "Get Up", "attr": ["Shinedown"], "tags": ["Triple", "Perfect"]},
 				{"id": "JFbfe9y2eRE", "name": "Love At War", "attr": ["While She Sleeps"], "tags": ["Druk"]},
 				{"id": "OiGnjyrpFSY", "name": "Diggy Hole", "attr": ["Wind Rose"]},
 				{"id": "tznQb9a8y0Q", "name": "Cursed", "attr": ["Slaves"]},
@@ -769,6 +771,7 @@
 				, {"id": "sx8dAE2N9DI", "name": "Fight Music For The Fight", "attr": ["Bromheads Jacket"], "tags": ["Druk"]}
 				, {"id": "qx6luN_9IZs", "name": "I See Stars", "attr": ["Murder Mitten"], "tags": ["Perfect"]}
 				, {"id": "pSrdaf7oANY", "name": "Face to the Floor", "attr": ["Chevelle"], "tags": ["Double", "Druk"]}
+				, {"id": "MvU9iUMisME", "name": "Sound of the Saints", "attr": ["Chaotic Resemblance"]}
 			]
 		}
 	},
@@ -1121,6 +1124,14 @@
 				, {"id": "q5_vJBLk0Ok", "name": "That's What You Get", "attr": ["Paramore"], "tags": ["Double"]}
 			]
 		},
+		"Franz Ferdinand":{
+			"dbName":"PopRock",
+			"songs":[
+				{"id": "bq6ws3HnXko", "name": "The Fallen", "attr": ["Franz Ferdinand"], "tags": ["Druk"]},
+				{"id": "pLHMh01jUUk", "name": "Take Me Out", "attr": ["Franz Ferdinand"], "tags": ["Perfect"]}
+				, {"id": "Euw9ePXIQkA", "name": "This Fffire", "attr": ["Franz Ferdinand"], "tags": ["Quadruple", "Druk"]}
+			]
+		},
 		"Misc Pop/Rock":{
 			"dbName":"PopRock.MiscPopRock",
 			"songs":[
@@ -1136,8 +1147,6 @@
 				{"id": "TKKcwU1bgxE", "name": "Little Talks", "attr": ["Of Monsters And Men"]},
 				{"id": "ijCfTJe1Ah8", "name": "Lisztomania", "attr": ["Phoenix"]},
 				{"id": "O5cpn6Nz3O4", "name": "Something New", "attr": ["Wannabe Jalva"]},
-				{"id": "bq6ws3HnXko", "name": "The Fallen", "attr": ["Franz Ferdinand"], "tags": ["Druk"]},
-				{"id": "pLHMh01jUUk", "name": "Take Me Out", "attr": ["Franz Ferdinand"], "tags": ["Perfect"]},
 				{"id": "TqPt4Gnb8OM", "name": "Blurry", "attr": ["Puddle Of Mudd"], "tags": ["Druk"]},
 				{"id": "gs0M-3ogYhA", "name": "Little Things", "attr": ["Bloc Party"]},
 				{"id": "OScT2fXJpkk", "name": "Mr. Brightside", "attr": ["The Killers"]},
@@ -1426,6 +1435,8 @@
 				, {"id": "UZcMmX8Gteo", "name": "Blood Like Lemonade", "attr": ["Morcheeba"]}
 				, {"id": "vEXji2-kXsk", "name": "Sugar, You", "attr": ["Oh Honey"], "tags": ["Triple", "Perfect"]}
 				, {"id": "xKLer01jhEE", "name": "Superstar In Me", "attr": ["Smash Into Pieces"]}
+				, {"id": "TzC_O-xY00A", "name": "I Can Hold A Grudge Like Nobody's Business", "attr": ["Adam Jensen"], "tags": ["Perfect"]}
+				, {"id": "vOcisVZGRnM", "name": "Brand New", "attr": ["Archer"]}
 			]
 		}
 	},
@@ -2144,6 +2155,8 @@
 				, {"id": "sGh4fDmfaT0", "name": "No Love", "attr": ["2Scratch ft. Swisha T"], "tags": ["Perfect"]}
 				, {"id": "C_T9bGYntSs", "name": "Paris", "attr": ["Calyco"], "tags": ["Double", "Perfect"]}
 				, {"id": "6jEUeic2MZk", "name": "Flex On Me", "attr": ["Kodie Shane"]}
+				, {"id": "0lIfRCHgE1k", "name": "Mon\u00eby so big", "attr": ["Yeat"]}
+				, {"id": "arKVpYxwPBo", "name": "Freshman List", "attr": ["NAV"]}
 			]
 		}
 	},
@@ -3941,6 +3954,7 @@
 					, {"id": "NCbwt_2A5Jw", "name": "Let's Dance", "attr": ["3D Ultra Lionel Traintown Deluxe"], "tags": ["Filled"]}
 					, {"id": "-fDB47vojeE", "name": "House of Cards", "attr": ["Neon White"], "tags": ["Perfect", "Sparse"]}
 					, {"id": "7viZKdAOK0o", "name": "Versus", "attr": ["Ultrakill"], "tags": ["Filled"]}
+					, {"id": "96llEQWF82A", "name": "Whirling In Rags", "attr": ["Disco Elysium"]}
 				]
 			}
 		}
@@ -5243,6 +5257,7 @@
 				, {"id": "vufCLglpxqg", "name": "Rage of Dust", "attr": ["Spyair"]}
 				, {"id": "Mz_QKAXam4A", "name": "\u30ab\u30c8\u30e9\u30ea\u30fc", "attr": ["\u6709\u6a5f\u9178/ewe feat.\u521d\u97f3\u30df\u30af"]}
 				, {"id": "VM58LP1W1Sc", "name": "Chronos", "attr": ["Cepheid"], "tags": ["Perfect", "Druk"]}
+				, {"id": "8Ky3J-Z_vBU", "name": "\u6708\u591c\u30ce\u30b3\u30c8\u30ea", "attr": ["Shiratori Kotori"]}
 			]
 		},
 		"Misc I Don't Know Which Letter Pop":{
