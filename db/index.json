@@ -888,6 +888,7 @@
 				{"id": "gopmJ9osCwQ", "name": "Numb", "attr": ["Linkin Park"], "tags": ["Perfect"]},
 				{"id": "R_NHA0RFbXU", "name": "Rebellion", "attr": ["Linkin Park"]}
 				, {"id": "waMoX4cHqvc", "name": "Wastelands", "attr": ["Linkin Park"], "tags": ["Perfect"]}
+				, {"id": "79y9_jEtffw", "name": "Lost in the Echo", "attr": ["Linkin Park"]}
 			]
 		},
 		"Blue Stahli":{
@@ -1209,6 +1210,14 @@
 				, {"id": "vRAr4_JrFx4", "name": "Enemies", "attr": ["The Score"], "tags": ["Perfect"]}
 			]
 		},
+		"Oasis":{
+			"dbName":"PopRock",
+			"songs":[
+				{"id": "A9WAE11h0wo", "name": "Oasis", "attr": ["A Great Big World"], "tags": ["Perfect"]},
+				{"id": "K4j53QZNZjs", "name": "Wonderwall", "attr": ["Oasis"], "tags": ["Double"]}
+				, {"id": "2Y379c-Xigc", "name": "Stop Crying Your Heard Out", "attr": ["Oasis"], "tags": ["Quadruple"]}
+			]
+		},
 		"Misc Pop/Rock":{
 			"dbName":"PopRock.MiscPopRock",
 			"songs":[
@@ -1342,8 +1351,6 @@
 				{"id": "s9aGw0Fsy4Y", "name": "NRG", "attr": ["Duck Sauce"]},
 				{"id": "51SiRaqhsIY", "name": "Happy", "attr": ["Pharrell Williams"], "tags": ["Perfect"]},
 				{"id": "qvLgkTfeIvQ", "name": "Angel With A Shotgun", "attr": ["The Cab"], "tags": ["Perfect"]},
-				{"id": "A9WAE11h0wo", "name": "Oasis", "attr": ["A Great Big World"], "tags": ["Perfect"]},
-				{"id": "K4j53QZNZjs", "name": "Wonderwall", "attr": ["Oasis"], "tags": ["Double"]},
 				{"id": "VrmioBitT8I", "name": "La la la", "attr": ["Naughty Boy"]},
 				{"id": "xn7nzqjFAow", "name": "Sugar", "attr": ["Robin Schulz"]},
 				{"id": "4h0Id1dFACQ", "name": "What Are You Waiting For", "attr": ["My Little Cheap Dictaphone"], "tags": ["Perfect"]},
@@ -2090,6 +2097,7 @@
 				{"id": "l5GWFBVKZSk", "name": "Rockstar", "attr": ["Post Malone"]},
 				{"id": "BPiCju45UzA", "name": "Better Now", "attr": ["Post Malone"]},
 				{"id": "6Zz7Lw9092E", "name": "Circles", "attr": ["Post Malone"]}
+				, {"id": "kMpKKZ7Mx7Q", "name": "I Like You / A Happier Song", "attr": ["Post Malone ft. Doja Cat"]}
 			]
 		},
 		"Travis Scott aka Jacques Berman Webster II":{
@@ -2316,6 +2324,8 @@
 				, {"id": "Di-B7PGC7Hw", "name": "Too Many Nights", "attr": ["Metro Bloomin"]}
 				, {"id": "3wscq7NW4C8", "name": "Let me take you to the movies", "attr": ["BANGS"]}
 				, {"id": "x9_Vc2823aA", "name": "The Color Violet", "attr": ["Tory Lanez"], "tags": ["Double", "Perfect"]}
+				, {"id": "uUepxi8_qt0", "name": "If Looks Could Kill", "attr": ["Destroy Lonely"], "tags": ["Perfect"]}
+				, {"id": "0JLxYYRWZOc", "name": "STFU!", "attr": ["Autumn!"]}
 			]
 		}
 	},
@@ -2713,6 +2723,7 @@
 				{"id": "fHQlzFsl4_I", "name": "Why Do I?", "attr": ["Unknown Brain ft. Bri Tolani"]},
 				{"id": "VEzb-o8jtZI", "name": "Tropic Love", "attr": ["Diviners ft. Contacreast"], "tags": ["Perfect"]}
 				, {"id": "bX1RSN5v-cE", "name": "Luna", "attr": ["Abandoned & Galaxy Tones ft. DNAKM"], "tags": ["Perfect"]}
+				, {"id": "mw5pl1d_Xik", "name": "Dreams pt. II", "attr": ["Lost Sky ft. Sara Skinner"]}
 			]
 		},
 		"Misc Proximity":{
@@ -3209,6 +3220,7 @@
 				{"id": "7wJ9_oRwIi8", "name": "Warrior Battle Theme 1", "attr": ["Mobius Final Fantasy"]},
 				{"id": "chYqN1_KNAM", "name": "Character Selection", "attr": ["Dissidia Final Fantasy NT"], "tags": ["Double"]},
 				{"id": "ySnpysaMmVU", "name": "Calling For Rain", "attr": ["FFXV: Kingsglaive"], "tags": ["Double"]}
+				, {"id": "ku9tzdLtnOE", "name": "Find The Flame", "attr": ["Final Fantasy XVI"]}
 			]
 		},
 		"Hotline Miami":{
@@ -3228,6 +3240,7 @@
 				{"id": "q3t3VeKptP4", "name": "Paris", "attr": ["M.O.O.N.", "Hotline Miami"]},
 				{"id": "wUHC06LcH-4", "name": "Sexualizer", "attr": ["Hotline Miami 2: Wrong Number"]}
 				, {"id": "QiEqAJ1-6jQ", "name": "Miami", "attr": ["Jasper Byrne", "Hotline Miami"], "tags": ["Perfect"]}
+				, {"id": "fRf9_uBopNo", "name": "Horse Steppin'", "attr": ["Hotline Miami menu song", "Sun Araw"], "tags": ["Perfect"]}
 			]
 		},
 		"Overwatch":{
@@ -3284,6 +3297,7 @@
 				{"id": "sPyvAupokc8", "name": "Red Sun", "attr": ["Metal Gear Rising: Revengeance"], "tags": ["Perfect"]}
 				, {"id": "d5TPieoFJlY", "name": "The Only Thing I Know For Real", "attr": ["Metal Gear Rising: Revengeance"], "tags": ["Perfect"]}
 				, {"id": "I85OQtmr2Uk", "name": "It Has To Be This Way", "attr": ["Metal Gear Rising: Revengeance"], "tags": ["Perfect"]}
+				, {"id": "GHHOpMWaSKY", "name": "Quiet's Theme", "attr": ["Metal Gear Solid V"]}
 			]
 		},
 		"Assassin's Creed":{
@@ -3585,6 +3599,7 @@
 				{"id": "k4wJkwer6uI", "name": "Ichibanka", "attr": ["Yakuza 7 theme song"], "tags": ["Double"]},
 				{"id": "dFRDUN6Pbug", "name": "24-Hour Cinderella", "attr": ["Yakuza 0"]}
 				, {"id": "bJy2u1tHFbo", "name": "Ideal For Violence", "attr": ["Yakuza Kiwami"]}
+				, {"id": "dq-BkIkVXMI", "name": "Pledge of Demon", "attr": ["Yakuza 0"]}
 			]
 		},
 		"Chrono series":{
@@ -3911,7 +3926,8 @@
 					{"id": "eudBCZGxnzw", "name": "Fuka's Theme - You Go Girl", "attr": ["Disgaea 4"]},
 					{"id": "XqF7RkgBuVc", "name": "Gwyn", "attr": ["Dark Souls Remix", "Alex Roe"], "tags": ["Sparse"]},
 					{"id": "8LPMIHfcb0M", "name": "Undead Lullaby", "attr": ["JT Music", "Dark Souls"]},
-					{"id": "YYqumOExz90", "name": "Take The Dive", "attr": ["JT Music", "Subnautica"]},
+					{"id": "YYqumOExz90", "name": "Take The Dive", "attr": ["JT Music", "Subnautica"]}
+					, {"id": "XYwyFw-jN5w", "name": "Tall Woman/Lady Dimitrescu Song", "attr": ["JT Music", "Resident Evil Village"], "tags": ["Triple"]},
 					{"id": "pkPfEbbKf1g", "name": "Hollow", "attr": ["Heartist", "Soulsong"]},
 					{"id": "DWYeUA--s-Q", "name": "Toasty Buns - Intro", "attr": ["Parappa the Rapper 2"]},
 					{"id": "yPPDGN_BKkM", "name": "Instructor Mooselini's Car Rap", "attr": ["Parappa the Rapper"]},
@@ -3926,7 +3942,8 @@
 					{"id": "nYM6EeIc6ns", "name": "Stanley Parable Secret Disco Music"},
 					{"id": "nkYxoKcuHOw", "name": "Fortress", "attr": ["Halo Reach"]},
 					{"id": "8wGvQzAqwRY", "name": "Halo 2/3 guitar theme"},
-					{"id": "VQLGiqKrgCQ", "name": "Masked Dedede theme", "attr": ["Kirby Triple Deluxe"]},
+					{"id": "VQLGiqKrgCQ", "name": "Masked Dedede theme", "attr": ["Kirby Triple Deluxe"]}
+					, {"id": "TQ3qtZS20zU", "name": "Invincible Candy", "attr": ["Kirby and the Forgotten Land"]},
 					{"id": "a2K58ujd9Ps", "name": "Club Decks 1", "attr": ["Starbound"]},
 					{"id": "GCUcymEyjdI", "name": "I Was The Sun / Before It Was Cool", "attr": ["Starbound"], "tags": ["Perfect"]}
 					, {"id": "zhBXFssSlO4", "name": "I Was The Sun (Before It Was Cool)/Novakid Theme", "attr": ["Starbound"]},
@@ -4119,7 +4136,8 @@
 					{"id": "a9NK2GoHRTw", "name": "There Is No Game ending"},
 					{"id": "YjVLb9N_tFg", "name": "Home (Not) Sweet Home", "attr": ["2064: Read Only Memories"]},
 					{"id": "GUVQmF0yrDE", "name": "Buggie Running Beeps", "attr": ["Rez"]},
-					{"id": "riZq4zMlPTU", "name": "Graze The Roof", "attr": ["Plants vs. Zombies"]},
+					{"id": "riZq4zMlPTU", "name": "Graze The Roof", "attr": ["Plants vs. Zombies"]}
+					, {"id": "DIoAD7IARLo", "name": "Zombies on Your Lawn", "attr": ["Plants vs Zombies"]},
 					{"id": "JBJhcaje2hE", "name": "Task Force Neuron", "attr": ["Astral Chain"], "tags": ["Perfect"]},
 					{"id": "1CkAqIwzVus", "name": "Resurrections", "attr": ["Celeste"]},
 					{"id": "_W4k2tCmcdA", "name": "Breaking Dawn", "attr": ["Muse Dash", "TetraCalyx"]},
@@ -4192,6 +4210,8 @@
 					, {"id": "SC9YDqUwkF4", "name": "Kayava", "attr": ["Rain World"]}
 					, {"id": "J3-XChpA7Uc", "name": "Wildfire", "attr": ["Honkai Star Rail"]}
 					, {"id": "8XkKuO_GarQ", "name": "Eastward main theme"}
+					, {"id": "flcZQ5ALlJU", "name": "Huginn's Shop", "attr": ["BPM: Bullets Per Minute"]}
+					, {"id": "TKPkNrXRNoc", "name": "Duty Calls", "attr": ["World Of Warships"]}
 				]
 			}
 		}
@@ -5547,6 +5567,7 @@
 				, {"id": "Cq2YQZVQ3N8", "name": "stereo future", "attr": ["BiSH"]}
 				, {"id": "yopoUaqqtfY", "name": "\u306a\u3093\u3067\u3082\u306a\u3044\u3084/Nandemonaiya", "attr": ["RADWIMPS"]}
 				, {"id": "oYNxbdJGc04", "name": "Headphone Actor", "attr": ["Jin ft. LiSA"]}
+				, {"id": "Slpuq9A48yw", "name": "\u3068\u3066\u3082\u7d20\u6575\u306a\u516d\u6708\u3067\u3057\u305f", "attr": ["Eight"]}
 			]
 		},
 		"Misc I Don't Know Which Letter Pop":{
