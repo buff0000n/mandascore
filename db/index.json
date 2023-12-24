@@ -73,7 +73,7 @@
 	"Soulframe":{
 		"dbName":"Soulframe",
 		"songs":[
-			{"id": "wODsngcA_mU", "name": "Soulframe Ocarina song/Stag fight theme", "tags": ["Adau"]}
+			{"id": "wODsngcA_mU", "name": "Rivers of Dendria", "attr": ["Soulframe"], "tags": ["Adau"]}
 		]
 	},
 	"Classic Rock":{
@@ -389,6 +389,7 @@
 				, {"id": "wtAu3-n0Rb8", "name": "Somebody's Watching Me", "attr": ["Rockwell"]}
 				, {"id": "TkdzvRSFyAM", "name": "Crossfire", "attr": ["Stevie Ray Vaughan"]}
 				, {"id": "h21gjK9ir7g", "name": "Rock Me Amadeus", "attr": ["Falco"], "tags": ["Double"]}
+				, {"id": "A1Qzpn8Czbk", "name": "Der Kommissar", "attr": ["Falco"]}
 				, {"id": "WPWUIglAv5M", "name": "Centerfold", "attr": ["J. Geils Band"]}
 				, {"id": "dPYnQZLf1rQ", "name": "Dancing in the Dark", "attr": ["Bruce Springsteen"], "tags": ["Double"]}
 				, {"id": "PmqW-KHoxKU", "name": "Music And Lights", "attr": ["Imagination"]}
@@ -618,6 +619,7 @@
 				{"id": "62oVai5poB0", "name": "Nihilist Blues", "attr": ["Bring Me The Horizon"]}
 				, {"id": "DDiCa97Ezug", "name": "Throne", "attr": ["Bring Me The Horizon"], "tags": ["Perfect"]}
 				, {"id": "aHb5w7mvAIo", "name": "Kingslayer", "attr": ["Bring Me The Horizon ft. Babymetal"]}
+				, {"id": "lBZRa1__GYU", "name": "The House of Wolves", "attr": ["Bring Me The Horizon"]}
 			]
 		},
 		"Ministry":{
@@ -937,6 +939,8 @@
 				{"id": "yyATcbUA_qo", "name": "Pac-Man", "attr": ["Gorillaz"]},
 				{"id": "z_iFyeAgC7M", "name": "Empire Ants", "attr": ["Gorillaz"]}
 				, {"id": "r1tkqzPeYiA", "name": "The Valley of the Pagans", "attr": ["Gorillaz"], "tags": ["Perfect"]}
+				, {"id": "MuVHouuwl-M", "name": "Dirty Harry", "attr": ["Gorillaz"]}
+				, {"id": "hNdc49YpOH8", "name": "Silent Running", "attr": ["Gorillaz"], "tags": ["Perfect"]}
 			]
 		},
 		"Dance Gavin Dance":{
@@ -1578,6 +1582,7 @@
 				, {"id": "Y0NExZnCQ5A", "name": "Happier", "attr": ["Yungblud"], "tags": ["Perfect"]}
 				, {"id": "x-LTWLaJBiE", "name": "Hey", "attr": ["The Pixies"], "tags": ["Perfect"]}
 				, {"id": "In4fbRyfDTs", "name": "Hurricane", "attr": ["Cannons"], "tags": ["Triple", "Perfect"]}
+				, {"id": "dD6-vdN295s", "name": "Waste My Time", "attr": ["Jake Hill"], "tags": ["Perfect"]}
 			]
 		}
 	},
@@ -1593,6 +1598,7 @@
 				{"id": "HpDR1SF2JQk", "name": "Beat It", "attr": ["Michael Jackson"], "tags": ["Perfect"]},
 				{"id": "rv3uomq4Oas", "name": "Beat It - break", "attr": ["Michael Jackson"], "tags": ["Perfect"]},
 				{"id": "6QIaF0yB3c8", "name": "Who Is It", "attr": ["Michael Jackson"]}
+				, {"id": "TBycIV6fdys", "name": "I Want You Back", "attr": ["The Jackson Five"]}
 			]
 		},
 		"Fifth Harmony":{
@@ -1670,6 +1676,7 @@
 				{"id": "5pdvNxqJHsM", "name": "Formation", "attr": ["Beyonc\u00e9"], "tags": ["Perfect"]}
 				, {"id": "eCzOnjeAtpA", "name": "Break My Soul", "attr": ["Beyonc\u00e9"], "tags": ["Double", "Perfect"]}
 				, {"id": "gWZwR6YoIKo", "name": "America Has a Problem", "attr": ["Beyonc\u00e9 ft. Kendrick Lamar"], "tags": ["Perfect"]}
+				, {"id": "METpmQSUVQQ", "name": "Alien Superstar", "attr": ["Beyonc\u00e9"], "tags": ["Perfect"]}
 			]
 		},
 		"Lady Gaga":{
@@ -2591,6 +2598,7 @@
 				{"id": "Pho2T5qGbK8", "name": "So Long Sentiment: Metal Revision", "attr": ["Celldweller", "Paul Udarov"]},
 				{"id": "5ah4lTEaC90", "name": "Frozen", "attr": ["Celldweller"]},
 				{"id": "HxN0l1d-dmI", "name": "The Departure", "attr": ["Celldweller"]}
+				, {"id": "cwBT8bDN3g4", "name": "Heart On", "attr": ["Celldweller"], "tags": ["Perfect"]}
 			]
 		},
 		"Kraftwerk":{
@@ -2636,6 +2644,7 @@
 				{"id": "XfHIUvkteMw", "name": "Turbo Killer 2", "attr": ["Carpenter Brut"]},
 				{"id": "irETr5GNeXE", "name": "Anarchy Road", "attr": ["Carpenter Brut"]},
 				{"id": "_pzGnVqj7Kk", "name": "Le Perv", "attr": ["Carpenter Brut"]}
+				, {"id": "Q5GrIpXs8mQ", "name": "Looking for Tracy Tzu", "attr": ["Carpenter Brut"], "tags": ["Perfect", "Sparse"]}
 			]
 		},
 		"Tiësto":{
@@ -4130,6 +4139,7 @@
 					, {"id": "MQe3NHMj4Fc", "name": "I Got This", "attr": ["Hi-Fi Rush"]}
 					, {"id": "n4qmkpROBL4", "name": "Raeb's Lament", "attr": ["God of War Ragnarok"]}
 					, {"id": "6YqOtz0NYP8", "name": "Nightsong", "attr": ["Baldur's Gate 3"], "tags": ["Adau"]}
+					, {"id": "cEMafxLpClE", "name": "condensed milk", "attr": ["Bomb Rush Cyberfunk", "condensed milk chan"]}
 				]
 			},
 			"Games I've never heard of":{
@@ -4325,6 +4335,7 @@
 					, {"id": "flcZQ5ALlJU", "name": "Huginn's Shop", "attr": ["BPM: Bullets Per Minute"]}
 					, {"id": "TKPkNrXRNoc", "name": "Duty Calls", "attr": ["World Of Warships"]}
 					, {"id": "YW3zCPzyvok", "name": "Grand Music", "attr": ["DRAMAtical Murder"], "tags": ["Perfect"]}
+					, {"id": "CmKRXrVfhcg", "name": "Pluto", "attr": ["Space Invaders PS1"]}
 				]
 			}
 		}
@@ -4899,7 +4910,8 @@
 				{"id": "sXnAIHuNxKI", "name": "Fireworks", "attr": ["Uchiage Hanabi"], "tags": ["Double"]},
 				{"id": "6ti0OGYzSwM", "name": "Sekai Wa Koi Ni Ochiteiru", "attr": ["Ao Haru Ride opening"]},
 				{"id": "xsuELh6yN1o", "name": "Life", "attr": ["Dr Stone ending"]},
-				{"id": "fy2haS4_IpE", "name": "Inferno", "attr": ["Fire Force opening"]},
+				{"id": "fy2haS4_IpE", "name": "Inferno", "attr": ["Fire Force opening"]}
+				, {"id": "zsvHk07cmw8", "name": "Veil", "attr": ["Fire Force ending 1", "Keina Suda"]},
 				{"id": "dqhNahiGQK8", "name": "Shadow Is the Light", "attr": ["A Certain Scientific Accelerator opening"], "tags": ["Perfect"]},
 				{"id": "9-PSkNfPlXc", "name": "Dark Crow", "attr": ["Vinland Saga opening 2"], "tags": ["Perfect"]},
 				{"id": "ZFP8EUw1hUI", "name": "Sea of Fire", "attr": ["Iron Saga opening"]},
@@ -5040,6 +5052,7 @@
 				{"id": "d_Kgat4Bie0", "name": "Woz Henshin sound", "attr": ["Kamen Rider"]},
 				{"id": "L2nm9ncx1yI", "name": "Final Form Ride Hibiki", "attr": ["Kamen Rider Decade"]}
 				, {"id": "KXXVipk-AgI", "name": "Be The One", "attr": ["Kamen Rider Build opening"]}
+				, {"id": "mrxmXI6DiG4", "name": "Let's Go!! Rider Kick", "attr": ["Kamen Rider"]}
 			]
 		},
 		"Samurai Jack":{
@@ -5196,6 +5209,7 @@
 				, {"id": "dxjk6rSAXZc", "name": "Do Ya Wanna Taste It", "attr": ["Wig Wam", "Peacemaker"]}
 				, {"id": "V_d4_SnC8P8", "name": "Come Join The Murder", "attr": ["White Buffalo & The Forest Rangers"]}
 				, {"id": "B2nVgyZLdbQ", "name": "Delivered Us The Moon", "attr": ["Jakeneutron", "Moon Girl and Devil Dinosaur"]}
+				, {"id": "PgHC2adMcPQ", "name": "The Weekend Whip", "attr": ["Lego Ninjago Theme"]}
 			]
 		},
 		"Misc Movie":{
@@ -5900,7 +5914,8 @@
 			"songs":[
 				{"id": "Bb3aJhxHrwY", "name": "LeFloid Outtro"},
 				{"id": "3RkUDEOaooE", "name": "Taking the Hobbits to Isengard", "attr": ["Lord of the Rings theme"]},
-				{"id": "6JW_LMqLC-c", "name": "Marble Machine", "attr": ["Wintergreen"]},
+				{"id": "6JW_LMqLC-c", "name": "Marble Machine", "attr": ["Wintergaten"]}
+				, {"id": "SCKs7cW2Igs", "name": "Proof Of Concept", "attr": ["Wintergaten"]},
 				{"id": "Iaml2sKNqak", "name": "Hampster Dance", "attr": ["Whistle-Stop by Roger Miller"]},
 				{"id": "i-w-hcsbTjQ", "name": "Luigi's Ballad", "attr": ["Starbomb"]},
 				{"id": "bhIPaApTopU", "name": "Lisa Frank 420/Modern Computing", "attr": ["Macintosh Plus"]},
@@ -5990,6 +6005,7 @@
 				, {"id": "7dqWGNtPHpw", "name": "Technoviking", "attr": ["Navigator by Can-D-Music"]}
 				, {"id": "YCNtlWzHpUQ", "name": "Snail Man", "attr": ["Gezebelle Gaburgably"]}
 				, {"id": "VaZjQgq9kpU", "name": "The Amazing Digital Circus Main Theme"}
+				, {"id": "DFtRCfysgg0", "name": "Crash Course theme song", "tags": ["Perfect"]}
 			]
 		}
 	},
@@ -6066,6 +6082,7 @@
 				{"id": "xF5peID-UAQ", "name": "In The Bleak Midwinter", "attr": ["Gustav Holst"], "tags": ["Adau"]},
 				{"id": "Q7TldVABzdE", "name": "Go Tell It On The Mountain", "attr": ["traditional"]}
 				, {"id": "dIUrB3ZmFyw", "name": "Sleigh Ride", "attr": ["Leroy Anderson"]}
+				, {"id": "sla25lztE0Q", "name": "Last Christmas", "attr": ["Wham!"]}
 			]
 		},
 		"Misc Halloween":{
@@ -6287,6 +6304,7 @@
 				, {"id": "bhvIJlTx5Nc", "name": "Comptine d'un autre \u00e9t\u00e9, l'apr\u00e8s-midi", "attr": ["Yann Tiersen"]}
 				, {"id": "YF4QHGuUjYQ", "name": "Wir lagen vor Madagaskar"}
 				, {"id": "oNYd00hd9GY", "name": "Feierabend", "attr": ["Grossstadtgefl\u00fcster"], "tags": ["Perfect"]}
+				, {"id": "bg__LeLSYdQ", "name": "Hey Sokoly", "attr": ["Polish/Ukrainian traditional"]}
 			]
 		}
 	}
