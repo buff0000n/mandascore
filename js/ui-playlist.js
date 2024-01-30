@@ -1052,7 +1052,18 @@ class Playlist {
                     }
                     progressCheck();
                 }
-            });
+            }, () => {
+                // pre-render callback
+                // if this isn't the last song in the playlist
+                if (index < entryList.length - 1) {
+                    // then load the next song
+                    this.select(entryList[index + 1], true, false, true);
+                    // and just schedule cutoffs of already scheduled notes, just in case the current song
+                    // bleeds into the next one
+                    this.score.renderAudioCutoffs(8);
+                }
+            }
+            );
         };
 
         renderNextSong();

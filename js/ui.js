@@ -1037,7 +1037,7 @@ class Measure {
         }
     }
 
-    playAudioForTime(t, delay) {
+    playAudioForTime(t, delay, justCutoffs = false) {
         // loop over each section
         for (var i in sectionNames) {
             var section = sectionNames[i];
@@ -1052,7 +1052,7 @@ class Measure {
                 // check for an enabled note
                 if (this.notes[t][r].enabled) {
                     // play an enabled note
-                    this.score.soundPlayer.playSoundLater(r, delay);
+                    this.score.soundPlayer.playSoundLater(r, delay, justCutoffs);
                     // if the section is mono then only play the highest enabled note.  This is how it works in game.
                     if (mono) {
                         break;
@@ -1092,10 +1092,10 @@ class Measure {
         }
     }
 
-    renderWav(offset, callback) {
+    renderWav(offset, justCutoffs = false) {
         for (var t = 0; t < 16; t++) {
             // todo: it's in milliseconds for some reason?
-            this.playAudioForTime(t, (offset + (t/8.0)) * 1000);
+            this.playAudioForTime(t, (offset + (t/8.0)) * 1000, justCutoffs);
         }
     }
 
@@ -2253,7 +2253,7 @@ class Score {
         });
     }
 
-    renderAudio(linkDiv, callback) {
+    renderAudio(linkDiv, callback, preRenderCallback=null) {
         // init
         var bar = new ProgressBar2();
         linkDiv.style.textAlign = "center";
@@ -2267,6 +2267,9 @@ class Score {
                 for (var m = 0; m < 4; m++) {
                    this.measures[m].renderWav(m * 2);
                 }
+
+                // sigh, we need a hook in here to do more scheduling before rending the final wav
+                if (preRenderCallback) preRenderCallback();
 
                 // start actual rendering
                 var progressFunc = this.soundPlayer.startRendering((buffer) => {
@@ -2286,6 +2289,14 @@ class Score {
                 progressCheck();
             }, 10);
         });
+    }
+
+    // Schedule just the mono cutoffs of already scheduled notes, for playlist rendering
+    // where notes at the end of the song sustain into the next song.
+    renderAudioCutoffs(startTime = 0) {
+        for (var m = 0; m < 4; m++) {
+           this.measures[m].renderWav(startTime + (m * 2), true);
+        }
     }
 }
 

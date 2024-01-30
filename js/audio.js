@@ -243,7 +243,7 @@ class SoundBankSource {
         }
     }
 
-    playLater(index, time, context=audioContext) {
+    playLater(index, time, context=audioContext, cutoffOnly=false) {
         if (this.mono) {
             // if this bank is mono then schedule any currently playing sounds to stop
             if (this.mono.perTone) {
@@ -257,6 +257,8 @@ class SoundBankSource {
                 }
             }
         }
+        // if we're just doing mono cutoffs then return now.
+        if (cutoffOnly) return;
         // play the sound
         this.sounds[index].triggerLater(time, context);
     }
@@ -448,7 +450,7 @@ class SoundBank {
         this.playLater(index, 0);
     }
 
-    playLater(index, time, context=audioContext) {
+    playLater(index, time, context=audioContext, cutoffOnly=false) {
         // check if the given sound is enabled
         if (this.enabled[index]) {
             // make sure we're initialized.  Regardless of whether it's from clicking a note or starting playback,
@@ -456,7 +458,7 @@ class SoundBank {
             // audio context
             this.initialize();
             if (this.currentSource) {
-                this.currentSource.playLater(index, time, context);
+                this.currentSource.playLater(index, time, context, cutoffOnly);
             }
             return true;
 
@@ -608,12 +610,12 @@ class SoundPlayer {
         this.playSoundLater(index, 0);
     }
 
-    playSoundLater(index, time) {
+    playSoundLater(index, time, cutoffOnly = false) {
         // find the correct section
         var bank = this.indexToBank[index];
         // play the sound, reindexing according to the section's starting row index
         // use the offline context if present, otherwise play live
-        return bank.playLater(index - bank.rowStart, time, this.offlineCtx ? this.offlineCtx : audioContext);
+        return bank.playLater(index - bank.rowStart, time, this.offlineCtx ? this.offlineCtx : audioContext, cutoffOnly);
     }
 
     clearStops() {
