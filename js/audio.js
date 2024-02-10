@@ -10,7 +10,7 @@ function initAudioContext() {
         window.AudioContext = window.AudioContext || window.webkitAudioContext;
         audioContext = new AudioContext();
         // check if the outputLatency property is defined
-        audioContextHasLatency = typeof context.outputLatency !== 'undefined';
+        audioContextHasLatency = typeof audioContext.outputLatency !== 'undefined';
     }
 }
 
@@ -99,6 +99,8 @@ class SoundEntry {
     triggerAtTime(triggerTime, context=audioContext) {
         // account for audio output latency, if available
         triggerTime -= getLatency();
+        // bounds check
+        if (triggerTime < 0) triggerTime = 0;
 
         // combine section volume, master volume, and individual sound mix volume
         var gainValue = this.volume * this.mixVolume * this.masterVolume;
@@ -145,6 +147,8 @@ class SoundEntry {
                 // calculate the sound start time in the audio context's terms
                 // account for audio output latency, if available
                 var t = context.currentTime + (time/1000) - getLatency();
+                // bounds check
+                if (t < 0) t = 0;
                 // schedule the stop
                 // We can't just stop the sound instantly because there will be an audio pop
                 // this.lastSource.stop(t);
