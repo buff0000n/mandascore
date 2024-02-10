@@ -1,13 +1,20 @@
 // we will initialize the context at the last possible moment, inside a user event,
 // because that's what some browsers require
 var audioContext;
+// some browsers don't support AudioContext.outputLatency, and by "some browsers" I mean Apple
+var audioContextHasLatency;
 
 function initAudioContext() {
     // init the audio context if it's not initialized
     if (audioContext == null) {
         window.AudioContext = window.AudioContext || window.webkitAudioContext;
         audioContext = new AudioContext();
+        audioContextHasLatency = audioContext.outputLatency ? true : false;
     }
+}
+
+function getLatency(context=audioContext) {
+    return audioContextHasLatency ? context.outputLatency : 0;
 }
 
 // object wrapping a single sound and keeping track of its source, volume, and play state.
@@ -89,6 +96,9 @@ class SoundEntry {
     }
 
     triggerAtTime(triggerTime, context=audioContext) {
+        // account for audio output latency, if available
+        triggerTime -= getLatency();
+
         // combine section volume, master volume, and individual sound mix volume
         var gainValue = this.volume * this.mixVolume * this.masterVolume;
 
@@ -132,7 +142,8 @@ class SoundEntry {
         if (this.lastSource != null) {
             if (time > 0) {
                 // calculate the sound start time in the audio context's terms
-                var t = context.currentTime + (time/1000);
+                // account for audio output latency, if available
+                var t = context.currentTime + (time/1000) - getLatency();
                 // schedule the stop
                 // We can't just stop the sound instantly because there will be an audio pop
                 // this.lastSource.stop(t);
