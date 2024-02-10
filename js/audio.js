@@ -15,7 +15,7 @@ function initAudioContext() {
 }
 
 function getLatency(context=audioContext) {
-    return audioContextHasLatency ? context.outputLatency : 0;
+    return (context == audioContext && audioContextHasLatency) ? context.outputLatency : 0;
 }
 
 // object wrapping a single sound and keeping track of its source, volume, and play state.
@@ -98,7 +98,7 @@ class SoundEntry {
 
     triggerAtTime(triggerTime, context=audioContext) {
         // account for audio output latency, if available
-        triggerTime -= getLatency();
+        triggerTime -= getLatency(context);
         // bounds check
         if (triggerTime < 0) triggerTime = 0;
 
@@ -146,7 +146,7 @@ class SoundEntry {
             if (time > 0) {
                 // calculate the sound start time in the audio context's terms
                 // account for audio output latency, if available
-                var t = context.currentTime + (time/1000) - getLatency();
+                var t = context.currentTime + (time/1000) - getLatency(context);
                 // bounds check
                 if (t < 0) t = 0;
                 // schedule the stop
