@@ -9,7 +9,8 @@ function initAudioContext() {
     if (audioContext == null) {
         window.AudioContext = window.AudioContext || window.webkitAudioContext;
         audioContext = new AudioContext();
-        audioContextHasLatency = audioContext.outputLatency ? true : false;
+        // check if the outputLatency property is defined
+        audioContextHasLatency = typeof context.outputLatency !== 'undefined';
     }
 }
 
