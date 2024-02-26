@@ -1,0 +1,1184 @@
+<html>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta name="viewport" content="width=640, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="css/main.css"/>
+<link rel="stylesheet" type="text/css" href="css/slider.css"/>
+<body>
+<div class="lotsOfWords">
+    <h1>What is this?</h1>
+    <p>
+        This is an app for viewing and editing Mandachord songs.
+    </p>
+    <p>
+        The main motivation was to provide a way to be able to copy my songs into the game without having to
+        pause a video.  But while I was at it I went ahead and made it a full blown editor.
+    </p>
+    <h2>Mandachord song codes?</h2>
+    <p>
+        There actually is a Mandachord song code format.  If you link a song in chat, and then look at your
+        EE.log file after quitting Warframe, then you will see something like this:
+    </p>
+    <code>
+        [SONG-Best Song Ever:AADDnwAAEggAAIggAEGBAJCAAABIAAAYAAgFwAECkCAgiAAAKEEACYAhAoAAAAgAAQgICCHAgQCQAEEIAABIQgAJgCEEgAAASAAIGAAABYAAIYAIIQgAAEgCBEGAABCAAAAIAAEIAAhBwgEAkA==:BardCorpusPackA:BardGrineerPackA:BardCorpusPackB]
+    </code>
+    <p>
+        You used to be able to paste this back into the in-game chat window and get a song link back, but
+        unfortunately that hasn't worked in a couple of years.  Still, it's as good a format as any, so that's
+        what this editor is using.
+    </p>
+    <p>
+        I have a program for extracting song codes from your EE.log file, if you're comfortable with
+        running python: <a href="https://github.com/buff0000n/songparse">songparse</a>.
+    </p>
+
+    <h1>Table of Contents</h1>
+    <ul id="TOC">
+        <li><a href="#tocGettingStarted">Getting Started</a></li>
+        <li><a href="#tocEditing">Basic Editing</a>
+            <ul>
+                <li><a href="#tocTitle">Title</a></li>
+                <li>
+                    <a href="#tocInstruments">Instruments</a>
+                    <ul>
+                        <li><a href="#tocInstrumentSet">Instrument Set</a></li>
+                        <li><a href="#tocVolume">Volume</a></li>
+                        <li><a href="#tocIsolation">Isolation</a></li>
+                    </ul>
+                </li>
+                <li><a href="#tocNotes">Notes</a></li>
+            </ul>
+        </li>
+        <li><a href="#tocAdvancedEditing">Advanced Editing</a>
+            <ul>
+                <li>
+                    <a href="#tocClear">Clear</a>
+                    <ul>
+                        <li><a href="#tocClearMeasure">Clear Measure</a></li>
+                        <li><a href="#tocClearSong">Clear Song</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#tocCopyPaste">Copy/Paste</a>
+                    <ul>
+                        <li><a href="#tocCopyPasteMeasure">Copy/Paste Measure</a></li>
+                        <li><a href="#tocCopyPasteSong">Copy/Paste Song</a></li>
+                        <li><a href="#tocPasteSwap">Copy/Paste between Melody and Bass</a></li>
+                        <li><a href="#tocCopyPastePerformance">Copy/Paste Performance</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li><a href="#tocUndoRedo">Undo/Redo</a></li>
+        <li><a href="#tocPlayback">Playback</a>
+            <ul>
+                <li><a href="#tocPlaySong">Play Song</a></li>
+                <li><a href="#tocPlayMeasure">Play Measure</a></li>
+                <li><a href="#tocPlayCursor">Play Cursor</a></li>
+            </ul>
+        </li>
+        <li><a href="#tocSaving">Saving</a>
+            <ul>
+                <li><a href="#tocSongCode">SongCode</a></li>
+                <li><a href="#tocShareURL">Share URL</a></li>
+                <li><a href="#tocExportToPng">Export to PNG</a></li>
+                <li><a href="#tocExportToWav">Export to WAV</a></li>
+                <li><a href="#tocAutosaveSong">Autosave</a></li>
+            </ul>
+        </li>
+        <li><a href="#tocLibrary">Library</a>
+            <ul>
+                <li><a href="#tocSearchingTheLibrary">Searching the library</a></li>
+                <li>
+                    <a href="#tocLoadingASong">Loading a song</a>
+                    <ul>
+                        <li><a href="#tocBuildingAPlaylist">Building a playlist</a></li>
+                    </ul>
+                </li>
+                <li><a href="#tocReverseSearchingTheLibrary">Reverse Searching the library</a></li>
+            </ul>
+        </li>
+        <li><a href="#tocPlaylist">Playlist</a>
+            <ul>
+                <li><a href="#tocAddingASong">Adding a song</a></li>
+                <li>
+                    <a href="#tocEditingPlaylist">Editing the playlist</a>
+                    <ul>
+                        <li>
+                            <a href="#tocSelectingASong">Selecting a song</a>
+                            <ul>
+                                <li><a href="#tocSelectingMultipleSongs">Highlighting multiple songs</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#tocCopyingSongs">Copying songs</a></li>
+                        <li><a href="#tocMovingSong">Moving songs</a></li>
+                        <li><a href="#tocDeletingASong">Deleting a song</a></li>
+                    </ul>
+                </li>
+                <li><a href="#tocPlayingPlaylist">Playing the playlist</a></li>
+                <li>
+                    <a href="#tocSavingPlaylist">Saving the playlist</a>
+                    <ul>
+                        <li><a href="#tocCopyPastePlaylist">Copy/Paste</a></li>
+                        <li><a href="#tocPlaylistURL">Playlist URL</a></li>
+                        <li><a href="#tocAutosavePlaylist">Autosave</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li><a href="#tocMixer">Mixer</a>
+            <ul>
+                <li><a href="#tocMixerVolume">Mixer Volumes</a></li>
+                <li><a href="#tocMixerToggle">Mixer Toggles</a></li>
+            </ul>
+        </li>
+        <li><a href="#tocInstrumentSetNotes">Instrument Set Notes</a>
+            <ul>
+                <li><a href="#tocAdau">Adau</a></li>
+                <li><a href="#tocAlpha">Alpha</a></li>
+                <li><a href="#tocBeta">Beta</a></li>
+                <li><a href="#tocBombast">Bombast</a></li>
+                <li><a href="#tocDelta">Delta</a></li>
+                <li><a href="#tocDruk">Druk</a></li>
+                <li><a href="#tocEpsilon">Epsilon</a></li>
+                <li><a href="#tocGamma">Gamma</a></li>
+                <li><a href="#tocHoros">Horos</a></li>
+                <li><a href="#tocPlogg">Plogg</a></li>
+                <li><a href="#tocClazzConcept">Clazz (Concept)</a></li>
+                <li><a href="#tocZetaConcept">Zeta (Concept)</a></li>
+            </ul>
+        </li>
+        <li><a href="#tocUpdateNotes">Update Notes</a></li>
+        <li><a href="#tocToDo">To Do</a></li>
+        <li><a href="#tocKnownIssues">Known Issues</a></li>
+    </ul>
+
+    <h1 id="tocGettingStarted">Getting Started</h1>
+    <p>
+        If you came here from a song link then it should already be displayed.
+    </p>
+    <p>
+        If you have a song code then paste it in the <strong>Song Code</strong> text box and hit enter.
+    </p>
+
+    <h1 id="tocEditing">Basic Editing</h1>
+    <p>
+        If you're familiar with the in-game Mandachord editor then you already know how most of this works.
+    </p>
+    <h2 id="tocTitle">Title</h2>
+    <p>
+        Enter the title of the song here.  The in-game restrictions on Mandachord song titles are pretty
+        severe, but the only thing being restricted here is a 24 character limit
+    </p>
+    <h2 id="tocInstruments">Instruments</h2>
+    <p>
+        You can adjust the settings here for each section individually: Percussion, Bass, and Melody.
+    </p>
+    <h3 id="tocInstrumentSet">Instrument Set</h3>
+    <p>
+        Use the dropdown to choose one of the nine instrument sets.
+    </p>
+    <h3 id="tocVolume">Volume</h3>
+    <p>
+        Use the slider to adjust the volume.  Full volume is all the way to thr right, zero volume is all the
+        way to the left.
+    </p>
+    <h3 id="tocIsolation">Isolation</h3>
+    <p>
+        Use the checkboxes on the right to turn particular sections on and off.
+    </p>
+    <p>
+        Note that the isolation settings are not part of the song code and don't get saved.
+    </p>
+    <h2 id="tocNotes">Notes</h2>
+    <p>
+        The rest of the screen is dedicated to the note grid.  This is laid out just like the Mandachord
+        screen, except as a rectangle instead of a disc.
+    <p>
+        The top three rows are percussion, the next five are bass, and the bottom five are melody.  Time
+        ordering goes from left to right.
+    </p>
+    <p>
+        Click a location in the grid to turn a note on, or click a location with an existing note to turn that
+        note off.  You can also click and drag across an area to create multiple notes next to each other.
+    </p>
+    <p>
+        The score is broken out into four measures.  Each measure has a maximum number of notes that can be
+        present in each section:
+    </p>
+    <ul>
+        <li><strong>Percussion</strong>: 24 notes per measure</li>
+        <li><strong>Bass</strong>: 16 notes per measure</li>
+        <li><strong>Melody</strong>: 16 notes per measure</li>
+    </ul>
+    <p>
+        <strong class="warn">Exceeding the note limit on a section of a measure will play a small warning sound.</strong>
+    </p>
+    <p>
+        If your screen is wide enough then all four measures will be displayed in a single row.
+        If your screen is not wide enough for that, then there will be two rows of two.
+        If your screen is not wide enough for that the four measures will be arranged vertically.
+    </p>
+    <h1 id="tocAdvancedEditing">Advanced Editing</h1>
+    <h2 id="tocClear">Clear</h2>
+    <h3 id="tocClearMeasure">Clear Measure</h3>
+    <p>
+        Above each measure is a
+        <img class="docButton" src="img/icon-clear.png" srcset="img2x/icon-clear.png 2x"/>
+        <strong>Clear</strong> button.  This can be used to clear part or all of the
+        measure.  Clicking this will bring up a menu:
+    </p>
+    <ul>
+        <li><strong>All</strong>: Use this to completely clear the measure</li>
+        <li><strong>Percussion</strong>: Use this to clear just the Percussion section of the measure</li>
+        <li><strong>Bass</strong>: Use this to clear just the Bass section of the measure</li>
+        <li><strong>Melody</strong>: Use this to clear just the Melody section of the measure</li>
+    </ul>
+    <h3 id="tocClearSong">Clear Song</h3>
+    <p>
+        Above the <strong>Song Title</strong> bar is another
+        <img class="docButton" src="img/icon-clear.png" srcset="img2x/icon-clear.png 2x"/>
+        <strong>Clear</strong> button.  This allows you to clear notes from all four measures.  It has the same
+        options as the per-measure <strong>Clear</strong> button: <strong>All</strong>,
+        <strong>Percussion</strong>, <strong>Bass</strong>, or <strong>Melody</strong>.
+    </p>
+    <h2 id="tocCopyPaste">Copy/Paste</h2>
+    <h3 id="tocCopyPasteMeasure">Copy/Paste Measure</h3>
+    <p>
+        Above each measure is a
+        <img class="docButton" src="img/icon-copy.png" srcset="img2x/icon-copy.png 2x"/>
+        <strong>Copy</strong> button.  This can be used to copy part or all of the
+        measure, allowing it to be pasted to a different measure.  Clicking this button
+        will bring up the usual section options: <strong>All</strong>, <strong>Percussion</strong>,
+        <strong>Bass</strong>, or <strong>Melody</strong>.
+    </p>
+    <p>
+        Once a copy selection is made in one measure, the
+        <img class="docButton" src="img/icon-paste.png" srcset="img2x/icon-paste.png 2x"/>
+        <strong>Paste</strong>
+        buttons are enabled on the
+        other three measures.  Clicking the <strong>Paste</strong> button will copy the selected section from
+        the copied measure into that measure, overwriting any existing notes in that section.
+    </p>
+    <h3 id="tocCopyPasteSong">Copy/Paste song</h3>
+    <p>
+        Above the <strong>Song Title</strong> bar is another set of
+        <img class="docButton" src="img/icon-copy.png" srcset="img2x/icon-copy.png 2x"/>
+        <strong>Copy</strong> and
+        <img class="docButton" src="img/icon-paste.png" srcset="img2x/icon-paste.png 2x"/>
+        <strong>Paste</strong> buttons.  This allows you to copy and paste notes from all four measures.
+    </p>
+    <p>
+        This is mainly useful when editing a playlist.  It allows you to copy all or part of a song into
+        another playlist entry.
+    </p>
+    <p>
+        <strong class="warn">Only one thing can be copied at a time, either part of a measure or part of the
+            whole song</strong>
+    </p>
+    <h3 id="tocPasteSwap">Copy/Paste between Melody and Bass </h3>
+    <p>
+        If just a melody or a bass section has been copied, then holding the <strong>Shift</strong> key
+        down while clicking the
+        <img class="docButton" src="img/icon-paste.png" srcset="img2x/icon-paste.png 2x"/>
+        <strong>Paste</strong> button will bring up another section menu, containing just
+        <strong>Bass</strong> or <strong>Melody</strong>.  Select the section to paste into.
+    </p>
+    <p>
+        This allows you to copy a melody to a bass, or vice-verse.  This works with both a single measure and
+        the whole song.
+    </p>
+    <h3 id="tocCopyPastePerformance">Copy/Paste Performance</h3>
+    <p>
+        Click the song-level
+        <img class="docButton" src="img/icon-copy.png" srcset="img2x/icon-copy.png 2x"/>
+        <strong>Copy</strong> button and choose
+        <img class="docButton" src="img/perf.png" srcset="img2x/perf.png 2x"/>
+        <strong>Performance</strong> to copy the instrument pack and volume settings for the current song.
+        Clicking <img class="docButton" src="img/icon-paste.png" srcset="img2x/icon-paste.png 2x"/>
+        <strong>Paste</strong> on another song in the playlist will paste those settings into that song.
+    </p>
+
+    <h1 id="tocUndoRedo">Undo/Redo</h1>
+    <p>
+        Undo and Redo is available using either the
+        <img class="docButton" src="img/icon-undo.png" srcset="img2x/icon-undo.png 2x"/>
+        <strong>Undo</strong> and
+        <img class="docButton" src="img/icon-redo.png" srcset="img2x/icon-redo.png 2x"/>
+        <strong>Redo</strong> buttons
+        above the <strong>Song Title</strong> bar, or by using <strong>Ctrl-Z</strong> for undo and
+        <strong>Ctrl-Shift-Z</strong> or <strong>Ctrl-Y</strong> for redo.
+    </p>
+    <p>
+        All actions can be undone, including note changes, section setting changes, title changes, paste,
+        clear, loading a song from the library, and all edits made to the playlist.
+    </p>
+    <h1 id="tocPlayback">Playback</h1>
+    <p>
+        Use the
+        <img class="docButton" src="img/icon-play.png" srcset="img2x/icon-play.png 2x"/>
+        <strong>Play</strong>
+        buttons to start and stop playback on either all or part of the song.
+        Playback will loop back to the beginning until stopped.
+    </p>
+    <p>
+        Just like in game, the current playback location is marked with a vertical line, and individual notes
+        will have a small visual bounce as they are played.
+    </p>
+    <p>
+        Pressing <strong>Space</strong> during playback will pause at its current location.  Pressing
+        <strong>Space</strong> again will resume playback where it left off.
+    </p>
+    <p>
+        Pressing <strong>Shift-Space</strong> or holding <strong>Shift</strong> and clicking
+        <strong>Play</strong> during playback or while playback is paused will restart playback at the
+        beginning of the song or measure.
+    </p>
+    <p>
+        Pressing the same
+        <img class="docButton" src="img/icon-stop.png" srcset="img2x/icon-stop.png 2x"/>
+        <strong>Stop</strong> button while playing will stop playback and clear the current
+        playback location.
+    </p>
+    <p>
+        <strong class="warn">Note: The sounds themselves were recorded in-game.  I hope this is okay.</strong>
+    </p>
+    <h2 id="tocPlaySong">Play Song</h2>
+    <p>
+        Click the
+        <img class="docButton" src="img/icon-play.png" srcset="img2x/icon-play.png 2x"/>
+        <strong>Play</strong> button above the <strong>Song Title</strong> bar to play the entire
+        song.  Playback will go through all four measures before looping back to the beginning.
+    </p>
+    <h2 id="tocPlayMeasure">Play Measure</h2>
+    <p>
+        Click the
+        <img class="docButton" src="img/icon-play.png" srcset="img2x/icon-play.png 2x"/>
+        <strong>Play</strong> button above a measure to play just that measure in a loop.
+    </p>
+    <p>
+        Clicking the
+        <img class="docButton" src="img/icon-play.png" srcset="img2x/icon-play.png 2x"/>
+        <strong>Play</strong> button above a different measure, or clicking the whole song
+        <img class="docButton" src="img/icon-play.png" srcset="img2x/icon-play.png 2x"/>
+        <strong>Play</strong> button, will immediately stop the current playback and start a fresh playback
+        on the clicked measure or song.
+    </p>
+    <h2 id="tocPlayCursor">Play Cursor</h2>
+    <p>
+        Click on the ruler bar above the note section to move the playback cursor to that location.  This
+        works even when playback is in progress.
+    </p>
+    <p>
+        Click on the ruler bar or the cursor itself and drag to move the playback cursor across the song
+        while playing any notes under the cursor.  It's both fun and pointless.
+    </p>
+    <h1 id="tocSaving">Saving</h1>
+    <p>
+        There are three ways to save your song for later: by code, by URL, or by generating an image.
+    </p>
+    <h2 id="tocSongCode">Song Code</h2>
+    <p>
+        To save your song by code, simply copy the code out of the <strong>Song Code</strong> bar at the top
+        of the page.  This Song Code is automatically updated as changes are made to the song.
+    </p>
+    <p>
+        To restore a song from a code, open this page again and paste the song code into the
+        <strong>Song Code</strong> bar.
+    </p>
+    <p>
+        <strong class="warn">Unfortunately, that's all you can currently do with a song code.</strong>  You used
+        to be able to paste the song code into the in-game chat window and get a song link back, but that
+        hasn't worked in years.
+    </p>
+    <h2 id="tocShareURL">Share URL</h2>
+    <p>
+        If you want a shareable URL that goes directly to your song, click the
+        <img class="docButton" src="img/icon-link.png" srcset="img2x/icon-link.png 2x"/>
+        <strong>Link</strong>
+        button at the top of the page.  Copy this, and paste it into a browser to bring up this page
+        auto-populated with your song.
+    </p>
+    <h2 id="tocExportToPng">Export to PNG</h2>
+    <p>
+        If you want an image, then click the
+        <img class="docButton" src="img/icon-png.png" srcset="img2x/icon-png.png 2x"/>
+        <strong>Generate PNG</strong> button at the top of the page.
+        This will bring up a link to download your song as a PNG, including section settings and all four
+        measures.
+    </p>
+    <p>
+        <strong>Note that you cannot re-import a PNG to edit it again.</strong>  You should also save your
+        song as either a Song Code or URL so you can come back to it later.
+    </p>
+    <h2 id="tocExportToWav">Export to WAV</h2>
+    <p>
+        If you want an audio file, then click the
+        <img class="docButton" src="img/icon-wav.png" srcset="img2x/icon-wav.png 2x"/>
+        <strong>Generate WAV</strong> button at the top of the page.
+        This will export the song loop, or the entire playlist if you have one open, to an uncompressed
+        WAV file.
+    </p>
+    <p>
+        While the WAV file is rendering, clicking anywhere outside the progress box will close it and cancel
+        the process.
+    </p>
+    <p>
+        <strong class="warn">Note that this can take a long time.</strong>  You will be able to watch the progress as it
+        renders the WAV file.
+    </p>
+    <p>
+        <strong class="warn">Note that this does not work in all browsers.</strong>  Nothing I can really do
+        about it.  There is full support in Chrome and Edge, partial support in Firefox, and no support in Safari.
+    </p>
+    <h2 id="tocAutosaveSong">Autosave</h2>
+    <p>
+        As you are editing, your song will automatically be saved to your browser's location bar.  If you use
+        the browser's forward/back buttons, intentionally or accidentally, then reversing that back to this
+        page should resume where you left off.
+    </p>
+    <p>
+        <strong class="warn">Note: Updates take a second or two to appear in the location bar.</strong>
+    </p>
+
+    <h1 id="tocLibrary">Library</h1>
+    <p>
+        Click the <strong>Library</strong> button to enable the library.  This contains a demo for each
+        instrument set, along with every Mandachord request I've done.
+    </p>
+    <p>
+        <strong class="warn">There are thousands of songs and it's all loaded into your browser.  I'm
+            not sure how well this works on devices with limited memory.</strong>
+    </p>
+    <h2 id="tocSearchingTheLibrary">Searching the library</h2>
+    <p>
+        By default the entire library is listed.  Songs are categorized by my completely arbitrary
+        classification system.
+    </p>
+    <p>
+        The bar at the top is a search bar.  Enter one or more keywords to narrow down the listing.  The keyword
+        can be a category, a title, an artist, or one of a couple of tags:
+    </p>
+    <ul>
+        <li><strong class="tagPerfect">perfect</strong>: Matches melodies that translate perfectly onto the Mandachord</li>
+        <li><strong class="tagFilled">filled</strong>: Matches melodies that have no space between notes</li>
+        <li><strong class="tagSparse">sparse</strong>: Matches melodies that have a lot of space between notes</li>
+        <li><strong class="tagShot">double</strong>, <strong class="tagShot">triple</strong>, etc: Matches
+            songs that I did more than one Mandachord loop for</li>
+        <li><strong class="tagInstrument">adau</strong>, <strong class="tagInstrument">alpha</strong>,
+            <strong class="tagInstrument">druk</strong>, etc: Matches songs that only use one instrument
+            set</li>
+    </ul>
+    <p>
+        Multiple keywords can be entered.  Only songs that match all the keywords will be shown.
+    </p>
+    <p>
+        <strong class="warn">Keywords must be three characters or longer before they will be searched</strong>
+    </p>
+    <h2 id="tocLoadingASong">Loading a song</h2>
+    <p>
+        Click on a song entry to load it into the Mandascore editor.  If the editor is currently playing
+        then playback will be reset to the beginning.
+    </p>
+    <p>
+        If the selected song has more than one Mandachord loop then the <strong>Playlist</strong> will be
+        temporarily enabled, and playback will go through all the loops.
+    </p>
+    <h3 id="tocBuildingAPlaylist">Building a playist</h3>
+    <p>
+        By default, clicking a song in the library will replace the song currently in the Mandacore.  If the
+        previously selected library song had multiple Mandachord loops then the playlist will be cleared for
+        the new song.
+    </p>
+    <p>
+        Enable the playlist by clicking the <strong>Playlist</strong> button, making sure it's lit up.
+        This will keep the playlist up and append songs as they are selected.
+    </p>
+    <h2 id="tocReverseSearchingTheLibrary">Reverse Searching the library</h2>
+    <p>
+        Clicking the
+        <img class="docButton" src="img/icon-search.png" srcset="img2x/icon-search.png 2x"/>
+        <strong>Reverse Search</strong> button above the library will kick off a reverse search.  This
+        searches the entire library for songs matching the one currently in the editor.
+    </p>
+    <p>
+        The reverse search will only take into account sections in the editor that have notes in them.
+        If the <strong>Percussion</strong>, <strong>Bass</strong>, or <strong>Melody</strong> section is left
+        blank then the that section will be ignored while searching library songs.
+    </p>
+    <p><strong class="warn">I highly recommend limiting the search to one section</strong></p>
+    <p>
+        The reverse search will return an ordered list of results, with the closest match at the top of the
+        list.  Each match has a "closeness" number in <span class="tagMisc">blue</span>, where
+        <span class="tagMisc">60.00</span> is a perfect match for all three sections and partial matches
+        have lower closeness numbers.
+    </p>
+    <p>
+        <strong class="warn">Note: The reverse search is still a work in progress and it's tuned pretty
+            arbitrarily for how I search.</strong>
+    </p>
+
+    <h1 id="tocPlaylist">Playlist</h1>
+    <p>
+        The playlist feature allows you to queue up a sequence of song loops to play one after the other.
+    </p>
+    <p>
+        Enable the playlist by clicking the <strong>Playlist</strong> button in the top bar.
+    </p>
+    <p>
+        This is purely for my own amusement, use it if you want.
+    </p>
+
+    <h2 id="tocAddingASong">Adding a song</h2>
+    <p>
+        If the playlist is empty, then clicking the
+        <img class="docButton" src="img/icon-add.png" srcset="img2x/icon-add.png 2x"/>
+        <strong>Add</strong> button will add the current contents of the song editor as a new
+        song in the playlist.
+    </p>
+
+    <h2 id="tocEditingPlaylist">Editing the playlist</h2>
+
+    <h3 id="tocSelectingASong">Selecting a song</h3>
+    <p>
+        Click on a title in the playlist to select that song and display it in the song editor.  Any changes
+        will be saved to the selected playlist entry.
+    </p>
+    <p>
+        You can also use the <strong>Up</strong> and <strong>Down</strong> arrow keys to move between playlist
+        items.
+    </p>
+    <h4 id="tocSelectingMultipleSongs">Highlighting multiple songs</h4>
+    <p>
+        When a single song is selected, click the
+        <img class="docButton" src="img/icon-playlist-select.png" srcset="img2x/icon-playlist-select.png 2x"/>
+        highlight button beside another song entry above or below it to highlight a contiguous block of songs.
+        Currently highlighted songs will be marked with
+        <img class="docButton" src="img/icon-playlist-selected.png" srcset="img2x/icon-playlist-selected.png 2x"/>.
+    </p>
+    <p>
+        Only one song can be selected and displayed in the song editor, but any number of songs above or below
+        the selected song can be highlighted.
+    </p>
+    <p>
+        Click another
+        <img class="docButton" src="img/icon-playlist-select.png" srcset="img2x/icon-playlist-select.png 2x"/> or
+        <img class="docButton" src="img/icon-playlist-selected.png" srcset="img2x/icon-playlist-selected.png 2x"/>
+        button to change where the highlight stops.
+    </p>
+    <p>
+        Selecting a new song will clear the highlight.
+    </p>
+    <p>
+        Holding the <strong>Shift</strong> key while selecting another entry in the playlist does the same thing
+        as clicking the
+        <img class="docButton" src="img/icon-playlist-select.png" srcset="img2x/icon-playlist-select.png 2x"/>
+        highlight button.  It will highlight the block of entries instead of selecting that entry.
+    </p>
+
+    <h3 id="tocCopyingSongs">Copying songs</h3>
+    <p>
+        When a song is selected in the playlist use the
+        <img class="docButton" src="img/icon-add.png" srcset="img2x/icon-add.png 2x"/>
+        <strong>Add</strong> button to make a copy of this song.  It will be inserted directly after the
+        selection and automatically selected.
+    </p>
+    <p>
+        If there are highlighted songs in addition to the selected song, then the entire block of songs will
+        be copied and placed after the last highlighted song.
+    </p>
+
+    <h3 id="tocMovingSong">Moving songs</h3>
+    <p>
+        Click and hold the
+        <img class="docButton" src="img/icon-playlist-move.png" srcset="img2x/icon-playlist-move.png 2x"/>
+        move button beside a song to drag that song to a new location.
+    </p>
+    <p>
+        You can move any song, whether it's selected or not.
+    </p>
+    <p>
+        If there is a block of songs highlighted, then clicking an dragging the
+        <img class="docButton" src="img/icon-playlist-move.png" srcset="img2x/icon-playlist-move.png 2x"/>
+        move button beside any highlighted song will move the entire block.
+    </p>
+    <p>
+        If there are enough songs to scroll out of the playlist window, then dragging near the edge will
+        automatically scroll.
+    </p>
+
+    <h3 id="tocDeletingASong">Deleting a song</h3>
+    <p>
+        Click the
+        <img class="docButton" src="img/icon-playlist-delete.png" srcset="img2x/icon-playlist-delete.png 2x"/>
+        delete button beside a song to remove that entry from the playlist.
+    </p>
+    <p>
+        If the currently selected song is deleted then the next song will be automatically selected.
+    </p>
+
+    <h2 id="tocPlayingPlaylist">Playing the playlist</h2>
+    <p>
+        By default playlist looping is enabled.  This means that if you play the full song then it will
+        automatically advance to the next entry in the playlist at the end of measure four.
+    </p>
+    <p>
+        The playlist will not advance when playing a single measure.
+    </p>
+    <p>
+        Click the
+        <img class="docButton" src="img/icon-playlist-enabled.png" srcset="img2x/icon-playlist-enabled.png 2x"/>
+        <strong>Disable</strong> button above the playlist to disable it.  While disabled the song will not
+        advance to the next playlist entry after measure four; it will stay on the same song.  Click the same
+        <img class="docButton" src="img/icon-playlist-disabled.png" srcset="img2x/icon-playlist-disabled.png 2x"/>
+        <strong>Enable</strong> button to re-enable it.
+    </p>
+
+    <h2 id="tocSavingPlaylist">Saving the playlist</h2>
+    <p>
+        There are two options for saving/loading a playlist.
+    </p>
+    <h3 id="tocCopyPastePlaylist">Copy/Paste</h3>
+    <p>
+        Click the
+        <img class="docButton" src="img/icon-playlist-copypaste.png" srcset="img2x/icon-playlist-copypaste.png 2x"/>
+        <strong>Copy/Paste</strong> button to bring up a text area containing the song codes for every song in
+        the playlist.  You can copy this and save it wherever you want.
+    </p>
+    <p>
+        You can also paste a new song list into this text area.  This will replace the current playlist, if any.
+    </p>
+    <h3 id="tocPlaylistURL">Playlist URL</h3>
+    <p>
+        Click the
+        <img class="docButton" src="img/icon-link.png" srcset="img2x/icon-link.png 2x"/>
+        <strong>Link</strong> button above the paylist to generate a shareable URL with the
+        entire playlist embedded in it.  Opening the URL will open Mandascore and restore the playlist.
+    </p>
+    <p>
+        <strong class="warn">I'm compressing it, but this URL can still be very large.</strong>
+    </p>
+    <h2 id="tocAutosavePlaylist">Autosave</h2>
+    <p>
+        As you are editing, your playlist will automatically be saved to your browser's location bar.  If you
+        use the browser's forward/back buttons, intentionally or accidentally, then reversing that back to this
+        page should resume mostly where you left off.
+    </p>
+    <p>
+        <strong class="warn">Note: Updates take a second or two to appear in the location bar.</strong>
+    </p>
+
+    <h1 id="tocMixer">Mixer</h1>
+    <p>
+        The mixer feature allows you to control the volume of and toggle individual note tracks.
+    </p>
+    <p>
+        Changes made in the mixer apply to every song in a playlist.  <strong>Copy/pasting a playlist or
+        generating a playlist link will include the mixer settings, if any.</strong>
+    </p>
+
+    <h2 id="tocMixerVolume">Mixer Volumes</h2>
+    <p>
+        The volume sliders in the mixer section allow control over a section's volume or an individual note
+        track within that section.
+    </p>
+    <p>
+        The master volume controls overal output volume, on top of section and track volumes.
+    </p>
+    <p>
+        Each section's main volume controls output volume for all tracks in the section.  Adjusting the section
+        volume will lock all the note track volumes to the same value.
+    </p>
+    <p>
+        Adjusting a note track volume will only affect that note track.  The section volume will show the
+        average of the note track volumes, but it's just for show.
+    </p>
+    <p>
+        <strong class="warn">Note: The section mixer volume is separate from the volume in the song info.</strong>
+        The song info volume applies only to that song loop, and is saved along with it.  But the section mixer
+        volume applies to every song loop and is not saved as part of any song.
+    </p>
+
+    <h2 id="tocMixerToggle">Mixer Toggles</h2>
+    <p>
+        The toggle buttons in the mixer sections allow control over whether a section or an individual note
+        track is enabled
+    </p>
+    <p>
+        Toggling a section on or off will apply the same setting to all of that section's note tracks.
+    </p>
+    <p>
+        Toggling a note track will only affect that note track.
+    </p>
+    <p>
+        If all of a section's note tracks are disabled then the section itself is automatiacally disabled, and
+        if one of a section's note tracks is enabled then that section is automatically enabled.
+    </p>
+    <p>
+        Note that the setion toggle under the mixer is exactly the same as the section toggle in the song info,
+        and changes made to one will be reflected in the other.
+    </p>
+    <h2 id="tocResetMixer">Reset Mixer</h2>
+    <p>
+        Clicking the
+        <img class="docButton" src="img/icon-reset.png" srcset="img2x/icon-reset.png 2x"/>
+        <strong>Reset</strong> button Will revert the mixer to having all note tracks enabled at full volume.
+    </p>
+
+    <h1 id="tocInstrumentSetNotes">Instrument Set Notes</h1>
+    <h2 id="tocAdau">Adau</h2>
+    <p>
+        The default instrument is ironically one of the hardest to work with.
+    </p>
+    <p>
+        The <strong>percussion</strong> is different from all the other instrument sets.  It's a low drum, a
+        double-drum, and a high drum.  The double-drum is unique: a single note actually plays twice, a
+        sixteenth note apart.  Putting a series of middle-drum notes one grid square apart will play a
+        continuous drum roll.
+    </p>
+    <p>
+        I've found the best way to work with Adau percussion is to use the high and low drums as the basis
+        of the rhythm, and the middle double-drum supporting the other two as a lead-in or filler.
+    </p>
+    <p>
+        The <strong>bass</strong> is the only bass in the current instrument set lineup that's pitched high and
+        clear enough to do chords.  That's usually how I use it.  Unfortunately, because it's pitched so high,
+        and because I'm usually doubling up with chords, it tends to drown out most melodies.  For that reason
+        I usually back the volume off a bit.
+    </p>
+    <p>
+        The <strong>melody</strong> is very, very mushy.  Single notes are very hard to distinguish a clear
+        start time.  Fast notes just blend together.
+    </p>
+    <p>
+        The one place where the Adau melody shines is emulating long-held notes.  Because of the mushiness,
+        repeating a note every grid space will blend together into a single, long note.  Adau is the only
+        melody that can do this well.  You can also quickly alternate between 2-3 notes and get a similar
+        effect as a long-held chord.
+    </p>
+
+    <h2 id="tocAlpha">Alpha</h2>
+    <p>
+        The Alpha instrument set is 100% Techno.
+    </p>
+    <p>
+        The <strong>percussion</strong> has a very distinctive 80's techno bass drum, but it should be used
+        sparingly unless you're going for an obnoxious "hard-bass" style.  The snare is a relatively
+        high-pitched whip-crack snare, also best used sparingly.  The hi-hat is one of the strongest in the
+        line-up, but not overwhelming.
+    </p>
+    <p>
+        I've found the best way to use the Alpha percussion is to keep it simple with the bass and snare, and
+        save the creativity for the hi-hat.
+    </p>
+    <p>
+        The <strong>bass</strong> notes take about half a measure to play out and aren't very strong.  This is
+        more of a atmospheric bass than something you can make a recognizable bass line out of.
+    </p>
+    <p>
+        The <strong>melody</strong> is one of the best overall melodies in the line-up.  Each note takes about
+        2-3 grid spaces to play out, so it's not great for fast melodies.  Otherwise it's very strong and
+        clear.  I use it a lot for mid-range, slower melodies that I want to be recognizable.
+    </p>
+
+    <h2 id="tocBeta">Beta</h2>
+    <p>
+        Beta is one of the more low-key instrument sets.
+    </p>
+    <p>
+        The <strong>percussion</strong> bass and hi-hat are relatively gentle.  I tend to use them if the song
+        I'm trying to adapt doesn't have percussion at all.  The snare, on the other hand, is pretty aggressive.
+        In some of my longer videos I use the Beta snare in place of a crash cymbal.
+    </p>
+    <p>
+        The <strong>bass</strong> is very low, almost sub-audible.  You feel it more than you hear it.  You can
+        do a pretty chill bass line with it, but people aren't really going to be able to recognize it as
+        anything.  It's also pretty good at doing a long-held bass note if you repeat it.
+    </p>
+    <p>
+        The <strong>melody</strong> kind of suffers from the out-of-tune sound, but it's pretty short not
+        counting the echo.  It's a decent choice for fast melodies, and the echo can fill in slower ones.
+    </p>
+    <p>
+        This is my default substitute melody for Piano.
+    </p>
+
+    <h2 id="tocBombast">Bombast</h2>
+    <p>
+        This instrument set comes with Octavia Prime.  This might be a problem after Octavia Prime is vaulted,
+        but for now I plan on using it.
+    </p>
+    <p>
+        The <strong>percussion</strong> might replace Gamma as my go-to Hip Hop percussion.  A strong bump
+        bass, a sharp clap for a snare, and a clear hi-hat.
+    </p>
+    <p>
+        The <strong>bass</strong> is excellent.  It's low like <strong>Beta</strong>, but shorter and stronger.
+        It blends together very nicely when played fast.  I can do a lot with this bass.
+    </p>
+    <p>
+        The <strong>melody</strong> is unlike anything else in the Mandachord lineop.  It's your classic West
+        Coast hip hop lead.  There are built-in bends that make it awkward, especially on the lower two.  It's
+        pretty niche, but it's good for making anything sound like it's backing Snoop Dogg.
+    </p>
+    <p>
+        Both the melody and the bass are monophonic.  They literally won't do chords; if you put multiple notes
+        at the same time then only the highest one will play.  This is very noticeable with the melody, it
+        would be a mess without it, but the bass does this as well.
+    </p>
+
+    <h2 id="tocDelta">Delta</h2>
+    <p>
+        Delta is kind of an oddball.  I use its percussion a lot, but I almost never touch its bass or melody.
+    </p>
+    <p>
+        The <strong>percussion</strong> has a strong, short snare that I use a lot for drum and bass and a
+        couple of EDM styles.  The bass and hi-hat fit well but aren't anything special, I mostly use this
+        for the snare.
+    </p>
+    <p>
+        The <strong>bass</strong> is both very disinctive and hard to deal with.  The main sound is delayed
+        enough that you have to place it a grid square ahead of when you want it to actually play.  When it
+        plays its sound cuts through everything, you usually have to knock the volume back to hear anything
+        else.
+    </p>
+    <p>
+        I just never end up using this bass.  You need a really good sound match before it makes sense over any
+        of the other bass options.
+    </p>
+    <p>
+        Like the <strong>Bombast</strong> bass, the <strong>Delta</strong> bass is monophonic, but it's hard
+        to tell sometimes.
+    </p>
+    <p>
+        The <strong>melody</strong>.  Personally, I've never heard the Delta melody used in-game in any way
+        <i>other</i> than to be as obnoxious as possible.
+    </p>
+    <p>
+        Like the <strong>Bombast</strong> melody, the <strong>Delta</strong> melody is monophonic.
+    </p>
+    <p>
+        It is possible to make something interesting and okay to listen to.  But you have to spend a lot of
+        time playing with the five notes and seeing how they can blend together.  They all sound very different,
+        and bear only a passing resemblance to the scale note they represent.  The bottom four take almost
+        half a measure to play out, but the top note is faster can get away with being played quicker.
+    </p>
+
+    <h2 id="tocDruk">Druk</h2>
+    <p>
+        Druk is heavy metal all the way
+    </p>
+    <p>
+        The <strong>percussion</strong> is very strong and loud.  Since you can't vary the volume it comes
+        off a little too strong if you really hammer on it like a heavy metal drummer, but it's not usually
+        a problem.  For any music with a live drummer it's usually either Druk or Plogg, depending on
+        how heavy it is.
+    </p>
+    <p>
+        The <strong>bass</strong> is my favorite bass in the line-up.  It's clear and short.  You can build
+        a huge variety of complicated bass lines.  It cuts through battle noise very well in game.  Sometimes
+        if you've got a very busy bass against a weaker melody you'll want to cut the volume a bit.
+    </p>
+    <p>
+        This is easily my most used bass.
+    </p>
+    <p>
+        The <strong>melody</strong> is kind of mushy, and also an octave below most of the other melodies in
+        the line-up.  If I try and do a busy melody line with this then I'll always double it up on the bass
+        to give it more definition.
+    </p>
+    <p>
+        I have a pretty hard time hearing the Druk melody when I'm in mission, so I usually keep it simple.
+    </p>
+
+    <h2 id="tocEpsilon">Epsilon</h2>
+    <p>
+        Epsilon is EDM with a more Eurobeat-feel to it.
+    </p>
+    <p>
+        The <strong>percussion</strong> has among the longest snare and hi-hat sounds, good for filling a
+        lot of space or cutting through other sounds.  The bass drum is low and long as well, but my reasons
+        for using Epsilon percussion are mostly for the snare and hi-hat.
+    </p>
+    <p>
+        The <strong>bass</strong> is hard to work with because it's a dual sound.  First a low note, then one
+        grid square later a higher, clearer note.  I find this works best when you place it a grid square
+        before where you want it to sound.  The higher part also tends to overshadow some melodies, making it
+        even tougher to use effectively.
+    </p>
+    <p>
+        The <strong>bass</strong> is <i>kind of</i> monophonic, within each tone.  If you play two instances
+        of the same tone quickly one right after another then the first one will stop playing when the second
+        one starts.  However, you can play two different bass tones simultaneously.
+    </p>
+    <p>
+        The <strong>melody</strong> is an octave or more above all the other melodies in the line-up.  It takes
+        a whole quarter note to fully play out, but it doesn't get mushy with faster melodies.
+    </p>
+    <p>
+        This is my go-to choice for high-pithed melodies, including high strings.
+    <p>
+    </p>
+
+    <h2 id="tocGamma">Gamma</h2>
+    <p>
+        Gamma is mainly for hip-hop, but the melody is extremely versatile.
+    </p>
+    <p>
+        The <strong>percussion</strong> is my go-to for any rap or hip-hip.  It has a very strong hi-hat, and
+        a high pitched snare that's almost like a hand-clap.  The bass drum is pretty standard but fits
+        with the theme.
+    </p>
+    <p>
+        The <strong>bass</strong> is a low brass note that takes about a quarter-note to play out.  You can't
+        do fast bass-lines, but you can fill space with it.  Most of the time, if I'm doing hip-hop then I end
+        up doubling up the base on the bass drum rhythm.
+    </p>
+    <p>
+        The <strong>melody</strong> is my go-to melody for anything fast-paced.  Aside from a little but of
+        de-tuning, it's short and clear and great for just about anything with a lot of sixteenth notes.
+    </p>
+    <p>
+        It's a toss-up whether Gamma or Alpha is my most used melody.
+    </p>
+
+    <h2 id="tocHoros">Horos</h2>
+    <p>
+        Horos is the community-voted "EDM" pack which... I mean, half the instrument sets in the
+        line-up qualify as "EDM".  The community is dumb sometimes, but it's a good instrument set.
+    </p>
+    <p>
+        The <strong>percussion</strong> bass drum and snare make a solid club beat.  I find myself just doing
+        bass drum on the beast and snare every other beat a lot with this instrument set.  The only unfortunate
+        thing is the hi-hat, which is so weak it's almost inaudible compared to the rest.
+    </p>
+    <p>
+        The <strong>bass</strong> is my second-favorite bass after druk.  It's short and clear, and you can
+        do tons of stuff with it.  I find myself using it a lot for repetitive synth-wave bass lines.
+    </p>
+    <p>
+        The <strong>melody</strong> is pretty hard to use.  Each note has is a built-in chord, a ton of
+        overtones, and echoes for a good 3/4 of a measure.  The best way to use this is sparingly.
+    </p>
+
+    <h2 id="tocPlogg">Plogg</h2>
+    <p>
+        Plogg is kind of a lighter rock, except the bass player keeps his amp turned up way too loud even
+        though they keep asking him to dial it back.
+    </p>
+    <p>
+        The <strong>percussion</strong> is a pretty standard live drum kit.  Its strength is that it's so
+        generic that it fits in everywhere.
+    </p>
+    <p>
+        The <strong>bass</strong> is the loudest in the line-up.  Honestly, when I use this bass I usually
+        turn it down to half-volume.  It takes two grid squares to sound out, so it's not for fast bass lines.
+    </p>
+    <p>
+        The one exception is if I need a long-held bass note that's as hardcore loud as possible.  Repeating a
+        Plogg bass note like with the Adau melody works pretty good for that.
+    </p>
+    <p>
+        The <strong>melody</strong>, like Druk, is an octave below most of the other melodies.  I use this
+        a lot for low male vocals, and the occasional clean guitar.  It takes two grid squares to sound out
+        so it's not great for fast melodies.
+    </p>
+
+    <h2 id="tocClazzConcept">Clazz (Concept)</h2>
+    <p>
+        <a href="https://www.youtube.com/watch?v=-3ZruCCdfKI">Original video</a>
+    </p>
+    <p>
+        The instrument set request I hear the most is "piano".  So here's my concept.
+    </p>
+    <p>
+        The <strong>percussion</strong> is smooth jazz, because even Plogg is still too heavy for some songs.
+    </p>
+    <p>
+        The <strong>bass</strong> is high and clear enough to play chords.  The only other bass that can do that right now is
+        Adau.
+    </p>
+    <p>
+        The <strong>melody</strong> is an octave higher than most of the other melodies.  We don't have enough of those and most
+        piano requests I get fall into that range.
+    </p>
+
+    <h2 id="tocZetaConcept">Zeta (Concept)</h2>
+    <p>
+        <a href="https://www.youtube.com/watch?v=K6VN7DbkIhg">Original video</a>
+    </p>
+    <p>
+        I would love a reto-gaming chiptune instrument set.  So here's my concept.
+    </p>
+    <p>
+        The <strong>percussion</strong> is based on a Commodore 64, the earliest thing I could think of that
+        can pull off a distinct bass drum.
+    </p>
+    <p>
+        The <strong>bass</strong> is from some Super Breakout clone I used to play.  I can't remember the
+        platform but I can hear that ball bouncing sound very clearly in my head.
+    </p>
+    <p>
+        I wanted something high and chill for the <strong>melody</strong>, because we don't really have
+        anything like that yet.  I guess it turned out a little Nintendo-esque?
+    </p>
+
+    <h1 id="tocUpdateNotes">Update Notes</h1>
+    <h2>v1.0: 2020-10-14</h2>
+    <ul>
+        <li>Attempt to make starting playback right after loading the page smoother.</li>
+        <li>Added my concept instrument sets because I can.</li>
+        <li>Fixed the volume encoding (thanks <strong>HZDeluxe</strong>)</li>
+    </ul>
+    <h2>v2.0: 2021-01-26</h2>
+    <ul>
+        <li>Added a Playlist function, for the lulz.</li>
+        <li>Fixed a little problem with the playlist incrementing when you're only playing a single measure.</li>
+    </ul>
+    <h2>v2.1: 2021-02-14</h2>
+    <ul>
+        <li>Added a searchable library of songs.</li>
+        <li>Fixed issue with searching causing playback to stop making sound, I think.</li>
+    </ul>
+
+    <h2>v2.2: 2021-02-23</h2>
+    <ul>
+        <li>Added Bombast instrument pack, along with support for monophonic instrument packs.</li>
+        <li>Added a confirm step to clearing the playlist, that's bit me one too many times.</li>
+        <li>Added color coded tag displays to the library list for filled, sparse, perfect, multiple shots,
+            and instrument sets.</li>
+        <li>Smoothing out playlist playback when the instrument set changes.</li>
+    </ul>
+
+    <h2>v2.3: 2021-03-11</h2>
+    <ul>
+        <li>Added a Mixer function.</li>
+        <li>Put the demos in the library</li>
+        <li>Needs a master volume in the mixer.</li>
+        <li>Shift-play and Shif-space start from the beginning</li>
+        <li>Re-recording Bombast for melody sound change on the low D, also adding support for multiple samples
+            for each sound, like it does in-game, and re-recording Bombast and Adau in full.</li>
+        <li>Re-recording multiple samples for the other instrument.  If you can tell the difference you've got
+            better ears than I do.</li>
+        <li>Fixed an issue with changing an instrument set too quickly</li>
+    </ul>
+    <h2>v2.4: 2021-06-22</h2>
+    <ul>
+        <li>Added an experimental search to the Library to find songs "similar" to the current one. Open the
+            Library and Shift-click on the Library button to try it out.</li>
+    </ul>
+    <h2>v3.0: 2021-08-11</h2>
+    <ul>
+        <li>You can now click and drag the playback cursor.  What a country.</li>
+        <li>Revamped copy/paste so you can use it between loops in a playlist.</li>
+    </ul>
+    <h2>v3.1: 2021-10-19</h2>
+    <ul>
+        <li>Reworked the playlist editor to support moving entries by dragging, and also undo.</li>
+        <li>Added whole song copy/paste options.</li>
+        <li>Added autosave to the browser URL, why did that take me so long</li>
+    </ul>
+    <h2>v3.5: 2021-11-02</h2>
+    <ul>
+        <li>Switched most icons to buttons.</li>
+        <li>Multi-select support in the playlist editor for moving and copying.</li>
+        <li>Added button for reverse song search because why not</li>
+        <li>Copying a melody or bass and shift-clicking on the paste button will let you copy a melody to a
+            bass and vice-versa.</li>
+        <li>Shift-clicking on a playlist entry will highlight the block.</li>
+        <li>Added copy/paste performance option</li>
+        <li>Optimized the playlist advancing to the next song a tiny bit</li>
+    </ul>
+    <h2>v3.6: 2022-01-31</h2>
+    <ul>
+        <li>Added ability to export the song/playlist to a WAV file.  Not completely supported by all browsers.</li>
+        <li>Optimized the WAV export, like, a lot.  On a long playlist it's literally 100 times faster.</li>
+        <li>Added support for moving up and down the playlist with the up and down arrows</li>
+    </ul>
+    <h2>v3.7: 2022-07-29</h2>
+    <ul>
+        <li>Added song count in the library section</li>
+        <li>Switched Delta melody, Delta Bass, and Epsilon Bass to monophonic, which has apparently always been
+            the case.  How did I not notice this until now?  (Thanks <strong>Tylian</strong>)</li>
+        <li>Adjusting fade time and type of monophony on a per-instrument basis to match how the in-game
+            player sounds</li>
+    </ul>
+    <h2>v3.8: 2024-01-30</h2>
+    <ul>
+        <li>Finally sat down and fixed the cutoff bug with rendering playlists</li>
+        <li>Added handling for audio latency, which is surprisingly easy</li>
+    </ul>
+
+    <h1 id="tocToDo">To Do</h1>
+    <ul>
+        <li>
+            Blur the title field when switching songs in the playlist
+        </li>
+        <li>
+            Crtl-V support for pasting notes
+        </li>
+        <li>
+            Fix monotonic instruments bleeding across loop breaks when converting a playlist to a .WAV.
+        </li>
+        <li>
+            Shift notes to the left/right function
+        </li>
+        <li>
+            Saving to local storage?
+        </li>
+        <li>
+            Touch support for copying between melody/bass, somehow.
+        </li>
+        <li>
+            Improve library reverse search.
+        </li>
+        <li>
+            Goddamned MIDI input support
+        </li>
+    </ul>
+
+
+    <h1 id="tocKnownIssues">Known Issues</h1>
+    <ul>
+        <li>
+            The library data store and search function is pretty dumb right now.  It possibly doesn't work so
+            great on devices with limited horsepower.
+        </li>
+        <li>
+            There may be some delay when playing an instrument pack for the first time.  This is because of
+            the safeguards a lot of browsers have in place to prevent auto-play video and audio.  There isn't
+            much I can do about it.  You have to click something before it can even load the sounds.
+        </li>
+        <li>
+            The playback note animations sometimes cause Firefox to continually reload the note images
+            over and over again.
+        </li>
+        <li>
+            With Safari and possibly iOS, minimizing or otherwise hiding the window while it's playing will
+            stop the audio.  When you come back it takes a few tries playing and stopping before it fully
+            returns.  I'm not quite sure what's going on there yet.
+        </li>
+        <li>
+            Not sure if it's just my phone, but playback on Chrome for Android kind of sucks.
+        </li>
+        <li>
+            Dragging the playback cursor, mousing over a disabled <strong>Paste</strong>, then dropping, will
+            not register the drop and you have to click again to stop dragging the cursor.  I'm too lazy to fix
+            it right now.
+        </li>
+        <li>
+            If you stop playback close enough to the end of a song and then start it again it will skip over a
+            song in the playlist.
+        </li>
+        <li>
+            You can't cancel a rendering in progress in Firefox.
+        </li>
+        <li>
+            Generating a WAV file is not supported at all in Safari.
+        </li>
+        <li>
+            There's currently a lot of ways to mess up WAV rendering by clicking where you shouldn't while it's running.
+        </li>
+    </ul>
+</div>
+</body>
+</html>
