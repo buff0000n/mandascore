@@ -214,6 +214,7 @@
 				{"id": "3w7eEjDLTtI", "name": "Just Can't Get Enough", "attr": ["Depeche Mode"]},
 				{"id": "Pr7f034ZtOk", "name": "New Dress", "attr": ["Depeche Mode"]}
 				, {"id": "_vUQM_CEaVQ", "name": "Personal Jesus", "attr": ["Depeche Mode"], "tags": ["Perfect"]}
+				, {"id": "edvu7Ryt7B8", "name": "World In My Eyes", "attr": ["Depeche Mode"], "tags": ["Perfect"]}
 			]
 		},
 		"Misc Classic Rock":{
@@ -1175,6 +1176,7 @@
 				, {"id": "NDTYrSondxU", "name": "The DJ Is Crying For Help", "attr": ["AJR"], "tags": ["Beta"]}
 				, {"id": "XShIsJA8mXY", "name": "Come Hang Out", "attr": ["AJR"], "tags": ["Double"]}
 				, {"id": "UmzM3K8MR6s", "name": "Touchy Feely Fool", "attr": ["AJR"], "tags": ["Double"]}
+				, {"id": "n-xixyd1zig", "name": "Let the Games Begin", "attr": ["AJR"], "tags": ["Triple"]}
 			]
 		},
 		"Ed Sheeran":{
@@ -1633,6 +1635,7 @@
 				, {"id": "AFOjI2YGGGc", "name": "An Italian Werewolf in St. Louis", "attr": ["Ludo"]}
 				, {"id": "KEyR3Uruuf0", "name": "Sweet Tooth", "attr": ["Scott Helman"], "tags": ["Perfect"]}
 				, {"id": "66SQvrrzNaM", "name": "30% Off", "attr": ["Best Frenz"], "tags": ["Perfect"]}
+				, {"id": "NUxA9LxT6xo", "name": "plastic door", "attr": ["KennyHoopla"]}
 			]
 		}
 	},
@@ -1965,6 +1968,9 @@
 				, {"id": "9n6rbCZ9MAY", "name": "Better Place", "attr": ["NSYNC", "Trolls Band Together"], "tags": ["Double", "Perfect"]}
 				, {"id": "In7XiFdOyeE", "name": "How to Get Physical", "attr": ["Magdelena Bay"], "tags": ["Perfect"]}
 				, {"id": "fEC2Rj9cafE", "name": "Didn't Cha Know", "attr": ["Erykah Badu"]}
+				, {"id": "zXFG8_W60xE", "name": "Espresso", "attr": ["Sabrina Carpenter"]}
+				, {"id": "KfOTU9LhRIc", "name": "good 4 u", "attr": ["Olivia Rodrigo"]}
+				, {"id": "RIKaWAvTLSI", "name": "Cheri, Cheri Lady instrumental", "attr": ["Modern Talking"]}
 			]
 		}
 	},
@@ -3227,6 +3233,8 @@
 				, {"id": "RwZvKTpKV1U", "name": "KATAMARI", "attr": ["Femtanyl"]}
 				, {"id": "abMRovdiig4", "name": "ur special to me", "attr": ["Artemas"]}
 				, {"id": "N2hgFz1vC2w", "name": "emotion engine", "attr": ["Dazegxd"]}
+				, {"id": "6XWhDxgXexU", "name": "Avril 14th", "attr": ["Aphex Twin"]}
+				, {"id": "weOep5UKlcI", "name": "On the Floor", "attr": ["removeface", "Lumi Athena"], "tags": ["Perfect"]}
 			]
 		}
 	},
@@ -4540,6 +4548,7 @@
 				{"id": "1zgNWKwNudo", "name": "Distance", "attr": ["Naruto Shippuden opening 2"]}
 				, {"id": "DfYJL9Rgyik", "name": "Beautiful Green Wild Beast", "attr": ["Naruto"], "tags": ["Druk"]}
 				, {"id": "G7tzkVK7gpY", "name": "Who Are You?", "attr": ["Boruto: Naruto Next Generation ending 17", "Pelican Fanclub"], "tags": ["Perfect"]}
+				, {"id": "sxBRWRdTplE", "name": "Spinning World", "attr": ["Naruto Shippuden ending 32", "Diana Garnet"]}
 			]
 		},
 		"One Piece":{
@@ -5142,6 +5151,8 @@
 				, {"id": "huyNkwcTVaY", "name": "Work", "attr": ["Hell's Paradise opening"]}
 				, {"id": "W9-nVabZPt0", "name": "Touch Off", "attr": ["The Promised Neverland opening 1"], "tags": ["Triple"]}
 				, {"id": "oBGhvSGqmow", "name": "Cozy Workplace", "attr": ["The Dungeon of Black Company"]}
+				, {"id": "BDZ-7ijWkLw", "name": "Nobody", "attr": ["Kaiju No. 8 ending", "OneRepublic"]}
+				, {"id": "cdpKyT9Zuv4", "name": "Abyss", "attr": ["Kaiju No.8 opening", "Yungblud"], "tags": ["Double", "Perfect"]}
 			]
 		}
 	},
@@ -5322,6 +5333,7 @@
 				{"id": "HTGWPuHexBY", "name": "Kim Possible Theme"},
 				{"id": "bgiRHNo_IPs", "name": "Let it Go", "attr": ["Frozen"]},
 				{"id": "onVl8ilqdNE", "name": "He Mele No Lilo", "attr": ["Lilo & Stitch"]}
+				, {"id": "_Y4eWN5jPHQ", "name": "Hawaiian Roller Coaster Ride", "attr": ["Lilo & Stitch"], "tags": ["Double", "Perfect"]}
 				, {"id": "6wRU7uknO7w", "name": "Jimmy Neutron theme song"}
 				, {"id": "0fu_i33MtsU", "name": "Lemmings Disco Song", "attr": ["Grizzly & The Lemmings"]}
 			]
@@ -5443,7 +5455,6 @@
 				, {"id": "leoCyaZyCeo", "name": "Showdown in Little Tokyo Theme Song"}
 				, {"id": "dMRIgTTbm1w", "name": "I Ain't Worried", "attr": ["OneRepublic", "Top Gun: Maverick"], "tags": ["Double"]}
 				, {"id": "aD8Di0_RhsE", "name": "Speed Drive", "attr": ["Barbie", "Charli XCX"], "tags": ["Perfect"]}
-				, {"id": "_Y4eWN5jPHQ", "name": "Hawaiian Roller Coaster Ride", "attr": ["Lilo & Stitch"], "tags": ["Double", "Perfect"]}
 			]
 		}
 	},
@@ -5844,6 +5855,7 @@
 				, {"id": "7hJulRfTWso", "name": "Seven", "attr": ["Jung Kook/\uc815\uad6d ft. Latto"], "tags": ["Perfect"]}
 				, {"id": "eGISzZhOQBU", "name": "Tricky House/\ub3c4\uae68\ube44\uc9d1", "attr": ["xikers/\uc2f8\uc774\ucee4\uc2a4"], "tags": ["Perfect"]}
 				, {"id": "ysgk4CYWFHI", "name": "Magnetic", "attr": ["ILLIT"], "tags": ["Perfect"]}
+				, {"id": "vpXiTOTEyms", "name": "Magnetic - chorus", "attr": ["ILLIT"], "tags": ["Perfect"]}
 				, {"id": "_-HDNOyviwU", "name": "Earth, Wind, & Fire", "attr": ["BOYNEXTDOOR/\ubcf4\uc774\ub125\uc2a4\ud2b8\ub3c4\uc5b4"], "tags": ["Perfect"]}
 			]
 		},
@@ -6112,6 +6124,7 @@
 				, {"id": "uo7FassZCnk", "name": "Blue Clapper", "attr": ["PandaBoY", "Hololive"], "tags": ["Perfect"]}
 				, {"id": "C0t0msQSPXE", "name": "Fever Night", "attr": ["Takanashi Kiara"]}
 				, {"id": "XiwPLCoKNGQ", "name": "Michizure", "attr": ["Hoshimachi Suisei"]}
+				, {"id": "Ba8AkoGCdV8", "name": "Help", "attr": ["Kobo Kanaeru"]}
 			]
 		},
 		"Misc Internet":{
@@ -6515,6 +6528,8 @@
 				, {"id": "bg__LeLSYdQ", "name": "Hey Sokoly", "attr": ["Polish/Ukrainian traditional"]}
 				, {"id": "d-3gSCtc6U0", "name": "N\u00e3o Quero Dinheiro", "attr": ["Tim Maia"], "tags": ["Perfect"]}
 				, {"id": "D1BlLfeoIao", "name": "Donnie Darko", "attr": ["Let's Eat Grandma"]}
+				, {"id": "l-zd1Ztl4Ks", "name": "From The Start", "attr": ["Laufey"], "tags": ["Perfect"]}
+				, {"id": "HB7KcAMbxWk", "name": "El Derecho de Vivir en Paz", "attr": ["Victor Jara"]}
 			]
 		}
 	}
