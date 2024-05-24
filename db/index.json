@@ -312,7 +312,8 @@
 				{"id": "SZu9GMNJidw", "name": "Down Under", "attr": ["Men At Work"]},
 				{"id": "lhy_tlhtEH4", "name": "Waterloo", "attr": ["Abba"]}
 				, {"id": "6KP-jPQ6RmA", "name": "Gimme! Gimme! Gimme! (A Man After Midnight)", "attr": ["Abba"]},
-				{"id": "nl861JMBcU0", "name": "Staying Alive", "attr": ["The Bee Gees"], "tags": ["Double"]},
+				{"id": "nl861JMBcU0", "name": "Staying Alive", "attr": ["The Bee Gees"], "tags": ["Double"]}
+				, {"id": "byCXP71Ca3w", "name": "You Should Be Dancing", "attr": ["Bee Gees"], "tags": ["Perfect"]},
 				{"id": "b1scFk6TKtY", "name": "Disco Inferno", "attr": ["The Trammps"], "tags": ["Perfect"]},
 				{"id": "1Dncp3owa7g", "name": "Bat Out Of Hell", "attr": ["Meat Loaf"]},
 				{"id": "AE6pFlv0t4s", "name": "Dancing in the Moonlight", "attr": ["King Harvest"]},
@@ -389,6 +390,7 @@
 				, {"id": "fcNII3-6WHo", "name": "Physical", "attr": ["Olivia Newton-John"], "tags": ["Perfect"]}
 				, {"id": "GONloYu11Es", "name": "Escape (The Pina Colada Song)", "attr": ["Rupert Holmes"], "tags": ["Perfect"]}
 				, {"id": "PPddf2B3mss", "name": "In The Summertime", "attr": ["Mungo Jerry"]}
+				, {"id": "CC_5t7wBz_c", "name": "Running Up That Hill", "attr": ["Kate Bush"]}
 				, {"id": "ACpdO2Z-7NI", "name": "You're The Best Around", "attr": ["Joe Esposito"]}
 				, {"id": "TE5jl1YYSms", "name": "Going Up The Country", "attr": ["Canned Heat"]}
 				, {"id": "9JkSTrjjb4M", "name": "Edge Of Seventeen", "attr": ["Stevie Nicks"]}
@@ -5844,6 +5846,7 @@
 				, {"id": "R0DvKUVenTs", "name": "Bop Bop!", "attr": ["Viviz/\ube44\ube44\uc9c0"], "tags": ["Triple"]}
 				, {"id": "_Mf_UN00sSk", "name": "D-Day", "attr": ["Whee In/\ud718\uc778"], "tags": ["Perfect"]}
 				, {"id": "kgS5qwSbGD4", "name": "Love Dive", "attr": ["IVE/\uc544\uc774\ube0c"], "tags": ["Perfect"]}
+				, {"id": "VMgICi3M4ys", "name": "Diva/\ub514\ubc14", "attr": ["After School/\uc560\ud504\ud130\uc2a4\ucfe8"], "tags": ["Perfect"]}
 				, {"id": "MEu8Z8wv1MI", "name": "Beautiful Monster", "attr": ["STAYC/\uc2a4\ud14c\uc774\uc528"], "tags": ["Gamma"]}
 				, {"id": "A2oYdlVXwGw", "name": "Yellow Cab", "attr": ["DPR Live"], "tags": ["Perfect"]}
 				, {"id": "v-E_F9ZS0eo", "name": "Fearless", "attr": ["Le Sserafim"]}
@@ -6089,6 +6092,7 @@
 				{"id": "uAcE9wjNJVg", "name": "Dragonheart", "attr": ["TryHardNinja"], "tags": ["Double"]},
 				{"id": "kU-ScyS3xTw", "name": "Find the Pieces", "attr": ["Minecraft", "CaptainSparklez", "TryHardNinja"], "tags": ["Perfect"]}
 				, {"id": "eJlxWEfuYOc", "name": "We Know What Scares You", "attr": ["TryHardNinja", "Five Nights at Freddies"]}
+				, {"id": "Xr2V3NUopy4", "name": "Follow Me", "attr": ["TryHardNinja", "Five Nights At Freddies"]}
 				, {"id": "TlgaRBKv6mk", "name": "Rising Kingdom", "attr": ["TryHardNinja", "Jordan Maron"]}
 			]
 		},
