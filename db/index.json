@@ -40,6 +40,7 @@
 				, {"id": "crK5g7lnQEE", "name": "Veso Segment Combat", "attr": ["Warframe"]}
 				, {"id": "3tUhC4samYU", "name": "Veilbreaker quest diorama music", "attr": ["Warframe"]}
 				, {"id": "P9XdBp2PT6g", "name": "The Offering", "attr": ["Warframe"]}
+				, {"id": "z1mxRxTONLQ", "name": "Party Of Your Lifetime", "attr": ["On-lyne"]}
 			]
 		},
 		"Tenno Tunes by me":{
@@ -729,6 +730,14 @@
 				, {"id": "BPk0sp1wwjY", "name": "The Resistance", "attr": ["Skillet"]}
 			]
 		},
+		"Electric Callboy":{
+			"dbName":"HardRock",
+			"songs":[
+				{"id": "988ILAoEd9M", "name": "Hypa Hypa", "attr": ["Eskimo Callboy"]}
+				, {"id": "ztIE14vsv8A", "name": "We Got The Moves", "attr": ["Electric Callboy"], "tags": ["Perfect"]}
+				, {"id": "3Ux0Kt7sNmU", "name": "RATATATA", "attr": ["BabyMetal x Electric Callboy"], "tags": ["Triple"]}
+			]
+		},
 		"Misc Hard Rock":{
 			"dbName":"HardRock.MiscHardRock",
 			"songs":[
@@ -822,8 +831,6 @@
 				{"id": "JFbfe9y2eRE", "name": "Love At War", "attr": ["While She Sleeps"], "tags": ["Druk"]},
 				{"id": "OiGnjyrpFSY", "name": "Diggy Hole", "attr": ["Wind Rose"]},
 				{"id": "tznQb9a8y0Q", "name": "Cursed", "attr": ["Slaves"]},
-				{"id": "988ILAoEd9M", "name": "Hypa Hypa", "attr": ["Eskimo Callboy"]}
-				, {"id": "ztIE14vsv8A", "name": "We Got The Moves", "attr": ["Electric Callboy"], "tags": ["Perfect"]},
 				{"id": "rK6xkybr0Cs", "name": "Stardust", "attr": ["Gemeni Syndrome"]},
 				{"id": "9PQlWiBh4J8", "name": "Beyond This Life", "attr": ["Dream Theater"], "tags": ["Perfect"]},
 				{"id": "2X4r5wBFpBw", "name": "Pull Me Under", "attr": ["Dream Theater"]},
@@ -2074,7 +2081,6 @@
 				{"id": "PU4l6WJdnyw", "name": "All Good", "attr": ["Dipha Barus"]},
 				{"id": "EYr5l7SA_A4", "name": "Dokn't Wanna Know", "attr": ["Maroon 5"]},
 				{"id": "BsQzqALV80Q", "name": "Go Hard", "attr": ["Ayah Marar"]},
-				{"id": "bSWyWDH0K_A", "name": "2U", "attr": ["David Guetta"]},
 				{"id": "aiW_aALyN7k", "name": "Love Dealer", "attr": ["Esm\u00e9e Denters"], "tags": ["Plogg"]},
 				{"id": "eW1xPFd_wzM", "name": "Baby", "attr": ["Bieber"]}
 				, {"id": "ZFgooeJP0Go", "name": "Stay", "attr": ["The Kid LAROI ft. Justin Bieber"]},
@@ -2521,6 +2527,8 @@
 				, {"id": "jXy-YQgGgxk", "name": "Can't Let You Go", "attr": ["Fabolous ft. Mike Shorey", "Lil' Mo"]}
 				, {"id": "lfDMKw10ltU", "name": "Million Dollar Baby", "attr": ["Tommy Richman"]}
 				, {"id": "ZbQurh1zF-M", "name": "Matte Black", "attr": ["$uicideboy$"], "tags": ["Perfect"]}
+				, {"id": "sNr6ymtz2b8", "name": "Guillotine", "attr": ["Pi'erre Bourne"], "tags": ["Double", "Perfect"]}
+				, {"id": "mbBcRI9fUw8", "name": "Spineless", "attr": ["Terror Reid"], "tags": ["Perfect"]}
 			]
 		}
 	},
@@ -2897,6 +2905,14 @@
 				, {"id": "rd88VG6j4_o", "name": "Rumors", "attr": ["Neffex"], "tags": ["Perfect"]}
 			]
 		},
+		"David Guetta":{
+			"dbName":"Electronic",
+			"songs":[
+				{"id": "MVbVd5lV4FA", "name": "She Wolf", "attr": ["David Guetta"]},
+				{"id": "bSWyWDH0K_A", "name": "2U", "attr": ["David Guetta"]}
+				, {"id": "hTOaJ8oZWm4", "name": "Sexy Bi*ch", "attr": ["David Guetta ft. Akon"]}
+			]
+		},
 		"Misc Monstercat":{
 			"dbName":"Electronic.MiscMonstercat",
 			"songs":[
@@ -2964,7 +2980,6 @@
 			"songs":[
 				{"id": "2ppfIuVzqZA", "name": "Children", "attr": ["Robert Miles"], "tags": ["Sparse"]},
 				{"id": "Bz_znMXIQUU", "name": "Failien Funk", "attr": ["Ozzed"]},
-				{"id": "MVbVd5lV4FA", "name": "She Wolf", "attr": ["David Guetta"]},
 				{"id": "y1X2r79Eg3c", "name": "Astronaut", "attr": ["Warptech"]},
 				{"id": "JrFYGss_fOY", "name": "The Captain", "attr": ["The Knife"]},
 				{"id": "kHckY1enznA", "name": "Zombie Nation", "attr": ["Kernkraft 4000"]},
@@ -3708,6 +3723,7 @@
 				{"id": "p_q8cAm_U1Y", "name": "Morning, Thinker", "attr": ["The Answer", "Armored Core Tribute Album"]},
 				{"id": "SYg99aA7FPY", "name": "12 Steps", "attr": ["Armored Core V"], "tags": ["Perfect"]}
 				, {"id": "jjRrjWT3GS0", "name": "Grid Room", "attr": ["Armored Core 4"]}
+				, {"id": "SSnj4FLCVk0", "name": "Remember", "attr": ["Armored Core: for Answer"], "tags": ["Perfect"]}
 			]
 		},
 		"Suguri":{
