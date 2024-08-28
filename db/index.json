@@ -243,7 +243,8 @@
 				{"id": "ttyESXIoqNg", "name": "Seedy Films", "attr": ["Soft Cell"], "tags": ["Perfect"]},
 				{"id": "DFe40vRCJkA", "name": "Jump", "attr": ["Van Halen"], "tags": ["Sparse"]},
 				{"id": "MtrUIWW_1VM", "name": "Jungle Boogie", "attr": ["Kool & The Gang"]},
-				{"id": "e5rAgAygdio", "name": "Time Keeps On Slipping", "attr": ["Steve Miller Band"], "tags": ["Triple"]},
+				{"id": "e5rAgAygdio", "name": "Time Keeps On Slipping", "attr": ["Steve Miller Band"], "tags": ["Triple"]}
+				, {"id": "5A_h1Jbf9CY", "name": "Abracadabra", "attr": ["Steve Miller Band"], "tags": ["Perfect"]},
 				{"id": "BgRSTIWE8bc", "name": "My Sharona", "attr": ["The Knack"], "tags": ["Druk"]},
 				{"id": "TnMkxHsNXkA", "name": "The Chain", "attr": ["Fleetwood Mac"]},
 				{"id": "sqS4cCyE-6E", "name": "Tusk", "attr": ["Fleetwood Mac"]},
@@ -409,6 +410,7 @@
 				, {"id": "g9Gv0tEe4co", "name": "Hot Stuff", "attr": ["Donna Summer"]}
 				, {"id": "Xo3_ZXN_kpE", "name": "Fate", "attr": ["Chaka Kahn"]}
 				, {"id": "lpkUDugAzO4", "name": "Hooked on a Feeling", "attr": ["Blue Swede"]}
+				, {"id": "qAtkAc78r9w", "name": "Talking in Your Sleep", "attr": ["The Romantics"]}
 			]
 		}
 	},
@@ -874,6 +876,7 @@
 				, {"id": "P_VJh5dl5HQ", "name": "Skinnyman", "attr": ["Staticx"], "tags": ["Perfect"]}
 				, {"id": "QahfhmAPvho", "name": "Engine 45", "attr": ["The Ghost Inside"]}
 				, {"id": "5VD8muJhCJc", "name": "Unforgettable", "attr": ["Godsmack"], "tags": ["Double"]}
+				, {"id": "HbgVopwILe0", "name": "Silverseal", "attr": ["Elvenking"]}
 			]
 		}
 	},
@@ -1174,6 +1177,7 @@
 				{"id": "Sj7ZdKfm8SM", "name": "bad guy", "attr": ["Billie Eilish"]},
 				{"id": "StZEoOrqkas", "name": "Bellyache", "attr": ["Billie Eilish"]}
 				, {"id": "fC4IOFo7qi0", "name": "NDA", "attr": ["Billie Eilish"], "tags": ["Perfect"]}
+				, {"id": "8PCc32uNEpw", "name": "Lunch", "attr": ["Billie Eilish"], "tags": ["Perfect"]}
 			]
 		},
 		"AJR":{
@@ -1528,7 +1532,8 @@
 				{"id": "WelP3040u1o", "name": "Rule The World", "attr": ["Valley Of The Wolves"], "tags": ["Druk"]},
 				{"id": "usEuFUV5GTo", "name": "Nunchuk", "attr": ["Saint PHNX"]},
 				{"id": "aeFIdBgGSIU", "name": "Think About Things", "attr": ["Da\u00f0i Freyr"], "tags": ["Perfect"]},
-				{"id": "sCoc9SEIPtA", "name": "Soft and Wet", "attr": ["Prince"]},
+				{"id": "sCoc9SEIPtA", "name": "Soft and Wet", "attr": ["Prince"]}
+				, {"id": "27Z3rLJf1HA", "name": "When Doves Cry", "attr": ["Prince"], "tags": ["Perfect"]},
 				{"id": "61hnXO2yJag", "name": "Somebody That I Used To Know", "attr": ["Gotye"], "tags": ["Triple", "Perfect"]},
 				{"id": "uZZ6K1u0wWo", "name": "Monsters", "attr": ["All Time Low"], "tags": ["Perfect"]},
 				{"id": "M9te9WKRh9M", "name": "Still Feel", "attr": ["Half Alive"]},
@@ -1650,6 +1655,7 @@
 				, {"id": "f7SYXlCpdjw", "name": "Falling", "attr": ["Blacklite District"]}
 				, {"id": "_EgBZdaxItE", "name": "Wicked Ones", "attr": ["Dorothy"], "tags": ["Double", "Perfect"]}
 				, {"id": "8_gsbHGCS5A", "name": "Gravity Bong", "attr": ["Meth Wax"]}
+				, {"id": "ZUMPy8XzRhE", "name": "Big Sad", "attr": ["Balancing The Different"], "tags": ["Perfect"]}
 			]
 		}
 	},
@@ -1983,6 +1989,7 @@
 				, {"id": "AkEY9B1VZAA", "name": "Glamorous", "attr": ["Fergie ft. Ludacris"], "tags": ["Triple"]}
 				, {"id": "lvqJMuFfPM0", "name": "Fruity", "attr": ["Chloe Moriondo"], "tags": ["Perfect"]}
 				, {"id": "9n6rbCZ9MAY", "name": "Better Place", "attr": ["NSYNC", "Trolls Band Together"], "tags": ["Double", "Perfect"]}
+				, {"id": "KbnMABorg6I", "name": "Bye Bye Bye", "attr": ["NSync"], "tags": ["Double"]}
 				, {"id": "In7XiFdOyeE", "name": "How to Get Physical", "attr": ["Magdelena Bay"], "tags": ["Perfect"]}
 				, {"id": "fEC2Rj9cafE", "name": "Didn't Cha Know", "attr": ["Erykah Badu"]}
 				, {"id": "zXFG8_W60xE", "name": "Espresso", "attr": ["Sabrina Carpenter"]}
@@ -1990,6 +1997,7 @@
 				, {"id": "KfOTU9LhRIc", "name": "good 4 u", "attr": ["Olivia Rodrigo"]}
 				, {"id": "RIKaWAvTLSI", "name": "Cheri, Cheri Lady instrumental", "attr": ["Modern Talking"]}
 				, {"id": "aO8im4uqZhE", "name": "Make You Mine", "attr": ["Madison Beer"]}
+				, {"id": "zGb2bKqsWZI", "name": "Party in the U.S.A.", "attr": ["Miley Cyrus"]}
 			]
 		}
 	},
@@ -2029,6 +2037,7 @@
 				, {"id": "Ec86pXKmheU", "name": "Vanished", "attr": ["Crystal Castles"]}
 				, {"id": "8_aKTz0UHX0", "name": "Suffocation", "attr": ["Crystal Castles"], "tags": ["Double", "Perfect"]}
 				, {"id": "bBAAGMHMVQE", "name": "Courtship Dating", "attr": ["Crystal Castles"]}
+				, {"id": "UMSOiwrh83M", "name": "Forgiveness", "attr": ["Alice Glass"], "tags": ["Perfect"]}
 			]
 		},
 		"Charlie Puth":{
@@ -2527,8 +2536,12 @@
 				, {"id": "jXy-YQgGgxk", "name": "Can't Let You Go", "attr": ["Fabolous ft. Mike Shorey", "Lil' Mo"]}
 				, {"id": "lfDMKw10ltU", "name": "Million Dollar Baby", "attr": ["Tommy Richman"]}
 				, {"id": "ZbQurh1zF-M", "name": "Matte Black", "attr": ["$uicideboy$"], "tags": ["Perfect"]}
+				, {"id": "C9BiSir4YyE", "name": "1000 Blunts", "attr": ["$uicideboy$"]}
 				, {"id": "sNr6ymtz2b8", "name": "Guillotine", "attr": ["Pi'erre Bourne"], "tags": ["Double", "Perfect"]}
 				, {"id": "mbBcRI9fUw8", "name": "Spineless", "attr": ["Terror Reid"], "tags": ["Perfect"]}
+				, {"id": "oUvo26fvn2k", "name": "Last Night", "attr": ["Diddy ft. Keyshia Cole"]}
+				, {"id": "xTEVIMU7odM", "name": "Return of the Mack", "attr": ["Mack Morrison"]}
+				, {"id": "XeBsHmpoRQg", "name": "Solo", "attr": ["Future"], "tags": ["Bombast Onl", "Bombast"]}
 			]
 		}
 	},
@@ -3686,7 +3699,8 @@
 				{"id": "GH8XtIaNj3w", "name": "Emil", "attr": ["Nier: Automata"]},
 				{"id": "x-ycYnYyrfY", "name": "Deserving of Life", "attr": ["Amazerashi"], "tags": ["Plogg", "Perfect"]},
 				{"id": "E8JOkW0aSjY", "name": "Machine Village", "attr": ["Nier:Automata"]},
-				{"id": "EAgVd_tYwA0", "name": "The Weight Of The World", "attr": ["NieR:Automata"]},
+				{"id": "EAgVd_tYwA0", "name": "The Weight Of The World", "attr": ["NieR:Automata"]}
+				, {"id": "Yxjd6y22fZw", "name": "Sound of the End - Quiet", "attr": ["Nier: Automata"]},
 				{"id": "GEOAq4bbvVE", "name": "Emil Karma", "attr": ["NieR Gestalt"], "tags": ["Adau"]},
 				{"id": "3w0tZ_01MSo", "name": "Shadowlord", "attr": ["Nier (Gestalt)"], "tags": ["Adau"]},
 				{"id": "Yfe4Tha28D0", "name": "Kaine / Salvation", "attr": ["NieR Replicant ver. 1.22"]}
@@ -3888,6 +3902,7 @@
 				{"id": "_Dje5ZNkY8w", "name": "Time's Scar", "attr": ["Chrono Cross"]}
 				, {"id": "8kZAe1ftifY", "name": "Chrono Trigger Battle Theme 1", "tags": ["Filled"]}
 				, {"id": "5uiOX_mquN4", "name": "Corridors of Time", "attr": ["Chrono Trigger"]}
+				, {"id": "KtNDdGCfPGE", "name": "Robo's Theme", "attr": ["Chrono Trigger"]}
 			]
 		},
 		"Destiny":{
@@ -4558,6 +4573,7 @@
 					, {"id": "LHk5-2maYMA", "name": "What I Am Fighting For", "attr": ["Girls Frontline Singularity"]}
 					, {"id": "eEtLGY5aEYY", "name": "Electronic Supersonic Cybertronic Rocco Theme", "attr": ["Awesomenauts"]}
 					, {"id": "jCVPrW-lHZk", "name": "Ignition", "attr": ["The Alliance Alive"]}
+					, {"id": "F3GA5IkLVJw", "name": "Shizuki Soujuro", "attr": ["Witch on the Holy Night", "Hideyuki Fukasawa"]}
 				]
 			}
 		}
@@ -4921,6 +4937,7 @@
 				{"id": "AdCi-yO00iY", "name": "Grandeur", "attr": ["Black Clover opening 13"]},
 				{"id": "bah-_4VULZc", "name": "Black Rover", "attr": ["Black Clover opening 3"]}
 				, {"id": "LB6au2w0Ax0", "name": "Against The Gods", "attr": ["Black Clover ending 8"]}
+				, {"id": "r7uJr9Bv1nc", "name": "Everlasting Shine", "attr": ["Black Clover opening 12"], "tags": ["Perfect"]}
 			]
 		},
 		"Panty & Stocking":{
@@ -4963,6 +4980,14 @@
 				, {"id": "QboZsC_8rJA", "name": "Lost in Paradise", "attr": ["Jujutsu Kaisen ending 1"], "tags": ["Perfect"]}
 				, {"id": "eEmgvJzgm8o", "name": "Specialz", "attr": ["King Gnu", "Jujutsu Kaisen opening 4"]}
 				, {"id": "AB0ygtVHm74", "name": "Ao no Sumika", "attr": ["Jujutsu Kaisen opening 3"]}
+			]
+		},
+		"Chainsaw Man":{
+			"dbName":"Anime",
+			"songs":[
+				{"id": "vrEhfg5brhk", "name": "Edge of Chainsaw", "attr": ["Chainsaw Man"], "tags": ["Druk"]}
+				, {"id": "PZZiqDObOTA", "name": "Chainsaw Man ending 3", "attr": ["Maximum The Hormone"], "tags": ["Double", "Perfect"]}
+				, {"id": "34wJ6_XFfaE", "name": "tablet", "attr": ["Chainsaw Man ending 4", "tooboe"]}
 			]
 		},
 		"Misc Anime":{
@@ -5200,8 +5225,6 @@
 				, {"id": "xtERCngAmI0", "name": "Parkour", "attr": ["Bubble", "Hiroyuki Sawano"]}
 				, {"id": "HaFfJ9qS7CE", "name": "Comedy", "attr": ["Spy x Family ending 1"]}
 				, {"id": "Z48VXRsq1oQ", "name": "Groovy!", "attr": ["Card Captor Sakura ending 1"], "tags": ["Perfect"]}
-				, {"id": "vrEhfg5brhk", "name": "Edge of Chainsaw", "attr": ["Chainsaw Man"], "tags": ["Druk"]}
-				, {"id": "PZZiqDObOTA", "name": "Chainsaw Man ending 3", "attr": ["Maximum The Hormone"], "tags": ["Double", "Perfect"]}
 				, {"id": "QAxTxQPrvA8", "name": "Watashi Dake Yuure", "attr": ["SICK HACK", "Bocchi the Rock!"]}
 				, {"id": "-oEB5KFL4q4", "name": "seisyun complex", "attr": ["Bocchi The Rock opening"]}
 				, {"id": "vMiVoY_bsTM", "name": "Koyoi Mofumofu!!", "attr": ["The Helpful Fox Senko-san"]}
@@ -5211,6 +5234,8 @@
 				, {"id": "BDZ-7ijWkLw", "name": "Nobody", "attr": ["Kaiju No. 8 ending", "OneRepublic"]}
 				, {"id": "cdpKyT9Zuv4", "name": "Abyss", "attr": ["Kaiju No.8 opening", "Yungblud"], "tags": ["Double", "Perfect"]}
 				, {"id": "hwLkokw292s", "name": "Can do Dreamer", "attr": ["Tokyo Mew Mew New ending 2"], "tags": ["double", "Perfect"]}
+				, {"id": "0DHsY-4LCco", "name": "Anytime Anywhere", "attr": ["Frieren: Beyond Journey's End ending"]}
+				, {"id": "KRT1Obh7_aY", "name": "Stuck On You", "attr": ["More than a Married Couple", "but not Lovers ending"], "tags": ["Beta"]}
 			]
 		}
 	},
@@ -5253,6 +5278,7 @@
 				{"id": "V3DqG2Cp9-Q", "name": "Pinkie's Brew", "attr": ["Friendship Is Witchcraft"], "tags": ["Perfect"]}
 				, {"id": "66gk8H12OQU", "name": "Make A Wish Song", "attr": ["My Little Pony: Friendship is Magic"], "tags": ["Double", "Perfect"]}
 				, {"id": "jYFpRSgV0U0", "name": "Elemental", "attr": ["PrinceWhatever", "My Little Pony: Friendship is Magic"]}
+				, {"id": "F4teFWDSm3Q", "name": "20 Percent Cooler", "attr": ["Alex S. Remix", "Ken Ashcorp"], "tags": ["Perfect"]}
 			]
 		},
 		"Avatar/Korra":{
@@ -5918,6 +5944,7 @@
 				, {"id": "vpXiTOTEyms", "name": "Magnetic - chorus", "attr": ["ILLIT"], "tags": ["Perfect"]}
 				, {"id": "_-HDNOyviwU", "name": "Earth, Wind, & Fire", "attr": ["BOYNEXTDOOR/\ubcf4\uc774\ub125\uc2a4\ud2b8\ub3c4\uc5b4"], "tags": ["Perfect"]}
 				, {"id": "DZZXURxiCwc", "name": "The Baddest", "attr": ["tripleS/\ud2b8\ub9ac\ud50c\uc5d0\uc2a4"], "tags": ["Perfect"]}
+				, {"id": "-8Fm-Hlx9Sg", "name": "Abracadabra", "attr": ["Brown Eyed Girls"], "tags": ["Perfect"]}
 			]
 		},
 		"Misc J-Pop":{
@@ -6592,6 +6619,7 @@
 				, {"id": "D1BlLfeoIao", "name": "Donnie Darko", "attr": ["Let's Eat Grandma"]}
 				, {"id": "l-zd1Ztl4Ks", "name": "From The Start", "attr": ["Laufey"], "tags": ["Perfect"]}
 				, {"id": "HB7KcAMbxWk", "name": "El Derecho de Vivir en Paz", "attr": ["Victor Jara"]}
+				, {"id": "d8TtLa1eJf0", "name": "Hamrer Hippyer", "attr": ["Heilung"]}
 			]
 		}
 	}
