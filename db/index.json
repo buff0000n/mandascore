@@ -41,6 +41,7 @@
 				, {"id": "3tUhC4samYU", "name": "Veilbreaker quest diorama music", "attr": ["Warframe"]}
 				, {"id": "P9XdBp2PT6g", "name": "The Offering", "attr": ["Warframe"]}
 				, {"id": "z1mxRxTONLQ", "name": "Party Of Your Lifetime", "attr": ["On-lyne"]}
+				, {"id": "fduiQhdGX5Y", "name": "What is my Fate / Koumei & the Five Fates OST", "attr": ["Warframe"]}
 			]
 		},
 		"Tenno Tunes by me":{
@@ -272,7 +273,8 @@
 				{"id": "7f5VMcIvADU", "name": "I Love It Loud", "attr": ["Kiss"], "tags": ["Perfect"]},
 				{"id": "eqyaZJnrOLc", "name": "Tequila", "attr": ["The Champs"], "tags": ["Perfect"]},
 				{"id": "OkiX1uaSbJo", "name": "Superstitious", "attr": ["Stevie Wonder"]},
-				{"id": "flPTt8JlOIY", "name": "Heat of the Moment", "attr": ["Asia"], "tags": ["Perfect"]},
+				{"id": "flPTt8JlOIY", "name": "Heat of the Moment", "attr": ["Asia"], "tags": ["Perfect"]}
+				, {"id": "5tO_BBdfFng", "name": "Only Time Will Tell", "attr": ["Asia"]},
 				{"id": "3xixZoEWw8I", "name": "The Night Begins To Shine", "attr": ["B.E.R."]},
 				{"id": "6vBL8dSI3yA", "name": "Forever Mine", "attr": ["B.E.R."], "tags": ["Perfect"]},
 				{"id": "TreVaJkRKOI", "name": "Rise Up", "attr": ["B.E.R."], "tags": ["Sparse"]},
@@ -1681,6 +1683,8 @@
 				, {"id": "ZUMPy8XzRhE", "name": "Big Sad", "attr": ["Balancing The Different"], "tags": ["Perfect"]}
 				, {"id": "5rFOzI9Ov6I", "name": "She Wants Revenge", "attr": ["Tear You Apart"], "tags": ["Perfect"]}
 				, {"id": "dr6AM0Jz320", "name": "Rule #34", "attr": ["Fish in a Birdcage"]}
+				, {"id": "QgEOP7sM65U", "name": "Digital Crush", "attr": ["Powerfu"]}
+				, {"id": "PHi798569Z0", "name": "Live While I Breathe", "attr": ["The Moth & The Flame"], "tags": ["Perfect"]}
 			]
 		}
 	},
@@ -2031,6 +2035,7 @@
 				, {"id": "aO8im4uqZhE", "name": "Make You Mine", "attr": ["Madison Beer"]}
 				, {"id": "zGb2bKqsWZI", "name": "Party in the U.S.A.", "attr": ["Miley Cyrus"]}
 				, {"id": "pMDVV_A-LuA", "name": "Good Luck, Babe!", "attr": ["Chappell Roan"]}
+				, {"id": "6jE2ociVKxM", "name": "Fire Burning", "attr": ["Sean Kingston"], "tags": ["Perfect"]}
 			]
 		}
 	},
@@ -2056,6 +2061,7 @@
 				{"id": "205Izz46qZ8", "name": "The Saltwater Room", "attr": ["Owl City"]}
 				, {"id": "2T-3zRHbBxI", "name": "Vanilla Twilight", "attr": ["Owl City"]}
 				, {"id": "Ch8UntYQ_PU", "name": "Good Time", "attr": ["Owl City & Carly Rae Jepson"]}
+				, {"id": "HoIE52Xj_ro", "name": "Hot Air Balloon", "attr": ["Owl City"], "tags": ["Triple"]}
 			]
 		},
 		"Crystal Castles":{
@@ -2178,6 +2184,7 @@
 				, {"id": "F1mIEBMzo4g", "name": "Witches", "attr": ["Alice Phoebe Lou"]}
 				, {"id": "CoIJ22Xv0ec", "name": "Dark Beach", "attr": ["Pastel Ghost"], "tags": ["Perfect"]}
 				, {"id": "uAmQH9JCDVg", "name": "Bad Excuses/Know My Heart", "attr": ["Mapalo"], "tags": ["Perfect"]}
+				, {"id": "hl9w84IsOQI", "name": "endlessly", "attr": ["bixby"]}
 			]
 		}
 	},
@@ -2959,6 +2966,15 @@
 				, {"id": "hTOaJ8oZWm4", "name": "Sexy Bi*ch", "attr": ["David Guetta ft. Akon"]}
 			]
 		},
+		"ZHU":{
+			"dbName":"Electronic",
+			"songs":[
+				{"id": "IUOZbU4_jD0", "name": "Faded", "attr": ["ZHU"]},
+				{"id": "Pqxz-4d9n6Q", "name": "Faded", "attr": ["ZHU", "Odesza Remix"]}
+				, {"id": "exaxwXmKmes", "name": "Cocaine Model", "attr": ["ZHU"]},
+				{"id": "gHomu08EXIs", "name": "Dreams", "attr": ["ZHU & Nero"], "tags": ["Perfect", "Sparse Melod"]}
+			]
+		},
 		"Misc Monstercat":{
 			"dbName":"Electronic.MiscMonstercat",
 			"songs":[
@@ -3016,8 +3032,7 @@
 				, {"id": "szERstdUxTo", "name": "Live For The Night", "attr": ["Krewella"], "tags": ["Perfect"]},
 				{"id": "_mhKM22mZYI", "name": "Fakin It", "attr": ["Kaskade", "Felix Cartal"]},
 				{"id": "J_PuLVEVBxw", "name": "Overtime", "attr": ["Cash Cash"]},
-				{"id": "JrsrUGj17DQ", "name": "Let Me Go", "attr": ["KDrew", "Rico", "Miella"], "tags": ["Perfect"]},
-				{"id": "gHomu08EXIs", "name": "Dreams", "attr": ["ZHU & Nero"], "tags": ["Perfect", "Sparse"]}
+				{"id": "JrsrUGj17DQ", "name": "Let Me Go", "attr": ["KDrew", "Rico", "Miella"], "tags": ["Perfect"]}
 				, {"id": "xzHe9DpOxl4", "name": "Sick Boy", "attr": ["The Chainsmokers"], "tags": ["Perfect"]}
 			]
 		},
@@ -3054,8 +3069,6 @@
 				{"id": "VGMzqYbFzZY", "name": "Popcorn Funk", "attr": ["Monstaz."]},
 				{"id": "tajIS0iEpEc", "name": "Reich mir die Hand", "attr": ["Blutengel"], "tags": ["Sparse"]},
 				{"id": "xk9Rb533c1c", "name": "Feel the Melody", "attr": ["S3RL"]},
-				{"id": "IUOZbU4_jD0", "name": "Faded", "attr": ["ZHU"]},
-				{"id": "Pqxz-4d9n6Q", "name": "Faded", "attr": ["ZHU", "Odesza Remix"]},
 				{"id": "0j8LX549vis", "name": "The Mother We Share", "attr": ["Chvrches"], "tags": ["Perfect"]},
 				{"id": "WChqR1ZAGjs", "name": "Never Say Die", "attr": ["Chvrches"], "tags": ["Gamma", "Perfect"]},
 				{"id": "ZXUmFohd360", "name": "Into the Twilight", "attr": ["Amethystium"], "tags": ["Sparse"]},
@@ -6580,8 +6593,8 @@
 				{"id": "UjAAcQyRRe8", "name": "Tunak Tunak Tun", "attr": ["Daler Mehndi"]}
 				, {"id": "-wcYX-mDerI", "name": "Pasoori", "attr": ["Ali Sethi", "Shae Gill"]},
 				{"id": "BWGOzXRrJgM", "name": "How do you like it", "attr": ["Junjo"]},
-				{"id": "dn6KFGyTxLk", "name": "Quick Musical Doodles & Sex", "attr": ["Two Feet"]},
-				{"id": "MtUZTo27Bk4", "name": "Go F*ck Yourself", "attr": ["Two Feet"], "tags": ["Perfect", "Plogg"]},
+				{"id": "dn6KFGyTxLk", "name": "Quick Musical Doodles & Sex", "attr": ["Two Feet"]}
+				, {"id": "GfJGLI3jU8w", "name": "Go F*ck Yourself", "attr": ["Two Feet"]},
 				{"id": "EX7a_A5MONI", "name": "Toy", "attr": ["Netta"]},
 				{"id": "E_e1MKGOcH4", "name": "Singham title song"},
 				{"id": "sVJAcLvcQ6Y", "name": "The British Grenadiers"},
