@@ -227,6 +227,14 @@
 				, {"id": "1PtH1iw0vj8", "name": "Invisible", "attr": ["Duran Duran"], "tags": ["Perfect"]}
 			]
 		},
+		"Rush":{
+			"dbName":"ClassicRock",
+			"songs":[
+				{"id": "hp2Dx1fxl2k", "name": "Tom Sawyer", "attr": ["Rush"]},
+				{"id": "PVLYaVWI2Xo", "name": "Red Barchetta", "attr": ["Rush"], "tags": ["Druk"]}
+				, {"id": "TE-yL0dtnQQ", "name": "Test For Echo", "attr": ["Rush"]}
+			]
+		},
 		"Misc Classic Rock":{
 			"dbName":"ClassicRock.MiscClassicRock",
 			"songs":[
@@ -278,8 +286,6 @@
 				{"id": "3xixZoEWw8I", "name": "The Night Begins To Shine", "attr": ["B.E.R."]},
 				{"id": "6vBL8dSI3yA", "name": "Forever Mine", "attr": ["B.E.R."], "tags": ["Perfect"]},
 				{"id": "TreVaJkRKOI", "name": "Rise Up", "attr": ["B.E.R."], "tags": ["Sparse"]},
-				{"id": "hp2Dx1fxl2k", "name": "Tom Sawyer", "attr": ["Rush"]},
-				{"id": "PVLYaVWI2Xo", "name": "Red Barchetta", "attr": ["Rush"], "tags": ["Druk"]},
 				{"id": "WVO37nDs_ws", "name": "We Didn't Start The Fire", "attr": ["Billy Joel"]},
 				{"id": "sDlC7309A3Y", "name": "A Matter Of Trust", "attr": ["Billy Joel"]},
 				{"id": "KXks_MHkQcI", "name": "No Sleep Till Brooklyn", "attr": ["Beastie Boys"], "tags": ["Druk", "Perfect"]},
@@ -1685,6 +1691,8 @@
 				, {"id": "dr6AM0Jz320", "name": "Rule #34", "attr": ["Fish in a Birdcage"]}
 				, {"id": "QgEOP7sM65U", "name": "Digital Crush", "attr": ["Powerfu"]}
 				, {"id": "PHi798569Z0", "name": "Live While I Breathe", "attr": ["The Moth & The Flame"], "tags": ["Perfect"]}
+				, {"id": "_lqVbuv4VRo", "name": "Daylight", "attr": ["Matt & Kim"], "tags": ["Double", "Perfect"]}
+				, {"id": "ZwB-KUZ4PVI", "name": "Tell Me You Know", "attr": ["Good Kid"]}
 			]
 		}
 	},
@@ -2430,6 +2438,14 @@
 				, {"id": "txkkLt8fOPw", "name": "Mrs. Jackson", "attr": ["Outkast"]}
 			]
 		},
+		"Kendrick Lamar":{
+			"dbName":"RapHippityHop",
+			"songs":[
+				{"id": "Nxk4U3Q-x1c", "name": "Element", "attr": ["Kendrick Lamar"]},
+				{"id": "v6pNTmlbYZc", "name": "Money Trees", "attr": ["Kendrick Lamar"], "tags": ["Perfect"]}
+				, {"id": "kPu3O7s6f-Y", "name": "Cartoons & Cereal", "attr": ["Kendrick Lamar ft. Gunplay"], "tags": ["Perfect"]}
+			]
+		},
 		"Misc Rap/Hippity Hop":{
 			"dbName":"RapHippityHop.MiscRapHippityHop",
 			"songs":[
@@ -2466,8 +2482,6 @@
 				, {"id": "HiXscM6CBcA", "name": "Gangsta Nation", "attr": ["Westside Connection"], "tags": ["Perfect"]},
 				{"id": "NlBk-GrMfqo", "name": "Ultrasound", "attr": ["Joyner Lucas"]},
 				{"id": "rvMHGOTdqgc", "name": "Bestie", "attr": ["Yungen"], "tags": ["Perfect"]},
-				{"id": "Nxk4U3Q-x1c", "name": "Element", "attr": ["Kendrick Lamar"]},
-				{"id": "v6pNTmlbYZc", "name": "Money Trees", "attr": ["Kendrick Lamar"], "tags": ["Perfect"]},
 				{"id": "mHUJ4JkqI3c", "name": "Mass Appeal", "attr": ["Gang Starr"]},
 				{"id": "-maT5UKkiO8", "name": "Betrayed", "attr": ["Lil Xan"]},
 				{"id": "k4YHrrllAtg", "name": "Award Tour", "attr": ["A Tribe Called Queen"]},
@@ -3222,7 +3236,8 @@
 				{"id": "RFAdXLi_qoo", "name": "Never Sleep", "attr": ["Gunnar Olsen"]},
 				{"id": "1iUtPTjkRzA", "name": "Tale Of Woe", "attr": ["The Retrosic"], "tags": ["Perfect"]},
 				{"id": "p9GOBkMPZkw", "name": "Kick the Habit", "attr": ["B*tches ft. Ori Toleando"]},
-				{"id": "LOfjmcHnDA8", "name": "Solo", "attr": ["Prismo"], "tags": ["Perfect"]},
+				{"id": "LOfjmcHnDA8", "name": "Solo", "attr": ["Prismo"], "tags": ["Perfect"]}
+				, {"id": "fvOeYJ0GeR4", "name": "Stronger", "attr": ["Prismo"]},
 				{"id": "HlEnd_bn838", "name": "Come Back For You", "attr": ["Elephante"]},
 				{"id": "IvEfPKWOAb0", "name": "Sailor in a Life Boat", "attr": ["Euringer"], "tags": ["Perfect"]},
 				{"id": "9UMhOCSyoa4", "name": "Empress", "attr": ["Mosh"]},
@@ -4279,6 +4294,8 @@
 				{"id": "CxfnPMBiiX8", "name": "Artificial Shangri-La", "attr": ["Goddess of Victory: Nikke"]}
 				, {"id": "i-ddY8FFEWU", "name": "You've Always Got Me", "attr": ["Goddess of Victory: Nikke", "LEVEL NINE", "Cosmograph"]}
 				, {"id": "Ph5ePTnDl2M", "name": "TuNGSTeN / Global Theme Song", "attr": ["Goddess Of Victory: Nikke"]}
+				, {"id": "ucEXXbTkDGg", "name": "Stronghold Land Eater", "attr": ["Goddess of Victory: NIkke"], "tags": ["Perfect"]}
+				, {"id": "ABqynRwu5-Q", "name": "Crystal Chamber Boss / We're Never Giving Up", "attr": ["Goddess of Victory: Nikke"]}
 			]
 		},
 		"Misc video games":{
@@ -6393,6 +6410,7 @@
 				, {"id": "KW8gRfWrCj8", "name": "Dropping like flies", "attr": ["crud"]}
 				, {"id": "W10phWDiGPc", "name": "Pink Fluffy Unicorns Dancing on Rainbows", "attr": ["Andrew Huang"]}
 				, {"id": "cgTqRKnwglo", "name": "You have no enemies", "attr": ["Aruarian Dance from Samurai Champloo"]}
+				, {"id": "5_yXe-Xlk8s", "name": "Baby Monster", "attr": ["Weezy Gi"], "tags": ["Perfect"]}
 			]
 		}
 	},
