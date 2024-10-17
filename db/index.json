@@ -42,6 +42,7 @@
 				, {"id": "P9XdBp2PT6g", "name": "The Offering", "attr": ["Warframe"]}
 				, {"id": "z1mxRxTONLQ", "name": "Party Of Your Lifetime", "attr": ["On-lyne"]}
 				, {"id": "fduiQhdGX5Y", "name": "What is my Fate / Koumei & the Five Fates OST", "attr": ["Warframe"]}
+				, {"id": "NFVffcdtS5w", "name": "The Call", "attr": ["Warframe"]}
 			]
 		},
 		"Tenno Tunes by me":{
@@ -1212,6 +1213,7 @@
 				, {"id": "XShIsJA8mXY", "name": "Come Hang Out", "attr": ["AJR"], "tags": ["Double"]}
 				, {"id": "UmzM3K8MR6s", "name": "Touchy Feely Fool", "attr": ["AJR"], "tags": ["Double"]}
 				, {"id": "n-xixyd1zig", "name": "Let the Games Begin", "attr": ["AJR"], "tags": ["Triple"]}
+				, {"id": "UOu4FFd_yto", "name": "3 O'Clock", "attr": ["AJR"]}
 			]
 		},
 		"Ed Sheeran":{
@@ -1693,6 +1695,8 @@
 				, {"id": "PHi798569Z0", "name": "Live While I Breathe", "attr": ["The Moth & The Flame"], "tags": ["Perfect"]}
 				, {"id": "_lqVbuv4VRo", "name": "Daylight", "attr": ["Matt & Kim"], "tags": ["Double", "Perfect"]}
 				, {"id": "ZwB-KUZ4PVI", "name": "Tell Me You Know", "attr": ["Good Kid"]}
+				, {"id": "KUhIlqEIx_c", "name": "Jar Of Love", "attr": ["Wanting"], "tags": ["Perfect"]}
+				, {"id": "LCllKH5WaHI", "name": "Higher", "attr": ["Lemaitre"], "tags": ["Perfect"]}
 			]
 		}
 	},
@@ -2110,6 +2114,7 @@
 				, {"id": "WAZ-IpAR3tE", "name": "Happiness is a Butterfly", "attr": ["Lana Del Rey"], "tags": ["Perfect"]}
 				, {"id": "4LREprICTOY", "name": "Ultraviolence", "attr": ["Lana Del Ray"], "tags": ["Double", "Perfect"]}
 				, {"id": "i5sWkWfFMJM", "name": "West Coast", "attr": ["Lana Del Rey"], "tags": ["Triple", "Perfect"]}
+				, {"id": "uH56xLtZp-0", "name": "Dark Paradise", "attr": ["Lana Del Rey"], "tags": ["Perfect"]}
 			]
 		},
 		"Misc Easy Listening":{
@@ -2145,7 +2150,8 @@
 				{"id": "4mEA4_-JCPI", "name": "Pretty Girl", "attr": ["Maggie Lindermann"]},
 				{"id": "nSD1QfROPd0", "name": "Rather Be", "attr": ["Clean Bandit ft. Jess Glynne"]},
 				{"id": "F3zjm72qR_Y", "name": "More Than You Know", "attr": ["Axwell \u039b Ingrosso"], "tags": ["Perfect"]},
-				{"id": "lGBZOkVmq08", "name": "This Charming Man", "attr": ["The Smiths"]},
+				{"id": "lGBZOkVmq08", "name": "This Charming Man", "attr": ["The Smiths"]}
+				, {"id": "dmGEnYeFrT4", "name": "Ask", "attr": ["The Smiths"]},
 				{"id": "dCa1Voa4uDQ", "name": "Too Good At Goodbyes", "attr": ["Sam Smith"], "tags": ["Perfect"]},
 				{"id": "VN2-ooMeJiY", "name": "Stay With Me", "attr": ["Sam Smith"], "tags": ["Perfect"]},
 				{"id": "KdTWTScx7LY", "name": "Dreamer", "attr": ["Axwell \u039b Ingrosso"]},
@@ -4296,6 +4302,7 @@
 				, {"id": "Ph5ePTnDl2M", "name": "TuNGSTeN / Global Theme Song", "attr": ["Goddess Of Victory: Nikke"]}
 				, {"id": "ucEXXbTkDGg", "name": "Stronghold Land Eater", "attr": ["Goddess of Victory: NIkke"], "tags": ["Perfect"]}
 				, {"id": "ABqynRwu5-Q", "name": "Crystal Chamber Boss / We're Never Giving Up", "attr": ["Goddess of Victory: Nikke"]}
+				, {"id": "PkGRQ6Xy8_E", "name": "Afterglow / Mirror Container Boss Battle", "attr": ["Goddess of Victory: Nikke"]}
 			]
 		},
 		"Misc video games":{
@@ -6033,6 +6040,7 @@
 				, {"id": "vpXiTOTEyms", "name": "Magnetic - chorus", "attr": ["ILLIT"], "tags": ["Perfect"]}
 				, {"id": "_-HDNOyviwU", "name": "Earth, Wind, & Fire", "attr": ["BOYNEXTDOOR/\ubcf4\uc774\ub125\uc2a4\ud2b8\ub3c4\uc5b4"], "tags": ["Perfect"]}
 				, {"id": "DZZXURxiCwc", "name": "The Baddest", "attr": ["tripleS/\ud2b8\ub9ac\ud50c\uc5d0\uc2a4"], "tags": ["Perfect"]}
+				, {"id": "MBk-HaUHDqw", "name": "Generation", "attr": ["tripleS/\ud2b8\ub9ac\ud50c\uc5d0\uc2a4"]}
 				, {"id": "-8Fm-Hlx9Sg", "name": "Abracadabra", "attr": ["Brown Eyed Girls"], "tags": ["Perfect"]}
 			]
 		},
@@ -6312,6 +6320,7 @@
 				, {"id": "C0t0msQSPXE", "name": "Fever Night", "attr": ["Takanashi Kiara"]}
 				, {"id": "XiwPLCoKNGQ", "name": "Michizure", "attr": ["Hoshimachi Suisei"]}
 				, {"id": "Ba8AkoGCdV8", "name": "Help", "attr": ["Kobo Kanaeru"]}
+				, {"id": "x1h34E3b4Ig", "name": "\u3082\u3050\u3082\u3050YUMMY\uff01", "attr": ["Nekomata Okayu/\u732b\u53c8\u304a\u304b\u3086"]}
 			]
 		},
 		"Misc Internet":{
