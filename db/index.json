@@ -1697,6 +1697,7 @@
 				, {"id": "ZwB-KUZ4PVI", "name": "Tell Me You Know", "attr": ["Good Kid"]}
 				, {"id": "KUhIlqEIx_c", "name": "Jar Of Love", "attr": ["Wanting"], "tags": ["Perfect"]}
 				, {"id": "LCllKH5WaHI", "name": "Higher", "attr": ["Lemaitre"], "tags": ["Perfect"]}
+				, {"id": "4-GEB1Vw35I", "name": "All Mixed Up", "attr": ["311"], "tags": ["Double"]}
 			]
 		}
 	},
@@ -3362,6 +3363,7 @@
 				, {"id": "ej-MWTO9UJU", "name": "8 bits", "attr": ["Mind.in.a.box"]}
 				, {"id": "JOaH34PwkKQ", "name": "Slowdiving", "attr": ["Du\u00f1e x Crayon ft. Lossapardo"]}
 				, {"id": "kPhzM3aYe9c", "name": "Die Liebe Kommt Nicht Aus Berlin", "attr": ["Brutalismus 3000"]}
+				, {"id": "yZZZ7Am-e4c", "name": "Radio Tokyo", "attr": ["Mr M"], "tags": ["Perfect"]}
 			]
 		}
 	},
@@ -5385,6 +5387,7 @@
 				{"id": "-bhuCCFk25k", "name": "The Touch", "attr": ["Stan Bush", "Transformers 1986"]},
 				{"id": "v1MTgvIY_eM", "name": "Transformers The Movie theme", "attr": ["1986"], "tags": ["Druk"]},
 				{"id": "HcfDxXk7PwQ", "name": "Transformers Prime opening", "tags": ["Perfect"]}
+				, {"id": "uZmQr8xcMvw", "name": "Instruments of Destruction", "attr": ["NRG", "Transformers: The Movie"], "tags": ["Perfect"]}
 			]
 		},
 		"Kamen Rider":{
@@ -5515,7 +5518,8 @@
 			"dbName":"TVMovie.MiscTV",
 			"songs":[
 				{"id": "GOdxjRRhqUc", "name": "Mighty Morphin Power Rangers"},
-				{"id": "XGOb9J4kUyQ", "name": "Dragonzord Flute", "attr": ["Mighty Morphin Power Rangers"]},
+				{"id": "XGOb9J4kUyQ", "name": "Dragonzord Flute", "attr": ["Mighty Morphin Power Rangers"]}
+				, {"id": "almrZ4Yklxk", "name": "Luckystar", "attr": ["Uchu Sentai Kyuranger"], "tags": ["Perfect"]},
 				{"id": "jM7fGOJUKaw", "name": "X-Files Theme"},
 				{"id": "eWsiM4ohu1U", "name": "Friends Theme", "attr": ["I'll be There for You by The Rembrandts"]},
 				{"id": "Mi5fj9s62xQ", "name": "Spock vs Kirk", "attr": ["Star Trek ToS Battle Theme"]},
@@ -6727,6 +6731,7 @@
 				, {"id": "l-zd1Ztl4Ks", "name": "From The Start", "attr": ["Laufey"], "tags": ["Perfect"]}
 				, {"id": "HB7KcAMbxWk", "name": "El Derecho de Vivir en Paz", "attr": ["Victor Jara"]}
 				, {"id": "d8TtLa1eJf0", "name": "Hamrer Hippyer", "attr": ["Heilung"]}
+				, {"id": "KK2wFxBZT_c", "name": "Romanticist / Dream Palette", "attr": ["Yves Tumor"], "tags": ["Perfect"]}
 			]
 		}
 	}
