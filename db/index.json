@@ -896,6 +896,7 @@
 				, {"id": "5VD8muJhCJc", "name": "Unforgettable", "attr": ["Godsmack"], "tags": ["Double"]}
 				, {"id": "HbgVopwILe0", "name": "Silverseal", "attr": ["Elvenking"]}
 				, {"id": "CkeV5WmFDno", "name": "The Devil Made Me Do It", "attr": ["Emil Bulls"], "tags": ["Perfect"]}
+				, {"id": "zrW7VISm3FM", "name": "Like a Stone", "attr": ["Audioslave"], "tags": ["Perfect", "Sparse"]}
 			]
 		}
 	},
@@ -2208,7 +2209,8 @@
 		"songs":[
 			{"id": "9TbFMwQsrKY", "name": "Buffalo Soldier", "attr": ["Bob Marley"]},
 			{"id": "zg4B9CbwaFw", "name": "Three Little Birds", "attr": ["Bob Marley"]}
-			, {"id": "abClx2GQHRc", "name": "Get Up Stand Up", "attr": ["Bob Marley"]},
+			, {"id": "abClx2GQHRc", "name": "Get Up Stand Up", "attr": ["Bob Marley"]}
+			, {"id": "xru_vIL5V60", "name": "Could You Be Loved", "attr": ["Bob Marley"], "tags": ["Perfect"]},
 			{"id": "8UA76iwbEO8", "name": "Gimme Hope Jo'Anna", "attr": ["Eddy Grant"]},
 			{"id": "Irer5lEbKXA", "name": "Electric Avenue", "attr": ["Eddy Grant"]},
 			{"id": "dDACdljzNLA", "name": "Chase The Devil", "attr": ["Max Romeo"]},
@@ -2702,7 +2704,7 @@
 				{"id": "CNfVCHpYWEQ", "name": "Crystal Cave", "attr": ["Panda Eyes"]},
 				{"id": "zwVD5dQbBgk", "name": "Colorblind", "attr": ["Panda Eyes"]},
 				{"id": "77Oe0Nr109Q", "name": "Galaxia", "attr": ["Panda Eyes", "Subkey"]},
-				{"id": "drmPqMXJNlA", "name": "High Score", "attr": ["Panda Eyes", "Termite"], "tags": ["Epsilon"]},
+				{"id": "drmPqMXJNlA", "name": "High Score", "attr": ["Panda Eyes", "Terminite"], "tags": ["Epsilon"]},
 				{"id": "gTOwANGkWnE", "name": "Cadillac", "attr": ["Panda Eyes", "Alpha Noize"]}
 			]
 		},
@@ -4455,6 +4457,7 @@
 					, {"id": "MQe3NHMj4Fc", "name": "I Got This", "attr": ["Hi-Fi Rush"]}
 					, {"id": "n4qmkpROBL4", "name": "Raeb's Lament", "attr": ["God of War Ragnarok"]}
 					, {"id": "6YqOtz0NYP8", "name": "Nightsong", "attr": ["Baldur's Gate 3"], "tags": ["Adau"]}
+					, {"id": "HG4s0GxZaL4", "name": "I Want To Live", "attr": ["Baldur's Gate 3"], "tags": ["Double", "Perfect"]}
 					, {"id": "cEMafxLpClE", "name": "condensed milk", "attr": ["Bomb Rush Cyberfunk", "condensed milk chan"]}
 					, {"id": "4sE2sPRCK-M", "name": "Rushing", "attr": ["Marathon"], "tags": ["Perfect"]}
 				]
@@ -5326,6 +5329,7 @@
 				, {"id": "hwLkokw292s", "name": "Can do Dreamer", "attr": ["Tokyo Mew Mew New ending 2"], "tags": ["double", "Perfect"]}
 				, {"id": "0DHsY-4LCco", "name": "Anytime Anywhere", "attr": ["Frieren: Beyond Journey's End ending"]}
 				, {"id": "KRT1Obh7_aY", "name": "Stuck On You", "attr": ["More than a Married Couple", "but not Lovers ending"], "tags": ["Beta"]}
+				, {"id": "1ljXAFmt-UA", "name": "Otonoke", "attr": ["Creepy Nuts", "Dan Da Dan opening"], "tags": ["Triple", "Perfect"]}
 			]
 		}
 	},
@@ -6112,6 +6116,7 @@
 				, {"id": "aAdm4IIM7vY", "name": "Life Hates Us Now", "attr": ["Mafumafu"], "tags": ["Perfect"]}
 				, {"id": "3e8DdZNHQlo", "name": "A Flower Named You", "attr": ["Asian Kung Fu Generation"], "tags": ["Perfect", "Druk"]}
 				, {"id": "WnbpaSybmaA", "name": "Storywriter", "attr": ["Supercar"], "tags": ["Perfect"]}
+				, {"id": "KtPR_9DreEk", "name": "Love Supreme!", "attr": ["fh\u00e1na"], "tags": ["Perfect"]}
 			]
 		},
 		"Misc I Don't Know Which Letter Pop":{
@@ -6424,6 +6429,7 @@
 				, {"id": "W10phWDiGPc", "name": "Pink Fluffy Unicorns Dancing on Rainbows", "attr": ["Andrew Huang"]}
 				, {"id": "cgTqRKnwglo", "name": "You have no enemies", "attr": ["Aruarian Dance from Samurai Champloo"]}
 				, {"id": "5_yXe-Xlk8s", "name": "Baby Monster", "attr": ["Weezy Gi"], "tags": ["Perfect"]}
+				, {"id": "E4-ioRvTtZo", "name": "Ruler of My Heart", "attr": ["Alien Stage"], "tags": ["Double", "Perfect"]}
 			]
 		}
 	},
@@ -6732,6 +6738,7 @@
 				, {"id": "HB7KcAMbxWk", "name": "El Derecho de Vivir en Paz", "attr": ["Victor Jara"]}
 				, {"id": "d8TtLa1eJf0", "name": "Hamrer Hippyer", "attr": ["Heilung"]}
 				, {"id": "KK2wFxBZT_c", "name": "Romanticist / Dream Palette", "attr": ["Yves Tumor"], "tags": ["Perfect"]}
+				, {"id": "B_H-UgsuJt0", "name": "You're The One That I Want", "attr": ["Grease"]}
 			]
 		}
 	}
