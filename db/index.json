@@ -1863,6 +1863,7 @@
 				{"id": "Z4FTQmXyvSc", "name": "Mayores", "attr": ["Becky G", "Bad Bunny"]},
 				{"id": "izCzru072uU", "name": "Disco Tits", "attr": ["Tove Lo"]}
 				, {"id": "vT7eOYVeImc", "name": "Call On Me", "attr": ["Tove Lo"]}
+				, {"id": "ykAVMmvgnCs", "name": "Cool Girl", "attr": ["Tove Lo"]}
 			]
 		},
 		"Doja Cat":{
@@ -1972,7 +1973,6 @@
 		"Misc Pop":{
 			"dbName":"Pop.MiscPop",
 			"songs":[
-				{"id": "ykAVMmvgnCs", "name": "Cool Girl", "attr": ["Tove Lo"]},
 				{"id": "BcFk-w2lhag", "name": "The Best of Both Worlds", "attr": ["Hannah Montana"]},
 				{"id": "vz8DAfruWYo", "name": "Mi Mi Mi", "attr": ["Serebro"]},
 				{"id": "G8WGj9oJxJ4", "name": "Impossible", "attr": ["Shontelle"], "tags": ["Double"]},
