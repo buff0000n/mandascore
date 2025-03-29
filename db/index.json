@@ -886,6 +886,7 @@
 				, {"id": "qLYuNQ_4504", "name": "New Disease", "attr": ["Spineshank"], "tags": ["Triple", "Perfect"]}
 				, {"id": "GfE4MWKzDIM", "name": "Eye Of The Storm", "attr": ["Watt White"]}
 				, {"id": "2PBAXH8-k0k", "name": "Unsainted", "attr": ["Slipknot"]}
+				, {"id": "2bIWM_56icI", "name": "Dead Memories", "attr": ["Skipknot"]}
 				, {"id": "_LoQq9sHE1E", "name": "To Hell With You", "attr": ["Sister Machine Gun"]}
 				, {"id": "OCY5qHMsy1Y", "name": "\u98a8\u795e\u5c11\u5973/Wind God Girl", "attr": ["Demetori"]}
 				, {"id": "6QurCWcOaMo", "name": "Glorious Scars", "attr": ["Collision of Innocence"]}
@@ -902,7 +903,9 @@
 				, {"id": "5VD8muJhCJc", "name": "Unforgettable", "attr": ["Godsmack"], "tags": ["Double"]}
 				, {"id": "HbgVopwILe0", "name": "Silverseal", "attr": ["Elvenking"]}
 				, {"id": "CkeV5WmFDno", "name": "The Devil Made Me Do It", "attr": ["Emil Bulls"], "tags": ["Perfect"]}
-				, {"id": "zrW7VISm3FM", "name": "Like a Stone", "attr": ["Audioslave"], "tags": ["Perfect", "Sparse"]}
+				, {"id": "zrW7VISm3FM", "name": "Like a Stone", "attr": ["Audioslave"], "tags": ["Perfect", "Sparse"]},
+				{"id": "eqJUQ5IK1iI", "name": "deathwish", "attr": ["Stand Atlantic", "nothing", "nowhere"]}
+				, {"id": "LiderBkngyI", "name": "dumb", "attr": ["Stand Atlantic ft. Tom The Mail Man"], "tags": ["Double"]}
 			]
 		}
 	},
@@ -1627,7 +1630,6 @@
 				{"id": "c8Vgd7qv1yc", "name": "I Hate You", "attr": ["Jim Josef x Riell"]},
 				{"id": "M5bufjPg39A", "name": "Die in this Town", "attr": ["Siege World"], "tags": ["Perfect"]},
 				{"id": "z81X5FUnjqg", "name": "Wake Up", "attr": ["Elaine"]},
-				{"id": "eqJUQ5IK1iI", "name": "deathwish", "attr": ["Stand Atlantic", "nothing", "nowhere"]},
 				{"id": "8sRJAmxjfiY", "name": "Daisies", "attr": ["Ryan Caraveo"]},
 				{"id": "jUpraVXCpck", "name": "De M\u00fasica Ligera", "attr": ["Soda Stereo"]}
 				, {"id": "DhoPD0eqC9Y", "name": "I Must Be Dreaming", "attr": ["KNOWER"]}
@@ -1842,6 +1844,7 @@
 				, {"id": "dYb--V1Fj_o", "name": "G.U.Y.", "attr": ["Lady Gaga"], "tags": ["Perfect"]}
 				, {"id": "GRFnJ3u7Z_k", "name": "Artprop", "attr": ["Lady Gaga"], "tags": ["Double", "Perfect"]}
 				, {"id": "EbHm5Q_MRtI", "name": "Abracadabra", "attr": ["Lada Gaga"]}
+				, {"id": "_r4MYx8mTb0", "name": "Shadow of a Man", "attr": ["Lady Gaga"], "tags": ["Perfect"]}
 			]
 		},
 		"Nicki Minaj":{
@@ -2025,7 +2028,8 @@
 				{"id": "KXYtDskfcCI", "name": "1-800-273-8255", "attr": ["Logic"], "tags": ["Perfect"]},
 				{"id": "UHRWRxhVesw", "name": "Contact", "attr": ["Logic"], "tags": ["Adau", "Perfect"]},
 				{"id": "mkocZat5M-0", "name": "S.L.U.T", "attr": ["Bea Miller"]},
-				{"id": "wYeHe62aHYM", "name": "SexyBack", "attr": ["Justin Timberlake"]},
+				{"id": "wYeHe62aHYM", "name": "SexyBack", "attr": ["Justin Timberlake"]}
+				, {"id": "fPUCrI5J8pw", "name": "Rock Your Body", "attr": ["Justin Timberlake"], "tags": ["Double"]},
 				{"id": "fw8tN0cQ3DI", "name": "Rabbit Hole", "attr": ["Natalia Kills"]},
 				{"id": "Xw4xpb8_B2Q", "name": "Ocean Drive", "attr": ["Duke Dumont"]},
 				{"id": "q_T6jusQ_1c", "name": "Bang", "attr": ["Ryan Caraveo"], "tags": ["Perfect"]},
@@ -2647,6 +2651,7 @@
 				, {"id": "1bjBWfewE9E", "name": "Trap Queen", "attr": ["Harlem Fetty"], "tags": ["Perfect"]}
 				, {"id": "X4uGiRi1GeQ", "name": "Runnin'", "attr": ["Dews Pegahorn"], "tags": ["Perfect"]}
 				, {"id": "N5QtUcwaCc8", "name": "Horse B4 Porcshe", "attr": ["Tommy Cash"], "tags": ["Perfect"]}
+				, {"id": "QkS6ECyY66Q", "name": "Teethsucker", "attr": ["Rico Nasty"]}
 			]
 		}
 	},
@@ -2672,8 +2677,6 @@
 			{"id": "lL1AsX-jY74", "name": "Stole The Show", "attr": ["Kygo"]},
 			{"id": "1mK-G4rJPiU", "name": "Dreamer", "attr": ["Livin' Joy"]},
 			{"id": "UoOeHrZw03Y", "name": "Ecuador", "attr": ["Sash!"]},
-			{"id": "aiK2JABnJNo", "name": "Angels", "attr": ["Vicetone ft. Kat Nestel"]},
-			{"id": "VVUyL6ZvIUs", "name": "Nevada", "attr": ["Vicetone"]},
 			{"id": "EJJzeBHMPEI", "name": "Harlem Shake", "attr": ["Baauer"]},
 			{"id": "Pu8gx0RXDQE", "name": "Feel The Sound", "attr": ["Mike T"]},
 			{"id": "2VYdgDaHD9E", "name": "Go Bang", "attr": ["PNAU"], "tags": ["Perfect"]},
@@ -3040,6 +3043,14 @@
 				{"id": "Pqxz-4d9n6Q", "name": "Faded", "attr": ["ZHU", "Odesza Remix"]}
 				, {"id": "exaxwXmKmes", "name": "Cocaine Model", "attr": ["ZHU"]},
 				{"id": "gHomu08EXIs", "name": "Dreams", "attr": ["ZHU & Nero"], "tags": ["Perfect", "Sparse Melod"]}
+			]
+		},
+		"Vicetone":{
+			"dbName":"Electronic",
+			"songs":[
+				{"id": "aiK2JABnJNo", "name": "Angels", "attr": ["Vicetone ft. Kat Nestel"]},
+				{"id": "VVUyL6ZvIUs", "name": "Nevada", "attr": ["Vicetone"]}
+				, {"id": "iUEG0RT7MS4", "name": "South Beach", "attr": ["Vicetone"]}
 			]
 		},
 		"Misc Monstercat":{
@@ -3415,6 +3426,7 @@
 				, {"id": "eA2v643OoKw", "name": "Bye Bye Macadam", "attr": ["Rone"], "tags": ["Perfect"]}
 				, {"id": "W_ybr5ERX3w", "name": "Infinity 2008", "attr": ["Guru Josh Project"], "tags": ["Perfect"]}
 				, {"id": "uLm4RA1d-o4", "name": "Trust Me", "attr": ["Pandora"], "tags": ["Perfect"]}
+				, {"id": "vHpiwt1UbTE", "name": "Bloodbath", "attr": ["asteria & 6arelyhuman"], "tags": ["Perfect"]}
 			]
 		}
 	},
@@ -4716,6 +4728,8 @@
 					, {"id": "WIM9zCrt3_g", "name": "The End Is Nigh", "attr": ["Carbon Copy", "S.I.M."], "tags": ["Perfect"]}
 					, {"id": "9Sb-cVm4Pk0", "name": "Darker Lord's Left Hand", "attr": ["Miitopia"]}
 					, {"id": "FjuIxEj0btw", "name": "Outta My Way... It's Happy Hour!", "attr": ["Antonblast"]}
+					, {"id": "y4dhP1yNbRg", "name": "Cinema", "attr": ["Vivid Bad Squad x Kaito", "Project Sekai"]}
+					, {"id": "eKznAjCdy7g", "name": "D/N/A", "attr": ["Project Sekai", "25\u6642\u3001\u30ca\u30a4\u30c8\u30b3\u30fc\u30c9\u3067 x Kagamine Rin"]}
 				]
 			}
 		}
@@ -5791,6 +5805,7 @@
 				, {"id": "WB9ENZXO2Jc", "name": "Baby My Phone", "attr": ["Yameii"]}
 				, {"id": "oYNxbdJGc04", "name": "Headphone Actor", "attr": ["Jin ft. LiSA"]}
 				, {"id": "vg23z1vFi34", "name": "\u591c\u5484\u30c7\u30a3\u30bb\u30a4\u30d6", "attr": ["Jin/\u3058\u3093", "IA"]}
+				, {"id": "9GPsacxZ3s8", "name": "Language Of The Lost", "attr": ["R.I.P. ft. Kasane Teto"]}
 			]
 		},
 		"BTS":{
@@ -6833,6 +6848,7 @@
 				, {"id": "d8TtLa1eJf0", "name": "Hamrer Hippyer", "attr": ["Heilung"]}
 				, {"id": "KK2wFxBZT_c", "name": "Romanticist / Dream Palette", "attr": ["Yves Tumor"], "tags": ["Perfect"]}
 				, {"id": "B_H-UgsuJt0", "name": "You're The One That I Want", "attr": ["Grease"]}
+				, {"id": "krtOB-dRK_E", "name": "This Isn't Over", "attr": ["Sondae"]}
 			]
 		}
 	}
