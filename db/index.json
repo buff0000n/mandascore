@@ -735,6 +735,7 @@
 				, {"id": "Qj0ZLdgd-QQ", "name": "DYWTYLM", "attr": ["Sleep Token"]}
 				, {"id": "BedpROZhlHo", "name": "Chokehold", "attr": ["Sleep Token"], "tags": ["Perfect"]}
 				, {"id": "_sHZwoZfKng", "name": "Euclid", "attr": ["Sleep Token"]}
+				, {"id": "rIWFnIVtgcw", "name": "Caramel", "attr": ["Sleep Token"], "tags": ["Perfect"]}
 			]
 		},
 		"Shinedown":{
@@ -2090,6 +2091,7 @@
 				, {"id": "zGb2bKqsWZI", "name": "Party in the U.S.A.", "attr": ["Miley Cyrus"]}
 				, {"id": "6jE2ociVKxM", "name": "Fire Burning", "attr": ["Sean Kingston"], "tags": ["Perfect"]}
 				, {"id": "czV6sZiZ4Kw", "name": "Truly Madly Deeply", "attr": ["One Direction"], "tags": ["Perfect"]}
+				, {"id": "ihmkmQiDGdM", "name": "Drag Me Down", "attr": ["One Direction"], "tags": ["Quadruple", "Perfect"]}
 			]
 		}
 	},
@@ -2937,6 +2939,7 @@
 				{"id": "5vprynnRUzU", "name": "The Hit", "attr": ["TWRP"]},
 				{"id": "c7AtyYAH8WY", "name": "Atomic Karate", "attr": ["TWRP"]},
 				{"id": "k5s0kzdpRZg", "name": "Starlight Brigade", "attr": ["TWRP"]}
+				, {"id": "YzhJxK0IU7M", "name": "ICQ", "attr": ["TWRP"]}
 			]
 		},
 		"MNQN":{
@@ -3335,7 +3338,8 @@
 				{"id": "2Wm7fnGPkw4", "name": "Decomposed (Trampled)", "attr": ["Mentallo & The Fixer"], "tags": ["Perfect"]},
 				{"id": "zCE-SVWQV-4", "name": "Walking On Gravestones", "attr": ["I See Stars"]},
 				{"id": "xO6ptlEbDtU", "name": "If I Could Fly", "attr": ["Ocean Lab"]},
-				{"id": "j7Rq9QHUIXQ", "name": "Neck And Neck", "attr": ["Zeds Dead"]},
+				{"id": "j7Rq9QHUIXQ", "name": "Neck And Neck", "attr": ["Zeds Dead"], "tags": ["Perfect"]}
+				, {"id": "xdf_ioFRfS4", "name": "Lights Out", "attr": ["Zeds Dead"]},
 				{"id": "pGHdV2wPkL8", "name": "Alive", "attr": ["Mind Vortex"]},
 				{"id": "nZpZNFYDBnk", "name": "Dusk To Dawn", "attr": ["Emancipator"], "tags": ["Plogg"]},
 				{"id": "B4T9hAEf9nU", "name": "Okay", "attr": ["Shiba San"]},
@@ -3427,6 +3431,7 @@
 				, {"id": "W_ybr5ERX3w", "name": "Infinity 2008", "attr": ["Guru Josh Project"], "tags": ["Perfect"]}
 				, {"id": "uLm4RA1d-o4", "name": "Trust Me", "attr": ["Pandora"], "tags": ["Perfect"]}
 				, {"id": "vHpiwt1UbTE", "name": "Bloodbath", "attr": ["asteria & 6arelyhuman"], "tags": ["Perfect"]}
+				, {"id": "zRthAiXVah0", "name": "Link!", "attr": ["Codet ft. RXTKY"]}
 			]
 		}
 	},
@@ -4730,6 +4735,7 @@
 					, {"id": "FjuIxEj0btw", "name": "Outta My Way... It's Happy Hour!", "attr": ["Antonblast"]}
 					, {"id": "y4dhP1yNbRg", "name": "Cinema", "attr": ["Vivid Bad Squad x Kaito", "Project Sekai"]}
 					, {"id": "eKznAjCdy7g", "name": "D/N/A", "attr": ["Project Sekai", "25\u6642\u3001\u30ca\u30a4\u30c8\u30b3\u30fc\u30c9\u3067 x Kagamine Rin"]}
+					, {"id": "0_xxGTJNZxU", "name": "Entering the Stronghold", "attr": ["Danny Schneidemesser", "Stick War"], "tags": ["Filled"]}
 				]
 			}
 		}
@@ -5411,6 +5417,7 @@
 				, {"id": "BbLVA9Nxqkk", "name": "Smile Bomb", "attr": ["Yu Yu Hakusho opening 1"]}
 				, {"id": "QOa5xRaFTCc", "name": "Come Alive", "attr": ["Chapter 5 ending"]}
 				, {"id": "K_TIQGNRpQY", "name": "ReawakeR", "attr": ["LiSA ft. Felix", "Solo Leveling op 2"], "tags": ["Perfect"]}
+				, {"id": "_jDIrCxEST0", "name": "Star T rain", "attr": ["Oshi No Ko"]}
 			]
 		}
 	},
