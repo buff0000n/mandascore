@@ -44,6 +44,7 @@
 				, {"id": "fduiQhdGX5Y", "name": "What is my Fate / Koumei & the Five Fates OST", "attr": ["Warframe"]}
 				, {"id": "NFVffcdtS5w", "name": "The Call", "attr": ["Warframe"]}
 				, {"id": "Bqcp9UOMduc", "name": "Pick a Side", "attr": ["Warframe"], "tags": ["Perfect"]}
+				, {"id": "x5P804z2JSo", "name": "See It In The Flesh", "attr": ["Warframe"], "tags": ["Druk"]}
 			]
 		},
 		"Tenno Tunes by me":{
@@ -2008,6 +2009,22 @@
 				, {"id": "TIZJD9VSTwA", "name": "Red Wine Supernova", "attr": ["Chappel Roan"], "tags": ["Perfect"]}
 			]
 		},
+		"Justin Timberlake":{
+			"dbName":"Pop",
+			"songs":[
+				{"id": "wYeHe62aHYM", "name": "SexyBack", "attr": ["Justin Timberlake"]}
+				, {"id": "fPUCrI5J8pw", "name": "Rock Your Body", "attr": ["Justin Timberlake"], "tags": ["Double"]}
+				, {"id": "J7oBHVp_NE4", "name": "Can't Stop The Feeling", "attr": ["Justin Timberlake", "Trolls"], "tags": ["Double"]}
+			]
+		},
+		"One Direction":{
+			"dbName":"Pop",
+			"songs":[
+				{"id": "czV6sZiZ4Kw", "name": "Truly Madly Deeply", "attr": ["One Direction"], "tags": ["Perfect"]}
+				, {"id": "ihmkmQiDGdM", "name": "Drag Me Down", "attr": ["One Direction"], "tags": ["Quadruple", "Perfect"]}
+				, {"id": "560pOjAtpMo", "name": "What Makes You Beautiful", "attr": ["One Direction"], "tags": ["Double", "Perfect"]}
+			]
+		},
 		"Misc Pop":{
 			"dbName":"Pop.MiscPop",
 			"songs":[
@@ -2029,8 +2046,6 @@
 				{"id": "KXYtDskfcCI", "name": "1-800-273-8255", "attr": ["Logic"], "tags": ["Perfect"]},
 				{"id": "UHRWRxhVesw", "name": "Contact", "attr": ["Logic"], "tags": ["Adau", "Perfect"]},
 				{"id": "mkocZat5M-0", "name": "S.L.U.T", "attr": ["Bea Miller"]},
-				{"id": "wYeHe62aHYM", "name": "SexyBack", "attr": ["Justin Timberlake"]}
-				, {"id": "fPUCrI5J8pw", "name": "Rock Your Body", "attr": ["Justin Timberlake"], "tags": ["Double"]},
 				{"id": "fw8tN0cQ3DI", "name": "Rabbit Hole", "attr": ["Natalia Kills"]},
 				{"id": "Xw4xpb8_B2Q", "name": "Ocean Drive", "attr": ["Duke Dumont"]},
 				{"id": "q_T6jusQ_1c", "name": "Bang", "attr": ["Ryan Caraveo"], "tags": ["Perfect"]},
@@ -2090,8 +2105,8 @@
 				, {"id": "aO8im4uqZhE", "name": "Make You Mine", "attr": ["Madison Beer"]}
 				, {"id": "zGb2bKqsWZI", "name": "Party in the U.S.A.", "attr": ["Miley Cyrus"]}
 				, {"id": "6jE2ociVKxM", "name": "Fire Burning", "attr": ["Sean Kingston"], "tags": ["Perfect"]}
-				, {"id": "czV6sZiZ4Kw", "name": "Truly Madly Deeply", "attr": ["One Direction"], "tags": ["Perfect"]}
-				, {"id": "ihmkmQiDGdM", "name": "Drag Me Down", "attr": ["One Direction"], "tags": ["Quadruple", "Perfect"]}
+				, {"id": "l72NvyW1jGE", "name": "Sucker", "attr": ["Jonas Brothers"], "tags": ["Quintuple", "Perfect"]}
+				, {"id": "-txF5t2NeOU", "name": "Love Me Not", "attr": ["Ravyn Lenae"], "tags": ["Perfect"]}
 			]
 		}
 	},
@@ -3432,6 +3447,7 @@
 				, {"id": "uLm4RA1d-o4", "name": "Trust Me", "attr": ["Pandora"], "tags": ["Perfect"]}
 				, {"id": "vHpiwt1UbTE", "name": "Bloodbath", "attr": ["asteria & 6arelyhuman"], "tags": ["Perfect"]}
 				, {"id": "zRthAiXVah0", "name": "Link!", "attr": ["Codet ft. RXTKY"]}
+				, {"id": "qKSEdW50CsU", "name": "The Future of the Future", "attr": ["Everything but the Girl"], "tags": ["Alpha"]}
 			]
 		}
 	},
@@ -4420,6 +4436,7 @@
 					{"id": "NFXD5m8S9jU", "name": "Boss", "attr": ["Plok! SNES"], "tags": ["Filled"]},
 					{"id": "X_3lwUs9Qgk", "name": "Top Gear 2 Title Theme"}
 					, {"id": "7jwr_40gfB0", "name": "Music 2", "attr": ["Mech Platoon"]}
+					, {"id": "NnOTYyTKCL4", "name": "2D Field", "attr": ["Shin Megami Tensei II"]}
 				]
 			},
 			"Not as old":{
@@ -4880,6 +4897,7 @@
 				, {"id": "S86A3JUFqSY", "name": "The Rumbling", "attr": ["Attack on Titan season 4 opening 2"]}
 				, {"id": "ljvuEOnmjEM", "name": "Zero Eclipse/Historia Reiss Theme", "attr": ["Attack on Titan"], "tags": ["NINE"]}
 				, {"id": "SGXQh-QAUBw", "name": "Apple Seed/Berthold Transformation Theme", "attr": ["Attack on Titan"], "tags": ["Perfect"]}
+				, {"id": "EtQ0b0Fqg2M", "name": "Splinter Wolf", "attr": ["Attack On Titan"]}
 			]
 		},
 		"Re:CREATORS":{
@@ -5613,6 +5631,7 @@
 				, {"id": "_Y4eWN5jPHQ", "name": "Hawaiian Roller Coaster Ride", "attr": ["Lilo & Stitch"], "tags": ["Double", "Perfect"]}
 				, {"id": "6wRU7uknO7w", "name": "Jimmy Neutron theme song"}
 				, {"id": "0fu_i33MtsU", "name": "Lemmings Disco Song", "attr": ["Grizzly & The Lemmings"]}
+				, {"id": "s_Z55sy-XKQ", "name": "Paw Patrol theme", "tags": ["Perfect"]}
 			]
 		},
 		"Misc TV":{
@@ -6223,6 +6242,8 @@
 				, {"id": "KtPR_9DreEk", "name": "Love Supreme!", "attr": ["fh\u00e1na"], "tags": ["Perfect"]}
 				, {"id": "Y7xfe8613r4", "name": "oddloop", "attr": ["Frederick"]}
 				, {"id": "WoRynwOQDo8", "name": "Arpeggio", "attr": ["Alexandros"]}
+				, {"id": "GLqjLtXc1VI", "name": "Keiju", "attr": ["sakanaction"], "tags": ["Double"]}
+				, {"id": "wMAAavmDhI8", "name": "Rainy Boots", "attr": ["inabakumori"]}
 			]
 		},
 		"Misc I Don't Know Which Letter Pop":{
