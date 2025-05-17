@@ -1030,7 +1030,8 @@
 		"Ken Ashcorp":{
 			"dbName":"PopRock",
 			"songs":[
-				{"id": "tAWQyzE360A", "name": "Absolute Territory", "attr": ["Ken Ashcorp"], "tags": ["Plogg"]},
+				{"id": "tAWQyzE360A", "name": "Absolute Territory", "attr": ["Ken Ashcorp"], "tags": ["Plogg"]}
+				, {"id": "YsVJtafvKUg", "name": "Absolute Territory - chorus", "attr": ["Ken Ashcorp"], "tags": ["Perfect"]},
 				{"id": "zSH8HJ6HgMw", "name": "Burgz", "attr": ["Ken Ashcorp"], "tags": ["Perfect"]},
 				{"id": "BBhSfqCOaCU", "name": "On The Rocks", "attr": ["Ken Ashcorp"]},
 				{"id": "7MKBGvog-jM", "name": "Ryder Or Riot", "attr": ["Ken Ashcorp"]},
@@ -1285,6 +1286,7 @@
 				{"id": "AJktJhlaMvg", "name": "Shiver", "attr": ["Maroon 5"]},
 				{"id": "nW1ChERvScQ", "name": "Girls Like You", "attr": ["Maroon 5"]}
 				, {"id": "PVek0xTo4Oo", "name": "This Love", "attr": ["Maroon 5"], "tags": ["Perfect"]}
+				, {"id": "3wiISUaJCTE", "name": "Payphone", "attr": ["Maroon 5"], "tags": ["Triple"]}
 			]
 		},
 		"Paramore":{
@@ -1361,6 +1363,14 @@
 				{"id": "uRIQ4UKyDg8", "name": "Pumped up Kicks", "attr": ["Foster The People"], "tags": ["Perfect"]},
 				{"id": "1svck7vrCm8", "name": "Pseudologia Fantastica", "attr": ["Foster The People"]}
 				, {"id": "l0Nksmcx6C8", "name": "Sit Next To Me", "attr": ["Foster The People"], "tags": ["Double"]}
+			]
+		},
+		"King Gizzard & The Lizard Wizard":{
+			"dbName":"PopRock",
+			"songs":[
+				{"id": "FbwP7l-Dycw", "name": "Gamma Knife", "attr": ["King Gizzard & The Lizard Wizard"]}
+				, {"id": "Sk0Ql6-_qzg", "name": "Set", "attr": ["King Gizzard and the Lizard Wizard"]}
+				, {"id": "HFc1r1Ka874", "name": "The Lord of Lightning", "attr": ["King Gizzard And The Lizard Wizard"]}
 			]
 		},
 		"Misc Pop/Rock":{
@@ -1726,6 +1736,7 @@
 				, {"id": "bDzwBp9Aseg", "name": "By My Side, All The Time", "attr": ["Drew The Architect"], "tags": ["Perfect"]}
 				, {"id": "jbDxLlyxX3A", "name": "Gemini", "attr": ["Chrome Rhino"]}
 				, {"id": "rxy2us0IAmw", "name": "Besitos", "attr": ["Pierce The Veil"], "tags": ["Perfect"]}
+				, {"id": "5x01IAKakJY", "name": "The Setup", "attr": ["Favored Nations"], "tags": ["Perfect"]}
 			]
 		}
 	},
@@ -2669,6 +2680,7 @@
 				, {"id": "X4uGiRi1GeQ", "name": "Runnin'", "attr": ["Dews Pegahorn"], "tags": ["Perfect"]}
 				, {"id": "N5QtUcwaCc8", "name": "Horse B4 Porcshe", "attr": ["Tommy Cash"], "tags": ["Perfect"]}
 				, {"id": "QkS6ECyY66Q", "name": "Teethsucker", "attr": ["Rico Nasty"]}
+				, {"id": "lHPu1ckAYio", "name": "Get Got", "attr": ["Death Grips"]}
 			]
 		}
 	},
@@ -4871,7 +4883,7 @@
 				{"id": "JL4sxYk77JM", "name": "Final Getsuga theme song", "attr": ["Bleach"], "tags": ["Druk"]},
 				{"id": "Qfj7YQlDTDY", "name": "Change", "attr": ["Bleach opening 12"], "tags": ["Double"]}
 				, {"id": "0BVr8RfimyU", "name": "Invasion", "attr": ["Bleach"]}
-				, {"id": "qIw4CHaKGfE", "name": "Nothing Can Be Explained", "attr": ["Bleach"]}
+				, {"id": "BBsg8zURP2s", "name": "Nothing Can Be Explained", "attr": ["Bleach"]}
 			]
 		},
 		"Fairy Tail":{
@@ -5162,6 +5174,7 @@
 				, {"id": "QboZsC_8rJA", "name": "Lost in Paradise", "attr": ["Jujutsu Kaisen ending 1"], "tags": ["Perfect"]}
 				, {"id": "eEmgvJzgm8o", "name": "Specialz", "attr": ["King Gnu", "Jujutsu Kaisen opening 4"]}
 				, {"id": "AB0ygtVHm74", "name": "Ao no Sumika", "attr": ["Jujutsu Kaisen opening 3"]}
+				, {"id": "kHNIRW2uK30", "name": "When Our Blue Is", "attr": ["Tatsuya Kitani", "Jujutsu Kaisen opening 3"], "tags": ["Perfect"]}
 			]
 		},
 		"Chainsaw Man":{
@@ -5436,6 +5449,8 @@
 				, {"id": "QOa5xRaFTCc", "name": "Come Alive", "attr": ["Chapter 5 ending"]}
 				, {"id": "K_TIQGNRpQY", "name": "ReawakeR", "attr": ["LiSA ft. Felix", "Solo Leveling op 2"], "tags": ["Perfect"]}
 				, {"id": "_jDIrCxEST0", "name": "Star T rain", "attr": ["Oshi No Ko"]}
+				, {"id": "hJhNTxfCshw", "name": "Imprisoned XII", "attr": ["Ave Mujica"]}
+				, {"id": "mYsn84_Au-0", "name": "Moving, Moving", "attr": ["Girls Last Tour opening"]}
 			]
 		}
 	},
@@ -5479,6 +5494,7 @@
 				, {"id": "66gk8H12OQU", "name": "Make A Wish Song", "attr": ["My Little Pony: Friendship is Magic"], "tags": ["Double", "Perfect"]}
 				, {"id": "jYFpRSgV0U0", "name": "Elemental", "attr": ["PrinceWhatever", "My Little Pony: Friendship is Magic"]}
 				, {"id": "F4teFWDSm3Q", "name": "20 Percent Cooler", "attr": ["Alex S. Remix", "Ken Ashcorp"], "tags": ["Perfect"]}
+				, {"id": "3XPPfPVMGKk", "name": "Antonymph", "attr": ["Vylet Pony"], "tags": ["Perfect"]}
 			]
 		},
 		"Avatar/Korra":{
@@ -5778,7 +5794,9 @@
 				{"id": "DJzodHDlhPY", "name": "Two Faced Lovers", "attr": ["Hatsune Miku"]},
 				{"id": "s4kSmTKwfKE", "name": "Miku", "attr": ["Anamanaguchi", "Hatsune Miku"]},
 				{"id": "eQysmWDyMWA", "name": "Mikusabbath", "attr": ["Hatsune Miku", "UtsuP"]},
-				{"id": "stKu4a-e6FM", "name": "\u76f8\u611b\u6027\u7406\u8ad6/Sou Ai Sei Ron", "attr": ["DECO*27", "Hatsune Miku"]},
+				{"id": "stKu4a-e6FM", "name": "\u76f8\u611b\u6027\u7406\u8ad6/Sou Ai Sei Ron", "attr": ["DECO*27", "Hatsune Miku"]}
+				, {"id": "9Chca3YVHxw", "name": "Ghost Rule", "attr": ["Hatsune Miku", "DECO*27"], "tags": ["Triple", "Druk"]}
+				, {"id": "CN2R_Vp4_zM", "name": "Monitoring", "attr": ["DECO*27 ft. Hatsune Miku"], "tags": ["Perfect"]},
 				{"id": "10OFs0wiiik", "name": "Natsu Matsuri", "attr": ["Watamote Ending 4", "Hatsune Miku"]},
 				{"id": "3dkVvpS6lSk", "name": "Nebula", "attr": ["Tripshots", "Hatsune Miku"], "tags": ["Double", "Perfect"]},
 				{"id": "mp6xjLiyu3c", "name": "The Snow White Princess/\u767d\u3044\u96ea\u306e\u30d7\u30ea\u30f3\u30bb\u30b9\u306f", "attr": ["\u306e\u307c\u308b/noboru", "Hatsune Miku"]},
@@ -5796,7 +5814,6 @@
 				{"id": "SLI9Hbeh4Ig", "name": "Mental Chainsaw", "attr": ["\u304b\u3044\u308a\u304d\u30d9\u30a2/Kairiki Bear ft. Hatsune Miku"]}
 				, {"id": "TcyjjExaBNg", "name": "Loop Memory/\u30eb\u30fc\u30d7\u30e1\u30e2\u30ea\u30fc", "attr": ["Yunosuke/\u96c4\u4e4b\u52a9 ft. Hatsune Miku/\u521d\u97f3\u30df\u30af"], "tags": ["SIX"]}
 				, {"id": "7XQ5fu07TMk", "name": "Astronauts", "attr": ["Powa-Powa-P", "Hatsune Miku"]}
-				, {"id": "9Chca3YVHxw", "name": "Ghost Rule", "attr": ["Hatsune Miku", "DECO*27"], "tags": ["Triple", "Druk"]}
 				, {"id": "Ta4m2eVai5M", "name": "Beat Eater", "attr": ["Police Piccadilly ft. Hatsune Miku"]}
 				, {"id": "iwNnxZrFK3o", "name": "I wanna feel ur luv!", "attr": ["ilyiculi ft. Hatsune Miku"], "tags": ["Perfect"]}
 				, {"id": "IanzMN2MuVM", "name": "Lemon Melon Cookie", "attr": ["Tak ft. Hatsune Miku"], "tags": ["Gamma"]}
@@ -6244,6 +6261,7 @@
 				, {"id": "WoRynwOQDo8", "name": "Arpeggio", "attr": ["Alexandros"]}
 				, {"id": "GLqjLtXc1VI", "name": "Keiju", "attr": ["sakanaction"], "tags": ["Double"]}
 				, {"id": "wMAAavmDhI8", "name": "Rainy Boots", "attr": ["inabakumori"]}
+				, {"id": "j4JVXdUYZK8", "name": "Dramaturgy", "attr": ["Eve"]}
 			]
 		},
 		"Misc I Don't Know Which Letter Pop":{
@@ -6743,8 +6761,6 @@
 				{"id": "N4nvm2KTD1E", "name": "Point Your Finger", "attr": ["Wiggles"], "tags": ["Perfect"]},
 				{"id": "XZmkjnQe_eI", "name": "A** Up", "attr": ["Baracuda"]},
 				{"id": "WaHbBbo64zk", "name": "Too Many Zooz", "attr": ["Warriors"]},
-				{"id": "FbwP7l-Dycw", "name": "Gamma Knife", "attr": ["King Gizzard & The Lizard Wizard"]}
-				, {"id": "Sk0Ql6-_qzg", "name": "Set", "attr": ["King Gizzard and the Lizard Wizard"]},
 				{"id": "9W9-zzu_LHo", "name": "B\u0142ogos\u0142awieni Mi\u0142osierni (Krysiek Remix)", "attr": ["Hymn \u015aDM 2016"]},
 				{"id": "lkP3kqS6Uks", "name": "Pepsi Man theme song"},
 				{"id": "mDOBzu7fN_4", "name": "Ameno", "attr": ["ERA"], "tags": ["Perfect"]},
