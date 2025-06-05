@@ -8,10 +8,11 @@ class MonoSpec {
 }
 
 class InstrumentPack {
-    constructor(name, displayName, formatName, double=false, monoPerc=null, monoBass=null, monoMel=null) {
+    constructor(name, displayName, formatName, abbrev, double=false, monoPerc=null, monoBass=null, monoMel=null) {
         this.name = name;
         this.displayName = displayName;
         this.formatName = formatName;
+        this.abbrev = abbrev;
         this.mono = {};
         this.mono["perc"] = monoPerc;
         this.mono["bass"] = monoBass;
@@ -25,18 +26,18 @@ class InstrumentPack {
 }
 
 var packs = Array(
-    new InstrumentPack("adau", "Adau", "BardTennoPackA", true),
-    new InstrumentPack("alpha", "Alpha", "BardCorpusPackA", true),
-    new InstrumentPack("beta", "Beta", "BardCorpusPackB", true),
-    new InstrumentPack("bombast", "Bombast", "BardHipHopPackA", true, null, new MonoSpec(false, 0.05), new MonoSpec(false, 0.20)),
-    new InstrumentPack("delta", "Delta", "BardCorpusPackD", true, false, new MonoSpec(false, 0.50), new MonoSpec(false, 0.10)),
-    new InstrumentPack("druk", "Druk", "BardGrineerPackA", true),
-    new InstrumentPack("epsilon", "Epsilon", "BardCorpusPackE", true, false, new MonoSpec(true, 0.25), false),
-    new InstrumentPack("gamma", "Gamma", "BardCorpusPackC", true),
-    new InstrumentPack("horos", "Horos", "BardEDMPackA", true),
-    new InstrumentPack("plogg", "Plogg", "BardGrineerPackB", true),
-    new InstrumentPack("clazz", "Clazz (Concept)", "ConceptClazz"),
-    new InstrumentPack("zeta", "Zeta (Concept)", "ConceptZeta"),
+    new InstrumentPack("adau", "Adau", "BardTennoPackA", "U", true),
+    new InstrumentPack("alpha", "Alpha", "BardCorpusPackA", "A", true),
+    new InstrumentPack("beta", "Beta", "BardCorpusPackB", "B", true),
+    new InstrumentPack("bombast", "Bombast", "BardHipHopPackA", "O", true, null, new MonoSpec(false, 0.05), new MonoSpec(false, 0.20)),
+    new InstrumentPack("delta", "Delta", "BardCorpusPackD", "D", true, false, new MonoSpec(false, 0.50), new MonoSpec(false, 0.10)),
+    new InstrumentPack("druk", "Druk", "BardGrineerPackA", "K", true),
+    new InstrumentPack("epsilon", "Epsilon", "BardCorpusPackE", "E", true, false, new MonoSpec(true, 0.25), false),
+    new InstrumentPack("gamma", "Gamma", "BardCorpusPackC", "G", true),
+    new InstrumentPack("horos", "Horos", "BardEDMPackA", "H", true),
+    new InstrumentPack("plogg", "Plogg", "BardGrineerPackB", "P", true),
+    new InstrumentPack("clazz", "Clazz (Concept)", "ConceptClazz", "J"),
+    new InstrumentPack("zeta", "Zeta (Concept)", "ConceptZeta", "Z"),
 );
 
 // build a few lookup tables for instrument pack metadata

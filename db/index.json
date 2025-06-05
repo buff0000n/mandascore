@@ -692,6 +692,8 @@
 				, {"id": "3f5wvoBFEXk", "name": "Year Zero", "attr": ["Ghost"], "tags": ["Perfect"]}
 				, {"id": "QYiER3OySVc", "name": "Darkness At The Heart Of My Love", "attr": ["Ghost"], "tags": ["Perfect"]}
 				, {"id": "dLbPSWThTXc", "name": "Spillways", "attr": ["Ghost"]}
+				, {"id": "z5WqfvAfAOE", "name": "The Future Is A Foreign Land", "attr": ["Ghost"], "tags": ["Perfect"]}
+				, {"id": "QE6hUViEss4", "name": "Lachryma", "attr": ["Ghost"], "tags": ["Perfect"]}
 			]
 		},
 		"Amaranthe":{
@@ -1206,6 +1208,7 @@
 				, {"id": "_soq01ybPPs", "name": "Oh Yeah!", "attr": ["Green Day"], "tags": ["Double", "Perfect"]}
 				, {"id": "ipiyjuoB2sA", "name": "Dominated Love Slave", "attr": ["Green Day"]}
 				, {"id": "aVnuIPU0D_o", "name": "Good Riddance / Time of Your Life", "attr": ["Green Day"]}
+				, {"id": "OWdHcegpcDA", "name": "Holiday", "attr": ["Green Day"]}
 			]
 		},
 		"Billie Eilish":{
@@ -1737,6 +1740,8 @@
 				, {"id": "jbDxLlyxX3A", "name": "Gemini", "attr": ["Chrome Rhino"]}
 				, {"id": "rxy2us0IAmw", "name": "Besitos", "attr": ["Pierce The Veil"], "tags": ["Perfect"]}
 				, {"id": "5x01IAKakJY", "name": "The Setup", "attr": ["Favored Nations"], "tags": ["Perfect"]}
+				, {"id": "UEADHQUDaNg", "name": "99 Luftballons", "attr": ["Nena"], "tags": ["Perfect"]}
+				, {"id": "wWBiHAsPsGA", "name": "i won't run", "attr": ["Keanu Bicol"]}
 			]
 		}
 	},
@@ -2525,6 +2530,14 @@
 				, {"id": "_SyO-uNm3wI", "name": "All The Stars", "attr": ["Kendrick Lamar", "SZA"]}
 			]
 		},
+		"$uicideboy$":{
+			"dbName":"RapHippityHop",
+			"songs":[
+				{"id": "ZbQurh1zF-M", "name": "Matte Black", "attr": ["$uicideboy$"], "tags": ["Perfect"]}
+				, {"id": "C9BiSir4YyE", "name": "1000 Blunts", "attr": ["$uicideboy$"]}
+				, {"id": "u1S3U8Kf0vI", "name": "Not Even Ghosts Are This Empty", "attr": ["$uicideboy$"], "tags": ["Perfect"]}
+			]
+		},
 		"Misc Rap/Hippity Hop":{
 			"dbName":"RapHippityHop.MiscRapHippityHop",
 			"songs":[
@@ -2659,6 +2672,7 @@
 				, {"id": "3wscq7NW4C8", "name": "Let me take you to the movies", "attr": ["BANGS"]}
 				, {"id": "x9_Vc2823aA", "name": "The Color Violet", "attr": ["Tory Lanez"], "tags": ["Double", "Perfect"]}
 				, {"id": "uUepxi8_qt0", "name": "If Looks Could Kill", "attr": ["Destroy Lonely"], "tags": ["Perfect"]}
+				, {"id": "DPfe8KCk7vc", "name": "Spillin", "attr": ["Destroy Lonely"]}
 				, {"id": "0JLxYYRWZOc", "name": "STFU!", "attr": ["Autumn!"]}
 				, {"id": "GxeicfhtRS8", "name": "Fight The Feeling", "attr": ["Rod Wave"]}
 				, {"id": "mMQkmh2EGfY", "name": "Ghost Monkeys", "attr": ["kiLLa Laharl"]}
@@ -2669,8 +2683,6 @@
 				, {"id": "bqbvEL1jNpM", "name": "One Beer", "attr": ["MF Doom"], "tags": ["Perfect"]}
 				, {"id": "jXy-YQgGgxk", "name": "Can't Let You Go", "attr": ["Fabolous ft. Mike Shorey", "Lil' Mo"]}
 				, {"id": "lfDMKw10ltU", "name": "Million Dollar Baby", "attr": ["Tommy Richman"]}
-				, {"id": "ZbQurh1zF-M", "name": "Matte Black", "attr": ["$uicideboy$"], "tags": ["Perfect"]}
-				, {"id": "C9BiSir4YyE", "name": "1000 Blunts", "attr": ["$uicideboy$"]}
 				, {"id": "sNr6ymtz2b8", "name": "Guillotine", "attr": ["Pi'erre Bourne"], "tags": ["Double", "Perfect"]}
 				, {"id": "mbBcRI9fUw8", "name": "Spineless", "attr": ["Terror Reid"], "tags": ["Perfect"]}
 				, {"id": "oUvo26fvn2k", "name": "Last Night", "attr": ["Diddy ft. Keyshia Cole"]}
@@ -3056,6 +3068,7 @@
 				, {"id": "LdVQBIl5dRo", "name": "Dance Again", "attr": ["Neffex"]}
 				, {"id": "rd88VG6j4_o", "name": "Rumors", "attr": ["Neffex"], "tags": ["Perfect"]}
 				, {"id": "hh-w4uldMJM", "name": "Numb", "attr": ["Neffex"], "tags": ["Perfect"]}
+				, {"id": "IE-9YbI1wpU", "name": "Destiny", "attr": ["Neffex"]}
 			]
 		},
 		"David Guetta":{
@@ -3460,6 +3473,7 @@
 				, {"id": "vHpiwt1UbTE", "name": "Bloodbath", "attr": ["asteria & 6arelyhuman"], "tags": ["Perfect"]}
 				, {"id": "zRthAiXVah0", "name": "Link!", "attr": ["Codet ft. RXTKY"]}
 				, {"id": "qKSEdW50CsU", "name": "The Future of the Future", "attr": ["Everything but the Girl"], "tags": ["Alpha"]}
+				, {"id": "WfKro0MegAQ", "name": "whiplash", "attr": ["2hollis"]}
 			]
 		}
 	},
@@ -3664,7 +3678,8 @@
 				, {"id": "PyewDWMp1ak", "name": "To The Edge/Warrior of Light's Theme", "attr": ["Final Fantasy XIV"]}
 				, {"id": "-kB1qiWkALI", "name": "Freefall/Final Steps of Faith", "attr": ["Final Fantasy XIV"]}
 				, {"id": "QJeznZ1Azxk", "name": "Hic Svnt Leones / Hesperos Theme", "attr": ["Final Fantasy XIV"], "tags": ["Perfect"]}
-				, {"id": "6CiWkSFQyjU", "name": "Metal  - Brute Justice Mode", "attr": ["Final Fantasy XIV"]},
+				, {"id": "6CiWkSFQyjU", "name": "Metal  - Brute Justice Mode", "attr": ["Final Fantasy XIV"]}
+				, {"id": "DmNGQJ81T5Y", "name": "Bee My Honey", "attr": ["Final Fantasy XIV"], "tags": ["Double", "Perfect"]},
 				{"id": "oiBBwC8G9LI", "name": "Valse di Fantastica", "attr": ["Final Fantasy XV"]},
 				{"id": "7wJ9_oRwIi8", "name": "Warrior Battle Theme 1", "attr": ["Mobius Final Fantasy"]},
 				{"id": "chYqN1_KNAM", "name": "Character Selection", "attr": ["Dissidia Final Fantasy NT"], "tags": ["Double"]},
@@ -4765,6 +4780,7 @@
 					, {"id": "y4dhP1yNbRg", "name": "Cinema", "attr": ["Vivid Bad Squad x Kaito", "Project Sekai"]}
 					, {"id": "eKznAjCdy7g", "name": "D/N/A", "attr": ["Project Sekai", "25\u6642\u3001\u30ca\u30a4\u30c8\u30b3\u30fc\u30c9\u3067 x Kagamine Rin"]}
 					, {"id": "0_xxGTJNZxU", "name": "Entering the Stronghold", "attr": ["Danny Schneidemesser", "Stick War"], "tags": ["Filled"]}
+					, {"id": "PV2VjRF2r7w", "name": "Worms Armageddon main theme"}
 				]
 			}
 		}
@@ -5528,6 +5544,7 @@
 				{"id": "L2nm9ncx1yI", "name": "Final Form Ride Hibiki", "attr": ["Kamen Rider Decade"]}
 				, {"id": "KXXVipk-AgI", "name": "Be The One", "attr": ["Kamen Rider Build opening"]}
 				, {"id": "mrxmXI6DiG4", "name": "Let's Go!! Rider Kick", "attr": ["Kamen Rider"]}
+				, {"id": "dZ_uFi5vSyY", "name": "Got Boost?", "attr": ["Kamen Rider Gavv opening"]}
 			]
 		},
 		"Samurai Jack":{
@@ -5819,8 +5836,8 @@
 				, {"id": "IanzMN2MuVM", "name": "Lemon Melon Cookie", "attr": ["Tak ft. Hatsune Miku"], "tags": ["Gamma"]}
 			]
 		},
-		"Misc Vocaloid":{
-			"dbName":"FarEast.MiscVocaloid",
+		"Misc Vocaloid/UTAUloid":{
+			"dbName":"FarEast.MiscVocaloidUTAUloid",
 			"songs":[
 				{"id": "Su26oDMBpQ0", "name": "Ordinary DISCO", "attr": ["Vsinger"]},
 				{"id": "RPd3cYz1TfY", "name": "Asu no Yozora Shoukaihan/\u30a2\u30b9\u30ce\u30e8\u30be\u30e9\u54e8\u6212\u73ed", "attr": ["IA", "Orangestar"]},
@@ -5849,6 +5866,7 @@
 				, {"id": "oYNxbdJGc04", "name": "Headphone Actor", "attr": ["Jin ft. LiSA"]}
 				, {"id": "vg23z1vFi34", "name": "\u591c\u5484\u30c7\u30a3\u30bb\u30a4\u30d6", "attr": ["Jin/\u3058\u3093", "IA"]}
 				, {"id": "9GPsacxZ3s8", "name": "Language Of The Lost", "attr": ["R.I.P. ft. Kasane Teto"]}
+				, {"id": "jrNUjUdzNQk", "name": "Ochame Kinou/Fukiretta", "attr": ["LamazeP ft. Kasane Teto"]}
 			]
 		},
 		"BTS":{
@@ -6261,6 +6279,7 @@
 				, {"id": "WoRynwOQDo8", "name": "Arpeggio", "attr": ["Alexandros"]}
 				, {"id": "GLqjLtXc1VI", "name": "Keiju", "attr": ["sakanaction"], "tags": ["Double"]}
 				, {"id": "wMAAavmDhI8", "name": "Rainy Boots", "attr": ["inabakumori"]}
+				, {"id": "LXbnudQr1N0", "name": "Lost Umbrella", "attr": ["Inaba Cumori ft. Kaai Yuki"]}
 				, {"id": "j4JVXdUYZK8", "name": "Dramaturgy", "attr": ["Eve"]}
 			]
 		},
@@ -6893,6 +6912,7 @@
 				, {"id": "KK2wFxBZT_c", "name": "Romanticist / Dream Palette", "attr": ["Yves Tumor"], "tags": ["Perfect"]}
 				, {"id": "B_H-UgsuJt0", "name": "You're The One That I Want", "attr": ["Grease"]}
 				, {"id": "krtOB-dRK_E", "name": "This Isn't Over", "attr": ["Sondae"]}
+				, {"id": "8u20H9vtFsg", "name": "Jesus Freak", "attr": ["Newsboys"]}
 			]
 		}
 	}
