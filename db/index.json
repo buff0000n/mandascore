@@ -635,6 +635,7 @@
 				{"id": "A8kmTrzRCvo", "name": "Fallen Angel", "attr": ["Three Days Grace"]},
 				{"id": "Leo34vcAhlc", "name": "Never Too Late", "attr": ["Three Days Grace"]},
 				{"id": "1o_XXfAKqQY", "name": "Infrared", "attr": ["Three Days Grace"]}
+				, {"id": "Ak69qpayxWQ", "name": "Apologies", "attr": ["Three Days Grace"], "tags": ["Quadruple"]}
 			]
 		},
 		"PVRIS":{
@@ -1037,11 +1038,13 @@
 				{"id": "zSH8HJ6HgMw", "name": "Burgz", "attr": ["Ken Ashcorp"], "tags": ["Perfect"]},
 				{"id": "BBhSfqCOaCU", "name": "On The Rocks", "attr": ["Ken Ashcorp"]},
 				{"id": "7MKBGvog-jM", "name": "Ryder Or Riot", "attr": ["Ken Ashcorp"]},
-				{"id": "TSvmQV8fAEM", "name": "Touch Fluffy Tail", "attr": ["Ken Ashcorp"]},
+				{"id": "TSvmQV8fAEM", "name": "Touch Fluffy Tail", "attr": ["Ken Ashcorp"]}
+				, {"id": "DeW8cmXtjNk", "name": "Touch Fluffy Tail - intro", "attr": ["Ken Ashcorp"]},
 				{"id": "uAGRovDgAZM", "name": "Black Lilly", "attr": ["Ken Ashcorp"]},
 				{"id": "w_ob_lwpfZM", "name": "Hunter", "attr": ["Ken Ashcorp"], "tags": ["Perfect"]},
 				{"id": "T3CVOecTiM8", "name": "In The Zone", "attr": ["Ken Ashcorp"]},
 				{"id": "kfYfwMlLEeg", "name": "I'm Your Slave", "attr": ["Ken Ashcorp"]}
+				, {"id": "BBrU6rLaLHE", "name": "On The Rocks", "attr": ["Ken Ashcorp"]}
 			]
 		},
 		"The Weeknd":{
@@ -1065,6 +1068,7 @@
 				, {"id": "vlbV5ZnWqgM", "name": "Heartless", "attr": ["The Weeknd"], "tags": ["Perfect"]}
 				, {"id": "R7k1_lvrh14", "name": "Timeless", "attr": ["The Weeknd", "Playboi Carti"], "tags": ["Perfect"]}
 				, {"id": "gtqhCVAFi0I", "name": "Reflections Laughing", "attr": ["The Weeknd ft. Travis Scott"], "tags": ["Double", "Perfect"]}
+				, {"id": "TM12f-Tjhuo", "name": "Popular", "attr": ["The Weeknd", "Playboi Carti", "Madonna"], "tags": ["Triple", "Perfect", "Gamma"]}
 			]
 		},
 		"Rise Against":{
@@ -2164,6 +2168,7 @@
 				, {"id": "8_aKTz0UHX0", "name": "Suffocation", "attr": ["Crystal Castles"], "tags": ["Double", "Perfect"]}
 				, {"id": "bBAAGMHMVQE", "name": "Courtship Dating", "attr": ["Crystal Castles"]}
 				, {"id": "UMSOiwrh83M", "name": "Forgiveness", "attr": ["Alice Glass"], "tags": ["Perfect"]}
+				, {"id": "pCVsfpIPlEI", "name": "leni", "attr": ["Crystal Castles"], "tags": ["Perfect"]}
 			]
 		},
 		"Charlie Puth":{
@@ -3458,6 +3463,7 @@
 				, {"id": "abMRovdiig4", "name": "ur special to me", "attr": ["Artemas"]}
 				, {"id": "N2hgFz1vC2w", "name": "emotion engine", "attr": ["Dazegxd"]}
 				, {"id": "6XWhDxgXexU", "name": "Avril 14th", "attr": ["Aphex Twin"]}
+				, {"id": "wA1hRdHIaVo", "name": "Xtal", "attr": ["Aphex Twin"], "tags": ["Perfect"]}
 				, {"id": "weOep5UKlcI", "name": "On the Floor", "attr": ["removeface", "Lumi Athena"], "tags": ["Perfect"]}
 				, {"id": "F8yih7tML2E", "name": "Kammy / Like I Do", "attr": ["Fred Again"]}
 				, {"id": "5FvSza67oI0", "name": "Rattle", "attr": ["Bingo Players"]}
@@ -3474,6 +3480,7 @@
 				, {"id": "zRthAiXVah0", "name": "Link!", "attr": ["Codet ft. RXTKY"]}
 				, {"id": "qKSEdW50CsU", "name": "The Future of the Future", "attr": ["Everything but the Girl"], "tags": ["Alpha"]}
 				, {"id": "WfKro0MegAQ", "name": "whiplash", "attr": ["2hollis"]}
+				, {"id": "hB6nXWzvzSg", "name": "Lemon Drop", "attr": ["ATEEZ"]}
 			]
 		}
 	},
@@ -3497,6 +3504,7 @@
 				{"id": "xVStjbeaNdY", "name": "Phantom Dancing", "attr": ["Luigi's Mansion Song", "CG5"]}
 				, {"id": "WyUUDGvxtso", "name": "Athletic Theme", "attr": ["Yoshi's Island"]}
 				, {"id": "5vbhngDH2t4", "name": "Flower Garden", "attr": ["Yoshi's Island"]}
+				, {"id": "HaPcf0cfU5M", "name": "Thwomp Volcano", "attr": ["Mario & Luigi: Partners in Time"]}
 			]
 		},
 		"Super Smash Brothers":{
@@ -4781,6 +4789,7 @@
 					, {"id": "eKznAjCdy7g", "name": "D/N/A", "attr": ["Project Sekai", "25\u6642\u3001\u30ca\u30a4\u30c8\u30b3\u30fc\u30c9\u3067 x Kagamine Rin"]}
 					, {"id": "0_xxGTJNZxU", "name": "Entering the Stronghold", "attr": ["Danny Schneidemesser", "Stick War"], "tags": ["Filled"]}
 					, {"id": "PV2VjRF2r7w", "name": "Worms Armageddon main theme"}
+					, {"id": "DNvYEcvVjIY", "name": "John Doe Chase Theme", "attr": ["Forsaken"]}
 				]
 			}
 		}
@@ -5867,6 +5876,7 @@
 				, {"id": "vg23z1vFi34", "name": "\u591c\u5484\u30c7\u30a3\u30bb\u30a4\u30d6", "attr": ["Jin/\u3058\u3093", "IA"]}
 				, {"id": "9GPsacxZ3s8", "name": "Language Of The Lost", "attr": ["R.I.P. ft. Kasane Teto"]}
 				, {"id": "jrNUjUdzNQk", "name": "Ochame Kinou/Fukiretta", "attr": ["LamazeP ft. Kasane Teto"]}
+				, {"id": "NraFPovN0TM", "name": "25:00", "attr": ["Shokupanw ft. Kasane Teto"]}
 			]
 		},
 		"BTS":{
