@@ -70,8 +70,8 @@ class Library {
                         <span class="tooltiptextbottom">Search by keyword</span>
                     </span>
                 </span>
-                <span class="imgButton searchButton tooltip"><img src="img/icon-search.png" srcset="img2x/icon-search.png 2x" alt="Reverse Search"/>
-                    <span class="tooltiptextbottom">Reverse search for the current song in the library</span>
+                <span class="imgButton menuButton tooltip"><img src="img/icon-search.png" srcset="img2x/icon-search.png 2x" alt="Menu"/>
+                    <span class="tooltiptextbottom">Library Menu</span>
                 </span>
                 <span><strong id="visibleSongCount"></strong></span>
             </div>
@@ -79,13 +79,47 @@ class Library {
         this.libraryContainer.appendChild(this.menuContainer);
 
         // click handlers
-        getFirstChild(this.menuContainer, "titleButton").addEventListener("click", () => { this.hide(); });
-        getFirstChild(this.menuContainer, "searchButton").addEventListener("click", () => { this.matchSearch(); });
+        getFirstChild(this.menuContainer, "titleButton").addEventListener("click", (e) => { this.hide(); });
+        getFirstChild(this.menuContainer, "menuButton").addEventListener("click", (e) => { this.showMenu(e); });
 
         // index container, this is where the songs are listed
         this.indexContainer = document.createElement("div");
         this.indexContainer.className = "indexContainer";
         this.libraryContainer.appendChild(this.indexContainer);
+    }
+
+    showMenu(e) {
+        var button = e.currentTarget;
+        var div = document.createElement("div");
+        div.className = "menu";
+        div.button = button;
+
+        // build the section menu out of buttons
+        var html = `
+            <div class="button searchButton tooltip">
+                <img class="imgButton" src="img/icon-search.png" srcset="img2x/icon-search.png 2x" alt="Reverse Search"/>
+                Reverse Search
+                <span class="tooltiptextbottom">Reverse search for the current song in the library</span>
+            </div>
+            <div class="button statsButton tooltip">
+                <img class="imgButton" src="img/icon-search.png" srcset="img2x/icon-search.png 2x" alt="Instrument Stats"/>
+                Instrument Stats
+                <span class="tooltiptextbottom">Show statistics for instrument sets used in the currently visible songs</span>
+            </div>
+        `;
+
+        div.innerHTML = html;
+        getFirstChild(div, "searchButton").addEventListener("click", () => {
+            clearMenus();
+            this.matchSearch();
+        });
+        getFirstChild(div, "statsButton").addEventListener("click", () => {
+            clearMenus();
+            this.showStats();
+        });
+
+        // put the menu in the clicked button's parent and anchor it to button
+        showMenu(div, getParent(button, "scoreButtonRow"), button);
     }
 
     init() {
@@ -137,7 +171,7 @@ class Library {
 
         // build the search queue prototype, no point in building this every time
         this.searchQueuePrototype = [];
-        this.queueSongLists(this.index, this.searchQueuePrototype);
+        this.queueSongLists(this.index, this.searchQueuePrototype, false);
     }
 
     buildCatDiv(categoryName) {
@@ -295,7 +329,7 @@ class Library {
 
     indexSong(song, cats) {
         // todo: better
-        // Just concatenate all relevent keywords into a big string and lowercase it.
+        // Just concatenate all relevant keywords into a big string and lowercase it.
         song.keywords = (cats.join(" ") + " "
             + song.name + " "
             + (song.attr ? (" " + song.attr.join(" ")) : "")
@@ -341,7 +375,7 @@ class Library {
         this.searchWords = words;
 
         // start the search
-        this.startFuncSearch(false, (song, songList, index, total) => {
+        this.startFuncSearch(false, false, (song, songList, index, total) => {
             // the song is displayed if there is no search string or if all of the words are found in its keywords
             if (!words || this.searchKeywords(song.keywords, words)) {
                 this.showSong(song);
@@ -349,36 +383,50 @@ class Library {
                 // otherwise, hide the song
                 this.hideSong(song);
             }
+        }, () => {
+            this.updateVisibleSongCount();
         })
     }
 
-    startFuncSearch(loadSongData, func) {
+    startFuncSearch(loadSongData, omitHidden, searchFunc, endBatchFunc=null, endFunc=endBatchFunc) {
         // cancel any search in progress
         if (this.searchTimeout) {
             clearTimeout(this.searchTimeout);
         }
         // get a copy of the search queue
-        var searchQueue = this.searchQueuePrototype.slice();
+        if (!omitHidden) {
+            var searchQueue = this.searchQueuePrototype.slice();
+        } else {
+            var searchQueue = [];
+            this.queueSongLists(this.index, searchQueue, omitHidden);
+        }
         // store the total
         var total = searchQueue.length;
         // start the search
-        this.searchTimeout = setTimeout(() => this.runSearch(searchQueue, total, loadSongData, func), this.searchDelay);
+        this.searchTimeout = setTimeout(() => this.runSearch(searchQueue, total, loadSongData, searchFunc, endBatchFunc, endFunc), this.searchDelay);
     }
 
-    queueSongLists(map, queue) {
+    queueSongLists(map, queue, omitHidden=false) {
         // recursive search
         if (map.songs) {
             // leaf category: search individual songs for keywords
-            queue.push(map.songs);
+            if (!omitHidden) {
+                queue.push(map.songs);
+            } else {
+                queue.push(map.songs.filter(s => !this.isSongHidden(s)));
+            }
         } else {
             // branch category: recursively search each subcategory
             for (var key in map) {
-                 this.queueSongLists(map[key], queue);
+                var skip = !omitHidden ? false : map[key].songs && map[key].songs[0].div.parentElement.style.display == 'none';
+                if (!skip) {
+                    this.queueSongLists(map[key], queue, omitHidden);
+                }
             }
         }
     }
 
-    runSearch(searchQueue, totalItems, loadSongData, func) {
+    runSearch(searchQueue, totalItems, loadSongData, searchFunc, endBatchFunc=null, endFunc=endBatchFunc) {
         // count songs searched
         var count = 0;
         // search song lists until we exceed the batch size
@@ -388,7 +436,7 @@ class Library {
                 // clear the timeout
                 this.searchTimeout = null;
                 // end the search
-                this.updateVisibleSongCount();
+                if (endFunc) endFunc();
                 return;
             }
 
@@ -396,7 +444,7 @@ class Library {
             if (loadSongData && !this.database[searchQueue[0][0].dbName]) {
                 // continue this search after loading the database
                 this.queryDb(searchQueue[0][0].dbName, () => {
-                    this.runSearch(searchQueue, totalItems, loadSongData, func);
+                    this.runSearch(searchQueue, totalItems, loadSongData, searchFunc, endBatchFunc, endFunc);
                 });
                 return;
             }
@@ -411,15 +459,15 @@ class Library {
                 // get the song data if necessary
                 var songList = loadSongData ? this.database[song.dbName][song.id] : null;
                 // run the search function on the song
-                func(song, songList, index, totalItems);
+                searchFunc(song, songList, index, totalItems);
             }
             // increment the count
             count += songs.length;
         }
 
-        this.updateVisibleSongCount();
+        if (endBatchFunc) endBatchFunc();
         // schedule the next batch
-        this.searchTimeout = setTimeout(() => this.runSearch(searchQueue, totalItems, loadSongData, func), this.searchDelay);
+        this.searchTimeout = setTimeout(() => this.runSearch(searchQueue, totalItems, loadSongData, searchFunc, endBatchFunc, endFunc), this.searchDelay);
     }
 
     showSong(song) {
@@ -432,9 +480,13 @@ class Library {
         }
     }
 
+    isSongHidden(song) {
+        return song.div.style.display == "none";
+    }
+
     hideSong(song) {
         // if the song is not hidden
-        if (!song.div.style.display || song.div.style.display == "block") {
+        if (!this.isSongHidden(song)) {
             // hide it
             song.div.style.display = "none";
             // hide its parent, if necessary
@@ -537,7 +589,7 @@ class Library {
         callback(this.database[dbName]);
     }
 
-    matchSearch() {
+    startSearchDisplay(endFunc) {
         // experimental song match search
 
         // remove the regular menu and index containers temporarily
@@ -558,14 +610,29 @@ class Library {
             </div>
         `;
 
-        // build a second loaded just for the progress bar
+        // build a second loader just for the progress bar
         this.searchLoader = new Loader();
         this.searchLoader.setLabel("Searching");
         this.searchLoader.log = true;
         this.menuContainer.appendChild(this.searchLoader.loadingBox);
         this.libraryContainer.appendChild(this.menuContainer);
 
-        getFirstChild(this.menuContainer, "titleButton").addEventListener("click", () => { this.endMatchSearch() });
+        getFirstChild(this.menuContainer, "titleButton").addEventListener("click", () => { endFunc(); });
+    }
+
+    endSearchDisplay() {
+        // restore the original menu bar and index
+        this.menuContainer.remove();
+        this.menuContainer = this.menuContainerSaved;
+        this.libraryContainer.appendChild(this.menuContainer);
+
+        this.indexContainer.remove();
+        this.indexContainer = this.indexContainerSaved;
+        this.libraryContainer.appendChild(this.indexContainer);
+    }
+
+    matchSearch() {
+        this.startSearchDisplay(() => { this.endMatchSearch(); });
 
         // index container, this is where the songs are listed
         this.indexContainer = document.createElement("div");
@@ -582,7 +649,7 @@ class Library {
         // search result array
         var matchListing = Array();
         // start the search
-        this.startFuncSearch(true, (song, songList, index, total) => {
+        this.startFuncSearch(true, false, (song, songList, index, total) => {
             // min match value
             var match = 0;
 
@@ -631,15 +698,7 @@ class Library {
     }
 
     endMatchSearch() {
-        // restore the original menu bar and index
-        this.menuContainer.remove();
-        this.menuContainer = this.menuContainerSaved;
-        this.libraryContainer.appendChild(this.menuContainer);
-
-        this.indexContainer.remove();
-        this.indexContainer = this.indexContainerSaved;
-        this.libraryContainer.appendChild(this.indexContainer);
-
+        this.endSearchDisplay();
         this.searchLoader = null;
     }
 
@@ -668,7 +727,142 @@ class Library {
             this.getCategoryCounts(name2, cat2, catCounts, filter);
         }
     }
+
+    showStats() {
+        this.startSearchDisplay(() => { this.endStats(); });
+
+        function partMap() {
+            // why is this so hard
+            var map = {};
+            for (var i = 0 ; i < sectionNames.length; i++) {
+                map[sectionNames[i]] = {"value": 0};
+            }
+            return map;
+        }
+
+        var statMap = {};
+
+        // index container, this is where the songs are listed
+        this.indexContainer = document.createElement("div");
+        this.indexContainer.className = "indexContainer";
+        this.libraryContainer.appendChild(this.indexContainer);
+
+        var table = document.createElement("table");
+        table.className = "statTable";
+        table.style.width = "100%";
+        this.indexContainer.appendChild(table);
+
+        for (var p = 0 ; p < packs.length; p++) {
+            if (packs[p].concept) continue;
+
+            var pm = partMap();
+
+            statMap[packs[p].name] = pm;
+
+            var tr = document.createElement("tr");
+            tr.className = "statRow";
+            table.appendChild(tr);
+
+            var nameTd = document.createElement("td");
+            nameTd.className = "statLabel";
+            nameTd.style.textAlign = "right";
+            nameTd.innerHTML = `<strong>${packs[p].displayName}</strong>`;
+            tr.appendChild(nameTd);
+
+            var statTd = document.createElement("td");
+            statTd.className = "statCell";
+            statTd.style.width = "100%";
+            tr.appendChild(statTd);
+
+            for (var b = 0 ; b < sectionNames.length; b++) {
+                var statBar = document.createElement("div");
+                statBar.className = "statBar";
+                statBar.style.backgroundColor = sectionMetaData[sectionNames[b]].color;
+                statBar.style.width = "0%";
+                statBar.style.height = "0.45em";
+                statTd.appendChild(statBar);
+                pm[sectionNames[b]].statBar = statBar;
+            }
+        }
+
+        var totals = partMap();
+        var max = partMap();
+
+        function incrementStat(instrumentSet, part, amount) {
+            // filter out concept instrument sets
+            if (instrumentNameToPack[instrumentSet].concept) {
+                return;
+            }
+            // console.log("incrementing: " + instrumentSet + "/" + part + " by " + amount);
+            var partMap = statMap[instrumentSet];
+            partMap[part].value += amount;
+            totals[part].value += amount;
+            if (max[part].value < partMap[part].value) max[part].value = partMap[part].value;
+        }
+
+        function renderStats() {
+            var maxMax = 0;
+            for (var part in max) {
+                if (max[part].value > maxMax) maxMax = max[part].value;
+            }
+
+            function printPartMap(pm) {
+                var s0 = "";
+                for (var p = 0; p < sectionNames.length; p++) {
+                    var part = sectionNames[p];
+                    var count = pm[part].value;
+                    if (p > 0) s0 += ", ";
+                    s0 += part + ": " + count.toFixed(2);
+                    if (pm[part].statBar) {
+                        var percentage = (100 * (count / totals[part].value));
+                        pm[part].statBar.style.width = (percentage * (totals[part].value / maxMax)) + "%";
+                        pm[part].statBar.style.height = "0.45em";
+                    }
+                }
+                return s0;
+            }
+
+            var s = "";
+            for (var i = 0 ; i < packs.length; i++) {
+                if (packs[i].concept) {
+                    continue;
+                }
+                var is = packs[i].name;
+                s += is + ": (";
+                var partMap = statMap[is];
+                s += printPartMap(partMap);
+                s += ")\n";
+            }
+            var output = "totals: " + printPartMap(totals) + "\nmax: " + printPartMap(max) + "\n" + s;
+            console.log(output);
+        }
+
+        this.startFuncSearch(true, true, (song, songList, index, total) => {
+            var numSongs = songList.length;
+            for (var i = 0; i < numSongs; i++) {
+                // parse to a song object
+                var songObject = new Song();
+                songObject.parseChatLink(songList[i]);
+                // increment statistics for each instrument set part used
+                for (var part in songObject.packs) {
+                    // if a song entry has multiple songs, then weight each instrument set part
+                    // so the totals still add up to 1
+                    incrementStat(songObject.packs[part], part, (1.0/numSongs));
+                }
+            }
+        }, renderStats);
+
+    }
+
+    endStats() {
+        this.endSearchDisplay();
+        this.searchLoader = null;
+    }
+
 }
+
+
+
 
 class Loader extends ProgressBar {
     constructor() {

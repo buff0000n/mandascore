@@ -446,6 +446,11 @@
         font-size: 100%;
         border-radius: 1ex;
         display: block;
+        white-space: nowrap;
+        text-align: left;
+    }
+    .menu .imgButton {
+        vertical-align: middle;
     }
     .menuContainer > .titleButton {
         background-color: #202040;

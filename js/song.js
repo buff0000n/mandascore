@@ -8,11 +8,12 @@ class MonoSpec {
 }
 
 class InstrumentPack {
-    constructor(name, displayName, formatName, abbrev, double=false, monoPerc=null, monoBass=null, monoMel=null) {
+    constructor(name, displayName, formatName, abbrev, double=false, concept=false, monoPerc=null, monoBass=null, monoMel=null) {
         this.name = name;
         this.displayName = displayName;
         this.formatName = formatName;
         this.abbrev = abbrev;
+        this.concept = concept;
         this.mono = {};
         this.mono["perc"] = monoPerc;
         this.mono["bass"] = monoBass;
@@ -36,8 +37,8 @@ var packs = Array(
     new InstrumentPack("gamma", "Gamma", "BardCorpusPackC", "G", true),
     new InstrumentPack("horos", "Horos", "BardEDMPackA", "H", true),
     new InstrumentPack("plogg", "Plogg", "BardGrineerPackB", "P", true),
-    new InstrumentPack("clazz", "Clazz (Concept)", "ConceptClazz", "J"),
-    new InstrumentPack("zeta", "Zeta (Concept)", "ConceptZeta", "Z"),
+    new InstrumentPack("clazz", "Clazz (Concept)", "ConceptClazz", "J", false, true),
+    new InstrumentPack("zeta", "Zeta (Concept)", "ConceptZeta", "Z", false, true),
 );
 
 // build a few lookup tables for instrument pack metadata
