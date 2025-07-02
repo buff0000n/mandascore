@@ -97,7 +97,7 @@ function runSectionMenu(title, button, callback, sectionList) {
         var m = sectionMetaData[name];
         html += `<div class="button ${m.name}Button" onClick="selectSection(this, '${m.name}')" style="color: ${m.color}; vertical-align: middle; text-align: left;">
             <img style="vertical-align: middle;" class="imgButton" src="img/${sectionImages[name]}.png" srcset="img2x/${sectionImages[name]}.png 2x"/>
-            ${m.displayName}</span>
+            ${m.displayName}
         </div>`;
     }
     div.innerHTML = html;

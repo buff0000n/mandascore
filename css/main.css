@@ -697,6 +697,15 @@
         }​
     }
 
+    .libraryMenu {
+        text-align: left;
+    }
+
+    .filterCell {
+        /* text-Align: right; */
+        white-space: nowrap;
+    }
+
     /*
     */
 
@@ -776,6 +785,33 @@
         border-width: 1ex;
         border-style: solid;
         border-color: transparent transparent #C0C0C0 transparent;
+    }
+
+    /* quick, small tooltips */
+    .quicktooltip {
+        position: relative;
+        display: inline-block;
+    }
+    .quicktooltip:hover .quicktooltiptext {
+        visibility: visible;
+        opacity: 1;
+    }
+    /* left side tooltip */
+    .quicktooltip .quicktooltiptext {
+        visibility: hidden;
+        background-color: #C0C0C0;
+        color: #4040A0;
+        text-align: center;
+        border-radius: 0.25ex;
+        padding: 0.5ex;
+        position: absolute;
+        z-index: 1;
+        top: 0.5em;
+        left: 1em;
+        /* right: calc(-100% - 1ex); */
+        /* right: -100%; */
+        opacity: 1;
+        white-space: nowrap;
     }
 
     /* popup, adapted from https://www.w3schools.com/howto/howto_js_popup.asp */
