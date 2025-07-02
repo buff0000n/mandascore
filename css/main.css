@@ -734,6 +734,8 @@
         background-color: #C0C0C0;
         color: #4040A0;
         text-align: center;
+        /* todo: why do I explicitly have to specify word wrap? */
+        white-space: wrap;
         border-radius: 0.5ex;
         padding: 1ex;
         position: absolute;
@@ -763,6 +765,8 @@
         background-color: #C0C0C0;
         color: #4040A0;
         text-align: center;
+        /* todo: why do I explicitly have to specify word wrap? */
+        white-space: wrap;
         border-radius: 0.5ex;
         padding: 1ex;
         position: absolute;

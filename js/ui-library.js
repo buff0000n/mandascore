@@ -60,24 +60,29 @@ class Library {
         // menu bar, just HTML it
         this.menuContainer.innerHTML = `
             <div class="scoreButtonRow">
-                <input class="titleButton" type="submit" value="Library"/>
+                <span class="imgButton titleButton closeButton tooltip"><img src="img/icon-clear.png" srcset="img2x/icon-clear.png 2x" alt="Back"/>
+                    <span class="tooltiptextbottom">Go back</span>
+                </span>
                 <span class="songTitleDiv">
                     <span class="tooltip">
-                        <input class="searchBar" type="text" size="28"/>
+                        <input class="searchBar" type="text" size="24"/>
                         <span class="tooltiptextbottom">Search by keyword</span>
                     </span>
                 </span>
+                <span class="titleButton" id="visibleSongCount"></span>
                 <span class="imgButton menuButton tooltip"><img src="img/icon-burger.png" srcset="img2x/icon-burger.png 2x" alt="Menu"/>
                     <span class="tooltiptextbottom">Library Menu</span>
                 </span>
-                <span><strong id="visibleSongCount"></strong></span>
             </div>
         `;
         this.libraryContainer.appendChild(this.menuContainer);
 
         // click handlers
-        getFirstChild(this.menuContainer, "titleButton").addEventListener("click", (e) => { this.hide(); });
-        getFirstChild(this.menuContainer, "menuButton").addEventListener("click", (e) => { this.showMenu(e); });
+        getFirstChild(this.menuContainer, "closeButton").addEventListener("click", (e) => { this.hide(); });
+        getFirstChild(this.menuContainer, "menuButton").addEventListener("click", (e) => {
+            clearMenus();
+            this.showMenu(e);
+        });
         getFirstChild(this.menuContainer, "searchBar").addEventListener("keyup", (e) => { this.setLibrarySearch(e); });
 
         // index container, this is where the songs are listed
@@ -94,28 +99,32 @@ class Library {
 
         // build the section menu out of buttons
         var html = `
+            <div class="button filterButton tooltip">
+                <img class="imgButton" src="img/icon-filter.png" srcset="img2x/icon-filter.png 2x" alt="Instrument Filter"/>
+                Filter
+                <span class="tooltiptextbottom">Set a filter for instrument sets and parts</span>
+            </div>
+            <div class="button statsButton tooltip">
+                <img class="imgButton" src="img/icon-stats.png" srcset="img2x/icon-stats.png 2x" alt="Instrument Stats"/>
+                Statistics
+                <span class="tooltiptextbottom">Show statistics for instrument sets used in the currently visible songs</span>
+            </div>
+            <!-- todo this search sucks
             <div class="button searchButton tooltip">
                 <img class="imgButton" src="img/icon-search.png" srcset="img2x/icon-search.png 2x" alt="Reverse Search"/>
                 Reverse Search
                 <span class="tooltiptextbottom">Reverse search for the current song in the library</span>
             </div>
-            <div class="button filterButton tooltip">
-                <img class="imgButton" src="img/icon-filter.png" srcset="img2x/icon-filter.png 2x" alt="Instrument Filter"/>
-                Instrument Filter
-                <span class="tooltiptextbottom">Set a filter for instrument sets and parts</span>
-            </div>
-            <div class="button statsButton tooltip">
-                <img class="imgButton" src="img/icon-stats.png" srcset="img2x/icon-stats.png 2x" alt="Instrument Stats"/>
-                Instrument Stats
-                <span class="tooltiptextbottom">Show statistics for instrument sets used in the currently visible songs</span>
-            </div>
+            -->
         `;
 
         div.innerHTML = html;
+        /*
         getFirstChild(div, "searchButton").addEventListener("click", (e) => {
             clearMenus();
             this.matchSearch(e);
         });
+        */
         getFirstChild(div, "filterButton").addEventListener("click", (e) => {
             clearMenus();
             this.showFilter(button);
@@ -1062,7 +1071,7 @@ class Library {
             var part = partList[i];
             var m = sectionMetaData[part];
             extraButtonHtml += `
-            <span class="imgButton tooltip select${part}"><img src="img/${sectionImages[part]}.png" srcset="img2x/${sectionImages[part]}.png 2x" alt="${m.displayName}"/>
+            <span class="imgButton tooltip select${part}" id="select${part}Tab"><img src="img/${sectionImages[part]}.png" srcset="img2x/${sectionImages[part]}.png 2x" alt="${m.displayName}"/>
                 <span class="tooltiptextbottom">Show ${m.displayName}</span>
             </span>`;
         }
@@ -1186,14 +1195,20 @@ class Library {
 
         function setShowPart(part) {
             showPart = (part == "all") ? null : part;
+
+            for (var r = 0; r < partList.length; r++) {
+                var partName = partList[r];
+                document.getElementById(`select${partName}Tab`).style.padding = part == partName ? "0.5ex 1ex 1ex 1ex" : "0.5ex 1ex 0 1ex";
+            }
+
             renderStats();
         }
 
         for (var i = 0; i < partList.length; i++) {
-            var part = partList[i];
-            var partButton = getFirstChild(this.menuContainer, `select${part}`);
-            partButton.part = part;
-            partButton.addEventListener("click", (e) => { setShowPart(e.currentTarget.part); });
+            var partName = partList[i];
+            var partButton = getFirstChild(this.menuContainer, `select${partName}`);
+            partButton.partName = partName;
+            partButton.addEventListener("click", (e) => { setShowPart(e.currentTarget.partName); });
         }
 
         this.startFuncSearch(true, true, (song, songList, index, total) => {
@@ -1211,6 +1226,7 @@ class Library {
             }
         }, renderStats);
 
+        setShowPart("all");
     }
 
     endStats() {
