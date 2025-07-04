@@ -109,13 +109,8 @@ class Library {
         var html = `
             <div class="button filterButton tooltip">
                 <img class="imgButton" src="img/icon-filter.png" srcset="img2x/icon-filter.png 2x" alt="Instrument Filter"/>
-                Filter
+                Instrument Filter
                 <span class="tooltiptextbottom">Set a filter for instrument sets and parts</span>
-            </div>
-            <div class="button statsButton tooltip">
-                <img class="imgButton" src="img/icon-stats.png" srcset="img2x/icon-stats.png 2x" alt="Instrument Stats"/>
-                Statistics
-                <span class="tooltiptextbottom">Show statistics for instrument sets used in the currently visible songs</span>
             </div>
             <div class="button flagNoDemoButton tooltip">
                 <input type="checkbox" class="checkboxFlagNoDemo"/>
@@ -124,8 +119,8 @@ class Library {
             </div>
             <div class="button flagPerfectButton tooltip">
                 <input type="checkbox" class="checkboxFlagPerfect"/>
-                Only Show Perfect Songs
-                <span class="tooltiptextbottom">Show only songs that translate perfectly to the Mandachord</span>
+                Only Show Perfect Melodies
+                <span class="tooltiptextbottom">Show only songs with a melody that translate perfectly to the Mandachord</span>
             </div>
             <div class="button flagFilledButton tooltip">
                 <input type="checkbox" class="checkboxFlagFilled"/>
@@ -136,6 +131,16 @@ class Library {
                 <input type="checkbox" class="checkboxFlagMulti"/>
                 Only Show Multi-shots
                 <span class="tooltiptextbottom">Show only entries with multiple Mandachord loops</span>
+            </div>
+            <div class="button resetButton tooltip">
+                <img class="imgButton" src="img/icon-reset.png" srcset="img2x/icon-reset.png 2x" alt="Reset All"/>
+                Reset all
+                <span class="tooltiptextbottom">Reset all filters</span>
+            </div>
+            <div class="button statsButton tooltip">
+                <img class="imgButton" src="img/icon-stats.png" srcset="img2x/icon-stats.png 2x" alt="Instrument Stats"/>
+                Statistics
+                <span class="tooltiptextbottom">Show statistics for instrument sets used in the currently visible songs</span>
             </div>
             <!-- todo this search sucks
             <div class="button searchButton tooltip">
@@ -168,23 +173,27 @@ class Library {
             this.filterFlagNoDemo = e.currentTarget.checked;
             e.currentTarget.library.setFilterFlag("!Demo", e.currentTarget.checked);
         });
-        getFirstChild(div, "checkboxFlagPerfect").checked = this.filterFlagPerfect;
+        getFirstChild(div, "checkboxFlagPerfect").checked = this.filterFlagOnlyPerfect;
         getFirstChild(div, "checkboxFlagPerfect").library = this;
         getFirstChild(div, "checkboxFlagPerfect").addEventListener("change", (e) => {
-            this.filterFlagPerfect = e.currentTarget.checked;
+            this.filterFlagOnlyPerfect = e.currentTarget.checked;
             e.currentTarget.library.setFilterFlag("Perfect", e.currentTarget.checked);
         });
-        getFirstChild(div, "checkboxFlagFilled").checked = this.filterFlagFilled;
+        getFirstChild(div, "checkboxFlagFilled").checked = this.filterFlagOnlyFilled;
         getFirstChild(div, "checkboxFlagFilled").library = this;
         getFirstChild(div, "checkboxFlagFilled").addEventListener("change", (e) => {
-            this.filterFlagFilled = e.currentTarget.checked;
+            this.filterFlagOnlyFilled = e.currentTarget.checked;
             e.currentTarget.library.setFilterFlag("Filled", e.currentTarget.checked);
         });
-        getFirstChild(div, "checkboxFlagMulti").checked = this.filterFlagMulti;
+        getFirstChild(div, "checkboxFlagMulti").checked = this.filterFlagOnlyMulti;
         getFirstChild(div, "checkboxFlagMulti").library = this;
         getFirstChild(div, "checkboxFlagMulti").addEventListener("change", (e) => {
-            this.filterFlagMulti = e.currentTarget.checked;
+            this.filterFlagOnlyMulti = e.currentTarget.checked;
             e.currentTarget.library.setFilterFlag("Multi", e.currentTarget.checked);
+        });
+
+        getFirstChild(div, "resetButton").addEventListener("click", (e) => {
+            this.resetAllFilters();
         });
 
         // put the menu in the clicked button's parent and anchor it to button
@@ -1153,6 +1162,23 @@ class Library {
 
         // put the menu in the clicked button's parent and anchor it to button
         showMenu(menuDiv, button.parentElement, button);
+    }
+
+    resetAllFilters() {
+        // directly reset everything else
+        this.instrumentFilter = null;
+        this.filterFlagNoDemo = false;
+        this.filterFlagOnlyPerfect = false;
+        this.filterFlagOnlyFilled = false;
+        this.filterFlagOnlyMulti = false;
+        this.filterTagList = [];
+        this.filterTagListChanged = true;
+
+        // meh
+        clearMenus();
+        // clear any search string and re-run search
+        getFirstChild(this.menuContainer, "searchBar").value = "";
+        this.setSearchString("");
     }
 
     showStats() {
