@@ -1,4 +1,4 @@
-var shotTags = {"Double":true, "Triple":true, "Quadruple":true, "QUINTUPLE":true}
+var shotTags = ["Double", "Triple", "Quadruple", "QUINTUPLE", "6x", "7x", "8x", "9x", "10x"];
 
 class Library {
     constructor(score) {
@@ -30,6 +30,14 @@ class Library {
         // instrument filter, if present
         this.instrumentFilter = null;
         this.instrumentFilterChanged = false;
+        // filter flags
+        this.filterFlagNoDemo = false;
+        this.filterFlagOnlyPerfect = false;
+        this.filterFlagOnlyFilled = false;
+        this.filterFlagOnlyMulti = false;
+        this.filterTagList = [];
+        this.filterTagListChanged = false;
+
 
         // search queue prototype, we only need to build this once
         this.searchQueuePrototype = null;
@@ -109,6 +117,26 @@ class Library {
                 Statistics
                 <span class="tooltiptextbottom">Show statistics for instrument sets used in the currently visible songs</span>
             </div>
+            <div class="button flagNoDemoButton tooltip">
+                <input type="checkbox" class="checkboxFlagNoDemo"/>
+                Don't show demo songs
+                <span class="tooltiptextbottom">Hide demo songs</span>
+            </div>
+            <div class="button flagPerfectButton tooltip">
+                <input type="checkbox" class="checkboxFlagPerfect"/>
+                Only Show Perfect Songs
+                <span class="tooltiptextbottom">Show only songs that translate perfectly to the Mandachord</span>
+            </div>
+            <div class="button flagFilledButton tooltip">
+                <input type="checkbox" class="checkboxFlagFilled"/>
+                Only Show Filled Melodies
+                <span class="tooltiptextbottom">Show only filled-melody meta songs</span>
+            </div>
+            <div class="button flagMultiButton tooltip">
+                <input type="checkbox" class="checkboxFlagMulti"/>
+                Only Show Multi-shots
+                <span class="tooltiptextbottom">Show only entries with multiple Mandachord loops</span>
+            </div>
             <!-- todo this search sucks
             <div class="button searchButton tooltip">
                 <img class="imgButton" src="img/icon-search.png" srcset="img2x/icon-search.png 2x" alt="Reverse Search"/>
@@ -132,6 +160,31 @@ class Library {
         getFirstChild(div, "statsButton").addEventListener("click", (e) => {
             clearMenus();
             this.showStats(e);
+        });
+
+        getFirstChild(div, "checkboxFlagNoDemo").checked = this.filterFlagNoDemo;
+        getFirstChild(div, "checkboxFlagNoDemo").library = this;
+        getFirstChild(div, "checkboxFlagNoDemo").addEventListener("change", (e) => {
+            this.filterFlagNoDemo = e.currentTarget.checked;
+            e.currentTarget.library.setFilterFlag("!Demo", e.currentTarget.checked);
+        });
+        getFirstChild(div, "checkboxFlagPerfect").checked = this.filterFlagPerfect;
+        getFirstChild(div, "checkboxFlagPerfect").library = this;
+        getFirstChild(div, "checkboxFlagPerfect").addEventListener("change", (e) => {
+            this.filterFlagPerfect = e.currentTarget.checked;
+            e.currentTarget.library.setFilterFlag("Perfect", e.currentTarget.checked);
+        });
+        getFirstChild(div, "checkboxFlagFilled").checked = this.filterFlagFilled;
+        getFirstChild(div, "checkboxFlagFilled").library = this;
+        getFirstChild(div, "checkboxFlagFilled").addEventListener("change", (e) => {
+            this.filterFlagFilled = e.currentTarget.checked;
+            e.currentTarget.library.setFilterFlag("Filled", e.currentTarget.checked);
+        });
+        getFirstChild(div, "checkboxFlagMulti").checked = this.filterFlagMulti;
+        getFirstChild(div, "checkboxFlagMulti").library = this;
+        getFirstChild(div, "checkboxFlagMulti").addEventListener("change", (e) => {
+            this.filterFlagMulti = e.currentTarget.checked;
+            e.currentTarget.library.setFilterFlag("Multi", e.currentTarget.checked);
         });
 
         // put the menu in the clicked button's parent and anchor it to button
@@ -226,10 +279,15 @@ class Library {
                     label = label + '<span class="tagPerfect">(' + tag + ')</span>';
                 } else if (tag in instrumentDisplayNameToPack) {
                     label = label + '<span class="tagInstrument">(' + tag + ')</span>';
-                } else if (tag in shotTags) {
-                    label = label + '<span class="tagShot">(' + tag + ')</span>';
                 }
             }
+        }
+        if (songEntry.multi && songEntry.multi > 1) {
+            label = label + '<span class="tagShot">(' + shotTags[songEntry.multi - 2] + ')</span>';
+            if (!songEntry.tags) {
+                songEntry.tags = [];
+            }
+            songEntry.tags.push("Multi");
         }
         var songLabelSpan = document.createElement("span");
         songLabelSpan.className = "libSongLabel";
@@ -354,7 +412,7 @@ class Library {
         // don't need these anymore
         song.name = null;
         song.attr = null;
-        song.tags = null;
+        //song.tags = null;
     }
 
     setLibrarySearch() {
@@ -409,17 +467,45 @@ class Library {
 
     startWordSearch(words) {
         // only do this crap if the search has actually changed
-        if (!this.instrumentFilterChanged && listEquals(words, this.searchWords)) {
+        // todo: check filter tags
+        if (!this.instrumentFilterChanged && !this.filterTagListChanged && listEquals(words, this.searchWords)) {
             return;
         }
         // save the current search criteria
         this.searchWords = words;
         this.instrumentFilterChanged = false;
+        this.filterTagListChanged = false;
+
+        this.filterTagListCopy = Array();
+        this.filterTagListNegate = Array();
+        for (var f = 0; f < this.filterTagList.length; f++) {
+            var filterTag = this.filterTagList[f];
+            if (filterTag.startsWith("!")) {
+                this.filterTagListCopy.push(filterTag.substring(1));
+                this.filterTagListNegate.push(true);
+            } else {
+                this.filterTagListCopy.push(filterTag);
+                this.filterTagListNegate.push(false);
+            }
+        }
 
         // start the search
         this.startFuncSearch(this.instrumentFilter != null, false, (song, songList, index, total) => {
             // the song is displayed if there is no search string or if all of the words are found in its keywords
-            if ((!words || this.searchKeywords(song.keywords, words)) &&
+            var tagged = true;
+            if (this.filterTagListCopy.length > 0) {
+                for (var f = 0; f < this.filterTagListCopy.length; f++) {
+                    var filterTag = this.filterTagListCopy[f];
+                    if (this.filterTagListNegate[f] ?
+                        song.tags != null && song.tags.indexOf(filterTag) >= 0 :
+                        song.tags == null || song.tags.indexOf(filterTag) < 0
+                    ){
+                        tagged = false;
+                    }
+                }
+            }
+            if (tagged &&
+                (!words || this.searchKeywords(song.keywords, words)) &&
                 (!this.instrumentFilter || this.searchInstrumentFilter(songList))) {
                 this.showSong(song);
             } else {
@@ -770,6 +856,17 @@ class Library {
             var cat2 = cat[name2];
             this.getCategoryCounts(name2, cat2, catCounts, filter);
         }
+    }
+
+    setFilterFlag(tag, enabled) {
+        if (enabled) {
+            addToListIfNotPresent(this.filterTagList, tag);
+        } else {
+            removeFromList(this.filterTagList, tag);
+        }
+        this.filterTagListChanged = true;
+
+        this.startWordSearch(this.searchWords);
     }
 
     getInstrumentFilter(create=false) {
