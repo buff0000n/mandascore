@@ -1098,6 +1098,7 @@
 				{"id": "_Khjl46Fuv4", "name": "The Take Over, The Breaks Over", "attr": ["Fall Out Boy"], "tags": ["Perfect"]},
 				{"id": "mvJx4-W_M2g", "name": "This Ain't A Scene, It's An Arms Race", "attr": ["Fall Out Boy"], "tags": ["Perfect"]},
 				{"id": "qU7poVxo258", "name": "Where Did The Party Go", "attr": ["Fall Out Boy"], "tags": ["Double", "Perfect"]}
+				, {"id": "OBgDpGfG9eA", "name": "Bang the Doldrums", "attr": ["Fall Out Boy"], "tags": ["Double"]}
 			]
 		},
 		"Muse":{
@@ -2279,6 +2280,7 @@
 				, {"id": "CoIJ22Xv0ec", "name": "Dark Beach", "attr": ["Pastel Ghost"], "tags": ["Perfect"]}
 				, {"id": "uAmQH9JCDVg", "name": "Bad Excuses/Know My Heart", "attr": ["Mapalo"], "tags": ["Perfect"]}
 				, {"id": "hl9w84IsOQI", "name": "endlessly", "attr": ["bixby"]}
+				, {"id": "DKp9NEggTJQ", "name": "Amoeba", "attr": ["Clairo"]}
 			]
 		}
 	},
@@ -2698,6 +2700,7 @@
 				, {"id": "N5QtUcwaCc8", "name": "Horse B4 Porcshe", "attr": ["Tommy Cash"], "tags": ["Perfect"]}
 				, {"id": "QkS6ECyY66Q", "name": "Teethsucker", "attr": ["Rico Nasty"]}
 				, {"id": "lHPu1ckAYio", "name": "Get Got", "attr": ["Death Grips"]}
+				, {"id": "kj8WZZTn118", "name": "On Your Own", "attr": ["Lil Tecca"], "tags": ["Perfect"]}
 			]
 		}
 	},
@@ -4790,6 +4793,7 @@
 					, {"id": "0_xxGTJNZxU", "name": "Entering the Stronghold", "attr": ["Danny Schneidemesser", "Stick War"], "tags": ["Filled"]}
 					, {"id": "PV2VjRF2r7w", "name": "Worms Armageddon main theme"}
 					, {"id": "DNvYEcvVjIY", "name": "John Doe Chase Theme", "attr": ["Forsaken"]}
+					, {"id": "9E8TVOUdB7o", "name": "1,000 Light Years Away", "attr": ["Slime Ranger"]}
 				]
 			}
 		}
@@ -5796,6 +5800,7 @@
 				, {"id": "aD8Di0_RhsE", "name": "Speed Drive", "attr": ["Barbie", "Charli XCX"], "tags": ["Perfect"]}
 				, {"id": "g24n616qK8s", "name": "Black Adam Theme"}
 				, {"id": "yyfAq-WwHI8", "name": "Hot Wings (I Wanna Party)", "attr": ["Rio"]}
+				, {"id": "mdqKck3JTfg", "name": "Lava Chicken", "attr": ["A Minecraft Movie"]}
 			]
 		}
 	},
@@ -6122,6 +6127,7 @@
 				, {"id": "JnU1d7jd48k", "name": "OMG", "attr": ["NewJeans/\ub274\uc9c4\uc2a4"]}
 				, {"id": "YCt0MhL83T0", "name": "ETA/\ub274\uc9c4\uc2a4", "attr": ["NewJeans"], "tags": ["Double", "Perfect"]}
 				, {"id": "hWkrNOvPqYs", "name": "Super Shy", "attr": ["NewJeans/\ub274\uc9c4\uc2a4"], "tags": ["Perfect"]}
+				, {"id": "1H5L1t77L8s", "name": "Hurt", "attr": ["NewJeans/\ub274\uc9c4\uc2a4"], "tags": ["Double"]}
 			]
 		},
 		"(G)I-DLE/(여자)아이들":{
@@ -6291,6 +6297,8 @@
 				, {"id": "wMAAavmDhI8", "name": "Rainy Boots", "attr": ["inabakumori"]}
 				, {"id": "LXbnudQr1N0", "name": "Lost Umbrella", "attr": ["Inaba Cumori ft. Kaai Yuki"]}
 				, {"id": "j4JVXdUYZK8", "name": "Dramaturgy", "attr": ["Eve"]}
+				, {"id": "U-R8fT08MNQ", "name": "Be a Flower", "attr": ["Ryokuoushoku Shakai"]}
+				, {"id": "kH1p7PM9jz8", "name": "Chicken Noodle Soup", "attr": ["j-hope ft. Becky G"]}
 			]
 		},
 		"Misc I Don't Know Which Letter Pop":{
