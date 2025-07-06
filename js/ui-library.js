@@ -23,6 +23,7 @@ class Library {
         this.searchTimeout = null;
         // search terms
         this.searchWords = null;
+        this.searchWordsChanged = false;
         // current search queue
         this.searchQueue = null;
         // current result size
@@ -30,11 +31,7 @@ class Library {
         // instrument filter, if present
         this.instrumentFilter = null;
         this.instrumentFilterChanged = false;
-        // filter flags
-        this.filterFlagNoDemo = false;
-        this.filterFlagOnlyPerfect = false;
-        this.filterFlagOnlyFilled = false;
-        this.filterFlagOnlyMulti = false;
+        // tag filter list
         this.filterTagList = [];
         this.filterTagListChanged = false;
 
@@ -91,6 +88,8 @@ class Library {
             clearMenus();
             this.showMenu(e);
         });
+
+        // search bar handler
         getFirstChild(this.menuContainer, "searchBar").addEventListener("keyup", (e) => { this.setLibrarySearch(e); });
 
         // index container, this is where the songs are listed
@@ -100,12 +99,14 @@ class Library {
     }
 
     showMenu(e) {
+        // place the menu under the burger button
         var button = e.currentTarget;
+        // top level container
         var div = document.createElement("div");
         div.className = "menu";
         div.button = button;
 
-        // build the section menu out of buttons
+        // build the menu buttons the easy way
         var html = `
             <div class="button filterButton tooltip">
                 <img class="imgButton" src="img/icon-filter.png" srcset="img2x/icon-filter.png 2x" alt="Instrument Filter"/>
@@ -142,7 +143,7 @@ class Library {
                 Statistics
                 <span class="tooltiptextbottom">Show statistics for instrument sets used in the currently visible songs</span>
             </div>
-            <!-- todo this search sucks
+            <!-- todo the reverse search sucks
             <div class="button searchButton tooltip">
                 <img class="imgButton" src="img/icon-search.png" srcset="img2x/icon-search.png 2x" alt="Reverse Search"/>
                 Reverse Search
@@ -153,45 +154,40 @@ class Library {
 
         div.innerHTML = html;
         /*
+        // todo the reverse search sucks
         getFirstChild(div, "searchButton").addEventListener("click", (e) => {
             clearMenus();
             this.matchSearch(e);
         });
         */
+        // instrument filter popup
         getFirstChild(div, "filterButton").addEventListener("click", (e) => {
             clearMenus();
             this.showFilter(button);
         });
+        // stats mode
         getFirstChild(div, "statsButton").addEventListener("click", (e) => {
             clearMenus();
             this.showStats(e);
         });
 
-        getFirstChild(div, "checkboxFlagNoDemo").checked = this.filterFlagNoDemo;
-        getFirstChild(div, "checkboxFlagNoDemo").library = this;
-        getFirstChild(div, "checkboxFlagNoDemo").addEventListener("change", (e) => {
-            this.filterFlagNoDemo = e.currentTarget.checked;
-            e.currentTarget.library.setFilterFlag("!Demo", e.currentTarget.checked);
-        });
-        getFirstChild(div, "checkboxFlagPerfect").checked = this.filterFlagOnlyPerfect;
-        getFirstChild(div, "checkboxFlagPerfect").library = this;
-        getFirstChild(div, "checkboxFlagPerfect").addEventListener("change", (e) => {
-            this.filterFlagOnlyPerfect = e.currentTarget.checked;
-            e.currentTarget.library.setFilterFlag("Perfect", e.currentTarget.checked);
-        });
-        getFirstChild(div, "checkboxFlagFilled").checked = this.filterFlagOnlyFilled;
-        getFirstChild(div, "checkboxFlagFilled").library = this;
-        getFirstChild(div, "checkboxFlagFilled").addEventListener("change", (e) => {
-            this.filterFlagOnlyFilled = e.currentTarget.checked;
-            e.currentTarget.library.setFilterFlag("Filled", e.currentTarget.checked);
-        });
-        getFirstChild(div, "checkboxFlagMulti").checked = this.filterFlagOnlyMulti;
-        getFirstChild(div, "checkboxFlagMulti").library = this;
-        getFirstChild(div, "checkboxFlagMulti").addEventListener("change", (e) => {
-            this.filterFlagOnlyMulti = e.currentTarget.checked;
-            e.currentTarget.library.setFilterFlag("Multi", e.currentTarget.checked);
-        });
+        // convenience function for setting up the tag filter checkboxes
+        function setupTagFilterCheckbox(library, element, tag) {
+            element.checked = library.filterTagList.indexOf(tag) >= 0;
+            element.library = library;
+            element.tag = tag;
+            element.addEventListener("change", (e) => {
+                e.currentTarget.library.setFilterFlag(e.currentTarget.tag, e.currentTarget.checked);
+            });
+        }
 
+        // setup tag filter checkboxes
+        setupTagFilterCheckbox(this, getFirstChild(div, "checkboxFlagNoDemo"), "!Demo");
+        setupTagFilterCheckbox(this, getFirstChild(div, "checkboxFlagPerfect"), "Perfect");
+        setupTagFilterCheckbox(this, getFirstChild(div, "checkboxFlagFilled"), "Filled");
+        setupTagFilterCheckbox(this, getFirstChild(div, "checkboxFlagMulti"), "Multi");
+
+        // setup reset button
         getFirstChild(div, "resetButton").addEventListener("click", (e) => {
             this.resetAllFilters();
         });
@@ -291,6 +287,7 @@ class Library {
                 }
             }
         }
+        // generate multi-shot tag and UI element from the multi count
         if (songEntry.multi && songEntry.multi > 1) {
             label = label + '<span class="tagShot">(' + shotTags[songEntry.multi - 2] + ')</span>';
             if (!songEntry.tags) {
@@ -425,6 +422,7 @@ class Library {
     }
 
     setLibrarySearch() {
+        // get the search bar contents and kick off a search
         var event = window.event;
         var string = event.currentTarget.value;
         this.setSearchString(string);
@@ -443,7 +441,10 @@ class Library {
         }
     }
 
-    searchKeywords(keywords, words) {
+    searchKeywords(keywords) {
+        var words = this.searchWords;
+        // short-circuit if there are no keywords
+        if (!words) return true;
         // search the keywords string for the given words.  all words must be present
         for (var i = 0; i < words.length; i++) {
             if (keywords.indexOf(words[i]) < 0) {
@@ -456,76 +457,120 @@ class Library {
     }
 
     searchInstrumentFilter(songList) {
+        // short-circuit if there is no instrument filter
+        if (!this.instrumentFilter) return true;
+
         var songListAllowed = false;
+        // search song list for a song matching the current instrument filter
         for (var i = 0; i < songList.length; i++) {
+            // parse into a song object
             var songObject = new Song();
             songObject.parseChatLink(songList[i]);
             var songAllowed = true;
+            // loop over the song's parts
             for (var part in songObject.packs) {
+                // get the instrument pack for that part
                 var pack = songObject.packs[part];
-                // if any pack + part in any song in the list is disabled in the filter then allow the song to be shown
+                // if any pack + part in the song is disabled in the filter then this song is filtered out
                 if (!this.instrumentFilter[pack][part]) {
                     songAllowed = false;
                     break;
                 }
             }
+            // the song list is allowed if at least one of of its songs is allowed
             songListAllowed |= songAllowed;
         }
         return songListAllowed;
     }
 
-    startWordSearch(words) {
-        // only do this crap if the search has actually changed
-        // todo: check filter tags
-        if (!this.instrumentFilterChanged && !this.filterTagListChanged && listEquals(words, this.searchWords)) {
-            return;
-        }
-        // save the current search criteria
-        this.searchWords = words;
-        this.instrumentFilterChanged = false;
-        this.filterTagListChanged = false;
-
+    preprocessTagFilter() {
+        // preprocess the tag filters so we don't have to parse them
+        // for every song
         this.filterTagListCopy = Array();
         this.filterTagListNegate = Array();
         for (var f = 0; f < this.filterTagList.length; f++) {
             var filterTag = this.filterTagList[f];
             if (filterTag.startsWith("!")) {
+                // if the tag filter starts with "!" then this is a negative filter,
+                // only songs that do *not* have the tag will be allowed
                 this.filterTagListCopy.push(filterTag.substring(1));
                 this.filterTagListNegate.push(true);
             } else {
+                // otherwise this is a normal filter, only songs that have the tag
+                // will be allowed
                 this.filterTagListCopy.push(filterTag);
                 this.filterTagListNegate.push(false);
             }
         }
+    }
+
+    searchTagFilter(song) {
+        // short-circuit if there are no tag filters
+        if (this.filterTagListCopy.length == 0) return true;
+
+        var tagged = true;
+        // search through the current tag filters and make sure the song matches all of them
+        for (var f = 0; f < this.filterTagListCopy.length; f++) {
+            var filterTag = this.filterTagListCopy[f];
+            // if the flag filter is negative then make sure the song has no tags or does not contain the tag
+            // if the flag filter is positive then make sure the song has tags and contains the tag
+            if (this.filterTagListNegate[f] ?
+                song.tags != null && song.tags.indexOf(filterTag) >= 0 :
+                song.tags == null || song.tags.indexOf(filterTag) < 0
+            ){
+                // failed the filter
+                tagged = false;
+            }
+        }
+        return tagged;
+    }
+
+    startWordSearch(words) {
+        if (listEquals(words, this.searchWords)) {
+            return;
+        }
+        // save the current search criteria
+        this.searchWords = words;
+        this.searchWordsChanged = true;
+        this.startSearch();
+    }
+
+    startSearch() {
+        // only do this crap if the search has actually changed
+        if (!this.searchWordsChanged && !this.instrumentFilterChanged && !this.filterTagListChanged) {
+            return;
+        }
+        // reset change flags
+        this.searchWordsChanged = false;
+        this.instrumentFilterChanged = false;
+        this.filterTagListChanged = false;
+
+        // do some pre-processing on the tag filters, if present
+        this.preprocessTagFilter();
 
         // start the search
+        // whether we need to load the actual songs is dependent on whether we have an instrument set filter
         this.startFuncSearch(this.instrumentFilter != null, false, (song, songList, index, total) => {
-            // the song is displayed if there is no search string or if all of the words are found in its keywords
-            var tagged = true;
-            if (this.filterTagListCopy.length > 0) {
-                for (var f = 0; f < this.filterTagListCopy.length; f++) {
-                    var filterTag = this.filterTagListCopy[f];
-                    if (this.filterTagListNegate[f] ?
-                        song.tags != null && song.tags.indexOf(filterTag) >= 0 :
-                        song.tags == null || song.tags.indexOf(filterTag) < 0
-                    ){
-                        tagged = false;
-                    }
-                }
-            }
-            if (tagged &&
-                (!words || this.searchKeywords(song.keywords, words)) &&
-                (!this.instrumentFilter || this.searchInstrumentFilter(songList))) {
+            // the song entry is displayed
+            //   - if there is no tag filter of if the tag filter passes
+            //   - if there is no search string or if all of the words are found in its keywords
+            //   - if there is no instrument pack filter or the instrument pack filter passes on at least one of its songs
+            if (this.searchTagFilter(song) &&
+                    this.searchKeywords(song.keywords) &&
+                    this.searchInstrumentFilter(songList)) {
+                // show the song
                 this.showSong(song);
             } else {
                 // otherwise, hide the song
                 this.hideSong(song);
             }
         }, () => {
+            // batch completion callback updates the song count
             this.updateVisibleSongCount();
         })
     }
 
+    // omitHidden: only search the currently visible songs, this is how the stats are calculated
     startFuncSearch(loadSongData, omitHidden, searchFunc, endBatchFunc=null, endFunc=endBatchFunc) {
         // cancel any search in progress
         if (this.searchTimeout) {
@@ -533,8 +578,11 @@ class Library {
         }
         // get a copy of the search queue
         if (!omitHidden) {
+            // doing a full search of the library
             var searchQueue = this.searchQueuePrototype.slice();
         } else {
+            // doing a partial search of just what's currently visible
+            // this is for the statistics calculation
             var searchQueue = [];
             this.queueSongLists(this.index, searchQueue, omitHidden);
         }
@@ -544,18 +592,23 @@ class Library {
         this.searchTimeout = setTimeout(() => this.runSearch(searchQueue, total, loadSongData, searchFunc, endBatchFunc, endFunc), this.searchDelay);
     }
 
+    // omitHidden: only search the currently visible songs, this is how the stats are calculated
     queueSongLists(map, queue, omitHidden=false) {
         // recursive search
         if (map.songs) {
             // leaf category: search individual songs for keywords
             if (!omitHidden) {
+                // doing a full search of the library
                 queue.push(map.songs);
             } else {
+                // just queue up the visible songs
                 queue.push(map.songs.filter(s => !this.isSongHidden(s)));
             }
         } else {
             // branch category: recursively search each subcategory
             for (var key in map) {
+                // determine if the entire subcategory is hidden by seeing if the parent element of the first song in the
+                // subcategory is hidden
                 var skip = !omitHidden ? false : map[key].songs && map[key].songs[0].div.parentElement.style.display == 'none';
                 if (!skip) {
                     this.queueSongLists(map[key], queue, omitHidden);
@@ -619,6 +672,7 @@ class Library {
     }
 
     isSongHidden(song) {
+        // hack
         return song.div.style.display == "none";
     }
 
@@ -727,8 +781,10 @@ class Library {
         callback(this.database[dbName]);
     }
 
-    startSearchDisplay(extraButtonHtml, endFunc) {
-        // experimental song match search
+    replaceUI(extraButtonHtml, endFunc) {
+        // replace the library listing with something else
+        // currently, this is either the statistics display or 
+        // the experimental song match search
 
         // remove the regular menu and index containers temporarily
         this.menuContainer.remove();
@@ -756,10 +812,11 @@ class Library {
         this.menuContainer.appendChild(this.searchLoader.loadingBox);
         this.libraryContainer.appendChild(this.menuContainer);
 
+        // add a handler for the X button
         getFirstChild(this.menuContainer, "titleButton").addEventListener("click", () => { endFunc(); });
     }
 
-    endSearchDisplay() {
+    endReplaceUI() {
         // restore the original menu bar and index
         this.menuContainer.remove();
         this.menuContainer = this.menuContainerSaved;
@@ -770,8 +827,9 @@ class Library {
         this.libraryContainer.appendChild(this.indexContainer);
     }
 
+    // run the match search
     matchSearch() {
-        this.startSearchDisplay("", () => { this.endMatchSearch(); });
+        this.replaceUI("", () => { this.endMatchSearch(); });
 
         // index container, this is where the songs are listed
         this.indexContainer = document.createElement("div");
@@ -837,7 +895,7 @@ class Library {
     }
 
     endMatchSearch() {
-        this.endSearchDisplay();
+        this.endReplaceUI();
         this.searchLoader = null;
     }
 
@@ -868,36 +926,49 @@ class Library {
     }
 
     setFilterFlag(tag, enabled) {
+        // update the filter tag list depending on whether it's being
+        // enabled or disabled
         if (enabled) {
             addToListIfNotPresent(this.filterTagList, tag);
         } else {
             removeFromList(this.filterTagList, tag);
         }
+        // set the change flag
         this.filterTagListChanged = true;
 
-        this.startWordSearch(this.searchWords);
+        // start a search
+        this.startSearch();
     }
 
     getInstrumentFilter(create=false) {
+        // if we don't have a filter and don't have to create one then return null
         if (this.instrumentFilter == null && !create) {
             return null;
         }
+        // return the instrument filter if present, otherwise create new new filter with everything enabled
         return this.instrumentFilter != null ? this.instrumentFilter: this.newInstrumentFilter();
     }
 
     newInstrumentFilter() {
+        // pack map
         var filter = {};
+        // loop over the pack list
         for (var p = 0 ; p < packs.length; p++) {
+            // part map
             var partFilter = {};
+            // loop over the parts
             for (var b = 0 ; b < sectionNames.length; b++) {
+                // add an enabled entry for this part to the part map
                 partFilter[sectionNames[b]] = true;
             }
+            // add the packs' part map to the pack map
             filter[packs[p].name] = partFilter;
         }
         return filter;
     }
 
     hasFilters(newInstrumentFilter) {
+        // determine of any of the entries in the map are disabled
         for (var p in newInstrumentFilter) {
             var parts = newInstrumentFilter[p];
             for (var b in parts) {
@@ -910,44 +981,65 @@ class Library {
     }
 
     setInstrumentFilter(newInstrumentFilter) {
+        // check if the new filter is null or has everything enabled
         if (newInstrumentFilter == null || !this.hasFilters(newInstrumentFilter)) {
+            // set the change flag on whether we already had a filter
             this.instrumentFilterChanged = this.instrumentFilter != null;
+            // clear out the filter
             this.instrumentFilter = null;
         } else {
+            // replacing one partial filter with another partial filter
+            // I don't feel like doing a diff, so just assume something has changed
             this.instrumentFilterChanged = true;
+            // save the new filter
             this.instrumentFilter = newInstrumentFilter;
         }
 
+        // start a search if there is a change
         if (this.instrumentFilterChanged) {
-            this.startWordSearch(this.searchWords);
+            this.startSearch();
         }
     }
 
     showFilter(button) {
-        //var button = e.currentTarget;
-
+        // convenience references to static data
         var partNames = sectionNames;
         var packNames = packs.map(p => p.name);
 
+        // get the current filter
         var instrumentFilter = this.getInstrumentFilter(true);
+
+        // we will build a frickin array of checkboxes
         var filterGrid = Array();
 
+        // create one row for each pack, plus an extra one for the "all" row
         for (k = 0; k <= packNames.length; k++) {
+            // create row array
             var packRow = Array();
             filterGrid.push(packRow);
+            // create one column for each part, plus an extra one for the "all" part
             for (r = 0; r <= partNames.length; r++) {
+                // each grid entry contains a boolean flag and a checkbox element
                 packRow.push({"enabled": false, "checkbox": null});
             }
         }
 
+        // set a block of filter values, on rows pack1 to pack2 and columns part1 to part2.
         function setFilterValues(pack1, pack2, part1, part2, enabled) {
+            // loop ove rows
             for (var k = pack1; k <= pack2; k++) {
+                // loop over columns
                 for (var r = part1; r <= part2; r++) {
+                    // get the grid entry
                     var filter = filterGrid[k][r];
+                    // sanity check
                     if (filter.enabled != enabled) {
+                        // update the flag and checkbox
                         filter.enabled = enabled;
                         filter.checkbox.checked = enabled;
+                        // if this grid entry corresponds to a filter entry, i.e. it's not an "all" row or column
                         if (k > 0 && r > 0) {
+                            // update the filter
                             instrumentFilter[packNames[k - 1]][partNames[r - 1]] = enabled;
                         }
                     }
@@ -955,39 +1047,55 @@ class Library {
             }
         }
 
+        // check the state of the grid and make sure the "all" columns reflect the state of their respective rows or columns
         function checkState() {
+            // state of the the overall "all" checkbox, start off true
             var allEnabled = true;
 
-            // go through by part column and make sure the column header is good
+            // go through by part column and make sure the all entry is correct
             for (r = 1; r <= partNames.length; r++) {
+                // state of the part "all" checkbox, start off true
                 var partEnabled = true;
+                // loop over the packs
                 for (k = 1; k <= packNames.length; k++) {
+                    // check the filter grid entry for the pack and part
                     if (!filterGrid[k][r].enabled) {
+                        // found one unchecked, the "all" part checkbox must be unchecked
                         partEnabled = false;
                         break;
                     }
                 }
+                // update the "all" part checkbox
                 setFilterValues(0, 0, r, r, partEnabled);
+                // update the overall "all" checkbox
                 allEnabled &= partEnabled;
             }
 
             // go through by pack row and make sure the row header is good
             for (k = 1; k <= packNames.length; k++) {
+                // state of the pack "all" checkbox, start off true
                 var packEnabled = true;
+                // loop over the parts
                 for (r = 1; r <= partNames.length; r++) {
+                    // check the filter grid entry for the pack and part
                     if (!filterGrid[k][r].enabled) {
+                        // found one unchecked, the "all" pack checkbox must be unchecked
                         packEnabled = false;
                         break;
                     }
                 }
+                // update the "all" part checkbox
                 setFilterValues(k, k, 0, 0, packEnabled);
+                // update the overall "all" checkbox, probably redundant but whatever
                 allEnabled &= packEnabled;
             }
 
+            // finally, update the overall "all" checkbox
             setFilterValues(0, 0, 0, 0, allEnabled);
         }
         
         function changeFilter(library, pack, part, enabled) {
+            // sanity check
             if (filterGrid[pack][part].enabled == enabled) return;
             
             // check or uncheck the appropriate cells
@@ -1007,31 +1115,43 @@ class Library {
                 setFilterValues(pack, pack, part, part, enabled);
             }
 
+            // update the "all" checkboxes
             checkState();
 
+            // set the filter and kick off a search
             library.setInstrumentFilter(instrumentFilter);
         }
 
+        // listener function for all the checkboxes
         function checkboxListener(e) {
+            // get the checkbox
             var cb = e.currentTarget;
+            // there is a reason for this and I don't remember what it is
             cb.blur();
+            // pull row and column info off the checkbox itself and update accordingly
             changeFilter(cb.library, cb.pack, cb.part, cb.checked);
         }
 
         // jesus this is gonna be a lot of javascript HTML creation
 
+        // build a checkbox
         function checkbox(library, pack, part) {
             var cb = document.createElement("input");
             cb.type = "checkbox";
             cb.className = "filtercheckbox";
+            // save some properties for the listener
             cb.pack = pack;
             cb.part = part;
             cb.library = library;
+            // add the listener
             cb.addEventListener("change", checkboxListener, { passive: false });
+            // fill in the checkbox element in the grid
             filterGrid[pack][part].checkbox = cb;
+            // we did it
             return cb;
         }
 
+        // build a label element
         function label(string) {
             var l = document.createElement("strong");
             l.className = "filterLabel";
@@ -1039,18 +1159,22 @@ class Library {
             return l;
         }
 
+        // pop-up container
         var menuDiv = document.createElement("div");
         menuDiv.className = "menu";
         menuDiv.button = button;
 
+        // top-level container
         var div = document.createElement("div");
         div.className = "libraryMenu";
         menuDiv.appendChild(div);
 
+        // top button container
         var buttonRow = document.createElement("div");
         buttonRow.className = "scoreButtonRow";
         div.appendChild(buttonRow);
 
+        // add buttons the easy way
         buttonRow.innerHTML = `
             <span class="imgButton titleButton tooltip">
                 <img src="img/icon-clear.png" srcset="img2x/icon-clear.png 2x" alt="Close">
@@ -1062,102 +1186,123 @@ class Library {
             </span>
         `;
 
-        getFirstChild(div, "titleButton").addEventListener("click", (e) => {
+        // close button handler
+        getFirstChild(buttonRow, "titleButton").addEventListener("click", (e) => {
             clearMenus();
         }, { passive: false });
 
-        getFirstChild(div, "resetButton").library = this;
-        getFirstChild(div, "resetButton").addEventListener("click", (e) => {
+        // reset button handler
+        getFirstChild(buttonRow, "resetButton").library = this;
+        getFirstChild(buttonRow, "resetButton").addEventListener("click", (e) => {
             changeFilter(e.currentTarget.library, 0, 0, true);
         }, { passive: false });
 
+        // table for the checkbox grid
         var table = document.createElement("table");
         table.className = "filterTable";
         div.appendChild(table);
 
+        // add the top row, which contains the part icons
         {
+            // row element
             var headTr = document.createElement("tr");
             headTr.className = "filterRow filterHeadRow";
             table.appendChild(headTr);
 
+            // first element in the row spans two columns
             var headTd = document.createElement("td");
             headTd.className = "filterCell";
             headTd.colSpan = 2;
             headTr.appendChild(headTd);
 
+            // loop over the parts
             for (var r = 0 ; r < partNames.length; r++) {
+                // cell element
                 var part = partNames[r];
                 var td = document.createElement("td");
                 td.className = "filterCell";
                 headTr.appendChild(td);
 
-                var img = document.createElement("img");
-                img.src = `img/${sectionImages[part]}.png`;
-                img.srcset = `img2x/${sectionImages[part]}.png 2x`;
-                img.alt = `${sectionMetaData[part].displayName}`;
-                td.appendChild(img);
+                // build the part icon
+                td.innerHTML = `<img src="img/${sectionImages[part]}.png" srcset="img2x/${sectionImages[part]}.png 2x" alt="${sectionMetaData[part].displayName}"/>`;
             }
         }
 
+        // next row is the "all" row, with the overall "all" checkbox and the part "all" checkboxes
         {
+            // row element
             var headTr = document.createElement("tr");
             headTr.className = "filterRow filterHeadRow";
             table.appendChild(headTr);
 
+            // first cell is the overall "all" checkbox
             var headTd = document.createElement("td");
             headTd.className = "filterCell";
             headTr.appendChild(headTd);
+            // sets grid position (0, 0)
             var allCb = checkbox(this, 0, 0);
             headTd.appendChild(allCb);
 
+            // second cell is the "All" label
             var labelTd = document.createElement("td");
             labelTd.className = "filterCell";
             labelTd.appendChild(label("All"));
             headTr.appendChild(labelTd);
 
+            // loop over the parts
             for (var r = 0; r < partNames.length; r++) {
+                // cell element
                 var part = partNames[r];
                 var td = document.createElement("td");
                 td.className = "filterCell";
                 headTr.appendChild(td);
-
+                // sets grid position (0, part index)
                 var cb = checkbox(this, 0, r + 1);
                 td.appendChild(cb);
             }
         }
 
+        // loop over the packs
         for (var k = 0 ; k < packs.length; k++) {
+            // row element
             var tr = document.createElement("tr");
             tr.className = "filterRow";
             table.appendChild(tr);
 
+            // first cell is the pack "all" checkbox
             var headTd = document.createElement("td");
             headTd.className = "filterCell";
             tr.appendChild(headTd);
+            // sets grid position (pack index, 0)
             var allCb = checkbox(this, k + 1, 0);
             headTd.appendChild(allCb);
 
+            // second cell is the pack label
             var labelTd = document.createElement("td");
             labelTd.className = "filterCell";
             labelTd.appendChild(label(packs[k].displayName));
             tr.appendChild(labelTd);
 
+            // loop over the parts
             for (var r = 0 ; r < partNames.length; r++) {
                 var part = partNames[r];
+                // cell element
                 var td = document.createElement("td");
                 td.className = "filterCell";
                 tr.appendChild(td);
-
+                // sets grid position (pack index, part index)
                 var cb = checkbox(this, k + 1, r + 1);
                 td.appendChild(cb);
             }
         }
 
+        // copy the filter state to the grid
         for (k = 0; k < packNames.length; k++) {
             for (r = 0; r < partNames.length; r++) {
                 setFilterValues(k + 1, k + 1, r + 1, r + 1, instrumentFilter[packNames[k]][partNames[r]]);
             }
         }
+        // update the "all" checkboxes
         checkState();
 
         // put the menu in the clicked button's parent and anchor it to button
@@ -1165,176 +1310,247 @@ class Library {
     }
 
     resetAllFilters() {
-        // directly reset everything else
+        // reset keywords
+        this.searchWords = null;
+        this.searchWordsChanged = true;
+        // have to update the UI
+        getFirstChild(this.menuContainer, "searchBar").value = "";
+
+        // reset instrument filter
         this.instrumentFilter = null;
-        this.filterFlagNoDemo = false;
-        this.filterFlagOnlyPerfect = false;
-        this.filterFlagOnlyFilled = false;
-        this.filterFlagOnlyMulti = false;
+        this.instrumentFilterChanged = true;
+
+        // reset tag filters
         this.filterTagList = [];
         this.filterTagListChanged = true;
 
         // meh
         clearMenus();
-        // clear any search string and re-run search
-        getFirstChild(this.menuContainer, "searchBar").value = "";
-        this.setSearchString("");
+        this.startSearch();
     }
 
     showStats() {
-        var extraButtons = `
-            <span class="imgButton titleButton tooltip"><img src="img/icon-clear.png" srcset="img2x/icon-clear.png 2x" alt="Back"/>
-                <span class="tooltiptextbottom">Go back</span>
-            </span>
-        `;
-
+        // part list plus "all".  too lazy to build from sectionNames
         var partList = ["all", "perc", "bass", "mel"];
+
+        // build extra button UI
         var extraButtonHtml = "";
+        // loop over sections
         for (var i = 0; i < partList.length; i++) {
+            // get the part name and metadata
             var part = partList[i];
             var m = sectionMetaData[part];
+            // build the part button
             extraButtonHtml += `
             <span class="imgButton tooltip select${part}" id="select${part}Tab"><img src="img/${sectionImages[part]}.png" srcset="img2x/${sectionImages[part]}.png 2x" alt="${m.displayName}"/>
                 <span class="tooltiptextbottom">Show ${m.displayName}</span>
             </span>`;
         }
 
-        this.startSearchDisplay(extraButtonHtml, () => { this.endStats(); });
+        // replace the library UI with the statistics UI
+        this.replaceUI(extraButtonHtml, () => {
+            // when the stats close button is called, revert to the library UI
+            this.endReplaceUI();
+            this.searchLoader = null;
+        });
 
+        // build a map from part name to a structure
         function partMap() {
             // why is this so hard
             var map = {};
             for (var i = 0 ; i < sectionNames.length; i++) {
-                map[sectionNames[i]] = {"value": 0};
+                // the structure contains a numeric value, and references to its stat bar and tooltip
+                map[sectionNames[i]] = {"value": 0, "statBar": null, "statBarTooltip": null};
             }
             return map;
         }
 
+        // map from pack name to part map
         var statMap = {};
         var showPart = null;
 
-        // index container, this is where the songs are listed
+        // override the index container
         this.indexContainer = document.createElement("div");
         this.indexContainer.className = "indexContainer";
         this.libraryContainer.appendChild(this.indexContainer);
 
+        // create a table to contain the histogram
         var table = document.createElement("table");
         table.className = "statTable";
-        table.style.width = "100%";
         this.indexContainer.appendChild(table);
 
+        // loop over the packs
         for (var p = 0 ; p < packs.length; p++) {
+            // skip concept packs
             if (packs[p].concept) continue;
 
+            // create a new part map and save it to the pack map
             var pm = partMap();
-
             statMap[packs[p].name] = pm;
 
+            // build a row
             var tr = document.createElement("tr");
             tr.className = "statRow";
             table.appendChild(tr);
 
+            // first cell is the label
             var nameTd = document.createElement("td");
             nameTd.className = "statLabel";
-            nameTd.style.textAlign = "right";
             nameTd.innerHTML = `<strong>${packs[p].displayName}</strong>`;
             tr.appendChild(nameTd);
 
+            // second cell contains the histogram
             var statTd = document.createElement("td");
             statTd.className = "statCell";
-            statTd.style.width = "100%";
             tr.appendChild(statTd);
 
+            // loop over the parts, not "all"
             for (var b = 0 ; b < sectionNames.length; b++) {
+                // create a basic div to be the histogram bar
                 var statBar = document.createElement("div");
                 statBar.className = "statBar quicktooltip";
+                // set the color based on the part
                 statBar.style.backgroundColor = sectionMetaData[sectionNames[b]].color;
+                // starting sizing
                 statBar.style.width = "0%";
                 statBar.style.height = "0.45em";
                 statTd.appendChild(statBar);
 
+                // create a tooltip for the bar
                 var statBarTooltip = document.createElement("div");
                 statBarTooltip.className = "quicktooltiptext";
+                // no contents yet
                 statBarTooltip.innerHTML = "";
                 statBar.appendChild(statBarTooltip);
 
+                // save reference to the stat bar and tooltip
                 pm[sectionNames[b]].statBar = statBar;
                 pm[sectionNames[b]].statBarTooltip = statBarTooltip;
-
             }
         }
 
-        var totals = partMap();
+        // make new structures for the totals and max value for each part
         var max = partMap();
+        // for totals, all three of these should end up being the same.
+        var totals = partMap();
 
-        function incrementStat(instrumentSet, part, amount) {
+        // increase a specific stat
+        function incrementStat(pack, part, amount) {
             // filter out concept instrument sets
-            if (instrumentNameToPack[instrumentSet].concept) {
+            if (instrumentNameToPack[pack].concept) {
                 return;
             }
             // console.log("incrementing: " + instrumentSet + "/" + part + " by " + amount);
-            var partMap = statMap[instrumentSet];
+            // get the pack's part map
+            var partMap = statMap[pack];
+            // increment the part's total
             partMap[part].value += amount;
+            // increment the overall total
             totals[part].value += amount;
+            // update the max, if higher
             if (max[part].value < partMap[part].value) max[part].value = partMap[part].value;
         }
 
+        // update the UI
         function renderStats() {
+            // get the absolute max value for all stats
             var maxMax = 0;
             for (var part in max) {
+                // filter out this part if there is a part filter
                 if (showPart == null || showPart == part) {
+                    // check against the max max
                     if (max[part].value > maxMax) maxMax = max[part].value;
                 }
             }
 
-            function updatePart(pm) {
+            // update a specific pack's part map
+            function updatePack(pm) {
+                // loop over the parts
                 for (var p = 0; p < sectionNames.length; p++) {
+                    // get the part name and pull out the statistic structure
                     var part = sectionNames[p];
                     var count = pm[part].value;
+                    // if the part has a UI (todo: this is always true now?)
                     if (pm[part].statBar) {
+                        // check against the part filter if there is one
                         if (showPart == null || showPart == part) {
+                            // calculate the percentage based on the total for this part
                             var percentage = (100 * (count / totals[part].value));
+                            // make sure the bar is displayed
                             pm[part].statBar.style.display = "block";
+                            // scale the percentage so the max stat ends up at 100%, and set that as
+                            // the element width
                             pm[part].statBar.style.width = (percentage * (totals[part].value / maxMax)) + "%";
+                            // make it thinner or wider depending on whether there is a part filter present
                             pm[part].statBar.style.height = showPart == null ? "0.45em" : "1.35em";
+                            // update the tooltip with the percentage and raw value
                             pm[part].statBarTooltip.innerHTML = `${percentage.toFixed(2)}% (${count.toFixed(2)})`;
 
                         } else {
+                            // this part is filtered out, hide it
                             pm[part].statBar.style.display = "none";
                         }
                     }
                 }
             }
 
-            for (var i = 0 ; i < packs.length; i++) {
-                if (packs[i].concept) {
+            // loop over packs
+            for (var k = 0 ; k < packs.length; k++) {
+                // skip concept... again
+                if (packs[k].concept) {
                     continue;
                 }
-                var is = packs[i].name;
-                var partMap = statMap[is];
-                updatePart(partMap);
+                // get the pack name and lookup the part map
+                var pack = packs[k].name;
+                var partMap = statMap[pack];
+                // update the pack's part UI
+                updatePack(partMap);
             }
         }
 
+        // handler for the part buttons
         function setShowPart(part) {
+            // set the part filter depending on whether the "all" button was selected
             showPart = (part == "all") ? null : part;
 
+            // update the buttons, raising up the currently active one and lowering the others
             for (var r = 0; r < partList.length; r++) {
+                // get the button for this part
                 var partName = partList[r];
-                document.getElementById(`select${partName}Tab`).style.padding = part == partName ? "0.5ex 1ex 1ex 1ex" : "0.5ex 1ex 0 1ex";
+                var button = document.getElementById(`select${partName}Tab`);
+                // set the style based on the current filter
+                if (part == partName) {
+                    button.classList.add("imgButtonRaised");
+                    button.classList.remove("imgButton");
+                } else {
+                    button.classList.add("imgButton");
+                    button.classList.remove("imgButtonRaised");
+                }
             }
 
+            // re-render the stats
             renderStats();
         }
 
+        // set up the handlers for the part buttons
         for (var i = 0; i < partList.length; i++) {
+            // get the part name and button container
             var partName = partList[i];
             var partButton = getFirstChild(this.menuContainer, `select${partName}`);
+            // save the part name as a property
             partButton.partName = partName;
-            partButton.addEventListener("click", (e) => { setShowPart(e.currentTarget.partName); });
+            // add handler
+            partButton.addEventListener("click", (e) => {
+                setShowPart(e.currentTarget.partName);
+            });
         }
 
+        // finally ready to kick off the statistics collection
+        // re-use the current search functionality, make sure that
+        // omitHidden = true so it only searches the currently visible entries
         this.startFuncSearch(true, true, (song, songList, index, total) => {
+            // search handler for a single song entry
+            // loop over the songs in the list
             var numSongs = songList.length;
             for (var i = 0; i < numSongs; i++) {
                 // parse to a song object
@@ -1349,14 +1565,9 @@ class Library {
             }
         }, renderStats);
 
+        // initialize the selected part to "all"
         setShowPart("all");
     }
-
-    endStats() {
-        this.endSearchDisplay();
-        this.searchLoader = null;
-    }
-
 }
 
 

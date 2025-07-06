@@ -390,7 +390,7 @@
         border-radius: 1ex 1ex 0ex 0ex;
         display: inline-block;
     }
-    .scoreButtonRow > .imgButton, .scoreButtonRow > .imgButtonDisabled {
+    .scoreButtonRow > .imgButton, .scoreButtonRow > .imgButtonDisabled, .scoreButtonRow > .imgButtonRaised {
         border: none;
         color: #FFFFFF;
         padding: 0.5ex 1ex 0 1ex;
@@ -402,12 +402,20 @@
         border-radius: 1ex 1ex 0ex 0ex;
         display: inline-block;
     }
+    .scoreButtonRow > .imgButton, .scoreButtonRow > .imgButtonDisabled {
+        padding: 0.5ex 1ex 0 1ex;
+    }
+    .scoreButtonRow > .imgButtonRaised {
+        padding: 0.5ex 1ex 1ex 1ex;
+    }
     .scoreButtonRow > .imgButton {
         background-color: #404040;
     }
-
     .scoreButtonRow > .imgButtonDisabled {
         background-color: #202020;
+    }
+    .scoreButtonRow > .imgButtonRaised {
+        background-color: #404040;
     }
 
     .scoreButtonRow > .titleButton {
@@ -704,6 +712,16 @@
     .filterCell {
         /* text-Align: right; */
         white-space: nowrap;
+    }
+
+    .statTable {
+        width: 100%;
+    }
+    .statLabel {
+        text-align: right;
+    }
+    .statCell {
+        width: 100%;
     }
 
     /*
