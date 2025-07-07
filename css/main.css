@@ -616,11 +616,16 @@
         background: #405080;
     }
 
-    /* graying everthing out when disabled */
+    /* graying everything out when disabled */
     .buttonDisabled, .imgButtonDisabled {
         background-color: #202020;
         color: #808080;
         cursor: not-allowed;
+    }
+
+    .disabled {
+        color: #808080;
+        pointer-events: none;
     }
 
     .imgButton > img {

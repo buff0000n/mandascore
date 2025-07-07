@@ -1278,7 +1278,7 @@ class SectionEditor {
 
         startX += w_icon;
 
-        // draw the section name + instrument set label
+        // draw the section name + instrument pack label
         context.font = (fontSize* scale) + "px Arial";
         context.textAlign = "left";
         context.fillStyle = "#FFFFFF";

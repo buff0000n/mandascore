@@ -111,12 +111,7 @@ class Library {
             <div class="button filterButton tooltip">
                 <img class="imgButton" src="img/icon-filter.png" srcset="img2x/icon-filter.png 2x" alt="Instrument Filter"/>
                 Instrument Filter
-                <span class="tooltiptextbottom">Set a filter for instrument sets and parts</span>
-            </div>
-            <div class="button flagNoDemoButton tooltip">
-                <input type="checkbox" class="checkboxFlagNoDemo"/>
-                Don't show demo songs
-                <span class="tooltiptextbottom">Hide demo songs</span>
+                <span class="tooltiptextbottom">Set a filter for instrument packs and parts</span>
             </div>
             <div class="button flagPerfectButton tooltip">
                 <input type="checkbox" class="checkboxFlagPerfect"/>
@@ -128,10 +123,20 @@ class Library {
                 Only Show Filled Melodies
                 <span class="tooltiptextbottom">Show only filled-melody meta songs</span>
             </div>
+            <div class="button flagSparseButton tooltip">
+                <input type="checkbox" class="checkboxFlagSparse"/>
+                Only Show Sparse Melodies
+                <span class="tooltiptextbottom">Show only songs with sparse melodies</span>
+            </div>
             <div class="button flagMultiButton tooltip">
                 <input type="checkbox" class="checkboxFlagMulti"/>
                 Only Show Multi-shots
                 <span class="tooltiptextbottom">Show only entries with multiple Mandachord loops</span>
+            </div>
+            <div class="button flagNoDemoButton tooltip">
+                <input type="checkbox" class="checkboxFlagNoDemo"/>
+                Don't show demo songs
+                <span class="tooltiptextbottom">Hide demo songs</span>
             </div>
             <div class="button resetButton tooltip">
                 <img class="imgButton" src="img/icon-reset.png" srcset="img2x/icon-reset.png 2x" alt="Reset All"/>
@@ -141,7 +146,7 @@ class Library {
             <div class="button statsButton tooltip">
                 <img class="imgButton" src="img/icon-stats.png" srcset="img2x/icon-stats.png 2x" alt="Instrument Stats"/>
                 Statistics
-                <span class="tooltiptextbottom">Show statistics for instrument sets used in the currently visible songs</span>
+                <span class="tooltiptextbottom">Show statistics for instrument packs used in the currently visible songs</span>
             </div>
             <!-- todo the reverse search sucks
             <div class="button searchButton tooltip">
@@ -185,6 +190,7 @@ class Library {
         setupTagFilterCheckbox(this, getFirstChild(div, "checkboxFlagNoDemo"), "!Demo");
         setupTagFilterCheckbox(this, getFirstChild(div, "checkboxFlagPerfect"), "Perfect");
         setupTagFilterCheckbox(this, getFirstChild(div, "checkboxFlagFilled"), "Filled");
+        setupTagFilterCheckbox(this, getFirstChild(div, "checkboxFlagSparse"), "Sparse");
         setupTagFilterCheckbox(this, getFirstChild(div, "checkboxFlagMulti"), "Multi");
 
         // setup reset button
@@ -211,6 +217,8 @@ class Library {
         var countElement = document.getElementById("visibleSongCount")
         if (countElement) {
             countElement.innerHTML = this.visibleSongCount;
+            // make sure the "no results" message is displayed if the count is zero
+            this.showNoResultMessage(this.visibleSongCount == 0);
         }
     }
 
@@ -241,11 +249,27 @@ class Library {
         // build the index tree UI and get the entries ready for searching
         this.buildTree(this.indexContainer, this.index, null, []);
 
+        // build the no result message
+        this.indexContainer.appendChild(this.buildNoResultMessage());
+
         this.updateVisibleSongCount();
 
         // build the search queue prototype, no point in building this every time
         this.searchQueuePrototype = [];
         this.queueSongLists(this.index, this.searchQueuePrototype, false);
+    }
+
+    buildNoResultMessage() {
+        var div = document.createElement("div");
+        div.className = "disabled";
+        div.style.display = "none";
+        div.innerHTML = "No results";
+        this.noResultMessage = div;
+        return div;
+    }
+
+    showNoResultMessage(show) {
+        this.noResultMessage.style.display = show ? "block" : "none";
     }
 
     buildCatDiv(categoryName) {
@@ -549,7 +573,7 @@ class Library {
         this.preprocessTagFilter();
 
         // start the search
-        // whether we need to load the actual songs is dependent on whether we have an instrument set filter
+        // whether we need to load the actual songs is dependent on whether we have an instrument pack filter
         this.startFuncSearch(this.instrumentFilter != null, false, (song, songList, index, total) => {
             // the song entry is displayed
             //   - if there is no tag filter of if the tag filter passes
@@ -1347,12 +1371,20 @@ class Library {
             </span>`;
         }
 
+        // might as well throw in the song count
+        extraButtonHtml += `
+            <span class="titleButton visibleSongCount">0</span>
+        `;
+
         // replace the library UI with the statistics UI
         this.replaceUI(extraButtonHtml, () => {
             // when the stats close button is called, revert to the library UI
             this.endReplaceUI();
             this.searchLoader = null;
         });
+
+        // get the count element
+        var visibleCountElement = getFirstChild(this.menuContainer, "visibleSongCount");
 
         // build a map from part name to a structure
         function partMap() {
@@ -1436,11 +1468,11 @@ class Library {
 
         // increase a specific stat
         function incrementStat(pack, part, amount) {
-            // filter out concept instrument sets
+            // filter out concept instrument packs
             if (instrumentNameToPack[pack].concept) {
                 return;
             }
-            // console.log("incrementing: " + instrumentSet + "/" + part + " by " + amount);
+            // console.log("incrementing: " + instrumentpack + "/" + part + " by " + amount);
             // get the pack's part map
             var partMap = statMap[pack];
             // increment the part's total
@@ -1462,6 +1494,10 @@ class Library {
                     if (max[part].value > maxMax) maxMax = max[part].value;
                 }
             }
+
+            // meh
+            var total = totals["perc"].value.toFixed(0);
+            visibleCountElement.innerHTML = total;
 
             // update a specific pack's part map
             function updatePack(pm) {
@@ -1556,9 +1592,9 @@ class Library {
                 // parse to a song object
                 var songObject = new Song();
                 songObject.parseChatLink(songList[i]);
-                // increment statistics for each instrument set part used
+                // increment statistics for each instrument pack part used
                 for (var part in songObject.packs) {
-                    // if a song entry has multiple songs, then weight each instrument set part
+                    // if a song entry has multiple songs, then weight each instrument pack part
                     // so the totals still add up to 1
                     incrementStat(songObject.packs[part], part, (1.0/numSongs));
                 }

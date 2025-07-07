@@ -82,19 +82,19 @@ var songMatchMissingNoteWeight = -1;
 
 // The rest of this is all converted from Python because I'm not writing it twice
 
-// get the mapped in-game name from an instrument set identifier, or just the identifier if we
+// get the mapped in-game name from an instrument pack identifier, or just the identifier if we
 // don't have a mapping
 function getPackName(packId) {
     if (packId in instrumentIdToPack) {
         // got a mapping
         return instrumentIdToPack[packId].name;
     } else {
-        // unknown instrument set pls update kthxbye
+        // unknown instrument pack pls update kthxbye
         return packId;
     }
 }
 
-// get the mapped in-game name from an instrument set identifier, or just the identifier if we
+// get the mapped in-game name from an instrument pack identifier, or just the identifier if we
 // don't have a mapping
 function getPackId(packName) {
     if (packName in instrumentNameToPack) {
@@ -514,7 +514,7 @@ class Song {
             // print the last measure separator and end the line
             string += "||\n";
 
-            // print instrument set separators after data column/note 10 (between bass and percussion)
+            // print instrument pack separators after data column/note 10 (between bass and percussion)
             // and row 5 (between melody and bass) (note that c is counting down from 12)
             if (c == 10 || c == 5) {
                 string += "||-------------------||-------------------||-------------------||-------------------||\n";
@@ -597,7 +597,7 @@ class Song {
             name = "Song";
         }
 
-        // instrument sets identifiers, in reverse order
+        // instrument packs identifiers, in reverse order
         var percInst = getPackId(this.packs["perc"]);
         var bassInst = getPackId(this.packs["bass"]);
         var melInst = getPackId(this.packs["mel"]);
