@@ -8,11 +8,12 @@ class MonoSpec {
 }
 
 class InstrumentPack {
-    constructor(name, displayName, formatName, abbrev, double=false, monoPerc=null, monoBass=null, monoMel=null) {
+    constructor(name, displayName, formatName, abbrev, double=false, concept=false, monoPerc=null, monoBass=null, monoMel=null) {
         this.name = name;
         this.displayName = displayName;
         this.formatName = formatName;
         this.abbrev = abbrev;
+        this.concept = concept;
         this.mono = {};
         this.mono["perc"] = monoPerc;
         this.mono["bass"] = monoBass;
@@ -29,15 +30,15 @@ var packs = Array(
     new InstrumentPack("adau", "Adau", "BardTennoPackA", "U", true),
     new InstrumentPack("alpha", "Alpha", "BardCorpusPackA", "A", true),
     new InstrumentPack("beta", "Beta", "BardCorpusPackB", "B", true),
-    new InstrumentPack("bombast", "Bombast", "BardHipHopPackA", "O", true, null, new MonoSpec(false, 0.05), new MonoSpec(false, 0.20)),
-    new InstrumentPack("delta", "Delta", "BardCorpusPackD", "D", true, false, new MonoSpec(false, 0.50), new MonoSpec(false, 0.10)),
+    new InstrumentPack("bombast", "Bombast", "BardHipHopPackA", "O", true, false, null, new MonoSpec(false, 0.05), new MonoSpec(false, 0.20)),
+    new InstrumentPack("delta", "Delta", "BardCorpusPackD", "D", true, false, false, new MonoSpec(false, 0.50), new MonoSpec(false, 0.10)),
     new InstrumentPack("druk", "Druk", "BardGrineerPackA", "K", true),
-    new InstrumentPack("epsilon", "Epsilon", "BardCorpusPackE", "E", true, false, new MonoSpec(true, 0.25), false),
+    new InstrumentPack("epsilon", "Epsilon", "BardCorpusPackE", "E", true, false, false, new MonoSpec(true, 0.25), false),
     new InstrumentPack("gamma", "Gamma", "BardCorpusPackC", "G", true),
     new InstrumentPack("horos", "Horos", "BardEDMPackA", "H", true),
     new InstrumentPack("plogg", "Plogg", "BardGrineerPackB", "P", true),
-    new InstrumentPack("clazz", "Clazz (Concept)", "ConceptClazz", "J"),
-    new InstrumentPack("zeta", "Zeta (Concept)", "ConceptZeta", "Z"),
+    new InstrumentPack("clazz", "Clazz (Concept)", "ConceptClazz", "J", false, true),
+    new InstrumentPack("zeta", "Zeta (Concept)", "ConceptZeta", "Z", false, true),
 );
 
 // build a few lookup tables for instrument pack metadata
@@ -81,19 +82,19 @@ var songMatchMissingNoteWeight = -1;
 
 // The rest of this is all converted from Python because I'm not writing it twice
 
-// get the mapped in-game name from an instrument set identifier, or just the identifier if we
+// get the mapped in-game name from an instrument pack identifier, or just the identifier if we
 // don't have a mapping
 function getPackName(packId) {
     if (packId in instrumentIdToPack) {
         // got a mapping
         return instrumentIdToPack[packId].name;
     } else {
-        // unknown instrument set pls update kthxbye
+        // unknown instrument pack pls update kthxbye
         return packId;
     }
 }
 
-// get the mapped in-game name from an instrument set identifier, or just the identifier if we
+// get the mapped in-game name from an instrument pack identifier, or just the identifier if we
 // don't have a mapping
 function getPackId(packName) {
     if (packName in instrumentNameToPack) {
@@ -513,7 +514,7 @@ class Song {
             // print the last measure separator and end the line
             string += "||\n";
 
-            // print instrument set separators after data column/note 10 (between bass and percussion)
+            // print instrument pack separators after data column/note 10 (between bass and percussion)
             // and row 5 (between melody and bass) (note that c is counting down from 12)
             if (c == 10 || c == 5) {
                 string += "||-------------------||-------------------||-------------------||-------------------||\n";
@@ -596,7 +597,7 @@ class Song {
             name = "Song";
         }
 
-        // instrument sets identifiers, in reverse order
+        // instrument packs identifiers, in reverse order
         var percInst = getPackId(this.packs["perc"]);
         var bassInst = getPackId(this.packs["bass"]);
         var melInst = getPackId(this.packs["mel"]);

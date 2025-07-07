@@ -390,7 +390,7 @@
         border-radius: 1ex 1ex 0ex 0ex;
         display: inline-block;
     }
-    .scoreButtonRow > .imgButton, .scoreButtonRow > .imgButtonDisabled {
+    .scoreButtonRow > .imgButton, .scoreButtonRow > .imgButtonDisabled, .scoreButtonRow > .imgButtonRaised {
         border: none;
         color: #FFFFFF;
         padding: 0.5ex 1ex 0 1ex;
@@ -402,12 +402,20 @@
         border-radius: 1ex 1ex 0ex 0ex;
         display: inline-block;
     }
+    .scoreButtonRow > .imgButton, .scoreButtonRow > .imgButtonDisabled {
+        padding: 0.5ex 1ex 0 1ex;
+    }
+    .scoreButtonRow > .imgButtonRaised {
+        padding: 0.5ex 1ex 1ex 1ex;
+    }
     .scoreButtonRow > .imgButton {
         background-color: #404040;
     }
-
     .scoreButtonRow > .imgButtonDisabled {
         background-color: #202020;
+    }
+    .scoreButtonRow > .imgButtonRaised {
+        background-color: #404040;
     }
 
     .scoreButtonRow > .titleButton {
@@ -446,6 +454,11 @@
         font-size: 100%;
         border-radius: 1ex;
         display: block;
+        white-space: nowrap;
+        text-align: left;
+    }
+    .menu .imgButton {
+        vertical-align: middle;
     }
     .menuContainer > .titleButton {
         background-color: #202040;
@@ -603,11 +616,16 @@
         background: #405080;
     }
 
-    /* graying everthing out when disabled */
+    /* graying everything out when disabled */
     .buttonDisabled, .imgButtonDisabled {
         background-color: #202020;
         color: #808080;
         cursor: not-allowed;
+    }
+
+    .disabled {
+        color: #808080;
+        pointer-events: none;
     }
 
     .imgButton > img {
@@ -692,6 +710,25 @@
         }​
     }
 
+    .libraryMenu {
+        text-align: left;
+    }
+
+    .filterCell {
+        /* text-Align: right; */
+        white-space: nowrap;
+    }
+
+    .statTable {
+        width: 100%;
+    }
+    .statLabel {
+        text-align: right;
+    }
+    .statCell {
+        width: 100%;
+    }
+
     /*
     */
 
@@ -720,6 +757,8 @@
         background-color: #C0C0C0;
         color: #4040A0;
         text-align: center;
+        /* todo: why do I explicitly have to specify word wrap? */
+        white-space: wrap;
         border-radius: 0.5ex;
         padding: 1ex;
         position: absolute;
@@ -749,6 +788,8 @@
         background-color: #C0C0C0;
         color: #4040A0;
         text-align: center;
+        /* todo: why do I explicitly have to specify word wrap? */
+        white-space: wrap;
         border-radius: 0.5ex;
         padding: 1ex;
         position: absolute;
@@ -771,6 +812,33 @@
         border-width: 1ex;
         border-style: solid;
         border-color: transparent transparent #C0C0C0 transparent;
+    }
+
+    /* quick, small tooltips */
+    .quicktooltip {
+        position: relative;
+        display: inline-block;
+    }
+    .quicktooltip:hover .quicktooltiptext {
+        visibility: visible;
+        opacity: 1;
+    }
+    /* left side tooltip */
+    .quicktooltip .quicktooltiptext {
+        visibility: hidden;
+        background-color: #C0C0C0;
+        color: #4040A0;
+        text-align: center;
+        border-radius: 0.25ex;
+        padding: 0.5ex;
+        position: absolute;
+        z-index: 1;
+        top: 0.5em;
+        left: 1em;
+        /* right: calc(-100% - 1ex); */
+        /* right: -100%; */
+        opacity: 1;
+        white-space: nowrap;
     }
 
     /* popup, adapted from https://www.w3schools.com/howto/howto_js_popup.asp */

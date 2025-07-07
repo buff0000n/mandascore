@@ -2,18 +2,18 @@
   "Demo":{
     "dbName":"Demo",
     "songs":[
-      {"id": "Adau-Demo", "name": "Adau Demo", "tags": ["Adau"]},
-      {"id": "Alpha-Demo", "name": "Alpha Demo", "tags": ["Alpha"]},
-      {"id": "Beta-Demo", "name": "Beta Demo", "tags": ["Beta"]},
-      {"id": "Bombast-demo", "name": "Bombast demo", "tags": ["Bombast"]},
-      {"id": "Delta-Demo", "name": "Delta Demo", "tags": ["Delta"]},
-      {"id": "Druk-Demo", "name": "Druk Demo", "tags": ["Druk"]},
-      {"id": "Epsilon-Demo", "name": "Epsilon Demo", "tags": ["Epsilon"]},
-      {"id": "Gamma-Demo", "name": "Gamma Demo", "tags": ["Gamma"]},
-      {"id": "Horos-Demo", "name": "Horos Demo", "tags": ["Horos"]},
-      {"id": "Plogg-Demo", "name": "Plogg Demo", "tags": ["Plogg"]},
-      {"id": "Clazz-Demo", "name": "Clazz Demo (concept)"},
-      {"id": "Zeta-Demo", "name": "Zeta Demo (concept)"}
+      {"id": "Adau-Demo", "name": "Adau Demo", "tags": ["Adau", "Demo"]},
+      {"id": "Alpha-Demo", "name": "Alpha Demo", "tags": ["Alpha", "Demo"]},
+      {"id": "Beta-Demo", "name": "Beta Demo", "tags": ["Beta", "Demo"]},
+      {"id": "Bombast-demo", "name": "Bombast demo", "tags": ["Bombast", "Demo"]},
+      {"id": "Delta-Demo", "name": "Delta Demo", "tags": ["Delta", "Demo"]},
+      {"id": "Druk-Demo", "name": "Druk Demo", "tags": ["Druk", "Demo"]},
+      {"id": "Epsilon-Demo", "name": "Epsilon Demo", "tags": ["Epsilon", "Demo"]},
+      {"id": "Gamma-Demo", "name": "Gamma Demo", "tags": ["Gamma", "Demo"]},
+      {"id": "Horos-Demo", "name": "Horos Demo", "tags": ["Horos", "Demo"]},
+      {"id": "Plogg-Demo", "name": "Plogg Demo", "tags": ["Plogg", "Demo"]},
+      {"id": "Clazz-Demo", "name": "Clazz Demo (concept)", "tags": ["Demo"]},
+      {"id": "Zeta-Demo", "name": "Zeta Demo (concept)", "tags": ["Demo"]}
     ]
   }
 }

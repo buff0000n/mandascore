@@ -40,7 +40,7 @@
                 <li>
                     <a href="#tocInstruments">Instruments</a>
                     <ul>
-                        <li><a href="#tocInstrumentSet">Instrument Set</a></li>
+                        <li><a href="#tocInstrumentpack">Instrument Pack</a></li>
                         <li><a href="#tocVolume">Volume</a></li>
                         <li><a href="#tocIsolation">Isolation</a></li>
                     </ul>
@@ -87,14 +87,23 @@
         </li>
         <li><a href="#tocLibrary">Library</a>
             <ul>
-                <li><a href="#tocSearchingTheLibrary">Searching the library</a></li>
                 <li>
                     <a href="#tocLoadingASong">Loading a song</a>
                     <ul>
                         <li><a href="#tocBuildingAPlaylist">Building a playlist</a></li>
                     </ul>
                 </li>
-                <li><a href="#tocReverseSearchingTheLibrary">Reverse Searching the library</a></li>
+                <li>
+                    <a href="#tocSearchingTheLibrary">Searching the library</a>
+                    <ul>
+                        <li><a href="#tocKeywordSearch">Keyword Search</a></li>
+                        <li><a href="#tocInstrumentPackFiltering">Instrument Pack Filtering</a></li>
+                        <li><a href="#tocTagFiltering">Tag Filtering</a></li>
+                        <li><a href="#tocResetSearch">Resetting the Search</a></li>
+                    </ul>
+                </li>
+                <li><a href="#tocStatistiiiiiiics">Statistics</a>
+                <!--<li><a href="#tocReverseSearchingTheLibrary">Reverse Searching the library</a></li>-->
             </ul>
         </li>
         <li><a href="#tocPlaylist">Playlist</a>
@@ -131,7 +140,7 @@
                 <li><a href="#tocMixerToggle">Mixer Toggles</a></li>
             </ul>
         </li>
-        <li><a href="#tocInstrumentSetNotes">Instrument Set Notes</a>
+        <li><a href="#tocInstrumentpackNotes">Instrument Pack Notes</a>
             <ul>
                 <li><a href="#tocAdau">Adau</a></li>
                 <li><a href="#tocAlpha">Alpha</a></li>
@@ -173,9 +182,9 @@
     <p>
         You can adjust the settings here for each section individually: Percussion, Bass, and Melody.
     </p>
-    <h3 id="tocInstrumentSet">Instrument Set</h3>
+    <h3 id="tocInstrumentpack">Instrument Pack</h3>
     <p>
-        Use the dropdown to choose one of the nine instrument sets.
+        Use the dropdown to choose one of the nine instrument packs.
     </p>
     <h3 id="tocVolume">Volume</h3>
     <p>
@@ -443,37 +452,13 @@
     <h1 id="tocLibrary">Library</h1>
     <p>
         Click the <strong>Library</strong> button to enable the library.  This contains a demo for each
-        instrument set, along with every Mandachord request I've done.
+        instrument pack, along with every Mandachord request I've done.
     </p>
     <p>
         <strong class="warn">There are thousands of songs and it's all loaded into your browser.  I'm
             not sure how well this works on devices with limited memory.</strong>
     </p>
-    <h2 id="tocSearchingTheLibrary">Searching the library</h2>
-    <p>
-        By default the entire library is listed.  Songs are categorized by my completely arbitrary
-        classification system.
-    </p>
-    <p>
-        The bar at the top is a search bar.  Enter one or more keywords to narrow down the listing.  The keyword
-        can be a category, a title, an artist, or one of a couple of tags:
-    </p>
-    <ul>
-        <li><strong class="tagPerfect">perfect</strong>: Matches melodies that translate perfectly onto the Mandachord</li>
-        <li><strong class="tagFilled">filled</strong>: Matches melodies that have no space between notes</li>
-        <li><strong class="tagSparse">sparse</strong>: Matches melodies that have a lot of space between notes</li>
-        <li><strong class="tagShot">double</strong>, <strong class="tagShot">triple</strong>, etc: Matches
-            songs that I did more than one Mandachord loop for</li>
-        <li><strong class="tagInstrument">adau</strong>, <strong class="tagInstrument">alpha</strong>,
-            <strong class="tagInstrument">druk</strong>, etc: Matches songs that only use one instrument
-            set</li>
-    </ul>
-    <p>
-        Multiple keywords can be entered.  Only songs that match all the keywords will be shown.
-    </p>
-    <p>
-        <strong class="warn">Keywords must be three characters or longer before they will be searched</strong>
-    </p>
+
     <h2 id="tocLoadingASong">Loading a song</h2>
     <p>
         Click on a song entry to load it into the Mandascore editor.  If the editor is currently playing
@@ -493,6 +478,122 @@
         Enable the playlist by clicking the <strong>Playlist</strong> button, making sure it's lit up.
         This will keep the playlist up and append songs as they are selected.
     </p>
+
+    <h2 id="tocSearchingTheLibrary">Searching the library</h2>
+    <p>
+        By default, the entire library is listed.  Songs are categorized by my completely arbitrary
+        classification system.
+    </p>
+    <p>
+        There are three ways to filter down the list of songs, by <a href="#tocKeywordSearch">Keyword</a>,
+        by <a href="#tocInstrumentPackFiltering">Instrument Pack</a>, and by <a href="#tocTagFiltering">Tag</a>.
+        All three of these can be used at the same time or in any combination.
+    </p>
+
+    <h3 id="tocKeywordSearch">Keyword Search</h3>
+    <p>
+        The bar at the top is a search bar.  Enter one or more keywords to narrow down the listing.  The keyword
+        can be a category, a title, an artist, or anything else that appears in the description of the song.
+    </p>
+    <p>
+        Multiple keywords can be entered.  Only songs that match all the keywords will be shown.
+    </p>
+    <p>
+        <strong class="warn">Keywords must be three characters or longer before they will be searched</strong>
+    </p>
+
+    <h3 id="tocInstrumentPackFiltering">Instrument Pack Filtering</h3>
+    <p>
+        Click the
+        <img class="docButton" src="img/icon-burger.png" srcset="img2x/icon-burger.png 2x"/>
+        menu button, then
+        <img class="docButton" src="img/icon-filter.png" srcset="img2x/icon-filter.png 2x"/>
+        to bring up the instrument pack filter.
+    </p>
+    <p>
+        This filter contains a grid of checkboxes for selecting specific combinations of instrument packs and parts.
+        Only songs using the selected instrument packs and parts will appear in the search results.
+    </p>
+    <ul>
+        <li>
+            Click the <strong>All</strong> checkbox in the upper left to enable or disable everything at once.
+            Use this to clear the grid so just certain instrument packs or parts can be enabled.
+        </li>
+        <li>
+            Click the left-most checkbox to enable or disable all parts of that instrument pack.
+        </li>
+        <li>
+            Click the top checkboxes under the part icons to enable or disable that part for all instrument packs.
+        </li>
+        <li>
+            Click any of the rest of the checkbox to enable or disable just that part from that instrument pack.
+        </li>
+    </ul>
+    <p>
+        <strong class="warn">Note: There must be at least one instrument pack under each part selected for search results
+        to show up.</strong>
+    </p>
+    <p>
+        Use the <img class="docButton" src="img/icon-reset.png" srcset="img2x/icon-reset.png 2x"/> reset button
+        at the top to reset the filter and enable everything.
+    </p>
+
+    <h3 id="tocTagFiltering">Tag Filtering</h3>
+    <p>
+        Under the
+        <img class="docButton" src="img/icon-burger.png" srcset="img2x/icon-burger.png 2x"/>
+        menu button are a handful of options for enabling and disabling tag filters:
+    </p>
+    <ul>
+        <li><strong>Only Show Perfect Melodies</strong>: Filters for songs that translated perfectly into the Mandachord.</li>
+        <li><strong>Only Show Filled Melodies</strong>: Filters for songs with full or mostly full melodies,
+            for players that don't want to think when getting Octavia buffs.</li>
+        <li><strong>Only Show Sparse Melodies</strong>: Filters for songs that have a lot of space.  These require
+            fewer synchronized actions to get a buff.</li>
+        <li id="tocTagFilteringMultishot"><strong>Only Show Multi-shots</strong>: Filters for songs that have multiple mandachord loops from different
+            parts of the original song</li>
+        <li><strong>Don't show demo songs</strong>: Hides the demo section at the top of the library.</li>
+    </ul>
+
+    <h3 id="tocResetSearch">Resetting the Search</h3>
+    <p>
+        Click the <img class="docButton" src="img/icon-burger.png" srcset="img2x/icon-burger.png 2x"/> menu
+        button and select <img class="docButton" src="img/icon-reset.png" srcset="img2x/icon-reset.png 2x"/> reset
+        to reset all keyword, instrument set, and tag filters.
+    </p>
+
+    <h3 id="tocStatistiiiiiiics">Statistics</h3>
+    <p>
+        Click the <img class="docButton" src="img/icon-burger.png" srcset="img2x/icon-burger.png 2x"/> menu
+        button and select <img class="docButton" src="img/icon-stats.png" srcset="img2x/icon-stats.png 2x"/> Statistics
+        to bring up the statistics view.
+    </p>
+    <p>
+        This shows the breakdown of instrument packs over the current search result.  Each instrument pack is shown
+        with a histogram of how often its parts appear.
+    </p>
+    <p>
+        Mouse over a histogram bar to see the actual percentage and raw count.
+    </p>
+    <p>
+        Note that the raw count may not be a whole number.  If an entry in list is a
+        <a href="#tocTagFilteringMultishot">Multi-shot</a> containing multiple songs that use different instrument packs
+        then those will count fractionally, so it still adds up to one song overall.
+    </p>
+    <p>
+        Use the
+        <img class="docButton" src="img/all.png" srcset="img2x/all.png 2x"/>,
+        <img class="docButton" src="img/perc.png" srcset="img2x/perc.png 2x"/>,
+        <img class="docButton" src="img/bass.png" srcset="img2x/bass.png 2x"/>, and
+        <img class="docButton" src="img/mel.png" srcset="img2x/mel.png 2x"/> buttons at the top to switch between
+        showing the stats for all parts and the stats for just a single part.
+    </p>
+    <p>
+        <a href="#tocResetSearch">Reset the search</a>, bring up the Statistics view to show the numbers for the
+        entire Mandascore Library, and <strong>bow down to Druk Bass</strong>.
+    </p>
+
+    <!--
     <h2 id="tocReverseSearchingTheLibrary">Reverse Searching the library</h2>
     <p>
         Clicking the
@@ -516,6 +617,7 @@
         <strong class="warn">Note: The reverse search is still a work in progress and it's tuned pretty
             arbitrarily for how I search.</strong>
     </p>
+    -->
 
     <h1 id="tocPlaylist">Playlist</h1>
     <p>
@@ -724,13 +826,13 @@
         <strong>Reset</strong> button Will revert the mixer to having all note tracks enabled at full volume.
     </p>
 
-    <h1 id="tocInstrumentSetNotes">Instrument Set Notes</h1>
+    <h1 id="tocInstrumentpackNotes">Instrument Pack Notes</h1>
     <h2 id="tocAdau">Adau</h2>
     <p>
         The default instrument is ironically one of the hardest to work with.
     </p>
     <p>
-        The <strong>percussion</strong> is different from all the other instrument sets.  It's a low drum, a
+        The <strong>percussion</strong> is different from all the other instrument packs.  It's a low drum, a
         double-drum, and a high drum.  The double-drum is unique: a single note actually plays twice, a
         sixteenth note apart.  Putting a series of middle-drum notes one grid square apart will play a
         continuous drum roll.
@@ -740,7 +842,7 @@
         of the rhythm, and the middle double-drum supporting the other two as a lead-in or filler.
     </p>
     <p>
-        The <strong>bass</strong> is the only bass in the current instrument set lineup that's pitched high and
+        The <strong>bass</strong> is the only bass in the current instrument pack lineup that's pitched high and
         clear enough to do chords.  That's usually how I use it.  Unfortunately, because it's pitched so high,
         and because I'm usually doubling up with chords, it tends to drown out most melodies.  For that reason
         I usually back the volume off a bit.
@@ -758,7 +860,7 @@
 
     <h2 id="tocAlpha">Alpha</h2>
     <p>
-        The Alpha instrument set is 100% Techno.
+        The Alpha instrument pack is 100% Techno.
     </p>
     <p>
         The <strong>percussion</strong> has a very distinctive 80's techno bass drum, but it should be used
@@ -782,7 +884,7 @@
 
     <h2 id="tocBeta">Beta</h2>
     <p>
-        Beta is one of the more low-key instrument sets.
+        Beta is one of the more low-key instrument packs.
     </p>
     <p>
         The <strong>percussion</strong> bass and hi-hat are relatively gentle.  I tend to use them if the song
@@ -804,7 +906,7 @@
 
     <h2 id="tocBombast">Bombast</h2>
     <p>
-        This instrument set comes with Octavia Prime.  This might be a problem after Octavia Prime is vaulted,
+        This instrument pack comes with Octavia Prime.  This might be a problem after Octavia Prime is vaulted,
         but for now I plan on using it.
     </p>
     <p>
@@ -943,12 +1045,12 @@
 
     <h2 id="tocHoros">Horos</h2>
     <p>
-        Horos is the community-voted "EDM" pack which... I mean, half the instrument sets in the
-        line-up qualify as "EDM".  The community is dumb sometimes, but it's a good instrument set.
+        Horos is the community-voted "EDM" pack which... I mean, half the instrument packs in the
+        line-up qualify as "EDM".  The community is dumb sometimes, but it's a good instrument pack.
     </p>
     <p>
         The <strong>percussion</strong> bass drum and snare make a solid club beat.  I find myself just doing
-        bass drum on the beast and snare every other beat a lot with this instrument set.  The only unfortunate
+        bass drum on the beast and snare every other beat a lot with this instrument pack.  The only unfortunate
         thing is the hi-hat, which is so weak it's almost inaudible compared to the rest.
     </p>
     <p>
@@ -988,7 +1090,7 @@
         <a href="https://www.youtube.com/watch?v=-3ZruCCdfKI">Original video</a>
     </p>
     <p>
-        The instrument set request I hear the most is "piano".  So here's my concept.
+        The instrument pack request I hear the most is "piano".  So here's my concept.
     </p>
     <p>
         The <strong>percussion</strong> is smooth jazz, because even Plogg is still too heavy for some songs.
@@ -1007,7 +1109,7 @@
         <a href="https://www.youtube.com/watch?v=K6VN7DbkIhg">Original video</a>
     </p>
     <p>
-        I would love a reto-gaming chiptune instrument set.  So here's my concept.
+        I would love a reto-gaming chiptune instrument pack.  So here's my concept.
     </p>
     <p>
         The <strong>percussion</strong> is based on a Commodore 64, the earliest thing I could think of that
@@ -1026,7 +1128,7 @@
     <h2>v1.0: 2020-10-14</h2>
     <ul>
         <li>Attempt to make starting playback right after loading the page smoother.</li>
-        <li>Added my concept instrument sets because I can.</li>
+        <li>Added my concept instrument packs because I can.</li>
         <li>Fixed the volume encoding (thanks <strong>HZDeluxe</strong>)</li>
     </ul>
     <h2>v2.0: 2021-01-26</h2>
@@ -1045,8 +1147,8 @@
         <li>Added Bombast instrument pack, along with support for monophonic instrument packs.</li>
         <li>Added a confirm step to clearing the playlist, that's bit me one too many times.</li>
         <li>Added color coded tag displays to the library list for filled, sparse, perfect, multiple shots,
-            and instrument sets.</li>
-        <li>Smoothing out playlist playback when the instrument set changes.</li>
+            and instrument packs.</li>
+        <li>Smoothing out playlist playback when the instrument pack changes.</li>
     </ul>
 
     <h2>v2.3: 2021-03-11</h2>
@@ -1059,7 +1161,7 @@
             for each sound, like it does in-game, and re-recording Bombast and Adau in full.</li>
         <li>Re-recording multiple samples for the other instrument.  If you can tell the difference you've got
             better ears than I do.</li>
-        <li>Fixed an issue with changing an instrument set too quickly</li>
+        <li>Fixed an issue with changing an instrument pack too quickly</li>
     </ul>
     <h2>v2.4: 2021-06-22</h2>
     <ul>
@@ -1107,6 +1209,12 @@
         <li>Finally sat down and fixed the cutoff bug with rendering playlists</li>
         <li>Added handling for audio latency, which is surprisingly easy</li>
         <li>Oops, Percussion has a 26-note limit per measure, not 24 (thanks <strong>dierubikdie</strong>)</li>
+    </ul>
+    <h2>v3.9: 2025-07-07</h2>
+    <ul>
+        <li>Added instrument pack filtering and tag filtering to Library</li>
+        <li>Added statistics view to Library. <b>STATISTIIIIIIICS</b></li>
+        <li>Removed reverse library search until such time as it can be made to not suck</li>
     </ul>
 
     <h1 id="tocToDo">To Do</h1>
