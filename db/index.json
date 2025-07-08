@@ -251,14 +251,14 @@
 				{"id": "uhBKtepOq9I", "name": "Land of Confusion", "attr": ["Genesis"]},
 				{"id": "p7ks3fSKjWI", "name": "Take On Me", "attr": ["a-ha"]},
 				{"id": "ZINDoJTLMfk", "name": "It's My Life", "attr": ["Talk Talk"]},
-				{"id": "nOI8RQ289pc", "name": "Superfreak", "attr": ["Rick James"]},
+				{"id": "nOI8RQ289pc", "name": "Superfreak", "attr": ["Rick James", "also U Can't Touch This by MC Hammer"]},
 				{"id": "2B37cfDmDNA", "name": "Simply Irresistible", "attr": ["Robert Palmer"], "tags": ["Druk"]},
 				{"id": "ejXtgLpaDc4", "name": "Addicted To Love", "attr": ["Robert Palmer"], "tags": ["Perfect"]},
 				{"id": "v1tonFsz2lM", "name": "Louie Louie", "attr": ["The Kingsmen"]},
 				{"id": "ih0Mf2CsXAU", "name": "The Final Countdown", "attr": ["Europe"]},
 				{"id": "hkHAxw8foac", "name": "YMCA", "attr": ["The Village People"], "tags": ["Perfect"]},
 				{"id": "pcimEV-vGYs", "name": "YMCA intro", "attr": ["The Village People"]},
-				{"id": "fWAmbMzm1bw", "name": "Dream On", "attr": ["Aerosmith"]},
+				{"id": "fWAmbMzm1bw", "name": "Dream On", "attr": ["Aerosmith", "Sing For the Moment by Eminem"]},
 				{"id": "sTB-kEZ9J_Q", "name": "Tainted Love", "attr": ["Soft Cell"]},
 				{"id": "ttyESXIoqNg", "name": "Seedy Films", "attr": ["Soft Cell"], "tags": ["Perfect"]},
 				{"id": "DFe40vRCJkA", "name": "Jump", "attr": ["Van Halen"], "tags": ["Sparse"]}
@@ -6536,7 +6536,7 @@
 				{"id": "tbQ_1yhV7tE", "name": "New Face", "attr": ["Psy"]},
 				{"id": "i7UcMeZW144", "name": "Totinos Song", "attr": ["Tim & Eric"]},
 				{"id": "9WJLp1o50fM", "name": "h3hproductions Theme Song"},
-				{"id": "Qt1uCXIgL6Y", "name": "Squirrel Song", "tags": ["Perfect"]},
+				{"id": "Qt1uCXIgL6Y", "name": "Squirrel Song", "attr": ["Girls by the Beastie Boys"], "tags": ["Perfect"]},
 				{"id": "o6iQE-KOwXI", "name": "Speedlord theme", "attr": ["FilthyFrank", "\u592a\u967d\u306b\u307b\u3048\u308d \u5192\u967a\u306e\u30c6\u30fc\u30de/Adventure Theme by Taiyou ni Hoero"]},
 				{"id": "5UNjHhBuuvo", "name": "Sanctuary", "attr": ["Joji"], "tags": ["Perfect"], "multi": 2},
 				{"id": "TxOFs2lNbZU", "name": "Gimme Love", "attr": ["Joji"], "tags": ["Perfect"]}
@@ -6927,6 +6927,7 @@
 				, {"id": "l-zd1Ztl4Ks", "name": "From The Start", "attr": ["Laufey"], "tags": ["Perfect"]}
 				, {"id": "HB7KcAMbxWk", "name": "El Derecho de Vivir en Paz", "attr": ["Victor Jara"]}
 				, {"id": "d8TtLa1eJf0", "name": "Hamrer Hippyer", "attr": ["Heilung"]}
+				, {"id": "9K-8ofN9hmE", "name": "Dare To Be Stupid", "attr": ["Weird Al"], "tags": ["Perfect"]}
 				, {"id": "KK2wFxBZT_c", "name": "Romanticist / Dream Palette", "attr": ["Yves Tumor"], "tags": ["Perfect"]}
 				, {"id": "B_H-UgsuJt0", "name": "You're The One That I Want", "attr": ["Grease"]}
 				, {"id": "krtOB-dRK_E", "name": "This Isn't Over", "attr": ["Sondae"]}
