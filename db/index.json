@@ -1747,6 +1747,7 @@
 				, {"id": "5x01IAKakJY", "name": "The Setup", "attr": ["Favored Nations"], "tags": ["Perfect"]}
 				, {"id": "UEADHQUDaNg", "name": "99 Luftballons", "attr": ["Nena"], "tags": ["Perfect"]}
 				, {"id": "wWBiHAsPsGA", "name": "i won't run", "attr": ["Keanu Bicol"]}
+				, {"id": "xT55m3hg0i4", "name": "*Equip Sunglasses*", "attr": ["Hot Mulligan"]}
 			]
 		}
 	},
@@ -2044,6 +2045,15 @@
 				{"id": "czV6sZiZ4Kw", "name": "Truly Madly Deeply", "attr": ["One Direction"], "tags": ["Perfect"]}
 				, {"id": "ihmkmQiDGdM", "name": "Drag Me Down", "attr": ["One Direction"], "tags": ["Perfect"], "multi": 4}
 				, {"id": "560pOjAtpMo", "name": "What Makes You Beautiful", "attr": ["One Direction"], "tags": ["Perfect"], "multi": 2}
+				, {"id": "hd0ApxtpknU", "name": "Live While We're Young", "attr": ["One Direction"], "tags": ["Perfect"], "multi": 2}
+			]
+		},
+		"Beiber":{
+			"dbName":"Pop",
+			"songs":[
+				{"id": "eW1xPFd_wzM", "name": "Baby", "attr": ["Bieber"]}
+				, {"id": "ZFgooeJP0Go", "name": "Stay", "attr": ["The Kid LAROI ft. Justin Bieber"]}
+				, {"id": "fu6PktufsIc", "name": "Yummy", "attr": ["Justin Bieber"]}
 			]
 		},
 		"Misc Pop":{
@@ -2224,8 +2234,6 @@
 				{"id": "EYr5l7SA_A4", "name": "Dokn't Wanna Know", "attr": ["Maroon 5"]},
 				{"id": "BsQzqALV80Q", "name": "Go Hard", "attr": ["Ayah Marar"]},
 				{"id": "aiW_aALyN7k", "name": "Love Dealer", "attr": ["Esm\u00e9e Denters"], "tags": ["Plogg"]},
-				{"id": "eW1xPFd_wzM", "name": "Baby", "attr": ["Bieber"]}
-				, {"id": "ZFgooeJP0Go", "name": "Stay", "attr": ["The Kid LAROI ft. Justin Bieber"]},
 				{"id": "12DkXAUj6qA", "name": "Trouble Maker", "attr": ["Akon"], "tags": ["Perfect"]}
 				, {"id": "mFYXj8xBkL0", "name": "Smack That", "attr": ["Akon ft. Eminem"], "tags": ["Perfect"], "multi": 2},
 				{"id": "4mEA4_-JCPI", "name": "Pretty Girl", "attr": ["Maggie Lindermann"]},
@@ -4418,6 +4426,7 @@
 				{"id": "J3-XChpA7Uc", "name": "Wildfire", "attr": ["Honkai Star Rail"]}
 				, {"id": "VvNGAi_u2JA", "name": "White Night", "attr": ["Honkai: Star Rail"], "tags": ["Perfect"]}
 				, {"id": "qBLZ5QyPtyY", "name": "Sway to My Bean in the Cosmos/Welcome To My World/Robin's Ultimate Song", "attr": ["Honkai: Star Rail"]}
+				, {"id": "g9UO_YOGNGk", "name": "Proi Proi", "attr": ["Honkai: Star Rail"], "tags": ["Perfect", "Adau"]}
 			]
 		},
 		"Goddess of Victory: Nikke":{
@@ -4794,6 +4803,7 @@
 					, {"id": "PV2VjRF2r7w", "name": "Worms Armageddon main theme"}
 					, {"id": "DNvYEcvVjIY", "name": "John Doe Chase Theme", "attr": ["Forsaken"]}
 					, {"id": "9E8TVOUdB7o", "name": "1,000 Light Years Away", "attr": ["Slime Ranger"]}
+					, {"id": "GbgV42S05MM", "name": "Blur", "attr": ["Stellar Blade"]}
 				]
 			}
 		}
@@ -6117,6 +6127,7 @@
 				{"id": "Twnmm5Inm84", "name": "favOriTe", "attr": ["Loona/\uc774\ub2ec\uc758 \uc18c\ub140"]}
 				, {"id": "LOz2dNxox7c", "name": "One & Only", "attr": ["LOONA/Go Won/\uc774\ub2ec\uc758 \uc18c\ub140/\uace0\uc6d0"], "multi": 2}
 				, {"id": "ja3Qxxe16qc", "name": "Flip That", "attr": ["LOONA/\uc774\ub2ec\uc758 \uc18c\ub140"], "tags": ["Perfect"]}
+				, {"id": "tFUF9QEUJUw", "name": "Loonatic", "attr": ["Loona"], "tags": ["Perfect"]}
 			]
 		},
 		"NewJeans/뉴진스":{
@@ -6299,6 +6310,7 @@
 				, {"id": "j4JVXdUYZK8", "name": "Dramaturgy", "attr": ["Eve"]}
 				, {"id": "U-R8fT08MNQ", "name": "Be a Flower", "attr": ["Ryokuoushoku Shakai"]}
 				, {"id": "kH1p7PM9jz8", "name": "Chicken Noodle Soup", "attr": ["j-hope ft. Becky G"]}
+				, {"id": "RbiL8BkCwtQ", "name": "Killin' It Girl", "attr": ["j-Hope ft. GloRilla"], "tags": ["Perfect"]}
 			]
 		},
 		"Misc I Don't Know Which Letter Pop":{
