@@ -729,53 +729,64 @@ class Library {
             // put all this into one undo action
             this.score.startActions();
 
-            if (playlistEnabled()) {
-                // if the playlist is fully enabled then just add the first song and select it
-                this.score.playlist.addSongCode(songs[0], true, true, true);
-
-            } else if (playlistVisible()) {
-                // if the playlist is visible but not enabled, then clear it
-                // it must have been enabled by a previous multi-song library entry
-                this.score.playlist.clear(true);
-                if (songs.length == 1) {
-                    // if there's only one song in this library entry then hide the playlist
-                    // and set the song in the score
-                    hidePlaylist();
-                    this.score.setSong(songs[0], true, false);
-
-                } else {
-                    // there are more songs to come, just add the first song and select it
-                    this.score.playlist.addSongCode(songs[0], true, true, true);
+            if (songs.length == 1 && songs[0].startsWith("playlist=")) {
+                if (!playlistEnabled()) {
+                    // if the playlist is not visible and there is more than one song the
+                    // show the playlist, but don't enable it automatically
+                    showPlaylist(false);
                 }
-
-            } else if (songs.length > 1) {
-                // if the playlist is not visible and there is more than one song the
-                // show the playlist, but don't enable it automatically
-                showPlaylist(false);
-                // clear it for grins
-                this.score.playlist.clear(true);
-                // there are more songs to come, just add the first song and select it
-                this.score.playlist.addSongCode(songs[0], true, true, true);
+                setPlaylistFromUrlString(songs[0].substring("playlist=".length), false);
 
             } else {
-                // if there's no playlist visible and only one song in the library entry then
-                // just set the song in the score
-                this.score.setSong(songs[0], true, false);
-            }
+                if (playlistEnabled()) {
+                    // if the playlist is fully enabled then just add the first song and select it
+                    this.score.playlist.addSongCode(songs[0], true, true, true);
 
-            if (songs.length > 1) {
-                // append the rest of the songs, without selecting them and appended after the first one
-                for (var i = 1; i < songs.length; i++) {
-                    this.score.playlist.addSongCode(songs[i], false, false, true);
+                } else if (playlistVisible()) {
+                    // if the playlist is visible but not enabled, then clear it
+                    // it must have been enabled by a previous multi-song library entry
+                    this.score.playlist.clear(true);
+                    if (songs.length == 1) {
+                        // if there's only one song in this library entry then hide the playlist
+                        // and set the song in the score
+                        hidePlaylist();
+                        this.score.setSong(songs[0], true, false);
+
+                    } else {
+                        // there are more songs to come, just add the first song and select it
+                        this.score.playlist.addSongCode(songs[0], true, true, true);
+                    }
+
+                } else if (songs.length > 1) {
+                    // if the playlist is not visible and there is more than one song the
+                    // show the playlist, but don't enable it automatically
+                    showPlaylist(false);
+                    // clear it for grins
+                    this.score.playlist.clear(true);
+                    // there are more songs to come, just add the first song and select it
+                    this.score.playlist.addSongCode(songs[0], true, true, true);
+
+                } else {
+                    // if there's no playlist visible and only one song in the library entry then
+                    // just set the song in the score
+                    this.score.setSong(songs[0], true, false);
                 }
 
-                // enable looping
-                this.score.playlist.setLooping(true);
+                if (songs.length > 1) {
+                    // append the rest of the songs, without selecting them and appended after the first one
+                    for (var i = 1; i < songs.length; i++) {
+                        this.score.playlist.addSongCode(songs[i], false, false, true);
+                    }
 
-            } else if (playlistVisible()) {
-                // disable looping if it's just one song
-                this.score.playlist.setLooping(false);
+                    // enable looping
+                    this.score.playlist.setLooping(true);
+
+                } else if (playlistVisible()) {
+                    // disable looping if it's just one song
+                    this.score.playlist.setLooping(false);
+                }
             }
+
 
             // close the undo action
             this.score.endActions();
