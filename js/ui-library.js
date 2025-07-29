@@ -2217,7 +2217,7 @@ class Library {
             reset();
             // re-use the current search functionality, make sure that
             // omitHidden = true so it only searches the currently visible entries
-            thiz.startFuncSearch(true, true, (song, songList, index, total) => {
+            thiz.startFuncSearch(false, true, (song, songList, index, total) => {
                 if (!song.date) {
                     // If the song doesn't have a release date then skip it.  this is a demo song
                     return;
