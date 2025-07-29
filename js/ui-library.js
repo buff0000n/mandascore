@@ -155,8 +155,13 @@ class Library {
             </div>
             <div class="button statsButton tooltip">
                 <img class="imgButton" src="img/icon-stats.png" srcset="img2x/icon-stats.png 2x" alt="Instrument Stats"/>
-                Statistics
+                Instrument Statistics
                 <span class="tooltiptextbottom">Show statistics for instrument packs used in the currently visible songs</span>
+            </div>
+            <div class="button dateStatsButton tooltip">
+                <img class="imgButton" src="img/icon-date.png" srcset="img2x/icon-date.png 2x" alt="Instrument Stats"/>
+                Date Statistics
+                <span class="tooltiptextbottom">Show statistics on publish dates</span>
             </div>
             <!-- todo the reverse search sucks
             <div class="button searchButton tooltip">
@@ -192,6 +197,11 @@ class Library {
         getFirstChild(div, "statsButton").addEventListener("click", (e) => {
             clearMenus();
             this.showStats(e);
+        });
+        // date stats mode
+        getFirstChild(div, "dateStatsButton").addEventListener("click", (e) => {
+            clearMenus();
+            this.showDateStats(e);
         });
 
         // convenience function for setting up the tag filter checkboxes
@@ -1950,6 +1960,309 @@ class Library {
 
         // initialize the selected part to "all"
         setShowPart("all");
+    }
+
+    showDateStats() {
+        var thiz = this;
+        // build extra button UI
+        var extraButtonHtml = "";
+        
+        var grainList = ["Years", "Months", "Weeks"];
+
+        for (var i = 0; i < grainList.length; i++) {
+            // get the part name and metadata
+            var grain = grainList[i];
+            // build the grain button
+            extraButtonHtml += `
+            <span class="imgButton tooltip select${grain}" id="select${grain}Tab">
+                ${grain}
+                <span class="tooltiptextbottom">Show song ${grain}</span>
+            </span>`;
+        }
+
+        // might as well throw in the song count
+        extraButtonHtml += `
+            <span class="titleButton visibleSongCount">0</span>
+        `;
+
+        // replace the library UI with the statistics UI
+        this.replaceUI(extraButtonHtml, () => {
+            // when the stats close button is called, revert to the library UI
+            this.endReplaceUI();
+            this.searchLoader = null;
+        });
+
+        // get the count element
+        var visibleCountElement = getFirstChild(this.menuContainer, "visibleSongCount");
+
+        // state variables
+        var songCountsByDate, startDate, endDate, totalCount, maxCount;
+
+        // reset function, we need to be able to re-run this
+        function reset() {
+            table.innerHTML = "";
+            songCountsByDate = {};
+            startDate = null;
+            endDate = null;
+            totalCount = 0;
+            maxCount = 0;
+        }
+
+        function truncateDateStringYear(dateString) {
+            // easy
+            return dateString.substring(0, 4);
+        }
+
+        function offsetDateStringYear(dateString, amount) {
+            // pretty easy
+            return (parseInt(dateString) + amount).toString();
+        }
+
+        function truncateDateStringMonth(dateString) {
+            // easy
+            return dateString.substring(0, 7);
+        }
+
+        function offsetDateStringMonth(dateString, amount) {
+            // not as easy
+            var year = parseInt(dateString.substring(0, 4));
+            var month = parseInt(dateString.substring(5, 7)) + amount;
+            while (month > 12) {
+                year += 1;
+                month -= 12;
+            }
+            while (month < 1) {
+                year -= 1;
+                month += 12;
+            }
+            return year + "-" + month.toString().padStart(2, "0");
+        }
+
+        function fullDateToString(date) {
+            // dealing with the javascript Date object is an exercise in pain tolerance
+            return `${date.getYear() + 1900}-${(date.getMonth() + 1).toString().padStart(2, "0")}-${date.getDate().toString().padStart(2, "0")}`;
+        }
+
+        function fullStringToDate(dateString) {
+            // dealing with the javascript Date object is an exercise in pain tolerance
+            var year = parseInt(dateString.substring(0, 4));
+            var month = parseInt(dateString.substring(5, 7)) - 1;
+            var day = parseInt(dateString.substring(8, 10));
+            return new Date(year, month, day);
+        }
+        
+        function offsetDateByDays(date1, days) {
+            // abusing the Date object to take an out-of-bounds day of the month value and convert to the correct date.
+            // ffs, getYear() is relative to 1900, but the Date() constructor takes the absolute year
+            return new Date(date1.getYear() + 1900, date1.getMonth(), date1.getDate() + days);
+        }
+
+        function truncateDateStringWeek(dateString) {
+            var date1 = fullStringToDate(dateString);
+            // subtract the day of the week to get the previous Sunday, or the same day if it is a Sunday
+            var sunday = offsetDateByDays(date1, -date1.getDay());
+            return fullDateToString(sunday);
+        }
+
+        function offsetDateStringWeek(dateString, amount) {
+            var date1 = fullStringToDate(dateString);
+            // add the given amount of weeks to the date
+            var otherWeek = offsetDateByDays(date1, amount * 7);
+            return fullDateToString(otherWeek);
+        }
+
+        // put the grain-related functions into a convenient map
+        var grainFunctions = {
+            "Years": {
+                "truncate": truncateDateStringYear,
+                "offset": offsetDateStringYear
+            },
+            "Months": {
+                "truncate": truncateDateStringMonth,
+                "offset": offsetDateStringMonth
+            },
+            "Weeks": {
+                "truncate": truncateDateStringWeek,
+                "offset": offsetDateStringWeek
+            }
+        };
+
+        // override the index container
+        this.indexContainer = document.createElement("div");
+        this.indexContainer.className = "indexContainer";
+        this.libraryContainer.appendChild(this.indexContainer);
+
+        // create a table to contain the histogram
+        var table = document.createElement("table");
+        table.className = "statTable";
+        this.indexContainer.appendChild(table);
+
+        // create a date row
+        function createDate(date, prepend = false) {
+            // build a row
+            var tr = document.createElement("tr");
+            tr.className = "statRow";
+            if (prepend) {
+                table.insertBefore(tr, table.children[0]);
+            } else {
+                table.appendChild(tr);
+            }
+
+            // first cell is the label
+            var nameTd = document.createElement("td");
+            nameTd.className = "statLabel";
+            nameTd.innerHTML = `<strong>${date}</strong>`;
+            tr.appendChild(nameTd);
+
+            // second cell contains the histogram
+            var statTd = document.createElement("td");
+            statTd.className = "statCell";
+            tr.appendChild(statTd);
+
+            // create a basic div to be the histogram bar
+            var statBar = document.createElement("div");
+            statBar.className = "statBar quicktooltip";
+            // set the color based on the part
+            statBar.style.backgroundColor = sectionMetaData["all"].color;
+            // starting sizing
+            statBar.display = "block";
+            statBar.style.width = "0%";
+            statBar.style.height = "1.35em";
+            statTd.appendChild(statBar);
+
+            // create a tooltip for the bar
+            var statBarTooltip = document.createElement("div");
+            statBarTooltip.className = "quicktooltiptext";
+            // no contents yet
+            statBarTooltip.innerHTML = "";
+            statBar.appendChild(statBarTooltip);
+
+            // save reference to the stat bar and count
+            var dateStat = {"count": 0, "statBar": statBar, "statBarTooltip": statBarTooltip};
+            songCountsByDate[date] = dateStat;
+            return dateStat;
+        }
+
+        // get a count object for the given date
+        function getDateCount(date, truncateFunction, offsetFunction) {
+            // convert to date identifier
+            var dateString = truncateFunction(date);
+            // quick lookup
+            if (songCountsByDate[dateString]) {
+                // found it
+                return songCountsByDate[dateString];
+            }
+            // if we have no date entries, start with this one
+            if (startDate == null) {
+                startDate = dateString;
+                endDate = dateString;
+                return createDate(dateString);
+            }
+            // if the date is before our current range expand the range earlier until reaching it
+            while (startDate > dateString) {
+                startDate = offsetFunction(startDate, -1);
+                var added = createDate(startDate, true);
+                if (startDate == dateString) {
+                    return added;
+                }
+            }
+            // if the date is after our current range expand the range later until reaching it
+            while (endDate < dateString) {
+                endDate = offsetFunction(endDate, 1);
+                var added = createDate(endDate, false);
+                if (endDate == dateString) {
+                    return added;
+                }
+            }
+            // shrugs
+            throw "oh no";
+        }
+
+        // actual stat collecting function
+        function incrementDate(date, truncateFunction, offsetFunction) {
+            // get the entry for the given date
+            var dateEntry = getDateCount(date, truncateFunction, offsetFunction);
+            // update the entry count, total count, and max count
+            dateEntry.count += 1;
+            totalCount += 1;
+            if (dateEntry.count > maxCount) maxCount = dateEntry.count;
+        }
+
+        // update the UI
+        function renderStats() {
+            // update the UI with the total song count
+            visibleCountElement.innerHTML = totalCount;
+
+            // update a specific date's amount
+            function updateDate(entry, scale) {
+                var percentage = (100 * (entry.count / (1.0 * maxCount)));
+                // scale the percentage so the max stat ends up at 100%, and set that as
+                // the element width
+                entry.statBar.style.width = percentage + "%";
+                // update the tooltip with the percentage and raw value
+                // raw value
+                var text = `${entry.count}`;
+                entry.statBarTooltip.innerHTML = text;
+            }
+
+            // just go through and update all the date entries
+            for (var dateString in songCountsByDate) {
+                updateDate(songCountsByDate[dateString]);
+            }
+        }
+
+        // run the collection process
+        function runStats(truncateFunction, offsetFunction) {
+            // clear the UI and state so we can start again
+            reset();
+            // re-use the current search functionality, make sure that
+            // omitHidden = true so it only searches the currently visible entries
+            thiz.startFuncSearch(true, true, (song, songList, index, total) => {
+                if (!song.date) {
+                    // If the song doesn't have a release date then skip it.  this is a demo song
+                    return;
+                }
+                // search handler for a single song entry
+                incrementDate(song.date, truncateFunction, offsetFunction);
+            }, renderStats);
+        }
+
+        // handler for the grain buttons
+        function setShowGrain(grain) {
+            // update the buttons, raising up the currently active one and lowering the others
+            for (var r = 0; r < grainList.length; r++) {
+                // get the button for this grain
+                var grainName = grainList[r];
+                var button = document.getElementById(`select${grainName}Tab`);
+                // set the style based on the current filter
+                if (grain == grainName) {
+                    button.classList.add("imgButtonRaised");
+                    button.classList.remove("imgButton");
+                } else {
+                    button.classList.add("imgButton");
+                    button.classList.remove("imgButtonRaised");
+                }
+            }
+
+            // re-run the stats
+            runStats(grainFunctions[grain]["truncate"], grainFunctions[grain]["offset"]);
+        }
+
+        // set up the handlers for the grain buttons
+        for (var i = 0; i < grainList.length; i++) {
+            // get the grain name and button container
+            var grainName = grainList[i];
+            var grainButton = getFirstChild(this.menuContainer, `select${grainName}`);
+            // save the grain name as a property
+            grainButton.grainName = grainName;
+            // add handler
+            grainButton.addEventListener("click", (e) => {
+                setShowGrain(e.currentTarget.grainName);
+            });
+        }
+
+        // start off with years
+        setShowGrain("Years");
     }
 }
 

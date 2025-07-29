@@ -733,6 +733,7 @@
     }
     .statLabel {
         text-align: right;
+        white-space: nowrap;
     }
     .statCell {
         width: 100%;

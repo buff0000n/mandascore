@@ -27,6 +27,8 @@ class InstrumentPack {
     }
 }
 
+var octaviaReleaseDate = "2017-03-24";
+
 var packs = Array(
     new InstrumentPack("adau", "Adau", "BardTennoPackA", "U", "2017-03-24", true),
     new InstrumentPack("alpha", "Alpha", "BardCorpusPackA", "A", "2017-03-24", true),
