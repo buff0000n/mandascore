@@ -87,6 +87,7 @@
         </li>
         <li><a href="#tocLibrary">Library</a>
             <ul>
+                <li><a href="#tocLibraryNavigating">Navigating the Library</a></li>
                 <li>
                     <a href="#tocLoadingASong">Loading a song</a>
                     <ul>
@@ -102,7 +103,8 @@
                         <li><a href="#tocResetSearch">Resetting the Search</a></li>
                     </ul>
                 </li>
-                <li><a href="#tocStatistiiiiiiics">Statistics</a>
+                <li><a href="#tocStatistiiiiiiics">Instrument Statistics</a>
+                <li><a href="#tocStatistiiiiiiics2">Date Statistics</a>
                 <!--<li><a href="#tocReverseSearchingTheLibrary">Reverse Searching the library</a></li>-->
             </ul>
         </li>
@@ -459,6 +461,28 @@
             not sure how well this works on devices with limited memory.</strong>
     </p>
 
+    <h2 id="tocLibraryNavigating">Navigating the Library</h2>
+    <p>
+        The library is loosely categorized by genre and artist.  Click on a category header to expand that category.
+        Click it again to collapse it back down.
+    </p>
+    <p>
+        <strong>Note:</strong> Next to each category is a count of the total number of songs it contains.
+    </p>
+    <p>
+        Some categories contain sub-categories, and some just contain songs.  Below the main categories,
+        subcategories are roughly ordered by artist, and individual songs are ordered by title.
+    </p>
+    <p>
+        Click the
+        <img class="docButton" src="img/icon-burger.png" srcset="img2x/icon-burger.png 2x"/>
+        menu button, then
+        <img class="docButton" src="img/icon-add.png" srcset="img2x/icon-add.png 2x"/>
+        to expand all visible categories.
+        Click <img class="docButton" src="img/icon-subtract.png" srcset="img2x/icon-subtract.png 2x"/>
+        to collapse all categories.
+    </p>
+
     <h2 id="tocLoadingASong">Loading a song</h2>
     <p>
         Click on a song entry to load it into the Mandascore editor.  If the editor is currently playing
@@ -545,14 +569,14 @@
         menu button are a handful of options for enabling and disabling tag filters:
     </p>
     <ul>
-        <li><strong>Only Show Perfect Melodies</strong>: Filters for songs that translated perfectly into the Mandachord.</li>
-        <li><strong>Only Show Filled Melodies</strong>: Filters for songs with full or mostly full melodies,
+        <li><strong>Perfect Melody Filter</strong>: Filters for songs that translated perfectly into the Mandachord.</li>
+        <li><strong>Filled Melody Filter</strong>: Filters for songs with full or mostly full melodies,
             for players that don't want to think when getting Octavia buffs.</li>
-        <li><strong>Only Show Sparse Melodies</strong>: Filters for songs that have a lot of space.  These require
+        <li><strong>Sparse Melody Filter</strong>: Filters for songs that have a lot of space.  These require
             fewer synchronized actions to get a buff.</li>
-        <li id="tocTagFilteringMultishot"><strong>Only Show Multi-shots</strong>: Filters for songs that have multiple mandachord loops from different
+        <li id="tocTagFilteringMultishot"><strong>Multi-shot Filter</strong>: Filters for songs that have multiple mandachord loops from different
             parts of the original song</li>
-        <li><strong>Don't show demo songs</strong>: Hides the demo section at the top of the library.</li>
+        <li><strong>Hide demo songs</strong>: Hides the demo section at the top of the library.</li>
     </ul>
 
     <h3 id="tocResetSearch">Resetting the Search</h3>
@@ -562,11 +586,11 @@
         to reset all keyword, instrument set, and tag filters.
     </p>
 
-    <h3 id="tocStatistiiiiiiics">Statistics</h3>
+    <h3 id="tocStatistiiiiiiics">Instrument Statistics</h3>
     <p>
         Click the <img class="docButton" src="img/icon-burger.png" srcset="img2x/icon-burger.png 2x"/> menu
-        button and select <img class="docButton" src="img/icon-stats.png" srcset="img2x/icon-stats.png 2x"/> Statistics
-        to bring up the statistics view.
+        button and select <img class="docButton" src="img/icon-stats.png" srcset="img2x/icon-stats.png 2x"/>
+        Instrument Statistics to bring up the statistics view.
     </p>
     <p>
         This shows the breakdown of instrument packs over the current search result.  Each instrument pack is shown
@@ -587,10 +611,29 @@
         <img class="docButton" src="img/bass.png" srcset="img2x/bass.png 2x"/>, and
         <img class="docButton" src="img/mel.png" srcset="img2x/mel.png 2x"/> buttons at the top to switch between
         showing the stats for all parts and the stats for just a single part.
+        The <img class="docButton" src="img/overall.png" srcset="img2x/overall.png 2x"/> button shows the average of all three.
     </p>
     <p>
         <a href="#tocResetSearch">Reset the search</a>, bring up the Statistics view to show the numbers for the
         entire Mandascore Library, and <strong>bow down to Druk Bass</strong>.
+    </p>
+
+    <h3 id="tocStatistiiiiiiics2">Date Statistics</h3>
+    <p>
+        Click the <img class="docButton" src="img/icon-burger.png" srcset="img2x/icon-burger.png 2x"/> menu
+        button and select <img class="docButton" src="img/icon-date.png" srcset="img2x/icon-date.png 2x"/>
+        Date Statistics to bring up the date statistics view.
+    </p>
+    <p>
+        This breaks down my library by the date that the original YouTube video for each song was published.
+    </p>
+    <p>
+        Use the <strong>Years</strong>, <strong>Months</strong>, and <strong>Weeks</strong> tabs at the top
+        to switch between different time grains.
+    </p>
+    <p>
+        <strong>This feature is mainly for my own curiosity.  I don't know how I was putting out dozens
+        a week for the first few months.</strong>
     </p>
 
     <!--
@@ -1215,6 +1258,8 @@
         <li>Added instrument pack filtering and tag filtering to Library</li>
         <li>Added statistics view to Library. <b>STATISTIIIIIIICS</b></li>
         <li>Removed reverse library search until such time as it can be made to not suck</li>
+        <li>Added collapse and expand support to Library, sorted library index</li>
+        <li>Added date statistics view to Library.  </li>
     </ul>
 
     <h1 id="tocToDo">To Do</h1>

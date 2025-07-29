@@ -1,19 +1,49 @@
 {
   "Demo":{
-    "dbName":"Demo",
-    "songs":[
-      {"id": "Adau-Demo", "name": "Adau Demo", "tags": ["Adau", "Demo"]},
-      {"id": "Alpha-Demo", "name": "Alpha Demo", "tags": ["Alpha", "Demo"]},
-      {"id": "Beta-Demo", "name": "Beta Demo", "tags": ["Beta", "Demo"]},
-      {"id": "Bombast-demo", "name": "Bombast demo", "tags": ["Bombast", "Demo"]},
-      {"id": "Delta-Demo", "name": "Delta Demo", "tags": ["Delta", "Demo"]},
-      {"id": "Druk-Demo", "name": "Druk Demo", "tags": ["Druk", "Demo"]},
-      {"id": "Epsilon-Demo", "name": "Epsilon Demo", "tags": ["Epsilon", "Demo"]},
-      {"id": "Gamma-Demo", "name": "Gamma Demo", "tags": ["Gamma", "Demo"]},
-      {"id": "Horos-Demo", "name": "Horos Demo", "tags": ["Horos", "Demo"]},
-      {"id": "Plogg-Demo", "name": "Plogg Demo", "tags": ["Plogg", "Demo"]},
-      {"id": "Clazz-Demo", "name": "Clazz Demo (concept)", "tags": ["Demo"]},
-      {"id": "Zeta-Demo", "name": "Zeta Demo (concept)", "tags": ["Demo"]}
-    ]
+    "Singles": {
+      "dbName":"Demo",
+      "songs":[
+        {"id": "Adau-Demo", "name": "Adau Demo", "tags": ["Adau", "Demo"]},
+        {"id": "Alpha-Demo", "name": "Alpha Demo", "tags": ["Alpha", "Demo"]},
+        {"id": "Beta-Demo", "name": "Beta Demo", "tags": ["Beta", "Demo"]},
+        {"id": "Bombast-demo", "name": "Bombast demo", "tags": ["Bombast", "Demo"]},
+        {"id": "Delta-Demo", "name": "Delta Demo", "tags": ["Delta", "Demo"]},
+        {"id": "Druk-Demo", "name": "Druk Demo", "tags": ["Druk", "Demo"]},
+        {"id": "Epsilon-Demo", "name": "Epsilon Demo", "tags": ["Epsilon", "Demo"]},
+        {"id": "Gamma-Demo", "name": "Gamma Demo", "tags": ["Gamma", "Demo"]},
+        {"id": "Horos-Demo", "name": "Horos Demo", "tags": ["Horos", "Demo"]},
+        {"id": "Plogg-Demo", "name": "Plogg Demo", "tags": ["Plogg", "Demo"]},
+        {"id": "Clazz-Demo", "name": "Clazz Demo (concept)", "tags": ["Demo"]},
+        {"id": "Zeta-Demo", "name": "Zeta Demo (concept)", "tags": ["Demo"]}
+      ]
+    },
+    "Full-length":{
+      "dbName":"Original",
+      "songs":[
+        {"id": "LQAkrRD1S5Y", "name": "Gun Show", "tags": ["Bombast", "Demo"]}
+        ,{"id": "IlFXNPd-Ey0", "name": "Battle Plan", "tags": ["Adau", "Demo"]}
+        ,{"id": "mkOEz41jZoE", "name": "Grindtage", "tags": ["Alpha", "Demo"]}
+        ,{"id": "pbhPCqtA1lg", "name": "This Old Dojo", "tags": ["Demo"]}
+        ,{"id": "npoOE4uBDZc", "name": "Hey You It's Beta", "tags": ["Beta", "Demo"]}
+        ,{"id": "nkn5t5xEQXI", "name": "An Alien of Few Words", "tags": ["Delta", "Demo"]}
+        ,{"id": "lbn6Tahiew8", "name": "Spend it on Druk", "tags": ["Druk", "Demo"]}
+        ,{"id": "GIUWeJlxx5Q", "name": "Four Chords", "tags": ["Epsilon", "Demo"]}
+        ,{"id": "KAVVDNQ8NYo", "name": "No Turning Back", "tags": ["Demo"]}
+        ,{"id": "_Pml3E0Y9x0", "name": "Do The Math", "tags": ["Demo"]}
+        ,{"id": "I7zYQeI1ivw", "name": "Do Everything", "tags": ["Demo"]}
+        ,{"id": "ploe-XknZQM", "name": "Tell Me a Story", "tags": ["Beta", "Demo"]}
+        ,{"id": "oYCBAlLWDI8", "name": "Beat That Beat", "tags": ["Horos", "Demo"]}
+        ,{"id": "1ky2e6rn7Eo", "name": "Half Price Bossa Nova", "tags": ["Beta", "Demo"]}
+        ,{"id": "_YT6ga6T1No", "name": "Copy of a Copy", "tags": ["Plogg", "Demo"]}
+        ,{"id": "KI2KqxpqBlk", "name": "Tank Fight", "tags": ["Druk", "Demo"]}
+        ,{"id": "xXki6x5RMk4", "name": "Step by Step Instructions", "tags": ["Demo"]}
+        ,{"id": "ftim2fQt37U", "name": "Work Hard Play Hard", "tags": ["Demo"]}
+        ,{"id": "JRTOZRJ9xLs", "name": "Scavenger Hunt", "tags": ["Demo"]}
+        ,{"id": "Ybm9CxF8TiI", "name": "Guided Tour", "tags": ["All", "Demo"]}
+        ,{"id": "njQpSg9VXD8", "name": "Need For Speed", "tags": ["Demo"]}
+        ,{"id": "Pxa1I4fmS_Y", "name": "Daily Grind", "tags": ["Demo"]}
+        ,{"id": "Db9T0wpS4Oc", "name": "Fish in a Box", "tags": ["Demo"]}
+      ]
+    }
   }
 }

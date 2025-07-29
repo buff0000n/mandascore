@@ -143,11 +143,15 @@ function reinitModel(url) {
         setSongCode(decodeSongCodeFromUrl(songCode), true);
     } else {
         // check for a playlist
-        var playlist = getQueryParam(url, "playlist", false);
-        if (playlist) {
-            setPlaylistCode(decodePlaylistFromUrl(playlist));
+        var playlistString = getQueryParam(url, "playlist", false);
+        if (playlistString) {
+            setPlaylistFromUrlString(playlistString);
         }
     }
+}
+
+function setPlaylistFromUrlString(playlistString, enable=true) {
+    setPlaylistCode(decodePlaylistFromUrl(playlistString), enable);
 }
 
 function decodeSongCodeFromUrl(urlString) {
@@ -175,8 +179,8 @@ function encodePlaylistToUrl(playlistCode) {
     return LZString.compressToEncodedURIComponent(playlistCode);
 }
 
-function setPlaylistCode(playlistCode) {
-    showPlaylist();
+function setPlaylistCode(playlistCode, enable=true) {
+    showPlaylist(enable);
     score.playlist.setLooping(true);
     score.playlist.import(playlistCode, false);
 }

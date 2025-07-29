@@ -8,11 +8,12 @@ class MonoSpec {
 }
 
 class InstrumentPack {
-    constructor(name, displayName, formatName, abbrev, double=false, concept=false, monoPerc=null, monoBass=null, monoMel=null) {
+    constructor(name, displayName, formatName, abbrev, releaseDate, double=false, concept=false, monoPerc=null, monoBass=null, monoMel=null) {
         this.name = name;
         this.displayName = displayName;
         this.formatName = formatName;
         this.abbrev = abbrev;
+        this.releaseDate = releaseDate;
         this.concept = concept;
         this.mono = {};
         this.mono["perc"] = monoPerc;
@@ -26,19 +27,21 @@ class InstrumentPack {
     }
 }
 
+var octaviaReleaseDate = "2017-03-24";
+
 var packs = Array(
-    new InstrumentPack("adau", "Adau", "BardTennoPackA", "U", true),
-    new InstrumentPack("alpha", "Alpha", "BardCorpusPackA", "A", true),
-    new InstrumentPack("beta", "Beta", "BardCorpusPackB", "B", true),
-    new InstrumentPack("bombast", "Bombast", "BardHipHopPackA", "O", true, false, null, new MonoSpec(false, 0.05), new MonoSpec(false, 0.20)),
-    new InstrumentPack("delta", "Delta", "BardCorpusPackD", "D", true, false, false, new MonoSpec(false, 0.50), new MonoSpec(false, 0.10)),
-    new InstrumentPack("druk", "Druk", "BardGrineerPackA", "K", true),
-    new InstrumentPack("epsilon", "Epsilon", "BardCorpusPackE", "E", true, false, false, new MonoSpec(true, 0.25), false),
-    new InstrumentPack("gamma", "Gamma", "BardCorpusPackC", "G", true),
-    new InstrumentPack("horos", "Horos", "BardEDMPackA", "H", true),
-    new InstrumentPack("plogg", "Plogg", "BardGrineerPackB", "P", true),
-    new InstrumentPack("clazz", "Clazz (Concept)", "ConceptClazz", "J", false, true),
-    new InstrumentPack("zeta", "Zeta (Concept)", "ConceptZeta", "Z", false, true),
+    new InstrumentPack("adau", "Adau", "BardTennoPackA", "U", "2017-03-24", true),
+    new InstrumentPack("alpha", "Alpha", "BardCorpusPackA", "A", "2017-03-24", true),
+    new InstrumentPack("beta", "Beta", "BardCorpusPackB", "B", "2017-03-24", true),
+    new InstrumentPack("bombast", "Bombast", "BardHipHopPackA", "O", "2021-02-23", true, false, null, new MonoSpec(false, 0.05), new MonoSpec(false, 0.20)),
+    new InstrumentPack("delta", "Delta", "BardCorpusPackD", "D", "2017-03-24", true, false, false, new MonoSpec(false, 0.50), new MonoSpec(false, 0.10)),
+    new InstrumentPack("druk", "Druk", "BardGrineerPackA", "K", "2017-03-24", true),
+    new InstrumentPack("epsilon", "Epsilon", "BardCorpusPackE", "E", "2017-06-29", true, false, false, new MonoSpec(true, 0.25), false),
+    new InstrumentPack("gamma", "Gamma", "BardCorpusPackC", "G", "2017-03-24", true),
+    new InstrumentPack("horos", "Horos", "BardEDMPackA", "H", "2017-11-23", true),
+    new InstrumentPack("plogg", "Plogg", "BardGrineerPackB", "P", "2017-06-29", true),
+    new InstrumentPack("clazz", "Clazz (Concept)", "ConceptClazz", "J", "2017-03-24", false, true),
+    new InstrumentPack("zeta", "Zeta (Concept)", "ConceptZeta", "Z", "2017-03-24", false, true),
 );
 
 // build a few lookup tables for instrument pack metadata
@@ -68,7 +71,7 @@ class SectionMetaData {
 var sectionNames = ["perc", "bass", "mel"];
 
 var sectionMetaData = {
-    "all": new SectionMetaData("all", "All", 0, 12, 56, "#ffffff", true),
+    "all": new SectionMetaData("all", "All", 0, 12, 56, "#ac92ff", true),
     "perc": new SectionMetaData("perc", "Percussion", 0, 2, 26, "#ffffff"),
     "bass": new SectionMetaData("bass", "Bass", 3, 7, 16, "#1fb5ff"),
     "mel": new SectionMetaData("mel", "Melody", 8, 12, 16, "#e601ff"),

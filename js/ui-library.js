@@ -108,6 +108,16 @@ class Library {
 
         // build the menu buttons the easy way
         var html = `
+            <div class="button expandButton tooltip">
+                <img class="imgButton" src="img/icon-add.png" srcset="img2x/icon-add.png 2x" alt="Expand All"/>
+                Expand All
+                <span class="tooltiptextbottom">Expand all visible categories</span>
+            </div>
+            <div class="button collapseButton tooltip">
+                <img class="imgButton" src="img/icon-subtract.png" srcset="img2x/icon-subtract.png 2x" alt="Collapse All"/>
+                Collapse All
+                <span class="tooltiptextbottom">Collapse all visible categories</span>
+            </div>
             <div class="button filterButton tooltip">
                 <img class="imgButton" src="img/icon-filter.png" srcset="img2x/icon-filter.png 2x" alt="Instrument Filter"/>
                 Instrument Filter
@@ -115,38 +125,43 @@ class Library {
             </div>
             <div class="button flagPerfectButton tooltip">
                 <input type="checkbox" class="checkboxFlagPerfect"/>
-                Only Show Perfect Melodies
+                Perfect Melody Filter
                 <span class="tooltiptextbottom">Show only songs with a melody that translate perfectly to the Mandachord</span>
             </div>
             <div class="button flagFilledButton tooltip">
                 <input type="checkbox" class="checkboxFlagFilled"/>
-                Only Show Filled Melodies
+                Filled Melody Filter
                 <span class="tooltiptextbottom">Show only filled-melody meta songs</span>
             </div>
             <div class="button flagSparseButton tooltip">
                 <input type="checkbox" class="checkboxFlagSparse"/>
-                Only Show Sparse Melodies
+                Sparse Melody Filter
                 <span class="tooltiptextbottom">Show only songs with sparse melodies</span>
             </div>
             <div class="button flagMultiButton tooltip">
                 <input type="checkbox" class="checkboxFlagMulti"/>
-                Only Show Multi-shots
+                Multi-shot Filter
                 <span class="tooltiptextbottom">Show only entries with multiple Mandachord loops</span>
             </div>
             <div class="button flagNoDemoButton tooltip">
                 <input type="checkbox" class="checkboxFlagNoDemo"/>
-                Don't show demo songs
+                Hide Demo Songs
                 <span class="tooltiptextbottom">Hide demo songs</span>
             </div>
             <div class="button resetButton tooltip">
                 <img class="imgButton" src="img/icon-reset.png" srcset="img2x/icon-reset.png 2x" alt="Reset All"/>
-                Reset all
+                Reset All Filters
                 <span class="tooltiptextbottom">Reset all filters</span>
             </div>
             <div class="button statsButton tooltip">
                 <img class="imgButton" src="img/icon-stats.png" srcset="img2x/icon-stats.png 2x" alt="Instrument Stats"/>
-                Statistics
+                Instrument Statistics
                 <span class="tooltiptextbottom">Show statistics for instrument packs used in the currently visible songs</span>
+            </div>
+            <div class="button dateStatsButton tooltip">
+                <img class="imgButton" src="img/icon-date.png" srcset="img2x/icon-date.png 2x" alt="Instrument Stats"/>
+                Date Statistics
+                <span class="tooltiptextbottom">Show statistics on publish dates</span>
             </div>
             <!-- todo the reverse search sucks
             <div class="button searchButton tooltip">
@@ -165,6 +180,14 @@ class Library {
             this.matchSearch(e);
         });
         */
+        // expand all button
+        getFirstChild(div, "expandButton").addEventListener("click", (e) => {
+            this.updateCatCounts(true, true);
+        });
+        // collapse all button
+        getFirstChild(div, "collapseButton").addEventListener("click", (e) => {
+            this.updateCatCounts(false, true);
+        });
         // instrument filter popup
         getFirstChild(div, "filterButton").addEventListener("click", (e) => {
             clearMenus();
@@ -174,6 +197,11 @@ class Library {
         getFirstChild(div, "statsButton").addEventListener("click", (e) => {
             clearMenus();
             this.showStats(e);
+        });
+        // date stats mode
+        getFirstChild(div, "dateStatsButton").addEventListener("click", (e) => {
+            clearMenus();
+            this.showDateStats(e);
         });
 
         // convenience function for setting up the tag filter checkboxes
@@ -247,7 +275,7 @@ class Library {
         this.indexContainer.innerHTML = "";
 
         // build the index tree UI and get the entries ready for searching
-        this.buildTree(this.indexContainer, this.index, null, []);
+        this.buildTree(this.indexContainer, this.index);
 
         // build the no result message
         this.indexContainer.appendChild(this.buildNoResultMessage());
@@ -272,12 +300,20 @@ class Library {
         this.noResultMessage.style.display = show ? "block" : "none";
     }
 
-    buildCatDiv(categoryName) {
+    buildCatDiv(categoryName, catClickCallback) {
         // build the div for displaying a category
         var catDiv = document.createElement("div");
         catDiv.className = "libCat";
-        catDiv.innerHTML = `<span class="libCatLabel">` + categoryName + `</span>`;
-        this.initVisibleChildren(catDiv);
+        catDiv.innerHTML = `
+        <span class="libCatHeader">
+            <span class="libCatButton">
+                <img src="img/icon-expand.png" srcset="img2x/icon-expand.png 2x" alt="Expand"/>
+            </span>
+            <span class="libCatLabel">${categoryName}</span>
+            <span class="libCatCount">(0)</span>
+        </span>`;
+        this.initVisibleChildren(catDiv, getFirstChild(catDiv, "libCatCount"));
+        getFirstChild(catDiv, "libCatHeader").addEventListener("click", catClickCallback, { passive: false });
         return catDiv;
     }
 
@@ -285,7 +321,7 @@ class Library {
         // build the div for indenting the entries under a category
         var indentDiv = document.createElement("div");
         indentDiv.className = "libIndent";
-        this.initVisibleChildren(indentDiv);
+        this.initIndent(indentDiv);
         return indentDiv;
     }
 
@@ -345,7 +381,12 @@ class Library {
         return div2;
     }
 
-    buildTree(parent, map, dbName, cats) {
+    buildTree(parent, map) {
+        this.buildTree0(parent, map, null, [], (e) => { this.catClicked(e); });
+        this.updateCatCounts();
+    }
+
+    buildTree0(parent, map, dbName, cats, catClickCallback) {
         // recursive tree builder
         // for some reason we need a defensive copy of the dbName of the recursive method parameter
         var dbName2 = dbName;
@@ -363,7 +404,9 @@ class Library {
                 parent.appendChild(songDiv);
                 // track the parent's visible children
                 this.incrementVisibleChildren(parent, true);
-                // references from the song entry tothe UI
+                // easy way to initialize this, automatically skips demo songs
+                if (song.date) this.visibleSongCount += 1;
+                // references from the song entry to the UI
                 song.div = songDiv;
                 // prepare the song entry for searching
                 this.indexSong(song, cats);
@@ -372,62 +415,128 @@ class Library {
             // it's a branch category that contains subcategories
             for (var cat in map) {
                 // have to add the UI to the DOM before adding songs
-                var catDiv = this.buildCatDiv(cat);
+                var catDiv = this.buildCatDiv(cat, catClickCallback);
                 parent.appendChild(catDiv);
-                // build an additional layer just for indenting
+                // build an additional layer for indenting and manual hiding/showing
                 var subDiv = this.buildIndentDiv();
                 catDiv.appendChild(subDiv);
                 // add to the category stack
                 cats.push(cat);
                 // recursive call to build the subcategory
-                this.buildTree(subDiv, map[cat], dbName2, cats);
+                this.buildTree0(subDiv, map[cat], dbName2, cats, catClickCallback);
                 // pop off the category stack
                 cats.pop();
             }
         }
     }
 
-    initVisibleChildren(parent) {
+    updateCatCounts(isKeywordSearch = false, overrideManual = false) {
+        // ffs I really gotta convert this whole file to a function scope
+        var thiz = this;
+
+        function update(parent) {
+            var children = parent.children;
+            for (var i = 0; i < children.length; i++) {
+                var child = children[i];
+                // skip category label
+                if (child.className == "libCatHeader") continue;
+                // If a song is encountered, skip all the children
+                if (child.className == "libSongLabel") break;
+                // if there are visible children and a count element then update the element
+                if (child.visibleChildren > 0 && child.countElement) {
+                    child.countElement.innerHTML = child.visibleChildren;
+                // if it's an indent object then automatically show or hide depending
+                // on whether there is a keyword search active
+                } else if (child.manualShow != null) {
+                    thiz.showIndent(child, overrideManual ? isKeywordSearch : isKeywordSearch || child.manualShow, overrideManual);
+                }
+                // recurse if it's a visible category or an indent
+                if (child.visibleChildren > 0 || child.manualShow != null) {
+                    update(child);
+                }
+            }
+        }
+
+        update(this.indexContainer);
+    }
+
+    initVisibleChildren(parent, countElement = null) {
         // init the variable that will keep track of how many of a parent's children are visible
-        // this is so categories whose songs or subcagories are all hidden can go be hidden themselves
+        // this is so categories whose songs or subcategories are all hidden can go be hidden themselves
         parent.visibleChildren = 0;
+        // save a reference to the count element so we can easily get to it
+        if (countElement) {
+            parent.countElement = countElement;
+        }
     }
 
     incrementVisibleChildren(parent, isSong = false) {
+        // skip the indent div
+        parent = parent ? parent.parentElement : parent;
         // check if this is a valid tracking parent
         if (parent && parent.visibleChildren != null) {
-            // increment search result size if this is a song
-            if (isSong) {
-                this.visibleSongCount += 1;
-            }
             // increment the visible children
             var count = parent.visibleChildren + 1;
             parent.visibleChildren = count;
             // if the visible count was incremented from 0 to 1 then display the parent
             if (count == 1) {
                 parent.style.display = "block";
-                // update the parent's parent and display it if necessary
-                this.incrementVisibleChildren(parent.parentElement);
             }
+
+            // update the parent's parent and display it if necessary
+            this.incrementVisibleChildren(parent.parentElement);
         }
     }
 
     decrementVisibleChildren(parent, isSong = false) {
+        // skip the indent div
+        parent = parent ? parent.parentElement : parent;
         // check if this is a valid tracking parent
         if (parent && parent.visibleChildren != null) {
-            // decrement search result size if this is a song
-            if (isSong) {
-                this.visibleSongCount -= 1;
-            }
             // decrement the visible children
             var count = parent.visibleChildren - 1;
             parent.visibleChildren = count;
-            // if the visible count has decremented from 1 ro 0 then hide the parent
+            // if the visible count has decremented from 1 to 0 then hide the parent
             if (count == 0) {
                 parent.style.display = "none";
-                // update the parent's parent and hide if necessary
-                this.decrementVisibleChildren(parent.parentElement);
             }
+
+            // update the parent's parent and hide if necessary
+            this.decrementVisibleChildren(parent.parentElement);
+        }
+    }
+
+    initIndent(indent) {
+        // flag for whether it's been manually expanded
+        indent.manualShow = false;
+        // start off collapsed
+        indent.style.display = "none";
+    }
+
+    catClicked(e) {
+        // get the indent element
+        var parent = e.currentTarget.parentElement;
+        var indent = getFirstChild(parent, "libIndent");
+        // toggle depending on the current display style
+        this.showIndent(indent, indent.style.display == "none", true);
+    }
+
+    showIndent(indent, show, setManual = false) {
+        // check if we're showing a currently hidden indent
+        if (show && indent.style.display == "none") {
+            indent.style.display = "block";
+            var button = getFirstChild(indent.parentElement, "libCatButton");
+            button.innerHTML = `<img src="img/icon-collapse.png" srcset="img2x/icon-collapse.png 2x" alt="Collapse"/>`;
+            // update the flag if specified
+            if (setManual) indent.manualShow = true;
+
+        // check if we're hiding a currently shown indent
+        } else if (!show && indent.style.display != "none") {
+            indent.style.display = "none";
+            var button = getFirstChild(indent.parentElement, "libCatButton");
+            button.innerHTML = `<img src="img/icon-expand.png" srcset="img2x/icon-expand.png 2x" alt="Expand"/>`;
+            // update the flag if specified
+            if (setManual) indent.manualShow = false;
         }
     }
 
@@ -489,6 +598,8 @@ class Library {
         for (var i = 0; i < songList.length; i++) {
             // parse into a song object
             var songObject = new Song();
+            // just skip full playlist songs when an instrument filter is active
+            if (songList[i].startsWith("playlist=")) continue;
             songObject.parseChatLink(songList[i]);
             var songAllowed = true;
             // loop over the song's parts
@@ -591,7 +702,9 @@ class Library {
         }, () => {
             // batch completion callback updates the song count
             this.updateVisibleSongCount();
-        })
+            // update the category song counts and indent hiding
+            this.updateCatCounts(this.searchWords);
+        });
     }
 
     // omitHidden: only search the currently visible songs, this is how the stats are calculated
@@ -633,7 +746,8 @@ class Library {
             for (var key in map) {
                 // determine if the entire subcategory is hidden by seeing if the parent element of the first song in the
                 // subcategory is hidden
-                var skip = !omitHidden ? false : map[key].songs && map[key].songs[0].div.parentElement.style.display == 'none';
+                // have to go two parents up to find the category div
+                var skip = !omitHidden ? false : map[key].songs && map[key].songs[0].div.parentElement.parentElement.style.display == 'none';
                 if (!skip) {
                     this.queueSongLists(map[key], queue, omitHidden);
                 }
@@ -692,6 +806,10 @@ class Library {
             song.div.style.display = "block";
             // show its parent, if necessary
             this.incrementVisibleChildren(song.div.parentElement, true);
+            // increment search result size if this is a non-demo song
+            if (song.date) {
+                this.visibleSongCount += 1;
+            }
         }
     }
 
@@ -707,6 +825,10 @@ class Library {
             song.div.style.display = "none";
             // hide its parent, if necessary
             this.decrementVisibleChildren(song.div.parentElement, true);
+            // decrement search result size if this is a non-demo song
+            if (song.date) {
+                this.visibleSongCount -= 1;
+            }
         }
     }
 
@@ -727,53 +849,64 @@ class Library {
             // put all this into one undo action
             this.score.startActions();
 
-            if (playlistEnabled()) {
-                // if the playlist is fully enabled then just add the first song and select it
-                this.score.playlist.addSongCode(songs[0], true, true, true);
-
-            } else if (playlistVisible()) {
-                // if the playlist is visible but not enabled, then clear it
-                // it must have been enabled by a previous multi-song library entry
-                this.score.playlist.clear(true);
-                if (songs.length == 1) {
-                    // if there's only one song in this library entry then hide the playlist
-                    // and set the song in the score
-                    hidePlaylist();
-                    this.score.setSong(songs[0], true, false);
-
-                } else {
-                    // there are more songs to come, just add the first song and select it
-                    this.score.playlist.addSongCode(songs[0], true, true, true);
+            if (songs.length == 1 && songs[0].startsWith("playlist=")) {
+                if (!playlistEnabled()) {
+                    // if the playlist is not visible and there is more than one song the
+                    // show the playlist, but don't enable it automatically
+                    showPlaylist(false);
                 }
-
-            } else if (songs.length > 1) {
-                // if the playlist is not visible and there is more than one song the
-                // show the playlist, but don't enable it automatically
-                showPlaylist(false);
-                // clear it for grins
-                this.score.playlist.clear(true);
-                // there are more songs to come, just add the first song and select it
-                this.score.playlist.addSongCode(songs[0], true, true, true);
+                setPlaylistFromUrlString(songs[0].substring("playlist=".length), false);
 
             } else {
-                // if there's no playlist visible and only one song in the library entry then
-                // just set the song in the score
-                this.score.setSong(songs[0], true, false);
-            }
+                if (playlistEnabled()) {
+                    // if the playlist is fully enabled then just add the first song and select it
+                    this.score.playlist.addSongCode(songs[0], true, true, true);
 
-            if (songs.length > 1) {
-                // append the rest of the songs, without selecting them and appended after the first one
-                for (var i = 1; i < songs.length; i++) {
-                    this.score.playlist.addSongCode(songs[i], false, false, true);
+                } else if (playlistVisible()) {
+                    // if the playlist is visible but not enabled, then clear it
+                    // it must have been enabled by a previous multi-song library entry
+                    this.score.playlist.clear(true);
+                    if (songs.length == 1) {
+                        // if there's only one song in this library entry then hide the playlist
+                        // and set the song in the score
+                        hidePlaylist();
+                        this.score.setSong(songs[0], true, false);
+
+                    } else {
+                        // there are more songs to come, just add the first song and select it
+                        this.score.playlist.addSongCode(songs[0], true, true, true);
+                    }
+
+                } else if (songs.length > 1) {
+                    // if the playlist is not visible and there is more than one song the
+                    // show the playlist, but don't enable it automatically
+                    showPlaylist(false);
+                    // clear it for grins
+                    this.score.playlist.clear(true);
+                    // there are more songs to come, just add the first song and select it
+                    this.score.playlist.addSongCode(songs[0], true, true, true);
+
+                } else {
+                    // if there's no playlist visible and only one song in the library entry then
+                    // just set the song in the score
+                    this.score.setSong(songs[0], true, false);
                 }
 
-                // enable looping
-                this.score.playlist.setLooping(true);
+                if (songs.length > 1) {
+                    // append the rest of the songs, without selecting them and appended after the first one
+                    for (var i = 1; i < songs.length; i++) {
+                        this.score.playlist.addSongCode(songs[i], false, false, true);
+                    }
 
-            } else if (playlistVisible()) {
-                // disable looping if it's just one song
-                this.score.playlist.setLooping(false);
+                    // enable looping
+                    this.score.playlist.setLooping(true);
+
+                } else if (playlistVisible()) {
+                    // disable looping if it's just one song
+                    this.score.playlist.setLooping(false);
+                }
             }
+
 
             // close the undo action
             this.score.endActions();
@@ -1356,6 +1489,7 @@ class Library {
     showStats() {
         // part list plus "all".  too lazy to build from sectionNames
         var partList = ["all", "perc", "bass", "mel"];
+        var tabList = ["all", "perc", "bass", "mel", "overall"];
 
         // build extra button UI
         var extraButtonHtml = "";
@@ -1366,14 +1500,29 @@ class Library {
             var m = sectionMetaData[part];
             // build the part button
             extraButtonHtml += `
-            <span class="imgButton tooltip select${part}" id="select${part}Tab"><img src="img/${sectionImages[part]}.png" srcset="img2x/${sectionImages[part]}.png 2x" alt="${m.displayName}"/>
+            <span class="imgButton tooltip select${part}" id="select${part}Tab">
+                <img src="img/${sectionImages[part]}.png" srcset="img2x/${sectionImages[part]}.png 2x" alt="${m.displayName}"/>
                 <span class="tooltiptextbottom">Show ${m.displayName}</span>
+            </span>`;
+        }
+
+        {
+            extraButtonHtml += `
+            <span class="imgButton tooltip selectoverall" id="selectoverallTab">
+                <img src="img/overall.png" srcset="img2x/overall.png 2x" alt="Overall"/>
+                <span class="tooltiptextbottom">Show Overall</span>
             </span>`;
         }
 
         // might as well throw in the song count
         extraButtonHtml += `
             <span class="titleButton visibleSongCount">0</span>
+        `;
+
+        extraButtonHtml += `
+            <span class="imgButton menuButton tooltip"><img src="img/icon-burger.png" srcset="img2x/icon-burger.png 2x" alt="Menu"/>
+                <span class="tooltiptextbottom">Statistics Menu</span>
+            </span>
         `;
 
         // replace the library UI with the statistics UI
@@ -1390,16 +1539,55 @@ class Library {
         function partMap() {
             // why is this so hard
             var map = {};
-            for (var i = 0 ; i < sectionNames.length; i++) {
+            for (var i = 0 ; i < partList.length; i++) {
                 // the structure contains a numeric value, and references to its stat bar and tooltip
-                map[sectionNames[i]] = {"value": 0, "statBar": null, "statBarTooltip": null};
+                map[partList[i]] = {"value": 0, "statBar": null, "statBarTooltip": null};
             }
             return map;
         }
 
+        // static state
+        var packToIndex = {};
+        var numPacks = 0;
+
+        // dynamic state
         // map from pack name to part map
         var statMap = {};
+        // currently selected single part, if there is one
         var showPart = null;
+
+        // top combo list UI element
+        var comboGrid = Array();
+        // top combos array
+        var topCombos = Array();
+        // max top combos to show
+        var maxTopCombos = 20;
+
+        // keep track of how many songs were released
+        // since each instrument pack release date
+        var songCountsByDate = {};
+        // earliest instrument pack release date
+        var startDate = null;
+        // loop over the instrument packs
+        for (name in instrumentNameToPack) {
+            // get the release date of the instrument pack
+            var date = instrumentNameToPack[name].releaseDate;
+            // check if it's in the map
+            if (!songCountsByDate[date]) {
+                // initialize the map element
+                songCountsByDate[date] = 0;
+                // keep track of the earliest date
+                if (startDate == null || startDate > date) {
+                    startDate = date;
+                }
+            }
+        }
+
+        // UI state
+        // flag for whether to weight each instrument pack's usage
+        // by songs created since its release date
+        // default to true
+        var weightByDateAdded = true;
 
         // override the index container
         this.indexContainer = document.createElement("div");
@@ -1415,6 +1603,10 @@ class Library {
         for (var p = 0 ; p < packs.length; p++) {
             // skip concept packs
             if (packs[p].concept) continue;
+
+            // keep track of pack index and the number of packs
+            packToIndex[packs[p].name] = numPacks;
+            numPacks++;
 
             // create a new part map and save it to the pack map
             var pm = partMap();
@@ -1436,13 +1628,13 @@ class Library {
             statTd.className = "statCell";
             tr.appendChild(statTd);
 
-            // loop over the parts, not "all"
-            for (var b = 0 ; b < sectionNames.length; b++) {
+            // loop over the parts
+            for (var b = 0 ; b < partList.length; b++) {
                 // create a basic div to be the histogram bar
                 var statBar = document.createElement("div");
                 statBar.className = "statBar quicktooltip";
                 // set the color based on the part
-                statBar.style.backgroundColor = sectionMetaData[sectionNames[b]].color;
+                statBar.style.backgroundColor = sectionMetaData[partList[b]].color;
                 // starting sizing
                 statBar.style.width = "0%";
                 statBar.style.height = "0.45em";
@@ -1456,15 +1648,39 @@ class Library {
                 statBar.appendChild(statBarTooltip);
 
                 // save reference to the stat bar and tooltip
-                pm[sectionNames[b]].statBar = statBar;
-                pm[sectionNames[b]].statBarTooltip = statBarTooltip;
+                pm[partList[b]].statBar = statBar;
+                pm[partList[b]].statBarTooltip = statBarTooltip;
             }
         }
 
-        // make new structures for the totals and max value for each part
-        var max = partMap();
-        // for totals, all three of these should end up being the same.
-        var totals = partMap();
+        // combo list container
+        var topComboContainer = document.createElement("div");
+        this.indexContainer.appendChild(topComboContainer);
+
+        // combo list label
+        var topComboLabel = document.createElement("p");
+        topComboContainer.appendChild(topComboLabel);
+        topComboLabel.innerHTML = `<strong>Top ${maxTopCombos} Combinations</strong>`;
+
+        // combo list itself is a table
+        var topComboTable = document.createElement("table");
+        topComboContainer.appendChild(topComboTable);
+
+        // initialize combo grid: 3-dimensional array of all
+        // possible combinations of instrument packs
+        for (var p = 0 ; p < numPacks; p++) {
+            var comboGrid2 = Array();
+            for (var b = 0 ; b < numPacks; b++) {
+                var comboGrid3 = Array();
+                for (var m = 0 ; m < numPacks; m++) {
+                    // each element is a dict with blank values
+                    // packs will get filled in when it's populated for the first time
+                    comboGrid3.push({"packs": null, "count": 0});
+                }
+                comboGrid2.push(comboGrid3);
+            }
+            comboGrid.push(comboGrid2);
+        }
 
         // increase a specific stat
         function incrementStat(pack, part, amount) {
@@ -1477,82 +1693,177 @@ class Library {
             var partMap = statMap[pack];
             // increment the part's total
             partMap[part].value += amount;
-            // increment the overall total
-            totals[part].value += amount;
-            // update the max, if higher
-            if (max[part].value < partMap[part].value) max[part].value = partMap[part].value;
+            // increment the overall pack's total, divided by 3 so it still adds up the same
+            partMap["all"].value += amount / 3;
+        }
+
+        function incrementCombo(packs, amount) {
+            // make sure the packs appear in the combo grid, I guess this is to filter out concept packs?
+            if (!(packToIndex[packs["perc"]] >= 0 && packToIndex[packs["bass"]] >= 0 && packToIndex[packs["perc"]] >= 0)) return;
+            // get the combo grid element corresponding to the song's pack selections
+            // criminy that's a lot of square brackets
+            var stat = comboGrid[packToIndex[packs["perc"]]][packToIndex[packs["bass"]]][packToIndex[packs["mel"]]];
+            // update the combo grid stat
+            stat.count += amount;
+            if (!stat.packs) stat.packs = packs;
+
+            // find the stat in the combo list, using object identity equality
+            var index = topCombos.indexOf(stat);
+            // if the stat is not in the combo list but the combo list is either not
+            // at its maximum size, or the lowest element in the combo list is less than this stat,
+            // then add it to the list and update the index
+            if (index < 0 && (topCombos.length < maxTopCombos || topCombos[topCombos.length - 1].count < stat.count)) {
+                index = topCombos.length;
+                topCombos.push(stat);
+            }
+            // if the stat is in the combo list
+            if (index >= 0) {
+                // while the stat is out of order with the next highest combo, move the
+                // stat up one place
+                while (index > 0 && topCombos[index - 1].count < stat.count) {
+                    topCombos[index] = topCombos[index - 1];
+                    index -= 1;
+                    topCombos[index] = stat;
+                }
+            }
+            // drop the lowest combo, if necessary
+            while (topCombos.length > maxTopCombos) {
+                topCombos.pop();
+            }
+        }
+
+        // update the song count by date map
+        function incrementSongCountsByDate(releaseDate) {
+            for (var date in songCountsByDate) {
+                // update each element of the map that is on or later than the given release date
+                if (releaseDate >= date) {
+                    songCountsByDate[date] += 1;
+                }
+            }
         }
 
         // update the UI
         function renderStats() {
-            // get the absolute max value for all stats
-            var maxMax = 0;
-            for (var part in max) {
-                // filter out this part if there is a part filter
-                if (showPart == null || showPart == part) {
-                    // check against the max max
-                    if (max[part].value > maxMax) maxMax = max[part].value;
-                }
-            }
-
-            // meh
-            var total = totals["perc"].value.toFixed(0);
-            visibleCountElement.innerHTML = total;
+            // absolute total entries is the song count from the earliest instrument pack release date
+            var totalEntries = songCountsByDate[startDate];
+            // update the UI with the total song count
+            visibleCountElement.innerHTML = totalEntries.toFixed(0);
 
             // update a specific pack's part map
-            function updatePack(pm) {
+            function updatePack(pack, pm, scale=0) {
+                var maxPercentage = 0;
                 // loop over the parts
-                for (var p = 0; p < sectionNames.length; p++) {
+                for (var p = 0; p < partList.length; p++) {
                     // get the part name and pull out the statistic structure
-                    var part = sectionNames[p];
+                    var part = partList[p];
                     var count = pm[part].value;
                     // if the part has a UI (todo: this is always true now?)
                     if (pm[part].statBar) {
                         // check against the part filter if there is one
-                        if (showPart == null || showPart == part) {
+                        if ((showPart == null && part != "all") || showPart == part) {
                             // calculate the percentage based on the total for this part
-                            var percentage = (100 * (count / totals[part].value));
-                            // make sure the bar is displayed
-                            pm[part].statBar.style.display = "block";
-                            // scale the percentage so the max stat ends up at 100%, and set that as
-                            // the element width
-                            pm[part].statBar.style.width = (percentage * (totals[part].value / maxMax)) + "%";
-                            // make it thinner or wider depending on whether there is a part filter present
-                            pm[part].statBar.style.height = showPart == null ? "0.45em" : "1.35em";
-                            // update the tooltip with the percentage and raw value
-                            pm[part].statBarTooltip.innerHTML = `${percentage.toFixed(2)}% (${count.toFixed(2)})`;
+                            // use the release date song count if the flag is set
+                            var percentage = (100 * (count / songCountsByDate[weightByDateAdded ? instrumentNameToPack[pack].releaseDate : startDate]));
+                            // track the max percentage
+                            if (percentage > maxPercentage) {
+                                maxPercentage = percentage;
+                            }
+                            // if there's a scale, then go on to actually update the UI
+                            if (scale > 0) {
+                                // make sure the bar is displayed
+                                pm[part].statBar.style.display = "block";
+                                // scale the percentage so the max stat ends up at 100%, and set that as
+                                // the element width
+                                pm[part].statBar.style.width = (percentage * scale) + "%";
+                                // make it thinner or wider depending on whether there is a part filter present
+                                pm[part].statBar.style.height = showPart == null ? "0.45em" : "1.35em";
+                                // update the tooltip with the percentage and raw value
+                                var text =`${percentage.toFixed(2)}%`;
+                                // add a blurb about the release date if the flag is set
+                                if (weightByDateAdded && instrumentNameToPack[pack].releaseDate != startDate) {
+                                    text += ` since ${instrumentNameToPack[pack].releaseDate}`;
+                                }
+                                // raw value
+                                text += ` (${count.toFixed(2)})`
+                                pm[part].statBarTooltip.innerHTML = text;
+                            }
 
-                        } else {
+                        } else if (scale > 0) {
                             // this part is filtered out, hide it
                             pm[part].statBar.style.display = "none";
                         }
                     }
                 }
+                // return the max calculated percentage
+                return maxPercentage;
             }
 
-            // loop over packs
-            for (var k = 0 ; k < packs.length; k++) {
-                // skip concept... again
-                if (packs[k].concept) {
-                    continue;
+            // run the update for all packs, actually updating the UI if scale != 0
+            function updatePacks(scale=0) {
+                // keep track of the max percentage across all instrument packs
+                var maxPercentage2 = 0;
+                // loop over packs
+                for (var k = 0 ; k < packs.length; k++) {
+                    // skip concept... again
+                    if (packs[k].concept) {
+                        continue;
+                    }
+                    // get the pack name and lookup the part map
+                    var pack = packs[k].name;
+                    var partMap = statMap[pack];
+                    // get the pack's max percentage or update its UI
+                    var percentage = updatePack(pack, partMap, scale);
+                    // update the max
+                    if (percentage > maxPercentage2) {
+                        maxPercentage2 = percentage;
+                    }
                 }
-                // get the pack name and lookup the part map
-                var pack = packs[k].name;
-                var partMap = statMap[pack];
-                // update the pack's part UI
-                updatePack(partMap);
+                // return the max
+                return maxPercentage2;
             }
+
+            // do a dry run updating all packs to determine the max percentage
+            var maxP = updatePacks(0);
+            // update the packs for real, using the max percentage as the scale
+            updatePacks(100.0 / maxP);
+
+            // gotta make a ton of <td> elements
+            function makeTd(contents) {
+                var td = document.createElement("td");
+                td.innerHTML = contents;
+                return td;
+            }
+            // easy way, just clear the top combos and create them anew
+            topComboTable.innerHTML = "";
+            // loop over the top combos
+            for (var i = 0; i < topCombos.length; i++) {
+                var combo = topCombos[i];
+                // crap out a table row
+                var tr = document.createElement("tr");
+                topComboTable.appendChild(tr);
+                // column 1: index
+                tr.appendChild(makeTd(i + 1));
+                // column 2: raw count
+                tr.appendChild(makeTd(combo.count.toFixed(2)));
+                // column 3: percentage
+                tr.appendChild(makeTd( "(" + ((100 * combo.count / totalEntries).toFixed(2)) + "%)"));
+                // column 4-6: pack names
+                tr.appendChild(makeTd(instrumentNameToPack[combo.packs["perc"]] .displayName));
+                tr.appendChild(makeTd(instrumentNameToPack[combo.packs["bass"]].displayName));
+                tr.appendChild(makeTd(instrumentNameToPack[combo.packs["mel"]].displayName));
+            }
+
         }
 
         // handler for the part buttons
         function setShowPart(part) {
             // set the part filter depending on whether the "all" button was selected
-            showPart = (part == "all") ? null : part;
+            showPart = (part == "all") ? null : part == "overall" ? "all" : part;
 
             // update the buttons, raising up the currently active one and lowering the others
-            for (var r = 0; r < partList.length; r++) {
+            for (var r = 0; r < tabList.length; r++) {
                 // get the button for this part
-                var partName = partList[r];
+                var partName = tabList[r];
                 var button = document.getElementById(`select${partName}Tab`);
                 // set the style based on the current filter
                 if (part == partName) {
@@ -1569,9 +1880,9 @@ class Library {
         }
 
         // set up the handlers for the part buttons
-        for (var i = 0; i < partList.length; i++) {
+        for (var i = 0; i < tabList.length; i++) {
             // get the part name and button container
-            var partName = partList[i];
+            var partName = tabList[i];
             var partButton = getFirstChild(this.menuContainer, `select${partName}`);
             // save the part name as a property
             partButton.partName = partName;
@@ -1581,10 +1892,52 @@ class Library {
             });
         }
 
+        // stats menu popup handler
+        getFirstChild(this.menuContainer, "menuButton").addEventListener("click", (e) => {
+            clearMenus();
+            showStatsMenu(e);
+        });
+
+        function showStatsMenu(e) {
+            // place the menu under the burger button
+            var button = e.currentTarget;
+            // top level container
+            var div = document.createElement("div");
+            div.className = "menu";
+            div.button = button;
+
+            // build the menu buttons the easy way
+            var html = `
+                <div class="button flagPerfectButton tooltip">
+                    <input type="checkbox" class="checkboxFlagWeight"/>
+                    Weight instrument packs by release date
+                    <span class="tooltiptextbottom">Calculate percentages based on how many songs date from after the instrument pack was released.</span>
+                </div>
+            `;
+
+            div.innerHTML = html;
+
+            // setup tag filter checkboxes
+            var checkboxFlagWeight = getFirstChild(div, "checkboxFlagWeight");
+            checkboxFlagWeight.checked = weightByDateAdded;
+            checkboxFlagWeight.addEventListener("change", (e) => {
+                weightByDateAdded = e.currentTarget.checked;
+                renderStats();
+            });
+
+            // put the menu in the clicked button's parent and anchor it to button
+            showMenu(div, getParent(button, "scoreButtonRow"), button);
+        }
+
+
         // finally ready to kick off the statistics collection
         // re-use the current search functionality, make sure that
         // omitHidden = true so it only searches the currently visible entries
         this.startFuncSearch(true, true, (song, songList, index, total) => {
+            if (!song.date) {
+                // If the song doesn't have a release date then skip it.  this is a demo song
+                return;
+            }
             // search handler for a single song entry
             // loop over the songs in the list
             var numSongs = songList.length;
@@ -1598,11 +1951,318 @@ class Library {
                     // so the totals still add up to 1
                     incrementStat(songObject.packs[part], part, (1.0/numSongs));
                 }
+                // update top combo tracking
+                incrementCombo(songObject.packs, (1.0/numSongs))
             }
+            // update song counts by instrument pack release date map
+            incrementSongCountsByDate(song.date);
         }, renderStats);
 
         // initialize the selected part to "all"
         setShowPart("all");
+    }
+
+    showDateStats() {
+        var thiz = this;
+        // build extra button UI
+        var extraButtonHtml = "";
+        
+        var grainList = ["Years", "Months", "Weeks"];
+
+        for (var i = 0; i < grainList.length; i++) {
+            // get the part name and metadata
+            var grain = grainList[i];
+            // build the grain button
+            extraButtonHtml += `
+            <span class="imgButton tooltip select${grain}" id="select${grain}Tab">
+                ${grain}
+                <span class="tooltiptextbottom">Show song ${grain}</span>
+            </span>`;
+        }
+
+        // might as well throw in the song count
+        extraButtonHtml += `
+            <span class="titleButton visibleSongCount">0</span>
+        `;
+
+        // replace the library UI with the statistics UI
+        this.replaceUI(extraButtonHtml, () => {
+            // when the stats close button is called, revert to the library UI
+            this.endReplaceUI();
+            this.searchLoader = null;
+        });
+
+        // get the count element
+        var visibleCountElement = getFirstChild(this.menuContainer, "visibleSongCount");
+
+        // state variables
+        var songCountsByDate, startDate, endDate, totalCount, maxCount;
+
+        // reset function, we need to be able to re-run this
+        function reset() {
+            table.innerHTML = "";
+            songCountsByDate = {};
+            startDate = null;
+            endDate = null;
+            totalCount = 0;
+            maxCount = 0;
+        }
+
+        function truncateDateStringYear(dateString) {
+            // easy
+            return dateString.substring(0, 4);
+        }
+
+        function offsetDateStringYear(dateString, amount) {
+            // pretty easy
+            return (parseInt(dateString) + amount).toString();
+        }
+
+        function truncateDateStringMonth(dateString) {
+            // easy
+            return dateString.substring(0, 7);
+        }
+
+        function offsetDateStringMonth(dateString, amount) {
+            // not as easy
+            var year = parseInt(dateString.substring(0, 4));
+            var month = parseInt(dateString.substring(5, 7)) + amount;
+            while (month > 12) {
+                year += 1;
+                month -= 12;
+            }
+            while (month < 1) {
+                year -= 1;
+                month += 12;
+            }
+            return year + "-" + month.toString().padStart(2, "0");
+        }
+
+        function fullDateToString(date) {
+            // dealing with the javascript Date object is an exercise in pain tolerance
+            return `${date.getYear() + 1900}-${(date.getMonth() + 1).toString().padStart(2, "0")}-${date.getDate().toString().padStart(2, "0")}`;
+        }
+
+        function fullStringToDate(dateString) {
+            // dealing with the javascript Date object is an exercise in pain tolerance
+            var year = parseInt(dateString.substring(0, 4));
+            var month = parseInt(dateString.substring(5, 7)) - 1;
+            var day = parseInt(dateString.substring(8, 10));
+            return new Date(year, month, day);
+        }
+        
+        function offsetDateByDays(date1, days) {
+            // abusing the Date object to take an out-of-bounds day of the month value and convert to the correct date.
+            // ffs, getYear() is relative to 1900, but the Date() constructor takes the absolute year
+            return new Date(date1.getYear() + 1900, date1.getMonth(), date1.getDate() + days);
+        }
+
+        function truncateDateStringWeek(dateString) {
+            var date1 = fullStringToDate(dateString);
+            // subtract the day of the week to get the previous Sunday, or the same day if it is a Sunday
+            var sunday = offsetDateByDays(date1, -date1.getDay());
+            return fullDateToString(sunday);
+        }
+
+        function offsetDateStringWeek(dateString, amount) {
+            var date1 = fullStringToDate(dateString);
+            // add the given amount of weeks to the date
+            var otherWeek = offsetDateByDays(date1, amount * 7);
+            return fullDateToString(otherWeek);
+        }
+
+        // put the grain-related functions into a convenient map
+        var grainFunctions = {
+            "Years": {
+                "truncate": truncateDateStringYear,
+                "offset": offsetDateStringYear
+            },
+            "Months": {
+                "truncate": truncateDateStringMonth,
+                "offset": offsetDateStringMonth
+            },
+            "Weeks": {
+                "truncate": truncateDateStringWeek,
+                "offset": offsetDateStringWeek
+            }
+        };
+
+        // override the index container
+        this.indexContainer = document.createElement("div");
+        this.indexContainer.className = "indexContainer";
+        this.libraryContainer.appendChild(this.indexContainer);
+
+        // create a table to contain the histogram
+        var table = document.createElement("table");
+        table.className = "statTable";
+        this.indexContainer.appendChild(table);
+
+        // create a date row
+        function createDate(date, prepend = false) {
+            // build a row
+            var tr = document.createElement("tr");
+            tr.className = "statRow";
+            if (prepend) {
+                table.insertBefore(tr, table.children[0]);
+            } else {
+                table.appendChild(tr);
+            }
+
+            // first cell is the label
+            var nameTd = document.createElement("td");
+            nameTd.className = "statLabel";
+            nameTd.innerHTML = `<strong>${date}</strong>`;
+            tr.appendChild(nameTd);
+
+            // second cell contains the histogram
+            var statTd = document.createElement("td");
+            statTd.className = "statCell";
+            tr.appendChild(statTd);
+
+            // create a basic div to be the histogram bar
+            var statBar = document.createElement("div");
+            statBar.className = "statBar quicktooltip";
+            // set the color based on the part
+            statBar.style.backgroundColor = sectionMetaData["all"].color;
+            // starting sizing
+            statBar.display = "block";
+            statBar.style.width = "0%";
+            statBar.style.height = "1.35em";
+            statTd.appendChild(statBar);
+
+            // create a tooltip for the bar
+            var statBarTooltip = document.createElement("div");
+            statBarTooltip.className = "quicktooltiptext";
+            // no contents yet
+            statBarTooltip.innerHTML = "";
+            statBar.appendChild(statBarTooltip);
+
+            // save reference to the stat bar and count
+            var dateStat = {"count": 0, "statBar": statBar, "statBarTooltip": statBarTooltip};
+            songCountsByDate[date] = dateStat;
+            return dateStat;
+        }
+
+        // get a count object for the given date
+        function getDateCount(date, truncateFunction, offsetFunction) {
+            // convert to date identifier
+            var dateString = truncateFunction(date);
+            // quick lookup
+            if (songCountsByDate[dateString]) {
+                // found it
+                return songCountsByDate[dateString];
+            }
+            // if we have no date entries, start with this one
+            if (startDate == null) {
+                startDate = dateString;
+                endDate = dateString;
+                return createDate(dateString);
+            }
+            // if the date is before our current range expand the range earlier until reaching it
+            while (startDate > dateString) {
+                startDate = offsetFunction(startDate, -1);
+                var added = createDate(startDate, true);
+                if (startDate == dateString) {
+                    return added;
+                }
+            }
+            // if the date is after our current range expand the range later until reaching it
+            while (endDate < dateString) {
+                endDate = offsetFunction(endDate, 1);
+                var added = createDate(endDate, false);
+                if (endDate == dateString) {
+                    return added;
+                }
+            }
+            // shrugs
+            throw "oh no";
+        }
+
+        // actual stat collecting function
+        function incrementDate(date, truncateFunction, offsetFunction) {
+            // get the entry for the given date
+            var dateEntry = getDateCount(date, truncateFunction, offsetFunction);
+            // update the entry count, total count, and max count
+            dateEntry.count += 1;
+            totalCount += 1;
+            if (dateEntry.count > maxCount) maxCount = dateEntry.count;
+        }
+
+        // update the UI
+        function renderStats() {
+            // update the UI with the total song count
+            visibleCountElement.innerHTML = totalCount;
+
+            // update a specific date's amount
+            function updateDate(entry, scale) {
+                var percentage = (100 * (entry.count / (1.0 * maxCount)));
+                // scale the percentage so the max stat ends up at 100%, and set that as
+                // the element width
+                entry.statBar.style.width = percentage + "%";
+                // update the tooltip with the percentage and raw value
+                // raw value
+                var text = `${entry.count}`;
+                entry.statBarTooltip.innerHTML = text;
+            }
+
+            // just go through and update all the date entries
+            for (var dateString in songCountsByDate) {
+                updateDate(songCountsByDate[dateString]);
+            }
+        }
+
+        // run the collection process
+        function runStats(truncateFunction, offsetFunction) {
+            // clear the UI and state so we can start again
+            reset();
+            // re-use the current search functionality, make sure that
+            // omitHidden = true so it only searches the currently visible entries
+            thiz.startFuncSearch(true, true, (song, songList, index, total) => {
+                if (!song.date) {
+                    // If the song doesn't have a release date then skip it.  this is a demo song
+                    return;
+                }
+                // search handler for a single song entry
+                incrementDate(song.date, truncateFunction, offsetFunction);
+            }, renderStats);
+        }
+
+        // handler for the grain buttons
+        function setShowGrain(grain) {
+            // update the buttons, raising up the currently active one and lowering the others
+            for (var r = 0; r < grainList.length; r++) {
+                // get the button for this grain
+                var grainName = grainList[r];
+                var button = document.getElementById(`select${grainName}Tab`);
+                // set the style based on the current filter
+                if (grain == grainName) {
+                    button.classList.add("imgButtonRaised");
+                    button.classList.remove("imgButton");
+                } else {
+                    button.classList.add("imgButton");
+                    button.classList.remove("imgButtonRaised");
+                }
+            }
+
+            // re-run the stats
+            runStats(grainFunctions[grain]["truncate"], grainFunctions[grain]["offset"]);
+        }
+
+        // set up the handlers for the grain buttons
+        for (var i = 0; i < grainList.length; i++) {
+            // get the grain name and button container
+            var grainName = grainList[i];
+            var grainButton = getFirstChild(this.menuContainer, `select${grainName}`);
+            // save the grain name as a property
+            grainButton.grainName = grainName;
+            // add handler
+            grainButton.addEventListener("click", (e) => {
+                setShowGrain(e.currentTarget.grainName);
+            });
+        }
+
+        // start off with years
+        setShowGrain("Years");
     }
 }
 

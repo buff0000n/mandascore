@@ -516,7 +516,7 @@
         cursor: pointer;
         display: inline-block;
     }
-    .smallButton, .smallButtonSelected {
+    .smallButton, .smallButtonSelected, .libCatButton {
         border: none;
         color: #FFFFFF;
         padding: 0ex 0ex;
@@ -529,7 +529,7 @@
         cursor: pointer;
         display: inline-block;
     }
-    .smallButton {
+    .smallButton, .libCatButton {
         background-color: #202040;
     }
     .smallButtonSelected {
@@ -545,7 +545,7 @@
         margin: 0;
     }
 
-    .playlistEntry, .playlistEntrySelected, .libCatLabel {
+    .playlistEntry, .playlistEntrySelected, .libCatLabel, .libCatCount {
         background-color: #202020;
         border: none;
         color: #A0A0A0;
@@ -562,9 +562,18 @@
         color: #FFFFFF;
     }
     .libCatLabel {
-        background-color: #405080;
+        background-color: #202040;
         color: #FFFFFF;
     }
+    .libCatCount {
+        background-color: #202040;
+        color: #B0B0B0;
+        font-size: 75%;
+    }
+    .libCatButton {
+        margin: 0ex 0ex 0px 0;
+    }
+    .libCatHeader { }
     .libSongLabel {
         cursor: pointer;
     }
@@ -724,6 +733,7 @@
     }
     .statLabel {
         text-align: right;
+        white-space: nowrap;
     }
     .statCell {
         width: 100%;
