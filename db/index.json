@@ -403,6 +403,7 @@
 				, {"id": "fmRezH5Xt2c", "name": "Dig Up Her Bones", "attr": ["The Misfits"], "date": "2022-07-29"}
 				, {"id": "IcktKAWeOg4", "name": "One Last Caress", "attr": ["The Misfits"], "tags": ["Perfect"], "date": "2021-06-08"}
 				, {"id": "u0tlc05pvkk", "name": "Cult of Dionysus", "attr": ["The Orion Express"], "tags": ["Perfect"], "date": "2018-06-16"}
+				, {"id": "0iygcyTv6tY", "name": "Your Love", "attr": ["The Outfield"], "tags": ["Perfect"], "date": "2025-08-03"}
 				, {"id": "f-Nwb6v1oS4", "name": "Invisible Sun", "attr": ["The Police"], "date": "2018-09-02"}
 				, {"id": "xdZo49UBLXI", "name": "Blitzkrieg Bop", "attr": ["The Ramones"], "tags": ["Perfect"], "date": "2019-08-13"}
 				, {"id": "Y38Gj0gzJJs", "name": "You Can't Always Get What You Want", "attr": ["The Rolling Stones"], "tags": ["Perfect"], "multi": 2, "date": "2022-10-06"}
@@ -1614,6 +1615,7 @@
 				, {"id": "27Z3rLJf1HA", "name": "When Doves Cry", "attr": ["Prince"], "tags": ["Perfect"], "date": "2024-08-15"}
 				, {"id": "p0vR-7Imf7M", "name": "Light Up The Night", "attr": ["Protomen"], "date": "2018-01-27"}
 				, {"id": "TqPt4Gnb8OM", "name": "Blurry", "attr": ["Puddle Of Mudd"], "tags": ["Druk"], "date": "2017-05-12"}
+				, {"id": "BOv2-Z8rfGM", "name": "Never Need Me", "attr": ["Rachel Chinouriri"], "date": "2025-08-03"}
 				, {"id": "v0shVWE7aNI", "name": "Optimistic", "attr": ["Radiohead"], "tags": ["Perfect"], "date": "2023-04-13"}
 				, {"id": "DjB5morQ0g4", "name": "The National Anthem", "attr": ["Radiohead"], "date": "2023-05-25"}
 				, {"id": "WSVq31ou5zQ", "name": "It's Called: Freefall", "attr": ["Rainbow Kitten Surprise"], "tags": ["Perfect"], "multi": 2, "date": "2022-11-24"}
@@ -2109,6 +2111,7 @@
 				, {"id": "2d7N7f9RdDU", "name": "Monster", "attr": ["Milck"], "date": "2018-03-24"}
 				, {"id": "zGb2bKqsWZI", "name": "Party in the U.S.A.", "attr": ["Miley Cyrus"], "date": "2024-07-26"}
 				, {"id": "RIKaWAvTLSI", "name": "Cheri, Cheri Lady instrumental", "attr": ["Modern Talking"], "date": "2024-05-23"}
+				, {"id": "61e8R1D5Yoo", "name": "Sensitive", "attr": ["Mothica"], "tags": ["Perfect"], "date": "2025-08-03"}
 				, {"id": "hCqYjsUnHts", "name": "Believe", "attr": ["Nancy Martinez"], "tags": ["Perfect"], "multi": 2, "date": "2019-03-09"}
 				, {"id": "fw8tN0cQ3DI", "name": "Rabbit Hole", "attr": ["Natalia Kills"], "date": "2018-10-16"}
 				, {"id": "KbnMABorg6I", "name": "Bye Bye Bye", "attr": ["NSync"], "multi": 2, "date": "2024-08-15"}
@@ -3261,6 +3264,7 @@
 				, {"id": "Vi_UfqIP8hM", "name": "This Girl", "attr": ["KDrew"], "date": "2020-02-15"}
 				, {"id": "A_AMN35kzg8", "name": "Shy Girl", "attr": ["Kedam"], "date": "2019-02-21"}
 				, {"id": "kHckY1enznA", "name": "Zombie Nation", "attr": ["Kernkraft 4000"], "date": "2017-04-02"}
+				, {"id": "DEBt8v9KBaI", "name": "Pool", "attr": ["Kiki Wera", "Gravagerz Remix"], "tags": ["Perfect"], "date": "2025-08-03"}
 				, {"id": "arPgu99jNpA", "name": "Go Again", "attr": ["King Caan ft. Elysa"], "date": "2018-10-02"}
 				, {"id": "uSnkIk4rksg", "name": "Avast Your A**", "attr": ["Kitsune^2"], "date": "2017-09-21"}
 				, {"id": "5ea-BspcV6s", "name": "Virus (Dub)", "attr": ["KMFDM"], "tags": ["Perfect", "Sparse"], "date": "2021-08-28"}
@@ -5348,9 +5352,10 @@
 				, {"id": "i4j1yNcajvk", "name": "Masquerade", "attr": ["Code Geass"], "date": "2022-03-12"}
 				, {"id": "VlyZ7gxadY0", "name": "World's End", "attr": ["Code Geass opening 5"], "tags": ["Perfect"], "date": "2024-03-28"}
 				, {"id": "vpwD8wIQvqE", "name": "Tank!", "attr": ["Cowboy Bebop opening"], "date": "2018-02-01"}
-				, {"id": "1ljXAFmt-UA", "name": "Otonoke", "attr": ["Creepy Nuts", "Dan Da Dan opening", "TripleShot"], "tags": ["Perfect"], "multi": 3, "date": "2024-11-01"}
+				, {"id": "1ljXAFmt-UA", "name": "Otonoke", "attr": ["Creepy Nuts", "Dan Da Dan opening"], "tags": ["Perfect"], "multi": 3, "date": "2024-11-01"}
 				, {"id": "gvwpofdeieQ", "name": "Doubt & Trust", "attr": ["D.Gray Man opening 3"], "date": "2017-04-22"}
 				, {"id": "zV9Qcwf-xwA", "name": "14th Song", "attr": ["D.Gray-man"], "date": "2017-04-06"}
+				, {"id": "5IZ6yY0DWsk", "name": "Like a Fire", "attr": ["Dan Da Dan OST"], "date": "2025-08-03"}
 				, {"id": "XLMH3M-UjvE", "name": "Seirei", "attr": ["Date A Live"], "tags": ["Adau"], "date": "2019-03-05"}
 				, {"id": "o_7jIlOBWH0", "name": "Buddy, Ryo", "attr": ["Devilman Crybaby"], "date": "2018-01-25"}
 				, {"id": "chhi86kaUiA", "name": "Strange Meat Pie", "attr": ["Dorohedoro ending 4", "(K)NoW_NAME"], "tags": ["Perfect"], "date": "2021-03-20"}
@@ -5947,6 +5952,7 @@
 				{"id": "s4kSmTKwfKE", "name": "Miku", "attr": ["Anamanaguchi", "Hatsune Miku"], "date": "2018-02-24"}
 				, {"id": "cxgcpVMLjDo", "name": "Ten Thousand Stars", "attr": ["CircusP", "Hatsune Miku"], "date": "2017-12-14"}
 				, {"id": "x0V2hCX2tsE", "name": "Ten Thousand Stars", "attr": ["CircusP", "Hatsune Miku"], "date": "2018-11-24"}
+				, {"id": "52mqJhV07rM", "name": "Cherry Pop", "attr": ["Deco*27"], "tags": ["Filled"], "date": "2025-08-03"}
 				, {"id": "CN2R_Vp4_zM", "name": "Monitoring", "attr": ["DECO*27 ft. Hatsune Miku"], "tags": ["Perfect"], "date": "2025-05-08"}
 				, {"id": "stKu4a-e6FM", "name": "\u76f8\u611b\u6027\u7406\u8ad6/Sou Ai Sei Ron", "attr": ["DECO*27", "Hatsune Miku"], "date": "2018-05-15"}
 				, {"id": "N6AWKTukyXo", "name": "Decade", "attr": ["Dixie Flatline", "Hatsune Miku"], "tags": ["Perfect"], "date": "2019-03-23"}
