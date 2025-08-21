@@ -623,6 +623,7 @@
 				, {"id": "1Rn3WPycgEY", "name": "Head Like A Hole/God Money", "attr": ["Nine Inch Nails"], "tags": ["Perfect"], "multi": 4, "date": "2019-07-25"}
 				, {"id": "dT6XghyTPcs", "name": "In This Twilight", "attr": ["Nine Inch Nails"], "date": "2018-05-10"}
 				, {"id": "1QFVN_pWjt8", "name": "Only", "attr": ["Nine Inch Nails"], "tags": ["Sparse"], "date": "2017-03-30"}
+				, {"id": "76ng9BhEZPQ", "name": "The Great Below", "attr": ["Nine Inch Nails"], "tags": ["Perfect"], "date": "2025-08-21"}
 				, {"id": "aZcTIuyqXQU", "name": "The Hand That Feeds", "attr": ["Nine Inch Nails"], "tags": ["Perfect", "Druk"], "date": "2017-03-29"}
 			]
 		},
@@ -1187,6 +1188,7 @@
 				, {"id": "JD_xOgCgU0A", "name": "More the Victim", "attr": ["Linkin Park"], "date": "2023-11-09"}
 				, {"id": "t0yWhyUmWN0", "name": "New Divide", "attr": ["Linkin Park"], "tags": ["Perfect", "Sparse"], "date": "2017-04-26"}
 				, {"id": "gopmJ9osCwQ", "name": "Numb", "attr": ["Linkin Park"], "tags": ["Perfect"], "date": "2020-02-22"}
+				, {"id": "BLFjLizPv7c", "name": "Over Each Other", "attr": ["Linkin Park"], "multi": 2, "date": "2025-08-21"}
 				, {"id": "R_NHA0RFbXU", "name": "Rebellion", "attr": ["Linkin Park"], "date": "2021-03-04"}
 				, {"id": "Tjgbn_flA5Q", "name": "Somewhere I Belong", "attr": ["Linkin Park"], "tags": ["Perfect"], "date": "2017-08-21"}
 				, {"id": "9b5zZBhoRNY", "name": "The Emptiness Machine", "attr": ["Linkin Park"], "tags": ["Perfect"], "date": "2025-02-15"}
@@ -1532,6 +1534,7 @@
 				, {"id": "KKUuZSFtshg", "name": "Move Your Feet", "attr": ["Junior Senior"], "date": "2022-06-16"}
 				, {"id": "YPt8B4eLpzc", "name": "Fractions", "attr": ["Juniper Vale"], "date": "2021-10-30"}
 				, {"id": "TSifcbZqTyk", "name": "Broken Bones", "attr": ["Kaleo"], "tags": ["Perfect", "Plogg"], "date": "2018-04-03"}
+				, {"id": "AbUJKWcLOGg", "name": "USA Today", "attr": ["Kaleo"], "tags": ["Perfect"], "date": "2025-08-21"}
 				, {"id": "ihqS0z4Kb_k", "name": "Running Battle", "attr": ["Kasabian"], "date": "2019-05-14"}
 				, {"id": "wWBiHAsPsGA", "name": "i won't run", "attr": ["Keanu Bicol"], "date": "2025-06-05"}
 				, {"id": "BRaukkTEsHc", "name": "Lost Cause", "attr": ["KeeyHoopla", "grandson"], "date": "2020-09-12"}
@@ -2658,6 +2661,7 @@
 				, {"id": "3l0GDUFuujQ", "name": "Can't Hold Us", "attr": ["Macklemore & Ryan Lewis"], "date": "2017-04-20"}
 				, {"id": "Cx4X33_cf5E", "name": "Thrift Shop", "attr": ["Macklemore & Ryan Lewis"], "tags": ["Perfect"], "date": "2017-05-17"}
 				, {"id": "qrxMHrmicvM", "name": "Raid", "attr": ["Madvillian"], "date": "2021-03-09"}
+				, {"id": "hztp8ojdQE8", "name": "Gorgeous", "attr": ["Mansionz"], "date": "2025-08-21"}
 				, {"id": "Eq7SbgxosaU", "name": "Family Affair/Let's Get It Crunk", "attr": ["Mary J. Blige"], "date": "2020-02-15"}
 				, {"id": "bqC3KovFi9s", "name": "Tra'p'e", "attr": ["Mason"], "tags": ["Perfect"], "date": "2017-09-07"}
 				, {"id": "pRitb95IC_s", "name": "I'm so special", "attr": ["Mavodo"], "tags": ["Perfect"], "multi": 2, "date": "2021-03-13"}
@@ -3172,6 +3176,7 @@
 				, {"id": "Nd-Q6R0D3Hw", "name": "Do You Feel It", "attr": ["Chaos Chaos"], "date": "2017-11-11"}
 				, {"id": "cagChzrYB2U", "name": "No Promises", "attr": ["Cheat Codes"], "date": "2017-07-10"}
 				, {"id": "xAij-UPmPFE", "name": "No Promises - drop", "attr": ["Cheat Codes"], "date": "2017-09-26"}
+				, {"id": "4peksMmpxaY", "name": "The Days", "attr": ["Chrystal"], "date": "2025-08-21"}
 				, {"id": "WChqR1ZAGjs", "name": "Never Say Die", "attr": ["Chvrches"], "tags": ["Gamma", "Perfect"], "date": "2018-06-05"}
 				, {"id": "0j8LX549vis", "name": "The Mother We Share", "attr": ["Chvrches"], "tags": ["Perfect"], "date": "2017-05-18"}
 				, {"id": "zRthAiXVah0", "name": "Link!", "attr": ["Codet ft. RXTKY"], "date": "2025-04-05"}
@@ -4163,6 +4168,7 @@
 				, {"id": "FtMhmn8vLwc", "name": "Burn My Dread", "attr": ["Persona 3"], "date": "2018-10-16"}
 				, {"id": "5ZXQCbMVGIo", "name": "Heartful Cry", "attr": ["Persona 3"], "date": "2017-12-16"}
 				, {"id": "eBHelkuBj2g", "name": "Wiping All Out", "attr": ["Persona 3 Portable"], "date": "2017-05-09"}
+				, {"id": "iRdJ9Bu9Gq4", "name": "Color Your Night", "attr": ["Persona 3 Reload"], "date": "2025-08-21"}
 				, {"id": "UiKGxry_bYQ", "name": "Full Moon Full Life", "attr": ["Persona 3 Reloaded"], "date": "2024-03-28"}
 				, {"id": "YibTEwCFXeU", "name": "Chie's Theme", "attr": ["Persona 4 Arena"], "date": "2018-03-24"}
 				, {"id": "6VLPxGIfVdQ", "name": "Heartbeat, Heartbreak", "attr": ["Persona 4"], "tags": ["Perfect"], "date": "2017-05-30"}
@@ -4453,7 +4459,8 @@
 			"Games I've never heard of":{
 				"dbName":"Videogames.Miscvideogames",
 				"songs":[
-					{"id": "v2lvgaGQkwU", "name": "Battle Cats Battle Theme #1", "date": "2021-12-04"}
+					{"id": "lyRjnLXGVn0", "name": "Age of War theme", "date": "2025-08-21"}
+					, {"id": "v2lvgaGQkwU", "name": "Battle Cats Battle Theme #1", "date": "2021-12-04"}
 					, {"id": "fQbZKDWAoIA", "name": "Battle Cats intro theme", "tags": ["Perfect", "Sparse"], "date": "2021-11-27"}
 					, {"id": "rLYtCeuWTOQ", "name": "Black Knight 2000 pinball theme", "tags": ["Filled"], "date": "2022-02-26"}
 					, {"id": "2JmjokcaLTw", "name": "Black Rock Shooter The Game opening", "tags": ["Druk"], "date": "2017-08-19"}
@@ -5805,6 +5812,7 @@
 				, {"id": "NgnxrktHzuw", "name": "Saburo's Theme", "attr": ["Android Kikaider"], "tags": ["Perfect"], "date": "2021-03-18"}
 				, {"id": "qJmqF70sAgA", "name": "Yakkity Sax", "attr": ["Benny Hill", "Boots Randolph"], "date": "2018-03-17"}
 				, {"id": "yAA7pA_4Ww0", "name": "Freelove Freeway", "attr": ["David Brent", "The Office"], "date": "2018-06-02"}
+				, {"id": "i3GGtoObV-w", "name": "Winner!", "attr": ["Gozyuger!"], "date": "2025-08-21"}
 				, {"id": "ZZ9Mo0DG_nQ", "name": "Teardrop", "attr": ["House MD opening", "Massive Attack"], "tags": ["Perfect"], "date": "2019-02-07"}
 				, {"id": "eWsiM4ohu1U", "name": "Friends Theme", "attr": ["I'll be There for You by The Rembrandts"], "date": "2017-04-03"}
 				, {"id": "M52Ij1cz92g", "name": "Dayman", "attr": ["It's Always Sunny In Philadelphia"], "date": "2017-11-16"}
@@ -6556,6 +6564,7 @@
 				, {"id": "QhL90yMLluM", "name": "Henry Stickman Distraction Dance", "date": "2020-08-29"}
 				, {"id": "SVInkx6G0u8", "name": "Japan Break Industries", "date": "2018-09-04"}
 				, {"id": "Bb3aJhxHrwY", "name": "LeFloid Outtro", "date": "2017-03-27"}
+				, {"id": "L3Y7FHDQ6Qg", "name": "Liberty Mutual Jingle", "tags": ["Perfect", "Beta"], "date": "2025-08-21"}
 				, {"id": "cxT8q5ZpSMU", "name": "N00blShowtek intro 3", "date": "2017-11-18"}
 				, {"id": "q4uiPcQMvmA", "name": "NEDM Song", "tags": ["Horos"], "date": "2018-03-06"}
 				, {"id": "FaI8CvqAysA", "name": "Nyan Cat", "date": "2017-05-19"}
