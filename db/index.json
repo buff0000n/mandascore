@@ -135,6 +135,14 @@
 				, {"id": "edvu7Ryt7B8", "name": "World In My Eyes", "attr": ["Depeche Mode"], "tags": ["Perfect"], "date": "2024-05-18"}
 			]
 		},
+		"Dire Straits":{
+			"dbName":"ClassicRock",
+			"songs":[
+				{"id": "gDZTnsWK9UE", "name": "Money For Nothing", "attr": ["Dire Straits"], "tags": ["Druk"], "date": "2017-08-16"}
+				, {"id": "JXgWPDP_TIo", "name": "Tunnel of Love", "attr": ["Dire Straits"], "tags": ["Perfect"], "date": "2025-08-30"}
+				, {"id": "MqfdKE0ezns", "name": "Walk Of Life", "attr": ["Dire Straits"], "tags": ["Perfect"], "date": "2018-06-19"}
+			]
+		},
 		"Duran Duran":{
 			"dbName":"ClassicRock",
 			"songs":[
@@ -244,6 +252,7 @@
 				{"id": "fSHzLWcPVkE", "name": "I Ran (So Far Away)", "attr": ["A Flock Of Seagulls"], "tags": ["Perfect"], "date": "2021-08-14"}
 				, {"id": "lasHeV-KZuk", "name": "Boogie Oogie Oogie", "attr": ["A Taste of Honey"], "date": "2023-03-02"}
 				, {"id": "p7ks3fSKjWI", "name": "Take On Me", "attr": ["a-ha"], "date": "2017-04-07"}
+				, {"id": "5QlDCGQlXgM", "name": "The Sun Always Shines On T.V.", "attr": ["a-ha"], "date": "2025-08-30"}
 				, {"id": "6KP-jPQ6RmA", "name": "Gimme! Gimme! Gimme! (A Man After Midnight)", "attr": ["Abba"], "date": "2021-08-28"}
 				, {"id": "lhy_tlhtEH4", "name": "Waterloo", "attr": ["Abba"], "date": "2018-04-17"}
 				, {"id": "fWAmbMzm1bw", "name": "Dream On", "attr": ["Aerosmith", "Sing For the Moment by Eminem"], "date": "2017-04-28"}
@@ -278,8 +287,6 @@
 				, {"id": "CZmGgC4anqo", "name": "Pour Some Sugar On Me", "attr": ["Def Leppard"], "date": "2017-11-04"}
 				, {"id": "goD3cNQ-kVs", "name": "Holy Diver", "attr": ["Dio"], "date": "2017-10-03"}
 				, {"id": "_eD1vqcbTL4", "name": "Rainbow In The Dark", "attr": ["Dio"], "date": "2018-09-01"}
-				, {"id": "gDZTnsWK9UE", "name": "Money For Nothing", "attr": ["Dire Straits"], "tags": ["Druk"], "date": "2017-08-16"}
-				, {"id": "MqfdKE0ezns", "name": "Walk Of Life", "attr": ["Dire Straits"], "tags": ["Perfect"], "date": "2018-06-19"}
 				, {"id": "g9Gv0tEe4co", "name": "Hot Stuff", "attr": ["Donna Summer"], "date": "2024-03-15"}
 				, {"id": "-BJ3UzM5BNc", "name": "Let's Groove", "attr": ["Earth", "Wind & Fire"], "date": "2017-06-16"}
 				, {"id": "82r9TST5noE", "name": "September", "attr": ["Earth", "Wind & Fire"], "tags": ["Perfect"], "date": "2017-06-14"}
@@ -788,6 +795,7 @@
 				, {"id": "m9VufLiGqg0", "name": "Roses", "attr": ["Awaken I Am"], "tags": ["Perfect"], "date": "2020-04-25"}
 				, {"id": "kAGnj9tNzlE", "name": "Let It Roar", "attr": ["Battle Beast"], "date": "2018-02-13"}
 				, {"id": "JZk6_ZsnUw8", "name": "Made Of Steel", "attr": ["Battlejuice x Lebrock"], "date": "2023-10-28"}
+				, {"id": "KK-V85bmF3E", "name": "Knives and Pens", "attr": ["Black Veil Brides"], "tags": ["Perfect"], "date": "2025-08-30"}
 				, {"id": "bz6pBJ8xTfY", "name": "Incorporate Use of Cloak & Dagger", "attr": ["Blood Command"], "date": "2020-11-07"}
 				, {"id": "EP6q8meU5Fk", "name": "Quitters Don't Smoke", "attr": ["Blood Command"], "date": "2018-04-14"}
 				, {"id": "aKb5NynXrvc", "name": "What If I Lost It", "attr": ["Bloodsimple"], "date": "2023-05-25"}
@@ -1658,6 +1666,7 @@
 				, {"id": "gHFZ4wNrvYI", "name": "Walkin' On The Sun", "attr": ["Smash Mouth"], "tags": ["Plogg"], "date": "2018-01-23"}
 				, {"id": "jUpraVXCpck", "name": "De M\u00fasica Ligera", "attr": ["Soda Stereo"], "date": "2021-06-08"}
 				, {"id": "coV24X77aHE", "name": "Circles", "attr": ["Soul Coughing"], "date": "2019-04-09"}
+				, {"id": "1vHI3Tmssfo", "name": "Outshined", "attr": ["Soundgarden"], "tags": ["Perfect", "Druk"], "multi": 3, "date": "2025-08-30"}
 				, {"id": "ac0v_KEKklQ", "name": "The Hardest Cut", "attr": ["Spoon"], "date": "2023-05-11"}
 				, {"id": "ZIInk4Df14A", "name": "Photographic Memories", "attr": ["Steam Powered Giraffe"], "date": "2019-09-19"}
 				, {"id": "_mk4Q_O3HIE", "name": "I'm The Mountain", "attr": ["Stoned Jesus"], "date": "2018-10-02"}
@@ -2086,6 +2095,7 @@
 				, {"id": "lvqJMuFfPM0", "name": "Fruity", "attr": ["Chloe Moriondo"], "tags": ["Perfect"], "date": "2023-12-28"}
 				, {"id": "CxsirRBiwI4", "name": "Solo", "attr": ["Clan Bandit ft. Demi Lovato"], "date": "2018-08-25"}
 				, {"id": "gPYo3C4eQD0", "name": "Girls Just Want To Have Fun", "attr": ["Cyndi Lauper"], "tags": ["Perfect"], "multi": 3, "date": "2021-03-23"}
+				, {"id": "tU_4c8XjtpY", "name": "No One Gets The Prize", "attr": ["Diana Ross"], "date": "2025-08-30"}
 				, {"id": "m30tCjDNANo", "name": "Upside Down", "attr": ["Diana Ross"], "multi": 2, "date": "2023-02-02"}
 				, {"id": "Xw4xpb8_B2Q", "name": "Ocean Drive", "attr": ["Duke Dumont"], "date": "2018-10-23"}
 				, {"id": "keE-An1R50U", "name": "AAA Powerline", "attr": ["Ecco2K"], "tags": ["Perfect"], "date": "2021-05-25"}
@@ -2602,6 +2612,7 @@
 				, {"id": "Boi-i2vRQks", "name": "Six Days - Remix", "attr": ["DJ Shadow", "Mos Def"], "date": "2021-05-12"}
 				, {"id": "t8k325LbWhM", "name": "Ruff Ryders Anthem", "attr": ["DMX"], "date": "2021-05-12"}
 				, {"id": "IVxf_aG0dBo", "name": "X Gon' Give It To Ya", "attr": ["DMX"], "tags": ["Gamma", "Perfect"], "date": "2017-09-10"}
+				, {"id": "zBEdTq5RdHA", "name": "Tore Up", "attr": ["Don Toliver"], "date": "2025-08-30"}
 				, {"id": "Ci9BUEOpaYU", "name": "Real Muthaphuckkin G's", "attr": ["Eazy-E"], "date": "2017-10-14"}
 				, {"id": "EcvVz09fZqU", "name": "Palm Angel", "attr": ["Eric IV"], "tags": ["Perfect"], "date": "2021-12-11"}
 				, {"id": "8yDHWQgoqPo", "name": "American Boy", "attr": ["Estelle"], "date": "2021-03-27"}
@@ -3332,6 +3343,7 @@
 				, {"id": "bz1L1sF1GhY", "name": "Push the Feeling On", "attr": ["Nightcrawlers"], "tags": ["Perfect"], "date": "2024-02-14"}
 				, {"id": "y5yMWxEBrg4", "name": "Disco Pervert", "attr": ["Nightstop"], "date": "2023-06-22"}
 				, {"id": "o8eK7hctW1s", "name": "Road", "attr": ["Niky Nine"], "tags": ["Gamma"], "date": "2017-05-05"}
+				, {"id": "FSd-cfdLUDs", "name": "Somebody Special", "attr": ["Nina Nesbitt"], "tags": ["Perfect"], "multi": 2, "date": "2025-08-30"}
 				, {"id": "5hB-NRq3yFA", "name": "Undercurrent", "attr": ["Ninja Tracks"], "date": "2017-07-07"}
 				, {"id": "8KkmHS-U7Ro", "name": "Feather", "attr": ["Nujabes"], "date": "2019-01-31"}
 				, {"id": "xO6ptlEbDtU", "name": "If I Could Fly", "attr": ["Ocean Lab"], "date": "2021-03-04"}
@@ -3416,6 +3428,7 @@
 				, {"id": "MfkBvaj5WSg", "name": "Bicep", "attr": ["TR/ST"], "date": "2024-04-04"}
 				, {"id": "XoJURskTQm8", "name": "Rafovers Fantasy", "attr": ["Tune Up"], "date": "2018-08-14"}
 				, {"id": "5BcCPcb7ccQ", "name": "Russian Roulette", "attr": ["Tungevaag", "Raaban", "Charlie Who?"], "tags": ["Perfect"], "date": "2020-12-12"}
+				, {"id": "7ArYqCWZ77Y", "name": "Normal No More", "attr": ["TYSM"], "tags": ["Perfect"], "multi": 2, "date": "2025-08-30"}
 				, {"id": "Nbai26S5X_w", "name": "Beautiful Light", "attr": ["Uppermost"], "date": "2018-04-14"}
 				, {"id": "h51g97gKYOw", "name": "Extra Mode", "attr": ["USAO"], "date": "2018-04-24"}
 				, {"id": "em_vyMr3J9Y", "name": "Moving Strong", "attr": ["Uygar Guzgun"], "date": "2021-05-18"}
@@ -4464,6 +4477,7 @@
 					, {"id": "fQbZKDWAoIA", "name": "Battle Cats intro theme", "tags": ["Perfect", "Sparse"], "date": "2021-11-27"}
 					, {"id": "rLYtCeuWTOQ", "name": "Black Knight 2000 pinball theme", "tags": ["Filled"], "date": "2022-02-26"}
 					, {"id": "2JmjokcaLTw", "name": "Black Rock Shooter The Game opening", "tags": ["Druk"], "date": "2017-08-19"}
+					, {"id": "PoTl88KvXjI", "name": "Cruis'n USA title theme", "date": "2025-08-30"}
 					, {"id": "8XkKuO_GarQ", "name": "Eastward main theme", "date": "2023-07-09"}
 					, {"id": "K371majgjUs", "name": "Fuzion Frenzy theme", "date": "2018-07-15"}
 					, {"id": "GL8mNMRUF-k", "name": "God Hand end credits", "date": "2018-08-16"}
@@ -6564,7 +6578,7 @@
 				, {"id": "QhL90yMLluM", "name": "Henry Stickman Distraction Dance", "date": "2020-08-29"}
 				, {"id": "SVInkx6G0u8", "name": "Japan Break Industries", "date": "2018-09-04"}
 				, {"id": "Bb3aJhxHrwY", "name": "LeFloid Outtro", "date": "2017-03-27"}
-				, {"id": "L3Y7FHDQ6Qg", "name": "Liberty Mutual Jingle", "tags": ["Perfect", "Beta"], "date": "2025-08-21"}
+				, {"id": "L3Y7FHDQ6Qg", "name": "Liberty Mutual Jingle", "tags": ["Beta", "Perfect"], "date": "2025-08-21"}
 				, {"id": "cxT8q5ZpSMU", "name": "N00blShowtek intro 3", "date": "2017-11-18"}
 				, {"id": "q4uiPcQMvmA", "name": "NEDM Song", "tags": ["Horos"], "date": "2018-03-06"}
 				, {"id": "FaI8CvqAysA", "name": "Nyan Cat", "date": "2017-05-19"}
