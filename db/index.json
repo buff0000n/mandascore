@@ -2456,6 +2456,7 @@
 			"songs":[
 				{"id": "zdbibwEGRZc", "name": "Falling Down", "attr": ["Lil Peep & XXTENTACION"], "date": "2018-10-04"}
 				, {"id": "yCGW8b_3rto", "name": "benz truck", "attr": ["lil peep"], "tags": ["Perfect"], "date": "2018-01-30"}
+				, {"id": "I1ZC1IEwuK4", "name": "downtown", "attr": ["Lil Peep"], "tags": ["Perfect"], "date": "2025-09-06"}
 				, {"id": "yQWmFERFeGE", "name": "Save That Sh*t", "attr": ["Lil Peep"], "date": "2018-06-21"}
 				, {"id": "lniVF4knudc", "name": "Star Shopping", "attr": ["Lil Peep"], "date": "2018-02-06"}
 				, {"id": "zbAShbA9jSs", "name": "The Brightside", "attr": ["Lil Peep"], "date": "2018-01-16"}
@@ -3134,7 +3135,8 @@
 		"Misc Electronic":{
 			"dbName":"Electronic.MiscElectronic",
 			"songs":[
-				{"id": "WfKro0MegAQ", "name": "whiplash", "attr": ["2hollis"], "date": "2025-06-05"}
+				{"id": "vR-ZMr77-aw", "name": "poster boy", "attr": ["2hollis"], "date": "2025-09-06"}
+				, {"id": "WfKro0MegAQ", "name": "whiplash", "attr": ["2hollis"], "date": "2025-06-05"}
 				, {"id": "zA_29_8Gbco", "name": "Dancin", "attr": ["Aaron Smith ft. Luvli"], "date": "2022-10-27"}
 				, {"id": "rTLwz1AM6hg", "name": "Dancin", "attr": ["Aaron Smith", "Krono remix"], "tags": ["Perfect"], "date": "2019-01-24"}
 				, {"id": "LYWoasmhrfE", "name": "At Rest", "attr": ["acloudskye"], "date": "2023-05-11"}
@@ -3202,6 +3204,7 @@
 				, {"id": "HI3tfUqLTtw", "name": "Sandstorm", "attr": ["Darude"], "date": "2019-02-12"}
 				, {"id": "hgoVwhaFelw", "name": "New", "attr": ["Daya"], "tags": ["Epsilon"], "date": "2017-12-02"}
 				, {"id": "N2hgFz1vC2w", "name": "emotion engine", "attr": ["Dazegxd"], "date": "2024-05-02"}
+				, {"id": "h27MkOXM3D4", "name": "Deviant", "attr": ["Deadlife"], "date": "2025-09-06"}
 				, {"id": "0zxHcamzPCc", "name": "Just Feeling", "attr": ["Deepshoutz"], "date": "2018-09-20"}
 				, {"id": "xJMdAdz8Ncg", "name": "White Flag", "attr": ["Delta Heavy"], "tags": ["Sparse"], "date": "2017-07-15"}
 				, {"id": "-B8IXV6UUrk", "name": "Five Hours", "attr": ["Deorro"], "date": "2017-11-18"}
@@ -3247,6 +3250,7 @@
 				, {"id": "_tm_HnQCMpc", "name": "Wannabe", "attr": ["G9"], "date": "2021-01-09"}
 				, {"id": "Hdo9lQ-5pA4", "name": "You", "attr": ["Galantis"], "tags": ["Perfect"], "date": "2017-04-26"}
 				, {"id": "UhMcWfh7YWY", "name": "Soulmother, I Love You", "attr": ["Getter"], "date": "2017-04-22"}
+				, {"id": "_ccKK34nUwk", "name": "Bleed", "attr": ["GGA Magree"], "tags": ["Perfect"], "multi": 2, "date": "2025-09-06"}
 				, {"id": "EFILSfEa17U", "name": "Reign In Hell", "attr": ["GosT"], "date": "2018-06-19"}
 				, {"id": "y-DeFmxivXY", "name": "Blood // Water", "attr": ["grandson"], "date": "2018-03-22"}
 				, {"id": "RFAdXLi_qoo", "name": "Never Sleep", "attr": ["Gunnar Olsen"], "date": "2019-03-05"}
@@ -3498,6 +3502,7 @@
 				, {"id": "npq99vs0b4I", "name": "Little Bit", "attr": ["Futuristic"], "date": "2017-10-24"}
 				, {"id": "xkFeK4fXpFY", "name": "Shadows", "attr": ["It's Different"], "date": "2017-06-08"}
 				, {"id": "pzmn-9dkyGg", "name": "Heroes Tonight", "attr": ["Janji"], "date": "2017-12-12"}
+				, {"id": "Iit-pxxBa6s", "name": "Future Vibes", "attr": ["K.Safo & Alex Skrindo"], "date": "2025-09-06"}
 				, {"id": "a_6fh1ZXnsc", "name": "Dreams", "attr": ["Lost Sky"], "date": "2018-09-06"}
 				, {"id": "mw5pl1d_Xik", "name": "Dreams pt. II", "attr": ["Lost Sky ft. Sara Skinner"], "date": "2023-07-20"}
 				, {"id": "H7eXPLIA1yk", "name": "Can You Feel It", "attr": ["T-Mass & Enthic"], "date": "2017-12-07"}
@@ -4930,6 +4935,14 @@
 				, {"id": "PZZiqDObOTA", "name": "Chainsaw Man ending 3", "attr": ["Maximum The Hormone"], "tags": ["Perfect"], "multi": 2, "date": "2023-10-28"}
 			]
 		},
+		"Dan Da Dan":{
+			"dbName":"Anime",
+			"songs":[
+				{"id": "1ljXAFmt-UA", "name": "Otonoke", "attr": ["Creepy Nuts", "Dan Da Dan opening"], "tags": ["Perfect"], "multi": 3, "date": "2024-11-01"}
+				, {"id": "5IZ6yY0DWsk", "name": "Like a Fire", "attr": ["Dan Da Dan OST"], "date": "2025-08-03"}
+				, {"id": "RZ2YWlvekGw", "name": "Doukasheritsu", "attr": ["WurtS", "Dan Da Dan ending 2"], "tags": ["Perfect"], "multi": 2, "date": "2025-09-06"}
+			]
+		},
 		"Death Note":{
 			"dbName":"Anime",
 			"songs":[
@@ -5373,10 +5386,8 @@
 				, {"id": "i4j1yNcajvk", "name": "Masquerade", "attr": ["Code Geass"], "date": "2022-03-12"}
 				, {"id": "VlyZ7gxadY0", "name": "World's End", "attr": ["Code Geass opening 5"], "tags": ["Perfect"], "date": "2024-03-28"}
 				, {"id": "vpwD8wIQvqE", "name": "Tank!", "attr": ["Cowboy Bebop opening"], "date": "2018-02-01"}
-				, {"id": "1ljXAFmt-UA", "name": "Otonoke", "attr": ["Creepy Nuts", "Dan Da Dan opening"], "tags": ["Perfect"], "multi": 3, "date": "2024-11-01"}
 				, {"id": "gvwpofdeieQ", "name": "Doubt & Trust", "attr": ["D.Gray Man opening 3"], "date": "2017-04-22"}
 				, {"id": "zV9Qcwf-xwA", "name": "14th Song", "attr": ["D.Gray-man"], "date": "2017-04-06"}
-				, {"id": "5IZ6yY0DWsk", "name": "Like a Fire", "attr": ["Dan Da Dan OST"], "date": "2025-08-03"}
 				, {"id": "XLMH3M-UjvE", "name": "Seirei", "attr": ["Date A Live"], "tags": ["Adau"], "date": "2019-03-05"}
 				, {"id": "o_7jIlOBWH0", "name": "Buddy, Ryo", "attr": ["Devilman Crybaby"], "date": "2018-01-25"}
 				, {"id": "chhi86kaUiA", "name": "Strange Meat Pie", "attr": ["Dorohedoro ending 4", "(K)NoW_NAME"], "tags": ["Perfect"], "date": "2021-03-20"}
@@ -5652,6 +5663,7 @@
 				, {"id": "HjbLinZXOUM", "name": "Jellyfish Jam Theme Song", "attr": ["Spongebob Squarepants"], "tags": ["Gamma"], "date": "2017-04-19"}
 				, {"id": "RgnCu7y9reU", "name": "Exotique A", "attr": ["Spongebob Squarepants production music"], "date": "2017-07-06"}
 				, {"id": "_3-zJ9toKbc", "name": "Sweet Victory", "attr": ["Spongebob Squarepants"], "tags": ["Perfect"], "date": "2019-12-14"}
+				, {"id": "b9qfLOzfGp8", "name": "I'm a Goofy Goober", "attr": ["The SpongeBob SquarePants Movie", "I Wanna Rock by Twisted Sister"], "tags": ["Perfect"], "date": "2025-09-06"}
 				, {"id": "C-bBfG93BTc", "name": "Ocean Man", "attr": ["Ween", "Spongebob Squarepants Movie"], "date": "2017-05-11"}
 			]
 		},
