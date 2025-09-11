@@ -138,7 +138,8 @@
 		"Dire Straits":{
 			"dbName":"ClassicRock",
 			"songs":[
-				{"id": "gDZTnsWK9UE", "name": "Money For Nothing", "attr": ["Dire Straits"], "tags": ["Druk"], "date": "2017-08-16"}
+				{"id": "E0tkFPL36QY", "name": "Lady Writer", "attr": ["Dire Straits"], "tags": ["Perfect"], "date": "2025-09-11"}
+				, {"id": "gDZTnsWK9UE", "name": "Money For Nothing", "attr": ["Dire Straits"], "tags": ["Druk"], "date": "2017-08-16"}
 				, {"id": "JXgWPDP_TIo", "name": "Tunnel of Love", "attr": ["Dire Straits"], "tags": ["Perfect"], "date": "2025-08-30"}
 				, {"id": "MqfdKE0ezns", "name": "Walk Of Life", "attr": ["Dire Straits"], "tags": ["Perfect"], "date": "2018-06-19"}
 			]
@@ -1107,6 +1108,7 @@
 				{"id": "DalVwDT7Kps", "name": "Colors", "attr": ["Halsey"], "tags": ["Perfect"], "date": "2021-03-27"}
 				, {"id": "IeXTvqaCOac", "name": "Drive", "attr": ["Halsey"], "tags": ["Perfect"], "multi": 3, "date": "2023-05-11"}
 				, {"id": "69elqDtG0ZM", "name": "Gasoline", "attr": ["Halsey"], "date": "2018-02-01"}
+				, {"id": "4SfiRd8S_-o", "name": "Gasoline - beginning", "attr": ["Halsey"], "tags": ["Perfect"], "date": "2025-09-11"}
 				, {"id": "3__hfuFLAek", "name": "Hold Me Down", "attr": ["Halsey"], "tags": ["Perfect"], "date": "2019-05-18"}
 				, {"id": "G__liKW0GIw", "name": "Roman Holiday", "attr": ["Halsey"], "date": "2021-05-22"}
 			]
@@ -1425,6 +1427,7 @@
 				, {"id": "66SQvrrzNaM", "name": "30% Off", "attr": ["Best Frenz"], "tags": ["Perfect"], "date": "2024-05-09"}
 				, {"id": "AG6lBrK2cA4", "name": "Dangerous", "attr": ["Big Data"], "date": "2023-04-20"}
 				, {"id": "6RsyBRvfKNg", "name": "Reckless Paradise", "attr": ["Billy Talent"], "tags": ["Perfect"], "date": "2021-10-23"}
+				, {"id": "ESyLG--Mkgc", "name": "Happy Few", "attr": ["Biscayne"], "tags": ["Perfect"], "date": "2025-09-11"}
 				, {"id": "PmTPTvJeJGA", "name": "River", "attr": ["Bishop Briggs"], "tags": ["Perfect"], "date": "2019-01-12"}
 				, {"id": "OlH_GKgHmAI", "name": "Basketball Shoes", "attr": ["Black Country", "New Road"], "date": "2023-06-17"}
 				, {"id": "pYXRmNrA6Lc", "name": "Beat The Devil's Tattoo", "attr": ["Black Rebel Motorcycle Club"], "tags": ["Plogg"], "date": "2018-02-08"}
@@ -2647,6 +2650,7 @@
 				, {"id": "NlBk-GrMfqo", "name": "Ultrasound", "attr": ["Joyner Lucas"], "date": "2018-02-03"}
 				, {"id": "3JYZCw_bGrc", "name": "Datamosh", "attr": ["Jung Jake"], "tags": ["Perfect"], "date": "2018-05-15"}
 				, {"id": "Q0JCFev3tNU", "name": "What's Golden", "attr": ["Jurassic 5"], "date": "2019-07-27"}
+				, {"id": "lFfsqJVGbVU", "name": "Let Me Fall", "attr": ["Kado"], "tags": ["Perfect"], "date": "2025-09-11"}
 				, {"id": "aHJT-TKsQ8I", "name": "Stefania", "attr": ["Kalush Orchestra"], "date": "2022-08-18"}
 				, {"id": "01VWLNsVGRI", "name": "I Know", "attr": ["Kanii"], "date": "2023-04-13"}
 				, {"id": "ZnKqTsHAgkc", "name": "Day 'N' Nite", "attr": ["Kid Cudi"], "date": "2019-08-24"}
@@ -3458,6 +3462,7 @@
 				, {"id": "xdf_ioFRfS4", "name": "Lights Out", "attr": ["Zeds Dead"], "date": "2025-04-05"}
 				, {"id": "j7Rq9QHUIXQ", "name": "Neck And Neck", "attr": ["Zeds Dead"], "tags": ["Perfect"], "date": "2021-03-06"}
 				, {"id": "WV_w0xKEVfg", "name": "Red Eye", "attr": ["Zombie Hyperdrive"], "date": "2020-09-19"}
+				, {"id": "IhTtpJNvpmw", "name": "Lone Wolf", "attr": ["Zomboy"], "tags": ["Perfect"], "date": "2025-09-11"}
 				, {"id": "C8pdzaDfPrE", "name": "Chaos", "attr": ["\u00c6sir"], "date": "2018-07-07"}
 			]
 		},
@@ -4412,6 +4417,7 @@
 			"songs":[
 				{"id": "aU9Vbzw_KH0", "name": "Now's Your Chance To Be A", "attr": ["Deltarune 2"], "date": "2021-11-27"}
 				, {"id": "agAJbrAxiSw", "name": "Catswing", "attr": ["Deltarune Chapter 3+4"], "date": "2025-07-24"}
+				, {"id": "eO2ga0GSyMM", "name": "It's TV Time!", "attr": ["Deltarune Chapter 3+4"], "date": "2025-09-11"}
 				, {"id": "1cMedcpWVzI", "name": "Checker Dance", "attr": ["Deltarune"], "date": "2018-11-22"}
 				, {"id": "O5Sp-LIsRkU", "name": "Field of Hopes And Dreams", "attr": ["Deltarune"], "date": "2018-11-27"}
 				, {"id": "fo4EPpkMfJE", "name": "Battle Against a True Hero", "attr": ["Undertale"], "date": "2017-04-16"}
@@ -6833,6 +6839,7 @@
 				, {"id": "9Wjyp70MpBA", "name": "I Feel Love", "attr": ["Blue Man Group"], "tags": ["Perfect", "Filled"], "date": "2018-07-12"}
 				, {"id": "LCQoaEKnG5c", "name": "Subterranean Homesick Blues", "attr": ["Bob Dylan"], "date": "2019-06-08"}
 				, {"id": "fg_dGTK38l8", "name": "The Times They Are A Changin'", "attr": ["Bob Dylan"], "date": "2018-08-06"}
+				, {"id": "pUTL4rijLyY", "name": "Don't Worry Be Happy", "attr": ["Bobby McFerrin"], "date": "2025-09-11"}
 				, {"id": "3iTAt1NQZVc", "name": "Dawson's Christian", "attr": ["Carmen Miranda's Ghost"], "tags": ["Plogg"], "date": "2022-01-22"}
 				, {"id": "8hKNYDedPYw", "name": "Diddly Dee", "attr": ["Cartoons"], "date": "2019-09-14"}
 				, {"id": "tLy_RpbOUgo", "name": "Got To Be Real", "attr": ["Cheryl Lynn"], "date": "2017-05-01"}
