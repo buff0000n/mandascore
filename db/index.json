@@ -913,6 +913,7 @@
 				, {"id": "1-Z2wiNhX88", "name": "Image Of The Invisible", "attr": ["Thrice"], "tags": ["Perfect"], "date": "2017-11-02"}
 				, {"id": "CqpGxUW3TOU", "name": "Elegia", "attr": ["Timo Rautiainen & Trio Niskalaukaus"], "date": "2018-01-13"}
 				, {"id": "xacHWi-BVlc", "name": "Surupuku", "attr": ["Timo Rautiainen & Trio Niskalaukaus"], "tags": ["Druk"], "date": "2017-06-03"}
+				, {"id": "H3tqbeX_Hd0", "name": "I Don't Wanna Be Me", "attr": ["Type O Negative"], "tags": ["Perfect"], "multi": 2, "date": "2025-09-20"}
 				, {"id": "llCYhCYjN-Y", "name": "Hail to the Hammer", "attr": ["T\u00fdr"], "tags": ["Perfect"], "date": "2019-06-15"}
 				, {"id": "8IVeqlQWUtw", "name": "Golgotha", "attr": ["W.A.S.P"], "date": "2018-08-14"}
 				, {"id": "GfE4MWKzDIM", "name": "Eye Of The Storm", "attr": ["Watt White"], "date": "2023-01-26"}
@@ -4323,6 +4324,7 @@
 				, {"id": "D9OUi8Prv6w", "name": "Fly Octo Fly/Ebb & Flow", "attr": ["Splatoon 2"], "date": "2019-06-15"}
 				, {"id": "EC2sfszOR5U", "name": "Ebb & Flow/Off The Hook", "attr": ["Splatoon 2 Splatfest Battle Theme"], "tags": ["Perfect"], "date": "2018-09-01"}
 				, {"id": "u3ZBReZNjXw", "name": "Frothy Waters", "attr": ["Splatoon 3"], "tags": ["Perfect"], "date": "2023-06-02"}
+				, {"id": "S2ks_5C2BMs", "name": "Three Wishes", "attr": ["Splatoon 3"], "tags": ["Perfect"], "date": "2025-09-20"}
 				, {"id": "Fu18WdIyE3w", "name": "Bomb Rush Blush", "attr": ["Splatoon"], "tags": ["Perfect"], "date": "2018-02-06"}
 				, {"id": "E9fi5NyFPDY", "name": "Calamari Inkantation/Squid Sisters", "attr": ["Splatoon"], "date": "2017-05-17"}
 				, {"id": "JPiyyF8DzCc", "name": "I Am Octavio", "attr": ["Splatoon"], "date": "2019-06-08"}
@@ -5479,6 +5481,7 @@
 				, {"id": "_jDIrCxEST0", "name": "Star T rain", "attr": ["Oshi No Ko"], "date": "2025-04-05"}
 				, {"id": "pdJeX6Q6RAw", "name": "Hydra", "attr": ["Overlord ending 2"], "tags": ["Beta"], "date": "2018-06-23"}
 				, {"id": "0-rtBkSG-Vg", "name": "1hundredknight: M", "attr": ["Owari no Seraph"], "date": "2018-07-17"}
+				, {"id": "0NkmFuMVtTo", "name": "HUGs", "attr": ["Paledusk", "Gachiakuta opening"], "date": "2025-09-20"}
 				, {"id": "YcIOdQTGksg", "name": "Parade", "attr": ["Parade", "Susumu Hirasawa"], "date": "2018-10-30"}
 				, {"id": "pwWBw341slo", "name": "Next To You", "attr": ["Parasyte OST"], "date": "2018-05-15"}
 				, {"id": "7tNub8q20gE", "name": "Asayake no Starmine", "attr": ["Plastic Memories ending"], "date": "2018-04-24"}
@@ -6019,6 +6022,7 @@
 				, {"id": "Ta4m2eVai5M", "name": "Beat Eater", "attr": ["Police Piccadilly ft. Hatsune Miku"], "date": "2024-03-07"}
 				, {"id": "7XQ5fu07TMk", "name": "Astronauts", "attr": ["Powa-Powa-P", "Hatsune Miku"], "date": "2023-01-05"}
 				, {"id": "eJTAXwbiVC4", "name": "World's End Dancehall", "attr": ["Project DIVA F", "Hatsune Miku", "Megurine Luka"], "date": "2017-09-03"}
+				, {"id": "WDHq1jZwgJ8", "name": "Sweet Devil", "attr": ["Project Diva F", "Hatsune Miku"], "date": "2025-09-20"}
 				, {"id": "7JyGxsUkUI8", "name": "Sekiranun Graffiti/\u7a4d\u4e71\u96f2\u30b0\u30e9\u30d5\u30a3\u30c6\u30a3", "attr": ["Ryo Supercell", "Hatsune Miku/\u521d\u97f3\u30df\u30af"], "date": "2017-05-27"}
 				, {"id": "M1Tizj4DRf4", "name": "Odds & Ends", "attr": ["Ryo/Supercell ft. Hatsune Miku"], "tags": ["Perfect"], "date": "2021-03-02"}
 				, {"id": "IanzMN2MuVM", "name": "Lemon Melon Cookie", "attr": ["Tak ft. Hatsune Miku"], "tags": ["Gamma"], "date": "2025-03-15"}
