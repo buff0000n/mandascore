@@ -123,30 +123,10 @@ class Library {
                 Instrument Filter
                 <span class="tooltiptextbottom">Set a filter for instrument packs and parts</span>
             </div>
-            <div class="button flagPerfectButton tooltip">
-                <input type="checkbox" class="checkboxFlagPerfect"/>
-                Perfect Melody Filter
-                <span class="tooltiptextbottom">Show only songs with a melody that translate perfectly to the Mandachord</span>
-            </div>
-            <div class="button flagFilledButton tooltip">
-                <input type="checkbox" class="checkboxFlagFilled"/>
-                Filled Melody Filter
-                <span class="tooltiptextbottom">Show only filled-melody meta songs</span>
-            </div>
-            <div class="button flagSparseButton tooltip">
-                <input type="checkbox" class="checkboxFlagSparse"/>
-                Sparse Melody Filter
-                <span class="tooltiptextbottom">Show only songs with sparse melodies</span>
-            </div>
-            <div class="button flagMultiButton tooltip">
-                <input type="checkbox" class="checkboxFlagMulti"/>
-                Multi-shot Filter
-                <span class="tooltiptextbottom">Show only entries with multiple Mandachord loops</span>
-            </div>
-            <div class="button flagNoDemoButton tooltip">
-                <input type="checkbox" class="checkboxFlagNoDemo"/>
-                Hide Demo Songs
-                <span class="tooltiptextbottom">Hide demo songs</span>
+            <div class="button categoryButton tooltip">
+                <img class="imgButton" src="img/icon-category-filter.png" srcset="img2x/icon-category-filter.png 2x" alt="Category Filters"/>
+                Category Filters
+                <span class="tooltiptextbottom">Set a filter based on categories</span>
             </div>
             <div class="button resetButton tooltip">
                 <img class="imgButton" src="img/icon-reset.png" srcset="img2x/icon-reset.png 2x" alt="Reset All"/>
@@ -193,6 +173,10 @@ class Library {
             clearMenus();
             this.showFilter(button);
         });
+        // instrument filter popup
+        getFirstChild(div, "categoryButton").addEventListener("click", (e) => {
+            this.showCategoryFilterMenu(e);
+        });
         // stats mode
         getFirstChild(div, "statsButton").addEventListener("click", (e) => {
             clearMenus();
@@ -203,6 +187,59 @@ class Library {
             clearMenus();
             this.showDateStats(e);
         });
+
+        // setup reset button
+        getFirstChild(div, "resetButton").addEventListener("click", (e) => {
+            this.resetAllFilters();
+        });
+
+        // put the menu in the clicked button's parent and anchor it to button
+        showMenu(div, getParent(button, "scoreButtonRow"), button);
+    }
+
+    showCategoryFilterMenu(e) {
+        // place the menu under the burger button
+        var button = e.currentTarget;
+        // top level container
+        var div = document.createElement("div");
+        div.className = "menu";
+        div.button = button;
+
+        // build the menu buttons the easy way
+        var html = `
+            <div class="button flagPerfectButton tooltip">
+                <input type="checkbox" class="checkboxFlagPerfect"/>
+                Perfect Melody
+                <span class="tooltiptextbottom">Show only songs with a melody that translate perfectly to the Mandachord</span>
+            </div>
+            <div class="button flagFilledButton tooltip">
+                <input type="checkbox" class="checkboxFlagFilled"/>
+                Filled Melody
+                <span class="tooltiptextbottom">Show only filled-melody meta songs</span>
+            </div>
+            <div class="button flagSparseButton tooltip">
+                <input type="checkbox" class="checkboxFlagSparse"/>
+                Sparse Melody
+                <span class="tooltiptextbottom">Show only songs with sparse melodies</span>
+            </div>
+            <div class="button flagMultiButton tooltip">
+                <input type="checkbox" class="checkboxFlagMulti"/>
+                Multi-shot
+                <span class="tooltiptextbottom">Show only entries with multiple Mandachord loops</span>
+            </div>
+            <div class="button flagNoDemoButton tooltip">
+                <input type="checkbox" class="checkboxFlagNoDemo"/>
+                Hide Demo Songs
+                <span class="tooltiptextbottom">Hide demo songs</span>
+            </div>
+            <div class="button resetButton tooltip">
+                <img class="imgButton" src="img/icon-reset.png" srcset="img2x/icon-reset.png 2x" alt="Reset All"/>
+                Reset All Filters
+                <span class="tooltiptextbottom">Reset all filters</span>
+            </div>
+        `;
+
+        div.innerHTML = html;
 
         // convenience function for setting up the tag filter checkboxes
         function setupTagFilterCheckbox(library, element, tag) {
@@ -227,7 +264,7 @@ class Library {
         });
 
         // put the menu in the clicked button's parent and anchor it to button
-        showMenu(div, getParent(button, "scoreButtonRow"), button);
+        showMenu(div, button, button);
     }
 
     init() {

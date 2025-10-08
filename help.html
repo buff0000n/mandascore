@@ -99,7 +99,7 @@
                     <ul>
                         <li><a href="#tocKeywordSearch">Keyword Search</a></li>
                         <li><a href="#tocInstrumentPackFiltering">Instrument Pack Filtering</a></li>
-                        <li><a href="#tocTagFiltering">Tag Filtering</a></li>
+                        <li><a href="#tocCategoryFiltering">Category Filtering</a></li>
                         <li><a href="#tocResetSearch">Resetting the Search</a></li>
                     </ul>
                 </li>
@@ -510,8 +510,9 @@
     </p>
     <p>
         There are three ways to filter down the list of songs, by <a href="#tocKeywordSearch">Keyword</a>,
-        by <a href="#tocInstrumentPackFiltering">Instrument Pack</a>, and by <a href="#tocTagFiltering">Tag</a>.
-        All three of these can be used at the same time or in any combination.
+        by <a href="#tocInstrumentPackFiltering">Instrument Pack</a>, and by 
+        <a href="#tocCategoryFiltering">Category</a>. All three of these can be used at the same time or in any 
+        combination.
     </p>
 
     <h3 id="tocKeywordSearch">Keyword Search</h3>
@@ -562,20 +563,22 @@
         at the top to reset the filter and enable everything.
     </p>
 
-    <h3 id="tocTagFiltering">Tag Filtering</h3>
+    <h3 id="tocCategoryFiltering">Category Filtering</h3>
     <p>
-        Under the
+        Click the
         <img class="docButton" src="img/icon-burger.png" srcset="img2x/icon-burger.png 2x"/>
-        menu button are a handful of options for enabling and disabling tag filters:
+        menu button, then
+        <img class="docButton" src="img/icon-category-filter.png" srcset="img2x/icon-category-filter.png 2x"/>
+        to bring up the category filters.
     </p>
     <ul>
-        <li><strong>Perfect Melody Filter</strong>: Filters for songs that translated perfectly into the Mandachord.</li>
-        <li><strong>Filled Melody Filter</strong>: Filters for songs with full or mostly full melodies,
+        <li><strong>Perfect Melody</strong>: Filters for songs that translated perfectly into the Mandachord.</li>
+        <li><strong>Filled Melody</strong>: Filters for songs with full or mostly full melodies,
             for players that don't want to think when getting Octavia buffs.</li>
-        <li><strong>Sparse Melody Filter</strong>: Filters for songs that have a lot of space.  These require
+        <li><strong>Sparse Melody</strong>: Filters for songs that have a lot of space.  These require
             fewer synchronized actions to get a buff.</li>
-        <li id="tocTagFilteringMultishot"><strong>Multi-shot Filter</strong>: Filters for songs that have multiple mandachord loops from different
-            parts of the original song</li>
+        <li id="tocCategoryFilteringMultishot"><strong>Multi-shot</strong>: Filters for songs that have multiple
+            mandachord loops from different parts of the original song</li>
         <li><strong>Hide demo songs</strong>: Hides the demo section at the top of the library.</li>
     </ul>
 
@@ -583,7 +586,7 @@
     <p>
         Click the <img class="docButton" src="img/icon-burger.png" srcset="img2x/icon-burger.png 2x"/> menu
         button and select <img class="docButton" src="img/icon-reset.png" srcset="img2x/icon-reset.png 2x"/> reset
-        to reset all keyword, instrument set, and tag filters.
+        to reset all keyword, instrument set, and category filters.
     </p>
 
     <h3 id="tocStatistiiiiiiics">Instrument Statistics</h3>
@@ -601,7 +604,7 @@
     </p>
     <p>
         Note that the raw count may not be a whole number.  If an entry in list is a
-        <a href="#tocTagFilteringMultishot">Multi-shot</a> containing multiple songs that use different instrument packs
+        <a href="#tocCategoryFilteringMultishot">Multi-shot</a> containing multiple songs that use different instrument packs
         then those will count fractionally, so it still adds up to one song overall.
     </p>
     <p>
@@ -1259,7 +1262,8 @@
         <li>Added statistics view to Library. <b>STATISTIIIIIIICS</b></li>
         <li>Removed reverse library search until such time as it can be made to not suck</li>
         <li>Added collapse and expand support to Library, sorted library index</li>
-        <li>Added date statistics view to Library.  </li>
+        <li>Added date statistics view to Library.</li>
+        <li>Updated menu code, refactored filter menu</li>
     </ul>
 
     <h1 id="tocToDo">To Do</h1>
