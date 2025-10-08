@@ -1280,6 +1280,7 @@
 				, {"id": "7bTmGPaody4", "name": "Brick By Boring Brick", "attr": ["Paramore"], "date": "2019-01-19"}
 				, {"id": "9zTQfaFL6TI", "name": "Hard Times", "attr": ["Paramore"], "date": "2022-11-24"}
 				, {"id": "7Q7_9Q9_GRU", "name": "Misery Business", "attr": ["Paramore"], "date": "2018-07-07"}
+				, {"id": "2Ox2SBn8BWA", "name": "Stop This Song (Love Sick Melody)", "attr": ["Paramore"], "date": "2025-10-04"}
 				, {"id": "q5_vJBLk0Ok", "name": "That's What You Get", "attr": ["Paramore"], "multi": 2, "date": "2022-10-13"}
 			]
 		},
@@ -2322,6 +2323,7 @@
 			, {"id": "zg4B9CbwaFw", "name": "Three Little Birds", "attr": ["Bob Marley"], "date": "2018-11-06"}
 			, {"id": "k6i4FizB2aY", "name": "Rivers of Zion", "attr": ["Caleb Gordon"], "tags": ["Perfect"], "date": "2024-07-04"}
 			, {"id": "d9oWAOyTbaE", "name": "Murder She Wrote", "attr": ["Chaka Damus & Pliers"], "tags": ["Perfect", "Plogg"], "date": "2021-03-31"}
+			, {"id": "VLnI8Q-HZFA", "name": "Welcome To Jamrock", "attr": ["Damian Marley"], "tags": ["Perfect"], "date": "2025-10-04"}
 			, {"id": "Irer5lEbKXA", "name": "Electric Avenue", "attr": ["Eddy Grant"], "date": "2021-03-20"}
 			, {"id": "8UA76iwbEO8", "name": "Gimme Hope Jo'Anna", "attr": ["Eddy Grant"], "date": "2017-04-13"}
 			, {"id": "olKe5ullGaM", "name": "The Raft", "attr": ["Fat Freddy's Drop"], "date": "2021-03-23"}
@@ -2502,6 +2504,7 @@
 			"songs":[
 				{"id": "5F7g62DzyHQ", "name": "Fireball", "attr": ["Pitbull"], "tags": ["Perfect"], "date": "2018-02-22"}
 				, {"id": "07bvG70AxNk", "name": "International Love", "attr": ["Pitbull ft. Chris Brown"], "date": "2023-11-09"}
+				, {"id": "CBRn9f9l70w", "name": "Give Me Everything", "attr": ["Pitbull ft. Ne-Yo", "Afrojack", "Nayer"], "tags": ["Perfect"], "date": "2025-10-04"}
 				, {"id": "gvGdMx7h7yM", "name": "Hotel Room Service", "attr": ["Pitbull"], "tags": ["Gamma"], "date": "2018-04-14"}
 			]
 		},
@@ -2767,6 +2770,7 @@
 			, {"id": "Yr0DDox3A18", "name": "C'Mon Ride It (The Train)", "attr": ["Quad City Dj's"], "tags": ["Perfect"], "date": "2017-12-07"}
 			, {"id": "4Z7ZbM-VYjU", "name": "Los D\u00edas Contados", "attr": ["Quevedo ft. Rels B"], "date": "2025-02-07"}
 			, {"id": "PF7URYJ2xNY", "name": "Another Night", "attr": ["Real McCoy"], "date": "2018-01-16"}
+			, {"id": "x95MTTlHCt4", "name": "Stand Up (For The Champions)", "attr": ["Right Said Fred"], "tags": ["Perfect"], "date": "2025-10-04"}
 			, {"id": "Bu99u_umuzs", "name": "Show Me Love", "attr": ["Robin S"], "tags": ["Perfect"], "date": "2020-09-12"}
 			, {"id": "gMJwWu3_y4o", "name": "A Little Bit Of Love", "attr": ["RuPaul ft. Kummetspeck"], "date": "2022-09-22"}
 			, {"id": "nrE8htXYc7Q", "name": "The Realness", "attr": ["RuPaul"], "date": "2018-01-30"}
@@ -4666,6 +4670,7 @@
 					, {"id": "nO2JblxU_PE", "name": "Fury Sparks", "attr": ["Tales of Vespuria"], "date": "2019-01-24"}
 					, {"id": "I7kQoUPmEk8", "name": "Number One Rival", "attr": ["Tango Alpha Tango", "Rebel Galaxy"], "tags": ["Perfect"], "date": "2020-02-29"}
 					, {"id": "jCVPrW-lHZk", "name": "Ignition", "attr": ["The Alliance Alive"], "date": "2024-06-27"}
+					, {"id": "iXqIfJIegs0", "name": "The Divide", "attr": ["The Finals Season Seven"], "tags": ["Perfect"], "date": "2025-10-04"}
 					, {"id": "uJ3bmsCIVsI", "name": "Agent Goes In The Evening/\u30a8\u30fc\u30b8\u30a7\u30f3\u30c8\u591c\u3092\u5f80\u304f", "attr": ["THE iDOLM@STER"], "date": "2018-04-14"}
 					, {"id": "A_WRuCRUCrw", "name": "Skip & Step", "attr": ["The IDOML@STER Cinderella Girls"], "date": "2019-12-21"}
 					, {"id": "X57kFTTrbEQ", "name": "Duel!", "attr": ["The Legend of Dark Witch 2"], "date": "2018-02-06"}
@@ -5582,6 +5587,14 @@
 				, {"id": "nUkdOf8L8lc", "name": "See You Tomorrow", "attr": ["How To Train Your Dragon"], "date": "2019-06-11"}
 			]
 		},
+		"K-Pop Demon Hunters":{
+			"dbName":"TVMovie",
+			"songs":[
+				{"id": "l9AhIheHOvg", "name": "This Is What It Sounds Like", "attr": ["K-Pop Demon Hunters"], "multi": 4, "date": "2025-09-28"}
+				, {"id": "SR46VSGFDIk", "name": "Free", "attr": ["KPop Demon Hunters"], "multi": 2, "date": "2025-08-07"}
+				, {"id": "wtRBqngIMh0", "name": "Soda Pop", "attr": ["Saja Boys", "KPop Demon Hunters"], "date": "2025-07-24"}
+			]
+		},
 		"Kamen Rider":{
 			"dbName":"TVMovie",
 			"songs":[
@@ -5777,7 +5790,6 @@
 				, {"id": "f8DLnlWpbzg", "name": "Gangsta", "attr": ["Kehlani", "Suicide Squad"], "date": "2022-02-26"}
 				, {"id": "Hez-arpyrEg", "name": "Battle Without Honor Or Humanity", "attr": ["Kill Bill"], "date": "2017-07-02"}
 				, {"id": "qpHGTK6Mt6I", "name": "Diamond", "attr": ["Klint", "Snatch"], "date": "2017-04-29"}
-				, {"id": "SR46VSGFDIk", "name": "Free", "attr": ["KPop Demon Hunters"], "multi": 2, "date": "2025-08-07"}
 				, {"id": "RWeVQGy7WXc", "name": "Harpists' song", "attr": ["Kung Fu Hustle"], "date": "2018-07-15"}
 				, {"id": "5BjMAKKxMcM", "name": "Magic Dance", "attr": ["Labyrinth", "David Bowie"], "tags": ["Perfect"], "date": "2018-09-13"}
 				, {"id": "_UJ6PU1-EGk", "name": "The Red Circle", "attr": ["Le Castle Vania", "John Wick club scene"], "date": "2018-07-05"}
@@ -5792,7 +5804,6 @@
 				, {"id": "9rLFovyMbV8", "name": "Lux Aeterna", "attr": ["Requiem For a Dream main theme"], "tags": ["Perfect"], "date": "2018-07-20"}
 				, {"id": "yyfAq-WwHI8", "name": "Hot Wings (I Wanna Party)", "attr": ["Rio"], "date": "2025-01-11"}
 				, {"id": "kRpo8Cg994U", "name": "Gonna Fly Now", "attr": ["Rocky"], "tags": ["Perfect"], "date": "2018-05-22"}
-				, {"id": "wtRBqngIMh0", "name": "Soda Pop", "attr": ["Saja Boys", "KPop Demon Hunters"], "date": "2025-07-24"}
 				, {"id": "UQqRZTAZK7o", "name": "Push It To The Limit", "attr": ["Scarface"], "tags": ["Sparse"], "date": "2017-04-09"}
 				, {"id": "PmTFfCw90Jo", "name": "Everybody Knows", "attr": ["Sigrid", "Justice League"], "date": "2018-01-30"}
 				, {"id": "IDqbNY5TlkQ", "name": "Cantina Song", "attr": ["Star Wars"], "date": "2017-04-06"}
