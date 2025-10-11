@@ -626,6 +626,7 @@
 			"songs":[
 				{"id": "buBGDGKnfks", "name": "Hurt", "attr": ["Johnny Cash", "Nine Inch Nails"], "date": "2017-05-18"}
 				, {"id": "Ya023AB5iGw", "name": "1,000,000", "attr": ["Nine Inch Nails"], "tags": ["Perfect"], "date": "2023-08-24"}
+				, {"id": "YOlEv-AaoNc", "name": "As Alive As You Need Me To Be", "attr": ["Nine Inch Nails"], "tags": ["Perfect"], "multi": 3, "date": "2025-10-11"}
 				, {"id": "cF-0Rq4fGqw", "name": "Closer", "attr": ["Nine Inch Nails"], "tags": ["Perfect"], "date": "2017-09-19"}
 				, {"id": "nur1Tl4nJB8", "name": "Everyday Is Exactly The Same", "attr": ["Nine Inch Nails"], "date": "2018-08-30"}
 				, {"id": "1Rn3WPycgEY", "name": "Head Like A Hole/God Money", "attr": ["Nine Inch Nails"], "tags": ["Perfect"], "multi": 4, "date": "2019-07-25"}
@@ -2056,6 +2057,7 @@
 				, {"id": "et0QDbyIaHA", "name": "Mine", "attr": ["Taylor Swift"], "tags": ["Perfect"], "multi": 3, "date": "2023-07-09"}
 				, {"id": "gvHZviB82Z4", "name": "Shake It Off", "attr": ["Taylor Swift"], "tags": ["Gamma"], "date": "2017-05-09"}
 				, {"id": "M0IcYHA9rA8", "name": "Sweet Nothing", "attr": ["Taylor Swift"], "date": "2023-05-25"}
+				, {"id": "BaNlvQAWKEY", "name": "Wood", "attr": ["Taylor Swift"], "tags": ["Perfect"], "multi": 2, "date": "2025-10-11"}
 			]
 		},
 		"Timbaland":{
@@ -2576,6 +2578,7 @@
 				{"id": "1b_i2T8eoao", "name": "Flawl\u00ebss", "attr": ["Yeat ft. Lil Uzi Vert"], "tags": ["Perfect"], "date": "2024-03-28"}
 				, {"id": "0lIfRCHgE1k", "name": "Mon\u00eby so big", "attr": ["Yeat"], "date": "2022-11-03"}
 				, {"id": "fs_mvA5nLsc", "name": "Sorry Bout That", "attr": ["yeat"], "date": "2022-12-22"}
+				, {"id": "5uBYJAC9rJI", "name": "U could t\u00ebll", "attr": ["Yeat"], "tags": ["Perfect", "Bombast"], "date": "2025-10-11"}
 			]
 		},
 		"Misc Rap/Hippity Hop":{
