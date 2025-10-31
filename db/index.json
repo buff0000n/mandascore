@@ -717,6 +717,7 @@
 			"dbName":"HardRock",
 			"songs":[
 				{"id": "h288TNHqK0U", "name": "Alkaline", "attr": ["Sleep Token"], "tags": ["Perfect"], "date": "2021-07-03"}
+				, {"id": "YBfibSTzk68", "name": "Aqua Regia", "attr": ["Sleep Token"], "tags": ["Perfect"], "date": "2025-10-31"}
 				, {"id": "rIWFnIVtgcw", "name": "Caramel", "attr": ["Sleep Token"], "tags": ["Perfect"], "date": "2025-04-05"}
 				, {"id": "BedpROZhlHo", "name": "Chokehold", "attr": ["Sleep Token"], "tags": ["Perfect"], "date": "2024-01-25"}
 				, {"id": "Qj0ZLdgd-QQ", "name": "DYWTYLM", "attr": ["Sleep Token"], "date": "2023-05-25"}
@@ -881,6 +882,7 @@
 				, {"id": "n8snMy5Sqvo", "name": "Getting Away With Murder", "attr": ["Papa Roach"], "tags": ["Perfect"], "date": "2022-01-22"}
 				, {"id": "nbeTVWUP7jo", "name": "Shadow Boxing", "attr": ["Parkway Drive"], "tags": ["Druk"], "date": "2018-05-22"}
 				, {"id": "YeKvIvcpevc", "name": "For Those Who Died Alone", "attr": ["Pentagram"], "date": "2018-11-06"}
+				, {"id": "UthNdoe0X1Y", "name": "Blades", "attr": ["Pig"], "tags": ["Perfect"], "date": "2025-10-31"}
 				, {"id": "Br-hNee3LbQ", "name": "Masochist", "attr": ["Polaris"], "tags": ["Perfect"], "date": "2021-06-26"}
 				, {"id": "x8f4RsSDswQ", "name": "Waking Lions", "attr": ["Pop Evil"], "date": "2019-04-02"}
 				, {"id": "SAcS33S0dkQ", "name": "When Worlds Collide", "attr": ["Powerman 5000"], "tags": ["Perfect"], "date": "2018-12-01"}
@@ -1144,6 +1146,7 @@
 				, {"id": "iNfr_erdYv4", "name": "Shots", "attr": ["Imagine Dragons"], "date": "2023-03-02"}
 				, {"id": "mi_CZcTf_C4", "name": "Thunder", "attr": ["Imagine Dragons"], "tags": ["Gamma", "Perfect"], "date": "2017-07-22"}
 				, {"id": "US-YD_ARRm4", "name": "Tiptoe", "attr": ["Imagine Dragons"], "date": "2017-12-07"}
+				, {"id": "fZ21_ERUlNs", "name": "West Coast", "attr": ["Imagine Dragons"], "tags": ["Perfect"], "date": "2025-10-31"}
 				, {"id": "c-Ui8JDcaf8", "name": "Whatever It Takes", "attr": ["Imagine Dragons"], "date": "2017-10-31"}
 				, {"id": "N7Jg770xmQ8", "name": "Whatever It Takes", "attr": ["Imagine Dragons"], "tags": ["Perfect"], "multi": 2, "date": "2020-12-12"}
 				, {"id": "Kr4IqZm5Tho", "name": "Working Man", "attr": ["Imagine Dragons"], "date": "2020-01-18"}
@@ -1252,6 +1255,7 @@
 				, {"id": "FYJJElwTkZs", "name": "Burn It To The Ground", "attr": ["Nickelback"], "tags": ["Perfect"], "date": "2024-01-18"}
 				, {"id": "zxPJhbDxXa8", "name": "Get 'Em Up", "attr": ["Nickelback"], "date": "2018-11-03"}
 				, {"id": "vR-4u2tj880", "name": "If Today Was Your Last Day", "attr": ["Nickelback"], "tags": ["Perfect"], "date": "2018-08-25"}
+				, {"id": "1efRsnKGQeU", "name": "Someday", "attr": ["Nickelback"], "multi": 2, "date": "2025-10-31"}
 			]
 		},
 		"Oasis":{
@@ -1687,6 +1691,7 @@
 				, {"id": "NkBFRUWj7qg", "name": "Elephant", "attr": ["Tame Impala"], "tags": ["Perfect"], "date": "2021-08-14"}
 				, {"id": "4oNLbjVvir4", "name": "The Less I Know The Better", "attr": ["Tame Impala"], "date": "2018-04-28"}
 				, {"id": "5rFOzI9Ov6I", "name": "She Wants Revenge", "attr": ["Tear You Apart"], "tags": ["Perfect"], "date": "2024-09-05"}
+				, {"id": "OW4wnXDpsug", "name": "Punkrocker", "attr": ["Teddybears ft. Iggy Pop"], "tags": ["Perfect", "Sparse", "Plogg"], "date": "2025-10-31"}
 				, {"id": "Zi5oVmFyyUg", "name": "Skate Or Die", "attr": ["Teenage Bottlerocket"], "multi": 3, "date": "2018-12-04"}
 				, {"id": "imrL4X1ZZdE", "name": "Move Along", "attr": ["The All American Rejects"], "tags": ["Perfect"], "date": "2018-02-13"}
 				, {"id": "F1MRmt-0UYQ", "name": "Gives You Hell", "attr": ["The All-American Rejects"], "tags": ["Perfect"], "date": "2019-02-07"}
@@ -3188,6 +3193,7 @@
 				, {"id": "NvNC9niyPjg", "name": "Glue", "attr": ["Bicep"], "date": "2023-11-23"}
 				, {"id": "5FvSza67oI0", "name": "Rattle", "attr": ["Bingo Players"], "date": "2024-06-27"}
 				, {"id": "z6MYZRNWdWU", "name": "Semiotic Love", "attr": ["Blaqk Audio"], "tags": ["Perfect"], "date": "2023-08-17"}
+				, {"id": "aYY4hBpskCM", "name": "Eyes On Fire", "attr": ["Blue Foundation"], "date": "2025-10-31"}
 				, {"id": "tajIS0iEpEc", "name": "Reich mir die Hand", "attr": ["Blutengel"], "tags": ["Sparse"], "date": "2017-05-16"}
 				, {"id": "rbRD7JdJdTQ", "name": "A City Under Siege", "attr": ["Boy 8 bit", "GTA: The Ballad of Fat Tony"], "tags": ["Perfect"], "date": "2017-09-30"}
 				, {"id": "r8_j99JQc1Q", "name": "Say A Little Prayer", "attr": ["Brooks ft. Gia Koka"], "tags": ["Perfect"], "date": "2022-03-27"}
@@ -3339,6 +3345,7 @@
 				, {"id": "ZUylPj-Bp-M", "name": "The Weekend - verse", "attr": ["Michael Gray"], "tags": ["Perfect"], "date": "2022-12-01"}
 				, {"id": "pGHdV2wPkL8", "name": "Alive", "attr": ["Mind Vortex"], "date": "2021-03-09"}
 				, {"id": "ej-MWTO9UJU", "name": "8 bits", "attr": ["Mind.in.a.box"], "date": "2024-07-11"}
+				, {"id": "dHAUa4JUIkw", "name": "I Love 64", "attr": ["mind.in.in.a.box"], "date": "2025-10-31"}
 				, {"id": "CFT1y98_i5A", "name": "Titanium", "attr": ["Mittsies", "Helltaker"], "date": "2023-03-23"}
 				, {"id": "6-nUPiTQlig", "name": "Vitality", "attr": ["Mittsies"], "date": "2020-06-27"}
 				, {"id": "B6pZxckXfzI", "name": "Who", "attr": ["Modeselektor ft. Tommy Cash"], "tags": ["Perfect"], "date": "2020-03-21"}
@@ -4095,6 +4102,7 @@
 				, {"id": "7OE5iYgzh_0", "name": "I'm My Own Master Now", "attr": ["Metal Gear Rising: Revengeance"], "date": "2017-04-28"}
 				, {"id": "Np5V_iT88Ac", "name": "It Has To Be This Way", "attr": ["Metal Gear Rising: Revengeance"], "tags": ["Perfect"], "date": "2017-12-02"}
 				, {"id": "I85OQtmr2Uk", "name": "It Has To Be This Way", "attr": ["Metal Gear Rising: Revengeance"], "tags": ["Perfect"], "date": "2022-07-14"}
+				, {"id": "LA3sU9OLwHs", "name": "A Soul Can't Be Cut", "attr": ["Metal Gear Rising: Revengeance", "Kit Walters"], "date": "2025-10-31"}
 				, {"id": "sPyvAupokc8", "name": "Red Sun", "attr": ["Metal Gear Rising: Revengeance"], "tags": ["Perfect"], "date": "2020-02-15"}
 				, {"id": "d5TPieoFJlY", "name": "The Only Thing I Know For Real", "attr": ["Metal Gear Rising: Revengeance"], "tags": ["Perfect"], "date": "2021-11-13"}
 				, {"id": "I3U68QzWYxk", "name": "The Stains Of Time", "attr": ["Metal Gear Rising: Revengeance"], "date": "2018-01-18"}
@@ -6139,7 +6147,8 @@
 		"RADWIMPS":{
 			"dbName":"FarEast",
 			"songs":[
-				{"id": "GVib-RK70YQ", "name": "Suzume", "attr": ["Radwimps ft. Toaka"], "date": "2024-01-11"}
+				{"id": "p9ykhrh3wgs", "name": "Suzume no Tojimari theme song", "date": "2025-10-31"}
+				, {"id": "GVib-RK70YQ", "name": "Suzume", "attr": ["Radwimps ft. Toaka"], "date": "2024-01-11"}
 				, {"id": "T5ne81SFBGc", "name": "Weathering With You", "attr": ["Radwimps ft. Toko Miura"], "date": "2020-02-08"}
 				, {"id": "SZmIDB4_08c", "name": "Sparkle", "attr": ["RADWIMPS"], "date": "2021-05-08"}
 				, {"id": "yopoUaqqtfY", "name": "\u306a\u3093\u3067\u3082\u306a\u3044\u3084/Nandemonaiya", "attr": ["RADWIMPS"], "date": "2023-06-08"}
@@ -6487,6 +6496,7 @@
 			, {"id": "H5p7B2rfebU", "name": "J\u00e1 Que Me Ensinou a Beber", "attr": ["Os Bar\u00f5es da Pisadinha"], "date": "2022-06-30"}
 			, {"id": "p3BhSkPV10Q", "name": "El Farsante", "attr": ["Ozuna"], "tags": ["Perfect"], "date": "2018-01-25"}
 			, {"id": "JGHiTxaBXz4", "name": "C\u00e1lido y Rojo", "attr": ["Reik"], "tags": ["Perfect"], "date": "2020-04-18"}
+			, {"id": "E9e46dHw9XU", "name": "Lan\u00e7a Perfume", "attr": ["Rita Lee"], "date": "2025-10-31"}
 			, {"id": "kTDk8uWUT_c", "name": "Bonde de Orgia de Traveco", "attr": ["UDR"], "date": "2019-01-15"}
 			, {"id": "udqrMybmMQ4", "name": "We No Speak Americano", "attr": ["Yolanda Be Cool & DCUP"], "tags": ["Perfect"], "date": "2018-03-31"}
 		]
