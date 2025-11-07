@@ -983,6 +983,14 @@
 				, {"id": "p5CdZOuA2eY", "name": "The Devil", "attr": ["Blue Stahli"], "date": "2017-04-24"}
 			]
 		},
+		"Blues Saraceno":{
+			"dbName":"PopRock",
+			"songs":[
+				{"id": "mxxNKXdPLNs", "name": "Dogs of War", "attr": ["Blue Saraceno"], "date": "2018-04-19"}
+				, {"id": "1pTTXlLUX3g", "name": "Grave Digger", "attr": ["Blues Saraceno"], "tags": ["Plogg"], "date": "2022-06-23"}
+				, {"id": "ZiLyOg8ouIA", "name": "The Devil You Know", "attr": ["Blues Saraceno"], "multi": 2, "date": "2025-11-07"}
+			]
+		},
 		"Cage The Elephant":{
 			"dbName":"PopRock",
 			"songs":[
@@ -1426,6 +1434,7 @@
 				, {"id": "Rg5ZIC1Z4ls", "name": "Sola", "attr": ["Anuel AA"], "tags": ["Perfect"], "date": "2017-09-12"}
 				, {"id": "vOcisVZGRnM", "name": "Brand New", "attr": ["Archer"], "date": "2022-11-03"}
 				, {"id": "TQkMYePnqJ0", "name": "Cure For Me", "attr": ["Aurora"], "tags": ["Perfect"], "date": "2021-07-17"}
+				, {"id": "OaYKal0eYYQ", "name": "Wavelength", "attr": ["Aurora"], "tags": ["Perfect"], "date": "2025-11-07"}
 				, {"id": "bJieP6TlkgI", "name": "Grrrls", "attr": ["AViVA"], "date": "2019-02-26"}
 				, {"id": "ZUMPy8XzRhE", "name": "Big Sad", "attr": ["Balancing The Different"], "tags": ["Perfect"], "date": "2024-08-08"}
 				, {"id": "y68oIX7iMvg", "name": "Glitter & Gold", "attr": ["Barns Courtney"], "tags": ["Perfect"], "date": "2017-04-02"}
@@ -1444,7 +1453,6 @@
 				, {"id": "gs0M-3ogYhA", "name": "Little Things", "attr": ["Bloc Party"], "date": "2017-05-15"}
 				, {"id": "X2jIuChjJis", "name": "Fire Water Burn (The Roof is on Fire)", "attr": ["Bloodhound Gang"], "date": "2022-02-05"}
 				, {"id": "c9tveKcSO8U", "name": "Into The Ocean", "attr": ["Blue October"], "date": "2017-11-04"}
-				, {"id": "mxxNKXdPLNs", "name": "Dogs of War", "attr": ["Blue Saraceno"], "date": "2018-04-19"}
 				, {"id": "fSZz-VJByEQ", "name": "Ghost Ship", "attr": ["Blur"], "tags": ["Perfect"], "date": "2022-03-05"}
 				, {"id": "mlv1KRI5LCU", "name": "Song 2", "attr": ["Blur"], "tags": ["Perfect"], "multi": 2, "date": "2022-09-22"}
 				, {"id": "_VJuLlIk3D0", "name": "Oxidising Angel", "attr": ["BlutEngel"], "date": "2018-12-04"}
@@ -2580,7 +2588,8 @@
 		"Yeat":{
 			"dbName":"RapHippityHop",
 			"songs":[
-				{"id": "1b_i2T8eoao", "name": "Flawl\u00ebss", "attr": ["Yeat ft. Lil Uzi Vert"], "tags": ["Perfect"], "date": "2024-03-28"}
+				{"id": "QS8iESRZYLc", "name": "Com\u00eb N Go", "attr": ["Yeat"], "tags": ["Perfect"], "date": "2025-11-07"}
+				, {"id": "1b_i2T8eoao", "name": "Flawl\u00ebss", "attr": ["Yeat ft. Lil Uzi Vert"], "tags": ["Perfect"], "date": "2024-03-28"}
 				, {"id": "0lIfRCHgE1k", "name": "Mon\u00eby so big", "attr": ["Yeat"], "date": "2022-11-03"}
 				, {"id": "fs_mvA5nLsc", "name": "Sorry Bout That", "attr": ["yeat"], "date": "2022-12-22"}
 				, {"id": "5uBYJAC9rJI", "name": "U could t\u00ebll", "attr": ["Yeat"], "tags": ["Perfect", "Bombast"], "date": "2025-10-11"}
@@ -2654,6 +2663,7 @@
 				, {"id": "0xrGX31T-NM", "name": "Cosby Sweater", "attr": ["Hilltop Hoods"], "date": "2018-07-10"}
 				, {"id": "0FN5OE6RhEk", "name": "Leave Me Alone", "attr": ["Hilltop Hoods"], "tags": ["Perfect"], "date": "2018-12-13"}
 				, {"id": "Li4Oy2RxQQo", "name": "Dead Star Shine", "attr": ["Horrorshow"], "tags": ["Perfect"], "date": "2021-05-12"}
+				, {"id": "Lu_Fw3AaI3U", "name": "Rico Suave Bossa Nova", "attr": ["J Dilla"], "tags": ["Perfect"], "date": "2025-11-07"}
 				, {"id": "EDbsM5bRLtY", "name": "Savage Love", "attr": ["Jason Derulo & Jawsh 685"], "multi": 3, "date": "2022-12-01"}
 				, {"id": "bEvuAUk4uBk", "name": "Swalla", "attr": ["Jason Derulo"], "date": "2017-04-20"}
 				, {"id": "a9Y6M6RkNyg", "name": "Dirt Off Your Shoulder", "attr": ["Jay-Z"], "tags": ["Gamma"], "date": "2019-01-19"}
@@ -5219,6 +5229,7 @@
 			"dbName":"Anime",
 			"songs":[
 				{"id": "yfCy2jIWAo4", "name": "I Want You", "attr": ["Demon Sisters theme", "Panty & Stocking"], "date": "2018-03-03"}
+				, {"id": "zoA1rrgEorg", "name": "Divine", "attr": ["Panty & Stocking"], "date": "2025-11-07"}
 				, {"id": "r9hbVPfdINg", "name": "Fallen Angel", "attr": ["Panty & Stocking"], "multi": 2, "date": "2022-02-05"}
 				, {"id": "VAqagGDPvyY", "name": "Fly Away", "attr": ["Panty & Stocking"], "tags": ["Perfect"], "date": "2017-08-21"}
 			]
@@ -5410,6 +5421,7 @@
 				, {"id": "i4j1yNcajvk", "name": "Masquerade", "attr": ["Code Geass"], "date": "2022-03-12"}
 				, {"id": "VlyZ7gxadY0", "name": "World's End", "attr": ["Code Geass opening 5"], "tags": ["Perfect"], "date": "2024-03-28"}
 				, {"id": "vpwD8wIQvqE", "name": "Tank!", "attr": ["Cowboy Bebop opening"], "date": "2018-02-01"}
+				, {"id": "eAdZTkPBzTE", "name": "Yofukashino Uta", "attr": ["Creepy Nuts", "Call of the Night ending"], "date": "2025-11-07"}
 				, {"id": "gvwpofdeieQ", "name": "Doubt & Trust", "attr": ["D.Gray Man opening 3"], "date": "2017-04-22"}
 				, {"id": "zV9Qcwf-xwA", "name": "14th Song", "attr": ["D.Gray-man"], "date": "2017-04-06"}
 				, {"id": "XLMH3M-UjvE", "name": "Seirei", "attr": ["Date A Live"], "tags": ["Adau"], "date": "2019-03-05"}
@@ -5506,6 +5518,7 @@
 				, {"id": "4m273uYdJY8", "name": "Canaria's Song", "attr": ["Qualidea Code"], "date": "2017-10-03"}
 				, {"id": "Vqj_Mb9w4Mk", "name": "Styx Helix", "attr": ["re:ZERO Starting Life in Another World ending"], "date": "2022-05-12"}
 				, {"id": "nesbtE0cFwY", "name": "Medal Suzdal Panic", "attr": ["Revue Starlight", "Starlight Kukugumi"], "date": "2022-04-02"}
+				, {"id": "abVbBmRtL9I", "name": "Method", "attr": ["Sakamoto Days opening 2", "Kroi"], "multi": 2, "date": "2025-11-07"}
 				, {"id": "AQKbcEE7Qu8", "name": "Mikazuki", "attr": ["Sayuri", "Ranpo Kitan: Game of Laplace ending"], "date": "2020-04-11"}
 				, {"id": "giXze1V7NlE", "name": "Fukashima no Carte", "attr": ["Seishun Buta Yarou wa Bunny Girl Senpai no Yume wo Mina"], "date": "2021-03-04"}
 				, {"id": "K5CWk11bNS4", "name": "INFANiTy World", "attr": ["Serial Experiments Lain"], "date": "2025-01-25"}
@@ -6605,6 +6618,7 @@
 				, {"id": "VrjeF0B4xMM", "name": "\u30ea\u30b3\u30fc\u30c0\u30fc\u30d3\u30fc\u30c82", "attr": ["Minato Aqua", "Y8MD"], "date": "2021-02-06"}
 				, {"id": "1i3Q0weSr9M", "name": "\u30ad\u30b9\u3060\u3051\u3067\u3044\u3044\u304b\u3089\u306d", "attr": ["Nekomata Okayu"], "tags": ["Perfect"], "multi": 2, "date": "2025-03-15"}
 				, {"id": "x1h34E3b4Ig", "name": "\u3082\u3050\u3082\u3050YUMMY\uff01", "attr": ["Nekomata Okayu/\u732b\u53c8\u304a\u304b\u3086"], "date": "2024-10-17"}
+				, {"id": "zpyhGfpok8w", "name": "Sweetest Scarlet", "attr": ["Nerissa"], "date": "2025-11-07"}
 				, {"id": "uo7FassZCnk", "name": "Blue Clapper", "attr": ["PandaBoY", "Hololive"], "tags": ["Perfect"], "date": "2021-10-16"}
 				, {"id": "hLQZHg0cers", "name": "Next Wednesday", "attr": ["Roboco", "TamaOnSen"], "date": "2021-06-15"}
 				, {"id": "C0t0msQSPXE", "name": "Fever Night", "attr": ["Takanashi Kiara"], "date": "2022-08-25"}
@@ -6801,8 +6815,7 @@
 		"Misc Country/Folk":{
 			"dbName":"Misc.MiscCountryFolk",
 			"songs":[
-				{"id": "1pTTXlLUX3g", "name": "Grave Digger", "attr": ["Blues Saraceno"], "tags": ["Plogg"], "date": "2022-06-23"}
-				, {"id": "Ap42_U3rRnU", "name": "Neon Moon", "attr": ["Brooks & Dunn"], "date": "2022-01-29"}
+				{"id": "Ap42_U3rRnU", "name": "Neon Moon", "attr": ["Brooks & Dunn"], "date": "2022-01-29"}
 				, {"id": "XIF8vrygPck", "name": "Ghost to a Ghost", "attr": ["Hank Williams III", "Tom Waits"], "date": "2017-09-10"}
 				, {"id": "_Og8K_niz3I", "name": "Orange Blossom Special", "attr": ["Johnny Cash"], "tags": ["Plogg"], "date": "2019-11-30"}
 				, {"id": "J1j0xRpuKAk", "name": "Big Enough", "attr": ["Kirin J Callanan ft. Alex Cameron"], "date": "2020-03-21"}
