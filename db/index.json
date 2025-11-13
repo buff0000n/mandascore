@@ -274,6 +274,7 @@
 				, {"id": "E3WMxWf5wbA", "name": "Daddy Cool", "attr": ["Boney M"], "tags": ["Sparse", "Perfect"], "date": "2017-10-08"}
 				, {"id": "BoHWO8iCZ7E", "name": "Rasputin", "attr": ["Boney M."], "date": "2017-07-14"}
 				, {"id": "dPYnQZLf1rQ", "name": "Dancing in the Dark", "attr": ["Bruce Springsteen"], "multi": 2, "date": "2023-06-29"}
+				, {"id": "2oDdD5a61XM", "name": "Summer of '69", "attr": ["Bryan Adams"], "tags": ["Perfect"], "multi": 2, "date": "2025-11-13"}
 				, {"id": "Fpyo57GRG6s", "name": "Wild Spirit", "attr": ["BTO"], "date": "2019-01-26"}
 				, {"id": "TE5jl1YYSms", "name": "Going Up The Country", "attr": ["Canned Heat"], "date": "2023-01-19"}
 				, {"id": "MAN_oRcVp10", "name": "Wot!", "attr": ["Captain Sensible"], "date": "2020-09-05"}
@@ -860,6 +861,7 @@
 				, {"id": "-oCIV8GU3DM", "name": "Molotov", "attr": ["Lagunes Metales"], "date": "2018-03-06"}
 				, {"id": "4_CPBI4Q0gU", "name": "Hard Rock Hallelujah", "attr": ["Lordi"], "date": "2018-09-13"}
 				, {"id": "t1ToQ6dPtZI", "name": "The Beautiful People", "attr": ["Marilyn Manson"], "date": "2017-12-07"}
+				, {"id": "MYTGEkFNmZw", "name": "Headbangers Ballroom", "attr": ["Masterplan"], "date": "2025-11-13"}
 				, {"id": "k3o_YYvCGO8", "name": "Freezing Moon", "attr": ["Mayhem"], "tags": ["Druk"], "date": "2021-10-30"}
 				, {"id": "uYG-Z5nDWWo", "name": "Lights Out", "attr": ["Mindless Self Indulgence"], "date": "2017-09-30"}
 				, {"id": "qx6luN_9IZs", "name": "I See Stars", "attr": ["Murder Mitten"], "tags": ["Perfect"], "date": "2022-09-15"}
@@ -1671,6 +1673,7 @@
 				, {"id": "V4GcLeFFT-k", "name": "Trampoline", "attr": ["Shaed"], "tags": ["Perfect"], "date": "2022-01-08"}
 				, {"id": "hi47IlhS4I8", "name": "Kiss The Sky", "attr": ["Shawn Lee's Ping Pong Orchestra ft. Nino Mochella"], "date": "2019-04-09"}
 				, {"id": "3NwrtOCNvVQ", "name": "Something Big", "attr": ["Shawn Mendes"], "tags": ["Plogg", "Perfect"], "date": "2017-08-24"}
+				, {"id": "4GnFDxm0tNc", "name": "Your Love", "attr": ["She Wants Revenge"], "tags": ["Perfect"], "date": "2025-11-13"}
 				, {"id": "M5bufjPg39A", "name": "Die in this Town", "attr": ["Siege World"], "tags": ["Perfect"], "date": "2021-05-01"}
 				, {"id": "zNSjS7CJmSg", "name": "Lazy Eye", "attr": ["Silversun Pickups"], "multi": 2, "date": "2019-05-07"}
 				, {"id": "WqbSLRDOlE8", "name": "Panic Switch", "attr": ["Silversun Pickups"], "tags": ["Sparse"], "date": "2017-12-12"}
@@ -2140,6 +2143,7 @@
 				, {"id": "UHRWRxhVesw", "name": "Contact", "attr": ["Logic"], "tags": ["Adau", "Perfect"], "date": "2018-10-11"}
 				, {"id": "aO8im4uqZhE", "name": "Make You Mine", "attr": ["Madison Beer"], "date": "2024-06-20"}
 				, {"id": "In7XiFdOyeE", "name": "How to Get Physical", "attr": ["Magdelena Bay"], "tags": ["Perfect"], "date": "2024-02-23"}
+				, {"id": "0uh1lk5BmxA", "name": "Me Too", "attr": ["Meghan Trainor"], "date": "2025-11-13"}
 				, {"id": "2ECIb9Blnmk", "name": "Psycho", "attr": ["Mia Rodriguez"], "tags": ["Perfect"], "date": "2022-08-11"}
 				, {"id": "2d7N7f9RdDU", "name": "Monster", "attr": ["Milck"], "date": "2018-03-24"}
 				, {"id": "zGb2bKqsWZI", "name": "Party in the U.S.A.", "attr": ["Miley Cyrus"], "date": "2024-07-26"}
@@ -2292,6 +2296,7 @@
 				, {"id": "w1ivqv6jrEs", "name": "I Like Me Better", "attr": ["Lauv"], "date": "2019-06-20"}
 				, {"id": "6VS8UTQynR0", "name": "Coin Laundry", "attr": ["Lisa Mitchell"], "tags": ["Perfect"], "date": "2021-05-22"}
 				, {"id": "wy9eEgz-8VU", "name": "Neopolitan Dreams", "attr": ["Lisa Mitchell"], "date": "2017-05-09"}
+				, {"id": "vsf_3UB5DrA", "name": "Looking Back", "attr": ["Lord Huron"], "tags": ["Perfect"], "date": "2025-11-13"}
 				, {"id": "HalG0352R5U", "name": "The Night We Met", "attr": ["Lord Huron"], "tags": ["Perfect"], "date": "2023-09-21"}
 				, {"id": "qzgijYRl9OA", "name": "Bedroom Trip", "attr": ["Luke Christopher"], "tags": ["Perfect"], "date": "2018-03-10"}
 				, {"id": "vE7qbSqUOG4", "name": "The Day You Went Away", "attr": ["M2M"], "date": "2018-09-25"}
@@ -2754,6 +2759,7 @@
 				, {"id": "KxiclnZu59U", "name": "Pull Up", "attr": ["Wiz Khalifa"], "date": "2017-05-10"}
 				, {"id": "sH6rLDyYESw", "name": "Triumph", "attr": ["Wu Tang Clan"], "date": "2021-03-23"}
 				, {"id": "bRqZkFbf-5o", "name": "Mama Cry", "attr": ["YNW Melly"], "tags": ["Perfect"], "date": "2023-01-12"}
+				, {"id": "hMcHR4mqcBg", "name": "Make No Sense", "attr": ["YoungBoy Never Broke Again"], "tags": ["Perfect"], "date": "2025-11-13"}
 				, {"id": "rvMHGOTdqgc", "name": "Bestie", "attr": ["Yungen"], "tags": ["Perfect"], "date": "2018-02-20"}
 			]
 		}
@@ -3178,6 +3184,7 @@
 				, {"id": "GDLIxiR23Y4", "name": "U-Boot Kreig in Ost Berlin", "attr": ["AND ONE"], "date": "2021-08-21"}
 				, {"id": "V1LrgI9oStw", "name": "Wolf", "attr": ["Andre Ary"], "date": "2018-05-17"}
 				, {"id": "FD9hq4gwjlA", "name": "Trespass", "attr": ["Andy Moor"], "date": "2018-04-19"}
+				, {"id": "flLnTDEpmeQ", "name": "We Fell Apart", "attr": ["Anguish", "AmbVsh", "ily"], "date": "2025-11-13"}
 				, {"id": "asDrdqn_YcU", "name": "Blood", "attr": ["ANIMA!"], "date": "2018-02-13"}
 				, {"id": "aTNvFd3f7Ek", "name": "Dragon Games", "attr": ["Animal Trainer"], "date": "2019-02-12"}
 				, {"id": "6XWhDxgXexU", "name": "Avril 14th", "attr": ["Aphex Twin"], "date": "2024-05-23"}
@@ -3941,7 +3948,8 @@
 		"Honkai: Star Rail":{
 			"dbName":"Videogames",
 			"songs":[
-				{"id": "J3-XChpA7Uc", "name": "Wildfire", "attr": ["Honkai Star Rail"], "date": "2023-06-29"}
+				{"id": "Y_gBUSqCdhQ", "name": "Flares Of The Blazing Sun", "attr": ["Honkai Star Rail"], "date": "2025-11-13"}
+				, {"id": "J3-XChpA7Uc", "name": "Wildfire", "attr": ["Honkai Star Rail"], "date": "2023-06-29"}
 				, {"id": "g9UO_YOGNGk", "name": "Proi Proi", "attr": ["Honkai: Star Rail"], "tags": ["Perfect", "Adau"], "date": "2025-07-11"}
 				, {"id": "qBLZ5QyPtyY", "name": "Sway to My Bean in the Cosmos/Welcome To My World/Robin's Ultimate Song", "attr": ["Honkai: Star Rail"], "date": "2024-04-11"}
 				, {"id": "VvNGAi_u2JA", "name": "White Night", "attr": ["Honkai: Star Rail"], "tags": ["Perfect"], "date": "2024-02-14"}
@@ -6015,6 +6023,7 @@
 				, {"id": "ujj-l4xsbZI", "name": "Monster", "attr": ["EXO/\uc5d1\uc18c"], "tags": ["Perfect"], "date": "2019-06-15"}
 				, {"id": "h5L1p85_Jo0", "name": "Obsession", "attr": ["EXO/\uc5d1\uc18c"], "tags": ["Perfect"], "date": "2019-12-07"}
 				, {"id": "WedYVhrrDC8", "name": "Tempo", "attr": ["EXO/\uc5d1\uc18c"], "tags": ["Perfect"], "date": "2019-03-26"}
+				, {"id": "-ULEGPEumhs", "name": "Nothing On Me", "attr": ["Kai"], "tags": ["Perfect"], "date": "2025-11-13"}
 			]
 		},
 		"fromis_9":{
@@ -6615,6 +6624,7 @@
 				, {"id": "nBcBmP7lL9I", "name": "Bibbida", "attr": ["Hoshimachi Suisei"], "date": "2025-02-07"}
 				, {"id": "XiwPLCoKNGQ", "name": "Michizure", "attr": ["Hoshimachi Suisei"], "date": "2023-02-23"}
 				, {"id": "Ba8AkoGCdV8", "name": "Help", "attr": ["Kobo Kanaeru"], "date": "2024-05-18"}
+				, {"id": "MWbXGwkT22Y", "name": "Rock In!", "attr": ["Koseki Bijou"], "date": "2025-11-13"}
 				, {"id": "VrjeF0B4xMM", "name": "\u30ea\u30b3\u30fc\u30c0\u30fc\u30d3\u30fc\u30c82", "attr": ["Minato Aqua", "Y8MD"], "date": "2021-02-06"}
 				, {"id": "1i3Q0weSr9M", "name": "\u30ad\u30b9\u3060\u3051\u3067\u3044\u3044\u304b\u3089\u306d", "attr": ["Nekomata Okayu"], "tags": ["Perfect"], "multi": 2, "date": "2025-03-15"}
 				, {"id": "x1h34E3b4Ig", "name": "\u3082\u3050\u3082\u3050YUMMY\uff01", "attr": ["Nekomata Okayu/\u732b\u53c8\u304a\u304b\u3086"], "date": "2024-10-17"}
