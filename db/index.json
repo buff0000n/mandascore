@@ -1849,6 +1849,14 @@
 				, {"id": "pMDVV_A-LuA", "name": "Good Luck, Babe!", "attr": ["Chappell Roan"], "date": "2024-09-26"}
 			]
 		},
+		"Charli xcx":{
+			"dbName":"Pop",
+			"songs":[
+				{"id": "-4_JBsc3vnQ", "name": "1999", "attr": ["Charli xcx"], "multi": 2, "date": "2025-11-23"}
+				, {"id": "jR-58axeZog", "name": "Break The Rules", "attr": ["Charli XCX"], "tags": ["Perfect"], "date": "2020-04-04"}
+				, {"id": "zW1pDUT555o", "name": "Delicious", "attr": ["Charli XCX ft. Tommy Cash"], "tags": ["Perfect"], "date": "2025-02-15"}
+			]
+		},
 		"Doja Cat":{
 			"dbName":"Pop",
 			"songs":[
@@ -2111,8 +2119,6 @@
 				, {"id": "eJQ9ZLRDGhU", "name": "I Want It That Way", "attr": ["Backstreet Boys"], "date": "2018-07-17"}
 				, {"id": "3MUutWFnoHw", "name": "Larger Than Life", "attr": ["Backstreet Boys"], "tags": ["Perfect", "Delta"], "date": "2021-08-24"}
 				, {"id": "mkocZat5M-0", "name": "S.L.U.T", "attr": ["Bea Miller"], "date": "2018-09-25"}
-				, {"id": "jR-58axeZog", "name": "Break The Rules", "attr": ["Charli XCX"], "tags": ["Perfect"], "date": "2020-04-04"}
-				, {"id": "zW1pDUT555o", "name": "Delicious", "attr": ["Charli XCX ft. Tommy Cash"], "tags": ["Perfect"], "date": "2025-02-15"}
 				, {"id": "afEdKvd26M4", "name": "Believe", "attr": ["Cher"], "date": "2020-03-28"}
 				, {"id": "iBoTATIX22g", "name": "Gimme! Gimme! Gimme!", "attr": ["Cher"], "date": "2019-04-06"}
 				, {"id": "lvqJMuFfPM0", "name": "Fruity", "attr": ["Chloe Moriondo"], "tags": ["Perfect"], "date": "2023-12-28"}
@@ -3634,6 +3640,7 @@
 			"dbName":"Videogames",
 			"songs":[
 				{"id": "j7H3ncXLGR4", "name": "Constant Moderato", "attr": ["Blue Archive"], "date": "2021-06-12"}
+				, {"id": "QlLw-I0Ri5g", "name": "Expo Festa", "attr": ["Blue Archive"], "date": "2025-11-23"}
 				, {"id": "vibbQuRQtX8", "name": "Luminous Memory", "attr": ["Blue Archive"], "tags": ["Beta"], "date": "2024-01-11"}
 				, {"id": "YYHChS-bBBM", "name": "Clear Morning", "attr": ["Blue Archive", "Yui Ogura"], "date": "2021-12-04"}
 			]
@@ -4708,6 +4715,7 @@
 					, {"id": "OD9z9-ehQQY", "name": "Return To Planet X", "attr": ["Timesplitters 2"], "tags": ["Druk"], "date": "2017-08-13"}
 					, {"id": "TYY9G3kDCvs", "name": "Arrive You", "attr": ["TintMe!", "THE iDOLM@STER"], "date": "2022-06-02"}
 					, {"id": "DzC9mQ6eIxY", "name": "Reincarnations", "attr": ["Tokyo Mirage Sessions #FE"], "date": "2018-07-19"}
+					, {"id": "iAaC-x9pIxQ", "name": "Treat or Cheek!", "attr": ["Trickcal: Chibi Go"], "date": "2025-11-23"}
 					, {"id": "zh2OLZ4SAgw", "name": "Calling", "attr": ["TWEWY"], "multi": 2, "date": "2021-06-05"}
 					, {"id": "P6TX3sjFr1I", "name": "Make or Break", "attr": ["TWEWY"], "tags": ["Perfect"], "date": "2021-10-16"}
 					, {"id": "thu98VeGfgY", "name": "Rock Garden", "attr": ["Tyrian 2000"], "date": "2017-05-09"}
@@ -6671,6 +6679,7 @@
 				, {"id": "L5DCa-dxFr4", "name": "Baby I'm Yours", "attr": ["Breakbot", "Ladies And Gentlemen We Got Him meme"], "date": "2021-08-21"}
 				, {"id": "Dt_x5oELdl8", "name": "Find Da Wae", "attr": ["CG5"], "multi": 2, "date": "2018-04-17"}
 				, {"id": "KW8gRfWrCj8", "name": "Dropping like flies", "attr": ["crud"], "date": "2024-02-29"}
+				, {"id": "Ri9r5FemRO4", "name": "Venom/Absolute Bane", "attr": ["Daddyphatsnaps"], "tags": ["Perfect"], "date": "2025-11-23"}
 				, {"id": "5dG_epSao4o", "name": "take the bait", "attr": ["Demondice"], "date": "2022-02-12"}
 				, {"id": "ftzastbOEmU", "name": "Break The Road", "attr": ["Diego Martinez", "Dream VS 4 Hunters Rematch"], "tags": ["Perfect"], "date": "2021-05-15"}
 				, {"id": "8W9iX_w_Dw4", "name": "Crystal Dolphin", "attr": ["Dolphin in Town by Kingo Hamada"], "date": "2020-04-11"}
