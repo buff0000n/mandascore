@@ -10,6 +10,8 @@ class Library {
         this.database = {};
         // data loader with progress bar
         this.loader = new Loader();
+        // flag for when initialization is done
+        this.initialized = false;
 
         // search job state
         // we can't just do the whole search in one event handler because it interrupts audio playback for some
@@ -70,7 +72,7 @@ class Library {
                 </span>
                 <span class="songTitleDiv">
                     <span class="tooltip">
-                        <input class="searchBar" type="text" size="24"/>
+                        <input id="library-search-bar" class="searchBar" type="text" size="24"/>
                         <span class="tooltiptextbottom">Search by keyword</span>
                     </span>
                 </span>
@@ -90,7 +92,7 @@ class Library {
         });
 
         // search bar handler
-        getFirstChild(this.menuContainer, "searchBar").addEventListener("keyup", (e) => { this.setLibrarySearch(e); });
+        getFirstChild(this.menuContainer, "searchBar").addEventListener("keyup", (e) => { this.updateLibrarySearch(e); });
 
         // index container, this is where the songs are listed
         this.indexContainer = document.createElement("div");
@@ -272,6 +274,8 @@ class Library {
         if (this.index == null) {
             this.loader.load("Loading Demo Index", "db/index-demo.json", (indexJson) => this.demoIndexLoaded(indexJson));
         }
+        // set focus to the search bar
+        document.getElementById("library-search-bar").focus();
     }
 
     hide() {
@@ -322,6 +326,15 @@ class Library {
         // build the search queue prototype, no point in building this every time
         this.searchQueuePrototype = [];
         this.queueSongLists(this.index, this.searchQueuePrototype, false);
+
+        // set the initialized flag
+        this.initialized = true;
+
+        // check if we already have a search string
+        if (this.searchWords) {
+            // start a search immediately
+            this.startWordSearch(this.searchWords, true);
+        }
     }
 
     buildNoResultMessage() {
@@ -591,11 +604,24 @@ class Library {
         //song.tags = null;
     }
 
-    setLibrarySearch() {
+    updateLibrarySearch(e) {
         // get the search bar contents and kick off a search
         var event = window.event;
         var string = event.currentTarget.value;
         this.setSearchString(string);
+        // update the URL
+        if (string && string != "") {
+            modifyUrlQueryParam("search", urlEncodeString(string, true));
+        } else {
+            removeUrlQueryParam("search");
+        }
+    }
+
+    setLibrarySearch(librarySearch) {
+        // update the UI
+        document.getElementById("library-search-bar").value = librarySearch;
+        // start the search
+        this.setSearchString(librarySearch);
     }
 
     setSearchString(string) {
@@ -697,13 +723,17 @@ class Library {
         return tagged;
     }
 
-    startWordSearch(words) {
-        if (listEquals(words, this.searchWords)) {
+    startWordSearch(words, force = false) {
+        if (!force && listEquals(words, this.searchWords)) {
             return;
         }
         // save the current search criteria
         this.searchWords = words;
         this.searchWordsChanged = true;
+
+        // if the UI is not initialized then the search will be run automatically when it's done initializing
+        if (!this.initialized) return;
+
         this.startSearch();
     }
 

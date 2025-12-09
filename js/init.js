@@ -148,6 +148,14 @@ function reinitModel(url) {
             setPlaylistFromUrlString(playlistString);
         }
     }
+    // check for a search=... query string
+    var librarySearch = getQueryParam(url, "search", false);
+    if (librarySearch) {
+        // show the library and auto-start a search
+        toggleLibrary();
+        score.library.setLibrarySearch(librarySearch);
+
+    }
 }
 
 function setPlaylistFromUrlString(playlistString, enable=true) {
@@ -287,9 +295,9 @@ function hidePlaylist() {
     document.getElementById("playlistButton").classList.add("gray");
 }
 
-function toggleLibrary(button) {
+function toggleLibrary(button = null) {
     // chrome is doing strange things with clicked buttons so just unfocus it
-    button.blur();
+    if (button) button.blur();
     var libraryBox = document.getElementById("libraryBox");
     if (!libraryBox || libraryBox.style.display == "") {
         libraryBox = document.getElementById("libraryBox");
