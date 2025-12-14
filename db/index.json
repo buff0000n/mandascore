@@ -1325,6 +1325,14 @@
 				, {"id": "BhlJHyuF7Fo", "name": "Prayer Of The Refugee", "attr": ["Rise Against"], "date": "2017-04-22"}
 			]
 		},
+		"Shawn Mendes":{
+			"dbName":"PopRock",
+			"songs":[
+				{"id": "3NwrtOCNvVQ", "name": "Something Big", "attr": ["Shawn Mendes"], "tags": ["Plogg", "Perfect"], "date": "2017-08-24"}
+				, {"id": "ibvAZXA4RiI", "name": "There's Nothin' Holding Me Back", "attr": ["Shawn Mendes"], "tags": ["Perfect"], "multi": 3, "date": "2025-12-13"}
+				, {"id": "2NRFdfChHzw", "name": "Treat You Better", "attr": ["Shawn Mendes"], "date": "2017-04-25"}
+			]
+		},
 		"SIAMÉS":{
 			"dbName":"PopRock",
 			"songs":[
@@ -1400,6 +1408,7 @@
 				, {"id": "-Kk81RKI7YM", "name": "House of Gold", "attr": ["twenty one pilots"], "tags": ["Perfect"], "date": "2021-05-18"}
 				, {"id": "_QSw5FTTN0E", "name": "Morph", "attr": ["twenty one pilots"], "date": "2018-10-25"}
 				, {"id": "I9UiNlSs9TQ", "name": "My Blood", "attr": ["twenty one pilots"], "date": "2021-02-27"}
+				, {"id": "Sj6y1hlcwlY", "name": "Saturday", "attr": ["Twenty One Pilots"], "tags": ["Perfect"], "multi": 2, "date": "2025-12-13"}
 				, {"id": "6cWdSc1lgyk", "name": "Trees", "attr": ["twenty one pilots"], "tags": ["Perfect"], "date": "2019-02-19"}
 			]
 		},
@@ -1672,7 +1681,6 @@
 				, {"id": "wbEhWb4MmtI", "name": "Wolf In Sheep's Clothing", "attr": ["Set It Off"], "tags": ["Druk"], "date": "2017-04-15"}
 				, {"id": "V4GcLeFFT-k", "name": "Trampoline", "attr": ["Shaed"], "tags": ["Perfect"], "date": "2022-01-08"}
 				, {"id": "hi47IlhS4I8", "name": "Kiss The Sky", "attr": ["Shawn Lee's Ping Pong Orchestra ft. Nino Mochella"], "date": "2019-04-09"}
-				, {"id": "3NwrtOCNvVQ", "name": "Something Big", "attr": ["Shawn Mendes"], "tags": ["Plogg", "Perfect"], "date": "2017-08-24"}
 				, {"id": "4GnFDxm0tNc", "name": "Your Love", "attr": ["She Wants Revenge"], "tags": ["Perfect"], "date": "2025-11-13"}
 				, {"id": "M5bufjPg39A", "name": "Die in this Town", "attr": ["Siege World"], "tags": ["Perfect"], "date": "2021-05-01"}
 				, {"id": "zNSjS7CJmSg", "name": "Lazy Eye", "attr": ["Silversun Pickups"], "multi": 2, "date": "2019-05-07"}
@@ -2176,6 +2184,7 @@
 				, {"id": "tpNE87F9Szk", "name": "Boys/Summertime Love", "attr": ["Sabrina Salerno"], "tags": ["Perfect", "Sparse"], "date": "2021-03-27"}
 				, {"id": "6jE2ociVKxM", "name": "Fire Burning", "attr": ["Sean Kingston"], "tags": ["Perfect"], "date": "2024-10-03"}
 				, {"id": "vz8DAfruWYo", "name": "Mi Mi Mi", "attr": ["Serebro"], "date": "2017-12-14"}
+				, {"id": "s__tJWbfEUg", "name": "Hips Don't Lie", "attr": ["Shakira ft. Wyclef Jean"], "tags": ["Perfect"], "date": "2025-12-13"}
 				, {"id": "G8WGj9oJxJ4", "name": "Impossible", "attr": ["Shontelle"], "multi": 2, "date": "2018-02-01"}
 				, {"id": "Qny4-QNJ_zA", "name": "How To Start A War", "attr": ["Simon Curtis"], "date": "2019-02-23"}
 				, {"id": "DctzRtbmxKA", "name": "Die Young", "attr": ["Sylvan Esso"], "date": "2018-07-10"}
@@ -2326,7 +2335,6 @@
 				, {"id": "Ff4ZxzqxYdo", "name": "War Of Hearts", "attr": ["Ruelle"], "date": "2019-04-16"}
 				, {"id": "VN2-ooMeJiY", "name": "Stay With Me", "attr": ["Sam Smith"], "tags": ["Perfect"], "date": "2019-02-12"}
 				, {"id": "dCa1Voa4uDQ", "name": "Too Good At Goodbyes", "attr": ["Sam Smith"], "tags": ["Perfect"], "date": "2017-12-12"}
-				, {"id": "2NRFdfChHzw", "name": "Treat You Better", "attr": ["Shawn Mendes"], "date": "2017-04-25"}
 				, {"id": "Bh3_OvntCU0", "name": "Tell me Why", "attr": ["Supermode"], "date": "2017-06-13"}
 				, {"id": "XBrdxnEsnMI", "name": "Bloom", "attr": ["Surface"], "date": "2020-04-25"}
 				, {"id": "zENtBpHFHoY", "name": "Summer Son", "attr": ["Texas"], "tags": ["Perfect"], "date": "2021-08-24"}
@@ -5173,6 +5181,7 @@
 			"dbName":"Anime",
 			"songs":[
 				{"id": "Q3EewHSG1FM", "name": "Shocking Party", "attr": ["A Rise", "Love Live!"], "tags": ["Perfect"], "date": "2018-06-05"}
+				, {"id": "9IyAuc5J7aQ", "name": "Ai\u2661Scream", "attr": ["AiScReam", "Love Live!"], "tags": ["Perfect"], "date": "2025-12-13"}
 				, {"id": "v08ib4H1sds", "name": "Kowareyasuki", "attr": ["Guilty Kiss", "Love Live!"], "date": "2018-06-19"}
 				, {"id": "vp2T2sMb6nI", "name": "Daydream Warrior", "attr": ["Love Live Sunshine"], "date": "2018-07-10"}
 				, {"id": "wrZQCSsMX10", "name": "Self Control", "attr": ["Saint Snow", "Love Live Sunshine"], "tags": ["Druk"], "date": "2018-05-26"}
@@ -6109,6 +6118,15 @@
 				, {"id": "72s7j8UHtCc", "name": "\ub77c\ube44\uc559\ub85c\uc988/La Vie en Rose", "attr": ["\uc544\uc774\uc988\uc6d0/IZ*ONE"], "date": "2018-11-08"}
 			]
 		},
+		"Kasane Teto":{
+			"dbName":"FarEast",
+			"songs":[
+				{"id": "jrNUjUdzNQk", "name": "Ochame Kinou/Fukiretta", "attr": ["LamazeP ft. Kasane Teto"], "date": "2025-06-05"}
+				, {"id": "9GPsacxZ3s8", "name": "Language Of The Lost", "attr": ["R.I.P. ft. Kasane Teto"], "date": "2025-03-29"}
+				, {"id": "NraFPovN0TM", "name": "25:00", "attr": ["Shokupanw ft. Kasane Teto"], "date": "2025-06-19"}
+				, {"id": "wJnJOksisxY", "name": "Doomer", "attr": ["Tokyo Manaka ft. Kasane Teto"], "tags": ["Perfect"], "multi": 2, "date": "2025-12-13"}
+			]
+		},
 		"LOONA":{
 			"dbName":"FarEast",
 			"songs":[
@@ -6454,7 +6472,6 @@
 				, {"id": "ibbW4kds9oY", "name": "Angel", "attr": ["Kairiki Bear ft. Meika Mikoto"], "date": "2019-05-11"}
 				, {"id": "wR_KVLc5PsY", "name": "Queen", "attr": ["Kanaria ft. Gumi"], "date": "2023-01-12"}
 				, {"id": "KRVSBuacnk8", "name": "King", "attr": ["Kanaria", "GUMI"], "tags": ["Epsilon"], "date": "2021-01-16"}
-				, {"id": "jrNUjUdzNQk", "name": "Ochame Kinou/Fukiretta", "attr": ["LamazeP ft. Kasane Teto"], "date": "2025-06-05"}
 				, {"id": "AlADqOepNiw", "name": "A Momentary Trip/\u30bb\u30c4\u30ca\u30c8\u30ea\u30c3\u30d7", "attr": ["Last Note", "GUMI"], "date": "2019-10-01"}
 				, {"id": "LEA5DOYqvD4", "name": "Black&White", "attr": ["Masa", "Lui", "GUMI"], "date": "2020-12-05"}
 				, {"id": "qlUro5uSz2s", "name": "Just Be Friends", "attr": ["Megurine Luka", "Dixie Flatline"], "date": "2018-05-26"}
@@ -6462,9 +6479,7 @@
 				, {"id": "L2DSFVakokw", "name": "Re-Education", "attr": ["Neru", "Kagamine Ren", "Kagamine Len"], "date": "2020-01-18"}
 				, {"id": "MsEDFvEG3yY", "name": "Wozwald", "attr": ["Nira Kajitsu"], "date": "2019-09-05"}
 				, {"id": "CWTSKIS6NkU", "name": "Apple dot com/\u30a2\u30c3\u30d7\u30eb\u30c9\u30c3\u30c8\u30b3\u30e0", "attr": ["PinocchioP/\u30d4\u30ce\u30ad\u30aa\u30d4\u30fc"], "tags": ["Perfect"], "date": "2018-02-24"}
-				, {"id": "9GPsacxZ3s8", "name": "Language Of The Lost", "attr": ["R.I.P. ft. Kasane Teto"], "date": "2025-03-29"}
 				, {"id": "gj9ZuuSxlkU", "name": "Conqueror", "attr": ["Sendra", "IA"], "date": "2020-04-18"}
-				, {"id": "NraFPovN0TM", "name": "25:00", "attr": ["Shokupanw ft. Kasane Teto"], "date": "2025-06-19"}
 				, {"id": "PlbreZXlQnc", "name": "Junky Night Town Orchestra", "attr": ["Surii ft. Kagamine Ren"], "date": "2023-01-26"}
 				, {"id": "Su26oDMBpQ0", "name": "Ordinary DISCO", "attr": ["Vsinger"], "date": "2018-02-22"}
 				, {"id": "WB9ENZXO2Jc", "name": "Baby My Phone", "attr": ["Yameii"], "date": "2023-02-16"}
@@ -6545,6 +6560,7 @@
 			"songs":[
 				{"id": "rLyUaGD0Vqk", "name": "Insane", "attr": ["Black Gryph0n & Baasik", "Hazbin Hotel"], "date": "2024-03-23"}
 				, {"id": "yQyO_EOI0XI", "name": "Happy Day In Hell", "attr": ["Hazbin Hotel"], "date": "2024-02-14"}
+				, {"id": "zVoobLlWEcg", "name": "Hear My Hope", "attr": ["Hazbin Hotel"], "date": "2025-12-13"}
 				, {"id": "E7h_ADpYXHI", "name": "Loser, Baby", "attr": ["Hazbin Hotel"], "multi": 2, "date": "2024-02-01"}
 				, {"id": "ZqDmj7M-6-U", "name": "Out For Love", "attr": ["Hazbin Hotel"], "date": "2024-02-14"}
 				, {"id": "Ny9IE6JLynE", "name": "Respectless", "attr": ["Hazbin Hotel"], "date": "2024-02-14"}
