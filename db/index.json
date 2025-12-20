@@ -1515,6 +1515,7 @@
 				, {"id": "Z7dwsD6z16M", "name": "Cool Kids", "attr": ["Echosmith"], "date": "2017-12-19"}
 				, {"id": "z81X5FUnjqg", "name": "Wake Up", "attr": ["Elaine"], "date": "2021-05-08"}
 				, {"id": "0cDU66ZeY98", "name": "Down On Life", "attr": ["Elliphant"], "date": "2017-09-19"}
+				, {"id": "fbxWPk5cjJo", "name": "American Teenager", "attr": ["Ethel Caine"], "date": "2025-12-20"}
 				, {"id": "DGCZ2-Ac12E", "name": "Bring Me Back To Life", "attr": ["Extreme Music"], "date": "2017-10-17"}
 				, {"id": "5x01IAKakJY", "name": "The Setup", "attr": ["Favored Nations"], "tags": ["Perfect"], "date": "2025-05-08"}
 				, {"id": "1H9QDRu8Ask", "name": "Octavia's Love Song", "attr": ["Femme Fatality"], "date": "2018-04-03"}
@@ -2510,6 +2511,7 @@
 			"songs":[
 				{"id": "Ujyiye2XJ3w", "name": "Dark Queen", "attr": ["Lil Uzi Vert"], "date": "2018-02-08"}
 				, {"id": "0iwR1DZphJ4", "name": "New Patek", "attr": ["Lil Uzi Vert"], "date": "2018-09-27"}
+				, {"id": "7LZpSwwC-Q4", "name": "Pretty Mami", "attr": ["Lil Uzi Vert"], "date": "2025-12-20"}
 				, {"id": "WiU5hFaqvVo", "name": "Sauce It Up", "attr": ["Lil Uzi Vert"], "date": "2018-02-08"}
 				, {"id": "K4_CcQM589w", "name": "The Way Life Goes", "attr": ["Lil Uzi Vert"], "tags": ["Perfect"], "date": "2017-09-07"}
 				, {"id": "OkSS5t3xVj0", "name": "XO TOUR Lif3", "attr": ["Lil Uzi Vert"], "tags": ["Perfect"], "date": "2017-07-22"}
@@ -2748,6 +2750,7 @@
 				, {"id": "uIyAlEjbP1A", "name": "Push It", "attr": ["Salt-N-Peppa"], "date": "2017-12-16"}
 				, {"id": "3z8sDZe1YnE", "name": "Vem Vem", "attr": ["Sango"], "date": "2018-06-12"}
 				, {"id": "FyWcKy-IPzU", "name": "Druggys WitH Hoes Again", "attr": ["ScHoolboy Q"], "tags": ["Perfect"], "date": "2017-08-20"}
+				, {"id": "pGnIk55-ra8", "name": "The Thong Song", "attr": ["Sisqo"], "tags": ["Perfect"], "date": "2025-12-20"}
 				, {"id": "DFzllcvUjfw", "name": "Netflix & Dusse", "attr": ["Smino"], "date": "2019-08-27"}
 				, {"id": "k03OLOA9p24", "name": "Young Wild & Free", "attr": ["Snoop Dogg & Wiz Khalifa ft. Bruno Mars"], "tags": ["Perfect"], "date": "2019-07-20"}
 				, {"id": "_bHSwpOPhhk", "name": "Smoke Weed Everyday", "attr": ["Snoop Dogg"], "tags": ["Perfect"], "date": "2017-05-20"}
@@ -4766,6 +4769,7 @@
 					, {"id": "PAZ212-rezw", "name": "Portal 2 Ending OST", "attr": ["Cara Mia Addio"], "tags": ["Adau"], "date": "2017-04-13"}
 					, {"id": "0NBDQ47_934", "name": "Lyin' 2 Me", "attr": ["CG5", "Among Us"], "date": "2021-02-20"}
 					, {"id": "3Pmm2SWKXwU", "name": "Baba Yetu", "attr": ["Civilization IV"], "date": "2023-01-19"}
+					, {"id": "jNS8_0yA7FU", "name": "Gestral Summer Party", "attr": ["Clair Obscur: Expedition 33"], "date": "2025-12-20"}
 					, {"id": "XqF7RkgBuVc", "name": "Gwyn", "attr": ["Dark Souls Remix", "Alex Roe"], "tags": ["Sparse"], "date": "2017-04-20"}
 					, {"id": "ksewQReaCFY", "name": "Kara Main Theme", "attr": ["Detroit: Become Human"], "date": "2018-09-23"}
 					, {"id": "RwhSORzL-hI", "name": "Little One", "attr": ["Detroit: Become Human"], "date": "2018-09-08"}
@@ -6121,7 +6125,8 @@
 		"Kasane Teto":{
 			"dbName":"FarEast",
 			"songs":[
-				{"id": "jrNUjUdzNQk", "name": "Ochame Kinou/Fukiretta", "attr": ["LamazeP ft. Kasane Teto"], "date": "2025-06-05"}
+				{"id": "pPS-x95Qcds", "name": "Spoken For", "attr": ["Flavor Foley ft. Kasane Teto"], "tags": ["Perfect"], "date": "2025-12-20"}
+				, {"id": "jrNUjUdzNQk", "name": "Ochame Kinou/Fukiretta", "attr": ["LamazeP ft. Kasane Teto"], "date": "2025-06-05"}
 				, {"id": "9GPsacxZ3s8", "name": "Language Of The Lost", "attr": ["R.I.P. ft. Kasane Teto"], "date": "2025-03-29"}
 				, {"id": "NraFPovN0TM", "name": "25:00", "attr": ["Shokupanw ft. Kasane Teto"], "date": "2025-06-19"}
 				, {"id": "wJnJOksisxY", "name": "Doomer", "attr": ["Tokyo Manaka ft. Kasane Teto"], "tags": ["Perfect"], "multi": 2, "date": "2025-12-13"}
@@ -6411,6 +6416,7 @@
 				, {"id": "Nh7AsnBzimM", "name": "Rollin'/\ub864\ub9b0", "attr": ["Brave Girls/\ube0c\ub808\uc774\ube0c\uac78\uc2a4"], "date": "2021-05-29"}
 				, {"id": "-8Fm-Hlx9Sg", "name": "Abracadabra", "attr": ["Brown Eyed Girls"], "tags": ["Perfect"], "date": "2024-08-22"}
 				, {"id": "id5AfRbeMlA", "name": "\ubc8c\uc368 12\uc2dc /Gotta Go", "attr": ["Chung Ha/\uccad\ud558"], "tags": ["Perfect"], "date": "2019-05-07"}
+				, {"id": "odIkoIYeTZI", "name": "Go!", "attr": ["Cortis"], "tags": ["Perfect"], "date": "2025-12-20"}
 				, {"id": "A2oYdlVXwGw", "name": "Yellow Cab", "attr": ["DPR Live"], "tags": ["Perfect"], "date": "2022-08-25"}
 				, {"id": "itj6w5iazC0", "name": "Adios", "attr": ["Everglow/\uc5d0\ubc84\uae00\ub85c\uc6b0"], "date": "2019-08-29"}
 				, {"id": "IqcaXMtvB3M", "name": "Hot Summer", "attr": ["F(x)/\uc5d0\ud504\uc5d1\uc2a4"], "tags": ["Perfect"], "date": "2017-08-20"}
@@ -6586,6 +6592,15 @@
 				, {"id": "bEHmccPrS38", "name": "Over You", "attr": ["Helluva Boss"], "tags": ["Beta"], "date": "2024-08-30"}
 			]
 		},
+		"Joji":{
+			"dbName":"Internet",
+			"songs":[
+				{"id": "LZC-r9cbefY", "name": "Can't Get Over You", "attr": ["Joji ft. Clams Casino"], "date": "2021-07-17"}
+				, {"id": "TxOFs2lNbZU", "name": "Gimme Love", "attr": ["Joji"], "tags": ["Perfect"], "date": "2021-05-12"}
+				, {"id": "LLQj3bg6ShM", "name": "Night Rider", "attr": ["Joji"], "tags": ["Perfect"], "date": "2025-12-20"}
+				, {"id": "5UNjHhBuuvo", "name": "Sanctuary", "attr": ["Joji"], "tags": ["Perfect"], "multi": 2, "date": "2019-08-01"}
+			]
+		},
 		"Kero Kero Bonito":{
 			"dbName":"Internet",
 			"songs":[
@@ -6717,9 +6732,6 @@
 				, {"id": "s2Z_LJ4GXls", "name": "The Techno Union", "attr": ["It's Hard To Say Goodbye - Techno Remix", "Michael Ortega"], "date": "2018-03-24"}
 				, {"id": "rEVwe58OAHM", "name": "Robotnik Rock", "attr": ["iteachvader"], "date": "2019-10-03"}
 				, {"id": "whkawQzAFCI", "name": "i want to be ninja", "attr": ["Jennifer Murphy"], "tags": ["Perfect"], "date": "2021-08-14"}
-				, {"id": "LZC-r9cbefY", "name": "Can't Get Over You", "attr": ["Joji ft. Clams Casino"], "date": "2021-07-17"}
-				, {"id": "TxOFs2lNbZU", "name": "Gimme Love", "attr": ["Joji"], "tags": ["Perfect"], "date": "2021-05-12"}
-				, {"id": "5UNjHhBuuvo", "name": "Sanctuary", "attr": ["Joji"], "tags": ["Perfect"], "multi": 2, "date": "2019-08-01"}
 				, {"id": "z1SQbOUu6dg", "name": "Beep Beep I'm a Sheep", "attr": ["LilDeuceDeuce"], "date": "2017-05-04"}
 				, {"id": "_uxlWRquFJY", "name": "dreamy night", "attr": ["lilypichu"], "date": "2023-05-05"}
 				, {"id": "zlmkXH52xB8", "name": "It Burns! Burns! Burns!", "attr": ["Loco Loco"], "date": "2019-11-16"}
@@ -6825,6 +6837,7 @@
 				, {"id": "Pf0_eJI1LzM", "name": "Angels We Have Heard On High", "attr": ["James Chadwick"], "date": "2017-11-25"}
 				, {"id": "j8mkvoAmk90", "name": "Jingle Bells", "attr": ["James Lord Pierpont"], "tags": ["Beta"], "date": "2017-11-24"}
 				, {"id": "dIUrB3ZmFyw", "name": "Sleigh Ride", "attr": ["Leroy Anderson"], "date": "2021-07-03"}
+				, {"id": "_vMEq13kf2U", "name": "Christmas In Hollis", "attr": ["Run DMC"], "date": "2025-12-20"}
 				, {"id": "BCJKsmjLoRc", "name": "Santa's Coming For Us", "attr": ["Sia"], "multi": 2, "date": "2017-12-19"}
 				, {"id": "aNuUKwywEw8", "name": "Little Saint Nick", "attr": ["The Beach Boys"], "date": "2017-12-12"}
 				, {"id": "Q7TldVABzdE", "name": "Go Tell It On The Mountain", "attr": ["traditional"], "date": "2021-01-02"}
@@ -6922,6 +6935,7 @@
 				, {"id": "ac1lIKUBbgw", "name": "Look Before You Leap", "attr": ["Cheryl Lynn"], "tags": ["Perfect"], "date": "2024-05-09"}
 				, {"id": "EyobRgndW1I", "name": "Redbone", "attr": ["Childish Gambino"], "date": "2017-04-23"}
 				, {"id": "vnhistd92HM", "name": "V.3005", "attr": ["Childish Gambino"], "tags": ["Perfect"], "multi": 2, "date": "2022-05-05"}
+				, {"id": "oMg5ZUkHNg8", "name": "Red Sun In The Sky", "attr": ["Chinese"], "date": "2025-12-20"}
 				, {"id": "XKQHvY6UGAA", "name": "Fire", "attr": ["Crazy World of Arthur Brown"], "date": "2019-02-28"}
 				, {"id": "UjAAcQyRRe8", "name": "Tunak Tunak Tun", "attr": ["Daler Mehndi"], "date": "2018-04-24"}
 				, {"id": "A-74tw9jHIs", "name": "In The Pines", "attr": ["Danny Farrant and Paul Rawson"], "date": "2018-07-07"}
