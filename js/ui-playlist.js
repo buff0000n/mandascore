@@ -29,7 +29,7 @@ function editPlaylistSaveButton(e) {
 }
 
 function editPlaylistSave(button) {
-    var textarea = getFirstChild(getParent(button, "playlistBox"), "playlistEditArea");
+    var textarea = getFirstChild(getParent(button, "menu"), "playlistEditArea");
     if (textarea.exp != textarea.value) {
         textarea.playlist.import(textarea.value);
     }
