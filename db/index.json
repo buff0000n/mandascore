@@ -632,6 +632,7 @@
 				, {"id": "nur1Tl4nJB8", "name": "Everyday Is Exactly The Same", "attr": ["Nine Inch Nails"], "date": "2018-08-30"}
 				, {"id": "1Rn3WPycgEY", "name": "Head Like A Hole/God Money", "attr": ["Nine Inch Nails"], "tags": ["Perfect"], "multi": 4, "date": "2019-07-25"}
 				, {"id": "dT6XghyTPcs", "name": "In This Twilight", "attr": ["Nine Inch Nails"], "date": "2018-05-10"}
+				, {"id": "qLIx_aTrKUc", "name": "Less Than", "attr": ["Nine Inch Nails"], "tags": ["Perfect"], "date": "2026-01-10"}
 				, {"id": "1QFVN_pWjt8", "name": "Only", "attr": ["Nine Inch Nails"], "tags": ["Sparse"], "date": "2017-03-30"}
 				, {"id": "76ng9BhEZPQ", "name": "The Great Below", "attr": ["Nine Inch Nails"], "tags": ["Perfect"], "date": "2025-08-21"}
 				, {"id": "aZcTIuyqXQU", "name": "The Hand That Feeds", "attr": ["Nine Inch Nails"], "tags": ["Perfect", "Druk"], "date": "2017-03-29"}
@@ -1133,6 +1134,7 @@
 				{"id": "Sa4vR21RG_k", "name": "Alright", "attr": ["Hollywood Undead"], "tags": ["Perfect"], "date": "2022-09-08"}
 				, {"id": "G7vsmYL3wFI", "name": "Live Fast Die Young", "attr": ["Hollywood Undead"], "tags": ["Perfect"], "multi": 3, "date": "2018-11-06"}
 				, {"id": "FS2V4IIRZXw", "name": "Pain", "attr": ["Hollywood Undead"], "date": "2017-05-02"}
+				, {"id": "peM9Z-KM1ug", "name": "War Child", "attr": ["Hollywood Undead"], "tags": ["Epsilon"], "date": "2026-01-10"}
 				, {"id": "_cRbHaHWLYQ", "name": "We Are", "attr": ["Hollywood Undead"], "date": "2017-05-23"}
 			]
 		},
@@ -1497,6 +1499,7 @@
 				, {"id": "nlpIlYWsB3A", "name": "Ten Feet", "attr": ["Curio", "Daxten Remix"], "date": "2019-08-24"}
 				, {"id": "UYlxUt-psf8", "name": "Pump My Pumps", "attr": ["Dan Black"], "tags": ["Perfect"], "date": "2019-10-05"}
 				, {"id": "YdrbK_rdALY", "name": "Lock Down", "attr": ["Dan Skinner", "David Skinner", "Dave James"], "date": "2019-04-13"}
+				, {"id": "lW6KEboVJUI", "name": "Between Two Points", "attr": ["David Gilmour ft. Romany Gilmour"], "tags": ["Perfect"], "date": "2026-01-10"}
 				, {"id": "bCLGHCZD9PU", "name": "Fire Fire", "attr": ["David Michael Bennet"], "tags": ["Plogg", "Perfect"], "date": "2018-05-05"}
 				, {"id": "aeFIdBgGSIU", "name": "Think About Things", "attr": ["Da\u00f0i Freyr"], "tags": ["Perfect"], "date": "2020-05-16"}
 				, {"id": "TrzXAzgnfaU", "name": "You Spin Me Round", "attr": ["Dead Or Alive"], "date": "2017-07-14"}
@@ -1619,6 +1622,7 @@
 				, {"id": "fnKxHA6op_Q", "name": "London Road", "attr": ["Modestep"], "tags": ["Druk"], "date": "2017-05-30"}
 				, {"id": "UZcMmX8Gteo", "name": "Blood Like Lemonade", "attr": ["Morcheeba"], "date": "2022-09-29"}
 				, {"id": "TQ7PmwfhSgQ", "name": "Wrecking Ball", "attr": ["Mother Mother"], "date": "2018-05-03"}
+				, {"id": "LMHakbhJ9cg", "name": "Heartbreaker", "attr": ["MSTRKRFT ft. John Legend"], "tags": ["Perfect"], "multi": 2, "date": "2026-01-10"}
 				, {"id": "4h0Id1dFACQ", "name": "What Are You Waiting For", "attr": ["My Little Cheap Dictaphone"], "tags": ["Perfect"], "date": "2018-06-14"}
 				, {"id": "JlsAFoFt4ys", "name": "Sun In Our Hands", "attr": ["M\u00d8 & Diplo"], "date": "2018-08-18"}
 				, {"id": "VrmioBitT8I", "name": "La la la", "attr": ["Naughty Boy"], "date": "2018-05-31"}
@@ -2096,7 +2100,8 @@
 		"Timbaland":{
 			"dbName":"Pop",
 			"songs":[
-				{"id": "PZD3H5f1ZrI", "name": "Apologize", "attr": ["Timbaland"], "date": "2018-09-29"}
+				{"id": "XcUZl_yecZ4", "name": "Promiscuous", "attr": ["Nelly Furtado ft. Timbaland"], "tags": ["Perfect"], "date": "2026-01-10"}
+				, {"id": "PZD3H5f1ZrI", "name": "Apologize", "attr": ["Timbaland"], "date": "2018-09-29"}
 				, {"id": "6TXnZ39FHLY", "name": "The Way I Are", "attr": ["Timbaland ft. Keri Hilston", "D.O.E.", "Sebastian"], "date": "2021-10-23"}
 				, {"id": "6VIhz7jwik8", "name": "Give It To Me", "attr": ["Timbaland"], "date": "2019-05-11"}
 			]
@@ -5951,6 +5956,14 @@
 				, {"id": "89IIIL-mb-8", "name": "Savage", "attr": ["aespa/\uc5d0\uc2a4\ud30c"], "date": "2021-12-18"}
 			]
 		},
+		"AOA":{
+			"dbName":"FarEast",
+			"songs":[
+				{"id": "QKZ2egr2R5U", "name": "Bing Bing/\ube59\ube59", "attr": ["AOA"], "date": "2018-03-20"}
+				, {"id": "DwV4T1hCugE", "name": "Moya/\ubaa8\uc57c", "attr": ["AOA Black"], "date": "2017-04-25"}
+				, {"id": "MvPiuXNVi54", "name": "Miniskirt", "attr": ["AOA"], "date": "2026-01-10"}
+			]
+		},
 		"Babymetal":{
 			"dbName":"FarEast",
 			"songs":[
@@ -6408,8 +6421,6 @@
 				, {"id": "Ec6giGBIZvs", "name": "I Love You", "attr": ["2NE1"], "date": "2018-02-06"}
 				, {"id": "L6fdndPHQYU", "name": "Under Cover", "attr": ["A.C.E/\uc5d0\uc774\uc2a4"], "date": "2019-09-24"}
 				, {"id": "VMgICi3M4ys", "name": "Diva/\ub514\ubc14", "attr": ["After School/\uc560\ud504\ud130\uc2a4\ucfe8"], "tags": ["Perfect"], "date": "2022-07-21"}
-				, {"id": "QKZ2egr2R5U", "name": "Bing Bing/\ube59\ube59", "attr": ["AOA"], "date": "2018-03-20"}
-				, {"id": "DwV4T1hCugE", "name": "Moya/\ubaa8\uc57c", "attr": ["AOA Black"], "date": "2017-04-25"}
 				, {"id": "a-crznHgmf8", "name": "All Night/\uc804\ud654\ud574", "attr": ["Astro/\uc544\uc2a4\ud2b8\ub85c"], "date": "2021-02-27"}
 				, {"id": "0ap8urYB0Gk", "name": "Bang Bang Bang/\ubc45\ubc45\ubc45", "attr": ["Big Bang"], "tags": ["Perfect"], "date": "2019-05-02"}
 				, {"id": "_-HDNOyviwU", "name": "Earth, Wind, & Fire", "attr": ["BOYNEXTDOOR/\ubcf4\uc774\ub125\uc2a4\ud2b8\ub3c4\uc5b4"], "tags": ["Perfect"], "date": "2024-05-02"}
@@ -6565,6 +6576,7 @@
 			"dbName":"Internet",
 			"songs":[
 				{"id": "rLyUaGD0Vqk", "name": "Insane", "attr": ["Black Gryph0n & Baasik", "Hazbin Hotel"], "date": "2024-03-23"}
+				, {"id": "oJGsrXw16ks", "name": "Easy", "attr": ["Hazbin Hotel"], "tags": ["Perfect"], "multi": 2, "date": "2026-01-10"}
 				, {"id": "yQyO_EOI0XI", "name": "Happy Day In Hell", "attr": ["Hazbin Hotel"], "date": "2024-02-14"}
 				, {"id": "zVoobLlWEcg", "name": "Hear My Hope", "attr": ["Hazbin Hotel"], "date": "2025-12-13"}
 				, {"id": "E7h_ADpYXHI", "name": "Loser, Baby", "attr": ["Hazbin Hotel"], "multi": 2, "date": "2024-02-01"}
@@ -6746,6 +6758,7 @@
 				, {"id": "X719upB9_I4", "name": "EEEAAAOOO", "attr": ["Patricia Taxxon"], "date": "2021-05-25"}
 				, {"id": "229zsNO98cw", "name": "Song for Denise (Maxi Version)", "attr": ["Piano Fantasia"], "tags": ["Perfect"], "date": "2020-07-11"}
 				, {"id": "VEp31kuBG9U", "name": "Under Her Spell", "attr": ["Pokelawls"], "date": "2023-02-16"}
+				, {"id": "4hvWyWPVxqs", "name": "never ever / indie + acoustic type beat", "attr": ["prod. peril"], "date": "2026-01-10"}
 				, {"id": "A_2QmiF2Nu0", "name": "Gangnam Style/\uac15\ub0a8\uc2a4\ud0c0\uc77c", "attr": ["Psy"], "date": "2017-06-17"}
 				, {"id": "tbQ_1yhV7tE", "name": "New Face", "attr": ["Psy"], "date": "2020-05-02"}
 				, {"id": "rVW0K369pQ4", "name": "Never Gonna Give You Up", "attr": ["Rick Astley"], "date": "2017-04-21"}
@@ -6768,6 +6781,7 @@
 				, {"id": "i7UcMeZW144", "name": "Totinos Song", "attr": ["Tim & Eric"], "date": "2017-07-20"}
 				, {"id": "hD7lP_cl6gE", "name": "Nugget in a Biscuit!!", "attr": ["Tobuscus"], "tags": ["Perfect"], "date": "2017-11-16"}
 				, {"id": "zxE7sIiQKXQ", "name": "How Auto-Tune Works", "attr": ["Tom Scott ft. The Gregory Brothers"], "tags": ["Perfect"], "date": "2019-06-06"}
+				, {"id": "xLCM-KfjYFs", "name": "The Drawfee Theme Song", "attr": ["Tummy Boy"], "date": "2026-01-10"}
 				, {"id": "5_yXe-Xlk8s", "name": "Baby Monster", "attr": ["Weezy Gi"], "tags": ["Perfect"], "date": "2024-10-10"}
 				, {"id": "Iaml2sKNqak", "name": "Hampster Dance", "attr": ["Whistle-Stop by Roger Miller"], "date": "2017-04-02"}
 				, {"id": "6JW_LMqLC-c", "name": "Marble Machine", "attr": ["Wintergaten"], "date": "2017-04-02"}
@@ -6833,6 +6847,7 @@
 				, {"id": "F0r-baX5fUY", "name": "I Saw Three Ships", "date": "2017-11-25"}
 				, {"id": "FtrI4LwxFjg", "name": "Up On The Housetop", "attr": ["Benjamin Hanby"], "date": "2017-11-25"}
 				, {"id": "5HNt9O46qsg", "name": "Santa Claus is Comin' To Town", "attr": ["Bruce Springsteen"], "date": "2017-11-24"}
+				, {"id": "PeDq1Cj2Rk4", "name": "Yule Shoot Your Eye Out", "attr": ["Fall Out Boy"], "multi": 2, "date": "2026-01-10"}
 				, {"id": "xF5peID-UAQ", "name": "In The Bleak Midwinter", "attr": ["Gustav Holst"], "tags": ["Adau"], "date": "2018-12-20"}
 				, {"id": "Pf0_eJI1LzM", "name": "Angels We Have Heard On High", "attr": ["James Chadwick"], "date": "2017-11-25"}
 				, {"id": "j8mkvoAmk90", "name": "Jingle Bells", "attr": ["James Lord Pierpont"], "tags": ["Beta"], "date": "2017-11-24"}
