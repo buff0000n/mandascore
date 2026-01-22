@@ -762,6 +762,7 @@
 			"dbName":"HardRock",
 			"songs":[
 				{"id": "R21MDOx32_U", "name": "Fear Inoculum", "attr": ["Tool"], "tags": ["Perfect"], "date": "2020-03-14"}
+				, {"id": "3Mi3KYKmCZ8", "name": "Invincible", "attr": ["Tool"], "date": "2026-01-22"}
 				, {"id": "-LxI0ZentmQ", "name": "Lateralus", "attr": ["Tool"], "date": "2018-09-08"}
 				, {"id": "1f-50Ur7FNY", "name": "Parabola", "attr": ["Tool"], "tags": ["Druk"], "date": "2018-01-30"}
 				, {"id": "RpIWTA1Ykhc", "name": "Reflection", "attr": ["Tool"], "tags": ["Perfect", "Druk"], "multi": 2, "date": "2022-02-26"}
@@ -2158,6 +2159,7 @@
 				, {"id": "l72NvyW1jGE", "name": "Sucker", "attr": ["Jonas Brothers"], "tags": ["Perfect"], "multi": 5, "date": "2025-04-26"}
 				, {"id": "KNEFBCck4RA", "name": "Golden Hour", "attr": ["JVKE"], "date": "2023-10-05"}
 				, {"id": "0AhofU5VIdE", "name": "Moonlight", "attr": ["Kali Uchis"], "date": "2023-08-10"}
+				, {"id": "wa9LZu-sqq8", "name": "I Like Ur Look", "attr": ["Kim Petras"], "tags": ["Perfect"], "date": "2026-01-22"}
 				, {"id": "JlLfM3utbUc", "name": "Love At First Sight", "attr": ["Kylie Minogue"], "tags": ["Perfect"], "date": "2023-06-29"}
 				, {"id": "KXYtDskfcCI", "name": "1-800-273-8255", "attr": ["Logic"], "tags": ["Perfect"], "date": "2018-09-13"}
 				, {"id": "UHRWRxhVesw", "name": "Contact", "attr": ["Logic"], "tags": ["Adau", "Perfect"], "date": "2018-10-11"}
@@ -2592,6 +2594,7 @@
 			"songs":[
 				{"id": "5Urylb6q9h0", "name": "Corso", "attr": ["Tyler The Creator"], "tags": ["Perfect"], "date": "2021-08-24"}
 				, {"id": "Ozgq29hpCEw", "name": "Earfquake", "attr": ["Tyler The Creator"], "date": "2019-12-14"}
+				, {"id": "vCrDwJuGfDs", "name": "See You Again", "attr": ["Tyler The Creator"], "tags": ["Perfect"], "date": "2026-01-22"}
 				, {"id": "bXjd-6bLc5A", "name": "Yonkers", "attr": ["Tyler The Creator"], "date": "2021-03-27"}
 			]
 		},
@@ -3032,6 +3035,7 @@
 				, {"id": "DiaU1yzOJuk", "name": "Here To Stay", "attr": ["Neffex"], "date": "2020-06-13"}
 				, {"id": "hh-w4uldMJM", "name": "Numb", "attr": ["Neffex"], "tags": ["Perfect"], "date": "2025-02-15"}
 				, {"id": "rd88VG6j4_o", "name": "Rumors", "attr": ["Neffex"], "tags": ["Perfect"], "date": "2024-01-18"}
+				, {"id": "UZk9UA1uly8", "name": "Savage", "attr": ["Neffex"], "tags": ["Perfect"], "date": "2026-01-22"}
 			]
 		},
 		"Panda Eyes":{
@@ -3462,6 +3466,7 @@
 				, {"id": "2XXRjgunsaA", "name": "Rage The Night Away", "attr": ["Steve Aoki"], "date": "2021-03-09"}
 				, {"id": "XAEnQO1jySk", "name": "Running Back", "attr": ["Stevie B"], "tags": ["Perfect"], "date": "2022-05-26"}
 				, {"id": "s0qvzw_ksL0", "name": "Murdercycle", "attr": ["Street Cleaner"], "tags": ["Perfect"], "date": "2020-05-02"}
+				, {"id": "iJykso21u64", "name": "So Bitter", "attr": ["Stxlkin"], "tags": ["Perfect"], "date": "2026-01-22"}
 				, {"id": "xNopKlLVf6c", "name": "ecstacy", "attr": ["suicidal idol"], "multi": 2, "date": "2023-10-12"}
 				, {"id": "Da203fQaD8A", "name": "One/Your Name", "attr": ["Swedish House Mafia"], "date": "2017-06-16"}
 				, {"id": "B6Ixdh24dVM", "name": "Surviving a Smile", "attr": ["Sweet Trip"], "date": "2022-12-01"}
@@ -3708,6 +3713,7 @@
 				, {"id": "idhX2SyXQto", "name": "The Eel Deal / Sewer or Later / Hangin Out", "attr": ["Crash Bandicoot 2"], "tags": ["Perfect"], "date": "2023-11-09"}
 				, {"id": "laRVO1iSLDo", "name": "Bone Yard/Dino Might Music", "attr": ["Crash Bandicoot 3"], "date": "2018-08-09"}
 				, {"id": "Y-p3DMmh-MM", "name": "Warp Room Music", "attr": ["Crash Bandicoot 3"], "date": "2018-01-30"}
+				, {"id": "EXBAE9YQLUY", "name": "Toxic Waste", "attr": ["Crash Bandicoot N. Sane Trilogy: Crash 1"], "tags": ["Druk"], "date": "2026-01-22"}
 				, {"id": "lsGJpUkvGdI", "name": "N. Sanity Beach", "attr": ["Crash Team Racing"], "date": "2018-11-22"}
 			]
 		},
@@ -5451,6 +5457,7 @@
 				, {"id": "MH-Lh5o67RE", "name": "Breathe Again", "attr": ["Carole & Tuesday"], "date": "2021-07-03"}
 				, {"id": "QOa5xRaFTCc", "name": "Come Alive", "attr": ["Chapter 5 ending"], "date": "2025-01-25"}
 				, {"id": "ShuZpdYTjr4", "name": "\u707c\u3051\u843d\u3061\u306a\u3044\u7ffc", "attr": ["Charlotte ending"], "tags": ["Perfect"], "date": "2019-05-18"}
+				, {"id": "goO9tutTK6s", "name": "Pajama Parties no Uta", "attr": ["Chiikawa", "Pajama Parties"], "date": "2026-01-22"}
 				, {"id": "cEArEYCBb8A", "name": "Dango Daikazoku", "attr": ["Clannad"], "tags": ["Perfect", "Sparse", "Beta"], "date": "2017-04-05"}
 				, {"id": "i4j1yNcajvk", "name": "Masquerade", "attr": ["Code Geass"], "date": "2022-03-12"}
 				, {"id": "VlyZ7gxadY0", "name": "World's End", "attr": ["Code Geass opening 5"], "tags": ["Perfect"], "date": "2024-03-28"}
@@ -6445,6 +6452,7 @@
 				, {"id": "FDfLHiYABh0", "name": "Singing in the Rain", "attr": ["JinSoul/\uc9c4\uc194"], "date": "2019-09-05"}
 				, {"id": "tYoFmAIAjHI", "name": "Lonely", "attr": ["Jonghyun/\uc885\ud604"], "date": "2019-10-08"}
 				, {"id": "7hJulRfTWso", "name": "Seven", "attr": ["Jung Kook/\uc815\uad6d ft. Latto"], "tags": ["Perfect"], "date": "2023-09-08"}
+				, {"id": "y3GifHGnBpI", "name": "Touch", "attr": ["Katseye"], "tags": ["Perfect"], "date": "2026-01-22"}
 				, {"id": "gCCcq3ZGF14", "name": "The Tomato Song", "attr": ["Korean Children's Song"], "date": "2020-12-05"}
 				, {"id": "v-E_F9ZS0eo", "name": "Fearless", "attr": ["Le Sserafim"], "date": "2022-10-13"}
 				, {"id": "ozT5Y0Cr7rQ", "name": "Perfect Night", "attr": ["Le Sserafim"], "date": "2024-04-04"}
@@ -6550,6 +6558,7 @@
 			, {"id": "sX2xiPevnFY", "name": "Havana", "attr": ["Camilla Cabello"], "date": "2017-12-05"}
 			, {"id": "l3o9k8-92Hc", "name": "Bombos Y Tarolas", "attr": ["Cartel De Santa"], "date": "2020-09-19"}
 			, {"id": "2ct_uSqxEKQ", "name": "Dem\u00e9ter", "attr": ["Destripando la Historia"], "date": "2020-04-11"}
+			, {"id": "vq-jC9u6TmE", "name": "Fuera Del Planeta Remix", "attr": ["Eloy ft. Zion", "Jowell", "Randy"], "date": "2026-01-22"}
 			, {"id": "cMePELbvZNs", "name": "Cositas Que Haciamos", "attr": ["Farruko"], "date": "2021-11-27"}
 			, {"id": "uGZHREfTXUw", "name": "Botella Tras Botella", "attr": ["Gera MX", "Christian Nodal"], "date": "2021-07-03"}
 			, {"id": "w9KHltqnyfQ", "name": "Botella Tras Botella 2", "attr": ["Gera MX", "Christian Nodal"], "date": "2022-03-05"}
@@ -6677,6 +6686,7 @@
 				, {"id": "Ba8AkoGCdV8", "name": "Help", "attr": ["Kobo Kanaeru"], "date": "2024-05-18"}
 				, {"id": "MWbXGwkT22Y", "name": "Rock In!", "attr": ["Koseki Bijou"], "date": "2025-11-13"}
 				, {"id": "VrjeF0B4xMM", "name": "\u30ea\u30b3\u30fc\u30c0\u30fc\u30d3\u30fc\u30c82", "attr": ["Minato Aqua", "Y8MD"], "date": "2021-02-06"}
+				, {"id": "QOJi97okoog", "name": "mumei", "attr": ["Nanashi Mumei"], "tags": ["Perfect"], "date": "2026-01-22"}
 				, {"id": "1i3Q0weSr9M", "name": "\u30ad\u30b9\u3060\u3051\u3067\u3044\u3044\u304b\u3089\u306d", "attr": ["Nekomata Okayu"], "tags": ["Perfect"], "multi": 2, "date": "2025-03-15"}
 				, {"id": "x1h34E3b4Ig", "name": "\u3082\u3050\u3082\u3050YUMMY\uff01", "attr": ["Nekomata Okayu/\u732b\u53c8\u304a\u304b\u3086"], "date": "2024-10-17"}
 				, {"id": "zpyhGfpok8w", "name": "Sweetest Scarlet", "attr": ["Nerissa"], "date": "2025-11-07"}
