@@ -382,7 +382,6 @@
 				, {"id": "OkiX1uaSbJo", "name": "Superstitious", "attr": ["Stevie Wonder"], "date": "2017-07-02"}
 				, {"id": "FrJcOacbWcQ", "name": "Mr. Roboto", "attr": ["Styx"], "tags": ["Perfect"], "date": "2017-05-28"}
 				, {"id": "vYTyHV3WZfc", "name": "What I Got", "attr": ["Sublime"], "tags": ["Perfect"], "date": "2021-01-16"}
-				, {"id": "p6n1-kIlPtE", "name": "The Jester", "attr": ["Sum 41"], "multi": 2, "date": "2022-10-20"}
 				, {"id": "kaMRwQlpuv4", "name": "Freaks", "attr": ["Surf Curse"], "date": "2021-08-31"}
 				, {"id": "oeQ6xu_EVMw", "name": "Eye of the Tiger", "attr": ["Survivor"], "tags": ["Druk"], "date": "2017-03-28"}
 				, {"id": "ZINDoJTLMfk", "name": "It's My Life", "attr": ["Talk Talk"], "date": "2017-04-07"}
@@ -1261,13 +1260,14 @@
 				, {"id": "kmV9CqeiNes", "name": "When I'm With You", "attr": ["Mystery Skulls"], "date": "2018-04-21"}
 			]
 		},
-		"Nickelbarf":{
+		"Nickelback":{
 			"dbName":"PopRock",
 			"songs":[
 				{"id": "Fo6ZlQpTu1A", "name": "Bottoms Up", "attr": ["Nickelback"], "date": "2018-09-22"}
 				, {"id": "FYJJElwTkZs", "name": "Burn It To The Ground", "attr": ["Nickelback"], "tags": ["Perfect"], "date": "2024-01-18"}
 				, {"id": "zxPJhbDxXa8", "name": "Get 'Em Up", "attr": ["Nickelback"], "date": "2018-11-03"}
 				, {"id": "vR-4u2tj880", "name": "If Today Was Your Last Day", "attr": ["Nickelback"], "tags": ["Perfect"], "date": "2018-08-25"}
+				, {"id": "FFUgb6M_d_w", "name": "She Keeps Me Up", "attr": ["Nickelback"], "tags": ["Perfect"], "multi": 2, "date": "2026-01-29"}
 				, {"id": "1efRsnKGQeU", "name": "Someday", "attr": ["Nickelback"], "multi": 2, "date": "2025-10-31"}
 			]
 		},
@@ -1711,6 +1711,8 @@
 				, {"id": "WsoifELh7QQ", "name": "carwash", "attr": ["striptease"], "tags": ["Perfect"], "date": "2022-01-22"}
 				, {"id": "_X-E_87YHco", "name": "Party Like It's Your Birthday", "attr": ["Studio Killers"], "date": "2018-07-05"}
 				, {"id": "Y85GYkbnnc8", "name": "Sociopath", "attr": ["St\u00e9loiuse"], "date": "2018-03-06"}
+				, {"id": "yKB1E61cN-8", "name": "Fatlip", "attr": ["Sum 41"], "date": "2026-01-29"}
+				, {"id": "p6n1-kIlPtE", "name": "The Jester", "attr": ["Sum 41"], "multi": 2, "date": "2022-10-20"}
 				, {"id": "1gxByvz0KVc", "name": "Oh My My", "attr": ["Summer Kennedy"], "date": "2018-09-01"}
 				, {"id": "HGGWE9Xsg7Y", "name": "Tom's Diner", "attr": ["Suzanne Vega"], "date": "2019-09-12"}
 				, {"id": "NkBFRUWj7qg", "name": "Elephant", "attr": ["Tame Impala"], "tags": ["Perfect"], "date": "2021-08-14"}
@@ -1737,6 +1739,7 @@
 				, {"id": "U2yJ-wygxkY", "name": "Desperate Guys", "attr": ["The Faint"], "date": "2018-03-27"}
 				, {"id": "YoKsRn4i0-E", "name": "Birds Fly (Whisper To A Scream)", "attr": ["The Icicle Works"], "date": "2021-07-17"}
 				, {"id": "Vg0lbUjVONA", "name": "Just Like Honey", "attr": ["The Jesus And Mary Chain"], "tags": ["Epsilon"], "date": "2018-04-21"}
+				, {"id": "TDQons59IJQ", "name": "In Her Eyes", "attr": ["The Jungle Giants"], "date": "2026-01-29"}
 				, {"id": "OScT2fXJpkk", "name": "Mr. Brightside", "attr": ["The Killers"], "date": "2017-05-15"}
 				, {"id": "u_RAWlla20k", "name": "Shadowplay", "attr": ["The Killers"], "tags": ["Perfect"], "date": "2024-04-06"}
 				, {"id": "cpYhFLEp2Vs", "name": "Ophelia", "attr": ["The Lumineers"], "tags": ["Perfect"], "date": "2023-05-11"}
@@ -1763,6 +1766,7 @@
 				, {"id": "d-WMNyoJfJY", "name": "The Adults Are Talking", "attr": ["The Strokes"], "tags": ["Perfect"], "date": "2022-08-25"}
 				, {"id": "NEbz_1-H2w4", "name": "I Love You Like An Alcoholic", "attr": ["The Taxpayers"], "tags": ["Perfect"], "date": "2023-03-23"}
 				, {"id": "i9z1b2xN17A", "name": "Tears", "attr": ["The Tragic Thrills"], "date": "2023-07-27"}
+				, {"id": "CYG4KYJwg2I", "name": "Anarchy Burger (Hold The Government)", "attr": ["The Vandals"], "tags": ["Druk"], "date": "2026-01-29"}
 				, {"id": "hVK4ltzMBVY", "name": "Blue Orchid", "attr": ["The White Stripes"], "date": "2018-10-30"}
 				, {"id": "ujeVXcESBD0", "name": "Seven Nation Army", "attr": ["The White Stripes"], "tags": ["Druk"], "date": "2019-01-24"}
 				, {"id": "OonJOoEqw54", "name": "Ticket", "attr": ["The Wrong Sister"], "tags": ["Perfect"], "date": "2018-10-20"}
@@ -2799,6 +2803,7 @@
 			, {"id": "wRvQbYqMuJg", "name": "Rhythm of the Night", "attr": ["Corona"], "date": "2019-05-04"}
 			, {"id": "iLDzd7X3kfI", "name": "Mr. Vain", "attr": ["Culture Beat"], "tags": ["Perfect"], "multi": 2, "date": "2019-05-02"}
 			, {"id": "-olNt1jyxfI", "name": "Limbo", "attr": ["Daddy Yankee"], "tags": ["Perfect"], "date": "2018-01-23"}
+			, {"id": "yxzdGaifh3E", "name": "I Want Things To Be Beautiful", "attr": ["Devi McCallion"], "tags": ["Horos"], "date": "2026-01-29"}
 			, {"id": "H_WHu4yIFRo", "name": "Danza Kuduro", "attr": ["Don Omar ft. Lucenzo"], "date": "2023-06-29"}
 			, {"id": "1K2Z3XcOVxo", "name": "What Is Love", "attr": ["Haddaway"], "date": "2017-03-26"}
 			, {"id": "EAKa2aWLJkc", "name": "Can't Stop Won't Stop", "attr": ["Ian Post"], "date": "2019-06-27"}
@@ -3910,6 +3915,7 @@
 				, {"id": "CxfnPMBiiX8", "name": "Artificial Shangri-La", "attr": ["Goddess of Victory: Nikke"], "date": "2024-02-01"}
 				, {"id": "ABqynRwu5-Q", "name": "Crystal Chamber Boss / We're Never Giving Up", "attr": ["Goddess of Victory: Nikke"], "date": "2024-10-10"}
 				, {"id": "i-ddY8FFEWU", "name": "You've Always Got Me", "attr": ["Goddess of Victory: Nikke", "LEVEL NINE", "Cosmograph"], "date": "2024-03-15"}
+				, {"id": "JmzsMrVj3qI", "name": "Red Ashe theme song", "attr": ["Goddess of Victory: Nikke"], "date": "2026-01-29"}
 				, {"id": "ucEXXbTkDGg", "name": "Stronghold Land Eater", "attr": ["Goddess of Victory: NIkke"], "tags": ["Perfect"], "date": "2024-10-10"}
 				, {"id": "f1eZisq3Ycw", "name": "The Wings Of Victory", "attr": ["Goddess of Victory: Nikke"], "multi": 2, "date": "2025-01-16"}
 				, {"id": "Ph5ePTnDl2M", "name": "TuNGSTeN / Global Theme Song", "attr": ["Goddess Of Victory: Nikke"], "date": "2024-09-11"}
@@ -6271,6 +6277,7 @@
 			"songs":[
 				{"id": "YN6hid1aJpY", "name": "Chk Chk Boom", "attr": ["Stray Kids"], "date": "2024-09-11"}
 				, {"id": "V_BSIurDCeM", "name": "Get Cool", "attr": ["Stray Kids"], "tags": ["Perfect"], "date": "2020-05-02"}
+				, {"id": "_pz-V5k6cD4", "name": "Want So BAD", "attr": ["Stray Kids"], "date": "2026-01-29"}
 				, {"id": "aIHgWpg3U2Q", "name": "\uac70\ubbf8\uc904(Venom)", "attr": ["Stray Kids"], "date": "2023-01-26"}
 			]
 		},
@@ -6360,6 +6367,7 @@
 				, {"id": "VySdMmxbqTQ", "name": "Endless Tears", "attr": ["Cliff Edge"], "date": "2021-12-18"}
 				, {"id": "Slpuq9A48yw", "name": "\u3068\u3066\u3082\u7d20\u6575\u306a\u516d\u6708\u3067\u3057\u305f", "attr": ["Eight"], "date": "2023-07-20"}
 				, {"id": "j4JVXdUYZK8", "name": "Dramaturgy", "attr": ["Eve"], "date": "2025-05-08"}
+				, {"id": "-Eh7QlqZZy0", "name": "Ghost Avenue/\u30b4\u30fc\u30b9\u30c8\u30a2\u30d9\u30cb\u30e5\u30fc", "attr": ["Eve"], "date": "2026-01-29"}
 				, {"id": "BF2xxDlednI", "name": "Fxxk Boys Get Money", "attr": ["FEMM"], "tags": ["Perfect"], "date": "2018-08-30"}
 				, {"id": "KtPR_9DreEk", "name": "Love Supreme!", "attr": ["fh\u00e1na"], "tags": ["Perfect"], "date": "2024-11-08"}
 				, {"id": "Y7xfe8613r4", "name": "oddloop", "attr": ["Frederick"], "date": "2025-01-16"}
@@ -6380,6 +6388,7 @@
 				, {"id": "M9p5aF9Axks", "name": "Oh No, Oh Yes", "attr": ["Mariya Takeuchi/\u7af9\u5185 \u307e\u308a\u3084"], "date": "2022-05-19"}
 				, {"id": "8ffrT5El1EA", "name": "Plastic Love", "attr": ["Mariya Takeuchi/\u7af9\u5185 \u307e\u308a\u3084"], "date": "2018-07-12"}
 				, {"id": "yF8lkrZN1SE", "name": "Stay With Me", "attr": ["Miki Matsubura"], "date": "2022-01-22"}
+				, {"id": "Ev8_rsOeIRs", "name": "True", "attr": ["Mikuni Shimokawa"], "date": "2026-01-29"}
 				, {"id": "igNCarqTcR8", "name": "world.execute(me);", "attr": ["Mili"], "date": "2019-01-15"}
 				, {"id": "nY8hZPyjzT8", "name": "Natural", "attr": ["Moe Shop", "Ace Hashimoto"], "date": "2021-06-19"}
 				, {"id": "nit5qLtbVSo", "name": "Charm", "attr": ["Moe Shop ft. Puniden"], "date": "2023-03-16"}
