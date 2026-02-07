@@ -597,7 +597,8 @@
 		"Korn":{
 			"dbName":"HardRock",
 			"songs":[
-				{"id": "uKcnllJPCu8", "name": "Coming Undone", "attr": ["Korn"], "tags": ["Druk"], "date": "2017-04-24"}
+				{"id": "fVzid0hggMk", "name": "Black Is The Soul", "attr": ["Korn"], "tags": ["Perfect"], "multi": 2, "date": "2026-02-07"}
+				, {"id": "uKcnllJPCu8", "name": "Coming Undone", "attr": ["Korn"], "tags": ["Druk"], "date": "2017-04-24"}
 				, {"id": "Kp3WYs7iIkU", "name": "Twisted Transistor", "attr": ["Korn"], "date": "2018-08-21"}
 				, {"id": "VeofIvjPq9E", "name": "Word Up", "attr": ["Korn"], "date": "2017-05-05"}
 			]
@@ -723,6 +724,7 @@
 				, {"id": "BedpROZhlHo", "name": "Chokehold", "attr": ["Sleep Token"], "tags": ["Perfect"], "date": "2024-01-25"}
 				, {"id": "Qj0ZLdgd-QQ", "name": "DYWTYLM", "attr": ["Sleep Token"], "date": "2023-05-25"}
 				, {"id": "_sHZwoZfKng", "name": "Euclid", "attr": ["Sleep Token"], "date": "2025-01-11"}
+				, {"id": "X9caiYHsCvg", "name": "Gethsemane", "attr": ["Sleep Token"], "tags": ["Perfect"], "multi": 3, "date": "2026-02-07"}
 				, {"id": "_9L-UbVN7Ho", "name": "The Summoning", "attr": ["Sleep Token"], "date": "2023-04-23"}
 			]
 		},
@@ -2168,6 +2170,7 @@
 				, {"id": "KXYtDskfcCI", "name": "1-800-273-8255", "attr": ["Logic"], "tags": ["Perfect"], "date": "2018-09-13"}
 				, {"id": "UHRWRxhVesw", "name": "Contact", "attr": ["Logic"], "tags": ["Adau", "Perfect"], "date": "2018-10-11"}
 				, {"id": "aO8im4uqZhE", "name": "Make You Mine", "attr": ["Madison Beer"], "date": "2024-06-20"}
+				, {"id": "3CFlc49Yn7s", "name": "Yes Baby", "attr": ["Madison Beer"], "tags": ["Perfect"], "date": "2026-02-07"}
 				, {"id": "In7XiFdOyeE", "name": "How to Get Physical", "attr": ["Magdelena Bay"], "tags": ["Perfect"], "date": "2024-02-23"}
 				, {"id": "0uh1lk5BmxA", "name": "Me Too", "attr": ["Meghan Trainor"], "date": "2025-11-13"}
 				, {"id": "2ECIb9Blnmk", "name": "Psycho", "attr": ["Mia Rodriguez"], "tags": ["Perfect"], "date": "2022-08-11"}
@@ -2918,6 +2921,14 @@
 				, {"id": "4Svh7MC-1rY", "name": "The Big Jump", "attr": ["The Chemical Brothers"], "tags": ["Perfect"], "date": "2021-04-03"}
 			]
 		},
+		"Chvrches":{
+			"dbName":"Electronic",
+			"songs":[
+				{"id": "uz0Rjb4dc0w", "name": "Asking For A Friend", "attr": ["Chvrches"], "tags": ["Perfect Melod"], "date": "2026-02-07"}
+				, {"id": "WChqR1ZAGjs", "name": "Never Say Die", "attr": ["Chvrches"], "tags": ["Gamma", "Perfect"], "date": "2018-06-05"}
+				, {"id": "0j8LX549vis", "name": "The Mother We Share", "attr": ["Chvrches"], "tags": ["Perfect"], "date": "2017-05-18"}
+			]
+		},
 		"Daft Punk":{
 			"dbName":"Electronic",
 			"songs":[
@@ -3256,8 +3267,6 @@
 				, {"id": "cagChzrYB2U", "name": "No Promises", "attr": ["Cheat Codes"], "date": "2017-07-10"}
 				, {"id": "xAij-UPmPFE", "name": "No Promises - drop", "attr": ["Cheat Codes"], "date": "2017-09-26"}
 				, {"id": "4peksMmpxaY", "name": "The Days", "attr": ["Chrystal"], "date": "2025-08-21"}
-				, {"id": "WChqR1ZAGjs", "name": "Never Say Die", "attr": ["Chvrches"], "tags": ["Gamma", "Perfect"], "date": "2018-06-05"}
-				, {"id": "0j8LX549vis", "name": "The Mother We Share", "attr": ["Chvrches"], "tags": ["Perfect"], "date": "2017-05-18"}
 				, {"id": "zRthAiXVah0", "name": "Link!", "attr": ["Codet ft. RXTKY"], "date": "2025-04-05"}
 				, {"id": "Gt0uBz4-deM", "name": "Lobotomy", "attr": ["Combichrist"], "date": "2024-04-11"}
 				, {"id": "by7yVXOvTGg", "name": "Dancing Lorea", "attr": ["Costello"], "date": "2021-08-31"}
@@ -3318,6 +3327,7 @@
 				, {"id": "UhMcWfh7YWY", "name": "Soulmother, I Love You", "attr": ["Getter"], "date": "2017-04-22"}
 				, {"id": "_ccKK34nUwk", "name": "Bleed", "attr": ["GGA Magree"], "tags": ["Perfect"], "multi": 2, "date": "2025-09-06"}
 				, {"id": "EFILSfEa17U", "name": "Reign In Hell", "attr": ["GosT"], "date": "2018-06-19"}
+				, {"id": "Qk2W1XCVCaU", "name": "When You & Me Dance", "attr": ["Grabbitz"], "tags": ["Perfect"], "date": "2026-02-07"}
 				, {"id": "y-DeFmxivXY", "name": "Blood // Water", "attr": ["grandson"], "date": "2018-03-22"}
 				, {"id": "RFAdXLi_qoo", "name": "Never Sleep", "attr": ["Gunnar Olsen"], "date": "2019-03-05"}
 				, {"id": "gEp321_qHgA", "name": "Tech Noir", "attr": ["GUNSHIP"], "date": "2022-01-22"}
@@ -4565,6 +4575,7 @@
 					, {"id": "VoJsPh5B_j0", "name": "Guardian Tales main theme song", "date": "2021-05-01"}
 					, {"id": "EvAuzRroVz0", "name": "HuniePop main theme", "tags": ["Perfect"], "date": "2018-02-27"}
 					, {"id": "J_GMoxT6DpU", "name": "Killer Instinct theme song", "date": "2018-03-03"}
+					, {"id": "rMJ4m4CoSyU", "name": "Lost Planet 2 Main Menu", "tags": ["Perfect"], "date": "2026-02-07"}
 					, {"id": "LHHtLLl6Wd8", "name": "Luftrausers main theme", "tags": ["Perfect"], "date": "2017-11-02"}
 					, {"id": "RZyLbqMUoEs", "name": "One Must Fall 2097 Theme", "date": "2017-08-16"}
 					, {"id": "o1PE6MugqKI", "name": "River City Girls file select theme", "date": "2020-02-08"}
@@ -4780,6 +4791,7 @@
 					, {"id": "EsGCkp2-ORI", "name": "S.T.A.L.K.E.R.: Clear Sky", "attr": ["Bandit Radio"], "date": "2017-04-07"}
 					, {"id": "9X3nwYBBBBk", "name": "A Proper Story", "attr": ["Bastion"], "date": "2017-08-17"}
 					, {"id": "Ko4scjwT_I8", "name": "Tomorrow is Mine", "attr": ["Bayonetta 2"], "multi": 2, "date": "2019-03-19"}
+					, {"id": "OtZco5LCVf0", "name": "Radio", "attr": ["Bershy", "Dispatch"], "date": "2026-02-07"}
 					, {"id": "cEMafxLpClE", "name": "condensed milk", "attr": ["Bomb Rush Cyberfunk", "condensed milk chan"], "date": "2023-12-14"}
 					, {"id": "5a-__75gz98", "name": "The Answer", "attr": ["Bran Van 3000", "Jet Set Radio"], "date": "2020-01-11"}
 					, {"id": "2blCAW25Asg", "name": "The Setup", "attr": ["Bully"], "date": "2019-10-26"}
@@ -5817,6 +5829,7 @@
 				, {"id": "onVl8ilqdNE", "name": "He Mele No Lilo", "attr": ["Lilo & Stitch"], "date": "2021-03-06"}
 				, {"id": "wQgr87K7TtQ", "name": "We Are W.I.T.C.H.", "attr": ["Marion Raven", "W.I.T.C.H."], "tags": ["Perfect"], "date": "2017-08-20"}
 				, {"id": "fWXu9sOVvNA", "name": "Intro", "attr": ["Men In Black The Series"], "date": "2017-04-27"}
+				, {"id": "YslwdvSxY6g", "name": "Shiny", "attr": ["Moana"], "date": "2026-02-07"}
 				, {"id": "f1D9PcoGlcY", "name": "You're Welcome", "attr": ["Moana"], "date": "2018-04-19"}
 				, {"id": "t6w0QUADY4o", "name": "Gary Vs. David", "attr": ["Regular Show"], "tags": ["Epsilon"], "date": "2018-02-20"}
 				, {"id": "J0gXsXByC7w", "name": "Summertime Lovin'", "attr": ["Regular Show"], "multi": 2, "date": "2019-08-06"}
@@ -6484,10 +6497,12 @@
 				, {"id": "eRjx7ZzrfaA", "name": "Secret/\ube44\ubc00\uc774\uc57c", "attr": ["WJSN/Cosmic Girls/\uc6b0\uc8fc\uc18c\ub140"], "date": "2018-09-06"}
 				, {"id": "he5GVnI1wP8", "name": "Tell Me", "attr": ["Wonder Girls"], "tags": ["Perfect"], "date": "2023-08-24"}
 				, {"id": "UFAXYzosWzo", "name": "Boogie Up", "attr": ["WSJN/\uc6b0\uc8fc\uc18c\ub140"], "date": "2019-08-06"}
+				, {"id": "6kBXBV19oIc", "name": "Hypnotize", "attr": ["XG"], "date": "2026-02-07"}
 				, {"id": "Jp15Ry9rW-0", "name": "Left Right", "attr": ["XG"], "date": "2023-03-16"}
 				, {"id": "eGISzZhOQBU", "name": "Tricky House/\ub3c4\uae68\ube44\uc9d1", "attr": ["xikers/\uc2f8\uc774\ucee4\uc2a4"], "tags": ["Perfect"], "date": "2024-02-08"}
 				, {"id": "Mdjuo4F3t1w", "name": "Lxxk 2 U", "attr": ["Yena"], "date": "2022-10-27"}
 				, {"id": "DBifJJhK730", "name": "Kill The Romeo", "attr": ["ZEROBASEONE"], "date": "2025-01-25"}
+				, {"id": "rVIukRNDW7U", "name": "Mayday", "attr": ["\ubc15\uc7ac\ubc94/Jay Park"], "tags": ["Perfect"], "date": "2026-02-07"}
 			]
 		},
 		"Misc Vocaloid/UTAUloid":{
