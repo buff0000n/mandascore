@@ -1942,7 +1942,8 @@
 		"Katy Perry":{
 			"dbName":"Pop",
 			"songs":[
-				{"id": "a6K8HD0NVHA", "name": "California Gurls", "attr": ["Katy Perry"], "tags": ["Perfect"], "multi": 2, "date": "2018-05-08"}
+				{"id": "sHuC9sCF9zM", "name": "Bandaids", "attr": ["Katy Perry"], "tags": ["Perfect"], "multi": 2, "date": "2026-02-14"}
+				, {"id": "a6K8HD0NVHA", "name": "California Gurls", "attr": ["Katy Perry"], "tags": ["Perfect"], "multi": 2, "date": "2018-05-08"}
 				, {"id": "6iqAxDooNPo", "name": "Cry About It Later", "attr": ["Katy Perry"], "tags": ["Perfect"], "date": "2021-03-31"}
 				, {"id": "I5J-6YRHYSA", "name": "E.T.", "attr": ["Katy Perry"], "date": "2018-05-29"}
 				, {"id": "3TBHe1QG3-w", "name": "Swish Swish", "attr": ["Katy Perry"], "date": "2017-09-26"}
@@ -2116,8 +2117,7 @@
 		"Tove Lo":{
 			"dbName":"Pop",
 			"songs":[
-				{"id": "Z4FTQmXyvSc", "name": "Mayores", "attr": ["Becky G", "Bad Bunny"], "date": "2017-12-02"}
-				, {"id": "vT7eOYVeImc", "name": "Call On Me", "attr": ["Tove Lo"], "date": "2022-12-08"}
+				{"id": "vT7eOYVeImc", "name": "Call On Me", "attr": ["Tove Lo"], "date": "2022-12-08"}
 				, {"id": "ykAVMmvgnCs", "name": "Cool Girl", "attr": ["Tove Lo"], "date": "2017-05-08"}
 				, {"id": "izCzru072uU", "name": "Disco Tits", "attr": ["Tove Lo"], "date": "2020-04-04"}
 				, {"id": "4HlHa1xBEw8", "name": "Habits/Stay High", "attr": ["Tove Lo"], "tags": ["Perfect"], "date": "2017-08-19"}
@@ -2409,7 +2409,9 @@
 				{"id": "Alg1G2edyfw", "name": "Mia", "attr": ["Bad Bunny ft. Drake"], "date": "2019-07-18"}
 				, {"id": "qOgWGF-F5KU", "name": "Moscow Mule", "attr": ["Bad Bunny"], "tags": ["Gamma"], "date": "2023-08-17"}
 				, {"id": "w8H3FJa-v70", "name": "Neverita", "attr": ["Bad Bunny"], "tags": ["Perfect"], "date": "2023-05-11"}
+				, {"id": "piQziRu4sgM", "name": "Vete", "attr": ["Bad Bunny"], "date": "2026-02-14"}
 				, {"id": "e7XjqgQF7E8", "name": "D\u00e1kiti", "attr": ["Bad Bunny x Jhay Cortez"], "tags": ["Gamma"], "date": "2024-06-06"}
+				, {"id": "Z4FTQmXyvSc", "name": "Mayores", "attr": ["Becky G", "Bad Bunny"], "date": "2017-12-02"}
 				, {"id": "YFeVd0IpXwI", "name": "Vuelve", "attr": ["Daddy Yankee & Bad Bunny"], "date": "2022-09-01"}
 			]
 		},
@@ -4126,7 +4128,8 @@
 				, {"id": "RI-a71pK6JI", "name": "Dr. Wily's Castle", "attr": ["Mega Man 2"], "date": "2017-03-27"}
 				, {"id": "BoVQFGD7h04", "name": "Woodman theme", "attr": ["Mega Man 2"], "date": "2018-05-22"}
 				, {"id": "5T7t5VXUfls", "name": "Weapon Get", "attr": ["Mega Man 3"], "date": "2018-08-28"}
-				, {"id": "4oY65vDx6rw", "name": "Tengu Man -", "attr": ["Mega Man 8: Playstation"], "date": "2017-09-21"}
+				, {"id": "BBcRIib6wGU", "name": "Tengu Man", "attr": ["Mega Man 8", "Saturn Version"], "date": "2026-02-14"}
+				, {"id": "4oY65vDx6rw", "name": "Tengu Man", "attr": ["Mega Man 8: Playstation"], "date": "2017-09-21"}
 				, {"id": "RV_hed81ec4", "name": "Magma Man / Magma Burning", "attr": ["Mega Man 9"], "tags": ["Perfect"], "date": "2022-12-01"}
 				, {"id": "rgpWjmle4Os", "name": "Network Is Spreading/Internet Theme", "attr": ["Mega Man Battle Network 3"], "tags": ["Sparse"], "date": "2019-03-28"}
 				, {"id": "MGICZRisfMU", "name": "Proof Of Courage", "attr": ["Mega Man Battle Network"], "date": "2018-04-26"}
@@ -5413,6 +5416,7 @@
 				, {"id": "kEYDbCLRjRA", "name": "Kyoukai no Kanata ending", "date": "2018-10-13"}
 				, {"id": "hn-n-yxMjFY", "name": "Love Hime opening", "date": "2018-05-29"}
 				, {"id": "arbf3Vdpatk", "name": "Lucky Star opening", "date": "2018-03-20"}
+				, {"id": "XxkBEq1pz_4", "name": "Lupin III Theme", "tags": ["Perfect"], "date": "2026-02-14"}
 				, {"id": "zk7Jvvcq0DU", "name": "Made in Abyss opening", "date": "2018-08-14"}
 				, {"id": "vvFn_JTxau4", "name": "Megalo Box ending", "date": "2018-05-26"}
 				, {"id": "gHUliraeZts", "name": "Megalo Box main theme", "date": "2018-05-15"}
