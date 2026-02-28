@@ -1732,6 +1732,7 @@
 				, {"id": "x74Ow2-8uXY", "name": "Unconditional", "attr": ["The Bravery"], "date": "2017-12-14"}
 				, {"id": "qvLgkTfeIvQ", "name": "Angel With A Shotgun", "attr": ["The Cab"], "tags": ["Perfect"], "date": "2018-05-29"}
 				, {"id": "yl9uLQfrdaQ", "name": "Down At the 303", "attr": ["The Cat Empire"], "date": "2018-08-18"}
+				, {"id": "b9WGt-bmvTE", "name": "Fear & Delight", "attr": ["The Correspondents"], "multi": 2, "date": "2026-02-28"}
 				, {"id": "1ImKRYbIFZY", "name": "Zombie", "attr": ["The Cranberries"], "date": "2018-01-30"}
 				, {"id": "m_8a4bxS-O8", "name": "Painted On My Heart", "attr": ["The Cult"], "date": "2018-08-21"}
 				, {"id": "mmclHlXiKP8", "name": "The Lovecats", "attr": ["The Cure"], "date": "2023-09-28"}
@@ -4391,6 +4392,7 @@
 				, {"id": "l8qBS08XaHM", "name": "A.I.R. Mini Boss theme", "attr": ["Sonic The Hedgehog 3"], "date": "2020-05-23"}
 				, {"id": "Le7wKcgUe5g", "name": "Stardust Speedway \"P\" mix", "attr": ["Sonic The Hedgehog CD"], "tags": ["Perfect"], "date": "2022-09-08"}
 				, {"id": "88WL034SJug", "name": "Dreams of Absolution/Silver's theme song", "attr": ["Sonic The Hedgehog"], "date": "2017-04-24"}
+				, {"id": "rsHCi2hOT8s", "name": "Toxic Caves", "attr": ["Sonic The Hedgehog Spinball"], "date": "2026-02-28"}
 				, {"id": "P8p4OOvQW1k", "name": "Chun Nab Night Music", "attr": ["Sonic Unleashed"], "date": "2017-08-11"}
 				, {"id": "lp76-gWUGkI", "name": "Endless Possibilities", "attr": ["Sonic Unleashed"], "date": "2017-03-30"}
 				, {"id": "oi5uOXmK47k", "name": "Sonic X Theme Song", "attr": ["Sonic X"], "tags": ["Perfect"], "date": "2017-04-21"}
@@ -4725,6 +4727,7 @@
 					, {"id": "kjQ7Z8Z8QSQ", "name": "Piano Hero", "attr": ["Raycord Legends"], "date": "2018-02-27"}
 					, {"id": "NFVI1NGgrzg", "name": "Yellow Line", "attr": ["Redline", "James Shimoji"], "date": "2020-09-05"}
 					, {"id": "GUVQmF0yrDE", "name": "Buggie Running Beeps", "attr": ["Rez"], "date": "2019-08-13"}
+					, {"id": "dVQvbp2GDWA", "name": "The Crusher", "attr": ["Rise of the Robots"], "date": "2026-02-28"}
 					, {"id": "m-9mW1WLo5s", "name": "The Rain Formerly Known As Purple", "attr": ["Risk Of Rain 2"], "date": "2022-05-12"}
 					, {"id": "S8EA9tWDiNM", "name": "On Parade", "attr": ["Ristar The Shooting Star", "Round 4-2"], "tags": ["Perfect"], "date": "2018-03-03"}
 					, {"id": "7ps8ECs7wFM", "name": "Relentless", "attr": ["River City Girls"], "date": "2019-11-02"}
@@ -4773,6 +4776,7 @@
 					, {"id": "IP4C-e34a8Q", "name": "Zed's Theme", "attr": ["Wild Arms"], "date": "2018-04-17"}
 					, {"id": "F3GA5IkLVJw", "name": "Shizuki Soujuro", "attr": ["Witch on the Holy Night", "Hideyuki Fukasawa"], "date": "2024-08-08"}
 					, {"id": "TKPkNrXRNoc", "name": "Duty Calls", "attr": ["World Of Warships"], "date": "2023-07-20"}
+					, {"id": "Lgx5lpQuWlY", "name": "Vacant Interference", "attr": ["Ys Seven"], "date": "2026-02-28"}
 					, {"id": "WYsYAYPkRB4", "name": "Derailed Order - Night / Cretan Hollow Stage", "attr": ["Zenless Zone Zero"], "date": "2024-09-05"}
 					, {"id": "15BgszLzMzk", "name": "Despair", "attr": ["ZeroRanger"], "date": "2019-03-23"}
 					, {"id": "SmuF6D2Xyag", "name": "Beyond the Bounds", "attr": ["Zone of Enders 2 theme song"], "date": "2017-05-05"}
@@ -4830,6 +4834,7 @@
 					, {"id": "VQLGiqKrgCQ", "name": "Masked Dedede theme", "attr": ["Kirby Triple Deluxe"], "date": "2017-06-18"}
 					, {"id": "dcrUBDho00M", "name": "Where We Come From", "attr": ["Lecrae", "Spider Man: Miles Morales"], "tags": ["Perfect"], "date": "2024-07-11"}
 					, {"id": "pjYSw8REpaI", "name": "Hard Rain Horde Theme", "attr": ["Left 4 Dead 2"], "date": "2022-10-27"}
+					, {"id": "l8fEt2UyjVs", "name": "Flight Mode", "attr": ["Luna Snow", "Marvel Rivals"], "date": "2026-02-28"}
 					, {"id": "6UWC_vDiJNw", "name": "Temple Of Time", "attr": ["Maplestory"], "date": "2018-03-13"}
 					, {"id": "4sE2sPRCK-M", "name": "Rushing", "attr": ["Marathon"], "tags": ["Perfect"], "date": "2024-02-14"}
 					, {"id": "HGwHfSfERN0", "name": "Calm", "attr": ["Minecraft Main Theme"], "tags": ["Sparse"], "date": "2017-05-13"}
@@ -5857,6 +5862,7 @@
 				, {"id": "gKdrDXnCXpY", "name": "Pacific Rim", "date": "2017-03-26"}
 				, {"id": "leoCyaZyCeo", "name": "Showdown in Little Tokyo Theme Song", "date": "2023-03-09"}
 				, {"id": "3TKxSz1ke0Y", "name": "The Batman 2022 Main Theme", "date": "2023-02-02"}
+				, {"id": "o0ULzVImNVk", "name": "The Dark Crystal Main Theme", "date": "2026-02-28"}
 				, {"id": "S8yQ0fyi5AY", "name": "The Neverending Story theme", "date": "2017-11-02"}
 				, {"id": "N2ZVVyMopEo", "name": "Teenage Mutant Ninja Turtles theme", "attr": ["1990"], "date": "2017-12-09"}
 				, {"id": "mdqKck3JTfg", "name": "Lava Chicken", "attr": ["A Minecraft Movie"], "date": "2025-07-03"}
