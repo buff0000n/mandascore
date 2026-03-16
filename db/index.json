@@ -725,6 +725,7 @@
 				, {"id": "Qj0ZLdgd-QQ", "name": "DYWTYLM", "attr": ["Sleep Token"], "date": "2023-05-25"}
 				, {"id": "_sHZwoZfKng", "name": "Euclid", "attr": ["Sleep Token"], "date": "2025-01-11"}
 				, {"id": "X9caiYHsCvg", "name": "Gethsemane", "attr": ["Sleep Token"], "tags": ["Perfect"], "multi": 3, "date": "2026-02-07"}
+				, {"id": "gbUheNm_d_Q", "name": "Jaws", "attr": ["Sleep Token"], "tags": ["Perfect"], "date": "2026-03-12"}
 				, {"id": "_9L-UbVN7Ho", "name": "The Summoning", "attr": ["Sleep Token"], "date": "2023-04-23"}
 			]
 		},
@@ -2006,7 +2007,8 @@
 		"Michael Jackson":{
 			"dbName":"Pop",
 			"songs":[
-				{"id": "jsZX269ZlAY", "name": "Bad", "attr": ["Michael Jackson"], "date": "2018-09-11"}
+				{"id": "x2M8CKoohvQ", "name": "Bang Bang", "attr": ["K'Naan ft. Adam Levine"], "tags": ["Perfect"], "date": "2026-03-12"}
+				, {"id": "jsZX269ZlAY", "name": "Bad", "attr": ["Michael Jackson"], "date": "2018-09-11"}
 				, {"id": "HpDR1SF2JQk", "name": "Beat It", "attr": ["Michael Jackson"], "tags": ["Perfect"], "date": "2019-03-21"}
 				, {"id": "rv3uomq4Oas", "name": "Beat It - break", "attr": ["Michael Jackson"], "tags": ["Perfect"], "date": "2019-03-23"}
 				, {"id": "YTvR4UOqwpA", "name": "Billie Jean", "attr": ["Michael Jackson"], "tags": ["Sparse"], "date": "2018-03-24"}
@@ -2581,7 +2583,7 @@
 		"The Black Eyed Peas":{
 			"dbName":"RapHippityHop",
 			"songs":[
-				{"id": "q97pxaeHLa8", "name": "Meet Me Halfway", "attr": ["Black Eyed Peas"], "tags": ["Plogg", "Perfect"], "date": "2017-11-04"}
+				{"id": "hh7Z6GigRPc", "name": "Meet Me Halfway", "attr": ["Black Eyed Peas"], "tags": ["Perfect"], "date": "2026-03-12"}
 				, {"id": "au1975_rdlg", "name": "Big Love", "attr": ["The Black Eyed Peas"], "date": "2018-12-01"}
 				, {"id": "calDX-kAPmA", "name": "I Gotta Feeling", "attr": ["The Black Eyed Peas"], "date": "2019-05-18"}
 				, {"id": "e-DGT4vZdbg", "name": "Let's Get It Started", "attr": ["The Black Eyed Peas"], "date": "2018-12-01"}
@@ -4348,6 +4350,7 @@
 			"dbName":"Videogames",
 			"songs":[
 				{"id": "hD0YdKjAGsI", "name": "All Hail Shadow", "attr": ["Crush 40", "Sonic the Hedgehog 2006"], "tags": ["Druk"], "date": "2017-04-05"}
+				, {"id": "P7JEaz4uC8s", "name": "Sonic X Theme Song", "attr": ["Japanese Version"], "date": "2026-03-12"}
 				, {"id": "c5joz78JXIw", "name": "I am... All of Me", "attr": ["Shadow The Hedgehog", "Crush 40"], "date": "2018-11-13"}
 				, {"id": "gfG1brTGkiY", "name": "Lava Shelter", "attr": ["Shadow the Hedgehog"], "tags": ["Druk"], "date": "2017-10-21"}
 				, {"id": "2FoDjZm4ABg", "name": "Dead Batteries/Flying Battery", "attr": ["SnappleMan", "Sonic & Knuckles"], "date": "2017-08-27"}
@@ -4805,6 +4808,7 @@
 					, {"id": "PAZ212-rezw", "name": "Portal 2 Ending OST", "attr": ["Cara Mia Addio"], "tags": ["Adau"], "date": "2017-04-13"}
 					, {"id": "0NBDQ47_934", "name": "Lyin' 2 Me", "attr": ["CG5", "Among Us"], "date": "2021-02-20"}
 					, {"id": "3Pmm2SWKXwU", "name": "Baba Yetu", "attr": ["Civilization IV"], "date": "2023-01-19"}
+					, {"id": "atqCi4uxQSQ", "name": "Flying Waters  - Rain From The Ground", "attr": ["Clair Obscur: Expedition 33"], "date": "2026-03-12"}
 					, {"id": "jNS8_0yA7FU", "name": "Gestral Summer Party", "attr": ["Clair Obscur: Expedition 33"], "date": "2025-12-20"}
 					, {"id": "XqF7RkgBuVc", "name": "Gwyn", "attr": ["Dark Souls Remix", "Alex Roe"], "tags": ["Sparse"], "date": "2017-04-20"}
 					, {"id": "ksewQReaCFY", "name": "Kara Main Theme", "attr": ["Detroit: Become Human"], "date": "2018-09-23"}
@@ -4837,6 +4841,7 @@
 					, {"id": "l8fEt2UyjVs", "name": "Flight Mode", "attr": ["Luna Snow", "Marvel Rivals"], "date": "2026-02-28"}
 					, {"id": "6UWC_vDiJNw", "name": "Temple Of Time", "attr": ["Maplestory"], "date": "2018-03-13"}
 					, {"id": "4sE2sPRCK-M", "name": "Rushing", "attr": ["Marathon"], "tags": ["Perfect"], "date": "2024-02-14"}
+					, {"id": "9EKHlDsNXL4", "name": "Chumbucket Kitty", "attr": ["Mewgenics"], "tags": ["Filled"], "date": "2026-03-12"}
 					, {"id": "HGwHfSfERN0", "name": "Calm", "attr": ["Minecraft Main Theme"], "tags": ["Sparse"], "date": "2017-05-13"}
 					, {"id": "gXnAmznBmfw", "name": "Pigstep", "attr": ["Minecraft"], "tags": ["Perfect", "Plogg"], "date": "2022-12-15"}
 					, {"id": "fZ_kcusbO-A", "name": "Jax Sax", "attr": ["Mortal Kombat 11"], "date": "2020-06-27"}
@@ -6511,6 +6516,7 @@
 				, {"id": "Jp15Ry9rW-0", "name": "Left Right", "attr": ["XG"], "date": "2023-03-16"}
 				, {"id": "eGISzZhOQBU", "name": "Tricky House/\ub3c4\uae68\ube44\uc9d1", "attr": ["xikers/\uc2f8\uc774\ucee4\uc2a4"], "tags": ["Perfect"], "date": "2024-02-08"}
 				, {"id": "Mdjuo4F3t1w", "name": "Lxxk 2 U", "attr": ["Yena"], "date": "2022-10-27"}
+				, {"id": "G7zlOROFqRg", "name": "Yng & Rich Freestyle", "attr": ["Yng & Rich Records"], "date": "2026-03-12"}
 				, {"id": "DBifJJhK730", "name": "Kill The Romeo", "attr": ["ZEROBASEONE"], "date": "2025-01-25"}
 				, {"id": "rVIukRNDW7U", "name": "Mayday", "attr": ["\ubc15\uc7ac\ubc94/Jay Park"], "tags": ["Perfect"], "date": "2026-02-07"}
 			]
@@ -6650,7 +6656,8 @@
 		"Joji":{
 			"dbName":"Internet",
 			"songs":[
-				{"id": "LZC-r9cbefY", "name": "Can't Get Over You", "attr": ["Joji ft. Clams Casino"], "date": "2021-07-17"}
+				{"id": "EVfwh1op940", "name": "DYKILY", "attr": ["Joji"], "date": "2026-03-12"}
+				, {"id": "LZC-r9cbefY", "name": "Can't Get Over You", "attr": ["Joji ft. Clams Casino"], "date": "2021-07-17"}
 				, {"id": "TxOFs2lNbZU", "name": "Gimme Love", "attr": ["Joji"], "tags": ["Perfect"], "date": "2021-05-12"}
 				, {"id": "LLQj3bg6ShM", "name": "Night Rider", "attr": ["Joji"], "tags": ["Perfect"], "date": "2025-12-20"}
 				, {"id": "5UNjHhBuuvo", "name": "Sanctuary", "attr": ["Joji"], "tags": ["Perfect"], "multi": 2, "date": "2019-08-01"}
