@@ -145,23 +145,22 @@ class Library {
                 Date Statistics
                 <span class="tooltiptextbottom">Show statistics on publish dates</span>
             </div>
-            <!-- todo the reverse search sucks
+            <!-- todo the reverse search sucks -->
             <div class="button searchButton tooltip">
                 <img class="imgButton" src="img/icon-search.png" srcset="img2x/icon-search.png 2x" alt="Reverse Search"/>
                 Reverse Search
                 <span class="tooltiptextbottom">Reverse search for the current song in the library</span>
             </div>
-            -->
         `;
 
         div.innerHTML = html;
-        /*
+
         // todo the reverse search sucks
         getFirstChild(div, "searchButton").addEventListener("click", (e) => {
             clearMenus();
             this.matchSearch(e);
         });
-        */
+
         // expand all button
         getFirstChild(div, "expandButton").addEventListener("click", (e) => {
             this.updateCatCounts(true, true);
@@ -1078,6 +1077,7 @@ class Library {
             for (var i = 0; i < songList.length; i++) {
                 // parse to a song object
                 var songObject = new Song();
+                if (songList[i].startsWith("playlist=")) continue;
                 songObject.parseChatLink(songList[i]);
                 // calculate a match value
                 // match in both directions and add the result.  Why not, I'm making this up as I go anyway.
