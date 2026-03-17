@@ -13,6 +13,9 @@ class Library {
         // flag for when initialization is done
         this.initialized = false;
 
+        // selected song entry
+        this.selectedSongEntry = null;
+
         // search job state
         // we can't just do the whole search in one event handler because it interrupts audio playback for some
         // unknown reason when it transitions from some filter back to no filter.  So split the search into batches.
@@ -37,6 +40,9 @@ class Library {
         this.filterTagList = [];
         this.filterTagListChanged = false;
 
+        // preset string (<song id>)
+        this.preset = null;
+        this.presetSongEntry = null;
 
         // search queue prototype, we only need to build this once
         this.searchQueuePrototype = null;
@@ -334,6 +340,11 @@ class Library {
             // start a search immediately
             this.startWordSearch(this.searchWords, true);
         }
+        // check if we have a preset
+        if (this.preset) {
+            // load the preset song
+            this.loadSongById(this.preset, true);
+        }
     }
 
     buildNoResultMessage() {
@@ -377,6 +388,7 @@ class Library {
     buildSongDiv(songEntry, dbName) {
         // build the div for displaying a song entry
         var songDiv = document.createElement("div");
+        var tagSpacer = '&nbsp;';
         songDiv.className = "libSong";
         var label = "<strong>" + songEntry.name + "</strong>";
         if (songEntry.attr) {
@@ -386,19 +398,21 @@ class Library {
             for (i = 0; i < songEntry.tags.length; i++) {
                 var tag = songEntry.tags[i];
                 if (tag == "Filled") {
-                    label = label + '<span class="tagFilled">(' + tag + ')</span>';
+                    label = label + tagSpacer + '<span class="tagFilled">(' + tag + ')</span>';
                 } else if (tag == "Sparse") {
-                    label = label + '<span class="tagSparse">(' + tag + ')</span>';
+                    label = label + tagSpacer + '<span class="tagSparse">(' + tag + ')</span>';
                 } else if (tag == "Perfect") {
-                    label = label + '<span class="tagPerfect">(' + tag + ')</span>';
+                    label = label + tagSpacer + '<span class="tagPerfect">(' + tag + ')</span>';
                 } else if (tag in instrumentDisplayNameToPack) {
-                    label = label + '<span class="tagInstrument">(' + tag + ')</span>';
+                    label = label + tagSpacer + '<span class="tagInstrument">(' + tag + ')</span>';
+                } else if (tag == "All") {
+                    label = label + tagSpacer + '<span class="tagInstrumentAll">(' + tag + ')</span>';
                 }
             }
         }
         // generate multi-shot tag and UI element from the multi count
         if (songEntry.multi && songEntry.multi > 1) {
-            label = label + '<span class="tagShot">(' + shotTags[songEntry.multi - 2] + ')</span>';
+            label = label + tagSpacer + '<span class="tagShot">(' + shotTags[songEntry.multi - 2] + ')</span>';
             if (!songEntry.tags) {
                 songEntry.tags = [];
             }
@@ -413,6 +427,7 @@ class Library {
         songLabelSpan.songEntry = songEntry;
         // just easier to put the dbName on each song entry
         songEntry.dbName = dbName;
+        // add to div
         songDiv.appendChild(songLabelSpan);
 
         return songDiv;
@@ -589,6 +604,27 @@ class Library {
         }
     }
 
+    scrollToSong(songEntry, setManual = true) {
+        // get the song entry div's containing indent div
+        var indent = songEntry.div.parentElement;
+        // expand every indent up through the top
+        while (indent.className == "libIndent") {
+            this.showIndent(indent, true, setManual);
+            indent = indent.parentElement.parentElement;
+        }
+
+        // let the layout settle, then scroll to it
+        setTimeout(() => {
+            var containerRect = this.indexContainer.getBoundingClientRect();
+            var elementRect = songEntry.div.getBoundingClientRect();
+            // get the midpoint of the element, subtract half the container height to get the top coordinate to use that
+            // will put the element in the middle of the container.  then subtract the container top because the element
+            // top is in viewport coordinates but scrollTo needs relative coordinates.  Why is this so complicated.
+            var scrollTop = elementRect.top + (elementRect.height / 2) - (containerRect.height / 2) - containerRect.top;
+            this.indexContainer.scrollTo(0, scrollTop);
+        }, 100);
+    }
+
     indexSong(song, cats) {
         // todo: better
         // Just concatenate all relevant keywords into a big string and lowercase it.
@@ -621,6 +657,23 @@ class Library {
         document.getElementById("library-search-bar").value = librarySearch;
         // start the search
         this.setSearchString(librarySearch);
+    }
+
+    setPreset(preset) {
+        this.preset = preset;
+    }
+
+    clearPreset() {
+        if (this.presetSongEntry) {
+            this.score.addAction(new setPresetAction(this, this.presetSongEntry, null));
+            this.setSelectedSongEntry(null);
+        }
+    }
+
+    setPresetSongEntry(presetSongEntry) {
+        this.presetSongEntry = presetSongEntry;
+        this.preset = presetSongEntry ? presetSongEntry.id : null;
+        this.setSelectedSongEntry(this.presetSongEntry, true);
     }
 
     setSearchString(string) {
@@ -773,7 +826,11 @@ class Library {
         });
     }
 
+    // loadSongData: load the database and pass the song list for each entry into searchFunc
     // omitHidden: only search the currently visible songs, this is how the stats are calculated
+    // searchFunc: function(song, songList, index, total)
+    // endBatchFunc: function()
+    // endFunc: function()
     startFuncSearch(loadSongData, omitHidden, searchFunc, endBatchFunc=null, endFunc=endBatchFunc) {
         // cancel any search in progress
         if (this.searchTimeout) {
@@ -824,6 +881,8 @@ class Library {
     runSearch(searchQueue, totalItems, loadSongData, searchFunc, endBatchFunc=null, endFunc=endBatchFunc) {
         // count songs searched
         var count = 0;
+        // set if the search function returns true
+        var stop = false;
         // search song lists until we exceed the batch size
         while (count < this.searchBatchLimit) {
             // nothing left in the queue
@@ -852,17 +911,24 @@ class Library {
             for (var songKey in songs) {
                 var song = songs[songKey];
                 // get the song data if necessary
-                var songList = loadSongData ? this.database[song.dbName][song.id] : null;
+                var songList = loadSongData ? this.database[song.dbName][song.id].s : null;
                 // run the search function on the song
-                searchFunc(song, songList, index, totalItems);
+                if (searchFunc(song, songList, index, totalItems)) {
+                    // if the function returns true then stop the search
+                    stop = true;
+                    break;
+                }
             }
             // increment the count
             count += songs.length;
+            if (stop) break;
         }
 
         if (endBatchFunc) endBatchFunc();
-        // schedule the next batch
-        this.searchTimeout = setTimeout(() => this.runSearch(searchQueue, totalItems, loadSongData, searchFunc, endBatchFunc, endFunc), this.searchDelay);
+        if (!stop) {
+            // schedule the next batch
+            this.searchTimeout = setTimeout(() => this.runSearch(searchQueue, totalItems, loadSongData, searchFunc, endBatchFunc, endFunc), this.searchDelay);
+        }
     }
 
     showSong(song) {
@@ -898,35 +964,83 @@ class Library {
         }
     }
 
+    setSelectedSongEntry(songEntry, scrollTo = false) {
+        // sanity check
+        if (this.selectedSongEntry == songEntry) return;
+
+        if (this.selectedSongEntry) {
+            this.selectedSongEntry.div.className = "libSong";
+            this.selectedSongEntry = null;
+        }
+
+        if (songEntry) {
+            this.selectedSongEntry = songEntry;
+            this.selectedSongEntry.div.className = "libSongSelected";
+            if (scrollTo) {
+                this.scrollToSong(songEntry);
+            }
+        }
+    }
+
     songClick(event) {
         // pull the id and database name from the song entry
         var songEntry = event.currentTarget.songEntry;
+        this.loadSong(songEntry);
+    }
+
+    loadSongById(id, scrollTo = false, action = false) {
+        this.startFuncSearch(false, false, (songEntry, songList, index, total) => {
+            if (songEntry.id != id) {
+                return false;
+            }
+
+            this.loadSong(songEntry, scrollTo, action);
+            return true;
+        });
+    }
+
+    loadSong(songEntry, scrollTo = false, action = true) {
         var id = songEntry.id;
         var dbName = songEntry.dbName;
+
+        // ffs
+        var thiz = this;
+        function setPreset() {
+            if (action) {
+                thiz.score.addAction(new setPresetAction(thiz, thiz.presetSongEntry, songEntry));
+            }
+            thiz.setPresetSongEntry(songEntry);
+        }
+
         // load the database and run a callback when it's loaded
         this.queryDb(dbName, (db) => {
             // load the song data from the db
-            var songs = db[id];
+            var songEntry = db[id];
 
             // remember whether we were playing before stopping playback
             var playing = this.score.isPlaying();
             this.score.stopPlayback();
 
-            // put all this into one undo action
-            this.score.startActions();
+            if (action) {
+                // put all this into one undo action
+                this.score.startActions();
+            }
 
-            if (songs.length == 1 && songs[0].startsWith("playlist=")) {
+            if (songEntry.p) {
                 if (!playlistEnabled()) {
                     // if the playlist is not visible and there is more than one song the
                     // show the playlist, but don't enable it automatically
                     showPlaylist(false);
                 }
-                setPlaylistFromUrlString(songs[0].substring("playlist=".length), false);
+                setPreset();
+                setPlaylistFromUrlString(songEntry.p, false);
 
             } else {
+                var songs = songEntry.s
                 if (playlistEnabled()) {
                     // if the playlist is fully enabled then just add the first song and select it
                     this.score.playlist.addSongCode(songs[0], true, true, true);
+                    // in this case, do *not* set the preset.  we're adding to an existing playlist.
 
                 } else if (playlistVisible()) {
                     // if the playlist is visible but not enabled, then clear it
@@ -942,6 +1056,8 @@ class Library {
                         // there are more songs to come, just add the first song and select it
                         this.score.playlist.addSongCode(songs[0], true, true, true);
                     }
+                    // set the preset
+                    setPreset();
 
                 } else if (songs.length > 1) {
                     // if the playlist is not visible and there is more than one song the
@@ -951,11 +1067,15 @@ class Library {
                     this.score.playlist.clear(true);
                     // there are more songs to come, just add the first song and select it
                     this.score.playlist.addSongCode(songs[0], true, true, true);
+                    // set the preset
+                    setPreset();
 
                 } else {
                     // if there's no playlist visible and only one song in the library entry then
                     // just set the song in the score
                     this.score.setSong(songs[0], true, false);
+                    // set the preset
+                    setPreset();
                 }
 
                 if (songs.length > 1) {
@@ -974,8 +1094,10 @@ class Library {
             }
 
 
-            // close the undo action
-            this.score.endActions();
+            if (action) {
+                // close the undo action
+                this.score.endActions();
+            }
 
             // resume playing if it was playing before
             if (playing) {
@@ -2333,8 +2455,30 @@ class Library {
     }
 }
 
+class setPresetAction extends Action {
+    constructor(library, fromPresetSongEntry, toPresetSongEntry) {
+        super();
+        this.library = library;
+        this.fromPresetSongEntry = fromPresetSongEntry;
+        this.toPresetSongEntry = toPresetSongEntry;
+    }
 
+	undoAction() {
+	    this.doAction(this.toPresetSongEntry, this.fromPresetSongEntry);
+	}
 
+	redoAction() {
+	    this.doAction(this.fromPresetSongEntry, this.toPresetSongEntry);
+	}
+
+	doAction(from, to) {
+	    this.library.setPresetSongEntry(to);
+	}
+
+	toString() {
+	    return this.toPresetSongEntry ? "Change preset to " + this.toPresetSongEntry.name : "Clear preset";
+	}
+}
 
 class Loader extends ProgressBar {
     constructor() {
