@@ -149,6 +149,15 @@ function initModel() {
 }
 
 function reinitModel(url) {
+    // check for a search=... query string
+    // do this before loading a song
+    var librarySearch = getQueryParam(url, "search", false);
+    if (librarySearch) {
+        // show the library and auto-start a search
+        if (!libraryVisible()) toggleLibrary();
+        score.library.setLibrarySearch(librarySearch);
+    }
+
     // on page load, see if there's a "song=..." query string
     var songCode = getQueryParam(url, "song", false);
     if (songCode) {
@@ -166,18 +175,10 @@ function reinitModel(url) {
             var preset = getQueryParam(url, "preset", false);
             if (preset) {
                 // show the library and auto-load an entry
-                toggleLibrary();
+                if (!libraryVisible()) toggleLibrary();
                 score.library.setPreset(preset);
             }
         }
-    }
-    // check for a search=... query string
-    var librarySearch = getQueryParam(url, "search", false);
-    if (librarySearch) {
-        // show the library and auto-start a search
-        toggleLibrary();
-        score.library.setLibrarySearch(librarySearch);
-
     }
 }
 

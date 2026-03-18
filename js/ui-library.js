@@ -39,6 +39,8 @@ class Library {
         // tag filter list
         this.filterTagList = [];
         this.filterTagListChanged = false;
+        // queued searches
+        this.queuedSearches = [];
 
         // preset string (<song id>)
         this.preset = null;
@@ -670,10 +672,10 @@ class Library {
         }
     }
 
-    setPresetSongEntry(presetSongEntry) {
+    setPresetSongEntry(presetSongEntry, scrollTo = false) {
         this.presetSongEntry = presetSongEntry;
         this.preset = presetSongEntry ? presetSongEntry.id : null;
-        this.setSelectedSongEntry(this.presetSongEntry, true);
+        this.setSelectedSongEntry(this.presetSongEntry, scrollTo);
     }
 
     setSearchString(string) {
@@ -831,25 +833,37 @@ class Library {
     // searchFunc: function(song, songList, index, total)
     // endBatchFunc: function()
     // endFunc: function()
-    startFuncSearch(loadSongData, omitHidden, searchFunc, endBatchFunc=null, endFunc=endBatchFunc) {
-        // cancel any search in progress
+    startFuncSearch(loadSongData, omitHidden, searchFunc, endBatchFunc=null, endFunc=endBatchFunc, queue=false) {
+        var thiz = this;
+        function doSearch() {
+            // get a copy of the search queue
+            if (!omitHidden) {
+                // doing a full search of the library
+                var searchQueue = thiz.searchQueuePrototype.slice();
+            } else {
+                // doing a partial search of just what's currently visible
+                // thiz is for the statistics calculation
+                var searchQueue = [];
+                thiz.queueSongLists(thiz.index, searchQueue, omitHidden);
+            }
+            // store the total
+            var total = searchQueue.length;
+            // start the search
+            thiz.searchTimeout = setTimeout(() => thiz.runSearch(searchQueue, total, loadSongData, searchFunc, endBatchFunc, endFunc), thiz.searchDelay);
+        }
+
         if (this.searchTimeout) {
-            clearTimeout(this.searchTimeout);
+            if (queue) {
+                this.queuedSearches.push(doSearch);
+                return;
+
+            } else {
+                // cancel any search in progress
+                clearTimeout(this.searchTimeout);
+            }
         }
-        // get a copy of the search queue
-        if (!omitHidden) {
-            // doing a full search of the library
-            var searchQueue = this.searchQueuePrototype.slice();
-        } else {
-            // doing a partial search of just what's currently visible
-            // this is for the statistics calculation
-            var searchQueue = [];
-            this.queueSongLists(this.index, searchQueue, omitHidden);
-        }
-        // store the total
-        var total = searchQueue.length;
-        // start the search
-        this.searchTimeout = setTimeout(() => this.runSearch(searchQueue, total, loadSongData, searchFunc, endBatchFunc, endFunc), this.searchDelay);
+
+        doSearch();
     }
 
     // omitHidden: only search the currently visible songs, this is how the stats are calculated
@@ -891,6 +905,13 @@ class Library {
                 this.searchTimeout = null;
                 // end the search
                 if (endFunc) endFunc();
+
+                if (this.queuedSearches.length > 0) {
+                    var queuedSearch = this.queuedSearches[0];
+                    this.queuedSearches = this.queuedSearches.slice(1);
+                    setTimeout(queuedSearch, 100);
+                }
+
                 return;
             }
 
@@ -996,7 +1017,7 @@ class Library {
 
             this.loadSong(songEntry, scrollTo, action);
             return true;
-        });
+        }, null, true);
     }
 
     loadSong(songEntry, scrollTo = false, action = true) {
@@ -1009,7 +1030,7 @@ class Library {
             if (action) {
                 thiz.score.addAction(new setPresetAction(thiz, thiz.presetSongEntry, songEntry));
             }
-            thiz.setPresetSongEntry(songEntry);
+            thiz.setPresetSongEntry(songEntry, scrollTo);
         }
 
         // load the database and run a callback when it's loaded
@@ -2472,7 +2493,7 @@ class setPresetAction extends Action {
 	}
 
 	doAction(from, to) {
-	    this.library.setPresetSongEntry(to);
+	    this.library.setPresetSongEntry(to, true);
 	}
 
 	toString() {
