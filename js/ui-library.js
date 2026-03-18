@@ -1895,9 +1895,10 @@ class Library {
             updatePacks(100.0 / maxP);
 
             // gotta make a ton of <td> elements
-            function makeTd(contents) {
+            function makeTd(contents, color=null) {
                 var td = document.createElement("td");
                 td.innerHTML = contents;
+                if (color) td.style.color = color;
                 return td;
             }
             // easy way, just clear the top combos and create them anew
@@ -1915,9 +1916,9 @@ class Library {
                 // column 3: percentage
                 tr.appendChild(makeTd( "(" + ((100 * combo.count / totalEntries).toFixed(2)) + "%)"));
                 // column 4-6: pack names
-                tr.appendChild(makeTd(instrumentNameToPack[combo.packs["perc"]] .displayName));
-                tr.appendChild(makeTd(instrumentNameToPack[combo.packs["bass"]].displayName));
-                tr.appendChild(makeTd(instrumentNameToPack[combo.packs["mel"]].displayName));
+                tr.appendChild(makeTd(instrumentNameToPack[combo.packs["perc"]].displayName, sectionMetaData.perc.color));
+                tr.appendChild(makeTd(instrumentNameToPack[combo.packs["bass"]].displayName, sectionMetaData.bass.color));
+                tr.appendChild(makeTd(instrumentNameToPack[combo.packs["mel"]].displayName, sectionMetaData.mel.color));
             }
 
         }
