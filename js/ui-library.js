@@ -345,7 +345,7 @@ class Library {
         // check if we have a preset
         if (this.preset) {
             // load the preset song
-            this.loadSongById(this.preset, true);
+            this.loadSongById(this.preset);
         }
     }
 
@@ -619,10 +619,13 @@ class Library {
         setTimeout(() => {
             var containerRect = this.indexContainer.getBoundingClientRect();
             var elementRect = songEntry.div.getBoundingClientRect();
+            var currentScroll = this.indexContainer.scrollTop;
             // get the midpoint of the element, subtract half the container height to get the top coordinate to use that
             // will put the element in the middle of the container.  then subtract the container top because the element
-            // top is in viewport coordinates but scrollTo needs relative coordinates.  Why is this so complicated.
-            var scrollTop = elementRect.top + (elementRect.height / 2) - (containerRect.height / 2) - containerRect.top;
+            // top is in viewport coordinates but scrollTo needs relative coordinates.
+            // And all of that is relative to the container's current scroll position so add it to that.
+            // Why is this so complicated.
+            var scrollTop = currentScroll + elementRect.top + (elementRect.height / 2) - (containerRect.height / 2) - containerRect.top;
             this.indexContainer.scrollTo(0, scrollTop);
         }, 100);
     }
@@ -668,7 +671,7 @@ class Library {
     clearPreset() {
         if (this.presetSongEntry) {
             this.score.addAction(new setPresetAction(this, this.presetSongEntry, null));
-            this.setSelectedSongEntry(null);
+            this.setPresetSongEntry(null);
         }
     }
 
@@ -1009,18 +1012,20 @@ class Library {
         this.loadSong(songEntry);
     }
 
-    loadSongById(id, scrollTo = false, action = false) {
+    loadSongById(id, action = false) {
         this.startFuncSearch(false, false, (songEntry, songList, index, total) => {
             if (songEntry.id != id) {
                 return false;
             }
 
-            this.loadSong(songEntry, scrollTo, action);
+            this.setSelectedSongEntry(songEntry, true);
+            this.loadSong(songEntry, action);
             return true;
         }, null, true);
     }
 
-    loadSong(songEntry, scrollTo = false, action = true) {
+    loadSong(songEntry) {
+        var action = true;
         var id = songEntry.id;
         var dbName = songEntry.dbName;
 
@@ -1030,11 +1035,13 @@ class Library {
             if (action) {
                 thiz.score.addAction(new setPresetAction(thiz, thiz.presetSongEntry, songEntry));
             }
-            thiz.setPresetSongEntry(songEntry, scrollTo);
+            // scroll to the entry if this is not an action
+            thiz.setPresetSongEntry(songEntry, !action);
         }
 
         // load the database and run a callback when it's loaded
         this.queryDb(dbName, (db) => {
+
             // load the song data from the db
             var songEntry = db[id];
 
@@ -1116,8 +1123,8 @@ class Library {
 
 
             if (action) {
-                // close the undo action
-                this.score.endActions();
+                // close the undo action, do not reset the preset
+                this.score.endActions(false, false);
             }
 
             // resume playing if it was playing before

@@ -333,7 +333,7 @@ class Playlist {
 
         // end the undo action
         if (action) {
-            this.score.endActions();
+            this.score.endActions(false, false);
         }
 
         // make sure the playlist is showing but don't auto-enable it
@@ -801,7 +801,7 @@ class Playlist {
 
         // end the undo action
         if (action) {
-            this.score.endActions();
+            this.score.endActions(false, false);
         }
     }
 

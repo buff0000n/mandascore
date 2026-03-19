@@ -2060,7 +2060,10 @@ class Score {
         this.actions.push(action);
     }
 
-    endActions(disableUndo=false) {
+    endActions(disableUndo=false, clearPreset=true) {
+        if (this.actionCount == 1 && clearPreset) {
+            this.library.clearPreset();
+        }
         // decrement the nested action count
         this.actionCount--;
         // if we've closed the top level action then commit any undo actions
