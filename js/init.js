@@ -33,14 +33,24 @@ function actuallyUpdateSongCode() {
     // fill in the song code input box
     document.getElementById("songCode").value = updatedSongCode;
 
-    // update the URL depending on whether the playlist is open or not
-    if (playlistVisible() && score.playlist.entries.length > 0) {
-        modifyUrlQueryParam("playlist", encodePlaylistToUrl(getPlaylistCode()));
+    // update the URL depending on whether there is a selected library entry, or whether the playlist is open or not
+    if (libraryVisible() && score.library.preset) {
+        modifyUrlQueryParam("preset", score.library.preset);
+        // remove other URL options
         removeUrlQueryParam("song");
+        removeUrlQueryParam("playlist");
+
+    } else if (playlistVisible() && score.playlist.entries.length > 0) {
+        modifyUrlQueryParam("playlist", encodePlaylistToUrl(getPlaylistCode()));
+        // remove other URL options
+        removeUrlQueryParam("song");
+        removeUrlQueryParam("preset");
 
     } else {
         modifyUrlQueryParam("song", urlEncodeString(updatedSongCode, false));
+        // remove other URL options
         removeUrlQueryParam("playlist");
+        removeUrlQueryParam("preset");
     }
 
     // clear state
@@ -136,25 +146,36 @@ function initModel() {
 }
 
 function reinitModel(url) {
+    // check for a search=... query string
+    // do this before loading a song
+    var librarySearch = getQueryParam(url, "search", false);
+    if (librarySearch) {
+        // show the library and auto-start a search
+        if (!libraryVisible()) toggleLibrary();
+        score.library.setLibrarySearch(librarySearch);
+    }
+
     // on page load, see if there's a "song=..." query string
     var songCode = getQueryParam(url, "song", false);
     if (songCode) {
         // if there is, then initialize our song
         setSongCode(decodeSongCodeFromUrl(songCode), true);
+
     } else {
         // check for a playlist
         var playlistString = getQueryParam(url, "playlist", false);
         if (playlistString) {
             setPlaylistFromUrlString(playlistString);
-        }
-    }
-    // check for a search=... query string
-    var librarySearch = getQueryParam(url, "search", false);
-    if (librarySearch) {
-        // show the library and auto-start a search
-        toggleLibrary();
-        score.library.setLibrarySearch(librarySearch);
 
+        } else {
+            // check for a preset
+            var preset = getQueryParam(url, "preset", false);
+            if (preset) {
+                // show the library and auto-load an entry
+                if (!libraryVisible()) toggleLibrary();
+                score.library.setPreset(preset);
+            }
+        }
     }
 }
 
@@ -308,6 +329,11 @@ function toggleLibrary(button = null) {
         libraryBox.style.display = "";
         document.getElementById("libraryButton").classList.add("gray");
     }
+}
+
+function libraryVisible() {
+    var display = document.getElementById("libraryBox").style.display
+    return display && display != "";
 }
 
 function toggleMixer(button) {

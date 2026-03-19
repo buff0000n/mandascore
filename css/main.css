@@ -546,7 +546,6 @@
     }
 
     .playlistEntry, .playlistEntrySelected, .libCatLabel, .libCatCount {
-        background-color: #202020;
         border: none;
         color: #A0A0A0;
         padding: 0ex 1ex;
@@ -557,25 +556,47 @@
         cursor: pointer;
         display: inline-block;
     }
+    .playlistEntry {
+        background-color: #202020;
+    }
+    .playlistEntry:hover {
+        background-color: #303030;
+    }
     .playlistEntrySelected {
         background-color: #404040;
         color: #FFFFFF;
     }
+    .playlistEntrySelected:hover {
+        background-color: #505050;
+    }
     .libCatLabel {
         background-color: #202040;
         color: #FFFFFF;
+    }
+    .libCatLabel:hover {
+        background-color: #303050;
     }
     .libCatCount {
         background-color: #202040;
         color: #B0B0B0;
         font-size: 75%;
     }
+    .libCatCount:hover {
+        background-color: #303050;
+    }
     .libCatButton {
         margin: 0ex 0ex 0px 0;
     }
     .libCatHeader { }
+    .libSong { }
+    .libSongSelected {
+        background-color: #303030;
+    }
     .libSongLabel {
         cursor: pointer;
+    }
+    .libSongLabel:hover {
+        background-color: #202020;
     }
     .songContainer {
         text-align: center;
@@ -680,6 +701,7 @@
     .tagPerfect { color: #f39c12; }
     .tagSparse { color: #8e44ad; }
     .tagInstrument { color: #16a085; }
+    .tagInstrumentAll { color: #1dd1ad; font-weight: bold; }
     .tagShot { color: #f02020; }
     .tagMisc { color: #2020f0; }
 

@@ -333,7 +333,8 @@ class Playlist {
 
         // end the undo action
         if (action) {
-            this.score.endActions();
+            // don't disable undo and don't clear the preset
+            this.score.endActions(false, false);
         }
 
         // make sure the playlist is showing but don't auto-enable it
@@ -801,7 +802,8 @@ class Playlist {
 
         // end the undo action
         if (action) {
-            this.score.endActions();
+            // don't disable undo and don't clear the preset
+            this.score.endActions(false, false);
         }
     }
 
