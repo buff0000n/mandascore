@@ -44,6 +44,7 @@ class Library {
 
         // preset string (<song id>)
         this.preset = null;
+        // preset song entry object
         this.presetSongEntry = null;
 
         // search queue prototype, we only need to build this once
@@ -664,20 +665,26 @@ class Library {
         this.setSearchString(librarySearch);
     }
 
+    // external function for setting a preset before initialization
     setPreset(preset) {
         this.preset = preset;
     }
 
     clearPreset() {
+        // check if there is a preset
         if (this.presetSongEntry) {
+            // allow undo to re-set the preset
             this.score.addAction(new setPresetAction(this, this.presetSongEntry, null));
+            // clear the preset
             this.setPresetSongEntry(null);
         }
     }
 
     setPresetSongEntry(presetSongEntry, scrollTo = false) {
+        // set state
         this.presetSongEntry = presetSongEntry;
         this.preset = presetSongEntry ? presetSongEntry.id : null;
+        // clear any currently selected song and select the given song, optionally scrolling to it
         this.setSelectedSongEntry(this.presetSongEntry, scrollTo);
     }
 
@@ -837,6 +844,7 @@ class Library {
     // endBatchFunc: function()
     // endFunc: function()
     startFuncSearch(loadSongData, omitHidden, searchFunc, endBatchFunc=null, endFunc=endBatchFunc, queue=false) {
+        // dunno why we lose the 'this' reference inside the function
         var thiz = this;
         function doSearch() {
             // get a copy of the search queue
@@ -845,7 +853,7 @@ class Library {
                 var searchQueue = thiz.searchQueuePrototype.slice();
             } else {
                 // doing a partial search of just what's currently visible
-                // thiz is for the statistics calculation
+                // this is for the statistics calculation
                 var searchQueue = [];
                 thiz.queueSongLists(thiz.index, searchQueue, omitHidden);
             }
@@ -855,8 +863,11 @@ class Library {
             thiz.searchTimeout = setTimeout(() => thiz.runSearch(searchQueue, total, loadSongData, searchFunc, endBatchFunc, endFunc), thiz.searchDelay);
         }
 
+        // check if there is already a search in progress
         if (this.searchTimeout) {
+            // check if we should queue this search after the current one finishes
             if (queue) {
+                // save the function to the queued searches and return
                 this.queuedSearches.push(doSearch);
                 return;
 
@@ -866,6 +877,7 @@ class Library {
             }
         }
 
+        // start the search immediately
         doSearch();
     }
 
@@ -909,9 +921,12 @@ class Library {
                 // end the search
                 if (endFunc) endFunc();
 
+                // check for a queued searche
                 if (this.queuedSearches.length > 0) {
+                    // remove the first one from the list
                     var queuedSearch = this.queuedSearches[0];
                     this.queuedSearches = this.queuedSearches.slice(1);
+                    // start the queued search
                     setTimeout(queuedSearch, 100);
                 }
 
@@ -945,10 +960,12 @@ class Library {
             }
             // increment the count
             count += songs.length;
+            // check stop flag
             if (stop) break;
         }
 
         if (endBatchFunc) endBatchFunc();
+        // check stop flag
         if (!stop) {
             // schedule the next batch
             this.searchTimeout = setTimeout(() => this.runSearch(searchQueue, totalItems, loadSongData, searchFunc, endBatchFunc, endFunc), this.searchDelay);
@@ -992,14 +1009,17 @@ class Library {
         // sanity check
         if (this.selectedSongEntry == songEntry) return;
 
+        // clear the current selection, if present
         if (this.selectedSongEntry) {
             this.selectedSongEntry.div.className = "libSong";
             this.selectedSongEntry = null;
         }
 
+        // set a new selection, if provided
         if (songEntry) {
             this.selectedSongEntry = songEntry;
             this.selectedSongEntry.div.className = "libSongSelected";
+            // optionally scroll to the selection
             if (scrollTo) {
                 this.scrollToSong(songEntry);
             }
@@ -1009,29 +1029,43 @@ class Library {
     songClick(event) {
         // pull the id and database name from the song entry
         var songEntry = event.currentTarget.songEntry;
+        // load the song
         this.loadSong(songEntry);
     }
 
     loadSongById(id, action = false) {
+        // start a search, we have to go through the db to find the song entry
+        // with the given id
         this.startFuncSearch(false, false, (songEntry, songList, index, total) => {
+            // if it's not the right song then keep looking
             if (songEntry.id != id) {
                 return false;
             }
 
+            // set the selection
             this.setSelectedSongEntry(songEntry, true);
+            // load the song
             this.loadSong(songEntry, action);
+            // end the search
             return true;
+        // no end action, don't load song data
         }, null, true);
     }
 
     loadSong(songEntry) {
+        // it's simpler if we just always make this an action
+        // not worth trying to start a fresh page load with no undo action
         var action = true;
+        // pull out some stuff
         var id = songEntry.id;
         var dbName = songEntry.dbName;
 
         // ffs
         var thiz = this;
+        // easier to factor this into a function than figure out how to
+        // combine all the cases where this needs to be called
         function setPreset() {
+            // add an undo action
             if (action) {
                 thiz.score.addAction(new setPresetAction(thiz, thiz.presetSongEntry, songEntry));
             }
@@ -1060,6 +1094,7 @@ class Library {
                     // show the playlist, but don't enable it automatically
                     showPlaylist(false);
                 }
+                // set preset and load playlist
                 setPreset();
                 setPlaylistFromUrlString(songEntry.p, false);
 
@@ -2483,6 +2518,7 @@ class Library {
     }
 }
 
+// Undo action for selecting a library entry and enabling a preset
 class setPresetAction extends Action {
     constructor(library, fromPresetSongEntry, toPresetSongEntry) {
         super();

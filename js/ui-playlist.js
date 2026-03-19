@@ -333,6 +333,7 @@ class Playlist {
 
         // end the undo action
         if (action) {
+            // don't disable undo and don't clear the preset
             this.score.endActions(false, false);
         }
 
@@ -801,6 +802,7 @@ class Playlist {
 
         // end the undo action
         if (action) {
+            // don't disable undo and don't clear the preset
             this.score.endActions(false, false);
         }
     }

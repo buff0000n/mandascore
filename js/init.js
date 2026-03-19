@@ -35,25 +35,22 @@ function actuallyUpdateSongCode() {
 
     // update the URL depending on whether there is a selected library entry, or whether the playlist is open or not
     if (libraryVisible() && score.library.preset) {
+        modifyUrlQueryParam("preset", score.library.preset);
         // remove other URL options
         removeUrlQueryParam("song");
         removeUrlQueryParam("playlist");
-
-        modifyUrlQueryParam("preset", score.library.preset);
 
     } else if (playlistVisible() && score.playlist.entries.length > 0) {
+        modifyUrlQueryParam("playlist", encodePlaylistToUrl(getPlaylistCode()));
         // remove other URL options
         removeUrlQueryParam("song");
         removeUrlQueryParam("preset");
 
-        modifyUrlQueryParam("playlist", encodePlaylistToUrl(getPlaylistCode()));
-
     } else {
+        modifyUrlQueryParam("song", urlEncodeString(updatedSongCode, false));
         // remove other URL options
         removeUrlQueryParam("playlist");
         removeUrlQueryParam("preset");
-
-        modifyUrlQueryParam("song", urlEncodeString(updatedSongCode, false));
     }
 
     // clear state

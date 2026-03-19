@@ -590,7 +590,7 @@
     .libCatHeader { }
     .libSong { }
     .libSongSelected {
-        background-color: #404040;
+        background-color: #303030;
     }
     .libSongLabel {
         cursor: pointer;

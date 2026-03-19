@@ -2061,6 +2061,7 @@ class Score {
     }
 
     endActions(disableUndo=false, clearPreset=true) {
+        // if it's the top-level action, check if we should clear any preset
         if (this.actionCount == 1 && clearPreset) {
             this.library.clearPreset();
         }
