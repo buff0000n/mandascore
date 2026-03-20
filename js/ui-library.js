@@ -757,8 +757,8 @@ class Library {
             var timestamp = this.extractTimestampFromUrl(url);
             // link text
             var text = "Link" + (timestamp ? (" (@" + timestamp + ")") : "");
-            // full link HTML
-            return `<a target="_top" href="${url}">${text}</a>`;
+            // full link HTML, open in a new window/tab
+            return `<a target="_blank" href="${url}">${text}</a>`;
         }
     }
 
