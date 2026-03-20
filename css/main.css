@@ -614,10 +614,33 @@
         text-decoration: none;
         font-size: 100%;
         border-radius: 1ex;
-        display: inline-block;
+        display: block;
     }
     .urlButton, {
         background-color: #406080;
+    }
+    #originalDiv {
+        background-color: #502050;
+        border: none;
+        color: #FFFFFF;
+        padding: 1ex;
+        margin: 1ex 0 0 0;
+        text-align: left;
+        text-decoration: none;
+        font-size: 100%;
+        border-radius: 1ex;
+        display: none;
+    }
+    .searchBarDiv {
+        background-color: #404080;
+        border: none;
+        color: #FFFFFF;
+        padding: 1ex;
+        text-align: left;
+        text-decoration: none;
+        font-size: 100%;
+        border-radius: 1ex;
+        display: inline-block;
     }
 
     .loadingBox {

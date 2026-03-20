@@ -15,6 +15,8 @@ class Library {
 
         // selected song entry
         this.selectedSongEntry = null;
+        // db data for the selected song
+        this.selectedSongData = null;
 
         // search job state
         // we can't just do the whole search in one event handler because it interrupts audio playback for some
@@ -79,7 +81,7 @@ class Library {
                 <span class="imgButton titleButton closeButton tooltip"><img src="img/icon-clear.png" srcset="img2x/icon-clear.png 2x" alt="Back"/>
                     <span class="tooltiptextbottom">Go back</span>
                 </span>
-                <span class="songTitleDiv">
+                <span class="searchBarDiv">
                     <span class="tooltip">
                         <input id="library-search-bar" class="searchBar" type="text" size="24"/>
                         <span class="tooltiptextbottom">Search by keyword</span>
@@ -674,18 +676,90 @@ class Library {
         // check if there is a preset
         if (this.presetSongEntry) {
             // allow undo to re-set the preset
-            this.score.addAction(new setPresetAction(this, this.presetSongEntry, null));
+            this.score.addAction(new setPresetAction(this, this.presetSongEntry, this.presetSongData, null, null));
             // clear the preset
-            this.setPresetSongEntry(null);
+            this.setPresetSongEntry(null, null);
         }
     }
 
-    setPresetSongEntry(presetSongEntry, scrollTo = false) {
+    setPresetSongEntry(presetSongEntry, presetSongData, scrollTo = false) {
+        if (this.presetSongEntry) {
+            // only clear the original link bar if there is no replacement, to avoid UI jumping around
+            if (!presetSongEntry) {
+                score.clearOriginal();
+            }
+        }
+
         // set state
         this.presetSongEntry = presetSongEntry;
+        this.presetSongData = presetSongData;
         this.preset = presetSongEntry ? presetSongEntry.id : null;
         // clear any currently selected song and select the given song, optionally scrolling to it
         this.setSelectedSongEntry(this.presetSongEntry, scrollTo);
+
+        if (this.presetSongEntry) {
+            // init the original link bar with the first link in the list
+            score.setOriginal(this.getPresetOriginalLink(1));
+        }
+    }
+
+    extractTimestampFromUrl(url) {
+        // format as mm:ss
+        function format(minutes, seconds) {
+            return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+        }
+
+        // youtube
+        {
+            var regex_yt = new RegExp("(?:https://youtu\\.be/|https://(?:www\\.)?youtube.com/).*[?&]t=([0-9]+)");
+            var results = regex_yt.exec(url);
+            if (results) {
+                var seconds = parseInt(results[1]);
+                var minutes = Math.floor(seconds / 60);
+                seconds -= (minutes * 60);
+                return format(minutes, seconds);
+            }
+        }
+        // soundcloud
+        {
+            var regex_sc = new RegExp("https://soundcloud.com/.*#t=([0-9]+):([0-9]+)");
+            var results = regex_sc.exec(url);
+            if (results) {
+                var minutes = parseInt(results[1]);
+                var seconds = parseInt(results[2]);
+                return format(minutes, seconds);
+            }
+        }
+        // vimeo
+        {
+            var regex_sc = new RegExp("https://vimeo.com/.*#t=([0-9]+)m([0-9]+)s");
+            var results = regex_sc.exec(url);
+            if (results) {
+                var minutes = parseInt(results[1]);
+                var seconds = parseInt(results[2]);
+                return format(minutes, seconds);
+            }
+        }
+        // do I have links to anywhere else?
+        return null;
+    }
+
+    // num is 1-based
+    getPresetOriginalLink(num) {
+        if (!this.presetSongData || this.presetSongData.o.length < num) {
+            // no preset
+            return null;
+
+        } else {
+            // pull the indexed original link
+            var url = this.presetSongData.o[num - 1];
+            // extract a timestamp if possible
+            var timestamp = this.extractTimestampFromUrl(url);
+            // link text
+            var text = "Link" + (timestamp ? (" (@" + timestamp + ")") : "");
+            // full link HTML
+            return `<a target="_top" href="${url}">${text}</a>`;
+        }
     }
 
     setSearchString(string) {
@@ -814,28 +888,32 @@ class Library {
         // do some pre-processing on the tag filters, if present
         this.preprocessTagFilter();
 
-        // start the search
-        // whether we need to load the actual songs is dependent on whether we have an instrument pack filter
-        this.startFuncSearch(this.instrumentFilter != null, false, (song, songList, index, total) => {
+        var callback = (song, songList, index, total) => {
             // the song entry is displayed
             //   - if there is no tag filter of if the tag filter passes
             //   - if there is no search string or if all of the words are found in its keywords
             //   - if there is no instrument pack filter or the instrument pack filter passes on at least one of its songs
             if (this.searchTagFilter(song) &&
-                    this.searchKeywords(song.keywords) &&
-                    this.searchInstrumentFilter(songList)) {
+                this.searchKeywords(song.keywords) &&
+                this.searchInstrumentFilter(songList)) {
                 // show the song
                 this.showSong(song);
             } else {
                 // otherwise, hide the song
                 this.hideSong(song);
             }
-        }, () => {
+        };
+
+        var endBatchCallback = () => {
             // batch completion callback updates the song count
             this.updateVisibleSongCount();
             // update the category song counts and indent hiding
             this.updateCatCounts(this.searchWords);
-        });
+        };
+
+        // start the search
+        // whether we need to load the actual songs is dependent on whether we have an instrument pack filter
+        this.startFuncSearch(this.instrumentFilter != null, false, callback, endBatchCallback);
     }
 
     // loadSongData: load the database and pass the song list for each entry into searchFunc
@@ -1036,7 +1114,8 @@ class Library {
     loadSongById(id, action = false) {
         // start a search, we have to go through the db to find the song entry
         // with the given id
-        this.startFuncSearch(false, false, (songEntry, songList, index, total) => {
+
+        var callback = (songEntry, songList, index, total) => {
             // if it's not the right song then keep looking
             if (songEntry.id != id) {
                 return false;
@@ -1048,8 +1127,10 @@ class Library {
             this.loadSong(songEntry, action);
             // end the search
             return true;
+        };
+
         // no end action, don't load song data
-        }, null, true);
+        this.startFuncSearch(false, false, callback, null, null, true);
     }
 
     loadSong(songEntry) {
@@ -1064,20 +1145,20 @@ class Library {
         var thiz = this;
         // easier to factor this into a function than figure out how to
         // combine all the cases where this needs to be called
-        function setPreset() {
+        function setPreset(songData) {
             // add an undo action
             if (action) {
-                thiz.score.addAction(new setPresetAction(thiz, thiz.presetSongEntry, songEntry));
+                thiz.score.addAction(new setPresetAction(thiz, thiz.presetSongEntry, thiz.presetSongData, songEntry, songData));
             }
             // scroll to the entry if this is not an action
-            thiz.setPresetSongEntry(songEntry, !action);
+            thiz.setPresetSongEntry(songEntry, songData, !action);
         }
 
         // load the database and run a callback when it's loaded
         this.queryDb(dbName, (db) => {
 
             // load the song data from the db
-            var songEntry = db[id];
+            var songData = db[id];
 
             // remember whether we were playing before stopping playback
             var playing = this.score.isPlaying();
@@ -1088,18 +1169,18 @@ class Library {
                 this.score.startActions();
             }
 
-            if (songEntry.p) {
+            if (songData.p) {
                 if (!playlistEnabled()) {
                     // if the playlist is not visible and there is more than one song the
                     // show the playlist, but don't enable it automatically
                     showPlaylist(false);
                 }
                 // set preset and load playlist
-                setPreset();
-                setPlaylistFromUrlString(songEntry.p, false);
+                setPreset(songData);
+                setPlaylistFromUrlString(songData.p, false);
 
             } else {
-                var songs = songEntry.s
+                var songs = songData.s
                 if (playlistEnabled()) {
                     // if the playlist is fully enabled then just add the first song and select it
                     this.score.playlist.addSongCode(songs[0], true, true, true);
@@ -1120,7 +1201,7 @@ class Library {
                         this.score.playlist.addSongCode(songs[0], true, true, true);
                     }
                     // set the preset
-                    setPreset();
+                    setPreset(songData);
 
                 } else if (songs.length > 1) {
                     // if the playlist is not visible and there is more than one song the
@@ -1131,14 +1212,14 @@ class Library {
                     // there are more songs to come, just add the first song and select it
                     this.score.playlist.addSongCode(songs[0], true, true, true);
                     // set the preset
-                    setPreset();
+                    setPreset(songData);
 
                 } else {
                     // if there's no playlist visible and only one song in the library entry then
                     // just set the song in the score
                     this.score.setSong(songs[0], true, false);
                     // set the preset
-                    setPreset();
+                    setPreset(songData);
                 }
 
                 if (songs.length > 1) {
@@ -1253,8 +1334,8 @@ class Library {
         var searchSongObject = score.getSongObject();
         // search result array
         var matchListing = Array();
-        // start the search
-        this.startFuncSearch(true, false, (song, songList, index, total) => {
+
+        var callback = (song, songList, index, total) => {
             // min match value
             var match = 0;
 
@@ -1300,7 +1381,10 @@ class Library {
             }
 
             this.searchLoader.setProgress(index / total);
-        })
+        };
+
+        // start the search
+        this.startFuncSearch(true, false, callback);
     }
 
     endMatchSearch() {
@@ -2182,11 +2266,7 @@ class Library {
             showMenu(div, getParent(button, "scoreButtonRow"), button);
         }
 
-
-        // finally ready to kick off the statistics collection
-        // re-use the current search functionality, make sure that
-        // omitHidden = true so it only searches the currently visible entries
-        this.startFuncSearch(true, true, (song, songList, index, total) => {
+        var callback = (song, songList, index, total) => {
             if (!song.date) {
                 // If the song doesn't have a release date then skip it.  this is a demo song
                 return;
@@ -2209,7 +2289,12 @@ class Library {
             }
             // update song counts by instrument pack release date map
             incrementSongCountsByDate(song.date);
-        }, renderStats);
+        };
+
+        // finally ready to kick off the statistics collection
+        // re-use the current search functionality, make sure that
+        // omitHidden = true so it only searches the currently visible entries
+        this.startFuncSearch(true, true, callback, renderStats);
 
         // initialize the selected part to "all"
         setShowPart("all");
@@ -2468,16 +2553,19 @@ class Library {
         function runStats(truncateFunction, offsetFunction) {
             // clear the UI and state so we can start again
             reset();
-            // re-use the current search functionality, make sure that
-            // omitHidden = true so it only searches the currently visible entries
-            thiz.startFuncSearch(false, true, (song, songList, index, total) => {
+
+            var callback = (song, songList, index, total) => {
                 if (!song.date) {
                     // If the song doesn't have a release date then skip it.  this is a demo song
                     return;
                 }
                 // search handler for a single song entry
                 incrementDate(song.date, truncateFunction, offsetFunction);
-            }, renderStats);
+            };
+
+            // re-use the current search functionality, make sure that
+            // omitHidden = true so it only searches the currently visible entries
+            thiz.startFuncSearch(false, true, callback, renderStats);
         }
 
         // handler for the grain buttons
@@ -2521,23 +2609,25 @@ class Library {
 
 // Undo action for selecting a library entry and enabling a preset
 class setPresetAction extends Action {
-    constructor(library, fromPresetSongEntry, toPresetSongEntry) {
+    constructor(library, fromPresetSongEntry, fromPresetSongData, toPresetSongEntry, toPresetSongData) {
         super();
         this.library = library;
         this.fromPresetSongEntry = fromPresetSongEntry;
+        this.fromPresetSongData = fromPresetSongData;
         this.toPresetSongEntry = toPresetSongEntry;
+        this.toPresetSongData = toPresetSongData;
     }
 
 	undoAction() {
-	    this.doAction(this.toPresetSongEntry, this.fromPresetSongEntry);
+	    this.doAction(this.fromPresetSongEntry, this.fromPresetSongData);
 	}
 
 	redoAction() {
-	    this.doAction(this.fromPresetSongEntry, this.toPresetSongEntry);
+	    this.doAction(this.toPresetSongEntry, this.toPresetSongData);
 	}
 
-	doAction(from, to) {
-	    this.library.setPresetSongEntry(to, true);
+	doAction(toEntry, toData) {
+	    this.library.setPresetSongEntry(toEntry, toData, true);
 	}
 
 	toString() {

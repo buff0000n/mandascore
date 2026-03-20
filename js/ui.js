@@ -1729,6 +1729,10 @@ class Score {
         this.songControls.appendChild(this.titleContainer);
         this.title = "";
 
+        // original link bar, hidden by default
+        this.originalContainer = this.buildOriginalContainer();
+        this.songControls.appendChild(this.originalContainer);
+
         // container for section editors is a div with a table
         this.sectionContainer = document.createElement("div");
         this.sectionContainer.style.position = "relative";
@@ -1816,6 +1820,32 @@ class Score {
             </div>
         `;
         return titleContainer;
+    }
+
+    buildOriginalContainer() {
+        // container for link to original
+        var originalContainer = document.createElement("div")
+        originalContainer.className = "originalDiv"
+        originalContainer.id = "originalDiv"
+        return originalContainer;
+    }
+
+    clearOriginal() {
+        this.originalContainer.innerHTML = "";
+        // hide container
+        this.originalContainer.style.display = "none";
+    }
+
+    setOriginal(html) {
+        this.originalContainer.innerHTML = `
+            <span class="tooltip">
+                <span class="label">Original: </span>
+                <span class="tooltiptextbottom">Link to the section of the original song</span>
+            </span>
+            <span class="originalLink">${html}</span>
+        `;
+        // show container
+        this.originalContainer.style.display = "block";
     }
 
     initBlank() {

@@ -800,6 +800,13 @@ class Playlist {
         // selection changes
         this.clearHighlightedEntries();
 
+        // check if there's a preset and an original link for this playlist entry
+        var originalLink = this.score.library.getPresetOriginalLink(entry.index);
+        // update the original link if present
+        if (originalLink) {
+            score.setOriginal(originalLink);
+        }
+
         // end the undo action
         if (action) {
             // don't disable undo and don't clear the preset
@@ -1078,6 +1085,8 @@ class PlaylistEntry {
         this.song = song;
         // back reference
         this.playlist = playlist;
+        // index
+        this.index = 0;
         // build the UI
         this.buildUI();
     }
@@ -1160,6 +1169,7 @@ class PlaylistEntry {
     }
 
     setIndex(index) {
+        this.index = index;
         this.indexBar.innerHTML = index;
     }
 
