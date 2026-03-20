@@ -605,7 +605,7 @@
         display: inline-block;
         text-align: left;
     }
-    .songTitleDiv, #songCodeDiv {
+    .songTitleDiv {
         background-color: #404080;
         border: none;
         color: #FFFFFF;
@@ -615,6 +615,17 @@
         font-size: 100%;
         border-radius: 1ex;
         display: block;
+    }
+    #songCodeDiv {
+        background-color: #404080;
+        border: none;
+        color: #FFFFFF;
+        padding: 1ex;
+        text-align: left;
+        text-decoration: none;
+        font-size: 100%;
+        border-radius: 1ex;
+        display: inline-block;
     }
     .urlButton, {
         background-color: #406080;
