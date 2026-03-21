@@ -726,6 +726,7 @@
 				, {"id": "_sHZwoZfKng", "name": "Euclid", "attr": ["Sleep Token"], "date": "2025-01-11"}
 				, {"id": "X9caiYHsCvg", "name": "Gethsemane", "attr": ["Sleep Token"], "tags": ["Perfect"], "multi": 3, "date": "2026-02-07"}
 				, {"id": "gbUheNm_d_Q", "name": "Jaws", "attr": ["Sleep Token"], "tags": ["Perfect"], "date": "2026-03-12"}
+				, {"id": "wK7u0GWWCDs", "name": "Provider", "attr": ["Sleep Token"], "multi": 2, "date": "2026-03-21"}
 				, {"id": "_9L-UbVN7Ho", "name": "The Summoning", "attr": ["Sleep Token"], "date": "2023-04-23"}
 			]
 		},
@@ -4761,6 +4762,7 @@
 					, {"id": "8hb-pgTo4uU", "name": "Bamboo Boogaloo 2", "attr": ["The Messenger"], "tags": ["Filled"], "date": "2020-10-03"}
 					, {"id": "SLuLgC_iFKM", "name": "Matchmaker", "attr": ["The Silver #02"], "date": "2018-10-27"}
 					, {"id": "OD9z9-ehQQY", "name": "Return To Planet X", "attr": ["Timesplitters 2"], "tags": ["Druk"], "date": "2017-08-13"}
+					, {"id": "1pSaFMwEXxY", "name": "Wild West", "attr": ["Timesplitters 2"], "tags": ["Perfect"], "date": "2026-03-21"}
 					, {"id": "TYY9G3kDCvs", "name": "Arrive You", "attr": ["TintMe!", "THE iDOLM@STER"], "date": "2022-06-02"}
 					, {"id": "DzC9mQ6eIxY", "name": "Reincarnations", "attr": ["Tokyo Mirage Sessions #FE"], "date": "2018-07-19"}
 					, {"id": "iAaC-x9pIxQ", "name": "Treat or Cheek!", "attr": ["Trickcal: Chibi Go"], "date": "2025-11-23"}
@@ -5035,6 +5037,7 @@
 			"dbName":"Anime",
 			"songs":[
 				{"id": "vrEhfg5brhk", "name": "Edge of Chainsaw", "attr": ["Chainsaw Man"], "tags": ["Druk"], "date": "2023-01-12"}
+				, {"id": "9NYYcNrFago", "name": "Violence", "attr": ["Chainsaw Man Ending 11"], "date": "2026-03-21"}
 				, {"id": "34wJ6_XFfaE", "name": "tablet", "attr": ["Chainsaw Man ending 4", "tooboe"], "date": "2024-08-15"}
 				, {"id": "PZZiqDObOTA", "name": "Chainsaw Man ending 3", "attr": ["Maximum The Hormone"], "tags": ["Perfect"], "multi": 2, "date": "2023-10-28"}
 			]
@@ -7061,6 +7064,7 @@
 				, {"id": "l-zd1Ztl4Ks", "name": "From The Start", "attr": ["Laufey"], "tags": ["Perfect"], "date": "2024-05-23"}
 				, {"id": "eIRmS10YjHk", "name": "On My Own", "attr": ["Les Miserables"], "date": "2018-03-31"}
 				, {"id": "D1BlLfeoIao", "name": "Donnie Darko", "attr": ["Let's Eat Grandma"], "date": "2024-04-25"}
+				, {"id": "pbx3YisROas", "name": "Kwik Trip", "attr": ["Lightris and sero"], "tags": ["Perfect"], "date": "2026-03-21"}
 				, {"id": "9r4Qi4zkPDA", "name": "Ganda Mo", "attr": ["Lil P x J-KinG"], "date": "2021-03-02"}
 				, {"id": "jSee8nAqSa4", "name": "Oblivion", "attr": ["Lilly Potter"], "date": "2019-06-22"}
 				, {"id": "lmAo8v1QJJQ", "name": "Sexy And I Know It", "attr": ["LMFAO!"], "date": "2017-09-02"}
@@ -7115,6 +7119,7 @@
 				, {"id": "uLnypoOiYvg", "name": "Gi\u00e0u V\u00ec B\u1ea1n, Sang V\u00ec V\u1ee3", "attr": ["Team Karik"], "date": "2021-03-16"}
 				, {"id": "6lmRFPFlRSI", "name": "Lillian", "attr": ["The Band of the Red Hand"], "date": "2019-07-23"}
 				, {"id": "LE8_pYcHymY", "name": "Old Number 7", "attr": ["The Devil Makes Three"], "tags": ["Plogg"], "date": "2018-03-03"}
+				, {"id": "Gzn1f6oLT1Q", "name": "The Flying Dutchman", "attr": ["The Jolly Rogers"], "date": "2026-03-21"}
 				, {"id": "bE0kznMoOMA", "name": "A Tooth For An Eye", "attr": ["The Knife"], "date": "2020-02-22"}
 				, {"id": "O6RnpJBkFPk", "name": "Broodje Bakpao", "attr": ["The Opposites ft. Gers & Sef"], "date": "2021-03-16"}
 				, {"id": "x_77Is7WbO8", "name": "Discoteque", "attr": ["The Roop"], "date": "2021-03-18"}
