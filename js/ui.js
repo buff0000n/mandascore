@@ -1837,6 +1837,12 @@ class Score {
     }
 
     setOriginal(html) {
+        // meh, safety check
+        if (!html) {
+            this.clearOriginal();
+            return;
+        }
+
         this.originalContainer.innerHTML = `
             <span class="tooltip">
                 <span class="label">Original: </span>

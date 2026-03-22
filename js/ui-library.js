@@ -746,7 +746,8 @@ class Library {
 
     // num is 1-based
     getPresetOriginalLink(num) {
-        if (!this.presetSongData || this.presetSongData.o.length < num) {
+
+        if (!this.presetSongData || !this.presetSongData.o || this.presetSongData.o.length < num) {
             // no preset
             return null;
 
