@@ -1033,7 +1033,8 @@ class Library {
                 // get the song data if necessary
                 var songList = loadSongData ? this.database[song.dbName][song.id].s : null;
                 // run the search function on the song
-                if (searchFunc(song, songList, index, totalItems)) {
+                // if song data is required, only call the function if there is song data
+                if ((!loadSongData || songList) && searchFunc(song, songList, index, totalItems)) {
                     // if the function returns true then stop the search
                     stop = true;
                     break;
