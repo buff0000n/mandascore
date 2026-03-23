@@ -794,6 +794,8 @@ class Library {
     searchInstrumentFilter(songList) {
         // short-circuit if there is no instrument filter
         if (!this.instrumentFilter) return true;
+        // short-circuit if there is no song list, i.e. the entry is a playlist
+        if (!songList) return false;
 
         var songListAllowed = false;
         // search song list for a song matching the current instrument filter
