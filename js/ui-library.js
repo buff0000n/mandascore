@@ -759,7 +759,11 @@ class Library {
             // link text
             var text = "Link" + (timestamp ? (" (@" + timestamp + ")") : "");
             // full link HTML, open in a new window/tab
-            return `<a target="_blank" href="${url}">${text}</a>`;
+            var html = `<a target="_blank" href="${url}">${text}</a>`;
+            if (this.presetSongData.b) {
+                html += `&nbsp;<strong class="warn">(Broken)</strong>`;
+            }
+            return html
         }
     }
 
@@ -1034,7 +1038,7 @@ class Library {
                 var songList = loadSongData ? this.database[song.dbName][song.id].s : null;
                 // run the search function on the song
                 // if song data is required, only call the function if there is song data
-                if ((!loadSongData || songList) && searchFunc(song, songList, index, totalItems)) {
+                if (searchFunc(song, songList, index, totalItems)) {
                     // if the function returns true then stop the search
                     stop = true;
                     break;
@@ -1340,6 +1344,9 @@ class Library {
         var matchListing = Array();
 
         var callback = (song, songList, index, total) => {
+            // filter out playlists
+            if (!songList) return;
+
             // min match value
             var match = 0;
 
