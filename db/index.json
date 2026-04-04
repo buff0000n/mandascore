@@ -380,6 +380,7 @@
 				, {"id": "9JkSTrjjb4M", "name": "Edge Of Seventeen", "attr": ["Stevie Nicks"], "date": "2023-02-23"}
 				, {"id": "TkdzvRSFyAM", "name": "Crossfire", "attr": ["Stevie Ray Vaughan"], "date": "2023-04-23"}
 				, {"id": "OkiX1uaSbJo", "name": "Superstitious", "attr": ["Stevie Wonder"], "date": "2017-07-02"}
+				, {"id": "PYoSvQ_Sy_k", "name": "Shape of my Heart", "attr": ["Sting"], "tags": ["Perfect"], "date": "2026-04-04"}
 				, {"id": "FrJcOacbWcQ", "name": "Mr. Roboto", "attr": ["Styx"], "tags": ["Perfect"], "date": "2017-05-28"}
 				, {"id": "vYTyHV3WZfc", "name": "What I Got", "attr": ["Sublime"], "tags": ["Perfect"], "date": "2021-01-16"}
 				, {"id": "kaMRwQlpuv4", "name": "Freaks", "attr": ["Surf Curse"], "date": "2021-08-31"}
@@ -1785,7 +1786,7 @@
 				, {"id": "7MNTO8zHO_w", "name": "Locked In The Trunk Of A Car", "attr": ["Tragically Hip"], "tags": ["Druk"], "date": "2018-08-18"}
 				, {"id": "L3snHYJZAMk", "name": "Wolf Like Me", "attr": ["TV On The Radio"], "date": "2017-08-12"}
 				, {"id": "NQilg1W4fuU", "name": "Wolf Like Me", "attr": ["TV On The Radio"], "tags": ["Perfect"], "date": "2021-04-03"}
-				, {"id": "nfW2kaoqXLw", "name": "To The Top", "attr": ["Twin Shadow"], "date": "2018-09-13"}
+				, {"id": "ozjwvY9yeHw", "name": "To The Top", "attr": ["Twin Shadow"], "date": "2026-04-04"}
 				, {"id": "CE7hjFK_8lc", "name": "Undercover Martyn", "attr": ["Two Door Cinema Club"], "tags": ["Perfect"], "multi": 2, "date": "2021-11-13"}
 				, {"id": "-N3f4UCPG4o", "name": "What You Know", "attr": ["Two Door Cinema Club"], "tags": ["Perfect"], "multi": 2, "date": "2025-01-11"}
 				, {"id": "xLcKJSwNDh0", "name": "Let's Drink Bleach", "attr": ["Unknown Brain"], "date": "2022-03-12"}
@@ -2096,6 +2097,7 @@
 				{"id": "Np2PiVDyMPs", "name": "Anti-Hero", "attr": ["Taylor Swift"], "tags": ["Perfect"], "date": "2023-01-12"}
 				, {"id": "Zgnl_SS73dc", "name": "Bad Blood", "attr": ["Taylor Swift"], "tags": ["Perfect"], "date": "2018-06-05"}
 				, {"id": "w_tz5x8zB3o", "name": "Better Than Revenge", "attr": ["Taylor Swift"], "tags": ["Perfect"], "date": "2023-11-16"}
+				, {"id": "TAEYJkMFwoo", "name": "Clean", "attr": ["Taylor Swift"], "tags": ["Perfect"], "date": "2026-04-04"}
 				, {"id": "hb-9QywnHpk", "name": "Love Story", "attr": ["Taylor Swift", "Disco Lines Remix"], "date": "2021-06-08"}
 				, {"id": "LsS-Cz-cRL8", "name": "Forever & Always", "attr": ["Taylor Swift"], "tags": ["Perfect"], "multi": 4, "date": "2024-03-07"}
 				, {"id": "K7yAN-OzrsQ", "name": "Fortnight", "attr": ["Taylor Swift ft. Post Malone"], "date": "2024-07-04"}
@@ -4480,6 +4482,14 @@
 				, {"id": "4WX8pq4f3r4", "name": "Ooparts", "attr": ["The World Ends With You"], "date": "2017-09-19"}
 			]
 		},
+		"Timesplitters 2":{
+			"dbName":"Videogames",
+			"songs":[
+				{"id": "CBDWBEvNJdI", "name": "Time Splitters 2 Main Menu Theme", "date": "2026-04-04"}
+				, {"id": "OD9z9-ehQQY", "name": "Return To Planet X", "attr": ["Timesplitters 2"], "tags": ["Druk"], "date": "2017-08-13"}
+				, {"id": "1pSaFMwEXxY", "name": "Wild West", "attr": ["Timesplitters 2"], "tags": ["Perfect"], "date": "2026-03-21"}
+			]
+		},
 		"Touhou":{
 			"dbName":"Videogames",
 			"songs":[
@@ -4761,8 +4771,6 @@
 					, {"id": "X57kFTTrbEQ", "name": "Duel!", "attr": ["The Legend of Dark Witch 2"], "date": "2018-02-06"}
 					, {"id": "8hb-pgTo4uU", "name": "Bamboo Boogaloo 2", "attr": ["The Messenger"], "tags": ["Filled"], "date": "2020-10-03"}
 					, {"id": "SLuLgC_iFKM", "name": "Matchmaker", "attr": ["The Silver #02"], "date": "2018-10-27"}
-					, {"id": "OD9z9-ehQQY", "name": "Return To Planet X", "attr": ["Timesplitters 2"], "tags": ["Druk"], "date": "2017-08-13"}
-					, {"id": "1pSaFMwEXxY", "name": "Wild West", "attr": ["Timesplitters 2"], "tags": ["Perfect"], "date": "2026-03-21"}
 					, {"id": "TYY9G3kDCvs", "name": "Arrive You", "attr": ["TintMe!", "THE iDOLM@STER"], "date": "2022-06-02"}
 					, {"id": "DzC9mQ6eIxY", "name": "Reincarnations", "attr": ["Tokyo Mirage Sessions #FE"], "date": "2018-07-19"}
 					, {"id": "iAaC-x9pIxQ", "name": "Treat or Cheek!", "attr": ["Trickcal: Chibi Go"], "date": "2025-11-23"}
@@ -5036,7 +5044,8 @@
 		"Chainsaw Man":{
 			"dbName":"Anime",
 			"songs":[
-				{"id": "vrEhfg5brhk", "name": "Edge of Chainsaw", "attr": ["Chainsaw Man"], "tags": ["Druk"], "date": "2023-01-12"}
+				{"id": "p6ruiZjCvK0", "name": "Bang Bang Bang", "attr": ["bb-panzu", "Chainsaw Man"], "multi": 2, "date": "2026-04-04"}
+				, {"id": "vrEhfg5brhk", "name": "Edge of Chainsaw", "attr": ["Chainsaw Man"], "tags": ["Druk"], "date": "2023-01-12"}
 				, {"id": "9NYYcNrFago", "name": "Violence", "attr": ["Chainsaw Man Ending 11"], "date": "2026-03-21"}
 				, {"id": "34wJ6_XFfaE", "name": "tablet", "attr": ["Chainsaw Man ending 4", "tooboe"], "date": "2024-08-15"}
 				, {"id": "PZZiqDObOTA", "name": "Chainsaw Man ending 3", "attr": ["Maximum The Hormone"], "tags": ["Perfect"], "multi": 2, "date": "2023-10-28"}
@@ -6367,6 +6376,7 @@
 				, {"id": "xpE-E3MbsKw", "name": "Free Fall", "attr": ["Slot Machine", "KinnPorche"], "multi": 3, "date": "2023-02-09"}
 				, {"id": "q1cQW2UvL24", "name": "Sting/\ucc14\ub824", "attr": ["Stellar/\uc2a4\ud154\ub77c"], "date": "2017-12-14"}
 				, {"id": "8W6U-TlHQ_s", "name": "Rotation (Lotus-2)", "attr": ["Susumu Hirasawa"], "date": "2020-02-22"}
+				, {"id": "ko1rGDk_wNE", "name": "Ai \u0111\u01b0a em v\u1ec1", "attr": ["Tia", "Cukak Remix"], "date": "2026-04-04"}
 				, {"id": "7YPXWVGYcMA", "name": "Neki Miku Reimu", "attr": ["Tohou Flash"], "date": "2017-05-28"}
 				, {"id": "KuKtmb5hPXs", "name": "Still In Time/\u8fd8\u6765\u5f97\u53ca", "attr": ["Ztao/\u9ec4\u5b50\u97ec"], "tags": ["Perfect"], "date": "2018-09-13"}
 				, {"id": "lhIME1AeTqM", "name": "Slot Machine", "attr": ["\u0e22\u0e49\u0e2d\u0e19"], "date": "2019-09-24"}
@@ -6828,6 +6838,7 @@
 				, {"id": "XUENIUvwe0s", "name": "Me! Me! Me!", "attr": ["Teddyloid"], "tags": ["Epsilon"], "date": "2018-02-27"}
 				, {"id": "J0YYgKiw8Bc", "name": "Me! Me! Me! part 2", "attr": ["Teddyloid"], "tags": ["Alpha"], "date": "2018-04-26"}
 				, {"id": "fZiwyZyZw1k", "name": "Brotherman Bill", "attr": ["Terrible Tim"], "date": "2021-05-15"}
+				, {"id": "Dg28J5MIOGA", "name": "The One Who's Running The Show", "attr": ["The Amazing Digital Circus"], "date": "2026-04-04"}
 				, {"id": "jUttnhilvOw", "name": "Bowsette", "attr": ["The Chalkeaters"], "date": "2023-04-23"}
 				, {"id": "rv7psmnIGg4", "name": "8-Bit Enough", "attr": ["The Chongo Show"], "date": "2018-08-25"}
 				, {"id": "I4PtYHRzdBM", "name": "Goldmine", "attr": ["The Jokes"], "date": "2018-07-19"}
