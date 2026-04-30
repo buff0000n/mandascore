@@ -1705,6 +1705,7 @@
 				, {"id": "fLEs-M7G1TU", "name": "All Star", "attr": ["Smash Mouth"], "date": "2017-04-21"}
 				, {"id": "gHFZ4wNrvYI", "name": "Walkin' On The Sun", "attr": ["Smash Mouth"], "tags": ["Plogg"], "date": "2018-01-23"}
 				, {"id": "jUpraVXCpck", "name": "De M\u00fasica Ligera", "attr": ["Soda Stereo"], "date": "2021-06-08"}
+				, {"id": "pO8jUFer_fc", "name": "Mayday", "attr": ["Sohodolls"], "date": "2026-04-18"}
 				, {"id": "coV24X77aHE", "name": "Circles", "attr": ["Soul Coughing"], "date": "2019-04-09"}
 				, {"id": "1vHI3Tmssfo", "name": "Outshined", "attr": ["Soundgarden"], "tags": ["Perfect", "Druk"], "multi": 3, "date": "2025-08-30"}
 				, {"id": "ac0v_KEKklQ", "name": "The Hardest Cut", "attr": ["Spoon"], "date": "2023-05-11"}
@@ -1748,6 +1749,7 @@
 				, {"id": "TDQons59IJQ", "name": "In Her Eyes", "attr": ["The Jungle Giants"], "date": "2026-01-29"}
 				, {"id": "OScT2fXJpkk", "name": "Mr. Brightside", "attr": ["The Killers"], "date": "2017-05-15"}
 				, {"id": "u_RAWlla20k", "name": "Shadowplay", "attr": ["The Killers"], "tags": ["Perfect"], "date": "2024-04-06"}
+				, {"id": "7vDzhDNK2lk", "name": "Jane!", "attr": ["The Long Faces"], "date": "2026-04-30"}
 				, {"id": "cpYhFLEp2Vs", "name": "Ophelia", "attr": ["The Lumineers"], "tags": ["Perfect"], "date": "2023-05-11"}
 				, {"id": "c60PWIkxal4", "name": "The Impression That I get", "attr": ["The Mighty Mighty Bosstones"], "tags": ["Perfect"], "date": "2019-02-28"}
 				, {"id": "PHi798569Z0", "name": "Live While I Breathe", "attr": ["The Moth & The Flame"], "tags": ["Perfect"], "date": "2024-10-03"}
@@ -2208,12 +2210,14 @@
 				, {"id": "s__tJWbfEUg", "name": "Hips Don't Lie", "attr": ["Shakira ft. Wyclef Jean"], "tags": ["Perfect"], "date": "2025-12-13"}
 				, {"id": "G8WGj9oJxJ4", "name": "Impossible", "attr": ["Shontelle"], "multi": 2, "date": "2018-02-01"}
 				, {"id": "Qny4-QNJ_zA", "name": "How To Start A War", "attr": ["Simon Curtis"], "date": "2019-02-23"}
+				, {"id": "ebIEMJ4Hg4g", "name": "Murder On The Dancefloor", "attr": ["Sophie Ellis-Bextor"], "tags": ["Perfect"], "date": "2026-04-30"}
 				, {"id": "DctzRtbmxKA", "name": "Die Young", "attr": ["Sylvan Esso"], "date": "2018-07-10"}
 				, {"id": "ezSkn_ov9zk", "name": "Saturn", "attr": ["SZA"], "date": "2025-02-15"}
 				, {"id": "a9oenhh3-NY", "name": "Shirt", "attr": ["SZA"], "tags": ["Perfect"], "date": "2022-08-18"}
 				, {"id": "_bxXj_-qX0E", "name": "She Lovin' It", "attr": ["Trey Songz"], "date": "2018-08-14"}
 				, {"id": "R4s-67bhqbk", "name": "DJ Got Us Fallin' In Love", "attr": ["Usher"], "tags": ["Perfect"], "multi": 2, "date": "2019-02-12"}
 				, {"id": "IrW2h3prjZk", "name": "Se Mig", "attr": ["Veronica Maggio"], "tags": ["Perfect"], "date": "2022-04-02"}
+				, {"id": "1cTHA9xEPdQ", "name": "I Wanna Dance With Somebody", "attr": ["Whitney Houston"], "multi": 2, "date": "2026-04-18"}
 				, {"id": "RbybxN7TwQE", "name": "Let Me", "attr": ["Zayn"], "tags": ["Perfect"], "date": "2021-05-22"}
 			]
 		}
@@ -2480,6 +2484,7 @@
 			"songs":[
 				{"id": "ze4ugiCOSk4", "name": "Armed & Dangerous", "attr": ["Juice WRLD"], "date": "2019-03-05"}
 				, {"id": "tYxOUfbTrjk", "name": "Blood On My Jeans", "attr": ["Juice WRLD"], "date": "2022-07-29"}
+				, {"id": "TT4PaPFDFSU", "name": "Empty Out Your Pockets", "attr": ["Juice WRLD"], "tags": ["Perfect"], "date": "2026-04-30"}
 				, {"id": "vp3JU1VHYO4", "name": "Legends", "attr": ["Juice WRLD"], "tags": ["Perfect"], "date": "2019-02-05"}
 				, {"id": "lJbMfqHhZ3Q", "name": "Lucid Dreams/Forget Me", "attr": ["Juice WRLD"], "date": "2018-06-14"}
 				, {"id": "JJ1qa7gDmoc", "name": "Wishing Well", "attr": ["Juice WRLD"], "tags": ["Perfect", "Gamma"], "date": "2020-11-14"}
@@ -4054,10 +4059,10 @@
 				, {"id": "UfsfWamEujY", "name": "The Baddest", "attr": ["K/DA", "League of Legends"], "tags": ["Perfect"], "date": "2020-09-05"}
 				, {"id": "ka_DPJMmKCs", "name": "Light and Shadow", "attr": ["League of Legend ft. Hiroyuki Sawano"], "tags": ["Adau"], "date": "2019-09-21"}
 				, {"id": "iRa00yuGTKI", "name": "Faerie Court Seraphine Passive Music", "attr": ["League of Legends"], "date": "2023-04-23"}
+				, {"id": "wwIPgngMegQ", "name": "Get Jinxed/Jinx Login Screen", "attr": ["League Of Legends"], "tags": ["Perfect"], "date": "2026-04-18"}
 				, {"id": "uqotNWKCbvk", "name": "Gun Goddess Miss Fortune login screen", "attr": ["League of Legends"], "date": "2018-10-04"}
 				, {"id": "khTLvcHdXtI", "name": "Cypher Music", "attr": ["League of Legends", "Instrumental Dominion Beat"], "date": "2017-05-01"}
 				, {"id": "58YmOjN9Kk4", "name": "Irelia Login Screen", "attr": ["League of Legends"], "multi": 2, "date": "2018-07-20"}
-				, {"id": "MZRlu2_GWNc", "name": "Jinx Login Screen", "attr": ["League Of Legends"], "tags": ["Perfect"], "date": "2019-08-27"}
 				, {"id": "443Jw6tON9U", "name": "Pantheon Login Theme", "attr": ["League Of Legends"], "date": "2022-12-22"}
 				, {"id": "Lt_j_IBRd1k", "name": "Phoenix", "attr": ["League of Legends"], "date": "2020-05-23"}
 				, {"id": "3akKTTEgju0", "name": "I'll Find A Way", "attr": ["League of Legends", "Sentinels Of Light"], "date": "2024-05-30"}
@@ -4709,6 +4714,7 @@
 					, {"id": "shVpxwIvsJg", "name": "Warp", "attr": ["Lethal League"], "tags": ["Perfect"], "date": "2017-10-31"}
 					, {"id": "x5gkA1jr-s0", "name": "In Hell We Live, Lament", "attr": ["Limbus Company"], "tags": ["Perfect"], "date": "2022-05-12"}
 					, {"id": "jDxDYwhrJ2A", "name": "Burning Sunset", "attr": ["Lisa The Painful"], "date": "2018-11-22"}
+					, {"id": "3JBSVvfE5dg", "name": "First Warning", "attr": ["Lobotomy Corporation"], "date": "2026-04-18"}
 					, {"id": "dWy-pPF-Cb0", "name": "Final Battle", "attr": ["Lufia II"], "date": "2020-02-22"}
 					, {"id": "kmXhwdWdInA", "name": "Mad Rat Heart", "attr": ["Mad Rat Dead"], "date": "2021-05-15"}
 					, {"id": "gsD8JBz3RCA", "name": "Back to Back", "attr": ["Metin 2"], "tags": ["Druk"], "date": "2019-03-28"}
@@ -4945,6 +4951,7 @@
 					, {"id": "qvzgo2BdgHc", "name": "Wilderness", "attr": ["Golden Axe"], "date": "2017-04-02"}
 					, {"id": "kwCzzGDN-N0", "name": "Medivo", "attr": ["Jazz Jackrabbit", "Episode 1", "Planet 3"], "tags": ["Sparse"], "date": "2017-09-30"}
 					, {"id": "hWx3ELILly0", "name": "Tubelectric", "attr": ["Jazz Jackrabbit"], "tags": ["Filled"], "date": "2017-04-05"}
+					, {"id": "td8gtXHGJsU", "name": "Level 1", "attr": ["Jurassic Park NES"], "date": "2026-04-18"}
 					, {"id": "xqJzghwO6jk", "name": "Tetris A", "attr": ["Korobeiniki"], "date": "2017-04-10"}
 					, {"id": "7jwr_40gfB0", "name": "Music 2", "attr": ["Mech Platoon"], "date": "2024-03-07"}
 					, {"id": "pbebyGIa9Qc", "name": "The Scumm Bar", "attr": ["Monkey Island 1"], "date": "2018-01-27"}
@@ -5507,6 +5514,7 @@
 				, {"id": "VlyZ7gxadY0", "name": "World's End", "attr": ["Code Geass opening 5"], "tags": ["Perfect"], "date": "2024-03-28"}
 				, {"id": "vpwD8wIQvqE", "name": "Tank!", "attr": ["Cowboy Bebop opening"], "date": "2018-02-01"}
 				, {"id": "eAdZTkPBzTE", "name": "Yofukashino Uta", "attr": ["Creepy Nuts", "Call of the Night ending"], "date": "2025-11-07"}
+				, {"id": "PDIvlUypG7o", "name": "Daten", "attr": ["Creepy Nuts", "Call of the Night opening"], "multi": 2, "date": "2026-04-30"}
 				, {"id": "gvwpofdeieQ", "name": "Doubt & Trust", "attr": ["D.Gray Man opening 3"], "date": "2017-04-22"}
 				, {"id": "zV9Qcwf-xwA", "name": "14th Song", "attr": ["D.Gray-man"], "date": "2017-04-06"}
 				, {"id": "XLMH3M-UjvE", "name": "Seirei", "attr": ["Date A Live"], "tags": ["Adau"], "date": "2019-03-05"}
@@ -5533,6 +5541,7 @@
 				, {"id": "N_Bck0bBrd4", "name": "Mousou Koukan Nikki", "attr": ["GJ Club opening"], "date": "2017-10-31"}
 				, {"id": "7ZjMg0HkCT0", "name": "Over the Clouds", "attr": ["God Eater Resurrection opening"], "date": "2020-05-09"}
 				, {"id": "EcQ_cd-kDks", "name": "Hikaru Nara", "attr": ["Goose House", "Your Lie In April"], "date": "2018-05-03"}
+				, {"id": "kPWd5ibuRiQ", "name": "Grand Blue", "attr": ["Grand Blue Opening"], "tags": ["Perfect"], "multi": 2, "date": "2026-04-30"}
 				, {"id": "r5T21aNeT-0", "name": "Hill Of Sorrow", "attr": ["Guilty Crown", "Sawano Hiroyuki"], "date": "2018-07-17"}
 				, {"id": "TNiWpMOsGWE", "name": "Full Hikari", "attr": ["Hamatora ending"], "date": "2017-05-11"}
 				, {"id": "uq73UHhBKfQ", "name": "Sakura no Uta opening", "attr": ["Hana"], "date": "2022-02-19"}
@@ -5904,6 +5913,7 @@
 				, {"id": "RWeVQGy7WXc", "name": "Harpists' song", "attr": ["Kung Fu Hustle"], "date": "2018-07-15"}
 				, {"id": "5BjMAKKxMcM", "name": "Magic Dance", "attr": ["Labyrinth", "David Bowie"], "tags": ["Perfect"], "date": "2018-09-13"}
 				, {"id": "_UJ6PU1-EGk", "name": "The Red Circle", "attr": ["Le Castle Vania", "John Wick club scene"], "date": "2018-07-05"}
+				, {"id": "5XU6EW8P4TU", "name": "Always Look On The Bright Side of Life", "attr": ["Monty Python"], "date": "2026-04-30"}
 				, {"id": "hGtjs6cA9DU", "name": "A Religious Man/I Am I Am", "attr": ["Mr. Loco", "Nacho Libre"], "date": "2018-08-30"}
 				, {"id": "P0fSdIYYDp4", "name": "Confusion (Blood rave scene from Blade)", "attr": ["New Order"], "date": "2022-05-19"}
 				, {"id": "nYeVOeLNi_Q", "name": "Weird Science", "attr": ["Oingo Boingo"], "date": "2017-04-30"}
@@ -6423,6 +6433,7 @@
 				, {"id": "RbiL8BkCwtQ", "name": "Killin' It Girl", "attr": ["j-Hope ft. GloRilla"], "tags": ["Perfect"], "date": "2025-07-11"}
 				, {"id": "ai2I7kF33_s", "name": "Jolly Jolly", "attr": ["JiLL-Decoy association"], "date": "2021-11-13"}
 				, {"id": "eGQ7XB9nIeE", "name": "Fighter", "attr": ["Kana-Boon"], "date": "2021-03-09"}
+				, {"id": "P4umocn2TMw", "name": "Aizo", "attr": ["King Gnu"], "date": "2026-04-18"}
 				, {"id": "w_QX-gpWF1w", "name": "\u98db\u884c\u8247", "attr": ["King Gnu"], "date": "2019-08-29"}
 				, {"id": "aAdm4IIM7vY", "name": "Life Hates Us Now", "attr": ["Mafumafu"], "tags": ["Perfect"], "date": "2024-04-19"}
 				, {"id": "Iwz0EgDdlMI", "name": "Lamb", "attr": ["MARiA", "\u307f\u3046\u3081\u30fb\u30e1\u30a4\u30ea\u30a2\u30fb217"], "date": "2017-08-24"}
@@ -6443,6 +6454,7 @@
 				, {"id": "v1NH3Lj1Bu4", "name": "Kokoro no Sport/\u5fc3\u306e\u30b9\u30dd\u30fc\u30c4", "attr": ["Perfume"], "date": "2023-03-02"}
 				, {"id": "3Ha9CSA6jII", "name": "Hysteric Night Girl", "attr": ["PSYQUI ft. Such"], "date": "2023-02-02"}
 				, {"id": "psb1O5C3mkw", "name": "At God's Mercy/\u795e\u306e\u307e\u306b\u307e\u306b", "attr": ["rerulili/\u308c\u308b\u308a\u308a"], "tags": ["Perfect"], "date": "2018-02-20"}
+				, {"id": "vv8CLZYVddU", "name": "Let Me Be With You", "attr": ["Round Table ft. Nino"], "date": "2026-04-18"}
 				, {"id": "U-R8fT08MNQ", "name": "Be a Flower", "attr": ["Ryokuoushoku Shakai"], "date": "2025-07-03"}
 				, {"id": "GLqjLtXc1VI", "name": "Keiju", "attr": ["sakanaction"], "multi": 2, "date": "2025-05-03"}
 				, {"id": "z4jOfq8dgf8", "name": "Dragon Night", "attr": ["Sekai No Owari"], "date": "2017-09-26"}
@@ -6507,6 +6519,7 @@
 				, {"id": "v-E_F9ZS0eo", "name": "Fearless", "attr": ["Le Sserafim"], "date": "2022-10-13"}
 				, {"id": "ozT5Y0Cr7rQ", "name": "Perfect Night", "attr": ["Le Sserafim"], "date": "2024-04-04"}
 				, {"id": "BTj2d3F1j28", "name": "Baby Don't Stop", "attr": ["NCT U/\uc5d4\uc2dc\ud2f0 \uc720"], "date": "2018-03-20"}
+				, {"id": "M92q4dD-LIg", "name": "Blue Valentine", "attr": ["NMIXX/\uc5d4\ubbf9\uc2a4"], "date": "2026-04-18"}
 				, {"id": "922dlWWCdG0", "name": "Liar Liar", "attr": ["Oh My Girl/\uc624\ub9c8\uc774\uac78"], "tags": ["Perfect"], "date": "2017-08-25"}
 				, {"id": "uQHjMxF9fWw", "name": "Windy Day", "attr": ["Oh My Girl/\uc624\ub9c8\uc774\uac78"], "date": "2019-05-07"}
 				, {"id": "ZjLkH5upeGY", "name": "Catallena/\uae4c\ud0c8\ub808\ub098", "attr": ["Orange Caramel"], "date": "2020-09-05"}
