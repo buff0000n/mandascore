@@ -2668,6 +2668,7 @@
 				, {"id": "v8rZkd1hr-s", "name": "Spitfire", "attr": ["Bugzy Malone"], "date": "2017-12-05"}
 				, {"id": "C_T9bGYntSs", "name": "Paris", "attr": ["Calyco"], "tags": ["Perfect"], "multi": 2, "date": "2022-09-29"}
 				, {"id": "EZIE9esqW6I", "name": "Long Way 2 Go", "attr": ["Cassie"], "tags": ["Perfect", "Gamma"], "date": "2023-11-23"}
+				, {"id": "d-ilf4jdFxE", "name": "Me & U", "attr": ["Cassie"], "tags": ["Perfect"], "multi": 3, "date": "2026-05-16"}
 				, {"id": "m_mKp3MNz8o", "name": "Citgo", "attr": ["Chief Keef"], "tags": ["Perfect"], "date": "2021-03-16"}
 				, {"id": "39mb8WxhySE", "name": "The Loft", "attr": ["City Of Dreams"], "tags": ["Perfect"], "date": "2018-01-16"}
 				, {"id": "D5Fi-_SXG0E", "name": "Tell Em", "attr": ["Cochise ft. $not"], "tags": ["Bombast"], "date": "2022-02-05"}
@@ -2804,6 +2805,7 @@
 				, {"id": "KxiclnZu59U", "name": "Pull Up", "attr": ["Wiz Khalifa"], "date": "2017-05-10"}
 				, {"id": "sH6rLDyYESw", "name": "Triumph", "attr": ["Wu Tang Clan"], "date": "2021-03-23"}
 				, {"id": "bRqZkFbf-5o", "name": "Mama Cry", "attr": ["YNW Melly"], "tags": ["Perfect"], "date": "2023-01-12"}
+				, {"id": "iaoeYLKY82Y", "name": "Murder On My Mind", "attr": ["YNW Melly"], "tags": ["Perfect"], "date": "2026-05-16"}
 				, {"id": "hMcHR4mqcBg", "name": "Make No Sense", "attr": ["YoungBoy Never Broke Again"], "tags": ["Perfect"], "date": "2025-11-13"}
 				, {"id": "rvMHGOTdqgc", "name": "Bestie", "attr": ["Yungen"], "tags": ["Perfect"], "date": "2018-02-20"}
 			]
@@ -4095,6 +4097,7 @@
 				, {"id": "xQF6V6Bos4s", "name": "Realm Overworld", "attr": ["Legend of Zelda: Spirit Tracks"], "date": "2022-01-22"}
 				, {"id": "eUir4pRK_Ho", "name": "Dragon Roost Island", "attr": ["Legend of Zelda: Wind Waker"], "date": "2017-04-27"}
 				, {"id": "TeJd7_2FAI8", "name": "Stone Tower Temple", "attr": ["The Legend Of Zelda: Majora's Mask"], "date": "2017-11-07"}
+				, {"id": "v0GuXruJfns", "name": "Goron City", "attr": ["Zelda: Ocarina of Time"], "date": "2026-05-16"}
 			]
 		},
 		"Mario (Various)":{
@@ -5842,6 +5845,7 @@
 				, {"id": "4C_ckl52gUs", "name": "Futurama Theme", "tags": ["Sparse"], "date": "2017-05-10"}
 				, {"id": "5SZSM2cKYFk", "name": "Gravity Falls theme", "multi": 2, "date": "2018-03-17"}
 				, {"id": "pp6pTwM33ko", "name": "Inspector Gadget", "date": "2017-03-26"}
+				, {"id": "N9cyzxP1h-k", "name": "Iron Man Armored Adventures theme song", "date": "2026-05-16"}
 				, {"id": "6wRU7uknO7w", "name": "Jimmy Neutron theme song", "date": "2022-02-19"}
 				, {"id": "HTGWPuHexBY", "name": "Kim Possible Theme", "date": "2020-05-16"}
 				, {"id": "xoBG24soAgo", "name": "Magic Roundabout theme", "tags": ["Beta"], "date": "2018-10-30"}
@@ -5866,6 +5870,7 @@
 				, {"id": "fWXu9sOVvNA", "name": "Intro", "attr": ["Men In Black The Series"], "date": "2017-04-27"}
 				, {"id": "YslwdvSxY6g", "name": "Shiny", "attr": ["Moana"], "date": "2026-02-07"}
 				, {"id": "f1D9PcoGlcY", "name": "You're Welcome", "attr": ["Moana"], "date": "2018-04-19"}
+				, {"id": "AktaxjZ0Euc", "name": "I'm Lindanna And I Wanna Have Fun", "attr": ["Phineas And Ferb"], "date": "2026-05-16"}
 				, {"id": "t6w0QUADY4o", "name": "Gary Vs. David", "attr": ["Regular Show"], "tags": ["Epsilon"], "date": "2018-02-20"}
 				, {"id": "J0gXsXByC7w", "name": "Summertime Lovin'", "attr": ["Regular Show"], "multi": 2, "date": "2019-08-06"}
 				, {"id": "8vsTXgnvzm0", "name": "Always With Me", "attr": ["Spirited Away"], "tags": ["Beta"], "date": "2017-08-28"}
@@ -5955,6 +5960,7 @@
 			"dbName":"TVMovie.MiscTV",
 			"songs":[
 				{"id": "KkYZUTh-yU0", "name": "Alf theme song", "date": "2018-01-20"}
+				, {"id": "CIaKLof-Zzw", "name": "Bakuage Sentai Boonboomger opening", "date": "2026-05-16"}
 				, {"id": "3I09AT9siZg", "name": "Big Time Rush theme song", "date": "2020-02-15"}
 				, {"id": "oioHf1pcHDs", "name": "Buffy The Vampire Slayer theme song", "tags": ["Druk"], "date": "2017-08-15"}
 				, {"id": "EvT1e27qkfo", "name": "Game of Thrones theme", "date": "2017-05-18"}
@@ -6057,6 +6063,7 @@
 			"songs":[
 				{"id": "HgmkZDuaPRg", "name": "Anpanman", "attr": ["BTS"], "tags": ["Perfect"], "date": "2018-07-20"}
 				, {"id": "w2XdsKDS1kY", "name": "Ddaeng/\ub561", "attr": ["BTS"], "date": "2018-07-03"}
+				, {"id": "aCS09cO9Nug", "name": "FYA", "attr": ["BTS"], "date": "2026-05-16"}
 				, {"id": "scFtNWPKcMY", "name": "21st Century Girls/21\uc138\uae30 \uc18c\ub140", "attr": ["BTS/\ubc29\ud0c4\uc18c\ub144\ub2e8"], "date": "2017-07-19"}
 				, {"id": "TFUFF-Z57R0", "name": "Baepsae/\ubc41\uc0c8/Crow Tit/Try-Hard", "attr": ["BTS/\ubc29\ud0c4\uc18c\ub144\ub2e8"], "tags": ["Perfect"], "date": "2018-04-26"}
 				, {"id": "IgzGJZniK7A", "name": "Black Swan", "attr": ["BTS/\ubc29\ud0c4\uc18c\ub144\ub2e8"], "tags": ["Perfect"], "date": "2020-02-22"}
