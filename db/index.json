@@ -379,6 +379,7 @@
 				, {"id": "-pTkWKPGd8I", "name": "Higher Love", "attr": ["Steve Winwood"], "date": "2021-03-31"}
 				, {"id": "9JkSTrjjb4M", "name": "Edge Of Seventeen", "attr": ["Stevie Nicks"], "date": "2023-02-23"}
 				, {"id": "TkdzvRSFyAM", "name": "Crossfire", "attr": ["Stevie Ray Vaughan"], "date": "2023-04-23"}
+				, {"id": "RmlOhTkxtk4", "name": "Do I Do", "attr": ["Stevie Wonder"], "tags": ["Perfect"], "date": "2026-05-28"}
 				, {"id": "OkiX1uaSbJo", "name": "Superstitious", "attr": ["Stevie Wonder"], "date": "2017-07-02"}
 				, {"id": "PYoSvQ_Sy_k", "name": "Shape of my Heart", "attr": ["Sting"], "tags": ["Perfect"], "date": "2026-04-04"}
 				, {"id": "FrJcOacbWcQ", "name": "Mr. Roboto", "attr": ["Styx"], "tags": ["Perfect"], "date": "2017-05-28"}
@@ -492,7 +493,8 @@
 		"Bad Omens":{
 			"dbName":"HardRock",
 			"songs":[
-				{"id": "vxJ8a0gpmP8", "name": "The Death of Peace Of Mind", "attr": ["Bad Omens"], "date": "2021-11-27"}
+				{"id": "cDlUdJzbXo8", "name": "Specter", "attr": ["Bad Omens"], "multi": 2, "date": "2026-05-28"}
+				, {"id": "vxJ8a0gpmP8", "name": "The Death of Peace Of Mind", "attr": ["Bad Omens"], "date": "2021-11-27"}
 				, {"id": "7k3MhSZK4u0", "name": "The Fountain", "attr": ["Bad Omens"], "tags": ["Perfect"], "date": "2018-10-23"}
 				, {"id": "SuRSd0hin_g", "name": "The Gray", "attr": ["Bad Omens"], "date": "2023-05-11"}
 			]
@@ -1690,6 +1692,7 @@
 				, {"id": "3jl3gvb-aMk", "name": "Zombienauta", "attr": ["Sensacion"], "date": "2019-02-28"}
 				, {"id": "wuF3EqjJOUU", "name": "Playing With Bad Luck", "attr": ["Set It Off"], "date": "2022-05-26"}
 				, {"id": "wbEhWb4MmtI", "name": "Wolf In Sheep's Clothing", "attr": ["Set It Off"], "tags": ["Druk"], "date": "2017-04-15"}
+				, {"id": "v1sqat-dXhI", "name": "Cumbersome", "attr": ["Seven Mary Three"], "tags": ["Perfect"], "multi": 3, "date": "2026-05-28"}
 				, {"id": "V4GcLeFFT-k", "name": "Trampoline", "attr": ["Shaed"], "tags": ["Perfect"], "date": "2022-01-08"}
 				, {"id": "hi47IlhS4I8", "name": "Kiss The Sky", "attr": ["Shawn Lee's Ping Pong Orchestra ft. Nino Mochella"], "date": "2019-04-09"}
 				, {"id": "4GnFDxm0tNc", "name": "Your Love", "attr": ["She Wants Revenge"], "tags": ["Perfect"], "date": "2025-11-13"}
@@ -1832,6 +1835,7 @@
 			"dbName":"Pop",
 			"songs":[
 				{"id": "eW1xPFd_wzM", "name": "Baby", "attr": ["Bieber"], "date": "2017-08-28"}
+				, {"id": "dQtxhMQOo6w", "name": "Yukon", "attr": ["Justin Bieber"], "tags": ["Perfect"], "multi": 3, "date": "2026-05-28"}
 				, {"id": "fu6PktufsIc", "name": "Yummy", "attr": ["Justin Bieber"], "date": "2025-07-11"}
 				, {"id": "ZFgooeJP0Go", "name": "Stay", "attr": ["The Kid LAROI ft. Justin Bieber"], "date": "2021-08-14"}
 			]
@@ -2662,6 +2666,7 @@
 				, {"id": "Aryl2DZdT6M", "name": "Tribe", "attr": ["Bas", "J.Cole"], "date": "2019-12-14"}
 				, {"id": "8d_Eu9jtHfQ", "name": "Hypnotize", "attr": ["Biggie Smalls"], "tags": ["Perfect"], "date": "2018-12-20"}
 				, {"id": "fpgBZWHwVu4", "name": "Notorious Thugz", "attr": ["Biggie Smalls"], "tags": ["Filled"], "date": "2017-08-12"}
+				, {"id": "0BsrZ-BdpnQ", "name": "if i could i would feel nothing", "attr": ["blackbear"], "date": "2026-05-28"}
 				, {"id": "Var58Mu53ts", "name": "Victim", "attr": ["bladee", "Thaiboy Digital", "ECCO2K"], "tags": ["Perfect"], "date": "2022-08-11"}
 				, {"id": "mHnNGsviUFY", "name": "Boogie", "attr": ["Brockhampton"], "tags": ["Delta"], "date": "2019-07-30"}
 				, {"id": "XLGLMV28GXY", "name": "Sugar", "attr": ["Brockhampton"], "tags": ["Perfect", "Gamma"], "date": "2020-03-21"}
@@ -3547,6 +3552,7 @@
 				, {"id": "xWgiaEHw3qU", "name": "Glorious morning", "attr": ["Waterflame"], "date": "2020-06-27"}
 				, {"id": "KQb6uXKMPV0", "name": "White Horse (Original Mix)", "attr": ["Wonderland Avenue"], "date": "2018-08-14"}
 				, {"id": "QkfLza25-a4", "name": "Bright Red Lips", "attr": ["Young Bear"], "date": "2021-11-13"}
+				, {"id": "gdVVaAQZQBk", "name": "Boys Like U", "attr": ["Zand"], "tags": ["Perfect"], "date": "2026-05-28"}
 				, {"id": "VDl57pJIOzE", "name": "Stay", "attr": ["Zedd", "Alessia Cara"], "date": "2018-07-19"}
 				, {"id": "xdf_ioFRfS4", "name": "Lights Out", "attr": ["Zeds Dead"], "date": "2025-04-05"}
 				, {"id": "j7Rq9QHUIXQ", "name": "Neck And Neck", "attr": ["Zeds Dead"], "tags": ["Perfect"], "date": "2021-03-06"}
@@ -4013,6 +4019,7 @@
 				, {"id": "g9UO_YOGNGk", "name": "Proi Proi", "attr": ["Honkai: Star Rail"], "tags": ["Perfect", "Adau"], "date": "2025-07-11"}
 				, {"id": "qBLZ5QyPtyY", "name": "Sway to My Bean in the Cosmos/Welcome To My World/Robin's Ultimate Song", "attr": ["Honkai: Star Rail"], "date": "2024-04-11"}
 				, {"id": "VvNGAi_u2JA", "name": "White Night", "attr": ["Honkai: Star Rail"], "tags": ["Perfect"], "date": "2024-02-14"}
+				, {"id": "NYZjoT0ncxI", "name": "Death in the Afternoon", "attr": ["Honkai: Star Rail x MAPPA"], "date": "2026-05-28"}
 			]
 		},
 		"Hotline Miami":{
@@ -5501,6 +5508,7 @@
 				, {"id": "4XGtyVfhsMI", "name": "Wild Side", "attr": ["Beastars opening"], "date": "2020-07-25"}
 				, {"id": "rdyyhBlpLaQ", "name": "Believe It!", "attr": ["Best Friends!"], "date": "2019-01-12"}
 				, {"id": "gf6utkDN1Do", "name": "Disorder", "attr": ["Big Order opening"], "date": "2017-04-27"}
+				, {"id": "t2I3kUEmzZ4", "name": "Monochrome No Kiss", "attr": ["Black Butler opening 1"], "date": "2026-05-28"}
 				, {"id": "DUhQ9B9TmaI", "name": "Red Fraction", "attr": ["Black Lagoon opening"], "date": "2017-07-17"}
 				, {"id": "RMYw1uPTk1Q", "name": "Night Running", "attr": ["BNA ending"], "date": "2020-08-29"}
 				, {"id": "rVDs0pfbfQM", "name": "Ready To", "attr": ["BNA opening"], "date": "2023-01-12"}
@@ -5635,6 +5643,7 @@
 				, {"id": "aTMV1ykY9ZE", "name": "White Light", "attr": ["Tales of Zestria opening"], "date": "2018-06-23"}
 				, {"id": "00ceBssfL6E", "name": "Kaze no Uta/\u98a8\u30ce\u5504", "attr": ["Tales of Zestria the X - Opening"], "date": "2017-08-12"}
 				, {"id": "Ohyj2c3-jBo", "name": "Wareta Ringo", "attr": ["Taneda Risa", "Shinsekai Yori ending"], "date": "2017-06-26"}
+				, {"id": "DCeBKoO9-6c", "name": "Hana ni Natte", "attr": ["The Apothecary Diaries opening"], "date": "2026-05-28"}
 				, {"id": "oBGhvSGqmow", "name": "Cozy Workplace", "attr": ["The Dungeon of Black Company"], "date": "2023-07-27"}
 				, {"id": "vMiVoY_bsTM", "name": "Koyoi Mofumofu!!", "attr": ["The Helpful Fox Senko-san"], "date": "2023-05-25"}
 				, {"id": "PFnVU_pEqJ8", "name": "\u660e\u65e5\u4e4b\u5fc3/Tomorrow's Heart", "attr": ["The King's Avatar ending"], "date": "2018-09-11"}
