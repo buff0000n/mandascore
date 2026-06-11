@@ -348,6 +348,7 @@
 				, {"id": "PPddf2B3mss", "name": "In The Summertime", "attr": ["Mungo Jerry"], "date": "2022-05-26"}
 				, {"id": "q1WAYFNy2qk", "name": "Promises Promises", "attr": ["Naked Eyes"], "tags": ["Perfect"], "date": "2018-10-09"}
 				, {"id": "fcNII3-6WHo", "name": "Physical", "attr": ["Olivia Newton-John"], "tags": ["Perfect"], "date": "2022-04-22"}
+				, {"id": "_DkAJzd-hro", "name": "Because The Night", "attr": ["Patti Smith Group"], "tags": ["Perfect"], "multi": 3, "date": "2026-06-11"}
 				, {"id": "WGe0J_WLCuU", "name": "Do The Evolumtion", "attr": ["Pearl Jam"], "tags": ["Druk"], "date": "2018-09-02"}
 				, {"id": "LaOcnvdsvF8", "name": "Always On My Mind", "attr": ["Pet Shop Boys"], "date": "2017-10-26"}
 				, {"id": "zq4JjwkM9mw", "name": "Games Without Frontiers", "attr": ["Peter Gabriel"], "tags": ["Perfect"], "date": "2019-08-06"}
@@ -1956,7 +1957,9 @@
 				, {"id": "a6K8HD0NVHA", "name": "California Gurls", "attr": ["Katy Perry"], "tags": ["Perfect"], "multi": 2, "date": "2018-05-08"}
 				, {"id": "6iqAxDooNPo", "name": "Cry About It Later", "attr": ["Katy Perry"], "tags": ["Perfect"], "date": "2021-03-31"}
 				, {"id": "I5J-6YRHYSA", "name": "E.T.", "attr": ["Katy Perry"], "date": "2018-05-29"}
+				, {"id": "FZImGCd4REU", "name": "Part Of Me", "attr": ["Katy Perry"], "tags": ["Perfect"], "date": "2026-06-11"}
 				, {"id": "3TBHe1QG3-w", "name": "Swish Swish", "attr": ["Katy Perry"], "date": "2017-09-26"}
+				, {"id": "3rrFZrEWEYM", "name": "The One That Got Away", "attr": ["Katy Perry"], "tags": ["Perfect"], "date": "2026-06-11"}
 			]
 		},
 		"Ke$ha":{
@@ -2821,7 +2824,6 @@
 		"songs":[
 			{"id": "EJJzeBHMPEI", "name": "Harlem Shake", "attr": ["Baauer"], "date": "2018-12-08"}
 			, {"id": "5y4mYOIZTyY", "name": "Gonna Make You Sweat/Everybody Dance Now", "attr": ["C+C Music Factory"], "date": "2017-07-18"}
-			, {"id": "XymNk6PiH0k", "name": "Acceptable In The 80's", "attr": ["Calvin Harris"], "tags": ["Perfect", "Sparse"], "date": "2022-12-22"}
 			, {"id": "DmHhESUlv9w", "name": "Evacuate The Dancefloor", "attr": ["Cascada"], "date": "2019-04-30"}
 			, {"id": "wRvQbYqMuJg", "name": "Rhythm of the Night", "attr": ["Corona"], "date": "2019-05-04"}
 			, {"id": "iLDzd7X3kfI", "name": "Mr. Vain", "attr": ["Culture Beat"], "tags": ["Perfect"], "multi": 2, "date": "2019-05-02"}
@@ -2906,8 +2908,10 @@
 		"Calvin Harris":{
 			"dbName":"Electronic",
 			"songs":[
-				{"id": "hy5gXGbaHIM", "name": "Let's Go", "attr": ["Calvin Harris ft. Ne-Yo"], "date": "2019-02-07"}
+				{"id": "XymNk6PiH0k", "name": "Acceptable In The 80's", "attr": ["Calvin Harris"], "tags": ["Perfect", "Sparse"], "date": "2022-12-22"}
+				, {"id": "hy5gXGbaHIM", "name": "Let's Go", "attr": ["Calvin Harris ft. Ne-Yo"], "date": "2019-02-07"}
 				, {"id": "k74z22WFqp8", "name": "Outside", "attr": ["Calvin Harris"], "date": "2017-11-11"}
+				, {"id": "494dgttXcdg", "name": "Promises", "attr": ["Calvin Harris", "Sam Smith"], "date": "2026-06-11"}
 				, {"id": "g91_aDAy_w4", "name": "Slide", "attr": ["Calvin Harris"], "date": "2021-04-03"}
 				, {"id": "4R2E1Hw3SNA", "name": "Summer", "attr": ["Calvin Harris"], "date": "2021-05-01"}
 			]
@@ -2944,7 +2948,7 @@
 		"Chvrches":{
 			"dbName":"Electronic",
 			"songs":[
-				{"id": "uz0Rjb4dc0w", "name": "Asking For A Friend", "attr": ["Chvrches"], "tags": ["Perfect Melod"], "date": "2026-02-07"}
+				{"id": "uz0Rjb4dc0w", "name": "Asking For A Friend", "attr": ["Chvrches"], "tags": ["Perfect"], "date": "2026-02-07"}
 				, {"id": "WChqR1ZAGjs", "name": "Never Say Die", "attr": ["Chvrches"], "tags": ["Gamma", "Perfect"], "date": "2018-06-05"}
 				, {"id": "0j8LX549vis", "name": "The Mother We Share", "attr": ["Chvrches"], "tags": ["Perfect"], "date": "2017-05-18"}
 			]
@@ -3221,7 +3225,7 @@
 		"ZHU":{
 			"dbName":"Electronic",
 			"songs":[
-				{"id": "gHomu08EXIs", "name": "Dreams", "attr": ["ZHU & Nero"], "tags": ["Perfect", "Sparse Melod"], "date": "2020-04-18"}
+				{"id": "gHomu08EXIs", "name": "Dreams", "attr": ["ZHU & Nero"], "tags": ["Perfect", "Sparse"], "date": "2020-04-18"}
 				, {"id": "exaxwXmKmes", "name": "Cocaine Model", "attr": ["ZHU"], "date": "2024-10-03"}
 				, {"id": "IUOZbU4_jD0", "name": "Faded", "attr": ["ZHU"], "date": "2017-05-24"}
 				, {"id": "Pqxz-4d9n6Q", "name": "Faded", "attr": ["ZHU", "Odesza Remix"], "date": "2018-03-10"}
@@ -3331,6 +3335,7 @@
 				, {"id": "aOVMgoSFb0A", "name": "The 7 Seas", "attr": ["F-777"], "date": "2017-09-23"}
 				, {"id": "s-wsVqZRfCs", "name": "Lady Of Ice", "attr": ["Fancy"], "tags": ["Perfect"], "date": "2019-11-23"}
 				, {"id": "WT63bq73OHA", "name": "Right Here, Right Now", "attr": ["Fatboy Slim"], "tags": ["Perfect"], "date": "2018-03-03"}
+				, {"id": "J_yDTAJqRcc", "name": "Girl Hell 1999", "attr": ["femtanyl"], "date": "2026-06-11"}
 				, {"id": "RwZvKTpKV1U", "name": "KATAMARI", "attr": ["Femtanyl"], "date": "2024-04-25"}
 				, {"id": "IVSHiHTNOec", "name": "Waterfall", "attr": ["Fideles"], "tags": ["Perfect"], "date": "2023-08-10"}
 				, {"id": "Pj8U4HMHaMw", "name": "HandClap", "attr": ["Fitz and the Tantrums"], "multi": 3, "date": "2018-04-07"}
@@ -3369,6 +3374,7 @@
 				, {"id": "XXym_SwECvM", "name": "Metamorphosis", "attr": ["Interworld"], "date": "2023-02-09"}
 				, {"id": "CnQoxS9lUgg", "name": "Ocean Breeze", "attr": ["Italo Brothers"], "date": "2020-05-23"}
 				, {"id": "M7LjhsZ8huU", "name": "Stamp On The Ground", "attr": ["Italo Brothers"], "date": "2018-02-24"}
+				, {"id": "AM0Jp2p_n_c", "name": "Music Baby", "attr": ["Jane Remover"], "tags": ["Perfect"], "date": "2026-06-11"}
 				, {"id": "SXJAslGIbJE", "name": "Nowhere", "attr": ["Jasper De Ceuster"], "date": "2020-03-21"}
 				, {"id": "RE_YsEi87Lg", "name": "Laxed/Siren Beat", "attr": ["Jawsh 685"], "date": "2020-06-06"}
 				, {"id": "MiPVDYKrjmw", "name": "Miami Fever", "attr": ["Jeremiah Kane"], "tags": ["Filled"], "date": "2020-07-11"}
@@ -4259,6 +4265,7 @@
 				{"id": "1pYP3FhZH8o", "name": "Rejuvenesc\u00eancia", "attr": ["L\u00facio"], "date": "2017-04-01"}
 				, {"id": "5ozAjJHMSl0", "name": "We Move Together As One", "attr": ["L\u00facio"], "date": "2017-03-30"}
 				, {"id": "go3t2AOqT7A", "name": "When The Hammer Comes Down", "attr": ["NerdOut", "Overwatch Song"], "tags": ["Perfect"], "date": "2021-10-23"}
+				, {"id": "tQqmNbtXSYI", "name": "Midtown theme", "attr": ["Overwatch"], "date": "2026-06-11"}
 				, {"id": "5X2JckyZ-3o", "name": "Victory Theme", "attr": ["Overwatch"], "date": "2017-04-26"}
 				, {"id": "sBFfCXGpKBY", "name": "No Mercy", "attr": ["The Living Tombstone"], "date": "2018-12-15"}
 			]
@@ -6194,6 +6201,14 @@
 				, {"id": "t947CFrc_ts", "name": "Gimme x Gimme", "attr": ["\u516b\u738b\u5b50P \u00d7 Giga", "Hatsune Miku", "Rin Kagamine"], "date": "2020-06-27"}
 			]
 		},
+		"ILLIT/아일릿":{
+			"dbName":"FarEast",
+			"songs":[
+				{"id": "ogrIRGMc_jA", "name": "It's Me", "attr": ["ILLIT/\uc544\uc77c\ub9bf"], "date": "2026-06-11"}
+				, {"id": "ysgk4CYWFHI", "name": "Magnetic", "attr": ["ILLIT/\uc544\uc77c\ub9bf"], "tags": ["Perfect"], "date": "2024-04-04"}
+				, {"id": "vpXiTOTEyms", "name": "Magnetic - chorus", "attr": ["ILLIT/\uc544\uc77c\ub9bf"], "tags": ["Perfect"], "date": "2024-05-18"}
+			]
+		},
 		"IU/아이유":{
 			"dbName":"FarEast",
 			"songs":[
@@ -6522,8 +6537,6 @@
 				, {"id": "57ePEZNwuQE", "name": "Gee", "attr": ["Girls' Generation/\uc18c\ub140\uc2dc\ub300"], "tags": ["Perfect"], "date": "2024-01-25"}
 				, {"id": "aKijxx-ELyQ", "name": "Party", "attr": ["Girls' Generation/\uc18c\ub140\uc2dc\ub300"], "date": "2019-04-25"}
 				, {"id": "iX5ju9xcpL4", "name": "Love Scenario", "attr": ["iKON"], "multi": 2, "date": "2019-04-18"}
-				, {"id": "ysgk4CYWFHI", "name": "Magnetic", "attr": ["ILLIT"], "tags": ["Perfect"], "date": "2024-04-04"}
-				, {"id": "vpXiTOTEyms", "name": "Magnetic - chorus", "attr": ["ILLIT"], "tags": ["Perfect"], "date": "2024-05-18"}
 				, {"id": "9ykAfsMhac4", "name": "Icy", "attr": ["Itzy"], "tags": ["Perfect"], "date": "2019-08-01"}
 				, {"id": "SvnleuzbZ6k", "name": "\ub2ec\ub77c\ub2ec\ub77c/Dalla Dalla", "attr": ["Itzy"], "date": "2019-03-12"}
 				, {"id": "kgS5qwSbGD4", "name": "Love Dive", "attr": ["IVE/\uc544\uc774\ube0c"], "tags": ["Perfect"], "date": "2022-06-16"}
