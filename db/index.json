@@ -687,6 +687,7 @@
 				, {"id": "wQVaoRGmi1U", "name": "Du Hast", "attr": ["Rammstein"], "tags": ["Druk"], "date": "2017-04-22"}
 				, {"id": "Q0gtzkf_H1s", "name": "Giftig", "attr": ["Rammstein"], "tags": ["Druk", "Perfect"], "date": "2022-05-12"}
 				, {"id": "D9TJDMwBm-M", "name": "Links 2 3 4", "attr": ["Rammstein"], "tags": ["Druk"], "date": "2018-01-18"}
+				, {"id": "xeJ7FQGv4UM", "name": "Spieluhr", "attr": ["Rammstein"], "tags": ["Druk"], "date": "2026-06-27"}
 			]
 		},
 		"Sabaton":{
@@ -743,6 +744,7 @@
 				, {"id": "HopVInJbEqk", "name": "Point of No Return", "attr": ["Starset"], "date": "2017-10-31"}
 				, {"id": "0WyOArSf9JM", "name": "Telepathic", "attr": ["Starset"], "date": "2018-08-14"}
 				, {"id": "ODH76w7MGx0", "name": "Trials", "attr": ["Starset"], "date": "2020-10-17"}
+				, {"id": "3N1_oYF4GYA", "name": "Brave New World", "attr": ["Startset"], "tags": ["Perfect"], "date": "2026-06-27"}
 			]
 		},
 		"The Prodigy":{
@@ -1659,6 +1661,7 @@
 				, {"id": "zZKxP39xNZE", "name": "We Move Like Wolves", "attr": ["Philter"], "date": "2018-02-01"}
 				, {"id": "ijCfTJe1Ah8", "name": "Lisztomania", "attr": ["Phoenix"], "date": "2017-04-23"}
 				, {"id": "rxy2us0IAmw", "name": "Besitos", "attr": ["Pierce The Veil"], "tags": ["Perfect"], "date": "2025-03-02"}
+				, {"id": "ihU7X-qFwN4", "name": "Chemical Kids and Mechanical Brides", "attr": ["Pierce The Veil"], "date": "2026-06-27"}
 				, {"id": "kx0bqHz8BCo", "name": "The Bomb", "attr": ["Pigeon John"], "tags": ["Perfect", "Plogg"], "date": "2018-02-08"}
 				, {"id": "oJPsc6EMA0I", "name": "Where Is My Mind", "attr": ["Pixies"], "date": "2017-10-31"}
 				, {"id": "FWtokNUIcpY", "name": "Carnival of Rust", "attr": ["Poets of the Fall"], "date": "2017-09-16"}
@@ -1996,6 +1999,7 @@
 				{"id": "wZbq-MlXpTo", "name": "400 Lux", "attr": ["Lorde"], "date": "2018-02-01"}
 				, {"id": "lpOb9aHZiwY", "name": "Ribs", "attr": ["Lorde"], "tags": ["Perfect"], "multi": 3, "date": "2023-08-24"}
 				, {"id": "9hApue3ATTY", "name": "Supercut", "attr": ["Lorde"], "date": "2018-10-30"}
+				, {"id": "QyOusXORH60", "name": "Tennis Court", "attr": ["Lorde"], "tags": ["Perfect", "Gamma"], "multi": 2, "date": "2026-06-27"}
 			]
 		},
 		"Madonna":{
@@ -2186,7 +2190,8 @@
 				, {"id": "UHRWRxhVesw", "name": "Contact", "attr": ["Logic"], "tags": ["Adau", "Perfect"], "date": "2018-10-11"}
 				, {"id": "aO8im4uqZhE", "name": "Make You Mine", "attr": ["Madison Beer"], "date": "2024-06-20"}
 				, {"id": "3CFlc49Yn7s", "name": "Yes Baby", "attr": ["Madison Beer"], "tags": ["Perfect"], "date": "2026-02-07"}
-				, {"id": "In7XiFdOyeE", "name": "How to Get Physical", "attr": ["Magdelena Bay"], "tags": ["Perfect"], "date": "2024-02-23"}
+				, {"id": "In7XiFdOyeE", "name": "How to Get Physical", "attr": ["Magdalena Bay"], "tags": ["Perfect"], "date": "2024-02-23"}
+				, {"id": "J4zJ5CaPnsI", "name": "Image", "attr": ["Magdalena Bay"], "tags": ["Perfect"], "date": "2026-06-27"}
 				, {"id": "0uh1lk5BmxA", "name": "Me Too", "attr": ["Meghan Trainor"], "date": "2025-11-13"}
 				, {"id": "2ECIb9Blnmk", "name": "Psycho", "attr": ["Mia Rodriguez"], "tags": ["Perfect"], "date": "2022-08-11"}
 				, {"id": "2d7N7f9RdDU", "name": "Monster", "attr": ["Milck"], "date": "2018-03-24"}
@@ -2501,6 +2506,8 @@
 			"dbName":"RapHippityHop",
 			"songs":[
 				{"id": "UmdzjzLvEDs", "name": "Flashing Lights", "attr": ["Kanye"], "date": "2019-08-08"}
+				, {"id": "DUqBlgGua-g", "name": "Runaway", "attr": ["Kanye West ft. Pusha T"], "date": "2026-06-27"}
+				, {"id": "HnIdUKdq0cU", "name": "All of the Lights", "attr": ["Kanye West ft. Rihanna", "Kid Cudi"], "tags": ["Perfect"], "date": "2026-06-27"}
 				, {"id": "mNHatmjloIg", "name": "Through The Wire", "attr": ["Kanye West"], "date": "2018-02-15"}
 				, {"id": "Ow7ixL_Df6c", "name": "Pursuit of Happiness", "attr": ["Kid Cudi"], "date": "2017-05-14"}
 				, {"id": "AVzfpbPbRt4", "name": "Fire", "attr": ["Kids See Ghosts/Kanye West & Kid Cudi"], "date": "2018-06-19"}
@@ -2716,6 +2723,7 @@
 				, {"id": "aZy51743OyI", "name": "happysad", "attr": ["GOLDN"], "date": "2019-02-05"}
 				, {"id": "KpsGe0_tfqE", "name": "The Message", "attr": ["Grandmaster Flash & The Furious Five"], "date": "2017-07-18"}
 				, {"id": "qoIOxKceO5o", "name": "Money Do", "attr": ["Gucci Mane"], "tags": ["Perfect"], "date": "2021-11-06"}
+				, {"id": "MKB8ZTH-Nyw", "name": "Kitschkrieg", "attr": ["Gut Genug ft. Blumengarten & Shirin David"], "tags": ["Perfect"], "date": "2026-06-27"}
 				, {"id": "1bjBWfewE9E", "name": "Trap Queen", "attr": ["Harlem Fetty"], "tags": ["Perfect"], "date": "2025-02-01"}
 				, {"id": "89rP--0V9mo", "name": "Kill Bill", "attr": ["Hatesonny"], "date": "2021-04-24"}
 				, {"id": "0xrGX31T-NM", "name": "Cosby Sweater", "attr": ["Hilltop Hoods"], "date": "2018-07-10"}
@@ -3095,6 +3103,7 @@
 				, {"id": "KuIRdhuOr_g", "name": "Granite", "attr": ["Pendulum"], "date": "2017-04-14"}
 				, {"id": "kBddKMlt1Wk", "name": "9000 Miles", "attr": ["Pendulum", "Need For Speed Undercover"], "date": "2017-06-29"}
 				, {"id": "yIXRxBJbR3Q", "name": "Propane Nightmares", "attr": ["Pendulum"], "date": "2019-02-14"}
+				, {"id": "Bhm-qoTsGHA", "name": "Save The Cat", "attr": ["Pendulum"], "date": "2026-06-27"}
 				, {"id": "9Evn-Ig6fF0", "name": "The Island Part 1 - Dawn", "attr": ["Pendulum"], "tags": ["Sparse"], "date": "2017-04-15"}
 				, {"id": "Vh8tpf4XcVM", "name": "The Vulture", "attr": ["Pendulum"], "date": "2018-01-20"}
 				, {"id": "R5SuDMCKu_E", "name": "Witchcraft", "attr": ["Pendulum"], "date": "2017-04-15"}
@@ -3502,6 +3511,7 @@
 				, {"id": "y3XbQm3F80s", "name": "Ripples Alex", "attr": ["Skrindo"], "tags": ["Epsilon"], "date": "2017-11-09"}
 				, {"id": "2Ar3GEWWxwM", "name": "If You", "attr": ["Skrux"], "tags": ["Perfect"], "date": "2018-09-20"}
 				, {"id": "Qv782K8MxBM", "name": "I Try", "attr": ["Smooth"], "date": "2017-07-03"}
+				, {"id": "QDB9ECxP508", "name": "Under Your Spell", "attr": ["Snow Strippers"], "tags": ["Perfect"], "date": "2026-06-27"}
 				, {"id": "KgdyIemV7qw", "name": "Blue Flame", "attr": ["Soman"], "tags": ["Filled"], "date": "2023-04-23"}
 				, {"id": "ls0XHP84Caw", "name": "ILYSM", "attr": ["Steve Aoki"], "date": "2018-01-23"}
 				, {"id": "2XXRjgunsaA", "name": "Rage The Night Away", "attr": ["Steve Aoki"], "date": "2021-03-09"}
@@ -4508,6 +4518,7 @@
 			"dbName":"Videogames",
 			"songs":[
 				{"id": "CBDWBEvNJdI", "name": "Time Splitters 2 Main Menu Theme", "date": "2026-04-04"}
+				, {"id": "-427KI8zF20", "name": "Ice Station", "attr": ["Timesplitters 2"], "tags": ["Perfect"], "date": "2026-06-27"}
 				, {"id": "OD9z9-ehQQY", "name": "Return To Planet X", "attr": ["Timesplitters 2"], "tags": ["Druk"], "date": "2017-08-13"}
 				, {"id": "1pSaFMwEXxY", "name": "Wild West", "attr": ["Timesplitters 2"], "tags": ["Perfect"], "date": "2026-03-21"}
 			]
@@ -6232,7 +6243,8 @@
 		"Kasane Teto":{
 			"dbName":"FarEast",
 			"songs":[
-				{"id": "pPS-x95Qcds", "name": "Spoken For", "attr": ["Flavor Foley ft. Kasane Teto"], "tags": ["Perfect"], "date": "2025-12-20"}
+				{"id": "1EqgMLSWdfc", "name": "Yararara", "attr": ["AnythingBecomingMoe ft. Kasane Teto"], "date": "2026-06-27"}
+				, {"id": "pPS-x95Qcds", "name": "Spoken For", "attr": ["Flavor Foley ft. Kasane Teto"], "tags": ["Perfect"], "date": "2025-12-20"}
 				, {"id": "jrNUjUdzNQk", "name": "Ochame Kinou/Fukiretta", "attr": ["LamazeP ft. Kasane Teto"], "date": "2025-06-05"}
 				, {"id": "9GPsacxZ3s8", "name": "Language Of The Lost", "attr": ["R.I.P. ft. Kasane Teto"], "date": "2025-03-29"}
 				, {"id": "NraFPovN0TM", "name": "25:00", "attr": ["Shokupanw ft. Kasane Teto"], "date": "2025-06-19"}
@@ -6571,6 +6583,7 @@
 				, {"id": "Jp15Ry9rW-0", "name": "Left Right", "attr": ["XG"], "date": "2023-03-16"}
 				, {"id": "eGISzZhOQBU", "name": "Tricky House/\ub3c4\uae68\ube44\uc9d1", "attr": ["xikers/\uc2f8\uc774\ucee4\uc2a4"], "tags": ["Perfect"], "date": "2024-02-08"}
 				, {"id": "Mdjuo4F3t1w", "name": "Lxxk 2 U", "attr": ["Yena"], "date": "2022-10-27"}
+				, {"id": "7sehwDq4gbc", "name": "Catch Catch/\uce90\uce58 \uce90\uce58", "attr": ["Yena/\ucd5c\uc608\ub098"], "tags": ["Perfect"], "date": "2026-06-27"}
 				, {"id": "G7zlOROFqRg", "name": "Yng & Rich Freestyle", "attr": ["Yng & Rich Records"], "date": "2026-03-12"}
 				, {"id": "DBifJJhK730", "name": "Kill The Romeo", "attr": ["ZEROBASEONE"], "date": "2025-01-25"}
 				, {"id": "rVIukRNDW7U", "name": "Mayday", "attr": ["\ubc15\uc7ac\ubc94/Jay Park"], "tags": ["Perfect"], "date": "2026-02-07"}
@@ -6841,6 +6854,7 @@
 				, {"id": "wrOg27TT08A", "name": "Steve Jobs vs Bill Gates", "attr": ["Epic Rap Battles of History"], "tags": ["Epsilon"], "date": "2017-11-14"}
 				, {"id": "LfdEc8f0Q1A", "name": "Soulless 5", "attr": ["ExileLord"], "date": "2020-03-07"}
 				, {"id": "o6iQE-KOwXI", "name": "Speedlord theme", "attr": ["FilthyFrank", "\u592a\u967d\u306b\u307b\u3048\u308d \u5192\u967a\u306e\u30c6\u30fc\u30de/Adventure Theme by Taiyou ni Hoero"], "date": "2017-09-03"}
+				, {"id": "OPGrqLIjKpU", "name": "I Knead Them Biscuits", "attr": ["Frugit"], "date": "2026-06-27"}
 				, {"id": "YCNtlWzHpUQ", "name": "Snail Man", "attr": ["Gezebelle Gaburgably"], "date": "2023-11-02"}
 				, {"id": "Qt1uCXIgL6Y", "name": "Squirrel Song", "attr": ["Girls by the Beastie Boys"], "tags": ["Perfect"], "date": "2017-08-16"}
 				, {"id": "JFdYyeNU4zU", "name": "Guitar Vs. Piano 1.2", "attr": ["Goukisan"], "date": "2018-04-14"}
@@ -7043,6 +7057,7 @@
 				, {"id": "2_cXI2Qm35s", "name": "Blue", "attr": ["Audiobot"], "date": "2018-03-24"}
 				, {"id": "hBogC_JBUv0", "name": "Some Weird Sh*t", "attr": ["Aumon"], "date": "2018-02-24"}
 				, {"id": "XZmkjnQe_eI", "name": "A** Up", "attr": ["Baracuda"], "date": "2017-10-24"}
+				, {"id": "kYC9Qa3wpt8", "name": "The Pitiful Children", "attr": ["Be More Chill"], "tags": ["Perfect"], "date": "2026-06-27"}
 				, {"id": "4bqncR9r9uM", "name": "Ch\u0142opaki nie p\u0142acz\u0105", "attr": ["Bedoes & Kubi Producent ft. Taco Hemingway"], "date": "2020-07-11"}
 				, {"id": "EtF0-FVWsZQ", "name": "Sing Sing Sing", "attr": ["Benny Goodman"], "date": "2017-07-07"}
 				, {"id": "tpKNacODBNY", "name": "Sink Away", "attr": ["Blixemi", "Warrior Cats"], "date": "2025-07-24"}
@@ -7112,6 +7127,7 @@
 				, {"id": "-JY3mLi0hAA", "name": "Latin Industries", "attr": ["Kevin MacLeod"], "date": "2017-05-22"}
 				, {"id": "Jjh1gCuEkic", "name": "Who Likes to Party", "attr": ["Kevin MacLeod"], "date": "2017-08-28"}
 				, {"id": "_ylTSyfQfVY", "name": "21st Century Schizoid Man", "attr": ["King Crimson"], "date": "2021-01-02"}
+				, {"id": "SVjeY6Ul11o", "name": "Gejowski Napad Na Poci\u0105g", "attr": ["Kutas Records"], "date": "2026-06-27"}
 				, {"id": "FNC1iMq3nzE", "name": "Hulluista Runoista", "attr": ["Kuumaa"], "date": "2019-09-28"}
 				, {"id": "wI1oSd_JXwg", "name": "Cha Cha Cha", "attr": ["K\u00e4\u00e4rij\u00e4"], "date": "2023-05-25"}
 				, {"id": "l-zd1Ztl4Ks", "name": "From The Start", "attr": ["Laufey"], "tags": ["Perfect"], "date": "2024-05-23"}
