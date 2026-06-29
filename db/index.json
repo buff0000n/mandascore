@@ -4928,7 +4928,7 @@
 					, {"id": "41lIT6lRKG4", "name": "Gloria Filio", "attr": ["The Binding Of Isaac: Afterbirth"], "date": "2019-04-09"}
 					, {"id": "UmXCs3sg7zY", "name": "The Hammer of Pompeii", "attr": ["The Binding of Isaac: Antibirth"], "date": "2021-05-15"}
 					, {"id": "STaXn3fcKrc", "name": "Vortal Combat", "attr": ["The Orange Box"], "tags": ["Druk"], "date": "2017-10-14"}
-					, {"id": "pPAI8F_LfXk", "name": "The End Of The Line", "attr": ["The Stupendium & Dan Bull", "Choo Choo Charles"], "tags": ["4x"], "multi": 4, "date": "2023-03-30"}
+					, {"id": "pPAI8F_LfXk", "name": "The End Of The Line", "attr": ["The Stupendium & Dan Bull", "Choo Choo Charles"], "multi": 4, "date": "2023-03-30"}
 					, {"id": "y_8U_TY5YH0", "name": "We All Become", "attr": ["Transistor"], "date": "2017-05-05"}
 					, {"id": "qBQ2-_zw_-w", "name": "Among Us Drip Theme Song", "attr": ["Trap remix"], "date": "2021-03-02"}
 					, {"id": "1uHUBEjZmOs", "name": "The Port of Adia", "attr": ["Turok 2 Seeds of Evil"], "tags": ["Filled"], "date": "2018-04-19"}
@@ -5005,7 +5005,7 @@
 				, {"id": "S86A3JUFqSY", "name": "The Rumbling", "attr": ["Attack on Titan season 4 opening 2"], "date": "2022-01-29"}
 				, {"id": "EtQ0b0Fqg2M", "name": "Splinter Wolf", "attr": ["Attack On Titan"], "date": "2025-05-03"}
 				, {"id": "eoaPIPmcV1Y", "name": "Vogel im Kafig", "attr": ["Attack on Titan"], "tags": ["Adau"], "date": "2020-09-26"}
-				, {"id": "ljvuEOnmjEM", "name": "Zero Eclipse/Historia Reiss Theme", "attr": ["Attack on Titan"], "tags": ["NINE"], "multi": 9, "date": "2022-10-27"}
+				, {"id": "ljvuEOnmjEM", "name": "Zero Eclipse/Historia Reiss Theme", "attr": ["Attack on Titan"], "multi": 9, "date": "2022-10-27"}
 			]
 		},
 		"Bakamonogatari":{
@@ -6206,7 +6206,7 @@
 				, {"id": "jaeZRXj7E4Y", "name": "The Path to Eternal Happiness...I Found It", "attr": ["Utata-P", "Hatsune Miku"], "date": "2021-01-23"}
 				, {"id": "10OFs0wiiik", "name": "Natsu Matsuri", "attr": ["Watamote Ending 4", "Hatsune Miku"], "date": "2018-08-28"}
 				, {"id": "ouN0yUNcyLs", "name": "Unknown Mother Goose", "attr": ["Wowaka", "Hatsune Miku"], "date": "2019-06-27"}
-				, {"id": "TcyjjExaBNg", "name": "Loop Memory/\u30eb\u30fc\u30d7\u30e1\u30e2\u30ea\u30fc", "attr": ["Yunosuke/\u96c4\u4e4b\u52a9 ft. Hatsune Miku/\u521d\u97f3\u30df\u30af"], "tags": ["SIX"], "multi": 6, "date": "2022-02-12"}
+				, {"id": "TcyjjExaBNg", "name": "Loop Memory/\u30eb\u30fc\u30d7\u30e1\u30e2\u30ea\u30fc", "attr": ["Yunosuke/\u96c4\u4e4b\u52a9 ft. Hatsune Miku/\u521d\u97f3\u30df\u30af"], "multi": 6, "date": "2022-02-12"}
 				, {"id": "SLI9Hbeh4Ig", "name": "Mental Chainsaw", "attr": ["\u304b\u3044\u308a\u304d\u30d9\u30a2/Kairiki Bear ft. Hatsune Miku"], "date": "2021-05-01"}
 				, {"id": "mp6xjLiyu3c", "name": "The Snow White Princess/\u767d\u3044\u96ea\u306e\u30d7\u30ea\u30f3\u30bb\u30b9\u306f", "attr": ["\u306e\u307c\u308b/noboru", "Hatsune Miku"], "date": "2018-10-25"}
 				, {"id": "t947CFrc_ts", "name": "Gimme x Gimme", "attr": ["\u516b\u738b\u5b50P \u00d7 Giga", "Hatsune Miku", "Rin Kagamine"], "date": "2020-06-27"}
