@@ -43,6 +43,7 @@
 				, {"id": "ACWE3IFHlSQ", "name": "The Sacrifice theme/Smiles From Juran", "attr": ["Warframe"], "date": "2018-06-21"}
 				, {"id": "3tUhC4samYU", "name": "Veilbreaker quest diorama music", "attr": ["Warframe"], "date": "2023-03-16"}
 				, {"id": "crK5g7lnQEE", "name": "Veso Segment Combat", "attr": ["Warframe"], "date": "2022-03-27"}
+				, {"id": "0qQPh0_4hEE", "name": "View From The Top", "attr": ["Warframe"], "tags": ["Perfect"], "date": "2026-07-11"}
 				, {"id": "RtZo26W-ugg", "name": "We All Lift Together", "attr": ["Warframe"], "multi": 3, "date": "2021-05-20"}
 				, {"id": "fduiQhdGX5Y", "name": "What is my Fate / Koumei & the Five Fates OST", "attr": ["Warframe"], "date": "2024-10-03"}
 			]
@@ -150,6 +151,14 @@
 				{"id": "STSRNOqVh00", "name": "Hungry Like The Wolf", "attr": ["Duran Duran"], "date": "2022-01-01"}
 				, {"id": "1PtH1iw0vj8", "name": "Invisible", "attr": ["Duran Duran"], "tags": ["Perfect"], "date": "2024-09-19"}
 				, {"id": "Yq1UjGB89Mo", "name": "Notorious", "attr": ["Duran Duran"], "date": "2020-09-19"}
+			]
+		},
+		"Earth, Wind, & Fire":{
+			"dbName":"ClassicRock",
+			"songs":[
+				{"id": "i5lgZVqOA7A", "name": "Beijo/Brazilian Rhyme", "attr": ["Earth", "Wind & Fire"], "tags": ["Perfect"], "date": "2026-07-30"}
+				, {"id": "-BJ3UzM5BNc", "name": "Let's Groove", "attr": ["Earth", "Wind & Fire"], "date": "2017-06-16"}
+				, {"id": "82r9TST5noE", "name": "September", "attr": ["Earth", "Wind & Fire"], "tags": ["Perfect"], "date": "2017-06-14"}
 			]
 		},
 		"Guns N' Roses":{
@@ -290,8 +299,6 @@
 				, {"id": "goD3cNQ-kVs", "name": "Holy Diver", "attr": ["Dio"], "date": "2017-10-03"}
 				, {"id": "_eD1vqcbTL4", "name": "Rainbow In The Dark", "attr": ["Dio"], "date": "2018-09-01"}
 				, {"id": "g9Gv0tEe4co", "name": "Hot Stuff", "attr": ["Donna Summer"], "date": "2024-03-15"}
-				, {"id": "-BJ3UzM5BNc", "name": "Let's Groove", "attr": ["Earth", "Wind & Fire"], "date": "2017-06-16"}
-				, {"id": "82r9TST5noE", "name": "September", "attr": ["Earth", "Wind & Fire"], "tags": ["Perfect"], "date": "2017-06-14"}
 				, {"id": "5BGx-xc4mH8", "name": "Knock On Wood", "attr": ["Eddie Floyd"], "tags": ["Perfect"], "date": "2020-07-11"}
 				, {"id": "YCVNInJRUxA", "name": "Walk On Water", "attr": ["Eddie Money"], "date": "2019-09-24"}
 				, {"id": "LysQO9rmrfY", "name": "Frankenstein", "attr": ["Edgar Winter Group"], "tags": ["Druk", "Perfect"], "date": "2017-05-27"}
@@ -983,6 +990,7 @@
 				, {"id": "StZEoOrqkas", "name": "Bellyache", "attr": ["Billie Eilish"], "date": "2019-12-21"}
 				, {"id": "UhcD1Txnr5g", "name": "Birds of a Feather", "attr": ["Billie Eilish"], "tags": ["Perfect"], "multi": 2, "date": "2025-01-16"}
 				, {"id": "e4jQwI4MpoY", "name": "bury a friend", "attr": ["Billie Eilish"], "date": "2019-02-02"}
+				, {"id": "woDlJ74oahY", "name": "Chihiro", "attr": ["Billie Eilish"], "date": "2026-07-30"}
 				, {"id": "8PCc32uNEpw", "name": "Lunch", "attr": ["Billie Eilish"], "tags": ["Perfect"], "date": "2024-08-08"}
 				, {"id": "fC4IOFo7qi0", "name": "NDA", "attr": ["Billie Eilish"], "tags": ["Perfect"], "date": "2021-07-10"}
 			]
@@ -1405,6 +1413,7 @@
 				, {"id": "LqDEqlFfwZc", "name": "Pray For Me", "attr": ["The Weeknd", "Kendrick Lamar"], "tags": ["Perfect"], "date": "2018-03-13"}
 				, {"id": "sWvYX2YcAT8", "name": "Life Of The Party", "attr": ["The Weeknd"], "tags": ["Perfect"], "date": "2018-04-19"}
 				, {"id": "973eKKbqW_8", "name": "Nothing Compares", "attr": ["The Weeknd"], "date": "2021-03-06"}
+				, {"id": "RoJdMuOmZno", "name": "Out Of Time", "attr": ["The Weeknd"], "date": "2026-07-30"}
 				, {"id": "TM12f-Tjhuo", "name": "Popular", "attr": ["The Weeknd", "Playboi Carti", "Madonna"], "tags": ["Perfect", "Gamma"], "multi": 3, "date": "2025-06-12"}
 				, {"id": "R7k1_lvrh14", "name": "Timeless", "attr": ["The Weeknd", "Playboi Carti"], "tags": ["Perfect"], "date": "2025-01-11"}
 				, {"id": "5nX00ZHvyro", "name": "Save Your Tears", "attr": ["The Weeknd"], "tags": ["Perfect", "Sparse"], "date": "2021-03-04"}
@@ -1460,6 +1469,7 @@
 				, {"id": "TQkMYePnqJ0", "name": "Cure For Me", "attr": ["Aurora"], "tags": ["Perfect"], "date": "2021-07-17"}
 				, {"id": "OaYKal0eYYQ", "name": "Wavelength", "attr": ["Aurora"], "tags": ["Perfect"], "date": "2025-11-07"}
 				, {"id": "bJieP6TlkgI", "name": "Grrrls", "attr": ["AViVA"], "date": "2019-02-26"}
+				, {"id": "SEd9RYSBjBs", "name": "Complicated", "attr": ["Avril Lavigne"], "multi": 2, "date": "2026-07-16"}
 				, {"id": "ZUMPy8XzRhE", "name": "Big Sad", "attr": ["Balancing The Different"], "tags": ["Perfect"], "date": "2024-08-08"}
 				, {"id": "y68oIX7iMvg", "name": "Glitter & Gold", "attr": ["Barns Courtney"], "tags": ["Perfect"], "date": "2017-04-02"}
 				, {"id": "sKfkSvaHItM", "name": "Cosmonaut", "attr": ["Being"], "tags": ["Druk", "Filled"], "date": "2017-06-03"}
@@ -1633,6 +1643,7 @@
 				, {"id": "fnKxHA6op_Q", "name": "London Road", "attr": ["Modestep"], "tags": ["Druk"], "date": "2017-05-30"}
 				, {"id": "UZcMmX8Gteo", "name": "Blood Like Lemonade", "attr": ["Morcheeba"], "date": "2022-09-29"}
 				, {"id": "TQ7PmwfhSgQ", "name": "Wrecking Ball", "attr": ["Mother Mother"], "date": "2018-05-03"}
+				, {"id": "m7BOljK5AWk", "name": "Living Apology", "attr": ["Movements"], "tags": ["Perfect"], "multi": 2, "date": "2026-07-16"}
 				, {"id": "LMHakbhJ9cg", "name": "Heartbreaker", "attr": ["MSTRKRFT ft. John Legend"], "tags": ["Perfect"], "multi": 2, "date": "2026-01-10"}
 				, {"id": "4h0Id1dFACQ", "name": "What Are You Waiting For", "attr": ["My Little Cheap Dictaphone"], "tags": ["Perfect"], "date": "2018-06-14"}
 				, {"id": "JlsAFoFt4ys", "name": "Sun In Our Hands", "attr": ["M\u00d8 & Diplo"], "date": "2018-08-18"}
@@ -1722,6 +1733,7 @@
 				, {"id": "kwm5JvHP5-Q", "name": "Somewhere In The Between", "attr": ["Streetlight Manifesto"], "date": "2019-01-22"}
 				, {"id": "ytZkXImQBwk", "name": "Rawnald Gregory Erikson the Second", "attr": ["STRFKR"], "date": "2018-06-19"}
 				, {"id": "WsoifELh7QQ", "name": "carwash", "attr": ["striptease"], "tags": ["Perfect"], "date": "2022-01-22"}
+				, {"id": "LwaX4VKaH8A", "name": "Jenny - I Wanna Ruin Our Friendship", "attr": ["Studio Killers"], "tags": ["Sparse", "Perfect"], "date": "2026-07-16"}
 				, {"id": "_X-E_87YHco", "name": "Party Like It's Your Birthday", "attr": ["Studio Killers"], "date": "2018-07-05"}
 				, {"id": "Y85GYkbnnc8", "name": "Sociopath", "attr": ["St\u00e9loiuse"], "date": "2018-03-06"}
 				, {"id": "yKB1E61cN-8", "name": "Fatlip", "attr": ["Sum 41"], "date": "2026-01-29"}
@@ -1805,6 +1817,7 @@
 				, {"id": "o-L7n9ylEVE", "name": "Black Rover", "attr": ["Vickerblanka"], "date": "2021-05-01"}
 				, {"id": "mcZ9qQ9JTw0", "name": "Hello World", "attr": ["Wailibi Adventure Band"], "date": "2017-08-19"}
 				, {"id": "iTjpma1puQw", "name": "Shut Up And Dance", "attr": ["Walk The Moon"], "tags": ["Perfect"], "date": "2022-12-22"}
+				, {"id": "heu651jZUeg", "name": "Calling After Me", "attr": ["Wallows"], "multi": 2, "date": "2026-07-30"}
 				, {"id": "O5cpn6Nz3O4", "name": "Something New", "attr": ["Wannabe Jalva"], "date": "2017-04-26"}
 				, {"id": "KUhIlqEIx_c", "name": "Jar Of Love", "attr": ["Wanting"], "tags": ["Perfect"], "date": "2024-10-17"}
 				, {"id": "v54mU-9A-Dw", "name": "Burning Man", "attr": ["watt"], "date": "2018-02-10"}
@@ -2027,6 +2040,7 @@
 				, {"id": "HpDR1SF2JQk", "name": "Beat It", "attr": ["Michael Jackson"], "tags": ["Perfect"], "date": "2019-03-21"}
 				, {"id": "rv3uomq4Oas", "name": "Beat It - break", "attr": ["Michael Jackson"], "tags": ["Perfect"], "date": "2019-03-23"}
 				, {"id": "YTvR4UOqwpA", "name": "Billie Jean", "attr": ["Michael Jackson"], "tags": ["Sparse"], "date": "2018-03-24"}
+				, {"id": "QIHvYUS3zvA", "name": "Chicago", "attr": ["Michael Jackson"], "tags": ["Perfect"], "multi": 2, "date": "2026-07-16"}
 				, {"id": "qnSXj_VsDAE", "name": "Shake Your Body Down To The Ground", "attr": ["Michael Jackson"], "date": "2017-05-11"}
 				, {"id": "w_fvb-pn8Qg", "name": "Smooth Criminal", "attr": ["Michael Jackson"], "date": "2018-04-03"}
 				, {"id": "rI6A1xdwSyk", "name": "They Don't Care About Us", "attr": ["Michael Jackson"], "tags": ["Perfect"], "date": "2024-01-04"}
@@ -2206,6 +2220,7 @@
 				, {"id": "uvHFJM5B7eI", "name": "No Te Enamores", "attr": ["Paloma Mami"], "date": "2019-08-22"}
 				, {"id": "AdUVWXXMJdY", "name": "Bailando", "attr": ["Paradiso ft. Maria Garcia & DJ Patrick Samoy"], "date": "2021-05-29"}
 				, {"id": "Q5NfwzNLQHo", "name": "Boy's a Liar", "attr": ["PinkPantheress"], "date": "2023-03-02"}
+				, {"id": "rO5MBUV1P6s", "name": "Stateside", "attr": ["PinkPantheress", "Zara Larsson"], "tags": ["Perfect"], "multi": 4, "date": "2026-07-16"}
 				, {"id": "PezW1XWHYbU", "name": "Teacher", "attr": ["Prettymuch"], "tags": ["Perfect"], "date": "2020-09-19"}
 				, {"id": "-txF5t2NeOU", "name": "Love Me Not", "attr": ["Ravyn Lenae"], "tags": ["Perfect"], "date": "2025-05-03"}
 				, {"id": "1khUQvhw8Is", "name": "Livin' La Vida Loca", "attr": ["Ricky Martin"], "date": "2019-02-07"}
@@ -2257,6 +2272,7 @@
 				, {"id": "I2vCIy5czvw", "name": "Plague", "attr": ["Crystal Castles"], "tags": ["Perfect"], "date": "2019-01-26"}
 				, {"id": "8_aKTz0UHX0", "name": "Suffocation", "attr": ["Crystal Castles"], "tags": ["Perfect"], "multi": 2, "date": "2023-04-23"}
 				, {"id": "Ec86pXKmheU", "name": "Vanished", "attr": ["Crystal Castles"], "date": "2022-05-05"}
+				, {"id": "_r2cDoS8loI", "name": "Your Love (D\u00e9j\u00e0 Vu)", "attr": ["Crystal Castles"], "date": "2026-07-16"}
 			]
 		},
 		"Lana Del Rey":{
@@ -3290,6 +3306,7 @@
 				, {"id": "rbRD7JdJdTQ", "name": "A City Under Siege", "attr": ["Boy 8 bit", "GTA: The Ballad of Fat Tony"], "tags": ["Perfect"], "date": "2017-09-30"}
 				, {"id": "r8_j99JQc1Q", "name": "Say A Little Prayer", "attr": ["Brooks ft. Gia Koka"], "tags": ["Perfect"], "date": "2022-03-27"}
 				, {"id": "kPhzM3aYe9c", "name": "Die Liebe Kommt Nicht Aus Berlin", "attr": ["Brutalismus 3000"], "date": "2024-09-26"}
+				, {"id": "ILoF_kh3A-o", "name": "Past Lives", "attr": ["B\u00f8rns"], "tags": ["Perfect"], "date": "2026-07-16"}
 				, {"id": "ugGnlAy5zpE", "name": "Dream a Dream", "attr": ["Captain Jack"], "date": "2018-01-20"}
 				, {"id": "VUcHSZZL4ms", "name": "Caramelldansen", "attr": ["Caramell"], "date": "2017-04-24"}
 				, {"id": "Zddmiy25r48", "name": "Your Body", "attr": ["Cat Dealers"], "date": "2018-05-19"}
@@ -4032,6 +4049,7 @@
 			"songs":[
 				{"id": "Y_gBUSqCdhQ", "name": "Flares Of The Blazing Sun", "attr": ["Honkai Star Rail"], "date": "2025-11-13"}
 				, {"id": "J3-XChpA7Uc", "name": "Wildfire", "attr": ["Honkai Star Rail"], "date": "2023-06-29"}
+				, {"id": "k19UruHTh0M", "name": "Hope Is The Thing With Feathers", "attr": ["Honkai: Star Rail"], "date": "2026-07-16"}
 				, {"id": "g9UO_YOGNGk", "name": "Proi Proi", "attr": ["Honkai: Star Rail"], "tags": ["Perfect", "Adau"], "date": "2025-07-11"}
 				, {"id": "qBLZ5QyPtyY", "name": "Sway to My Bean in the Cosmos/Welcome To My World/Robin's Ultimate Song", "attr": ["Honkai: Star Rail"], "date": "2024-04-11"}
 				, {"id": "VvNGAi_u2JA", "name": "White Night", "attr": ["Honkai: Star Rail"], "tags": ["Perfect"], "date": "2024-02-14"}
@@ -5793,7 +5811,7 @@
 			"dbName":"TVMovie",
 			"songs":[
 				{"id": "UrPp0i5im9U", "name": "Human Music - Remix", "attr": ["canti", "Rick & Morty"], "date": "2017-10-05"}
-				, {"id": "g8IHKV2a1jg", "name": "Human Music - original", "attr": ["Rick & Morty"], "tags": ["Perfect", "duh"], "date": "2017-10-05"}
+				, {"id": "g8IHKV2a1jg", "name": "Human Music - original", "attr": ["Rick & Morty"], "tags": ["Perfect, duh"], "date": "2017-10-05"}
 				, {"id": "Zy1GJJV0Szk", "name": "Get Schwifty", "attr": ["Rick and Morty"], "date": "2017-06-30"}
 				, {"id": "fyxHH5z7wDc", "name": "Head Bent Over", "attr": ["Rick and Morty"], "date": "2017-09-21"}
 			]
@@ -6539,7 +6557,8 @@
 				, {"id": "Nh7AsnBzimM", "name": "Rollin'/\ub864\ub9b0", "attr": ["Brave Girls/\ube0c\ub808\uc774\ube0c\uac78\uc2a4"], "date": "2021-05-29"}
 				, {"id": "-8Fm-Hlx9Sg", "name": "Abracadabra", "attr": ["Brown Eyed Girls"], "tags": ["Perfect"], "date": "2024-08-22"}
 				, {"id": "id5AfRbeMlA", "name": "\ubc8c\uc368 12\uc2dc /Gotta Go", "attr": ["Chung Ha/\uccad\ud558"], "tags": ["Perfect"], "date": "2019-05-07"}
-				, {"id": "odIkoIYeTZI", "name": "Go!", "attr": ["Cortis"], "tags": ["Perfect"], "date": "2025-12-20"}
+				, {"id": "odIkoIYeTZI", "name": "Go!", "attr": ["Cortis/\ucf54\ub974\ud2f0\uc2a4"], "tags": ["Perfect"], "date": "2025-12-20"}
+				, {"id": "gLfLNBN6ehY", "name": "Redred", "attr": ["Cortis/\ucf54\ub974\ud2f0\uc2a4"], "date": "2026-07-16"}
 				, {"id": "A2oYdlVXwGw", "name": "Yellow Cab", "attr": ["DPR Live"], "tags": ["Perfect"], "date": "2022-08-25"}
 				, {"id": "itj6w5iazC0", "name": "Adios", "attr": ["Everglow/\uc5d0\ubc84\uae00\ub85c\uc6b0"], "date": "2019-08-29"}
 				, {"id": "IqcaXMtvB3M", "name": "Hot Summer", "attr": ["F(x)/\uc5d0\ud504\uc5d1\uc2a4"], "tags": ["Perfect"], "date": "2017-08-20"}
@@ -7044,6 +7063,7 @@
 				, {"id": "83i_i523vuk", "name": "Nuri Al\u00e7o Operasyon M\u00fczi\u011fi", "date": "2017-05-25"}
 				, {"id": "lkP3kqS6Uks", "name": "Pepsi Man theme song", "date": "2017-12-07"}
 				, {"id": "k3_DXUZzKkA", "name": "Pique la baliene", "date": "2021-06-26"}
+				, {"id": "IyN2ee8VBug", "name": "Pour Paris mon c\u0153ur se met \u00e0 chanter", "tags": ["Perfect"], "date": "2026-07-16"}
 				, {"id": "qZqwxNseoyM", "name": "Sax-a-Boom", "date": "2018-10-09"}
 				, {"id": "E_e1MKGOcH4", "name": "Singham title song", "date": "2018-05-22"}
 				, {"id": "sVJAcLvcQ6Y", "name": "The British Grenadiers", "date": "2018-06-12"}
@@ -7076,6 +7096,7 @@
 				, {"id": "XKQHvY6UGAA", "name": "Fire", "attr": ["Crazy World of Arthur Brown"], "date": "2019-02-28"}
 				, {"id": "UjAAcQyRRe8", "name": "Tunak Tunak Tun", "attr": ["Daler Mehndi"], "date": "2018-04-24"}
 				, {"id": "A-74tw9jHIs", "name": "In The Pines", "attr": ["Danny Farrant and Paul Rawson"], "date": "2018-07-07"}
+				, {"id": "xO7JFYkn0Pg", "name": "9", "attr": ["Dean Blunt & Panda Bear"], "tags": ["Perfect"], "date": "2026-07-30"}
 				, {"id": "3jQFY6sBYWQ", "name": "5D", "attr": ["Death Grips"], "date": "2018-11-22"}
 				, {"id": "IKy-Xogs5zc", "name": "Main Street Electrical Parade", "attr": ["Disneyland"], "date": "2017-04-12"}
 				, {"id": "Kx4MZa1l5k4", "name": "Hishmaliin", "attr": ["Dvar"], "date": "2020-07-18"}
