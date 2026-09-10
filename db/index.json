@@ -464,6 +464,7 @@
 				, {"id": "ZNiKRmRENf0", "name": "Girls Got Rhythm", "attr": ["AC/DC"], "tags": ["Perfect"], "date": "2019-01-29"}
 				, {"id": "UWPg_DryGD0", "name": "Hell's Bells", "attr": ["AC/DC"], "tags": ["Druk"], "date": "2019-01-31"}
 				, {"id": "vgqvYjj2ThY", "name": "Highway to Hell", "attr": ["AC/DC"], "tags": ["Druk"], "date": "2017-07-03"}
+				, {"id": "V_9Xg_lvCG0", "name": "Rock Or Bust", "attr": ["AC/DC"], "tags": ["Perfect", "Druk"], "multi": 4, "date": "2026-09-10"}
 				, {"id": "eOzz8m3QPKA", "name": "Rock' n Roll Train", "attr": ["AC/DC"], "tags": ["Druk"], "date": "2017-11-21"}
 				, {"id": "J7hfzG95lJI", "name": "Shoot To Thrill", "attr": ["AC/DC"], "tags": ["Druk"], "date": "2018-06-05"}
 				, {"id": "5intZQ_KE3o", "name": "TNT", "attr": ["AC/DC"], "tags": ["Druk", "Perfect", "Sparse"], "date": "2017-06-01"}
@@ -632,6 +633,14 @@
 				{"id": "EwI0egfewH8", "name": "Jesus Built My Hotrod", "attr": ["Ministry"], "tags": ["Perfect"], "date": "2018-09-13"}
 				, {"id": "0jtEhLrqMJE", "name": "Just One Fix", "attr": ["Ministry"], "tags": ["Druk"], "date": "2020-08-01"}
 				, {"id": "EPX481YOj3Y", "name": "Stigmata", "attr": ["Ministry"], "tags": ["Druk"], "date": "2020-03-07"}
+			]
+		},
+		"My Chemical Romance":{
+			"dbName":"HardRock",
+			"songs":[
+				{"id": "6k3dV61gTwY", "name": "I'm Not Okay (I Promise)", "attr": ["My Chemical Romance"], "date": "2026-09-10"}
+				, {"id": "aHxU92P5pnI", "name": "Na Na Na", "attr": ["My Chemical Romance"], "tags": ["Druk"], "date": "2017-04-25"}
+				, {"id": "xBwwu4xSMCs", "name": "Welcome To The Black Parade", "attr": ["My Chemical Romance"], "tags": ["Druk"], "date": "2017-05-24"}
 			]
 		},
 		"Nine Inch Nails":{
@@ -885,8 +894,6 @@
 				, {"id": "k3o_YYvCGO8", "name": "Freezing Moon", "attr": ["Mayhem"], "tags": ["Druk"], "date": "2021-10-30"}
 				, {"id": "uYG-Z5nDWWo", "name": "Lights Out", "attr": ["Mindless Self Indulgence"], "date": "2017-09-30"}
 				, {"id": "qx6luN_9IZs", "name": "I See Stars", "attr": ["Murder Mitten"], "tags": ["Perfect"], "date": "2022-09-15"}
-				, {"id": "aHxU92P5pnI", "name": "Na Na Na", "attr": ["My Chemical Romance"], "tags": ["Druk"], "date": "2017-04-25"}
-				, {"id": "xBwwu4xSMCs", "name": "Welcome To The Black Parade", "attr": ["My Chemical Romance"], "tags": ["Druk"], "date": "2017-05-24"}
 				, {"id": "qvZXG4ARpe0", "name": "Zitti E Buoni", "attr": ["M\u00e5neskin"], "tags": ["Perfect"], "date": "2021-05-29"}
 				, {"id": "WS3Pzk_flyg", "name": "Elan", "attr": ["Nightwish"], "date": "2017-04-11"}
 				, {"id": "9Rw0JH1kbdU", "name": "The Poet and the Pendulum", "attr": ["Nightwish"], "date": "2021-06-05"}
@@ -4185,6 +4192,7 @@
 				, {"id": "Cyo6HvPS8XM", "name": "Das Malefitz", "attr": ["Mass Effect 3", "Faunts"], "date": "2020-10-31"}
 				, {"id": "JkWnAiOQnVs", "name": "I Was Lost Without You", "attr": ["Mass Effect 3"], "date": "2020-10-03"}
 				, {"id": "UUuZcudWaME", "name": "Leaving Earth", "attr": ["Mass Effect 3"], "date": "2018-06-14"}
+				, {"id": "IQX9hqEYN40", "name": "Is This All There Is", "attr": ["Mass Effect 3/Shepherd's Cabin Music"], "date": "2026-09-10"}
 				, {"id": "n78_n68r510", "name": "M4 Part II", "attr": ["Mass Effect credits song"], "tags": ["Filled"], "date": "2019-04-11"}
 				, {"id": "XJo9V5Ff2kI", "name": "Purgatory", "attr": ["Mass Effect"], "date": "2017-03-31"}
 			]
@@ -7042,6 +7050,7 @@
 			"songs":[
 				{"id": "Ap42_U3rRnU", "name": "Neon Moon", "attr": ["Brooks & Dunn"], "date": "2022-01-29"}
 				, {"id": "PdbEQte4AqQ", "name": "9 to 5", "attr": ["Dolly Parton"], "date": "2026-08-27"}
+				, {"id": "D2Ud7KK28FM", "name": "Two Doors Down", "attr": ["Dolly Parton"], "date": "2026-09-10"}
 				, {"id": "XIF8vrygPck", "name": "Ghost to a Ghost", "attr": ["Hank Williams III", "Tom Waits"], "date": "2017-09-10"}
 				, {"id": "_Og8K_niz3I", "name": "Orange Blossom Special", "attr": ["Johnny Cash"], "tags": ["Plogg"], "date": "2019-11-30"}
 				, {"id": "J1j0xRpuKAk", "name": "Big Enough", "attr": ["Kirin J Callanan ft. Alex Cameron"], "date": "2020-03-21"}
@@ -7207,6 +7216,7 @@
 				, {"id": "epu6I7Nq4Qc", "name": "O.D.", "attr": ["Polyphia"], "date": "2023-08-10"}
 				, {"id": "dfeNVb2EJoE", "name": "Playing God", "attr": ["Polyphia"], "date": "2023-05-18"}
 				, {"id": "Nx3XGb6-swA", "name": "Ta Piosenka Nie Jest Smutna", "attr": ["Prometh"], "tags": ["Perfect"], "date": "2023-05-25"}
+				, {"id": "h660wNL_r_8", "name": "The Humbling River", "attr": ["Puscifer"], "date": "2026-09-10"}
 				, {"id": "nM7FTCY_JmQ", "name": "Goodbye Horses", "attr": ["Q Lazzarus"], "date": "2020-01-11"}
 				, {"id": "TVCEsUwJQsg", "name": "I Know", "attr": ["Red Licorice"], "date": "2020-08-15"}
 				, {"id": "knKh4lkyhM4", "name": "Cotton Eye Joe", "attr": ["Rednex"], "date": "2017-05-23"}
