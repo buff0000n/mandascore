@@ -755,13 +755,14 @@
 		"Starset":{
 			"dbName":"HardRock",
 			"songs":[
-				{"id": "73MmjVjuc_Q", "name": "Faultline", "attr": ["Starset"], "tags": ["Perfect"], "date": "2020-03-14"}
+				{"id": "3N1_oYF4GYA", "name": "Brave New World", "attr": ["Starset"], "tags": ["Perfect"], "date": "2026-06-27"}
+				, {"id": "73MmjVjuc_Q", "name": "Faultline", "attr": ["Starset"], "tags": ["Perfect"], "date": "2020-03-14"}
 				, {"id": "kHUTrbtpCbo", "name": "Infected", "attr": ["Starset"], "multi": 2, "date": "2023-07-09"}
 				, {"id": "6AkhOOfzAw8", "name": "Monster", "attr": ["Starset"], "date": "2018-06-21"}
+				, {"id": "HSYj3bAgnXU", "name": "My Demons", "attr": ["Starset"], "tags": ["Perfect"], "date": "2026-09-26"}
 				, {"id": "HopVInJbEqk", "name": "Point of No Return", "attr": ["Starset"], "date": "2017-10-31"}
 				, {"id": "0WyOArSf9JM", "name": "Telepathic", "attr": ["Starset"], "date": "2018-08-14"}
 				, {"id": "ODH76w7MGx0", "name": "Trials", "attr": ["Starset"], "date": "2020-10-17"}
-				, {"id": "3N1_oYF4GYA", "name": "Brave New World", "attr": ["Startset"], "tags": ["Perfect"], "date": "2026-06-27"}
 			]
 		},
 		"The Prodigy":{
@@ -782,6 +783,7 @@
 				, {"id": "1o_XXfAKqQY", "name": "Infrared", "attr": ["Three Days Grace"], "date": "2021-03-23"}
 				, {"id": "Leo34vcAhlc", "name": "Never Too Late", "attr": ["Three Days Grace"], "date": "2021-03-18"}
 				, {"id": "EhtAA23d7qA", "name": "Right Left Wrong", "attr": ["Three Days Grace"], "tags": ["Druk"], "date": "2018-09-13"}
+				, {"id": "xxV_PK5Tb8Q", "name": "Time Of Dying", "attr": ["Three Days Grace"], "tags": ["Perfect"], "date": "2026-09-25"}
 			]
 		},
 		"Tool":{
@@ -913,6 +915,7 @@
 				, {"id": "YeKvIvcpevc", "name": "For Those Who Died Alone", "attr": ["Pentagram"], "date": "2018-11-06"}
 				, {"id": "UthNdoe0X1Y", "name": "Blades", "attr": ["Pig"], "tags": ["Perfect"], "date": "2025-10-31"}
 				, {"id": "Br-hNee3LbQ", "name": "Masochist", "attr": ["Polaris"], "tags": ["Perfect"], "date": "2021-06-26"}
+				, {"id": "OIR6eCpSz5M", "name": "Pray For Rain", "attr": ["Polaris"], "date": "2026-10-10"}
 				, {"id": "x8f4RsSDswQ", "name": "Waking Lions", "attr": ["Pop Evil"], "date": "2019-04-02"}
 				, {"id": "SAcS33S0dkQ", "name": "When Worlds Collide", "attr": ["Powerman 5000"], "tags": ["Perfect"], "date": "2018-12-01"}
 				, {"id": "HFq13vzRsXQ", "name": "Obey", "attr": ["Priest"], "date": "2022-08-18"}
@@ -1296,6 +1299,7 @@
 				, {"id": "zxPJhbDxXa8", "name": "Get 'Em Up", "attr": ["Nickelback"], "date": "2018-11-03"}
 				, {"id": "iJIppjHjtts", "name": "How You Remind Me", "attr": ["Nickelback"], "date": "2026-08-15"}
 				, {"id": "vR-4u2tj880", "name": "If Today Was Your Last Day", "attr": ["Nickelback"], "tags": ["Perfect"], "date": "2018-08-25"}
+				, {"id": "2ZQyUdBikC8", "name": "Rattle The Cage", "attr": ["Nickelback"], "tags": ["Perfect", "Druk"], "multi": 5, "date": "2026-10-10"}
 				, {"id": "FFUgb6M_d_w", "name": "She Keeps Me Up", "attr": ["Nickelback"], "tags": ["Perfect"], "multi": 2, "date": "2026-01-29"}
 				, {"id": "1efRsnKGQeU", "name": "Someday", "attr": ["Nickelback"], "multi": 2, "date": "2025-10-31"}
 			]
@@ -1543,7 +1547,10 @@
 				, {"id": "sAdBH7X6JkI", "name": "Cheap Talk", "attr": ["Death From Above 1979"], "tags": ["Druk"], "date": "2018-09-13"}
 				, {"id": "ATBCqA8qSzw", "name": "Freeze Me", "attr": ["Death From Above"], "tags": ["Perfect"], "date": "2018-02-24"}
 				, {"id": "JN5uJWVOka0", "name": "Alien", "attr": ["Dennis Lloyd"], "date": "2020-11-07"}
+				, {"id": "FqGFLx3DiZ0", "name": "Headcase", "attr": ["Derivakat"], "date": "2026-10-10"}
 				, {"id": "rzENwX7rugg", "name": "Used to the Darkness", "attr": ["Des Rocs"], "tags": ["Perfect", "Plogg"], "date": "2024-03-28"}
+				, {"id": "Tgqa0wgWvVI", "name": "Body Moves", "attr": ["DNCE"], "date": "2017-04-25"}
+				, {"id": "586hpeD7b2o", "name": "Cake By The Ocean", "attr": ["DNCE"], "date": "2026-10-10"}
 				, {"id": "_EgBZdaxItE", "name": "Wicked Ones", "attr": ["Dorothy"], "tags": ["Perfect"], "multi": 2, "date": "2024-06-13"}
 				, {"id": "PsMrxPMkiBA", "name": "Home", "attr": ["Dotan"], "tags": ["Perfect"], "date": "2017-07-13"}
 				, {"id": "M0eC8Jmr0wM", "name": "Don't Go Insane", "attr": ["DPR Ian"], "tags": ["Perfect"], "date": "2024-03-07"}
@@ -2362,7 +2369,6 @@
 				, {"id": "LHt-OVsvN4o", "name": "Lover Is a Day", "attr": ["CUCO"], "date": "2020-02-08"}
 				, {"id": "PU4l6WJdnyw", "name": "All Good", "attr": ["Dipha Barus"], "date": "2017-07-02"}
 				, {"id": "iYDRQQhmTiQ", "name": "Celebrate", "attr": ["Dirty Heads"], "date": "2018-09-01"}
-				, {"id": "Tgqa0wgWvVI", "name": "Body Moves", "attr": ["DNCE"], "date": "2017-04-25"}
 				, {"id": "58eqw5B_edk", "name": "Wake Up", "attr": ["Eden"], "date": "2019-04-13"}
 				, {"id": "aiW_aALyN7k", "name": "Love Dealer", "attr": ["Esm\u00e9e Denters"], "tags": ["Plogg"], "date": "2017-07-10"}
 				, {"id": "ZRcWNepwOCQ", "name": "Car Camping", "attr": ["Goth Babe"], "date": "2020-11-07"}
@@ -2427,6 +2433,7 @@
 			, {"id": "k6i4FizB2aY", "name": "Rivers of Zion", "attr": ["Caleb Gordon"], "tags": ["Perfect"], "date": "2024-07-04"}
 			, {"id": "d9oWAOyTbaE", "name": "Murder She Wrote", "attr": ["Chaka Damus & Pliers"], "tags": ["Perfect", "Plogg"], "date": "2021-03-31"}
 			, {"id": "VLnI8Q-HZFA", "name": "Welcome To Jamrock", "attr": ["Damian Marley"], "tags": ["Perfect"], "date": "2025-10-04"}
+			, {"id": "UnKkYPdDurY", "name": "Oxygen", "attr": ["Dirty Heads"], "tags": ["Perfect"], "multi": 3, "date": "2026-09-25"}
 			, {"id": "Irer5lEbKXA", "name": "Electric Avenue", "attr": ["Eddy Grant"], "date": "2021-03-20"}
 			, {"id": "8UA76iwbEO8", "name": "Gimme Hope Jo'Anna", "attr": ["Eddy Grant"], "date": "2017-04-13"}
 			, {"id": "olKe5ullGaM", "name": "The Raft", "attr": ["Fat Freddy's Drop"], "date": "2021-03-23"}
@@ -2690,6 +2697,14 @@
 				, {"id": "5uBYJAC9rJI", "name": "U could t\u00ebll", "attr": ["Yeat"], "tags": ["Perfect", "Bombast"], "date": "2025-10-11"}
 			]
 		},
+		"Youngboy Never Broke Again":{
+			"dbName":"RapHippityHop",
+			"songs":[
+				{"id": "pWibHhzLPs4", "name": "How I Been", "attr": ["Nba YoungBoy"], "tags": ["Perfect"], "date": "2022-07-21"}
+				, {"id": "r3j2C4LGvUQ", "name": "All In", "attr": ["Youngboy Never Broke Again"], "date": "2026-10-10"}
+				, {"id": "hMcHR4mqcBg", "name": "Make No Sense", "attr": ["YoungBoy Never Broke Again"], "tags": ["Perfect"], "date": "2025-11-13"}
+			]
+		},
 		"Misc Rap/Hippity Hop":{
 			"dbName":"RapHippityHop.MiscRapHippityHop",
 			"songs":[
@@ -2807,7 +2822,6 @@
 				, {"id": "tOsfkk3NE5Y", "name": "Get Down/God's Son", "attr": ["Nas"], "date": "2019-06-08"}
 				, {"id": "9-O73mywDFE", "name": "NY State of Mind", "attr": ["Nas"], "date": "2018-01-20"}
 				, {"id": "arKVpYxwPBo", "name": "Freshman List", "attr": ["NAV"], "date": "2022-11-03"}
-				, {"id": "pWibHhzLPs4", "name": "How I Been", "attr": ["Nba YoungBoy"], "tags": ["Perfect"], "date": "2022-07-21"}
 				, {"id": "JhWz_DN91Ac", "name": "LA Lights", "attr": ["NetNobody"], "tags": ["Perfect"], "date": "2018-01-18"}
 				, {"id": "o1ogww1ojgw", "name": "Clouds", "attr": ["NF"], "tags": ["Perfect"], "date": "2022-12-01"}
 				, {"id": "Z-OPhNcFnzU", "name": "Mansion", "attr": ["NF ft. Fleurie"], "tags": ["Perfect"], "date": "2021-03-20"}
@@ -2854,7 +2868,6 @@
 				, {"id": "sH6rLDyYESw", "name": "Triumph", "attr": ["Wu Tang Clan"], "date": "2021-03-23"}
 				, {"id": "bRqZkFbf-5o", "name": "Mama Cry", "attr": ["YNW Melly"], "tags": ["Perfect"], "date": "2023-01-12"}
 				, {"id": "iaoeYLKY82Y", "name": "Murder On My Mind", "attr": ["YNW Melly"], "tags": ["Perfect"], "date": "2026-05-16"}
-				, {"id": "hMcHR4mqcBg", "name": "Make No Sense", "attr": ["YoungBoy Never Broke Again"], "tags": ["Perfect"], "date": "2025-11-13"}
 				, {"id": "rvMHGOTdqgc", "name": "Bestie", "attr": ["Yungen"], "tags": ["Perfect"], "date": "2018-02-20"}
 			]
 		}
@@ -3290,6 +3303,7 @@
 				, {"id": "Lfc63TwvxnQ", "name": "We Do What We Want", "attr": ["Alan Fitzpatrick"], "tags": ["Perfect"], "date": "2026-08-27"}
 				, {"id": "ZXUmFohd360", "name": "Into the Twilight", "attr": ["Amethystium"], "tags": ["Sparse"], "date": "2017-06-07"}
 				, {"id": "jgBVkReVD6Y", "name": "Prom Night", "attr": ["Anamanaguchi"], "date": "2017-04-17"}
+				, {"id": "6SIWjmFJ2GM", "name": "Shining Star", "attr": ["AND ONE"], "date": "2026-10-10"}
 				, {"id": "GDLIxiR23Y4", "name": "U-Boot Kreig in Ost Berlin", "attr": ["AND ONE"], "date": "2021-08-21"}
 				, {"id": "V1LrgI9oStw", "name": "Wolf", "attr": ["Andre Ary"], "date": "2018-05-17"}
 				, {"id": "FD9hq4gwjlA", "name": "Trespass", "attr": ["Andy Moor"], "date": "2018-04-19"}
@@ -4664,6 +4678,7 @@
 					, {"id": "8XkKuO_GarQ", "name": "Eastward main theme", "date": "2023-07-09"}
 					, {"id": "K371majgjUs", "name": "Fuzion Frenzy theme", "date": "2018-07-15"}
 					, {"id": "GL8mNMRUF-k", "name": "God Hand end credits", "date": "2018-08-16"}
+					, {"id": "L00uMc-yktA", "name": "Gray Zone Warframe Main Theme", "date": "2026-10-10"}
 					, {"id": "VoJsPh5B_j0", "name": "Guardian Tales main theme song", "date": "2021-05-01"}
 					, {"id": "EvAuzRroVz0", "name": "HuniePop main theme", "tags": ["Perfect"], "date": "2018-02-27"}
 					, {"id": "J_GMoxT6DpU", "name": "Killer Instinct theme song", "date": "2018-03-03"}
